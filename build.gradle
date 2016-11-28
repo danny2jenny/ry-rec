@@ -1,0 +1,48 @@
+group 'RYTEC'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'groovy'
+apply plugin: 'war'
+apply plugin: 'org.akhikhl.gretty'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    maven {
+        url "http://maven.aliyun.com/nexus/content/groups/public/"
+    }
+    jcenter()
+    mavenLocal()
+}
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'org.akhikhl.gretty:gretty:+'
+    }
+}
+
+gretty {
+    port = 8080
+    contextPath = '/'
+    servletContainer = 'jetty9'
+}
+
+dependencies {
+    compile 'ch.qos.logback:logback-classic:1.1.7'
+    compile 'org.codehaus.groovy:groovy-all:2.4.7'
+    compile 'org.springframework:spring-webmvc:4.3.3.RELEASE'
+    compile "io.netty:netty-all:4.1.6.Final"
+    compile "com.alibaba:druid:1.0.9"
+    compile "mysql:mysql-connector-java:5.1.40"
+
+    providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+
+
