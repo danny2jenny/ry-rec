@@ -7,7 +7,16 @@ package com.rytec.rec.channel;
  * 2、如何发送数据
  * 3、如何接收数据
  * 4、数据如何分包
+ * 5、连接状态
+ * <p>
+ * 一个Channel可以管理多个Channel的连接对象
  */
-public abstract class AbstractChannel {
+public interface AbstractChannel {
 
+    //初始化接口
+    public void initialization();
+
+    public void getConfig();
+
+    public Object getChannel(String id);
 }
