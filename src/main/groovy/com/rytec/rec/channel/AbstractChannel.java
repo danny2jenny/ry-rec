@@ -9,4 +9,5 @@ package com.rytec.rec.channel;
  * 4、数据如何分包
  */
 public abstract class AbstractChannel {
+
 }

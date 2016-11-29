@@ -1,4 +1,4 @@
-package com.rytec.rec.Node;
+package com.rytec.rec.node;
 
 /**
  * Created by danny on 16-11-17.

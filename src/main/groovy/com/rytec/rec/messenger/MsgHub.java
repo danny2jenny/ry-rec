@@ -1,4 +1,4 @@
-package com.rytec.rec.Messenger;
+package com.rytec.rec.messenger;
 
 /**
  * Created by danny on 16-11-22.

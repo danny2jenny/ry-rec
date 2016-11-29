@@ -1,4 +1,4 @@
-package com.rytec.rec.Node;
+package com.rytec.rec.node;
 
 import org.springframework.stereotype.Service;
 

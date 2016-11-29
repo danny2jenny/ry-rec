@@ -3,7 +3,11 @@ Rytec Remote Environment Surveillance
 
 该系统采用全新的构架
 
-# TODO
+# 硬件选型
+
+串口服务器：https://world.tmall.com/item/19918201549.htm?spm=a312a.7700824.w4011-5602068913.24.Uobbwv&id=19918201549&rn=c4a3772e642b1d277e17aa5f6c519671&abbucket=4
+开关控制：https://world.taobao.com/item/521055673361.htm?fromSite=main&spm=a312a.7728556.0.0.hMAGs0
+温湿度传感：https://world.taobao.com/item/525196117561.htm?fromSite=main&spm=a312a.7700824.w4002-12858767422.22.xl0SpS
 
 1、Websocket 通知框架
 

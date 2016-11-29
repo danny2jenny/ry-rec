@@ -6,9 +6,5 @@ package com.rytec.rec.device;
  */
 public interface AbstractDevice {
 
-    //得到数据
-    public abstract float getData();
 
-    //设置数据
-    public abstract int setDate();
 }
