@@ -1,7 +1,8 @@
-package com.rytec.rec.device
+package com.rytec.rec.db
 
 import com.alibaba.druid.pool.DruidDataSource
-import com.rytec.rec.device.bean.ChannelNode
+import com.rytec.rec.bean.ChannelNode
+import com.rytec.rec.bean.DeviceNode
 import groovy.sql.Sql
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -16,14 +17,18 @@ import org.springframework.stereotype.Service
  */
 
 @Service
-class DbFunction {
+class Config {
 
-    private final Logger logger = LoggerFactory.getLogger(DbFunction.class);
+    private final Logger logger = LoggerFactory.getLogger(Config.class);
+
+    private List<ChannelNode> channelNodeList;
+
+    private List<DeviceNode> deviceNodeList;
 
     @Autowired
     private DruidDataSource dataSource
 
-    public getNodes() {
+    private initChannelNode() {
         //查询channel和node的对应集合
         def sqlStr = """
             select
@@ -45,11 +50,10 @@ class DbFunction {
             from channel left join node on channel.id=node.cid
             """
         def sql = new Sql(dataSource);
-        List<ChannelNode> a = sql.rows(sqlStr);
-        return a.toString();
+        channelNodeList = sql.rows(sqlStr);
     }
 
-    public getDevice() {
+    private initDeviceNode() {
         def sqlStr = """
             select
                 device.id as id,
@@ -68,5 +72,29 @@ class DbFunction {
             left join node
             on device.id = node.device
             """
+        def sql = new Sql(dataSource);
+        deviceNodeList = sql.rows(sqlStr);
+    }
+
+    //对基本配置进行初始化
+    public initConfig() {
+        this.initChannelNode();
+        this.initDeviceNode();
+    }
+
+    List<ChannelNode> getChannelNodeList() {
+        return channelNodeList
+    }
+
+    void setChannelNodeList(List<ChannelNode> channelNodeList) {
+        this.channelNodeList = channelNodeList
+    }
+
+    List<DeviceNode> getDeviceNodeList() {
+        return deviceNodeList
+    }
+
+    void setDeviceNodeList(List<DeviceNode> deviceNodeList) {
+        this.deviceNodeList = deviceNodeList
     }
 }

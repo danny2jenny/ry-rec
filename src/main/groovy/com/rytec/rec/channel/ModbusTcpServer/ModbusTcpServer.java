@@ -3,6 +3,7 @@ package com.rytec.rec.channel.ModbusTcpServer;
 import com.rytec.rec.channel.ModbusTcpServer.channel.ModbusChannelInitializer;
 import com.rytec.rec.channel.ModbusTcpServer.channel.ModbusRequestHandler;
 import com.rytec.rec.channel.ModbusTcpServer.exception.ConnectionException;
+import com.rytec.rec.util.ChannelType;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
@@ -14,6 +15,8 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.util.concurrent.GenericFutureListener;
 import io.netty.util.concurrent.GlobalEventExecutor;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -23,8 +26,12 @@ import java.util.logging.Logger;
 /**
  * Created by danny on 16-11-22.
  */
+
+@Service
+@ChannelType(1001)
 public class ModbusTcpServer {
 
+    // 连接状态
     public static enum CONNECTION_STATES {
 
         listening, down, clientsConnected
@@ -32,6 +39,9 @@ public class ModbusTcpServer {
 
     public static final String PROP_CONNECTIONSTATE = "connectionState";
 
+
+    //端口配置
+    @Value("${tcp.server.modbus.port")
     private final int port;
 
     private ServerBootstrap bootstrap;
@@ -141,4 +151,10 @@ public class ModbusTcpServer {
         clientChannels.remove(channel);
         setConnectionState(CONNECTION_STATES.clientsConnected);
     }
+
+
+    //----------------------------------对通道的初始化-----------------------------
+
+
+
 }
