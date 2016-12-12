@@ -13,6 +13,7 @@ public class DeviceNode {
     public int lnodenum;
     public int nid;
     public int cid;
+    public int nadd;
     public int nno;
     public int ntype;
     public String conf;
@@ -80,6 +81,14 @@ public class DeviceNode {
 
     public void setCid(int cid) {
         this.cid = cid;
+    }
+
+    public int getNadd() {
+        return nadd;
+    }
+
+    public void setNadd(int nadd) {
+        this.nadd = nadd;
     }
 
     public int getNno() {

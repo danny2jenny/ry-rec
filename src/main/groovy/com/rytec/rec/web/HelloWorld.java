@@ -4,7 +4,7 @@ package com.rytec.rec.web;
  * Created by danny on 16-11-4.
  */
 
-import com.rytec.rec.db.Config;
+import com.rytec.rec.db.DbConfig;
 import com.rytec.rec.service.HelloWorldService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,22 +20,9 @@ public class HelloWorld {
 
     private final Logger logger = LoggerFactory.getLogger(HelloWorld.class);
 
-    @Autowired
-    @Qualifier("2")
-    private HelloWorldService helloWorldService;
-
-    @Autowired
-    Config dbFunction;
-
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    @ResponseBody
-    public String index() {
-        return helloWorldService.getDesc();
-    }
-
     @RequestMapping(value = "/test")
     @ResponseBody
     public String ResponseTest() {
-        return dbFunction.initChannelNode().toString();
+        return "";
     }
 }

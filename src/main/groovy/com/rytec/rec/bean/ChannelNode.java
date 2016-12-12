@@ -14,7 +14,9 @@ public class ChannelNode {
     public String pass;            //channel的密码
     public int ctype;              //channel的类型
     public String channelConf;     //channel的配置
+
     public int nid;                //node的id
+    public int add;                //node的地址
     public int no;                 //node的编号
     public String nname;           //node的名称
     public int ntype;              //node的类型
@@ -92,6 +94,14 @@ public class ChannelNode {
 
     public void setNid(int nid) {
         this.nid = nid;
+    }
+
+    public int getAdd() {
+        return add;
+    }
+
+    public void setAdd(int add) {
+        this.add = add;
     }
 
     public int getNo() {
