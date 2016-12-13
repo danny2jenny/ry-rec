@@ -1,9 +1,7 @@
 package com.rytec.rec.channel.ModbusTcpServer.channel;
 
-import com.rytec.rec.channel.ModbusTcpServer.entity.ModbusFrame;
+import com.rytec.rec.channel.ModbusTcpServer.ModbusFrame;
 import io.netty.buffer.ByteBuf;
-import io.netty.buffer.Unpooled;
-import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ByteToMessageDecoder;
 import org.slf4j.LoggerFactory;
@@ -20,10 +18,9 @@ public class ModbusLoginDecoder extends ByteToMessageDecoder {
 
     @Override
     protected void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) {
-        ModbusFrame msg = new ModbusFrame();
+        ModbusFrame msg = new ModbusFrame(1);
         msg.type = 100;
-        msg.payload = Unpooled.buffer();
-        msg.payload.writeByte(in.readByte());
+        msg.payload[0] = in.readByte();
         out.add(msg);
     }
 }

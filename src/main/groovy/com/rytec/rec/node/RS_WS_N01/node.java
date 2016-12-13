@@ -5,5 +5,5 @@ import com.rytec.rec.node.AbstractNode;
 /**
  * Created by danny on 16-11-29.
  */
-public class node implements AbstractNode {
+public class node{
 }

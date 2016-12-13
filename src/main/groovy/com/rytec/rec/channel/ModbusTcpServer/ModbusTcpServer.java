@@ -1,7 +1,11 @@
 package com.rytec.rec.channel.ModbusTcpServer;
 
+import com.rytec.rec.bean.ChannelNode;
 import com.rytec.rec.channel.ModbusTcpServer.channel.ModbusChannelInitializer;
 import com.rytec.rec.channel.ModbusTcpServer.exception.ConnectionException;
+import com.rytec.rec.db.DbConfig;
+import com.rytec.rec.node.AbstractNode;
+import com.rytec.rec.node.NodeFactory;
 import com.rytec.rec.util.ChannelType;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.Channel;
@@ -12,11 +16,15 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.util.concurrent.GenericFutureListener;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.ApplicationContext;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -45,6 +53,9 @@ public class ModbusTcpServer {
     // 建立服务器
     @PostConstruct
     public void setup() throws ConnectionException {
+
+        initConfig();
+
         try {
             final EventLoopGroup bossGroup = new NioEventLoopGroup();
             final EventLoopGroup workerGroup = new NioEventLoopGroup();
@@ -61,8 +72,6 @@ public class ModbusTcpServer {
             // Bind and start to accept incoming connections.
             // ChannelFuture 对象，同步调用
             parentChannel = bootstrap.bind(port).sync().channel();
-
-            logger.debug(parentChannel.toString());
 
             //添加一个关闭事件的监听
             parentChannel.closeFuture().addListener(new GenericFutureListener<ChannelFuture>() {
@@ -93,5 +102,54 @@ public class ModbusTcpServer {
 
     //----------------------------------对通道的初始化-----------------------------
 
+    @Autowired
+    private DbConfig dbConfig;
+
+    public ConcurrentHashMap<String, ConcurrentHashMap> hubList = new ConcurrentHashMap<String, ConcurrentHashMap>();
+
+    /*
+    * 初始化对应的HashMap
+    * 两级 HashMap
+    * 第一级：ip:id->Map
+    * 第二级：add:no->ChannelNode
+     */
+    private void initConfig() {
+
+        List<ChannelNode> channelNodes = dbConfig.getChannelNodeList();
+
+
+        //第一级的Map ip:id-> map
+        for (ChannelNode cn : channelNodes) {
+            if (cn.getCtype() != 1001) {
+                continue;
+            }
+
+            //每一个Channel的标识是IP：PORT
+            String hubId = cn.getIp() + ':' + cn.getPort();
+
+            //是否已经存在该Channel
+            ConcurrentHashMap<Integer, ChannelNode> hub = hubList.get(hubId);
+
+            //不存在，建立该Channel
+            if (hub == null) {
+                hub = new ConcurrentHashMap<Integer, ChannelNode>();
+                hubList.put(hubId, hub);
+            }
+
+            hub.put(cn.getAdd() + ':' + cn.getNo(), cn);
+        }
+    }
+
+    @Autowired
+    AbstractNode node;
+
+    @Autowired
+    ApplicationContext context;
+
+    @Scheduled(fixedDelay = 1000)
+    private void doOnTime() {
+        logger.debug("Node！！！：" + NodeFactory.getNode(1001).toString());
+
+    }
 
 }

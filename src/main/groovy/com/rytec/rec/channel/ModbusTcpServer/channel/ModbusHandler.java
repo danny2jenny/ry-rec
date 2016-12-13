@@ -1,10 +1,10 @@
 package com.rytec.rec.channel.ModbusTcpServer.channel;
 
+import com.rytec.rec.channel.ModbusTcpServer.ModbusCommon;
 import com.rytec.rec.channel.ModbusTcpServer.ModbusTcpServer;
-import com.rytec.rec.channel.ModbusTcpServer.entity.ModbusFrame;
+import com.rytec.rec.channel.ModbusTcpServer.ModbusFrame;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
-import io.netty.util.AttributeKey;
 import org.slf4j.LoggerFactory;
 
 import java.net.InetSocketAddress;
@@ -12,18 +12,15 @@ import java.net.InetSocketAddress;
 /**
  * Created by danny on 16-12-12.
  */
-public class ResponseHandler extends SimpleChannelInboundHandler<ModbusFrame> {
+public class ModbusHandler extends SimpleChannelInboundHandler<ModbusFrame> {
 
     private final ModbusTcpServer modbusTcpServer;
 
-    public ResponseHandler(ModbusTcpServer server) {
+    public ModbusHandler(ModbusTcpServer server) {
         this.modbusTcpServer = server;
     }
 
     private final org.slf4j.Logger logger = LoggerFactory.getLogger(this.getClass());
-
-    public static final AttributeKey<String> MODBUS_ID = AttributeKey.valueOf("modbus.id");
-
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) {
@@ -33,6 +30,7 @@ public class ResponseHandler extends SimpleChannelInboundHandler<ModbusFrame> {
 
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
+        modbusTcpServer.clients.remove(ctx.channel().attr(ModbusCommon.MODBUS_ID).get());
     }
 
     @Override
@@ -41,9 +39,10 @@ public class ResponseHandler extends SimpleChannelInboundHandler<ModbusFrame> {
             // 登录
             case 100:
                 //登录成功
+
                 InetSocketAddress ip = (InetSocketAddress) ctx.channel().remoteAddress();
-                String modbusId = ip.getHostName() + ':' + response.payload.readByte();
-                ctx.channel().attr(MODBUS_ID).set(modbusId);
+                String modbusId = ip.getHostName() + ':' + response.payload[0];
+                ctx.channel().attr(ModbusCommon.MODBUS_ID).set(modbusId);
                 modbusTcpServer.clients.put(modbusId, ctx.channel());
 
                 //移除相应的登录解码器，添加帧解码器
@@ -51,7 +50,7 @@ public class ResponseHandler extends SimpleChannelInboundHandler<ModbusFrame> {
                 ctx.pipeline().addFirst("FrameDecoder", new ModbusFrameDecoder());
 
                 //调试信息
-                logger.debug("Modbus Client login from IP：" + ctx.channel().attr(MODBUS_ID).get());
+                logger.debug("Modbus Client login from IP：" + ctx.channel().attr(ModbusCommon.MODBUS_ID).get());
                 break;
             default:
                 break;

@@ -6,6 +6,7 @@ import com.rytec.rec.bean.DeviceNode
 import groovy.sql.Sql
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import org.springframework.beans.BeanUtils
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
@@ -21,7 +22,7 @@ class DbConfig {
 
     private final Logger logger = LoggerFactory.getLogger(DbConfig.class);
 
-    private List<ChannelNode> channelNodeList;
+    private List<ChannelNode> channelNodeList
 
     private List<DeviceNode> deviceNodeList;
 
@@ -51,7 +52,31 @@ class DbConfig {
             from channel left join node on channel.id=node.cid
             """
         def sql = new Sql(dataSource);
-        channelNodeList = sql.rows(sqlStr);
+
+        channelNodeList = []
+
+        sql.eachRow(sqlStr) { item ->
+            ChannelNode a = new ChannelNode()
+
+            a.id = item.id
+            a.cname = item.cname
+            a.ip = item.ip
+            a.port = item.port
+            a.login = item.login
+            a.pass = item.pass
+            a.ctype = item.ctype
+            a.channelConf = item.channelConf
+            a.nid = item.nid
+            a.add = item.add
+            a.no = item.no
+            a.nname = item.nname
+            a.ntype = item.ntype
+            a.nodeConf = item.nodeConf
+            a.device = item.device
+            a.deviceFun = item.deviceFun
+
+            channelNodeList.add(a)
+        }
     }
 
     private initDeviceNode() {
@@ -75,28 +100,22 @@ class DbConfig {
             on device.id = node.device
             """
         def sql = new Sql(dataSource);
-        deviceNodeList = sql.rows(sqlStr);
-    }
-
-    //对基本配置进行初始化
-    public initConfig() {
-        this.initChannelNode();
-        this.initDeviceNode();
+        deviceNodeList = sql.rows(sqlStr).toList();
     }
 
     List<ChannelNode> getChannelNodeList() {
+        if (channelNodeList == null) {
+            initChannelNode()
+        }
         return channelNodeList
     }
 
-    void setChannelNodeList(List<ChannelNode> channelNodeList) {
-        this.channelNodeList = channelNodeList
-    }
 
     List<DeviceNode> getDeviceNodeList() {
+        if (deviceNodeList == null) {
+            initDeviceNode()
+        }
         return deviceNodeList
     }
 
-    void setDeviceNodeList(List<DeviceNode> deviceNodeList) {
-        this.deviceNodeList = deviceNodeList
-    }
 }

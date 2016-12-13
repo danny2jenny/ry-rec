@@ -62,13 +62,27 @@ public class CRC16 {
             ucCRCLo = ucCRCHi ^ crc16_tab_h[iIndex];
             ucCRCHi = crc16_tab_l[iIndex];
         }
-        return ((ucCRCHi & 0x00ff) << 8) | (ucCRCLo & 0x00ff) & 0xffff;
+        //return ((ucCRCHi & 0x00ff) << 8) | (ucCRCLo & 0x00ff) & 0xffff;
+        return (ucCRCHi & 0x00ff) | ((ucCRCLo & 0x00ff) << 8) & 0xffff;
     }
 
-    // 测试
-    public static void main(String[] args) {
-        // 0x02 05 00 03 FF 00 , crc16=7C 09
-        int crc = CRC16.calcCrc16(new byte[]{0x02, 0x05, 0x00, 0x03, (byte) 0xff, 0x00});
-        System.out.println(String.format("0x%04x", crc));
+    public static String bytesToHexString(byte[] src) {
+        StringBuilder stringBuilder = new StringBuilder("");
+        if (src == null || src.length <= 0) {
+            return null;
+        }
+        for (int i = 0; i < src.length; i++) {
+            int v = src[i] & 0xFF;
+            String hv = Integer.toHexString(v);
+            if (hv.length() < 2) {
+                stringBuilder.append(0);
+            }
+            stringBuilder.append(hv);
+        }
+        return stringBuilder.toString();
+    }
+
+    public static String byteToHex(byte b) {
+        return Integer.toHexString(b & 0xFF);
     }
 }

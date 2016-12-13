@@ -1,4 +1,4 @@
-package com.rytec.rec.channel.ModbusTcpServer.entity;
+package com.rytec.rec.channel.ModbusTcpServer;
 
 import io.netty.buffer.ByteBuf;
 
@@ -10,5 +10,15 @@ import io.netty.buffer.ByteBuf;
 public class ModbusFrame {
     public byte type;          //0 代表流出，1代表流入, 100 代表登录消息
     public int responseLen;    //返回帧的长度
-    public ByteBuf payload;    //有效数据，发送的或者是接收的
+    public byte[] payload;    //有效数据，发送的或者是接收的
+
+    public ModbusFrame() {
+
+    }
+
+    public ModbusFrame(int size) {
+        this.payload = new byte[size];
+    }
+
+
 }

@@ -21,9 +21,9 @@ public class ModbusChannelInitializer extends ChannelInitializer<SocketChannel> 
     protected void initChannel(SocketChannel ch) throws Exception {
         ChannelPipeline pipeline = ch.pipeline();
 
-        pipeline.addLast("LoginDecoder", new ModbusLoginDecoder());                 //登录解码
-        pipeline.addLast("ResponseHandler", new ResponseHandler(modbusServer));     //接收
-        pipeline.addLast("FrameEndoder", new ModbusFrameEncoder());                 //发送编码
+        pipeline.addFirst("FrameEndoder", new ModbusFrameEncoder());                 //发送编码
+        pipeline.addLast("LoginDecoder", new ModbusLoginDecoder());                  //登录解码
+        pipeline.addLast("ModbusHandler", new ModbusHandler(modbusServer));      //接收
     }
 }
 
