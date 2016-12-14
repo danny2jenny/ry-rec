@@ -23,7 +23,7 @@ public class ModbusChannelInitializer extends ChannelInitializer<SocketChannel> 
 
         pipeline.addFirst("FrameEndoder", new ModbusFrameEncoder());                 //发送编码
         pipeline.addLast("LoginDecoder", new ModbusLoginDecoder());                  //登录解码
-        pipeline.addLast("ModbusHandler", new ModbusHandler(modbusServer));      //接收
+        pipeline.addLast("ModbusHandler", new ModbusHandler(modbusServer));          //接收
     }
 }
 

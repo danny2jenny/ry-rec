@@ -29,8 +29,8 @@ public class NodeFactory {
     public void init() {
         nodes = context.getBeansWithAnnotation(NodeType.class);
         for (Object node : nodes.values()) {
-            final Class<? extends Object> nodeClass = node.getClass();
-            final NodeType annotation = nodeClass.getAnnotation(NodeType.class);
+            Class<? extends Object> nodeClass = node.getClass();
+            NodeType annotation = nodeClass.getAnnotation(NodeType.class);
             nodeList.put(annotation.value(), node);
         }
     }

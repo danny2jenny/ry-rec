@@ -1,5 +1,6 @@
 package com.rytec.rec.channel.ModbusTcpServer;
 
+import com.rytec.rec.util.FromWhere;
 import io.netty.buffer.ByteBuf;
 
 /**
@@ -8,17 +9,16 @@ import io.netty.buffer.ByteBuf;
  * 只用于channel保证数据帧的收发，不判断内容
  */
 public class ModbusFrame {
-    public byte type;          //0 代表流出，1代表流入, 100 代表登录消息
-    public int responseLen;    //返回帧的长度
-    public byte[] payload;    //有效数据，发送的或者是接收的
+    public int from = FromWhere.FROM_SYS;       //该命令的触发是哪里
+    public int responseLen = 0;                 //返回帧的长度
+    public byte[] payload;                      //有效数据，发送的或者是接收的
 
     public ModbusFrame() {
 
     }
 
-    public ModbusFrame(int size) {
-        this.payload = new byte[size];
+    public ModbusFrame(int where) {
+        from = where;
     }
-
 
 }

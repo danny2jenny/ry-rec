@@ -7,6 +7,8 @@ import com.rytec.rec.db.DbConfig;
 import com.rytec.rec.node.AbstractNode;
 import com.rytec.rec.node.NodeFactory;
 import com.rytec.rec.util.ChannelType;
+import com.rytec.rec.util.CommandType;
+import com.rytec.rec.util.FromWhere;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
@@ -18,7 +20,6 @@ import io.netty.util.concurrent.GenericFutureListener;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.ApplicationContext;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -105,7 +106,7 @@ public class ModbusTcpServer {
     @Autowired
     private DbConfig dbConfig;
 
-    public ConcurrentHashMap<String, ConcurrentHashMap> hubList = new ConcurrentHashMap<String, ConcurrentHashMap>();
+    public ConcurrentHashMap<String, ConcurrentHashMap> channelNodes = new ConcurrentHashMap<String, ConcurrentHashMap>();
 
     /*
     * 初始化对应的HashMap
@@ -128,27 +129,36 @@ public class ModbusTcpServer {
             String hubId = cn.getIp() + ':' + cn.getPort();
 
             //是否已经存在该Channel
-            ConcurrentHashMap<Integer, ChannelNode> hub = hubList.get(hubId);
+            ConcurrentHashMap<Integer, ChannelNode> hub = this.channelNodes.get(hubId);
 
             //不存在，建立该Channel
             if (hub == null) {
                 hub = new ConcurrentHashMap<Integer, ChannelNode>();
-                hubList.put(hubId, hub);
+                this.channelNodes.put(hubId, hub);
             }
 
             hub.put(cn.getAdd() + ':' + cn.getNo(), cn);
         }
     }
 
-    @Autowired
-    AbstractNode node;
-
-    @Autowired
-    ApplicationContext context;
-
+    /*
+    * 通讯率 9600
+    * 每秒1000个字节（双向累计）
+    * 每个通讯过程20个字节（最大）
+    * 最多可以是50个通讯过程
+    * 每个过程约20个毫秒
+    * 因此50~100个毫秒是安全的
+    *
+    * 每个Channel（Socket 连接都需要进行轮训）通过一个HashMap来进行
+    * <String, Integer>   ip:port -> 当前的轮训位置
+    */
     @Scheduled(fixedDelay = 1000)
     private void doOnTime() {
-        logger.debug("Node！！！：" + NodeFactory.getNode(1001).toString());
+        for (String key : clients.keySet()) {
+            Channel cha = clients.get(key);
+            AbstractNode node = NodeFactory.getNode(1001);
+            cha.write(node.genFrame(FromWhere.FROM_SYS,1,0, CommandType.CMD_OFF));
+        }
 
     }
 

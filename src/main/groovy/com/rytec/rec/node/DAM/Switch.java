@@ -21,13 +21,13 @@ public class Switch implements AbstractNode {
     * add 地址
     * type 类型 100 关闭， 101开启，200 状态查询
      */
-    public ModbusFrame genFrame(int add, int reg, int type) {
+    public ModbusFrame genFrame(int where, int add, int reg, int cmd) {
 
         ModbusFrame frame = new ModbusFrame();
-        frame.type = 0;
+        frame.from = where;
 
         ByteBuf buf;
-        switch (type) {
+        switch (cmd) {
             //关闭
             case 100:
                 buf = Unpooled.buffer(6);
@@ -58,8 +58,8 @@ public class Switch implements AbstractNode {
                 frame.responseLen = 6;
                 buf.writeByte(add);
                 buf.writeByte(0x01);
-                buf.writeShort(reg);
-                buf.writeShort(1);
+                buf.writeShort(reg);    //地址
+                buf.writeShort(1);      //查询数量
                 frame.payload = buf.array();
                 break;
         }

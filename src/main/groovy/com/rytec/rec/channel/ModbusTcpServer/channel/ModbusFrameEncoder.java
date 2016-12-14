@@ -1,5 +1,7 @@
 package com.rytec.rec.channel.ModbusTcpServer.channel;
 
+import com.rytec.rec.channel.ModbusTcpServer.ChannelState;
+import com.rytec.rec.channel.ModbusTcpServer.ModbusCommon;
 import com.rytec.rec.channel.ModbusTcpServer.ModbusFrame;
 import com.rytec.rec.util.CRC16;
 import io.netty.buffer.ByteBuf;
@@ -17,10 +19,16 @@ public class ModbusFrameEncoder extends MessageToByteEncoder<ModbusFrame> {
     @Override
     protected void encode(ChannelHandlerContext ctx, ModbusFrame msg, ByteBuf out) {
 
+        //更新Channel状态，主要是当前的命令级别，以及期望返回的数据长度
+        ChannelState channelState = ctx.channel().attr(ModbusCommon.MODBUS_STATE).get();
+        channelState.state = msg.from;
+        channelState.expectLen = msg.responseLen;
+
+        //发送数据
         int crc = CRC16.calcCrc16(msg.payload);
         out.writeBytes(msg.payload);
         out.writeShort(crc);
-        logger.debug("写入数据：" + CRC16.bytesToHexString(msg.payload));
+
         ctx.flush();
     }
 }

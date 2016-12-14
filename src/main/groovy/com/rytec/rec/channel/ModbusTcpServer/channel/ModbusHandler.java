@@ -1,12 +1,16 @@
 package com.rytec.rec.channel.ModbusTcpServer.channel;
 
+import com.rytec.rec.channel.ModbusTcpServer.ChannelState;
 import com.rytec.rec.channel.ModbusTcpServer.ModbusCommon;
 import com.rytec.rec.channel.ModbusTcpServer.ModbusTcpServer;
 import com.rytec.rec.channel.ModbusTcpServer.ModbusFrame;
+import com.rytec.rec.util.CRC16;
+import com.rytec.rec.util.FromWhere;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import org.slf4j.LoggerFactory;
 
+import java.net.CacheRequest;
 import java.net.InetSocketAddress;
 
 /**
@@ -35,15 +39,18 @@ public class ModbusHandler extends SimpleChannelInboundHandler<ModbusFrame> {
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, ModbusFrame response) throws Exception {
-        switch (response.type) {
+        switch (response.from) {
             // 登录
-            case 100:
-                //登录成功
-
+            case FromWhere.FROM_LOG:
+                //设置Channel的ID
                 InetSocketAddress ip = (InetSocketAddress) ctx.channel().remoteAddress();
                 String modbusId = ip.getHostName() + ':' + response.payload[0];
                 ctx.channel().attr(ModbusCommon.MODBUS_ID).set(modbusId);
                 modbusTcpServer.clients.put(modbusId, ctx.channel());
+
+                //设置Channel的状态
+                ChannelState channelState = new ChannelState();
+                ctx.channel().attr(ModbusCommon.MODBUS_STATE).set(channelState);
 
                 //移除相应的登录解码器，添加帧解码器
                 ctx.pipeline().remove("LoginDecoder");
@@ -51,6 +58,10 @@ public class ModbusHandler extends SimpleChannelInboundHandler<ModbusFrame> {
 
                 //调试信息
                 logger.debug("Modbus Client login from IP：" + ctx.channel().attr(ModbusCommon.MODBUS_ID).get());
+                break;
+            // 远端的回应
+            case FromWhere.FROM_RPS:
+                logger.debug("回应消息:" + CRC16.bytesToHexString(response.payload));
                 break;
             default:
                 break;
