@@ -22,11 +22,15 @@ public class Input implements AbstractNode {
         frame.add = add;
         frame.no = reg;
 
+        frame.responseLen = 6;
+
         ByteBuf buf = Unpooled.buffer(6);
         buf.writeByte(add);
         buf.writeByte(0x02);
         buf.writeShort(reg);
         buf.writeShort(0x01);
+
+        frame.payload = buf.array();
 
         return frame;
     }

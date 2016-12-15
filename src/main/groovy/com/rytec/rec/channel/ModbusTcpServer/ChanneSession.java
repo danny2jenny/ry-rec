@@ -1,6 +1,8 @@
 package com.rytec.rec.channel.ModbusTcpServer;
 
+import com.rytec.rec.util.CRC16;
 import io.netty.channel.Channel;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,9 +19,14 @@ import java.util.concurrent.LinkedBlockingQueue;
  */
 public class ChanneSession {
 
+    private final org.slf4j.Logger logger = LoggerFactory.getLogger(this.getClass());
+
+    private Channel cha;            //对应的Channel
+    private int currentQuerryIndex = 0;
+
     public String id;               //channel的id  ip：port
 
-    public ModbusFrame lastCmd;     //最后一次发送的命令
+    public ModbusFrame lastCmd = null;     //最后一次发送的命令
 
     public List<ModbusFrame> queryCmd = new ArrayList();
 
@@ -29,28 +36,49 @@ public class ChanneSession {
     // 用于状态查询的命令帧，该
     public HashMap<String, ModbusFrame> stateCmd = new HashMap();
 
-    public ChanneSession(String cid) {
+    public ChanneSession(String cid, Channel channel) {
         id = cid;
+        cha = channel;
     }
 
-    //得到下一个的查询命令
-    private int currentQuerryIndex = 0;
+    //当前通道是否在等待回应
+    private boolean isBusy() {
+        return lastCmd == null ? true : false;
+    }
 
+
+    //得到下一个的查询命令
     private ModbusFrame getNextQuery() {
+        if (queryCmd.size() == 0) {
+            return null;
+        }
         ModbusFrame msg = queryCmd.get(currentQuerryIndex);
         currentQuerryIndex = (currentQuerryIndex + 1) % queryCmd.size();
         return msg;
     }
 
-    public void putCmd(ModbusFrame msg) {
+
+    public void sendMsg(ModbusFrame msg) {
         sendQueue.add(msg);
+        processQueue();
     }
 
     /*
     * 处理命令队列
     * 优先处理命令队列，然后再处理查询命令
     */
-    public void processQueue(Channel cha) {
+    public void processQueue() {
+        if (lastCmd != null) return;
+
+        if (sendQueue.size() > 0) {
+            lastCmd = sendQueue.poll();
+        } else {
+            lastCmd = getNextQuery();
+        }
+
+        if (lastCmd != null) {
+            cha.writeAndFlush(lastCmd);
+        }
 
     }
 

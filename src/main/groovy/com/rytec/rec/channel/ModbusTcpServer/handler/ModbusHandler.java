@@ -7,6 +7,7 @@ import com.rytec.rec.channel.ModbusTcpServer.ModbusTcpServer;
 import com.rytec.rec.channel.ModbusTcpServer.ModbusFrame;
 import com.rytec.rec.node.AbstractNode;
 import com.rytec.rec.node.NodeFactory;
+import com.rytec.rec.util.CRC16;
 import com.rytec.rec.util.CommandType;
 import com.rytec.rec.util.FromWhere;
 import io.netty.channel.ChannelHandlerContext;
@@ -50,16 +51,18 @@ public class ModbusHandler extends SimpleChannelInboundHandler<ModbusFrame> {
         switch (response.from) {
             // 登录
             case FromWhere.FROM_LOG:
+
                 //设置Channel的ID
                 InetSocketAddress ip = (InetSocketAddress) ctx.channel().remoteAddress();
                 String modbusId = ip.getHostName() + ':' + response.payload[0];
+
+                logger.debug("客户端连接：" + modbusId);
 
                 //建立外部通过ip:port可以访问Channel的借口
                 modbusTcpServer.clients.put(modbusId, ctx.channel());
 
                 //设置Channel的状态
-                channeSession = new ChanneSession(modbusId);
-                ctx.channel().attr(ModbusCommon.MODBUS_STATE).set(channeSession);
+                channeSession = new ChanneSession(modbusId, ctx.channel());
 
                 //移除相应的登录解码器，添加帧解码器
                 ctx.pipeline().remove("LoginDecoder");
@@ -72,11 +75,13 @@ public class ModbusHandler extends SimpleChannelInboundHandler<ModbusFrame> {
                     ModbusFrame msg = (ModbusFrame) node.genFrame(FromWhere.FROM_TIME, cn.add, cn.no, CommandType.CMD_QUERY);
                     channeSession.queryCmd.add(msg);
                 }
+                ctx.channel().attr(ModbusCommon.MODBUS_STATE).set(channeSession);
 
                 break;
             // 远端的回应
             case FromWhere.FROM_RPS:
-                modbusTcpServer.receiveMsg(channeSession.id, response);
+                modbusTcpServer.receiveMsg(channeSession.id, channeSession.lastCmd, response);
+                channeSession.lastCmd = null;
                 break;
             default:
                 break;

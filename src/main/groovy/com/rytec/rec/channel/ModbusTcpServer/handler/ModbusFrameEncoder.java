@@ -19,14 +19,12 @@ public class ModbusFrameEncoder extends MessageToByteEncoder<ModbusFrame> {
     @Override
     protected void encode(ChannelHandlerContext ctx, ModbusFrame msg, ByteBuf out) {
 
-        //更新Channel状态，主要是当前的命令级别，以及期望返回的数据长度
-        ChanneSession channeSession = ctx.channel().attr(ModbusCommon.MODBUS_STATE).get();
-        channeSession.lastCmd = msg;
-
         //发送数据
         int crc = CRC16.calcCrc16(msg.payload);
         out.writeBytes(msg.payload);
         out.writeShort(crc);
+
+        //logger.debug("发送数据：" + CRC16.bytesToHexString(msg.payload));
 
         ctx.flush();
     }

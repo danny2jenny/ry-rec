@@ -4,6 +4,7 @@ import com.rytec.rec.bean.ChannelNode;
 import com.rytec.rec.channel.ModbusTcpServer.handler.ModbusChannelInitializer;
 import com.rytec.rec.channel.ModbusTcpServer.exception.ConnectionException;
 import com.rytec.rec.db.DbConfig;
+import com.rytec.rec.util.CRC16;
 import com.rytec.rec.util.ChannelType;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.Channel;
@@ -115,11 +116,10 @@ public class ModbusTcpServer {
      */
     private void initConfig() {
 
-        List<ChannelNode> channelNodes = dbConfig.getChannelNodeList();
-
+        List<ChannelNode> chaNodeList = dbConfig.getChannelNodeList();
 
         //第一级的Map ip:id-> map
-        for (ChannelNode cn : channelNodes) {
+        for (ChannelNode cn : chaNodeList) {
             if (cn.ctype != 1001) {
                 continue;
             }
@@ -128,7 +128,7 @@ public class ModbusTcpServer {
             String chaId = cn.ip + ':' + cn.port;
 
             //是否已经存在该Channel
-            ConcurrentHashMap<String, ChannelNode> cha = this.channelNodes.get(chaId);
+            ConcurrentHashMap<Integer, ChannelNode> cha = channelNodes.get(chaId);
 
             //不存在，建立该Channel
             if (cha == null) {
@@ -136,15 +136,14 @@ public class ModbusTcpServer {
                 this.channelNodes.put(chaId, cha);
             }
 
-            //node的标识是 add:no
-            //add代表485地址，no 代表 寄存器地址
-            cha.put("" + cn.add + ':' + cn.no, cn);
+            //node的标识是 nid
+            cha.put(cn.nid, cn);
         }
     }
 
     //收到远端回应后的处理
-    public void receiveMsg(String chaId, ModbusFrame msg) {
-
+    public void receiveMsg(String chaId, ModbusFrame request, ModbusFrame response) {
+        //logger.debug("收到消息：" + CRC16.bytesToHexString(response.payload));
     }
 
     /*
@@ -158,12 +157,12 @@ public class ModbusTcpServer {
     * 每个Channel（Socket 连接都需要进行轮训）通过一个HashMap来进行
     * <String, Integer>   ip:port -> 当前的轮训位置
     */
-    @Scheduled(fixedDelay = 1000)
+    @Scheduled(fixedDelay = 50)
     private void doOnTime() {
         // 遍历已经登录的远端，并执行队列
         for (Channel cha : clients.values()) {
             ChanneSession channeSession = cha.attr(ModbusCommon.MODBUS_STATE).get();
-            channeSession.processQueue(cha);
+            channeSession.processQueue();
         }
     }
 
@@ -178,8 +177,7 @@ public class ModbusTcpServer {
         }
 
         ChanneSession channeSession = cha.attr(ModbusCommon.MODBUS_STATE).get();
-        channeSession.putCmd(msg);
-        channeSession.processQueue(cha);
+        channeSession.sendMsg(msg);
         return true;
     }
 
