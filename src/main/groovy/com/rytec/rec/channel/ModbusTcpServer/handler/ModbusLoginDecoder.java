@@ -1,4 +1,4 @@
-package com.rytec.rec.channel.ModbusTcpServer.channel;
+package com.rytec.rec.channel.ModbusTcpServer.handler;
 
 import com.rytec.rec.channel.ModbusTcpServer.ModbusFrame;
 import com.rytec.rec.util.FromWhere;

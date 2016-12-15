@@ -57,24 +57,28 @@ class DbConfig {
         sql.eachRow(sqlStr) { item ->
             ChannelNode a = new ChannelNode()
 
-            a.id = item.id
-            a.cname = item.cname
-            a.ip = item.ip
-            a.port = item.port
-            a.login = item.login
-            a.pass = item.pass
-            a.ctype = item.ctype
-            a.channelConf = item.channelConf
-            a.nid = item.nid
-            a.add = item.add
-            a.no = item.no
-            a.nname = item.nname
-            a.ntype = item.ntype
-            a.nodeConf = item.nodeConf
-            a.device = item.device
-            a.deviceFun = item.deviceFun
+            //避免一个Channel下面不没有任何的Node的情况
+            if (item.nid) {
+                a.id = item.id
+                a.cname = item.cname
+                a.ip = item.ip
+                a.port = item.port
+                a.login = item.login
+                a.pass = item.pass
+                a.ctype = item.ctype
+                a.channelConf = item.channelConf
+                a.nid = item.nid
+                a.add = item.add
+                a.no = item.no
+                a.nname = item.nname
+                a.ntype = item.ntype
+                a.nodeConf = item.nodeConf
+                a.device = item.device
+                a.deviceFun = item.deviceFun
 
-            channelNodeList.add(a)
+                channelNodeList.add(a)
+            }
+
         }
     }
 

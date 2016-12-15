@@ -8,6 +8,5 @@ import io.netty.util.AttributeKey;
  * 公共数据
  */
 public class ModbusCommon {
-    public static final AttributeKey<String> MODBUS_ID = AttributeKey.valueOf("modbus.id");
-    public static final AttributeKey<ChannelState> MODBUS_STATE = AttributeKey.valueOf("modbus.session");
+    public static final AttributeKey<ChanneSession> MODBUS_STATE = AttributeKey.valueOf("modbus.session");
 }

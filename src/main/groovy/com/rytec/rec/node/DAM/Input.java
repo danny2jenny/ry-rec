@@ -19,6 +19,8 @@ public class Input implements AbstractNode {
         ModbusFrame frame = new ModbusFrame();
 
         frame.from = where;
+        frame.add = add;
+        frame.no = reg;
 
         ByteBuf buf = Unpooled.buffer(6);
         buf.writeByte(add);

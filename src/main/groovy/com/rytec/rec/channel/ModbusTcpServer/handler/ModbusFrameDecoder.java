@@ -1,6 +1,6 @@
-package com.rytec.rec.channel.ModbusTcpServer.channel;
+package com.rytec.rec.channel.ModbusTcpServer.handler;
 
-import com.rytec.rec.channel.ModbusTcpServer.ChannelState;
+import com.rytec.rec.channel.ModbusTcpServer.ChanneSession;
 import com.rytec.rec.channel.ModbusTcpServer.ModbusCommon;
 import com.rytec.rec.channel.ModbusTcpServer.ModbusFrame;
 import com.rytec.rec.util.FromWhere;
@@ -20,11 +20,11 @@ public class ModbusFrameDecoder extends ReplayingDecoder {
 
     @Override
     protected void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) {
-        ChannelState channelState = ctx.channel().attr(ModbusCommon.MODBUS_STATE).get();
+        ChanneSession channeSession = ctx.channel().attr(ModbusCommon.MODBUS_STATE).get();
 
         //读取希望返回的长度
-        ByteBuf data = in.readBytes(channelState.expectLen);
-        byte[] payload = new byte[channelState.expectLen - 2];    //去除CRC校验
+        ByteBuf data = in.readBytes(channeSession.lastCmd.responseLen);
+        byte[] payload = new byte[channeSession.lastCmd.responseLen];    //包含去除CRC校验
         data.readBytes(payload);
 
         ModbusFrame msg = new ModbusFrame(FromWhere.FROM_RPS);

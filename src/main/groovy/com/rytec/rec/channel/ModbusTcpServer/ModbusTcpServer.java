@@ -1,14 +1,10 @@
 package com.rytec.rec.channel.ModbusTcpServer;
 
 import com.rytec.rec.bean.ChannelNode;
-import com.rytec.rec.channel.ModbusTcpServer.channel.ModbusChannelInitializer;
+import com.rytec.rec.channel.ModbusTcpServer.handler.ModbusChannelInitializer;
 import com.rytec.rec.channel.ModbusTcpServer.exception.ConnectionException;
 import com.rytec.rec.db.DbConfig;
-import com.rytec.rec.node.AbstractNode;
-import com.rytec.rec.node.NodeFactory;
 import com.rytec.rec.util.ChannelType;
-import com.rytec.rec.util.CommandType;
-import com.rytec.rec.util.FromWhere;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
@@ -25,6 +21,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import javax.swing.*;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
@@ -32,6 +29,8 @@ import java.util.logging.Logger;
 
 /**
  * Created by danny on 16-11-22.
+ * <p>
+ * ModbusTcp Server
  */
 
 @Service
@@ -49,7 +48,7 @@ public class ModbusTcpServer {
     private Channel parentChannel;
 
     // 对应的客户端连接列表
-    public final ConcurrentHashMap<String, Channel> clients = new ConcurrentHashMap<String, Channel>();
+    public final ConcurrentHashMap<String, Channel> clients = new ConcurrentHashMap<>();
 
     // 建立服务器
     @PostConstruct
@@ -121,24 +120,31 @@ public class ModbusTcpServer {
 
         //第一级的Map ip:id-> map
         for (ChannelNode cn : channelNodes) {
-            if (cn.getCtype() != 1001) {
+            if (cn.ctype != 1001) {
                 continue;
             }
 
             //每一个Channel的标识是IP：PORT
-            String hubId = cn.getIp() + ':' + cn.getPort();
+            String chaId = cn.ip + ':' + cn.port;
 
             //是否已经存在该Channel
-            ConcurrentHashMap<Integer, ChannelNode> hub = this.channelNodes.get(hubId);
+            ConcurrentHashMap<String, ChannelNode> cha = this.channelNodes.get(chaId);
 
             //不存在，建立该Channel
-            if (hub == null) {
-                hub = new ConcurrentHashMap<Integer, ChannelNode>();
-                this.channelNodes.put(hubId, hub);
+            if (cha == null) {
+                cha = new ConcurrentHashMap();
+                this.channelNodes.put(chaId, cha);
             }
 
-            hub.put(cn.getAdd() + ':' + cn.getNo(), cn);
+            //node的标识是 add:no
+            //add代表485地址，no 代表 寄存器地址
+            cha.put("" + cn.add + ':' + cn.no, cn);
         }
+    }
+
+    //收到远端回应后的处理
+    public void receiveMsg(String chaId, ModbusFrame msg) {
+
     }
 
     /*
@@ -154,12 +160,27 @@ public class ModbusTcpServer {
     */
     @Scheduled(fixedDelay = 1000)
     private void doOnTime() {
-        for (String key : clients.keySet()) {
-            Channel cha = clients.get(key);
-            AbstractNode node = NodeFactory.getNode(1001);
-            cha.write(node.genFrame(FromWhere.FROM_SYS,1,0, CommandType.CMD_OFF));
+        // 遍历已经登录的远端，并执行队列
+        for (Channel cha : clients.values()) {
+            ChanneSession channeSession = cha.attr(ModbusCommon.MODBUS_STATE).get();
+            channeSession.processQueue(cha);
+        }
+    }
+
+    /*
+    * 发送命令接口,
+    * 只是把命令加入到对应Channel的
+    */
+    public boolean sendMsg(Spring ip, int port, ModbusFrame msg) {
+        Channel cha = clients.get(ip + ":" + port);
+        if (cha == null) {
+            return false;
         }
 
+        ChanneSession channeSession = cha.attr(ModbusCommon.MODBUS_STATE).get();
+        channeSession.putCmd(msg);
+        channeSession.processQueue(cha);
+        return true;
     }
 
 }

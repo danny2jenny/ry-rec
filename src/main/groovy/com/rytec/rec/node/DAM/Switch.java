@@ -2,6 +2,7 @@ package com.rytec.rec.node.DAM;
 
 import com.rytec.rec.channel.ModbusTcpServer.ModbusFrame;
 import com.rytec.rec.node.AbstractNode;
+import com.rytec.rec.util.CommandType;
 import com.rytec.rec.util.NodeType;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
@@ -25,11 +26,13 @@ public class Switch implements AbstractNode {
 
         ModbusFrame frame = new ModbusFrame();
         frame.from = where;
+        frame.add = add;
+        frame.no = reg;
 
         ByteBuf buf;
         switch (cmd) {
             //关闭
-            case 100:
+            case CommandType.CMD_OFF:
                 buf = Unpooled.buffer(6);
                 frame.responseLen = 8;
                 buf.writeByte(add);
@@ -41,7 +44,7 @@ public class Switch implements AbstractNode {
                 break;
 
             //开启
-            case 101:
+            case CommandType.CMD_ON:
                 buf = Unpooled.buffer(6);
                 frame.responseLen = 8;
                 buf.writeByte(add);
@@ -53,7 +56,7 @@ public class Switch implements AbstractNode {
                 break;
 
             //状态查询
-            case 200:
+            case CommandType.CMD_QUERY:
                 buf = Unpooled.buffer(6);
                 frame.responseLen = 6;
                 buf.writeByte(add);
@@ -65,6 +68,5 @@ public class Switch implements AbstractNode {
         }
 
         return frame;
-
     }
 }
