@@ -12,6 +12,7 @@ import java.util.Map;
 
 /**
  * Created by danny on 16-12-13.
+ * 通过Nodtype 得到一个具体的实现接口
  */
 @Service
 public class NodeFactory {
@@ -21,13 +22,11 @@ public class NodeFactory {
     @Autowired
     ApplicationContext context;
 
-    static Map<String, Object> nodes;
-
     static Map<Integer, Object> nodeList = new ConcurrentReaderHashMap();
 
     @PostConstruct
     public void init() {
-        nodes = context.getBeansWithAnnotation(NodeType.class);
+        Map<String, Object> nodes = context.getBeansWithAnnotation(NodeType.class);
         for (Object node : nodes.values()) {
             Class<? extends Object> nodeClass = node.getClass();
             NodeType annotation = nodeClass.getAnnotation(NodeType.class);

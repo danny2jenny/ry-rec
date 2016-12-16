@@ -13,10 +13,4 @@ package com.rytec.rec.channel;
  */
 public interface AbstractChannel {
 
-    //初始化接口
-    public void initialization();
-
-    public void getConfig();
-
-    public Object getChannel(String id);
 }

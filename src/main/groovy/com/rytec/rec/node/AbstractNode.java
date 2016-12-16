@@ -1,7 +1,5 @@
 package com.rytec.rec.node;
 
-import com.rytec.rec.channel.ModbusTcpServer.ModbusFrame;
-
 /**
  * Created by danny on 16-11-20.
  */

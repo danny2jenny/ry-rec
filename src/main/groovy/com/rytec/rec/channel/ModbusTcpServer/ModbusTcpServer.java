@@ -4,7 +4,6 @@ import com.rytec.rec.bean.ChannelNode;
 import com.rytec.rec.channel.ModbusTcpServer.handler.ModbusChannelInitializer;
 import com.rytec.rec.channel.ModbusTcpServer.exception.ConnectionException;
 import com.rytec.rec.db.DbConfig;
-import com.rytec.rec.util.CRC16;
 import com.rytec.rec.util.ChannelType;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.Channel;
@@ -106,7 +105,7 @@ public class ModbusTcpServer {
     @Autowired
     private DbConfig dbConfig;
 
-    public ConcurrentHashMap<String, ConcurrentHashMap> channelNodes = new ConcurrentHashMap<String, ConcurrentHashMap>();
+    public ConcurrentHashMap<String, ConcurrentHashMap> channelNodes = new ConcurrentHashMap();
 
     /*
     * 初始化对应的HashMap
@@ -141,11 +140,6 @@ public class ModbusTcpServer {
         }
     }
 
-    //收到远端回应后的处理
-    public void receiveMsg(String chaId, ModbusFrame request, ModbusFrame response) {
-        //logger.debug("收到消息：" + CRC16.bytesToHexString(response.payload));
-    }
-
     /*
     * 通讯率 9600
     * 每秒1000个字节（双向累计）
@@ -157,7 +151,7 @@ public class ModbusTcpServer {
     * 每个Channel（Socket 连接都需要进行轮训）通过一个HashMap来进行
     * <String, Integer>   ip:port -> 当前的轮训位置
     */
-    @Scheduled(fixedDelay = 50)
+    @Scheduled(fixedDelay = 1000)
     private void doOnTime() {
         // 遍历已经登录的远端，并执行队列
         for (Channel cha : clients.values()) {
@@ -170,7 +164,7 @@ public class ModbusTcpServer {
     * 发送命令接口,
     * 只是把命令加入到对应Channel的
     */
-    public boolean sendMsg(Spring ip, int port, ModbusFrame msg) {
+    public boolean sendMsg(Spring ip, int port, ModbusMessage msg) {
         Channel cha = clients.get(ip + ":" + port);
         if (cha == null) {
             return false;
@@ -181,4 +175,8 @@ public class ModbusTcpServer {
         return true;
     }
 
+    //收到远端回应后的处理
+    public void receiveMsg(String chaId, ModbusMessage request, ModbusMessage response) {
+        logger.debug("收到消息：" + request.type);
+    }
 }

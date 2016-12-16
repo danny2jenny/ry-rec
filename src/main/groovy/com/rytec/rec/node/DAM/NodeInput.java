@@ -1,6 +1,6 @@
 package com.rytec.rec.node.DAM;
 
-import com.rytec.rec.channel.ModbusTcpServer.ModbusFrame;
+import com.rytec.rec.channel.ModbusTcpServer.ModbusMessage;
 import com.rytec.rec.node.AbstractNode;
 import com.rytec.rec.util.NodeType;
 import io.netty.buffer.ByteBuf;
@@ -13,10 +13,10 @@ import org.springframework.stereotype.Service;
 
 @Service
 @NodeType(1002)
-public class Input implements AbstractNode {
+public class NodeInput implements AbstractNode {
 
-    public ModbusFrame genFrame(int where, int add, int reg, int cmd) {
-        ModbusFrame frame = new ModbusFrame();
+    public ModbusMessage genFrame(int where, int add, int reg, int cmd) {
+        ModbusMessage frame = new ModbusMessage();
 
         frame.from = where;
         frame.add = add;

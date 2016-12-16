@@ -1,14 +1,9 @@
 package com.rytec.rec.channel.ModbusTcpServer;
 
-import com.rytec.rec.util.CRC16;
 import io.netty.channel.Channel;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
+import java.util.*;
 
 /**
  * Created by danny on 16-12-14.
@@ -26,15 +21,15 @@ public class ChanneSession {
 
     public String id;               //channel的id  ip：port
 
-    public ModbusFrame lastCmd = null;     //最后一次发送的命令
+    public volatile ModbusMessage lastCmd = null;     //最后一次发送的命令
 
-    public List<ModbusFrame> queryCmd = new ArrayList();
+    public List<ModbusMessage> queryCmd = new ArrayList();
 
     //发送队列
-    BlockingQueue<ModbusFrame> sendQueue = new LinkedBlockingQueue(10);
+    volatile Queue<ModbusMessage> sendQueue = new LinkedList();
 
     // 用于状态查询的命令帧，该
-    public HashMap<String, ModbusFrame> stateCmd = new HashMap();
+    public HashMap<String, ModbusMessage> stateCmd = new HashMap();
 
     public ChanneSession(String cid, Channel channel) {
         id = cid;
@@ -48,17 +43,17 @@ public class ChanneSession {
 
 
     //得到下一个的查询命令
-    private ModbusFrame getNextQuery() {
+    private ModbusMessage getNextQuery() {
         if (queryCmd.size() == 0) {
             return null;
         }
-        ModbusFrame msg = queryCmd.get(currentQuerryIndex);
+        ModbusMessage msg = queryCmd.get(currentQuerryIndex);
         currentQuerryIndex = (currentQuerryIndex + 1) % queryCmd.size();
         return msg;
     }
 
 
-    public void sendMsg(ModbusFrame msg) {
+    public void sendMsg(ModbusMessage msg) {
         sendQueue.add(msg);
         processQueue();
     }

@@ -2,7 +2,7 @@ package com.rytec.rec.bean;
 
 /**
  * Created by danny on 16-11-22.
- * Device 和 node 的映射关系
+ * DeviceOutput 和 node 的映射关系
  */
 public class DeviceNode {
     public int id;

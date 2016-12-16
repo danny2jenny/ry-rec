@@ -1,18 +1,19 @@
 package com.rytec.rec.channel.ModbusTcpServer.handler;
 
 import com.rytec.rec.bean.ChannelNode;
+import com.rytec.rec.channel.ChannelManager;
 import com.rytec.rec.channel.ModbusTcpServer.ChanneSession;
 import com.rytec.rec.channel.ModbusTcpServer.ModbusCommon;
 import com.rytec.rec.channel.ModbusTcpServer.ModbusTcpServer;
-import com.rytec.rec.channel.ModbusTcpServer.ModbusFrame;
+import com.rytec.rec.channel.ModbusTcpServer.ModbusMessage;
 import com.rytec.rec.node.AbstractNode;
 import com.rytec.rec.node.NodeFactory;
-import com.rytec.rec.util.CRC16;
 import com.rytec.rec.util.CommandType;
 import com.rytec.rec.util.FromWhere;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.net.InetSocketAddress;
 import java.util.concurrent.ConcurrentHashMap;
@@ -22,7 +23,10 @@ import java.util.concurrent.ConcurrentHashMap;
  * <p>
  * 所有收到的Modbus帧在这里进行处理
  */
-public class ModbusHandler extends SimpleChannelInboundHandler<ModbusFrame> {
+public class ModbusHandler extends SimpleChannelInboundHandler<ModbusMessage> {
+
+    @Autowired
+    ChannelManager channelManager;
 
     private final ModbusTcpServer modbusTcpServer;
 
@@ -44,7 +48,7 @@ public class ModbusHandler extends SimpleChannelInboundHandler<ModbusFrame> {
     }
 
     @Override
-    protected void channelRead0(ChannelHandlerContext ctx, ModbusFrame response) throws Exception {
+    protected void channelRead0(ChannelHandlerContext ctx, ModbusMessage response) throws Exception {
 
         ChanneSession channeSession = ctx.channel().attr(ModbusCommon.MODBUS_STATE).get();
 
@@ -72,7 +76,7 @@ public class ModbusHandler extends SimpleChannelInboundHandler<ModbusFrame> {
                 ConcurrentHashMap<String, ChannelNode> cha = modbusTcpServer.channelNodes.get(modbusId);
                 for (ChannelNode cn : cha.values()) {
                     AbstractNode node = NodeFactory.getNode(cn.ntype);
-                    ModbusFrame msg = (ModbusFrame) node.genFrame(FromWhere.FROM_TIME, cn.add, cn.no, CommandType.CMD_QUERY);
+                    ModbusMessage msg = (ModbusMessage) node.genFrame(FromWhere.FROM_TIME, cn.add, cn.no, CommandType.CMD_QUERY);
                     channeSession.queryCmd.add(msg);
                 }
                 ctx.channel().attr(ModbusCommon.MODBUS_STATE).set(channeSession);

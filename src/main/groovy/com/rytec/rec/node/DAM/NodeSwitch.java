@@ -1,6 +1,6 @@
 package com.rytec.rec.node.DAM;
 
-import com.rytec.rec.channel.ModbusTcpServer.ModbusFrame;
+import com.rytec.rec.channel.ModbusTcpServer.ModbusMessage;
 import com.rytec.rec.node.AbstractNode;
 import com.rytec.rec.util.CommandType;
 import com.rytec.rec.util.NodeType;
@@ -17,17 +17,18 @@ import org.springframework.stereotype.Service;
 
 @Service
 @NodeType(1001)
-public class Switch implements AbstractNode {
+public class NodeSwitch implements AbstractNode {
     /*
     * add 地址
     * type 类型 100 关闭， 101开启，200 状态查询
      */
-    public ModbusFrame genFrame(int where, int add, int reg, int cmd) {
+    public ModbusMessage genFrame(int where, int add, int reg, int cmd) {
 
-        ModbusFrame frame = new ModbusFrame();
+        ModbusMessage frame = new ModbusMessage();
         frame.from = where;
         frame.add = add;
         frame.no = reg;
+        frame.type = cmd;
 
         ByteBuf buf;
         switch (cmd) {
