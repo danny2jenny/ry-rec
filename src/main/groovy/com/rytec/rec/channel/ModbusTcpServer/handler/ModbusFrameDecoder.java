@@ -28,8 +28,8 @@ public class ModbusFrameDecoder extends ReplayingDecoder {
         data.readBytes(payload);
 
         ModbusMessage msg = new ModbusMessage(FromWhere.FROM_RPS);
-        msg.no = channeSession.lastCmd.no;
-        msg.add = channeSession.lastCmd.add;
+        msg.nodeId = channeSession.lastCmd.nodeId;
+        msg.type = channeSession.lastCmd.type;
         msg.payload = payload;
 
         out.add(msg);

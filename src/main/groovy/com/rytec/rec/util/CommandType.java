@@ -5,8 +5,7 @@ package com.rytec.rec.util;
  * 命令类型常量
  */
 public interface CommandType {
-    int CMD_OFF = 100;    //打开
-    int CMD_ON = 101;     //关闭
-    int CMD_QUERY = 200;  //状态查询
+    int CMD_READ = 400;     //读取
+    int CMD_WRITE = 500;    //写入
 
 }

@@ -4,6 +4,10 @@ import com.rytec.rec.bean.ChannelNode;
 import com.rytec.rec.channel.ModbusTcpServer.handler.ModbusChannelInitializer;
 import com.rytec.rec.channel.ModbusTcpServer.exception.ConnectionException;
 import com.rytec.rec.db.DbConfig;
+import com.rytec.rec.node.NodeInterface;
+import com.rytec.rec.node.NodeFactory;
+import com.rytec.rec.node.NodeManager;
+import com.rytec.rec.util.CRC16;
 import com.rytec.rec.util.ChannelType;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.Channel;
@@ -175,8 +179,22 @@ public class ModbusTcpServer {
         return true;
     }
 
+    @Autowired
+    NodeManager nodeManager;
+
     //收到远端回应后的处理
+    //首先通过Node进行解码，然后再发送道NodeManager
     public void receiveMsg(String chaId, ModbusMessage request, ModbusMessage response) {
-        logger.debug("收到消息：" + request.type);
+
+        logger.debug("收到Modbus：" + chaId + ':' + CRC16.bytesToHexString(response.payload));
+
+        ChannelNode cn = (ChannelNode) channelNodes.get(chaId).get(request.nodeId);
+        NodeInterface node = NodeFactory.getNode(cn.ctype);
+
+        // 解码值
+        int newValue = node.decodeMessage(response);
+
+        nodeManager.onValue(response.nodeId, newValue);
+
     }
 }

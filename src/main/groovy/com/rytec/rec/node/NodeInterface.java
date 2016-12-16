@@ -3,7 +3,7 @@ package com.rytec.rec.node;
 /**
  * Created by danny on 16-11-20.
  */
-public interface AbstractNode {
+public interface NodeInterface {
 
     /*
     * 生成通讯帧
@@ -12,5 +12,7 @@ public interface AbstractNode {
     * reg 寄存器地址
     * type 帧类型
     */
-    Object genFrame(int where, int add, int reg, int cmd);
+    Object genMessage(int where, int nodeId, int cmd, int value);
+
+    int decodeMessage(Object msg);
 }

@@ -34,7 +34,7 @@ public class NodeFactory {
         }
     }
 
-    public static AbstractNode getNode(int type) {
-        return (AbstractNode) nodeList.get(type);
+    public static NodeInterface getNode(int type) {
+        return (NodeInterface) nodeList.get(type);
     }
 }

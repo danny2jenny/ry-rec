@@ -1,5 +1,7 @@
 package com.rytec.rec.bean;
 
+import com.rytec.rec.node.NodeOpt;
+
 /**
  * Created by danny on 16-11-21.
  * <p>
@@ -25,7 +27,7 @@ public class ChannelNode {
     public int deviceFun;          //node对应的设备功能
 
     // ---------------非数据库字段，用于业务逻辑保存临时信息-------------------
-    public Object opt;             //其他配置信息
+    public NodeOpt opt;            //其他配置信息
 
 
 }

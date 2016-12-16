@@ -106,6 +106,7 @@ class DbConfig {
         deviceNodeList = sql.rows(sqlStr).toList();
     }
 
+    // Channel 和 Node 的对应关系
     List<ChannelNode> getChannelNodeList() {
         if (channelNodeList == null) {
             initChannelNode()
@@ -113,7 +114,7 @@ class DbConfig {
         return channelNodeList
     }
 
-
+    //Node 和 Device 的对应关系
     List<DeviceNode> getDeviceNodeList() {
         if (deviceNodeList == null) {
             initDeviceNode()

@@ -6,7 +6,7 @@ import com.rytec.rec.channel.ModbusTcpServer.ChanneSession;
 import com.rytec.rec.channel.ModbusTcpServer.ModbusCommon;
 import com.rytec.rec.channel.ModbusTcpServer.ModbusTcpServer;
 import com.rytec.rec.channel.ModbusTcpServer.ModbusMessage;
-import com.rytec.rec.node.AbstractNode;
+import com.rytec.rec.node.NodeInterface;
 import com.rytec.rec.node.NodeFactory;
 import com.rytec.rec.util.CommandType;
 import com.rytec.rec.util.FromWhere;
@@ -73,10 +73,11 @@ public class ModbusHandler extends SimpleChannelInboundHandler<ModbusMessage> {
                 ctx.pipeline().addFirst("FrameDecoder", new ModbusFrameDecoder());
 
                 //设置查询命令集合
-                ConcurrentHashMap<String, ChannelNode> cha = modbusTcpServer.channelNodes.get(modbusId);
+                ConcurrentHashMap<Integer, ChannelNode> cha = modbusTcpServer.channelNodes.get(modbusId);
+
                 for (ChannelNode cn : cha.values()) {
-                    AbstractNode node = NodeFactory.getNode(cn.ntype);
-                    ModbusMessage msg = (ModbusMessage) node.genFrame(FromWhere.FROM_TIME, cn.add, cn.no, CommandType.CMD_QUERY);
+                    NodeInterface node = NodeFactory.getNode(cn.ntype);
+                    ModbusMessage msg = (ModbusMessage) node.genMessage(FromWhere.FROM_TIME, cn.nid, CommandType.CMD_READ, 0);
                     channeSession.queryCmd.add(msg);
                 }
                 ctx.channel().attr(ModbusCommon.MODBUS_STATE).set(channeSession);
