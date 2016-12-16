@@ -9,4 +9,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class BaseNodeInput {
 
+    // 得到节点的状态
+    int getState(int id) {
+        return 0;
+    }
 }

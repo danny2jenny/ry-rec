@@ -16,7 +16,7 @@ public class DeviceManager {
 
     /*
     * 前端设备数据变化
-    * device: 设备id
+    * Aircon: 设备id
     * fun：设备功能号
     * oldValue：原值
     * newValue：新值

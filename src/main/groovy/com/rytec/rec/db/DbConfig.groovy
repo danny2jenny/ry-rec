@@ -19,11 +19,11 @@ import org.springframework.stereotype.Service
 @Service
 class DbConfig {
 
-    private final Logger logger = LoggerFactory.getLogger(DbConfig.class);
+    private final Logger logger = LoggerFactory.getLogger(DbConfig.class)
 
     private List<ChannelNode> channelNodeList
 
-    private List<DeviceNode> deviceNodeList;
+    private List<DeviceNode> deviceNodeList
 
     @Autowired
     private DruidDataSource dataSource
@@ -46,11 +46,11 @@ class DbConfig {
                 node.name as nname,
                 node.type as ntype,
                 node.other as nodeConf,
-                device,
+                Aircon,
                 deviceFun
             from channel left join node on channel.id=node.cid
             """
-        def sql = new Sql(dataSource);
+        def sql = new Sql(dataSource)
 
         channelNodeList = []
 
@@ -85,10 +85,10 @@ class DbConfig {
     private initDeviceNode() {
         def sqlStr = """
             select
-                device.id as id,
-                device.no as dno,
-                device.name as dname,
-                device.type as dtype,
+                Aircon.id as id,
+                Aircon.no as dno,
+                Aircon.name as dname,
+                Aircon.type as dtype,
                 lnodetype,
                 lnodenum,
                 node.id as nid,
@@ -98,12 +98,12 @@ class DbConfig {
                 node.type as ntype,
                 other as conf,
                 deviceFun as nfun
-            from device
+            from Aircon
             left join node
-            on device.id = node.device
+            on Aircon.id = node.Aircon
             """
-        def sql = new Sql(dataSource);
-        deviceNodeList = sql.rows(sqlStr).toList();
+        def sql = new Sql(dataSource)
+        sql.rows(sqlStr)
     }
 
     // Channel 和 Node 的对应关系
