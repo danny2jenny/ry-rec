@@ -9,10 +9,12 @@ apply plugin: 'org.akhikhl.gretty'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
+/**
+ * Java包的查询 http://mvnrepository.com
+ */
 repositories {
-    maven {
-        url "http://maven.aliyun.com/nexus/content/groups/public/"
-    }
+    maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+    maven { url "https://maven.repository.redhat.com/ga/" }
     jcenter()
     mavenLocal()
 }
@@ -34,14 +36,35 @@ gretty {
 }
 
 dependencies {
+    // 日志
     compile 'ch.qos.logback:logback-classic:1.1.7'
+
+    // Groovy
     compile 'org.codehaus.groovy:groovy-all:2.4.7'
+
+    // Spring
     compile 'org.springframework:spring-webmvc:4.3.3.RELEASE'
+//    compile 'org.springframework:spring-websocket:4.3.3.RELEASE'
+//    compile 'org.springframework:spring-messaging:4.3.3.RELEASE'
+//    compile 'org.springframework:spring-jms:4.3.3.RELEASE'
+
+    // Netty
     compile "io.netty:netty-all:4.1.6.Final"
+
+    //Mysql
     compile "com.alibaba:druid:1.0.9"
     compile "mysql:mysql-connector-java:5.1.40"
 
+    // Apache apollo 消息
+//    compile "org.apache.activemq:apollo-broker:1.7.1"
+//    compile "org.apache.activemq:apollo-stomp:1.7.1"
+//    compile "org.apache.activemq:apollo-jmx:1.7.1"
+//    compile "org.apache.activemq:apollo-web:1.7.1"
+
+    // Servlet
     providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
+
+    // 测试
     testCompile group: 'junit', name: 'junit', version: '4.11'
 }
 

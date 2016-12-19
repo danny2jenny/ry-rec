@@ -5,7 +5,9 @@ package com.rytec.rec.util;
  * 命令类型常量
  */
 public interface CommandType {
-    int CMD_READ = 400;     //读取
-    int CMD_WRITE = 500;    //写入
+
+    int MODBUS_CMD_WRITE = 100;    //485写入
+
+    int MODBUS_CMD_READ = 101;     //485读取
 
 }

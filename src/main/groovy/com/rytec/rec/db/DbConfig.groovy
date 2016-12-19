@@ -46,7 +46,7 @@ class DbConfig {
                 node.name as nname,
                 node.type as ntype,
                 node.other as nodeConf,
-                Aircon,
+                device,
                 deviceFun
             from channel left join node on channel.id=node.cid
             """
@@ -55,10 +55,10 @@ class DbConfig {
         channelNodeList = []
 
         sql.eachRow(sqlStr) { item ->
-            ChannelNode a = new ChannelNode()
-
             //避免一个Channel下面不没有任何的Node的情况
             if (item.nid) {
+                ChannelNode a = new ChannelNode()
+
                 a.id = item.id
                 a.cname = item.cname
                 a.ip = item.ip
@@ -85,10 +85,10 @@ class DbConfig {
     private initDeviceNode() {
         def sqlStr = """
             select
-                Aircon.id as id,
-                Aircon.no as dno,
-                Aircon.name as dname,
-                Aircon.type as dtype,
+                device.id as id,
+                device.no as dno,
+                device.name as dname,
+                device.type as dtype,
                 lnodetype,
                 lnodenum,
                 node.id as nid,
@@ -98,12 +98,33 @@ class DbConfig {
                 node.type as ntype,
                 other as conf,
                 deviceFun as nfun
-            from Aircon
+            from device
             left join node
-            on Aircon.id = node.Aircon
+            on device.id = node.device
             """
         def sql = new Sql(dataSource)
-        sql.rows(sqlStr)
+
+        deviceNodeList = []
+        sql.eachRow(sqlStr) { item ->
+            if (item.nid) {
+                DeviceNode a = new DeviceNode()
+                a.id = item.id
+                a.dno = item.dno
+                a.dname = item.dname
+                a.dtype = item.dtype
+                a.lnodetype = item.lnodetype
+                a.lnodenum = item.lnodenum
+                a.nid = item.nid
+                a.cid = item.cid
+                a.nadd = item.nadd
+                a.nno = item.nno
+                a.ntype = item.ntype
+                a.conf = item.conf
+                a.nfun = item.nfun
+                deviceNodeList.add(a)
+            }
+
+        }
     }
 
     // Channel 和 Node 的对应关系

@@ -2,7 +2,7 @@ package com.rytec.rec.node.DAM;
 
 import com.rytec.rec.bean.ChannelNode;
 import com.rytec.rec.channel.ModbusTcpServer.ModbusMessage;
-import com.rytec.rec.node.NodeInterface;
+import com.rytec.rec.node.NodeProtocolInterface;
 import com.rytec.rec.node.NodeManager;
 import com.rytec.rec.util.NodeType;
 import io.netty.buffer.ByteBuf;
@@ -30,7 +30,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @NodeType(1002)
-public class DamInput implements NodeInterface {
+public class DamInput implements NodeProtocolInterface {
 
     @Autowired
     NodeManager nodeManager;

@@ -9,7 +9,7 @@ import com.rytec.rec.util.FromWhere;
  * 只用于channel保证数据帧的收发，不判断内容
  */
 public class ModbusMessage {
-    public int type = CommandType.CMD_READ;    //命令类型
+    public int type = CommandType.MODBUS_CMD_READ;    //命令类型
     public int from = FromWhere.FROM_TIME;      //该命令的触发是哪里
     public int responseLen = 0;                 //返回帧的长度
     public byte[] payload;                      //有效数据，发送的或者是接收的

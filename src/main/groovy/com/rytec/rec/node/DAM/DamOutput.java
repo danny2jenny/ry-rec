@@ -2,8 +2,8 @@ package com.rytec.rec.node.DAM;
 
 import com.rytec.rec.bean.ChannelNode;
 import com.rytec.rec.channel.ModbusTcpServer.ModbusMessage;
-import com.rytec.rec.node.NodeInterface;
 import com.rytec.rec.node.NodeManager;
+import com.rytec.rec.node.NodeProtocolInterface;
 import com.rytec.rec.util.CommandType;
 import com.rytec.rec.util.NodeType;
 import io.netty.buffer.ByteBuf;
@@ -50,14 +50,12 @@ import org.springframework.stereotype.Service;
 
 @Service
 @NodeType(1001)
-public class DamOutput implements NodeInterface {
+public class DamOutput implements NodeProtocolInterface {
 
     @Autowired
     NodeManager nodeManager;
 
     /*
-    * add 地址
-    * type 类型 100 关闭， 101开启，200 状态查询
      */
     public ModbusMessage genMessage(int where, int nodeId, int cmd, int value) {
 
@@ -72,7 +70,7 @@ public class DamOutput implements NodeInterface {
         ByteBuf buf;
         switch (cmd) {
             // 写入
-            case CommandType.CMD_WRITE:
+            case CommandType.MODBUS_CMD_WRITE:
                 buf = Unpooled.buffer(6);
                 frame.responseLen = 8;
                 buf.writeByte(channelNode.add);     //地址
@@ -83,7 +81,7 @@ public class DamOutput implements NodeInterface {
                 break;
 
             //状态查询
-            case CommandType.CMD_READ:
+            case CommandType.MODBUS_CMD_READ:
                 buf = Unpooled.buffer(6);
                 frame.responseLen = 6;
                 buf.writeByte(channelNode.add);
@@ -103,10 +101,10 @@ public class DamOutput implements NodeInterface {
         int value = 0;
         ModbusMessage respond = (ModbusMessage) msg;
         switch (respond.type) {
-            case CommandType.CMD_READ:
+            case CommandType.MODBUS_CMD_READ:
                 value = respond.payload[3];
                 break;
-            case CommandType.CMD_WRITE:
+            case CommandType.MODBUS_CMD_WRITE:
                 value = respond.payload[4];
                 break;
         }

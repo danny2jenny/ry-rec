@@ -4,8 +4,7 @@ import com.rytec.rec.bean.ChannelNode;
 import com.rytec.rec.channel.ModbusTcpServer.handler.ModbusChannelInitializer;
 import com.rytec.rec.channel.ModbusTcpServer.exception.ConnectionException;
 import com.rytec.rec.db.DbConfig;
-import com.rytec.rec.node.NodeInterface;
-import com.rytec.rec.node.NodeFactory;
+import com.rytec.rec.node.NodeProtocolInterface;
 import com.rytec.rec.node.NodeManager;
 import com.rytec.rec.util.CRC16;
 import com.rytec.rec.util.ChannelType;
@@ -189,7 +188,7 @@ public class ModbusTcpServer {
         logger.debug("收到Modbus：" + chaId + ':' + CRC16.bytesToHexString(response.payload));
 
         ChannelNode cn = (ChannelNode) channelNodes.get(chaId).get(request.nodeId);
-        NodeInterface node = NodeFactory.getNode(cn.ctype);
+        NodeProtocolInterface node = NodeManager.getNode(cn.ctype);
 
         // 解码值
         int newValue = node.decodeMessage(response);
