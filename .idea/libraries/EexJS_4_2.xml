@@ -1,0 +1,16 @@
+<component name="libraryTable">
+  <library name="EexJS 4.2" type="javaScript">
+    <properties>
+      <option name="frameworkName" value="ExtJS 4.2" />
+      <option name="frameworkVersion" value="4.2.1" />
+      <sourceFilesUrls>
+        <item url="file://$PROJECT_DIR$/src/main/webapp/extjs" />
+      </sourceFilesUrls>
+    </properties>
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/src/main/webapp/extjs" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

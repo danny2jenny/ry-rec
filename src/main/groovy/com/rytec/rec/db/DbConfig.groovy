@@ -19,7 +19,7 @@ import org.springframework.stereotype.Service
 @Service
 class DbConfig {
 
-    private final Logger logger = LoggerFactory.getLogger(DbConfig.class)
+    private final Logger logger = LoggerFactory.getLogger(this.class)
 
     private List<ChannelNode> channelNodeList
 
@@ -41,7 +41,7 @@ class DbConfig {
                 channel.type as ctype,
                 channel.other as channelConf,
                 node.id as nid,
-                node.add,
+                node.adr as "add",
                 no,
                 node.name as nname,
                 node.type as ntype,
@@ -93,7 +93,7 @@ class DbConfig {
                 lnodenum,
                 node.id as nid,
                 cid,
-                node.add as nadd,
+                node.adr as nadd,
                 node.no as nno,
                 node.type as ntype,
                 other as conf,
