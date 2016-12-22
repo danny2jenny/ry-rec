@@ -15,6 +15,7 @@
     <link rel="stylesheet" type="text/css" href="extjs/resources/css/ext-all-neptune-debug.css"/>
     <link rel="stylesheet" type="text/css" href="extjs/resources/ext-theme-neptune/ext-theme-neptune-all-debug.css"/>
 
+    <%--以下的JS加载必须严格按照顺序--%>
 
     <%--extjs 启动器#--%>
     <script type="text/javascript" src="extjs/bootstrap.js"></script>
@@ -25,8 +26,8 @@
     <%--中文化--%>
     <script type="text/javascript" src="extjs/locale/ext-lang-zh_CN.js"></script>
 
-    <%--客户端需要的常量--%>
-    <%--<script type="text/javascript" src="const"></script>--%>
+    <%--extjs 工具#--%>
+    <script type="text/javascript" src="extjs_app/lib/util.js"></script>
 
     <%--主程序入口--%>
     <script type="text/javascript" src="extjs_app/App.js"></script>

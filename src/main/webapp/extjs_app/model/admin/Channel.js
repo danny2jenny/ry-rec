@@ -5,8 +5,6 @@
 Ext.define('ryrec.model.admin.Channel', {
     extend: 'Ext.data.Model',
 
-    /**fields  type
-     */
     fields: [
         {name: 'id'},
         {name: 'name'},
@@ -14,7 +12,7 @@ Ext.define('ryrec.model.admin.Channel', {
         {name: 'port'},
         {name: 'login'},
         {name: 'pass'},
-        {name: 'type'},
+        {name: 'type', type: 'int'},
         {name: 'other'},
     ],
 

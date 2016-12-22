@@ -8,11 +8,16 @@ Ext.define('ryrec.controller.AdminFrame', {
     extend: 'Ext.app.Controller',
     views: [
         'admin.panel.ChannelNode',
+        'admin.DeviceGrid',
+        'admin.panel.Option'
     ],
 
     stores: [
         'admin.Channel',
-        'admin.Node'
+        'admin.Node',
+        'Device',
+        'Option',
+        'option.ChannelType'
     ],
 
     init: function () {

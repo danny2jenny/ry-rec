@@ -7,6 +7,16 @@ Ext.define('ryrec.view.AdminFrame', {
     layout: 'border',
     border: 3,
     items: [
+
+        // 左边的设备列表
+        {
+            region: 'west',
+            xtype: 'deviceGrid',
+            width: 300,
+            split: true
+        },
+
+        // 中间的 TabPanel
         {
             region: 'center',
             xtype: 'tabpanel',
@@ -22,12 +32,13 @@ Ext.define('ryrec.view.AdminFrame', {
                 {
                     xtype: 'admin.panel.channelnode'
                 },
+                {
+                    xtype: 'admin.panel.option'
+                }
 
             ]
-        },
-
+        }
     ],
-
 
     initComponent: function () {
         this.callParent(arguments);

@@ -43,7 +43,6 @@ Ext.define('ryrec.lib.MasterSlaveGride', {
                     insertRecord = editGrid.newRecord;
                 }
 
-                debugger;
                 editGrid.store.insert(0, insertRecord);
                 this.ownerCt.ownerCt.rowEditing.startEdit(0, 0);
             }

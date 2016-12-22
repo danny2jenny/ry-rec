@@ -5,17 +5,15 @@
 Ext.define('ryrec.model.admin.Node', {
     extend: 'Ext.data.Model',
 
-    /**fields  type
-     */
     fields: [
-        {name: 'id', sortable: false},
-        {name: 'cid', sortable: false},
-        {name: 'adr', sortable: false},
-        {name: 'no', sortable: false},
-        {name: 'name', sortable: false},
-        {name: 'type', sortable: false},
-        {name: 'other', sortable: false},
-        {name: 'device', sortable: false},
-        {name: 'devicefun', sortable: false},
+        {name: 'id'},
+        {name: 'cid'},
+        {name: 'adr'},
+        {name: 'no'},
+        {name: 'name'},
+        {name: 'type', type: 'int'},
+        {name: 'other'},
+        {name: 'device'},
+        {name: 'devicefun'},
     ],
 });

@@ -41,6 +41,8 @@
         </javaClientGenerator>
 
         <!-- 需要自动生成的表 -->
+
+<!--
         <table schema="" tableName="device" domainObjectName="Device">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
         </table>
@@ -52,7 +54,11 @@
         <table schema="" tableName="node" domainObjectName="Node">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
         </table>
+-->
 
+        <table schema="" tableName="config" domainObjectName="Config">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
 
     </context>
 </generatorConfiguration>

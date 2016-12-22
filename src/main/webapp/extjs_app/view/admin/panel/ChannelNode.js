@@ -5,7 +5,6 @@
  */
 
 Ext.define('ryrec.view.admin.panel.ChannelNode', {
-    requires: ['ryrec.lib.MasterSlaveGride'],
     extend: 'Ext.panel.Panel',
     alias: 'widget.admin.panel.channelnode',
     layout: 'border',
@@ -18,7 +17,6 @@ Ext.define('ryrec.view.admin.panel.ChannelNode', {
         {
             xtype: 'gridEditBase',
             region: 'center',
-
             margins: '0 0 0 0',
             title: '控制器通道',
             icon: 'icon/toolbar/channel.png',
@@ -75,14 +73,20 @@ Ext.define('ryrec.view.admin.panel.ChannelNode', {
                         allowBlank: true
                     }
                 },
+
                 {
                     text: '类型',
                     dataIndex: 'type',
-                    width: 100,
+                    width: 200,
                     editor: {
-                        allowBlank: false
+                        xtype: 'combobox',
+                        store: ry.CHANNEL_TYPE,
+                    },
+                    renderer: function (val, column, row) {
+                        return ry.trans(val, ry.CHANNEL_TYPE);
                     }
                 },
+
                 {
                     text: '配置信息',
                     dataIndex: 'other',
@@ -146,17 +150,28 @@ Ext.define('ryrec.view.admin.panel.ChannelNode', {
                     dataIndex: 'type',
                     width: 100,
                     editor: {
-                        allowBlank: false
+                        xtype: 'combobox',
+                        store: ry.NODE_TYPE
+                    },
+                    renderer: function (val, column, row) {
+                        return ry.trans(val, ry.NODE_TYPE);
                     }
                 },
+
                 {
-                    text: '配置',
-                    dataIndex: 'other',
-                    width: 100,
-                    editor: {
-                        allowBlank: false
-                    }
-                }]
+                    xtype: 'actioncolumn',
+                    width: 20,
+                    items: [
+                        {
+                            icon: '/icon/toolbar/config.png',  // Use a URL in the icon config
+                            tooltip: 'Edit',
+                            handler: function (grid, rowIndex, colIndex) {
+                                debugger;
+                            }
+                        }
+                    ]
+                }
+            ]
         }
     ]
 
