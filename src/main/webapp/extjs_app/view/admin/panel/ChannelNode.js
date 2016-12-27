@@ -107,6 +107,7 @@ Ext.define('app.view.admin.panel.ChannelNode', {
             region: 'south',
             height: 500,
             margins: '0 0 5 0',
+            itemId: 'adminNodeGridForChannel',
             split: true,
             title: '节点',
             icon: 'icon/toolbar/node.png',
@@ -200,50 +201,6 @@ Ext.define('app.view.admin.panel.ChannelNode', {
     ],
 
 
-    updateDeviceEditBtn: function () {
-
-        var channelNodeGrid = Ext.ComponentQuery.query('#gridChannelNode')[0];
-        var nodeGrid = channelNodeGrid.down("gridEditBase[master='master']");
-        var deviceGrid = Ext.ComponentQuery.query('#adminDeviceGrid')[0];
-        var nodeSelected = nodeGrid.getSelectionModel().selected.items;
-        var deviceSelected = deviceGrid.getSelectionModel().selected.items;
-
-        if (nodeSelected.length) {
-
-            if (nodeGrid.store.getById(nodeSelected[0].get('id')).get('device') &&
-                deviceGrid.store.getById(nodeGrid.store.getById(nodeSelected[0].get('id')).get('device'))) {
-                // 有关联的设备
-                // 当前Node是否已经分配了Device
-                // 如果分配：删除使能，添加不使能，追加不使能
-                // 如果没有分配：
-
-                // 得到当前Node对应的Device
-
-                debugger;
-                var device = deviceGrid.store.getById(nodeGrid.store.getById(nodeSelected[0].get('id')).get('device')).data;
-
-                // 使能 Delete
-                channelNodeGrid.bt_del.setDisabled(false);
-                channelNodeGrid.bt_new.setDisabled(true);
-                channelNodeGrid.bt_append.setDisabled(true);
-                // 更新提示
-                channelNodeGrid.bt_note.setText('<b>已经关联设备：' + device.name + '(' + ry.trans(device.type, ry.DEVICE_TYPE) + ')</b>');
-            } else {
-                // 没有关联的设备
-                channelNodeGrid.bt_note.setText("<div style='color: #ff0000'>未关联设备！</div>");
-                channelNodeGrid.bt_del.setDisabled(true);
-                channelNodeGrid.bt_new.setDisabled(false);
-                channelNodeGrid.bt_append.setDisabled(!deviceSelected.length);
-            }
-
-        } else {
-            channelNodeGrid.bt_new.setDisabled(true);
-            channelNodeGrid.bt_del.setDisabled(true);
-            channelNodeGrid.bt_append.setDisabled(true);
-        }
-
-    },
-
     /**
      * 初始化
      */
@@ -270,84 +227,17 @@ Ext.define('app.view.admin.panel.ChannelNode', {
             itemId: 'bt_note'
         });
 
-        // 添加
-        me.bt_new = Ext.create('Ext.Button', {
-            text: '添加为新设备',
-            icon: '/icon/toolbar/add.png',
-            disabled: true,
-            itemId: 'bt_new',
-            handler: function (btn, event) {
-                var deviceGrid = Ext.ComponentQuery.query('#adminDeviceGrid')[0];
-                var channelNodeGrid = Ext.ComponentQuery.query('#gridChannelNode')[0];
-                var nodeGrid = channelNodeGrid.down("gridEditBase[master='master']");
-                var nodeSelected = nodeGrid.getSelectionModel().selected.items;
-                deviceGrid.store.insert(0, {
-                    name: nodeSelected[0].data.name,
-                    type: 0
-                });
-            }
-        });
 
-        // 追加
-        me.bt_append = Ext.create('Ext.Button', {
-            text: '追加到选中设备',
-            icon: '/icon/append.png',
-            disabled: true,
-            itemId: 'bt_append',
-            handler: function (btn, event) {
-                var deviceGrid = Ext.ComponentQuery.query('#adminDeviceGrid')[0];
-                var channelNodeGrid = Ext.ComponentQuery.query('#gridChannelNode')[0];
-                var nodeGrid = channelNodeGrid.down("gridEditBase[master='master']");
-                var nodeSelected = nodeGrid.getSelectionModel().selected.items;
-                nodeSelected[0].set('device', deviceGrid.getSelectionModel().selected.items[0].get('id'));
-            }
-        });
-
-        // 删除
-        me.bt_del = Ext.create('Ext.Button', {
-            text: '从设备中删除',
-            icon: '/icon/toolbar/delete.png',
-            disabled: true,
-            itemId: 'bt_del',
-            handler: function (btn, event) {
-                var channelNodeGrid = Ext.ComponentQuery.query('#gridChannelNode')[0];
-                var nodeGrid = channelNodeGrid.down("gridEditBase[master='master']");
-                var deviceGrid = Ext.ComponentQuery.query('#adminDeviceGrid')[0];
-                var nodeSelected = nodeGrid.getSelectionModel();
-                deviceGrid.store.remove(deviceGrid.store.getById(nodeGrid.store.getById(nodeSelected.getSelection()[0].get('id')).get('device')));
-            }
-        });
-
-        tb.add(me.bt_note);
-        tb.add(me.bt_new);
-        tb.add(me.bt_append);
-        tb.add(me.bt_del);
-
-        //当记录选中改变的时候
-        /**
-         * 如果记录有相应的
-         */
-        nodeGrid.on('selectionchange', function (view, records) {
-            this.ownerCt.updateDeviceEditBtn();
-        });
-
-        nodeGrid.store.on('update', function (store, record, operation, eOpts) {
-            var channelNodeGrid = Ext.ComponentQuery.query('#gridChannelNode')[0];
-            channelNodeGrid.updateDeviceEditBtn();
-        });
-
-        nodeGrid.view.on('refresh', function (view, eOpts) {
-            var channelNodeGrid = Ext.ComponentQuery.query('#gridChannelNode')[0];
-            channelNodeGrid.updateDeviceEditBtn();
-        });
+        //更新成功后
+        this.down('#adminNodeGridForChannel').store.on('update', function (store, record, operation, eOpts) {
+            var nodeGrid = Ext.ComponentQuery.query('#adminNodeGridForDevice')[0];
+            nodeGrid.store.load();
+        })
 
         // 当数据改变成功后的回调
         Ext.direct.Manager.on('event', function (event, provider, eOpts) {
-            // event.method
-
             // 当 Device 删除后，应该刷新 Node
             if (event.action == 'extDevice' && event.method == 'delete') {
-                Ext.StoreManager.get('admin.Node').reload();
             }
 
         });

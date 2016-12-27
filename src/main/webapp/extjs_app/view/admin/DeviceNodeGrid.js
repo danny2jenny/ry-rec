@@ -59,7 +59,16 @@ Ext.define('app.view.admin.DeviceNodeGrid', {
                         allowBlank: false
                     }
                 }
-            ]
+            ],
+
+            viewConfig: {
+                plugins: {
+                    ddGroup: 'ddg_node',
+                    ptype: 'gridDragPlugin',
+                    enableDrop: true,
+                    enableDrag: true
+                }
+            }
         },
 
         // 子表设置
@@ -67,6 +76,7 @@ Ext.define('app.view.admin.DeviceNodeGrid', {
             xtype: 'gridEditBase',
             region: 'south',
             height: 300,
+            itemId: 'adminNodeGridForDevice',
             //margins: '0 0 5 0',
             split: true,
             title: '已经配置的节点',
@@ -105,28 +115,55 @@ Ext.define('app.view.admin.DeviceNodeGrid', {
                         return ry.trans(val, ry.DEVICE_FUN);
                     }
                 }
-            ]
+            ],
+            viewConfig: {
+                plugins: {
+                    ddGroup: 'ddg_node',
+                    ptype: 'gridDragPlugin',
+                    enableDrop: true,
+                    enableDrag: false
+                }
+            }
         }
     ],
 
     initComponent: function () {
         this.callParent(arguments);
 
-        // Device 的选择影响到 Node 的按钮
-        this.down('#adminDeviceGrid').on('selectionchange', function (view, records) {
-            Ext.ComponentQuery.query('#gridChannelNode')[0].updateDeviceEditBtn();
+        //Device 的拖放
+        this.down('#adminDeviceGrid').on('onDragDrop', function (data, targetNode, position) {
+            if (!data.records.length) {
+                return;
+            }
+
+            var deviceGrid = Ext.ComponentQuery.query('#adminDeviceGrid')[0];
+
+            var newItem = deviceGrid.store.insert(1, {
+                name: data.records[0].get('name'),
+                type: 0
+            })
+
+            //debugger;
+
         });
 
+        //Node 的拖放
+        this.down('#adminNodeGridForDevice').on('onDragDrop', function (data, targetNode, position) {
+            var deviceGrid = Ext.ComponentQuery.query('#adminDeviceGrid')[0];
+            var nodeGrid = Ext.ComponentQuery.query('#adminNodeGridForDevice')[0];
 
-        //当添加一个新设备后，需要对node进行更新
-        this.down('#adminDeviceGrid').store.on('update', function (store, record, operation, eOpts) {
-            var channelNodeGrid = Ext.ComponentQuery.query('#gridChannelNode')[0];
-            var nodeGrid = channelNodeGrid.down("gridEditBase[master='master']");
-            var nodeSelected = nodeGrid.getSelectionModel().selected.items;
+            if (!deviceGrid.getSelectionModel().selected.length) {
+                return
+            }
 
-            var rec = nodeGrid.store.getById(nodeSelected[0].data.id);
-            rec.set('device', record.data.id);
-            rec.commit();
+
+            var deviceId = deviceGrid.getSelectionModel().selected.items[0].get('id');
+
+            var updateItem = data.records[0];
+            updateItem.set('device', deviceId);
+            updateItem.commit();
+
+
         });
 
     }
