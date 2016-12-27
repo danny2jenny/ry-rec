@@ -4,17 +4,18 @@
  * 注意，Models应该不用加载，因为在Store中会加载Model
  */
 
-Ext.define('ryrec.controller.AdminFrame', {
+Ext.define('app.controller.AdminFrame', {
     extend: 'Ext.app.Controller',
     views: [
         'admin.panel.ChannelNode',
-        'admin.DeviceGrid',
+        'admin.DeviceNodeGrid',
         'admin.panel.Option'
     ],
 
     stores: [
         'admin.Channel',
         'admin.Node',
+        'NodeForDevice',
         'Device',
         'Option',
         'option.ChannelType'

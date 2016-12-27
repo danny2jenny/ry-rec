@@ -49,7 +49,6 @@ Ext.define('app.lib.GridDragPlugin', {
                 } else {
                     //var count = this.dragData.records.length;
                     //return Ext.String.format(this.dragText, count, count == 1 ? '' : 's');
-                    debugger;
                     return this.dragData.records[0].data[me.showField];
                 }
             }

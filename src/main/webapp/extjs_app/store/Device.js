@@ -4,11 +4,11 @@
  * Device 的存储
  */
 
-Ext.define('ryrec.store.Device', {
+Ext.define('app.store.Device', {
     extend: 'Ext.data.Store',
     autoLoad: true,
     autoSync: true,
-    model: 'ryrec.model.Device',
+    model: 'app.model.Device',
     groupField: 'type',
     proxy: {
         type: 'direct',

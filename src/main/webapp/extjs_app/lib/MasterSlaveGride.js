@@ -15,7 +15,7 @@
  * 7 newRecord 需要插入的缺省值
  */
 
-Ext.define('ryrec.lib.MasterSlaveGride', {
+Ext.define('app.lib.MasterSlaveGride', {
     extend: 'Ext.grid.Panel',
     alias: 'widget.gridEditBase',
 
@@ -59,8 +59,6 @@ Ext.define('ryrec.lib.MasterSlaveGride', {
                     msg: '请再次确认删除，删除该数据将删除与之相关联的数据',
                     buttons: Ext.Msg.YESNO,
                     fn: function (rst) {
-                        var ctlType = this.ownerCt.ownerCt.ownerCt.xtype;
-                        var temp = this.ownerCt.ownerCt;
                         if (rst != 'no') {
                             var sm = this.ownerCt.ownerCt.getSelectionModel();
                             this.ownerCt.ownerCt.rowEditing.cancelEdit();
@@ -68,20 +66,6 @@ Ext.define('ryrec.lib.MasterSlaveGride', {
                             if (this.ownerCt.ownerCt.store.getCount() > 0) {
                                 sm.select(0);
                             }
-                        }
-
-                        //级联刷新资源列表
-                        if (temp.xtype == 'gridEditRfid') {
-                            ctlType = 'gridEditRfid';
-                        }
-
-                        switch (ctlType) {
-                            case 'gridEditController'://控制器
-                            case 'gridEditEncoder'://视频编辑
-                            case 'gridEditRfid'://定位点
-                                var resGrid = Ext.ComponentQuery.query('resGrid')[0];
-                                resGrid.store.load();
-                                break;
                         }
                     },
                     scope: this,
@@ -164,7 +148,7 @@ Ext.define('ryrec.lib.MasterSlaveGride', {
             this.down('#buttonAdd').setDisabled(false);
             this.down('#buttonRefresh').setDisabled(false);
         } else {
-            this.store.removeAll();
+            //this.store.removeAll();
             this.down('#buttonAdd').setDisabled(true);
             this.down('#buttonRefresh').setDisabled(true);
         }
@@ -175,11 +159,6 @@ Ext.define('ryrec.lib.MasterSlaveGride', {
      * 控件初始化
      */
     initComponent: function () {
-
-        //保存数据后，自动刷新列表
-        /*this.on('edit', function(editor, e) {
-         editor.grid.store.load();
-         });*/
 
         // 1 编辑器插件
         this.rowEditing = Ext.create('Ext.grid.plugin.RowEditing', {

@@ -2,7 +2,7 @@
  * Created by danny on 16-12-22.
  */
 
-Ext.define('ryrec.model.Option', {
+Ext.define('app.model.Option', {
     extend: 'Ext.data.Model',
 
     fields: [

@@ -4,7 +4,7 @@
  * 设备列表
  */
 
-Ext.define('ryrec.model.Device', {
+Ext.define('app.model.Device', {
     extend: 'Ext.data.Model',
 
     fields: [

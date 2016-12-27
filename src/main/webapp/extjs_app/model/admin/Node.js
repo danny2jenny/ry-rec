@@ -2,7 +2,7 @@
  * Created by danny on 16-12-20.
  */
 
-Ext.define('ryrec.model.admin.Node', {
+Ext.define('app.model.admin.Node', {
     extend: 'Ext.data.Model',
 
     fields: [

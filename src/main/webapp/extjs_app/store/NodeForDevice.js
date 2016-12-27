@@ -2,7 +2,7 @@
  * Created by danny on 16-12-20.
  */
 
-Ext.define('app.store.admin.Node', {
+Ext.define('app.store.NodeForDevice', {
     extend: 'Ext.data.Store',
     autoLoad: false,
     autoSync: true,
@@ -10,10 +10,10 @@ Ext.define('app.store.admin.Node', {
     proxy: {
         type: 'direct',
         api: {
-            read: extNode.list,
-            create: extNode.create,
-            update: extNode.update,
-            destroy: extNode.delete
+            read: extNodeForDevice.list,
+            create: extNodeForDevice.create,
+            update: extNodeForDevice.update,
+            destroy: extNodeForDevice.delete
         }
     }
 })

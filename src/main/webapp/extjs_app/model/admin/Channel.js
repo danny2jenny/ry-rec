@@ -2,7 +2,7 @@
  * Created by danny on 16-12-19.
  */
 
-Ext.define('ryrec.model.admin.Channel', {
+Ext.define('app.model.admin.Channel', {
     extend: 'Ext.data.Model',
 
     fields: [

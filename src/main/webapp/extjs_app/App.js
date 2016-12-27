@@ -20,7 +20,7 @@ extOption.getAll(ry.onGetOption);
 
 //应用程序入口
 Ext.application({
-    name: 'ryrec',
+    name: 'app',
     appFolder: '/extjs_app',
 
     controllers: [
@@ -32,8 +32,8 @@ Ext.application({
     ],
 
     requires: [
-        'ryrec.lib.MasterSlaveGride',
-        'ryrec.lib.GridDragPlugin'
+        'app.lib.MasterSlaveGride',
+        'app.lib.GridDragPlugin'
     ],
 
 
@@ -52,7 +52,7 @@ Ext.application({
         });
 
         // 建立主界面
-        Ext.create('ryrec.view.AdminFrame', {});
+        Ext.create('app.view.AdminFrame', {});
     }
 });
 

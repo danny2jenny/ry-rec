@@ -185,7 +185,7 @@ public class ModbusTcpServer {
     //首先通过Node进行解码，然后再发送道NodeManager
     public void receiveMsg(String chaId, ModbusMessage request, ModbusMessage response) {
 
-        logger.debug("收到Modbus：" + chaId + ':' + CRC16.bytesToHexString(response.payload));
+        //logger.debug("收到Modbus：" + chaId + ':' + CRC16.bytesToHexString(response.payload));
 
         ChannelNode cn = (ChannelNode) channelNodes.get(chaId).get(request.nodeId);
         NodeProtocolInterface node = NodeManager.getNode(cn.ctype);

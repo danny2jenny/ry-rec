@@ -3,10 +3,10 @@
  */
 
 
-Ext.define('ryrec.store.option.ChannelType', {
+Ext.define('app.store.option.ChannelType', {
     extend: 'Ext.data.Store',
     autoLoad: true,
-    model: 'ryrec.model.Option',
+    model: 'app.model.Option',
     proxy: {
         type: 'direct',
         api: {

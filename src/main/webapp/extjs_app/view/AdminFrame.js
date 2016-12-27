@@ -1,7 +1,7 @@
 /*
  * 管理员的界面框架
  */
-Ext.define('ryrec.view.AdminFrame', {
+Ext.define('app.view.AdminFrame', {
     extend: 'Ext.Viewport',
     alias: 'widget.frameMain',
     layout: 'border',
@@ -11,9 +11,10 @@ Ext.define('ryrec.view.AdminFrame', {
         // 左边的设备列表
         {
             region: 'west',
-            xtype: 'deviceGrid',
+            xtype: 'admin.devicechannelnode',
+            margins: '5 0 5 5',
             width: 300,
-            split: true
+            split: true,
         },
 
         // 中间的 TabPanel
@@ -21,7 +22,7 @@ Ext.define('ryrec.view.AdminFrame', {
             region: 'center',
             xtype: 'tabpanel',
             id: 'centerPanel',
-            margins: '5 5 0 5',
+            margins: '5 5 0 0',
             layout: 'fit',
             deferredRender: false,
             resizeTabs: true, // turn on tab resizing

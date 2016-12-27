@@ -4,8 +4,8 @@
  * 数据库中的全局配置
  */
 
-Ext.define('ryrec.view.admin.panel.Option', {
-    extend: 'ryrec.lib.MasterSlaveGride',
+Ext.define('app.view.admin.panel.Option', {
+    extend: 'app.lib.MasterSlaveGride',
     alias: 'widget.admin.panel.option',
     title: '系统属性配置',
     icon: '/icon/toolbar/config.png',
