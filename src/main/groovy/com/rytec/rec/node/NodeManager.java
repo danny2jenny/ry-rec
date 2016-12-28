@@ -1,7 +1,7 @@
 package com.rytec.rec.node;
 
-import com.rytec.rec.bean.ChannelNode;
 import com.rytec.rec.db.DbConfig;
+import com.rytec.rec.db.model.ChannelNode;
 import com.rytec.rec.device.DeviceManager;
 import com.rytec.rec.util.NodeType;
 import org.codehaus.groovy.runtime.metaclass.ConcurrentReaderHashMap;
@@ -55,7 +55,7 @@ public class NodeManager {
         for (ChannelNode cn : channelNodes) {
             // 给 ChannelNode 的运行数据初始化
             cn.opt = new NodeOpt();
-            nodeMap.put(cn.nid, cn);
+            nodeMap.put(cn.getNid(), cn);
         }
 
         // 初始化 node 接口实现
@@ -73,12 +73,19 @@ public class NodeManager {
     */
     public void onValue(int id, float value) {
         ChannelNode channelNode = nodeMap.get(id);
-        float oldValue = channelNode.opt.value;
+
+        if (channelNode.opt == null) {
+            channelNode.opt = new NodeOpt();
+        }
+
+        NodeOpt nodeOpt = (NodeOpt) channelNode.opt;
+
+        float oldValue = nodeOpt.value;
         if (oldValue != value) {
             //更新Node的值
-            channelNode.opt.value = value;
+            nodeOpt.value = value;
             //向Device发送变化
-            deviceManager.onValueChange(channelNode.device, channelNode.deviceFun, oldValue, value);
+            deviceManager.onValueChange(channelNode.getDevice(), channelNode.getDevicefun(), oldValue, value);
         }
     }
 

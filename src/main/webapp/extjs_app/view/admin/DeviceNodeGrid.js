@@ -149,6 +149,7 @@ Ext.define('app.view.admin.DeviceNodeGrid', {
 
         //Node 的拖放
         this.down('#adminNodeGridForDevice').on('onDragDrop', function (data, targetNode, position) {
+            debugger;
             var deviceGrid = Ext.ComponentQuery.query('#adminDeviceGrid')[0];
             var nodeGrid = Ext.ComponentQuery.query('#adminNodeGridForDevice')[0];
 
@@ -162,9 +163,23 @@ Ext.define('app.view.admin.DeviceNodeGrid', {
             var updateItem = data.records[0];
             updateItem.set('device', deviceId);
             updateItem.commit();
-
-
         });
+
+        // 覆盖Node的Delete方法
+        // 只是设置相应的 Node 的 device 为 0
+
+        var nodeGrid = Ext.ComponentQuery.query('#adminNodeGridForDevice')[0];
+
+        nodeGrid.down('#buttonAdd').hidden = true;
+        nodeGrid.down('#buttonDelete').handler = function () {
+            var node = nodeGrid.getSelectionModel().selected.get(0);
+            node.set('device', 0);
+        }
+
+        nodeGrid.store.on('update', function (store, record, operation, eOpts) {
+            Ext.ComponentQuery.query('#adminNodeGridForDevice')[0].store.load();
+            Ext.ComponentQuery.query('#adminNodeGridForChannel')[0].store.load();
+        })
 
     }
 })

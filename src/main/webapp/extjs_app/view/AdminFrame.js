@@ -35,6 +35,8 @@ Ext.define('app.view.AdminFrame', {
                 },
                 {
                     xtype: 'admin.panel.option'
+                },{
+                    xtype: 'gis.view'
                 }
 
             ]

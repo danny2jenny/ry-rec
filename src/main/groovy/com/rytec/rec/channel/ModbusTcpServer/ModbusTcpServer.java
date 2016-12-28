@@ -1,12 +1,11 @@
 package com.rytec.rec.channel.ModbusTcpServer;
 
-import com.rytec.rec.bean.ChannelNode;
 import com.rytec.rec.channel.ModbusTcpServer.handler.ModbusChannelInitializer;
 import com.rytec.rec.channel.ModbusTcpServer.exception.ConnectionException;
 import com.rytec.rec.db.DbConfig;
+import com.rytec.rec.db.model.ChannelNode;
 import com.rytec.rec.node.NodeProtocolInterface;
 import com.rytec.rec.node.NodeManager;
-import com.rytec.rec.util.CRC16;
 import com.rytec.rec.util.ChannelType;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.Channel;
@@ -122,12 +121,12 @@ public class ModbusTcpServer {
 
         //第一级的Map ip:id-> map
         for (ChannelNode cn : chaNodeList) {
-            if (cn.ctype != 1001) {
+            if (cn.getCtype() != 1001) {
                 continue;
             }
 
             //每一个Channel的标识是IP：PORT
-            String chaId = cn.ip + ':' + cn.port;
+            String chaId = cn.getIp() + ':' + cn.getPort();
 
             //是否已经存在该Channel
             ConcurrentHashMap<Integer, ChannelNode> cha = channelNodes.get(chaId);
@@ -139,7 +138,7 @@ public class ModbusTcpServer {
             }
 
             //node的标识是 nid
-            cha.put(cn.nid, cn);
+            cha.put(cn.getNid(), cn);
         }
     }
 
@@ -188,7 +187,7 @@ public class ModbusTcpServer {
         //logger.debug("收到Modbus：" + chaId + ':' + CRC16.bytesToHexString(response.payload));
 
         ChannelNode cn = (ChannelNode) channelNodes.get(chaId).get(request.nodeId);
-        NodeProtocolInterface node = NodeManager.getNode(cn.ctype);
+        NodeProtocolInterface node = NodeManager.getNode(cn.getCtype());
 
         // 解码值
         int newValue = node.decodeMessage(response);

@@ -1,7 +1,8 @@
 package com.rytec.rec.device;
 
-import com.rytec.rec.bean.DeviceNode;
+
 import com.rytec.rec.db.DbConfig;
+import com.rytec.rec.db.model.DeviceNode;
 import com.rytec.rec.util.DeviceType;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,13 +67,13 @@ public class DeviceManager {
 
         for (DeviceNode item : deviceNodeList) {
 
-            HashMap<Integer, DeviceNode> dn = this.deviceNodeList.get(item.id);
+            HashMap<Integer, DeviceNode> dn = this.deviceNodeList.get(item.getId());
 
             if (dn == null) {
                 dn = new HashMap<>();
-                this.deviceNodeList.put(item.id, dn);
+                this.deviceNodeList.put(item.getId(), dn);
             }
-            dn.put(item.nid, item);
+            dn.put(item.getNid(), item);
         }
 
         //初始化 Device 的实现

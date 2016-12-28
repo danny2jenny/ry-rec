@@ -72,6 +72,10 @@ dependencies {
     compile group: 'org.mybatis', name: 'mybatis-spring', version: '1.3.0'
     compile group: 'ch.ralscha', name: 'extdirectspring', version: '1.7.1'
 
+    // GIS 相关
+    // https://github.com/opendatalab-de/geojson-jackson
+    compile "de.grundid.opendatalab:geojson-jackson:1.7"
+
     // Apache apollo 消息
 //    compile "org.apache.activemq:apollo-broker:1.7.1"
 //    compile "org.apache.activemq:apollo-stomp:1.7.1"
@@ -81,7 +85,6 @@ dependencies {
     // Servlet
     providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
     compile group: 'javax.servlet', name: 'jstl', version: '1.2'
-
 
     // 测试
     testCompile group: 'junit', name: 'junit', version: '4.11'

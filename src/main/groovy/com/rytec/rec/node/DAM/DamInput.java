@@ -1,7 +1,7 @@
 package com.rytec.rec.node.DAM;
 
-import com.rytec.rec.bean.ChannelNode;
 import com.rytec.rec.channel.ModbusTcpServer.ModbusMessage;
+import com.rytec.rec.db.model.ChannelNode;
 import com.rytec.rec.node.NodeProtocolInterface;
 import com.rytec.rec.node.NodeManager;
 import com.rytec.rec.util.NodeType;
@@ -48,9 +48,9 @@ public class DamInput implements NodeProtocolInterface {
         frame.responseLen = 6;
 
         ByteBuf buf = Unpooled.buffer(6);
-        buf.writeByte(channelNode.add);
+        buf.writeByte(channelNode.getAdr());
         buf.writeByte(0x02);
-        buf.writeShort(channelNode.no);
+        buf.writeShort(channelNode.getNo());
         buf.writeShort(0x01);
 
         frame.payload = buf.array();

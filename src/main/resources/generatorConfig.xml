@@ -59,7 +59,7 @@
         <table schema="" tableName="config" domainObjectName="Config">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
         </table>
-
+-->
         <table schema="" tableName="channelnode" domainObjectName="ChannelNode">
 
         </table>
@@ -67,6 +67,6 @@
         <table schema="" tableName="devicenode" domainObjectName="DeviceNode">
 
         </table>
--->
+
     </context>
 </generatorConfiguration>

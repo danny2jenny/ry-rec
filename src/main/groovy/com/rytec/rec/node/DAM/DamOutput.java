@@ -1,7 +1,7 @@
 package com.rytec.rec.node.DAM;
 
-import com.rytec.rec.bean.ChannelNode;
 import com.rytec.rec.channel.ModbusTcpServer.ModbusMessage;
+import com.rytec.rec.db.model.ChannelNode;
 import com.rytec.rec.node.NodeManager;
 import com.rytec.rec.node.NodeProtocolInterface;
 import com.rytec.rec.util.CommandType;
@@ -73,9 +73,9 @@ public class DamOutput implements NodeProtocolInterface {
             case CommandType.MODBUS_CMD_WRITE:
                 buf = Unpooled.buffer(6);
                 frame.responseLen = 8;
-                buf.writeByte(channelNode.add);     //地址
+                buf.writeByte(channelNode.getAdr());     //地址
                 buf.writeByte(0x05);                //命令
-                buf.writeShort(channelNode.no);     //寄存器
+                buf.writeShort(channelNode.getNo());     //寄存器
                 buf.writeShort(value);
                 frame.payload = buf.array();
                 break;
@@ -84,9 +84,9 @@ public class DamOutput implements NodeProtocolInterface {
             case CommandType.MODBUS_CMD_READ:
                 buf = Unpooled.buffer(6);
                 frame.responseLen = 6;
-                buf.writeByte(channelNode.add);
+                buf.writeByte(channelNode.getAdr());
                 buf.writeByte(0x01);
-                buf.writeShort(channelNode.no);     //地址
+                buf.writeShort(channelNode.getNo());     //地址
                 buf.writeShort(1);                  //查询数量
                 frame.payload = buf.array();
                 break;

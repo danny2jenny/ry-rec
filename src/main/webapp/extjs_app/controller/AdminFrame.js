@@ -9,7 +9,8 @@ Ext.define('app.controller.AdminFrame', {
     views: [
         'admin.panel.ChannelNode',
         'admin.DeviceNodeGrid',
-        'admin.panel.Option'
+        'admin.panel.Option',
+        'gis.GisView'
     ],
 
     stores: [

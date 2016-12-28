@@ -32,6 +32,10 @@
     <%--主程序入口--%>
     <script type="text/javascript" src="extjs_app/App.js"></script>
 
+    <%--GIS--%>
+    <link rel="stylesheet" href="openlayers/ol.css" type="text/css">
+    <script type="text/javascript" src="openlayers/ol-debug.js"></script>
+    <script type="text/javascript" src="extjs_app/gis/map.js"></script>
 </head>
 
 <body>

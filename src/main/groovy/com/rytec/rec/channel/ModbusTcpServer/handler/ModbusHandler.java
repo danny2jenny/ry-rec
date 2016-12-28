@@ -1,11 +1,11 @@
 package com.rytec.rec.channel.ModbusTcpServer.handler;
 
-import com.rytec.rec.bean.ChannelNode;
 import com.rytec.rec.channel.ChannelManager;
 import com.rytec.rec.channel.ModbusTcpServer.ChanneSession;
 import com.rytec.rec.channel.ModbusTcpServer.ModbusCommon;
 import com.rytec.rec.channel.ModbusTcpServer.ModbusTcpServer;
 import com.rytec.rec.channel.ModbusTcpServer.ModbusMessage;
+import com.rytec.rec.db.model.ChannelNode;
 import com.rytec.rec.node.NodeManager;
 import com.rytec.rec.node.NodeProtocolInterface;
 import com.rytec.rec.util.CommandType;
@@ -76,8 +76,8 @@ public class ModbusHandler extends SimpleChannelInboundHandler<ModbusMessage> {
                 ConcurrentHashMap<Integer, ChannelNode> cha = modbusTcpServer.channelNodes.get(modbusId);
 
                 for (ChannelNode cn : cha.values()) {
-                    NodeProtocolInterface node = NodeManager.getNode(cn.ntype);
-                    ModbusMessage msg = (ModbusMessage) node.genMessage(FromWhere.FROM_TIME, cn.nid, CommandType.MODBUS_CMD_READ, 0);
+                    NodeProtocolInterface node = NodeManager.getNode(cn.getNtype());
+                    ModbusMessage msg = (ModbusMessage) node.genMessage(FromWhere.FROM_TIME, cn.getNid(), CommandType.MODBUS_CMD_READ, 0);
                     channeSession.queryCmd.add(msg);
                 }
                 ctx.channel().attr(ModbusCommon.MODBUS_STATE).set(channeSession);
