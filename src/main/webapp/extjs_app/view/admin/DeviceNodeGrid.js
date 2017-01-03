@@ -11,6 +11,9 @@ Ext.define('app.view.admin.DeviceNodeGrid', {
     // icon: 'icon/toolbar/control.png',
     // title: '设备编辑',
     itemId: 'griddeviceNode',
+    requires: [
+        'app.lib.PluginGridEdit'
+    ],
     items: [
         {
             xtype: 'gridEditBase',
@@ -53,10 +56,16 @@ Ext.define('app.view.admin.DeviceNodeGrid', {
                     }
                 },
                 {
-                    text: '编号',
-                    dataIndex: 'no',
+                    text: '图标',
+                    dataIndex: 'icon',
                     editor: {
-                        allowBlank: false
+                        allowBlank: false,
+                        xtype: 'combobox',
+                        store: ry.DEVICE_ICON
+                    },
+                    renderer: function (val, column, row) {
+
+                        return "<img src='/icon/device_icon/" + val + "-11.gif'>"
                     }
                 }
             ],
@@ -76,6 +85,7 @@ Ext.define('app.view.admin.DeviceNodeGrid', {
             xtype: 'gridEditBase',
             region: 'south',
             height: 300,
+            hidden: true,
             itemId: 'adminNodeGridForDevice',
             //margins: '0 0 5 0',
             split: true,
@@ -124,6 +134,29 @@ Ext.define('app.view.admin.DeviceNodeGrid', {
                     enableDrag: false
                 }
             }
+        },
+
+        {
+            // 一个Device的Gis配置信息
+            title: 'GIS',
+            xtype: 'gridpanel',
+            region: 'south',
+            height: 300,
+            store: 'Gis',
+            columns: [
+                {
+                    text: 'ID',
+                    dataIndex: 'id'
+                }],
+            plugins: [{
+                ptype: 'grid.editing',
+                autoLoad: false,
+                gridId: '自己所在表格的ID',
+                masterGrid: 'adminDeviceGrid',
+                fKey: '外键名',
+                newRec: {}          //新建记录的缺省值
+            }]
+
         }
     ],
 

@@ -19,7 +19,8 @@ Ext.define('app.controller.AdminFrame', {
         'NodeForDevice',
         'Device',
         'Option',
-        'option.ChannelType'
+        'option.ChannelType',
+        'Gis'
     ],
 
     init: function () {

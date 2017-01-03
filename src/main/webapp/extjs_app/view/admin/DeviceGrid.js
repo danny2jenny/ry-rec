@@ -45,11 +45,12 @@ Ext.define('app.view.admin.DeviceGrid', {
             }
         },
         {
-            text: '编号',
-            dataIndex: 'no',
+            text: '类型',
+            dataIndex: 'type',
             editor: {
-                allowBlank: false
-            }
+                xtype: 'combobox',
+                store: ry.DEVICE_CLS,
+            },
         }
     ],
 
@@ -58,7 +59,7 @@ Ext.define('app.view.admin.DeviceGrid', {
     features: [Ext.create('Ext.grid.feature.Grouping', {
         groupHeaderTpl: ['{groupValue:this.formatValue}: 共 ({rows.length}) 个', {
             formatValue: function (value) {
-                return '<img src="/icon/device/' + value + '.png">' + ry.trans(value, ry.DEVICE_TYPE)
+                return '<img src="/icon/base_device/' + value + '.png">' + ry.trans(value, ry.DEVICE_TYPE)
             }
         }]
     })],

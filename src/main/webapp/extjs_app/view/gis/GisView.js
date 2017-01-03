@@ -5,8 +5,8 @@
 Ext.define('app.view.gis.GisView', {
     extend: 'Ext.panel.Panel',
     alias: 'widget.gis.view',
-    title: '系统属性配置',
-    icon: '/icon/toolbar/config.png',
+    title: '地图编辑',
+    icon: '/icon/toolbar/gis.png',
     layout: 'fit',
 
     listeners: {

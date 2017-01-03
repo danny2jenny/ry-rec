@@ -24,12 +24,16 @@ ry.NODE_TYPE = [];
 ry.DEVICE_TYPE = [];
 //deivceFun cat =4
 ry.DEVICE_FUN = [];
+//deivceFun cat =5
+ry.DEVICE_ICON = [];
 
 ry.OPT_CAT = [
     [1, '通道类型'],
     [2, '节点类型'],
-    [3, '设备类型'],
-    [4, '端口功能']
+    [3, '设备基础类型'],
+    [4, '端口功能'],
+    [5, '设备图标集']
+
 ]
 
 // 得到数据库中的配置
@@ -42,17 +46,20 @@ ry.onGetOption = function (data, caller, result) {
             case 1:
                 ry.CHANNEL_TYPE.push([data[i].value, data[i].name]);
                 break;
-                // 节点类型
+            // 节点类型
             case 2:
                 ry.NODE_TYPE.push([data[i].value, data[i].name]);
                 break;
-                // 设备类型
+            // 设备类型
             case 3:
                 ry.DEVICE_TYPE.push([data[i].value, data[i].name]);
                 break;
-                // 端口功能
+            // 端口功能
             case 4:
                 ry.DEVICE_FUN.push([data[i].value, data[i].name]);
+                break;
+            case 5:
+                ry.DEVICE_ICON.push([data[i].value, data[i].name]);
                 break;
         }
     }

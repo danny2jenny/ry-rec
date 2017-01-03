@@ -12,6 +12,7 @@ Ext.define('app.model.Device', {
         {name: 'no'},
         {name: 'name'},
         {name: 'type'},
+        {name: 'icon'},
         {name: 'lnodetype'},
         {name: 'lnodenum'},
     ]
