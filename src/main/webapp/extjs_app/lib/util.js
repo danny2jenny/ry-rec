@@ -36,6 +36,12 @@ ry.OPT_CAT = [
 
 ]
 
+ry.GIS_FEATURE_TYPE = [
+    [1, '点'],
+    [2, '线'],
+    [3, '面']
+];
+
 // 得到数据库中的配置
 ry.onGetOption = function (data, caller, result) {
     //初始化配置

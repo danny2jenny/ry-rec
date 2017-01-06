@@ -32,10 +32,25 @@
     <%--主程序入口--%>
     <script type="text/javascript" src="extjs_app/App.js"></script>
 
-    <%--GIS--%>
+    <%--OpenLayers--%>
     <link rel="stylesheet" href="openlayers/ol.css" type="text/css">
     <script type="text/javascript" src="openlayers/ol-debug.js"></script>
+
+    <!-- OL3 Ext controls -->
+    <link rel="stylesheet" href="openlayers/control/controlbar.css" type="text/css"/>
+    <script type="text/javascript" src="openlayers/control/controlbar.js"></script>
+    <script type="text/javascript" src="openlayers/control/buttoncontrol.js"></script>
+    <script type="text/javascript" src="openlayers/control/togglecontrol.js"></script>
+
+    <%--Layer Switch--%>
+    <link rel="stylesheet" href="openlayers/control/layerswitcherimagecontrol.css"/>
+    <script type="text/javascript" src="openlayers/control/layerswitchercontrol.js"></script>
+    <script type="text/javascript" src="openlayers/control/layerswitcherimagecontrol.js"></script>
+
+
+    <%--GIS 管理--%>
     <script type="text/javascript" src="extjs_app/gis/map.js"></script>
+
 </head>
 
 <body>

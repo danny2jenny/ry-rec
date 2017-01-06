@@ -1,0 +1,35 @@
+/**
+ * Created by danny on 17-1-4.
+ */
+
+Ext.define('app.view.admin.panel.Gis', {
+    extend: 'Ext.grid.Panel',
+    alias: 'widget.admin.panel.gis',
+
+    itemId: 'admin.panel.gis',
+    title: 'GIS',
+    store: 'Gis',
+
+
+    columns: [
+        {
+            text: 'ID',
+            dataIndex: 'id'
+        },
+        {
+            text: '类型',
+            dataIndex: 'type',
+            flex: 1,
+            renderer: function (val, column, row) {
+                return ry.trans(val, ry.GIS_FEATURE_TYPE);
+            }
+        }],
+    plugins: [{
+        ptype: 'grid.editing',
+        autoLoad: false,
+        hideAdd: true,
+        masterGrid: 'adminDeviceGrid',
+        fKey: '外键名',
+        newRec: {}          //新建记录的缺省值
+    }]
+})

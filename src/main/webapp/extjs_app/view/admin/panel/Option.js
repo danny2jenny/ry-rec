@@ -5,13 +5,19 @@
  */
 
 Ext.define('app.view.admin.panel.Option', {
-    extend: 'app.lib.MasterSlaveGride',
+    extend: 'Ext.grid.Panel',
     alias: 'widget.admin.panel.option',
     title: '系统属性配置',
     icon: '/icon/toolbar/config.png',
     //hideHeaders: true,
 
     store: 'Option',
+
+
+    plugins: [{
+        ptype: 'grid.editing',
+        autoLoad: true,
+    }],
 
     // 定义 colums
     columns: [

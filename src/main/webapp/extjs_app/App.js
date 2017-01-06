@@ -32,7 +32,6 @@ Ext.application({
     ],
 
     requires: [
-        'app.lib.MasterSlaveGride',
         'app.lib.GridDragPlugin'
     ],
 

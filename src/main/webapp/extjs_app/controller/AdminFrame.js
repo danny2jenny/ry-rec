@@ -7,10 +7,17 @@
 Ext.define('app.controller.AdminFrame', {
     extend: 'Ext.app.Controller',
     views: [
-        'admin.panel.ChannelNode',
-        'admin.DeviceNodeGrid',
+        'admin.frame.ChannelNode',
+        'admin.frame.DeviceNodeGrid',
         'admin.panel.Option',
-        'gis.GisView'
+        'gis.GisView',
+        'admin.panel.Channel',
+        'admin.panel.Node',
+        'admin.panel.Device',
+        'admin.panel.NodeForDevice',
+        'admin.panel.Gis',
+        'admin.frame.GisEditor',
+        'admin.panel.FormLayerUpload'
     ],
 
     stores: [

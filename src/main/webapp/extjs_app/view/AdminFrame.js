@@ -11,7 +11,7 @@ Ext.define('app.view.AdminFrame', {
         // 左边的设备列表
         {
             region: 'west',
-            xtype: 'admin.devicechannelnode',
+            xtype: 'admin.frame.devicenodegrid',
             margins: '5 0 5 5',
             width: 300,
             split: true,
@@ -31,12 +31,13 @@ Ext.define('app.view.AdminFrame', {
             activeTab: 0,
             items: [
                 {
-                    xtype: 'admin.panel.channelnode'
+                    xtype: 'admin.frame.channelnode'
                 },
                 {
                     xtype: 'admin.panel.option'
-                },{
-                    xtype: 'gis.view'
+                },
+                {
+                    xtype: 'admin.frame.giseditor'
                 }
 
             ]
