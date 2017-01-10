@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.fusesource.hawtbuf:hawtbuf-proto:1.10">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.fusesource.hawtbuf/hawtbuf-proto/1.10/dd3772c382dd4033103da7f7fff5e5c297824814/hawtbuf-proto-1.10.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.fusesource.hawtbuf/hawtbuf-proto/1.10/2b71298aa0716de8ec204d99e88f470d992c9a08/hawtbuf-proto-1.10-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

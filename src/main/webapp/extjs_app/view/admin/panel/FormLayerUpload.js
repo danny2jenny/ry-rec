@@ -5,6 +5,10 @@
 Ext.define('app.view.admin.panel.FormLayerUpload', {
     extend: 'Ext.form.Panel',
     alias: 'widget.admin.panel.formlayerupload',
+
+    bodyPadding: '5 5 0',
+    //layout: 'form',
+    //frame: true,
     fileUpload: true,
     items: [
         {

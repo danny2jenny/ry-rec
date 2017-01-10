@@ -21,24 +21,25 @@ Ext.define('app.view.gis.GisView', {
     initComponent: function () {
         this.callParent(arguments);
 
+        // 初始化图层
+        var layerStore = Ext.StoreMgr.get('GisLayer');
+        layerStore.on('refresh', this.onLayerFresh, this);
+    },
 
-        // 当数据改变成功后的回调
-        Ext.direct.Manager.on('event', function (event, provider, eOpts) {
-            // 当 Device 删除后，应该刷新 Node
-            if (event.action == 'extGis' && event.method == 'saveFeature') {
-                // 一个作图已经存储
-                gis.draw.drawing = false;
+    // 当Layer Store 刷新时触发
+    onLayerFresh: function (store, opt) {
 
-                // 需要对刚刚画的图形的feature进行更新
-                // 插入的 gis ID
-                gis.draw.lastFeature.setId(event.result.id);
-            }
+        //首删除所有的图层
+        gis.clearLayers();
 
-            if (event.action == 'extGis' && event.method == 'getFeaturesByLayer') {
-                gis.loadFeatures(gis.layers.device, event.result)
-            }
+        //添加相应的图层
+        for (var i = 0; i < store.data.getCount(); i++) {
+            var item = store.data.getAt(i).data;
+            gis.addLayer(item.id, item.name, item.file);
+        }
 
-        });
+        //把第一个层作为显示层
+        gis.layers.getValues()[0].setVisible(true);
     }
 
-})
+});

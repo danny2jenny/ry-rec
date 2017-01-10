@@ -14,7 +14,7 @@ Ext.define('app.view.device.Base', {
     title: 'Device 配置基类',
     height: 300,
 
-    tools: [
+    interaction: [
         {
             type: 'refresh',
             fun: 1,

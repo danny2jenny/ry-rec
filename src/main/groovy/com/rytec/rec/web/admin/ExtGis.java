@@ -5,7 +5,6 @@ import ch.ralscha.extdirectspring.annotation.ExtDirectMethodType;
 import ch.ralscha.extdirectspring.bean.ExtDirectStoreReadRequest;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.rytec.gis.OlFeatureCollection;
 import com.rytec.rec.db.mapper.DeviceGisMapper;
 import com.rytec.rec.db.mapper.GisMapper;
 import com.rytec.rec.db.model.DeviceGis;
@@ -44,6 +43,8 @@ public class ExtGis {
     /**
      * @param geoStr GeoJson的feature字符串
      * @return Gis 的数据库对象
+     * <p>
+     * 可以新建或者是更新或者是更新根据Feature的ID来确定是否需要新建
      */
     @ExtDirectMethod
     public Gis saveFeature(String geoStr) {
@@ -56,8 +57,7 @@ public class ExtGis {
             GeoJsonObject geometry = feature.getGeometry();
 
             int deviceId = feature.getProperty("deviceId");
-
-            logger.debug("DeviceID:" + deviceId);
+            int layer = feature.getProperty("layer");
 
             String coordinateStr = "";
             int type = 1;
@@ -82,11 +82,16 @@ public class ExtGis {
 
             Gis gis = new Gis();
             gis.setData(coordinateStr);
-            gis.setLayer(1);
+            gis.setLayer(layer);
             gis.setType(type);
             gis.setDevice(deviceId);
 
-            gisMapper.insert(gis);
+            if (feature.getId() == null) {
+                gisMapper.insert(gis);
+            } else {
+                gis.setId(Integer.parseInt(feature.getId()));
+                gisMapper.updateByPrimaryKey(gis);
+            }
 
             return gis;
 
@@ -101,23 +106,25 @@ public class ExtGis {
     @ResponseBody
     public String getFeaturesByLayer(@PathVariable int layer) {
 
-        OlFeatureCollection featureCollection = new OlFeatureCollection();
-
+        // 返回的FeatureCollection
+        FeatureCollection featureCollection = new FeatureCollection();
         Feature feature;
+
+        // 数据库操作
         List<DeviceGis> giss;
         DeviceGisExample deviceGisExample = new DeviceGisExample();
 
+        // json转换
         GeoJsonObject geoJsonObject;
-
         ObjectMapper objectMapper = new ObjectMapper();
 
 
-        deviceGisExample.createCriteria().andGidIsNotNull();
         // 查询数据
         if (layer > 0) {
-            deviceGisExample.createCriteria().andLayerEqualTo(layer);
+            deviceGisExample.createCriteria().andLayerEqualTo(layer).andGidIsNotNull();
             giss = deviceGisMapper.selectByExample(deviceGisExample);
         } else {
+            deviceGisExample.createCriteria().andGidIsNotNull();
             giss = deviceGisMapper.selectByExample(deviceGisExample);
         }
 
@@ -127,6 +134,8 @@ public class ExtGis {
 
             feature.setId(gisItem.getGid().toString());
             feature.setProperty("icon", gisItem.getIcon());
+            feature.setProperty("deviceId", gisItem.getDid());
+            feature.setProperty("layer", gisItem.getLayer());
 
             switch (gisItem.getGtype()) {
                 case 1:     //点
@@ -163,6 +172,7 @@ public class ExtGis {
             featureCollection.add(feature);
         }
 
+        // 转换成 json
         try {
             return objectMapper.writeValueAsString(featureCollection);
         } catch (JsonProcessingException e) {

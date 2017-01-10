@@ -42,4 +42,12 @@
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
 
+
+    <!--STOMP 支持-->
+    <!--<websocket:message-broker application-destination-prefix="/app">-->
+        <!--<websocket:stomp-endpoint path="/portfolio">-->
+            <!--<websocket:sockjs/>-->
+        <!--</websocket:stomp-endpoint>-->
+        <!--<websocket:simple-broker prefix="/topic, /queue"/>-->
+    <!--</websocket:message-broker>-->
 </beans>

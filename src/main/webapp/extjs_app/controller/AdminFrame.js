@@ -17,7 +17,8 @@ Ext.define('app.controller.AdminFrame', {
         'admin.panel.NodeForDevice',
         'admin.panel.Gis',
         'admin.frame.GisEditor',
-        'admin.panel.FormLayerUpload'
+        'admin.panel.FormLayerUpload',
+        'admin.panel.GisLayer'
     ],
 
     stores: [
@@ -27,7 +28,8 @@ Ext.define('app.controller.AdminFrame', {
         'Device',
         'Option',
         'option.ChannelType',
-        'Gis'
+        'Gis',
+        'GisLayer'
     ],
 
     init: function () {

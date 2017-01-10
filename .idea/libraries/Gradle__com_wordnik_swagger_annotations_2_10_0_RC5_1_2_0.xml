@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.wordnik:swagger-annotations_2.10.0-RC5:1.2.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.wordnik/swagger-annotations_2.10.0-RC5/1.2.0/701565cbcd90193fc1cd41aee5c4c540b7549ac6/swagger-annotations_2.10.0-RC5-1.2.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.wordnik/swagger-annotations_2.10.0-RC5/1.2.0/d70edbd4b7d0b128d40a562795de4594c69f718/swagger-annotations_2.10.0-RC5-1.2.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

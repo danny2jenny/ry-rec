@@ -17,6 +17,9 @@
 
     <%--以下的JS加载必须严格按照顺序--%>
 
+    <%--jQuery--%>
+    <script type="text/javascript" src="extjs_app/lib/jquery-3.1.1.min.js"></script>
+
     <%--extjs 启动器#--%>
     <script type="text/javascript" src="extjs/bootstrap.js"></script>
 
@@ -36,7 +39,7 @@
     <link rel="stylesheet" href="openlayers/ol.css" type="text/css">
     <script type="text/javascript" src="openlayers/ol-debug.js"></script>
 
-    <!-- OL3 Ext controls -->
+    <!-- OL3 Ext Toolbar -->
     <link rel="stylesheet" href="openlayers/control/controlbar.css" type="text/css"/>
     <script type="text/javascript" src="openlayers/control/controlbar.js"></script>
     <script type="text/javascript" src="openlayers/control/buttoncontrol.js"></script>
@@ -46,6 +49,7 @@
     <link rel="stylesheet" href="openlayers/control/layerswitcherimagecontrol.css"/>
     <script type="text/javascript" src="openlayers/control/layerswitchercontrol.js"></script>
     <script type="text/javascript" src="openlayers/control/layerswitcherimagecontrol.js"></script>
+    <script type="text/javascript" src="openlayers/getpreview.js"></script>
 
 
     <%--GIS 管理--%>

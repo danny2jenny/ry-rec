@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.apache.activemq:apollo-web:1.7.1">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.activemq/apollo-web/1.7.1/16798d699af63261332acda93a0e6a95fd0e65b4/apollo-web-1.7.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.activemq/apollo-web/1.7.1/d6f9cd673beba0dbb15bc75eb6d1d69970e7679e/apollo-web-1.7.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

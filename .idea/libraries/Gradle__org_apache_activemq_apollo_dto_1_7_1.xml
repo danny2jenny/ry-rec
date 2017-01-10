@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.apache.activemq:apollo-dto:1.7.1">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.activemq/apollo-dto/1.7.1/67f9f91d0bb14f56b9ef3b427646190b7c52d499/apollo-dto-1.7.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.activemq/apollo-dto/1.7.1/f149c0479313ba17d04548521c08117664ddd7c1/apollo-dto-1.7.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

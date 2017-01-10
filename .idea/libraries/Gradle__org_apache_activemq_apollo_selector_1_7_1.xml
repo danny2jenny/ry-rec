@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.apache.activemq:apollo-selector:1.7.1">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.activemq/apollo-selector/1.7.1/d02908bb901678e24657166d77ecd1a9ba61fd11/apollo-selector-1.7.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.activemq/apollo-selector/1.7.1/301ab6bc2d5c1055856200d854dbd47a2bdefa85/apollo-selector-1.7.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

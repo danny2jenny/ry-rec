@@ -19,7 +19,7 @@ Ext.define('app.view.admin.frame.DeviceNodeGrid', {
     items: [
         {
             xtype: 'admin.panel.device',
-            region: 'center',
+            region: 'center'
         },
 
         // 子表设置

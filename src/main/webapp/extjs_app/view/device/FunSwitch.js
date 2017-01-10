@@ -15,7 +15,7 @@ Ext.define('app.view.device.FunSwitch', {
     styleHtmlCls: 'control_tpl',
     tpl: '更新日期:{time}<br>当前风速:{val1}m/s',
 
-    tools: [{
+    interaction: [{
         type: 'refresh',
         fun: 1,
         tooltip: '刷新当前数据'
