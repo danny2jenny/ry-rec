@@ -1,3 +1,9 @@
+/**
+ * Created by danny on 17-1-10.
+ *
+ * STOMP 消息分发
+ */
+
 package com.rytec.rec.messenger;
 
 import org.springframework.context.annotation.Configuration;
@@ -6,9 +12,7 @@ import org.springframework.web.socket.config.annotation.AbstractWebSocketMessage
 import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker;
 import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 
-/**
- * Created by danny on 17-1-10.
- */
+
 
 @Configuration
 @EnableWebSocketMessageBroker
