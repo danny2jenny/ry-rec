@@ -1,5 +1,7 @@
 /**
  * Created by danny on 17-1-4.
+ *
+ * Node 列表
  */
 
 
@@ -13,7 +15,7 @@ Ext.define('app.view.admin.panel.Node', {
     title: '节点',
     icon: 'icon/toolbar/node.png',
 
-    store: 'admin.Node',
+    store: 'Node',
     plugins: [{
         ptype: 'grid.editing',
         autoLoad: false,

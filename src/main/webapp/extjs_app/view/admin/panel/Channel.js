@@ -1,5 +1,7 @@
 /**
  * Created by danny on 17-1-4.
+ *
+ * Channel 列表
  */
 
 
@@ -9,7 +11,7 @@ Ext.define('app.view.admin.panel.Channel', {
     title: '控制器通道',
     icon: 'icon/toolbar/channel.png',
 
-    store: 'admin.Channel',
+    store: 'Channel',
     itemId: 'adminChannelGrid',
 
     plugins: [{

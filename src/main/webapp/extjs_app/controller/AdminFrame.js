@@ -22,12 +22,12 @@ Ext.define('app.controller.AdminFrame', {
     ],
 
     stores: [
-        'admin.Channel',
-        'admin.Node',
+        'Channel',
+        'Node',
         'NodeForDevice',
         'Device',
         'Option',
-        'option.ChannelType',
+        'ChannelType',
         'Gis',
         'GisLayer'
     ],

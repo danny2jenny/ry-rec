@@ -42,7 +42,7 @@ Ext.define('app.lib.PluginGridEdit', {
 
         if (selections.length && selections[0].get('id')) {
             var fkey = selections[0].get('id');
-            me.getCmp().newRec[this.fkey] = fkey;
+            me.getCmp().newRec[this.fKey] = fkey;
             me.loadByMasterId(fkey);
 
             me.tbar.down('#buttonAdd').setDisabled(false);
@@ -178,6 +178,7 @@ Ext.define('app.lib.PluginGridEdit', {
             errorsText: "<font color='red'>错误信息</font>",
             dirtyText: "已修改,你需要提交或取消变更"
         });
+
         client.rowEditing = rowEditing;
         client.addPlugin(rowEditing);
 

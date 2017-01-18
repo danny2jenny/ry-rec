@@ -1,11 +1,20 @@
+/**
+ * Created by danny on 16-11-22.
+ * <p>
+ * ModbusTcp Server
+ */
+
 package com.rytec.rec.channel.ModbusTcpServer;
 
+import com.rytec.rec.channel.ChannelInterface;
+import com.rytec.rec.channel.ChannelMessage;
 import com.rytec.rec.channel.ModbusTcpServer.handler.ModbusChannelInitializer;
 import com.rytec.rec.channel.ModbusTcpServer.exception.ConnectionException;
 import com.rytec.rec.db.DbConfig;
 import com.rytec.rec.db.model.ChannelNode;
-import com.rytec.rec.node.NodeProtocolInterface;
+import com.rytec.rec.node.NodeComInterface;
 import com.rytec.rec.node.NodeManager;
+import com.rytec.rec.util.CRC16;
 import com.rytec.rec.util.ChannelType;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.Channel;
@@ -24,20 +33,15 @@ import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.swing.*;
+import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- * Created by danny on 16-11-22.
- * <p>
- * ModbusTcp Server
- */
-
 @Service
 @ChannelType(1001)
-public class ModbusTcpServer {
+public class ModbusTcpServer implements ChannelInterface {
 
     private final org.slf4j.Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -56,8 +60,10 @@ public class ModbusTcpServer {
     @PostConstruct
     public void setup() throws ConnectionException {
 
+        // 读取数据库的配置
         initConfig();
 
+        // 建立 TCP Server
         try {
             final EventLoopGroup bossGroup = new NioEventLoopGroup();
             final EventLoopGroup workerGroup = new NioEventLoopGroup();
@@ -107,13 +113,13 @@ public class ModbusTcpServer {
     @Autowired
     private DbConfig dbConfig;
 
-    public ConcurrentHashMap<String, ConcurrentHashMap> channelNodes = new ConcurrentHashMap();
+    public HashMap<String, HashMap> channelNodes = new HashMap();
 
     /*
     * 初始化对应的HashMap
     * 两级 HashMap
-    * 第一级：ip:id->Map
-    * 第二级：add:no->ChannelNode
+    * 第一级：ip:port->Map
+    * 第二级：nodeId->ChannelNode
      */
     private void initConfig() {
 
@@ -129,11 +135,11 @@ public class ModbusTcpServer {
             String chaId = cn.getIp() + ':' + cn.getPort();
 
             //是否已经存在该Channel
-            ConcurrentHashMap<Integer, ChannelNode> cha = channelNodes.get(chaId);
+            HashMap<Integer, ChannelNode> cha = channelNodes.get(chaId);
 
             //不存在，建立该Channel
             if (cha == null) {
-                cha = new ConcurrentHashMap();
+                cha = new HashMap();
                 this.channelNodes.put(chaId, cha);
             }
 
@@ -153,28 +159,14 @@ public class ModbusTcpServer {
     * 每个Channel（Socket 连接都需要进行轮训）通过一个HashMap来进行
     * <String, Integer>   ip:port -> 当前的轮训位置
     */
-    @Scheduled(fixedDelay = 1000)
+
+    @Scheduled(fixedDelay = 5000)
     private void doOnTime() {
         // 遍历已经登录的远端，并执行队列
         for (Channel cha : clients.values()) {
             ChanneSession channeSession = cha.attr(ModbusCommon.MODBUS_STATE).get();
-            channeSession.processQueue();
+            //channeSession.processQueue();
         }
-    }
-
-    /*
-    * 发送命令接口,
-    * 只是把命令加入到对应Channel的
-    */
-    public boolean sendMsg(Spring ip, int port, ModbusMessage msg) {
-        Channel cha = clients.get(ip + ":" + port);
-        if (cha == null) {
-            return false;
-        }
-
-        ChanneSession channeSession = cha.attr(ModbusCommon.MODBUS_STATE).get();
-        channeSession.sendMsg(msg);
-        return true;
     }
 
     @Autowired
@@ -182,17 +174,32 @@ public class ModbusTcpServer {
 
     //收到远端回应后的处理
     //首先通过Node进行解码，然后再发送道NodeManager
-    public void receiveMsg(String chaId, ModbusMessage request, ModbusMessage response) {
+    public void receiveMsg(String chaId, ChannelMessage request, ChannelMessage response) {
 
-        //logger.debug("收到Modbus：" + chaId + ':' + CRC16.bytesToHexString(response.payload));
-
+        logger.debug("收到Modbus：" + chaId + ':' + CRC16.bytesToHexString(response.payload));
         ChannelNode cn = (ChannelNode) channelNodes.get(chaId).get(request.nodeId);
-        NodeProtocolInterface node = NodeManager.getNode(cn.getCtype());
+        NodeComInterface nodeBean = NodeManager.getNodeComInterface(cn.getCtype());
 
         // 解码值
-        int newValue = node.decodeMessage(response);
+        nodeBean.decodeMessage(response);
 
-        nodeManager.onValue(response.nodeId, newValue);
+    }
 
+    /**
+     * 实现接口方法
+     *
+     * @param msg
+     */
+    public void sendMsg(ChannelMessage msg) {
+        ChannelNode channelNode = nodeManager.getChannelNodeByNodeId(msg.nodeId).channelNode;
+        String channelId = channelNode.getIp() + ':' + channelNode.getPort();
+        Channel channel = clients.get(channelId);
+        if (channel == null) {
+            return;
+        } else {
+            logger.debug("++++++++++++++++++++++");
+            ChanneSession channeSession = channel.attr(ModbusCommon.MODBUS_STATE).get();
+            channeSession.sendMsg(msg);
+        }
     }
 }

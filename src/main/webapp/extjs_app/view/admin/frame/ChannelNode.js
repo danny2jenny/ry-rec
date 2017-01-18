@@ -45,7 +45,7 @@ Ext.define('app.view.admin.frame.ChannelNode', {
 
         //更新成功后
         this.down('#adminNodeGridForChannel').store.on('update', function (store, record, operation, eOpts) {
-            var nodeGrid = Ext.ComponentQuery.query('#adminNodeGridForDevice')[0];
+            var nodeGrid = Ext.ComponentQuery.query('#admin_panel_NodeForDevice')[0];
             nodeGrid.store.load();
         })
 
@@ -56,5 +56,12 @@ Ext.define('app.view.admin.frame.ChannelNode', {
             }
 
         });
+
+        this.on('show', function (from, eOpts) {
+            var node = Ext.ComponentQuery.query('#admin_panel_NodeForDevice')[0];
+            var gis = Ext.ComponentQuery.query('#admin_panel_gis')[0];
+            node.show();
+            gis.hide();
+        })
     }
 });

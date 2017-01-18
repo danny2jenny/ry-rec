@@ -1,5 +1,6 @@
 package com.rytec.rec.channel.ModbusTcpServer;
 
+import com.rytec.rec.channel.ChannelMessage;
 import io.netty.channel.Channel;
 import org.slf4j.LoggerFactory;
 
@@ -16,45 +17,63 @@ public class ChanneSession {
 
     private final org.slf4j.Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    private Channel cha;            //对应的Channel
-    private int currentQuerryIndex = 0;
+    //对应的Channel
+    private Channel cha;
 
-    public String id;               //channel的id  ip：port
+    // 当前定时队列的位置
+    private int currentTimerQuerryIndex = 0;
 
-    public volatile ModbusMessage lastCmd = null;     //最后一次发送的命令
+    //channel的id  ip：port
+    public String id;
 
-    public List<ModbusMessage> queryCmd = new ArrayList();
+    // 最后一次发送的命令
+    public volatile ChannelMessage lastCmd = null;
 
-    //发送队列
-    volatile Queue<ModbusMessage> sendQueue = new LinkedList();
+    // 需要定时发送的队列命令
+    public List<ChannelMessage> timerQueryCmd = new ArrayList();
 
-    // 用于状态查询的命令帧，该
-    public HashMap<String, ModbusMessage> stateCmd = new HashMap();
+    // 非定时队列的发送命令(用户，或者是联动)
+    volatile Queue<ChannelMessage> instantQueueCmd = new LinkedList();
 
+    /**
+     * @param cid
+     * @param channel
+     */
     public ChanneSession(String cid, Channel channel) {
         id = cid;
         cha = channel;
     }
 
-    //当前通道是否在等待回应
+    /**
+     * 当前通道是否在等待回应
+     */
     private boolean isBusy() {
         return lastCmd == null ? true : false;
     }
 
 
-    //得到下一个的查询命令
-    private ModbusMessage getNextQuery() {
-        if (queryCmd.size() == 0) {
+    /**
+     * 得到下一个的查询命令
+     */
+
+    private ChannelMessage getNextQuery() {
+        if (timerQueryCmd.size() == 0) {
             return null;
         }
-        ModbusMessage msg = queryCmd.get(currentQuerryIndex);
-        currentQuerryIndex = (currentQuerryIndex + 1) % queryCmd.size();
+        ChannelMessage msg = timerQueryCmd.get(currentTimerQuerryIndex);
+        currentTimerQuerryIndex = (currentTimerQuerryIndex + 1) % timerQueryCmd.size();
         return msg;
     }
 
 
-    public void sendMsg(ModbusMessage msg) {
-        sendQueue.add(msg);
+    /**
+     * 发送命令
+     *
+     * @param msg
+     */
+    public void sendMsg(ChannelMessage msg) {
+        instantQueueCmd.add(msg);
+        logger.debug("msg:"+msg.type);
         processQueue();
     }
 
@@ -65,8 +84,8 @@ public class ChanneSession {
     public void processQueue() {
         if (lastCmd != null) return;
 
-        if (sendQueue.size() > 0) {
-            lastCmd = sendQueue.poll();
+        if (instantQueueCmd.size() > 0) {
+            lastCmd = instantQueueCmd.poll();
         } else {
             lastCmd = getNextQuery();
         }

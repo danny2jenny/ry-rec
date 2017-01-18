@@ -1,6 +1,6 @@
 /**
  * Created by danny on 17-1-10.
- *
+ * <p>
  * STOMP 消息分发
  */
 
@@ -13,14 +13,13 @@ import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBr
 import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 
 
-
 @Configuration
 @EnableWebSocketMessageBroker
 public class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer {
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/portfolio").withSockJS();
+        registry.addEndpoint("/stomp").withSockJS();
     }
 
     @Override

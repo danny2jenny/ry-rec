@@ -10,6 +10,12 @@ Ext.define('app.model.Option', {
         {name: 'cat', type: 'int'},
         {name: 'name'},
         {name: 'value'}
-    ]
+    ],
+
+    validations: [{
+        field: 'name',
+        type: 'length',
+        min: 2
+    }]
 
 });

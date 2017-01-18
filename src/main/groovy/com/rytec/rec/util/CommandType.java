@@ -6,8 +6,8 @@ package com.rytec.rec.util;
  */
 public interface CommandType {
 
-    int MODBUS_CMD_WRITE = 100;    //485写入
-
-    int MODBUS_CMD_READ = 101;     //485读取
+    // modbus 命令
+    int GENERAL_READ = 100;
+    int GENERAL_WRITE = 101;
 
 }

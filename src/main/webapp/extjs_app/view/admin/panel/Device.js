@@ -1,5 +1,7 @@
 /**
  * Created by danny on 17-1-4.
+ *
+ * Device 列表
  */
 
 Ext.define('app.view.admin.panel.Device', {

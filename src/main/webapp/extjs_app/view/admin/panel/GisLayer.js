@@ -1,5 +1,6 @@
 /**
  * Created by danny on 17-1-6.
+ * Gis Layer 图层列表
  */
 
 Ext.define('app.view.admin.panel.GisLayer', {
@@ -24,6 +25,7 @@ Ext.define('app.view.admin.panel.GisLayer', {
 
     plugins: [{
         ptype: 'grid.editing',
-        autoLoad: true,
+        hideAdd: true,
+        autoLoad: true
     }]
 })

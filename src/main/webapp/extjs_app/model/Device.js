@@ -15,6 +15,12 @@ Ext.define('app.model.Device', {
         {name: 'icon'},
         {name: 'lnodetype'},
         {name: 'lnodenum'},
-    ]
+    ],
+
+    validations: [{
+        field: 'name',
+        type: 'length',
+        min: 2
+    }]
 
 });

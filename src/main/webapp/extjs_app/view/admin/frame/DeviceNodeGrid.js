@@ -27,7 +27,7 @@ Ext.define('app.view.admin.frame.DeviceNodeGrid', {
             xtype: 'admin.panel.nodefordevice',
             region: 'south',
             height: 300,
-            hidden: true,
+            hidden: false,
             //margins: '0 0 5 0',
             split: true,
         },
@@ -37,7 +37,7 @@ Ext.define('app.view.admin.frame.DeviceNodeGrid', {
             xtype: 'admin.panel.gis',
             region: 'south',
             height: 300,
-            hidden: false,
+            hidden: true,
         }
     ],
 
@@ -59,10 +59,10 @@ Ext.define('app.view.admin.frame.DeviceNodeGrid', {
         });
 
         //Node 的拖放
-        this.down('#adminNodeGridForDevice').on('onDragDrop', function (data, targetNode, position) {
+        this.down('#admin_panel_NodeForDevice').on('onDragDrop', function (data, targetNode, position) {
             debugger;
             var deviceGrid = Ext.ComponentQuery.query('#adminDeviceGrid')[0];
-            var nodeGrid = Ext.ComponentQuery.query('#adminNodeGridForDevice')[0];
+            var nodeGrid = Ext.ComponentQuery.query('#admin_panel_NodeForDevice')[0];
 
             if (!deviceGrid.getSelectionModel().selected.length) {
                 return
@@ -79,7 +79,7 @@ Ext.define('app.view.admin.frame.DeviceNodeGrid', {
         // 覆盖Node的Delete方法
         // 只是设置相应的 Node 的 device 为 0
 
-        var nodeGrid = Ext.ComponentQuery.query('#adminNodeGridForDevice')[0];
+        var nodeGrid = Ext.ComponentQuery.query('#admin_panel_NodeForDevice')[0];
 
         nodeGrid.down('#buttonDelete').handler = function () {
             var node = nodeGrid.getSelectionModel().selected.get(0);
@@ -87,7 +87,7 @@ Ext.define('app.view.admin.frame.DeviceNodeGrid', {
         }
 
         nodeGrid.store.on('update', function (store, record, operation, eOpts) {
-            Ext.ComponentQuery.query('#adminNodeGridForDevice')[0].store.load();
+            Ext.ComponentQuery.query('#admin_panel_NodeForDevice')[0].store.load();
             Ext.ComponentQuery.query('#adminNodeGridForChannel')[0].store.load();
         })
     }

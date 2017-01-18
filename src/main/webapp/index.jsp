@@ -18,7 +18,9 @@
     <%--以下的JS加载必须严格按照顺序--%>
 
     <%--jQuery--%>
-    <script type="text/javascript" src="extjs_app/lib/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="js/stomp.js"></script>
+
 
     <%--extjs 启动器#--%>
     <script type="text/javascript" src="extjs/bootstrap.js"></script>

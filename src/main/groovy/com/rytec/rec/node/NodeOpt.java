@@ -8,5 +8,4 @@ package com.rytec.rec.node;
 public class NodeOpt {
     //当前的值，这里用浮点进行存储，可能为开关量
     public float value = 0;
-
 }

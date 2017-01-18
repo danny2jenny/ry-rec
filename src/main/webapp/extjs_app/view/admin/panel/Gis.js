@@ -1,16 +1,16 @@
 /**
  * Created by danny on 17-1-4.
+ *
+ * Gis 数据的列表
  */
 
 Ext.define('app.view.admin.panel.Gis', {
     extend: 'Ext.grid.Panel',
     alias: 'widget.admin.panel.gis',
-
-    itemId: 'admin.panel.gis',
+    itemId: 'admin_panel_gis',
+    icon: '/icon/toolbar/gis.png',
     title: 'GIS',
     store: 'Gis',
-
-
     columns: [
         {
             text: 'ID',
@@ -24,6 +24,7 @@ Ext.define('app.view.admin.panel.Gis', {
                 return ry.trans(val, ry.GIS_FEATURE_TYPE);
             }
         }],
+
     plugins: [{
         ptype: 'grid.editing',
         autoLoad: false,

@@ -40,6 +40,15 @@ Ext.define('app.view.gis.GisView', {
 
         //把第一个层作为显示层
         gis.layers.getValues()[0].setVisible(true);
+
+        this.on('show', function (from, eOpts) {
+            var node = Ext.ComponentQuery.query('#adminNodeGridForDevice')[0];
+            var gis = Ext.ComponentQuery.query('#admin.panel.gis')[0];
+            debugger;
+
+            node.hide();
+            gis.show();
+        })
     }
 
 });

@@ -70,3 +70,42 @@ ry.onGetOption = function (data, caller, result) {
         }
     }
 }
+
+
+/**
+ * Stomp
+ *
+ * 最早的项目 https://github.com/jmesnil/stomp-websocket
+ * 还在更新的 https://github.com/crossz/stomp-websocket
+ * 评价比较好的fork https://github.com/JSteunou/webstomp-client
+ *
+ */
+ry.stom = new Object();
+ry.stom.stomp_url = 'ws://' + window.location.host + '/srv/stomp/websocket';
+ry.stom.client = Stomp.client(ry.stom.stomp_url);
+
+// 连接建立后
+ry.stom.connect_callback = function () {
+    console.log('STOM 连接建立。。。。');
+    ry.stom.msgChannel = ry.stom.client.subscribe("/topic/msg", ry.stom.onMsg);
+};
+
+// 连接建立失败
+ry.stom.error_callback = function (error) {
+    console.log('STOM 连接错误！！！！！');
+};
+
+// 收到消息
+ry.stom.onMsg = function (msg) {
+    console.log('STOM 收到消息:' + msg);
+};
+
+// 发送消息
+ry.stom.sendMsg = function (msg) {
+    ry.stom.client.send("/topic/msg", {}, msg);
+}
+
+// 连接到服务器
+ry.stom.client.connect(null, null, ry.stom.connect_callback, ry.stom.error_callback);
+
+

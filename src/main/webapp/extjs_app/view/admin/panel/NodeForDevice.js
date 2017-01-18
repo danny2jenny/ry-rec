@@ -1,11 +1,13 @@
 /**
  * Created by danny on 17-1-4.
+ *
+ * 用于 Device 的 Node 子表
  */
 
 Ext.define('app.view.admin.panel.NodeForDevice', {
     extend: 'Ext.grid.Panel',
     alias: 'widget.admin.panel.nodefordevice',
-    itemId: 'adminNodeGridForDevice',
+    itemId: 'admin_panel_NodeForDevice',
 
     title: '已经配置的节点',
     icon: 'icon/toolbar/node.png',

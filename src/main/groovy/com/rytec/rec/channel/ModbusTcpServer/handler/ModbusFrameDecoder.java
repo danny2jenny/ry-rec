@@ -2,7 +2,7 @@ package com.rytec.rec.channel.ModbusTcpServer.handler;
 
 import com.rytec.rec.channel.ModbusTcpServer.ChanneSession;
 import com.rytec.rec.channel.ModbusTcpServer.ModbusCommon;
-import com.rytec.rec.channel.ModbusTcpServer.ModbusMessage;
+import com.rytec.rec.channel.ChannelMessage;
 import com.rytec.rec.util.FromWhere;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
@@ -27,7 +27,7 @@ public class ModbusFrameDecoder extends ReplayingDecoder {
         byte[] payload = new byte[channeSession.lastCmd.responseLen];    //包含去除CRC校验
         data.readBytes(payload);
 
-        ModbusMessage msg = new ModbusMessage(FromWhere.FROM_RPS);
+        ChannelMessage msg = new ChannelMessage(FromWhere.FROM_RPS);
         msg.nodeId = channeSession.lastCmd.nodeId;
         msg.type = channeSession.lastCmd.type;
         msg.payload = payload;

@@ -1,5 +1,13 @@
-package com.rytec.rec.device;
+/**
+ * Created by danny on 16-11-14.
+ * 通过这个接口和前端设备进行通信
+ * 这里会根据前端设备的类型去调用相应的Device驱动
+ * <p>
+ * 这是所有与设备操作的入口
+ */
 
+
+package com.rytec.rec.device;
 
 import com.rytec.rec.db.DbConfig;
 import com.rytec.rec.db.model.DeviceNode;
@@ -14,13 +22,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by danny on 16-11-14.
- * 通过这个接口和前端设备进行通信
- * 这里会根据前端设备的类型去调用相应的Device驱动
- * <p>
- * 这是所有与设备操作的入口
- */
 @Service
 public class DeviceManager {
 
@@ -43,13 +44,12 @@ public class DeviceManager {
     HashMap<Integer, HashMap> deviceNodeList = new HashMap();
 
 
-    /*
-    * 前端设备数据变化
-    * DeviceAircon: 设备id
-    * fun：设备功能号
-    * oldValue：原值
-    * newValue：新值
-    */
+    /**
+     * @param device   设备id
+     * @param fun      设备功能号
+     * @param oldValue 原值
+     * @param newValue 新值
+     */
     public void onValueChange(int device, int fun, float oldValue, float newValue) {
 
     }
@@ -77,9 +77,9 @@ public class DeviceManager {
         }
 
         //初始化 Device 的实现
-        Map<String, Object> devices = context.getBeansWithAnnotation(DeviceType.class);
+        Map<String, Object> deviceOperatorList = context.getBeansWithAnnotation(DeviceType.class);
 
-        for (Object device : devices.values()) {
+        for (Object device : deviceOperatorList.values()) {
             Class<? extends Object> deviceClass = device.getClass();
             DeviceType annotation = deviceClass.getAnnotation(DeviceType.class);
             deviceOperators.put(annotation.value(), device);
@@ -87,11 +87,14 @@ public class DeviceManager {
 
     }
 
+    // 得到一个设备的状态
+    public void getDeviceState(int deviceId){
 
-    //得到一个设备的实例对象
-    public static BaseDevice getDevice(int type) {
-        return (BaseDevice) deviceOperators.get(type);
     }
 
+    //得到一个设备的实例对象
+    public static BaseDevice getDeviceOperator(int type) {
+        return (BaseDevice) deviceOperators.get(type);
+    }
 
 }

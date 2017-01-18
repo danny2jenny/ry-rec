@@ -77,17 +77,15 @@ dependencies {
     compile 'org.springframework:spring-websocket:4.3.3.RELEASE'
     compile 'org.springframework:spring-messaging:4.3.3.RELEASE'
     compile 'org.springframework:spring-jms:4.3.3.RELEASE'
-    compile "org.apache.activemq:apollo-broker:1.7.1"
-    compile "org.apache.activemq:apollo-stomp:1.7.1"
-    compile "org.apache.activemq:apollo-jmx:1.7.1"
-    compile "org.apache.activemq:apollo-web:1.7.1"
+
+//    compile "org.apache.activemq:apollo-broker:1.7.1"
+//    compile "org.apache.activemq:apollo-stomp:1.7.1"
+//    compile "org.apache.activemq:apollo-jmx:1.7.1"
+//    compile "org.apache.activemq:apollo-web:1.7.1"
 
     // Servlet
     providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
     compile group: 'javax.servlet', name: 'jstl', version: '1.2'
-
-    // 文件上传
-    //compile group: 'commons-fileupload', name: 'commons-fileupload', version: '1.2.2'
 
     // 测试
     testCompile group: 'junit', name: 'junit', version: '4.11'
