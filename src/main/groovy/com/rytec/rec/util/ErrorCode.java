@@ -19,5 +19,7 @@ public interface ErrorCode {
     // Node通讯的错误列表
     int NODE_TYPE_NOTEXIST = 201;           //该类型的Node不存在
 
+    // Channel错误消息
+    int CHA_NOT_CONNECT = 301;
 
 }

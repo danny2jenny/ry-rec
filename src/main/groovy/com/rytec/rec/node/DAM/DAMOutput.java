@@ -3,7 +3,8 @@ package com.rytec.rec.node.DAM;
 import com.rytec.rec.channel.ChannelInterface;
 import com.rytec.rec.channel.ChannelManager;
 import com.rytec.rec.channel.ChannelMessage;
-import com.rytec.rec.node.ChannelNodeManagerItem;
+import com.rytec.rec.db.model.ChannelNode;
+import com.rytec.rec.node.ChannelNodeState;
 import com.rytec.rec.node.NodeComInterface;
 import com.rytec.rec.node.NodeManager;
 import com.rytec.rec.node.NodeMessage;
@@ -68,7 +69,7 @@ public class DAMOutput implements NodeComInterface {
      */
     public ChannelMessage genMessage(int where, int nodeId, int cmd, int value) {
 
-        ChannelNodeManagerItem channelNodeManagerItem = nodeManager.getChannelNodeByNodeId(nodeId);
+        ChannelNodeState channelNodeState = nodeManager.getChannelNodeByNodeId(nodeId);
 
         ChannelMessage frame = new ChannelMessage();
         frame.from = where;
@@ -82,9 +83,9 @@ public class DAMOutput implements NodeComInterface {
             case CommandType.GENERAL_WRITE:
                 buf = Unpooled.buffer(6);
                 frame.responseLen = 8;
-                buf.writeByte(channelNodeManagerItem.channelNode.getAdr());     //地址
+                buf.writeByte(channelNodeState.channelNode.getAdr());     //地址
                 buf.writeByte(0x05);                     //命令
-                buf.writeShort(channelNodeManagerItem.channelNode.getNo());     //寄存器
+                buf.writeShort(channelNodeState.channelNode.getNo());     //寄存器
                 buf.writeShort(value);
                 frame.payload = buf.array();
                 break;
@@ -93,9 +94,9 @@ public class DAMOutput implements NodeComInterface {
             case CommandType.GENERAL_READ:
                 buf = Unpooled.buffer(6);
                 frame.responseLen = 6;
-                buf.writeByte(channelNodeManagerItem.channelNode.getAdr());
+                buf.writeByte(channelNodeState.channelNode.getAdr());
                 buf.writeByte(0x01);
-                buf.writeShort(channelNodeManagerItem.channelNode.getNo());     //地址
+                buf.writeShort(channelNodeState.channelNode.getNo());     //地址
                 buf.writeShort(1);                       //查询数量
                 frame.payload = buf.array();
                 break;
@@ -126,9 +127,9 @@ public class DAMOutput implements NodeComInterface {
         int rst = 0;
 
         //找到对应的 Channel
-        ChannelNodeManagerItem nodeManagerItem = nodeManager.getChannelNodeByNodeId(msg.node);
+        ChannelNode channelNode = nodeManager.getChannelNodeByNodeId(msg.node).channelNode;
 
-        ChannelInterface channel = ChannelManager.getChannelInterface(nodeManagerItem.channelNode.getCtype());
+        ChannelInterface channel = ChannelManager.getChannelInterface(channelNode.getCtype());
 
         // 根据 msg.value 的类型来进行相应的channelmsg生成
 

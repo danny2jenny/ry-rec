@@ -73,7 +73,6 @@ public class ChanneSession {
      */
     public void sendMsg(ChannelMessage msg) {
         instantQueueCmd.add(msg);
-        logger.debug("msg:"+msg.type);
         processQueue();
     }
 

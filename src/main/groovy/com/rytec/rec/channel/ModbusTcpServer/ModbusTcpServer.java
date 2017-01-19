@@ -16,6 +16,7 @@ import com.rytec.rec.node.NodeComInterface;
 import com.rytec.rec.node.NodeManager;
 import com.rytec.rec.util.CRC16;
 import com.rytec.rec.util.ChannelType;
+import com.rytec.rec.util.ErrorCode;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
@@ -32,7 +33,6 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
-import javax.swing.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
@@ -190,16 +190,17 @@ public class ModbusTcpServer implements ChannelInterface {
      *
      * @param msg
      */
-    public void sendMsg(ChannelMessage msg) {
+    public int sendMsg(ChannelMessage msg) {
+        int rst = 0;
         ChannelNode channelNode = nodeManager.getChannelNodeByNodeId(msg.nodeId).channelNode;
         String channelId = channelNode.getIp() + ':' + channelNode.getPort();
         Channel channel = clients.get(channelId);
         if (channel == null) {
-            return;
+            return ErrorCode.CHA_NOT_CONNECT;
         } else {
-            logger.debug("++++++++++++++++++++++");
             ChanneSession channeSession = channel.attr(ModbusCommon.MODBUS_STATE).get();
             channeSession.sendMsg(msg);
         }
+        return rst;
     }
 }

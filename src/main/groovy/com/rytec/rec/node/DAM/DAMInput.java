@@ -1,7 +1,7 @@
 package com.rytec.rec.node.DAM;
 
 import com.rytec.rec.channel.ChannelMessage;
-import com.rytec.rec.node.ChannelNodeManagerItem;
+import com.rytec.rec.node.ChannelNodeState;
 import com.rytec.rec.node.NodeMessage;
 import com.rytec.rec.node.NodeComInterface;
 import com.rytec.rec.node.NodeManager;
@@ -40,7 +40,7 @@ public class DAMInput implements NodeComInterface {
     // 命令编码
     public ChannelMessage genMessage(int where, int nodeId, int cmd, int value) {
 
-        ChannelNodeManagerItem channelNodeManagerItem = nodeManager.getChannelNodeByNodeId(nodeId);
+        ChannelNodeState channelNodeState = nodeManager.getChannelNodeByNodeId(nodeId);
 
         ChannelMessage frame = new ChannelMessage();
 
@@ -49,9 +49,9 @@ public class DAMInput implements NodeComInterface {
         frame.responseLen = 6;
 
         ByteBuf buf = Unpooled.buffer(6);
-        buf.writeByte(channelNodeManagerItem.channelNode.getAdr());
+        buf.writeByte(channelNodeState.channelNode.getAdr());
         buf.writeByte(0x02);
-        buf.writeShort(channelNodeManagerItem.channelNode.getNo());
+        buf.writeShort(channelNodeState.channelNode.getNo());
         buf.writeShort(0x01);
 
         frame.payload = buf.array();

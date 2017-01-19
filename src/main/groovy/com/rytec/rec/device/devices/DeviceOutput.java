@@ -27,18 +27,12 @@ public class DeviceOutput extends BaseDevice {
      * @param from
      * @param value
      */
-    public void setSwitch(int deviceId, int from, Boolean value) {
+    public int setSwitch(int deviceId, int from, Boolean value) {
         NodeMessage nodeMsg = new NodeMessage();
         nodeMsg.from = from;
         nodeMsg.type = CommandType.GENERAL_WRITE;
         nodeMsg.value = value;
-        this.setValue(deviceId, DeviceFunctionType.DEV_FUN_PORT_MAIN, nodeMsg);
+        return this.setValue(deviceId, DeviceFunctionType.DEV_FUN_PORT_MAIN, nodeMsg);
     }
 
-    boolean cc = true;
-    @Scheduled(fixedDelay = 1000)
-    private void test(){
-        setSwitch(1, FromWhere.FROM_USER,cc);
-        cc = !cc;
-    }
 }

@@ -8,9 +8,7 @@
  */
 package com.rytec.rec.node;
 
-import com.rytec.rec.channel.ChannelMessage;
 import com.rytec.rec.db.DbConfig;
-import com.rytec.rec.db.model.Channel;
 import com.rytec.rec.db.model.ChannelNode;
 import com.rytec.rec.device.DeviceManager;
 import com.rytec.rec.util.NodeType;
@@ -33,7 +31,7 @@ public class NodeManager {
     DeviceManager deviceManager;
 
     //nid->ChannelNode 的一个Map
-    private Map<Integer, ChannelNodeManagerItem> channelNodeList = new HashMap();
+    private Map<Integer, ChannelNodeState> channelNodeList = new HashMap();
 
     //node的实现对象列表
     @Autowired
@@ -55,10 +53,10 @@ public class NodeManager {
 
         for (ChannelNode cn : channelNodes) {
             // 给 ChannelNode 的运行数据初始化
-            ChannelNodeManagerItem channelNodeManagerItem = new ChannelNodeManagerItem();
-            channelNodeManagerItem.channelNode = cn;
-            channelNodeManagerItem.nodeOpt = new NodeOpt();
-            channelNodeList.put(cn.getNid(), channelNodeManagerItem);
+            ChannelNodeState channelNodeState = new ChannelNodeState();
+            channelNodeState.channelNode = cn;
+            channelNodeState.nodeOpt = new NodeOpt();
+            channelNodeList.put(cn.getNid(), channelNodeState);
         }
 
         // 初始化 node 接口实现
@@ -75,24 +73,24 @@ public class NodeManager {
     * @id node 的id
     */
     public void onValue(int id, float value) {
-        ChannelNodeManagerItem channelNodeManagerItem = channelNodeList.get(id);
+        ChannelNodeState channelNodeState = channelNodeList.get(id);
 
-        if (channelNodeManagerItem.nodeOpt == null) {
-            channelNodeManagerItem.nodeOpt = new NodeOpt();
+        if (channelNodeState.nodeOpt == null) {
+            channelNodeState.nodeOpt = new NodeOpt();
         }
 
-        NodeOpt nodeOpt = channelNodeManagerItem.nodeOpt;
+        NodeOpt nodeOpt = channelNodeState.nodeOpt;
 
         float oldValue = nodeOpt.value;
         if (oldValue != value) {
             //更新Node的值
             nodeOpt.value = value;
             //向Device发送变化
-            deviceManager.onValueChange(channelNodeManagerItem.channelNode.getDevice(), channelNodeManagerItem.channelNode.getDevicefun(), oldValue, value);
+            deviceManager.onValueChange(channelNodeState.channelNode.getDevice(), channelNodeState.channelNode.getDevicefun(), oldValue, value);
         }
     }
 
-    public ChannelNodeManagerItem getChannelNodeByNodeId(int nodeId) {
+    public ChannelNodeState getChannelNodeByNodeId(int nodeId) {
         return channelNodeList.get(nodeId);
     }
 

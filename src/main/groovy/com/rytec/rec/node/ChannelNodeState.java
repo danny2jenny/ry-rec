@@ -8,7 +8,7 @@ import com.rytec.rec.db.model.ChannelNode;
  * 用于管理ChannelNode的Bean
  * 每个Bean对应一个ChannelNode和一个用于状态的Bean
  */
-public class ChannelNodeManagerItem {
+public class ChannelNodeState {
     public ChannelNode channelNode;
     public NodeOpt nodeOpt;
 }

@@ -66,6 +66,11 @@ public class CRC16 {
         return (ucCRCHi & 0x00ff) | ((ucCRCLo & 0x00ff) << 8) & 0xffff;
     }
 
+    /**
+     *
+     * @param src
+     * @return
+     */
     public static String bytesToHexString(byte[] src) {
         StringBuilder stringBuilder = new StringBuilder("");
         if (src == null || src.length <= 0) {
@@ -82,6 +87,11 @@ public class CRC16 {
         return stringBuilder.toString();
     }
 
+    /**
+     *
+     * @param b
+     * @return
+     */
     public static String byteToHex(byte b) {
         return Integer.toHexString(b & 0xFF);
     }

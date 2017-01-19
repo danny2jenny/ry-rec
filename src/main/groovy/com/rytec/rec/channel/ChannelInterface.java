@@ -13,5 +13,5 @@ package com.rytec.rec.channel;
  */
 public interface ChannelInterface {
 
-    void sendMsg(ChannelMessage msg);
+    int sendMsg(ChannelMessage msg);
 }
