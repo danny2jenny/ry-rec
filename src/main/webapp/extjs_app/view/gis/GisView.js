@@ -16,6 +16,8 @@ Ext.define('app.view.gis.GisView', {
     afterLayout: function () {
         this.callParent();
         gis.map.setTarget(this.body.dom);
+        // 窗口改变大小后，需要重新缩放图层
+        gis.map.maxExtent();
     },
 
     initComponent: function () {
@@ -44,8 +46,6 @@ Ext.define('app.view.gis.GisView', {
         this.on('show', function (from, eOpts) {
             var node = Ext.ComponentQuery.query('#adminNodeGridForDevice')[0];
             var gis = Ext.ComponentQuery.query('#admin.panel.gis')[0];
-            debugger;
-
             node.hide();
             gis.show();
         })

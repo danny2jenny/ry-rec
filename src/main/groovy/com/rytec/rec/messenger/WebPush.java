@@ -16,10 +16,8 @@ public class WebPush {
     @Autowired
     private SimpMessagingTemplate template;
 
-    // 向ＷＥＢ客户端广播消息
+    // 向web客户端广播消息
     public void clientBroadcast(String msg) {
-
-        template.convertAndSend("/topic/msg", msg);
-
+        template.convertAndSend("/topic/broadcast", msg);
     }
 }

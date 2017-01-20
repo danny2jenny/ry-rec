@@ -6,10 +6,14 @@
  * 参考：
  * http://openlayers.org/workshop/en/index.html
  * http://viglino.github.io/ol3-ext/
+ * https://openlayersbook.github.io/
+ *
+ * http://www.acuriousanimal.com/thebookofopenlayers3/
+ * http://www.acuriousanimal.com/thebookofopenlayers3/chapter06_02_markers_overlays.html
  *
  */
 
-gis = new Object();
+gis = {};
 
 /*******************************************************
  * Map 属性                                             *
@@ -27,21 +31,30 @@ gis.projection = new ol.proj.Projection({
  * Style                                               *
  *******************************************************/
 
-gis.style = new Object();
+gis.style = {};
 
+/**
+ *
+ * @param cls               图标的代码
+ * @param mod               图标模式
+ * @returns {string}        返回图标的路径
+ */
 gis.style.getIconPath = function (cls, mod) {
     return "icon/device_icon/" + cls + "-" + mod + ".gif";
 };
 
+// 区域填充的样式
 gis.style.fill = new ol.style.Fill({
     color: 'rgba(255, 255, 255, 0.2)'
 });
 
+// 线条填充样式
 gis.style.stroke = new ol.style.Stroke({
     color: '#ffcc33',
     width: 2
 });
 
+// 点填充样式
 gis.style.icon = new ol.style.Circle({
     radius: 7,
     fill: new ol.style.Fill({
@@ -49,38 +62,60 @@ gis.style.icon = new ol.style.Circle({
     })
 });
 
+// 缺省的样式集
 gis.style.default = new ol.style.Style({
     fill: gis.style.fill,
     stroke: gis.style.stroke,
     image: gis.style.icon
 });
 
-gis.style.cache = new ol.Collection();
+// 选中的样式
+gis.style.selected = new ol.style.Style({
+    fill: gis.style.fill,
+    stroke: gis.style.stroke,
+    image: new ol.style.Icon({
+        src: '/icon/mark/light.gif'
+    })
+});
 
-//动态Style函数
+// 样式的一个Index，缓冲
+gis.style.cache = {};
+
+/**
+ * 动态Style函数 通过 Feature 的 properties 来确定样式
+ * 只针对点样式进行动态
+ * @param feature           传递的feature
+ * @param resolution        当前的分辨率
+ */
+
 gis.style.styleFun = function (feature, resolution) {
 
+    // 缓冲样式的 key，用于 gis.style.chace 的索引
     var styleKey = feature.getProperties().icon + '-' + 11;
 
-    var cachedStyle = gis.style.cache.get(styleKey);
+    // 是否有缓冲
+    var cachedStyle = gis.style.cache[styleKey];
 
     if (!cachedStyle) {
+        // 没有缓冲，新建
         var cachedStyle = new ol.style.Style({
             fill: gis.style.fill,
             stroke: gis.style.stroke,
         });
 
+        // 建立点的样式
         var icon = new ol.style.Icon({
             src: gis.style.getIconPath(feature.getProperties().icon, 11)
         });
 
+        // 点样式加入到样式
         cachedStyle.setImage(icon);
-        gis.style.cache.set(styleKey, cachedStyle);
+
+        gis.style.cache[styleKey] = cachedStyle;
     }
 
-
     return cachedStyle;
-}
+};
 
 /*******************************************************
  * Map 对象                                             *
@@ -88,6 +123,7 @@ gis.style.styleFun = function (feature, resolution) {
 
 
 gis.map = new ol.Map({
+    //renderer: 'canvas',
     view: new ol.View({
         projection: gis.projection,
         center: ol.extent.getCenter(gis.extent),
@@ -96,13 +132,29 @@ gis.map = new ol.Map({
         maxZoom: 4
     })
 });
+
+// 添加图层切换
 gis.map.addControl(new ol.control.LayerSwitcherImage());
 
+gis.map.maxExtent = function () {
+    gis.map.getView().fit(gis.extent, gis.map.getSize());
+};
+
+// 缩放到Features对应的区域
+gis.map.ZoomToFeatures = function (features) {
+    var a = [];
+    for (var i in features) {
+        a.push(features[i].getGeometry());
+    }
+    var gc = new ol.geom.GeometryCollection(a);
+    gis.map.getView().fit(gc.getExtent(), gis.map.getSize());
+
+};
 
 /*******************************************************
  * Map 工具                                             *
  *******************************************************/
-gis.interaction = new Object();
+gis.interaction = {};
 
 // 当前是否在作图过程中，例如存储过程
 gis.editing = false;
@@ -200,7 +252,13 @@ gis.interaction.modify = new ol.interaction.Modify({
 gis.interaction.modify.on('modifyend', gis.interaction.editFun);
 
 // 选择工具
-gis.interaction.select = new ol.interaction.Select();
+gis.interaction.select = new ol.interaction.Select({
+    condition: ol.events.condition.click,
+    multi: true,
+    style: gis.style.styleFun
+});
+
+gis.map.addInteraction(gis.interaction.select);
 
 
 /*******************************************************
@@ -262,8 +320,8 @@ gis.editBar.barItems.addControl(new ol.control.Toggle(
         className: "modify",
         title: '移动',
         interaction: gis.interaction.modify,
-        //interaction: new ol.interaction.Select(),
         onToggle: function (active) {
+            // 把当前激活图层的features添加道modify控件当中
             gis.interaction.modify.features_.clear();
             var features = gis.getActiveVectorLayer().getSource().getFeatures();
             for (i in features) {
@@ -305,6 +363,7 @@ gis.getActiveLayer = function () {
     return r;
 };
 
+// 得到当前激活的设备显示图层
 gis.getActiveVectorLayer = function () {
     var layer = gis.getActiveLayer();
     if (layer) {
@@ -312,7 +371,7 @@ gis.getActiveVectorLayer = function () {
     } else {
         return null;
     }
-}
+};
 
 /**
  *
@@ -350,4 +409,57 @@ gis.addLayer = function (layerId, layerName, layerFile) {
     newLayer.id = layerId;
     gis.map.addLayer(newLayer);
 };
+
+/**
+ * 得到一个Layer中对应的id的Feature
+ * @param id
+ * @param layer
+ */
+gis.getFeaturesByIdofLayer = function (layer, id) {
+    var out = [];
+    var features = layer.getSource().getFeatures();
+    for (var index in features) {
+        if (features[index].getProperties().deviceId == id) {
+            out.push(features[index]);
+        }
+    }
+
+    return out;
+};
+
+
+/**
+ * 高亮Feature，通过Overlayer
+ * @param features          features的 数组
+ * @param zoom              是否放大到该区域
+ */
+
+gis.hightlightFeatures = function (features, zoom) {
+    for (var i in features) {
+        var position = features[i].getGeometry().getCoordinates();
+        var elem = document.createElement('div');
+
+        var overlay = new ol.Overlay({
+            element: elem,
+            position: position,
+            positioning: 'center-center'
+        });
+        gis.map.addOverlay(overlay)
+        elem.setAttribute('class', 'circle');
+    }
+
+    if (zoom) {
+        gis.map.ZoomToFeatures(features)
+    }
+};
+
+// 清除Overlay
+gis.overlayClean = function () {
+    var overLays = gis.map.getOverlays().getArray();
+    var len = overLays.length;
+    for (var i = 0; i < len; i++) {
+        var overlay = overLays[0];
+        gis.map.removeOverlay(overlay);
+    }
+}
 

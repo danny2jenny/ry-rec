@@ -12,8 +12,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
     <%--Extjs 的主题选择#--%>
+    <link rel="stylesheet" type="text/css" href="/css/mark.css"/>
     <link rel="stylesheet" type="text/css" href="extjs/resources/css/ext-all-neptune-debug.css"/>
     <link rel="stylesheet" type="text/css" href="extjs/resources/ext-theme-neptune/ext-theme-neptune-all-debug.css"/>
+
 
     <%--以下的JS加载必须严格按照顺序--%>
 

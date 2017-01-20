@@ -82,12 +82,13 @@ ry.onGetOption = function (data, caller, result) {
  */
 ry.stom = new Object();
 ry.stom.stomp_url = 'ws://' + window.location.host + '/srv/stomp/websocket';
-ry.stom.client = Stomp.client(ry.stom.stomp_url);
+//ry.stom.client = Stomp.client(ry.stom.stomp_url);
 
 // 连接建立后
 ry.stom.connect_callback = function () {
     console.log('STOM 连接建立。。。。');
-    ry.stom.msgChannel = ry.stom.client.subscribe("/topic/msg", ry.stom.onMsg);
+    // 订阅消息
+    ry.stom.msgChannel = ry.stom.client.subscribe("/topic/broadcast", ry.stom.onMsg);
 };
 
 // 连接建立失败
@@ -100,12 +101,41 @@ ry.stom.onMsg = function (msg) {
     console.log('STOM 收到消息:' + msg);
 };
 
-// 发送消息
+/**
+ * client.send 的第二个参数是优先级，例如 {priority: 9}
+ * @param msg
+ */
 ry.stom.sendMsg = function (msg) {
-    ry.stom.client.send("/topic/msg", {}, msg);
-}
+    ry.stom.client.send("/topic/broadcast", {}, msg);
+};
 
 // 连接到服务器
-ry.stom.client.connect(null, null, ry.stom.connect_callback, ry.stom.error_callback);
+//ry.stom.client.connect(null, null, ry.stom.connect_callback, ry.stom.error_callback);
+
+// 定时检查连接是否建立
+ry.stom.keepConnectRunner = function () {
+
+    if (ry.stom.client && !ry.stom.client.connected) {
+        ry.stom.connect();
+    }
+
+    if (!ry.stom.client) {
+        ry.stom.connect();
+    }
+};
+
+// 建立Stom连接
+ry.stom.connect = function () {
+    // 不知道为什么，以下两句必须一同执行，否者不能连接
+    ry.stom.client = Stomp.client(ry.stom.stomp_url);
+    ry.stom.client.connect(null, null, ry.stom.connect_callback, ry.stom.error_callback);
+}
+
+// 启动定时任务
+ry.timeTask = new Ext.util.TaskRunner();
+ry.timeTask.start({
+    run: ry.stom.keepConnectRunner,
+    interval: 1000
+});
 
 
