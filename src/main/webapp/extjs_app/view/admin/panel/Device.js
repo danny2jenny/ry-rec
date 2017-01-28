@@ -71,7 +71,7 @@ Ext.define('app.view.admin.panel.Device', {
             ddGroup: 'ddg_node',
             ptype: 'gridDragPlugin',
             enableDrop: true,
-            enableDrag: true
+            enableDrag: false
         }
     }
 })

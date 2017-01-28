@@ -11,7 +11,9 @@ package com.rytec.rec.node;
 import com.rytec.rec.db.DbConfig;
 import com.rytec.rec.db.model.ChannelNode;
 import com.rytec.rec.device.DeviceManager;
+import com.rytec.rec.util.ConstantCommandType;
 import com.rytec.rec.util.NodeType;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
@@ -24,6 +26,8 @@ import java.util.Map;
 @Service
 public class NodeManager {
 
+    private final org.slf4j.Logger logger = LoggerFactory.getLogger(this.getClass());
+
     @Autowired
     private DbConfig db;
 
@@ -31,7 +35,7 @@ public class NodeManager {
     DeviceManager deviceManager;
 
     //nid->ChannelNode 的一个Map
-    private Map<Integer, ChannelNodeState> channelNodeList = new HashMap();
+    private Map<Integer, NodeRuntimeBean> channelNodeList = new HashMap();
 
     //node的实现对象列表
     @Autowired
@@ -41,8 +45,8 @@ public class NodeManager {
     static Map<Integer, Object> nodeComList = new HashMap();
 
     //得到一个Node的接口对象，通过 type
-    public static NodeComInterface getNodeComInterface(int type) {
-        return (NodeComInterface) nodeComList.get(type);
+    public static NodeInterface getNodeComInterface(int type) {
+        return (NodeInterface) nodeComList.get(type);
     }
 
     @PostConstruct
@@ -53,10 +57,11 @@ public class NodeManager {
 
         for (ChannelNode cn : channelNodes) {
             // 给 ChannelNode 的运行数据初始化
-            ChannelNodeState channelNodeState = new ChannelNodeState();
-            channelNodeState.channelNode = cn;
-            channelNodeState.nodeOpt = new NodeOpt();
-            channelNodeList.put(cn.getNid(), channelNodeState);
+            NodeRuntimeBean nodeRuntimeBean = new NodeRuntimeBean();
+            nodeRuntimeBean.channelNode = cn;                                      //ChannelNode
+            nodeRuntimeBean.nodeState = new NodeState();                           //Node的状态
+            nodeRuntimeBean.nodeConfig = BaseNode.parseConfig(cn.getNodeconf());   //Node的配置
+            channelNodeList.put(cn.getNid(), nodeRuntimeBean);
         }
 
         // 初始化 node 接口实现
@@ -72,25 +77,34 @@ public class NodeManager {
     * 通讯层发来的数据
     * @id node 的id
     */
-    public void onValue(int id, float value) {
-        ChannelNodeState channelNodeState = channelNodeList.get(id);
+    public void onMessage(NodeMessage msg) {
+        NodeRuntimeBean nodeRuntimeBean = channelNodeList.get(msg.node);
 
-        if (channelNodeState.nodeOpt == null) {
-            channelNodeState.nodeOpt = new NodeOpt();
+        NodeState nodeState = nodeRuntimeBean.nodeState;
+
+        Object oldValue = nodeState.value;
+
+        // 写命令
+        // todo: 写命令的返回需要处理
+        if (msg.type == ConstantCommandType.GENERAL_WRITE) {
+            return;
         }
 
-        NodeOpt nodeOpt = channelNodeState.nodeOpt;
+        NodeInterface nodeInterface = getNodeComInterface(nodeRuntimeBean.channelNode.getNtype());
 
-        float oldValue = nodeOpt.value;
-        if (oldValue != value) {
-            //更新Node的值
-            nodeOpt.value = value;
-            //向Device发送变化
-            deviceManager.onValueChange(channelNodeState.channelNode.getDevice(), channelNodeState.channelNode.getDevicefun(), oldValue, value);
+        if (nodeInterface.valueCompare(nodeRuntimeBean.nodeConfig, oldValue, msg.value)) {
+            // 数据需要更新
+            nodeState.value = msg.value;
+            logger.debug("Node:" + msg.node + ':' + oldValue + ':' + msg.value);
+            deviceManager.onValueChange(nodeRuntimeBean.channelNode.getDevice(), nodeRuntimeBean.channelNode.getDevicefun(), oldValue, msg.value);
+        } else {
+            // 数据不需要更新
         }
+
+
     }
 
-    public ChannelNodeState getChannelNodeByNodeId(int nodeId) {
+    public NodeRuntimeBean getChannelNodeByNodeId(int nodeId) {
         return channelNodeList.get(nodeId);
     }
 

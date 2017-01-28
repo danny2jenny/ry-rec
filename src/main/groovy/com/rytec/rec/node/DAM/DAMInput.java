@@ -1,10 +1,8 @@
 package com.rytec.rec.node.DAM;
 
 import com.rytec.rec.channel.ChannelMessage;
-import com.rytec.rec.node.ChannelNodeState;
-import com.rytec.rec.node.NodeMessage;
-import com.rytec.rec.node.NodeComInterface;
-import com.rytec.rec.node.NodeManager;
+import com.rytec.rec.node.*;
+import com.rytec.rec.node.node.NodeInput;
 import com.rytec.rec.util.NodeType;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
@@ -31,7 +29,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @NodeType(1002)
-public class DAMInput implements NodeComInterface {
+public class DAMInput extends NodeInput implements NodeInterface {
 
     @Autowired
     NodeManager nodeManager;
@@ -40,18 +38,19 @@ public class DAMInput implements NodeComInterface {
     // 命令编码
     public ChannelMessage genMessage(int where, int nodeId, int cmd, int value) {
 
-        ChannelNodeState channelNodeState = nodeManager.getChannelNodeByNodeId(nodeId);
+        NodeRuntimeBean nodeRuntimeBean = nodeManager.getChannelNodeByNodeId(nodeId);
 
         ChannelMessage frame = new ChannelMessage();
 
         frame.from = where;
         frame.nodeId = nodeId;
+        frame.type = cmd;
         frame.responseLen = 6;
 
         ByteBuf buf = Unpooled.buffer(6);
-        buf.writeByte(channelNodeState.channelNode.getAdr());
+        buf.writeByte(nodeRuntimeBean.channelNode.getAdr());
         buf.writeByte(0x02);
-        buf.writeShort(channelNodeState.channelNode.getNo());
+        buf.writeShort(nodeRuntimeBean.channelNode.getNo());
         buf.writeShort(0x01);
 
         frame.payload = buf.array();
@@ -60,9 +59,20 @@ public class DAMInput implements NodeComInterface {
     }
 
     // 回应解码
-    public int decodeMessage(Object msg) {
-        byte[] in = ((ChannelMessage) msg).payload;
-        return in[3];
+    public NodeMessage decodeMessage(ChannelMessage msg) {
+        NodeMessage rst = new NodeMessage();
+        rst.from = msg.from;
+        rst.type = msg.type;
+        rst.node = msg.nodeId;
+        byte[] in = msg.payload;
+        int val = in[3];
+        if (val > 0) {
+            rst.value = true;
+        } else {
+            rst.value = false;
+        }
+
+        return rst;
     }
 
     public int sendMessage(NodeMessage nodeMsg) {
@@ -70,4 +80,5 @@ public class DAMInput implements NodeComInterface {
 
         return rst;
     }
+
 }

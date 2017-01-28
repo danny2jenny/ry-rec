@@ -3,7 +3,7 @@ package com.rytec.rec.util;
 /**
  * Created by danny on 16-12-14.
  */
-public interface FromWhere {
+public interface ConstantFromWhere {
 
     // 系统外发命令
     int FROM_TIMER = 1;     //系统定时命令

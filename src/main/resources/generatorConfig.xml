@@ -76,11 +76,11 @@
         <table schema="" tableName="gis" domainObjectName="Gis">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
         </table>
--->
+
         <table schema="" tableName="devicegis" domainObjectName="DeviceGis">
 
         </table>
-
+-->
 
     </context>
 </generatorConfiguration>

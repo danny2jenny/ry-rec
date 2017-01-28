@@ -13,7 +13,7 @@ Ext.define('app.model.Channel', {
         {name: 'login'},
         {name: 'pass'},
         {name: 'type', type: 'int'},
-        {name: 'other'},
+        {name: 'opt'},
     ],
 
     validations: [{

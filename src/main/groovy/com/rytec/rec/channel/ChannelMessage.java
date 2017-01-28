@@ -1,7 +1,7 @@
 package com.rytec.rec.channel;
 
-import com.rytec.rec.util.CommandType;
-import com.rytec.rec.util.FromWhere;
+import com.rytec.rec.util.ConstantCommandType;
+import com.rytec.rec.util.ConstantFromWhere;
 
 /**
  * Created by danny on 16-12-12.
@@ -10,8 +10,8 @@ import com.rytec.rec.util.FromWhere;
  */
 public class ChannelMessage {
 
-    public int type = CommandType.GENERAL_WRITE;      //命令类型
-    public int from = FromWhere.FROM_TIMER;           //该命令的触发是哪里
+    public int type = ConstantCommandType.GENERAL_WRITE;      //命令类型
+    public int from = ConstantFromWhere.FROM_TIMER;           //该命令的触发是哪里
     public int nodeId;                                //node的id
 
     public int responseLen = 0;                       //返回帧的长度

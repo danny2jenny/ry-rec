@@ -1,10 +1,10 @@
 package com.rytec.rec.device;
 
 import com.rytec.rec.db.model.DeviceNode;
-import com.rytec.rec.node.NodeComInterface;
+import com.rytec.rec.node.NodeInterface;
 import com.rytec.rec.node.NodeManager;
 import com.rytec.rec.node.NodeMessage;
-import com.rytec.rec.util.ErrorCode;
+import com.rytec.rec.util.ConstantErrorCode;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -14,7 +14,7 @@ import java.util.HashMap;
  * Created by danny on 16-11-21.
  * 这个是Device的基类
  */
-public class BaseDevice {
+public class AbstractOperator {
 
     private final org.slf4j.Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -26,35 +26,30 @@ public class BaseDevice {
     */
     public int setValue(int deviceId, int fun, NodeMessage msg) {
 
-        int rst = ErrorCode.RST_SUCCESS;
+        int rst = ConstantErrorCode.RST_SUCCESS;
 
         //对应Function 的Node
         DeviceNode funNode = null;
 
         // 得到device所对应的Nodes
-        HashMap<Integer, DeviceNode> deviceNodes = deviceManager.deviceNodeList.get(deviceId);
+        HashMap<Integer, DeviceNode> deviceNodes = deviceManager.deviceNodeListByFun.get(deviceId);
 
         if (deviceNodes == null) {
-            rst = ErrorCode.DEVICE_NOT_FOUND;
+            rst = ConstantErrorCode.DEVICE_NOT_FOUND;
         } else {
 
             // 找到功能对应的Node
-            for (DeviceNode node : deviceNodes.values()) {
-                if (node.getNfun() == fun) {
-                    funNode = node;
-                    break;
-                }
-            }
+            funNode = deviceNodes.get(fun);
 
             // 该功能是否有对应的Node
             if (funNode == null) {
-                rst = ErrorCode.DEVICE_FUN_NOT_CONFIG;
+                rst = ConstantErrorCode.DEVICE_FUN_NOT_CONFIG;
             } else {
                 // 填充NodeID
                 msg.node = funNode.getNid();
-                NodeComInterface nodeCom = NodeManager.getNodeComInterface(funNode.getNtype());
+                NodeInterface nodeCom = NodeManager.getNodeComInterface(funNode.getNtype());
                 if (nodeCom == null) {
-                    rst = ErrorCode.NODE_TYPE_NOTEXIST;
+                    rst = ConstantErrorCode.NODE_TYPE_NOTEXIST;
                 } else {
                     rst = nodeCom.sendMessage(msg);
                 }
@@ -68,7 +63,7 @@ public class BaseDevice {
     /*
     * 当状态改变时，由通讯层的回调
     */
-    private void onValueChanged(int deviceId, int fun, NodeMessage msg) {
+    public void onValueChanged(int deviceId, int fun, Object oldValue, Object newValue) {
     }
 
 }

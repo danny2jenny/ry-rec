@@ -4,11 +4,9 @@ import com.rytec.rec.channel.ChannelInterface;
 import com.rytec.rec.channel.ChannelManager;
 import com.rytec.rec.channel.ChannelMessage;
 import com.rytec.rec.db.model.ChannelNode;
-import com.rytec.rec.node.ChannelNodeState;
-import com.rytec.rec.node.NodeComInterface;
-import com.rytec.rec.node.NodeManager;
-import com.rytec.rec.node.NodeMessage;
-import com.rytec.rec.util.CommandType;
+import com.rytec.rec.node.*;
+import com.rytec.rec.node.node.NodeOutput;
+import com.rytec.rec.util.ConstantCommandType;
 import com.rytec.rec.util.NodeType;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
@@ -55,7 +53,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @NodeType(1001)
-public class DAMOutput implements NodeComInterface {
+public class DAMOutput extends NodeOutput implements NodeInterface {
 
     private final org.slf4j.Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -69,7 +67,7 @@ public class DAMOutput implements NodeComInterface {
      */
     public ChannelMessage genMessage(int where, int nodeId, int cmd, int value) {
 
-        ChannelNodeState channelNodeState = nodeManager.getChannelNodeByNodeId(nodeId);
+        NodeRuntimeBean nodeRuntimeBean = nodeManager.getChannelNodeByNodeId(nodeId);
 
         ChannelMessage frame = new ChannelMessage();
         frame.from = where;
@@ -80,23 +78,23 @@ public class DAMOutput implements NodeComInterface {
         ByteBuf buf;
         switch (cmd) {
             // 写入
-            case CommandType.GENERAL_WRITE:
+            case ConstantCommandType.GENERAL_WRITE:
                 buf = Unpooled.buffer(6);
                 frame.responseLen = 8;
-                buf.writeByte(channelNodeState.channelNode.getAdr());     //地址
+                buf.writeByte(nodeRuntimeBean.channelNode.getAdr());     //地址
                 buf.writeByte(0x05);                     //命令
-                buf.writeShort(channelNodeState.channelNode.getNo());     //寄存器
+                buf.writeShort(nodeRuntimeBean.channelNode.getNo());     //寄存器
                 buf.writeShort(value);
                 frame.payload = buf.array();
                 break;
 
             //状态查询
-            case CommandType.GENERAL_READ:
+            case ConstantCommandType.GENERAL_READ:
                 buf = Unpooled.buffer(6);
                 frame.responseLen = 6;
-                buf.writeByte(channelNodeState.channelNode.getAdr());
+                buf.writeByte(nodeRuntimeBean.channelNode.getAdr());
                 buf.writeByte(0x01);
-                buf.writeShort(channelNodeState.channelNode.getNo());     //地址
+                buf.writeShort(nodeRuntimeBean.channelNode.getNo());     //地址
                 buf.writeShort(1);                       //查询数量
                 frame.payload = buf.array();
                 break;
@@ -106,19 +104,32 @@ public class DAMOutput implements NodeComInterface {
     }
 
     //消息解码
-    public int decodeMessage(Object msg) {
+    public NodeMessage decodeMessage(ChannelMessage msg) {
 
         int value = 0;
-        ChannelMessage respond = (ChannelMessage) msg;
+        ChannelMessage respond = msg;
         switch (respond.type) {
-            case CommandType.GENERAL_WRITE:
-                value = respond.payload[3];
-                break;
-            case CommandType.GENERAL_READ:
+            case ConstantCommandType.GENERAL_WRITE:
                 value = respond.payload[4];
                 break;
+            case ConstantCommandType.GENERAL_READ:
+                value = respond.payload[3];
+                break;
         }
-        return value;
+
+        NodeMessage rst = new NodeMessage();
+        rst.from = msg.from;
+        rst.type = msg.type;
+        rst.node = msg.nodeId;
+
+
+        if (value > 0) {
+            rst.value = true;
+        } else {
+            rst.value = false;
+        }
+
+        return rst;
     }
 
 
@@ -153,4 +164,5 @@ public class DAMOutput implements NodeComInterface {
 
         return rst;
     }
+
 }

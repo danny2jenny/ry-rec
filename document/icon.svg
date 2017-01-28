@@ -35,9 +35,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.6665184"
-     inkscape:cx="412.45155"
-     inkscape:cy="532.43661"
+     inkscape:zoom="0.94275661"
+     inkscape:cx="552.67573"
+     inkscape:cy="535.47411"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -206,8 +206,8 @@
        inkscape:export-filename="/home/danny/true.png"
        style="fill:#9ee453;fill-opacity:1;stroke:#57d7ba;stroke-width:8;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="circle5761"
-       cx="145.25949"
-       cy="229.15961"
+       cx="138.89517"
+       cy="231.28104"
        r="24.748737" />
     <g
        id="g5771"
@@ -241,8 +241,8 @@
     </g>
     <circle
        r="24.748737"
-       cy="239.77896"
-       cx="281.17441"
+       cy="218.56458"
+       cx="488.01465"
        id="circle5777"
        style="fill:#9dff49;fill-opacity:1;stroke:#ff6e2e;stroke-width:8;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        inkscape:export-filename="/home/danny/0.png"
@@ -263,8 +263,8 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="266.84613"
-       y="257.85419"
+       x="473.68637"
+       y="236.6398"
        id="text5523"
        sodipodi:linespacing="125%"
        inkscape:export-filename="/home/danny/0.png"
@@ -272,8 +272,8 @@
        inkscape:export-ydpi="25.044596"><tspan
          sodipodi:role="line"
          id="tspan5525"
-         x="266.84613"
-         y="257.85419"
+         x="473.68637"
+         y="236.6398"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:50px;font-family:FreeSans;-inkscape-font-specification:FreeSans">?</tspan></text>
     <circle
        style="fill:#9dff49;fill-opacity:1;stroke:#757575;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
@@ -473,5 +473,14 @@
          d="m -484.98285,-516.47395 -12.49444,0 -12.49445,0 6.24722,-10.82051 6.24723,-10.8205 6.24722,10.8205 z"
          inkscape:transform-center-y="3.6068345" />
     </g>
+    <circle
+       r="24.748737"
+       cy="229.15961"
+       cx="216.32767"
+       id="circle4184"
+       style="fill:#a2a2a2;fill-opacity:1;stroke:#57d7ba;stroke-width:8;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       inkscape:export-filename="/home/danny/in.png"
+       inkscape:export-xdpi="25.044569"
+       inkscape:export-ydpi="25.044569" />
   </g>
 </svg>

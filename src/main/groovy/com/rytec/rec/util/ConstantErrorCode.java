@@ -5,7 +5,7 @@ package com.rytec.rec.util;
  * <p>
  * 返回值的含义
  */
-public interface ErrorCode {
+public interface ConstantErrorCode {
 
     int RST_SUCCESS = 0;
 

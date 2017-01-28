@@ -87,7 +87,9 @@ Ext.define('app.view.admin.panel.Node', {
         items: [{
             icon: '/icon/config.png', // Use a URL in the icon config
             tooltip: 'Edit',
-            handler: function (grid, rowIndex, colIndex) {
+            handler: function (grid, rowIndex, colIndex, a, b, c, d, e, f, g) {
+                var w = Ext.create('app.view.admin.window.NodeConfig', {});
+                w.showAt(b.xy);
                 debugger;
             }
         }]

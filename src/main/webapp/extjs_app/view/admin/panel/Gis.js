@@ -30,7 +30,7 @@ Ext.define('app.view.admin.panel.Gis', {
         autoLoad: false,
         hideAdd: true,
         masterGrid: 'adminDeviceGrid',
-        fKey: '外键名',
+        fKey: 'device',
         newRec: {}          //新建记录的缺省值
     }]
 })

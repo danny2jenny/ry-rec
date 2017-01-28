@@ -46,4 +46,4 @@ Ext.define('app.view.admin.panel.FormLayerUpload', {
     api: {
         submit: uploadService.gisLayer
     }
-})
+});

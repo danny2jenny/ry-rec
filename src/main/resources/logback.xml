@@ -15,9 +15,17 @@
         <appender-ref ref="STDOUT"/>
     </logger>
 
-    <logger name="com.rytec.rec" level="debug" additivity="false">
+    <logger name="com.rytec.rec.node" level="debug" additivity="false">
         <appender-ref ref="STDOUT"/>
     </logger>
+
+    <logger name="com.rytec.rec.device" level="debug" additivity="false">
+        <appender-ref ref="STDOUT"/>
+    </logger>
+
+    <!--<logger name="com.rytec.rec.channel" level="debug" additivity="false">-->
+        <!--<appender-ref ref="STDOUT"/>-->
+    <!--</logger>-->
 
     <root level="error">
         <appender-ref ref="STDOUT"/>

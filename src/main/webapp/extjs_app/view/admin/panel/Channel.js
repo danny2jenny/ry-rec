@@ -81,7 +81,7 @@ Ext.define('app.view.admin.panel.Channel', {
 
         {
             text: '配置信息',
-            dataIndex: 'other',
+            dataIndex: 'opt',
             width: 300,
             editor: {
                 allowBlank: true

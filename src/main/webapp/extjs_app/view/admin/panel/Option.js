@@ -65,7 +65,7 @@ Ext.define('app.view.admin.panel.Option', {
     features: [Ext.create('Ext.grid.feature.Grouping', {
         groupHeaderTpl: ['{groupValue:this.formatValue}: 共 ({rows.length}) 个', {
             formatValue: function (value) {
-                return "分类"
+                return ry.trans(value, ry.OPT_CAT)
             }
         }]
     })]

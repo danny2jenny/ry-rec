@@ -12,11 +12,12 @@ import com.rytec.rec.channel.ModbusTcpServer.handler.ModbusChannelInitializer;
 import com.rytec.rec.channel.ModbusTcpServer.exception.ConnectionException;
 import com.rytec.rec.db.DbConfig;
 import com.rytec.rec.db.model.ChannelNode;
-import com.rytec.rec.node.NodeComInterface;
+import com.rytec.rec.node.NodeInterface;
 import com.rytec.rec.node.NodeManager;
+import com.rytec.rec.node.NodeMessage;
 import com.rytec.rec.util.CRC16;
 import com.rytec.rec.util.ChannelType;
-import com.rytec.rec.util.ErrorCode;
+import com.rytec.rec.util.ConstantErrorCode;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
@@ -160,29 +161,38 @@ public class ModbusTcpServer implements ChannelInterface {
     * <String, Integer>   ip:port -> 当前的轮训位置
     */
 
-    @Scheduled(fixedDelay = 5000)
+    @Scheduled(fixedDelay = 50)
     private void doOnTime() {
         // 遍历已经登录的远端，并执行队列
         for (Channel cha : clients.values()) {
             ChanneSession channeSession = cha.attr(ModbusCommon.MODBUS_STATE).get();
-            //channeSession.processQueue();
+            channeSession.processQueue();
         }
     }
 
     @Autowired
     NodeManager nodeManager;
 
-    //收到远端回应后的处理
-    //首先通过Node进行解码，然后再发送道NodeManager
+    /**
+     * Channel 解码后调用该过程
+     *
+     * @param chaId    ip:port 的形式
+     * @param request  请求消息
+     * @param response 回应消息
+     */
     public void receiveMsg(String chaId, ChannelMessage request, ChannelMessage response) {
 
         logger.debug("收到Modbus：" + chaId + ':' + CRC16.bytesToHexString(response.payload));
+        logger.debug("ConstantCommandType:" + response.type);
+
         ChannelNode cn = (ChannelNode) channelNodes.get(chaId).get(request.nodeId);
-        NodeComInterface nodeBean = NodeManager.getNodeComInterface(cn.getCtype());
+        NodeInterface nodeBean = NodeManager.getNodeComInterface(cn.getCtype());
 
         // 解码值
-        nodeBean.decodeMessage(response);
 
+        NodeMessage val = nodeBean.decodeMessage(response);
+
+        nodeManager.onMessage(val);
     }
 
     /**
@@ -196,7 +206,7 @@ public class ModbusTcpServer implements ChannelInterface {
         String channelId = channelNode.getIp() + ':' + channelNode.getPort();
         Channel channel = clients.get(channelId);
         if (channel == null) {
-            return ErrorCode.CHA_NOT_CONNECT;
+            return ConstantErrorCode.CHA_NOT_CONNECT;
         } else {
             ChanneSession channeSession = channel.attr(ModbusCommon.MODBUS_STATE).get();
             channeSession.sendMsg(msg);

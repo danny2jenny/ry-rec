@@ -7,9 +7,9 @@ import com.rytec.rec.channel.ModbusTcpServer.ModbusTcpServer;
 import com.rytec.rec.channel.ChannelMessage;
 import com.rytec.rec.db.model.ChannelNode;
 import com.rytec.rec.node.NodeManager;
-import com.rytec.rec.node.NodeComInterface;
-import com.rytec.rec.util.CommandType;
-import com.rytec.rec.util.FromWhere;
+import com.rytec.rec.node.NodeInterface;
+import com.rytec.rec.util.ConstantCommandType;
+import com.rytec.rec.util.ConstantFromWhere;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import org.slf4j.LoggerFactory;
@@ -74,7 +74,7 @@ public class ModbusHandler extends SimpleChannelInboundHandler<ChannelMessage> {
 
         switch (response.from) {
             // 登录
-            case FromWhere.FROM_LOGIN:
+            case ConstantFromWhere.FROM_LOGIN:
 
                 //设置Channel的ID
                 InetSocketAddress ip = (InetSocketAddress) ctx.channel().remoteAddress();
@@ -97,15 +97,16 @@ public class ModbusHandler extends SimpleChannelInboundHandler<ChannelMessage> {
                 HashMap<Integer, ChannelNode> cha = modbusTcpServer.channelNodes.get(modbusId);
 
                 for (ChannelNode cn : cha.values()) {
-                    NodeComInterface node = NodeManager.getNodeComInterface(cn.getNtype());
-                    ChannelMessage msg = (ChannelMessage) node.genMessage(FromWhere.FROM_TIMER, cn.getNid(), CommandType.GENERAL_WRITE, 0);
+                    NodeInterface node = NodeManager.getNodeComInterface(cn.getNtype());
+                    ChannelMessage msg = node.genMessage(ConstantFromWhere.FROM_TIMER, cn.getNid(), ConstantCommandType.GENERAL_READ, 0);
                     channeSession.timerQueryCmd.add(msg);
                 }
                 break;
             // 远端的回应
-            case FromWhere.FROM_RPS:
+            case ConstantFromWhere.FROM_RPS:
                 modbusTcpServer.receiveMsg(channeSession.id, channeSession.lastCmd, response);
 
+                // 清除当前发送的命令
                 channeSession.lastCmd = null;
                 break;
             default:

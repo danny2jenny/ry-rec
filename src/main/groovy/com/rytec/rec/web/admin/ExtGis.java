@@ -102,89 +102,10 @@ public class ExtGis {
 
     }
 
-    @GetMapping("/gis/getFeaturesByLayer/{layer}")
-    @ResponseBody
-    public String getFeaturesByLayer(@PathVariable int layer) {
-
-        // 返回的FeatureCollection
-        FeatureCollection featureCollection = new FeatureCollection();
-        Feature feature;
-
-        // 数据库操作
-        List<DeviceGis> giss;
-        DeviceGisExample deviceGisExample = new DeviceGisExample();
-
-        // json转换
-        GeoJsonObject geoJsonObject;
-        ObjectMapper objectMapper = new ObjectMapper();
-
-
-        // 查询数据
-        if (layer > 0) {
-            deviceGisExample.createCriteria().andLayerEqualTo(layer).andGidIsNotNull();
-            giss = deviceGisMapper.selectByExample(deviceGisExample);
-        } else {
-            deviceGisExample.createCriteria().andGidIsNotNull();
-            giss = deviceGisMapper.selectByExample(deviceGisExample);
-        }
-
-        // 生成Feature
-        for (DeviceGis gisItem : giss) {
-            feature = new Feature();
-
-            feature.setId(gisItem.getGid().toString());
-            feature.setProperty("icon", gisItem.getIcon());
-            feature.setProperty("deviceId", gisItem.getDid());
-            feature.setProperty("layer", gisItem.getLayer());
-
-            switch (gisItem.getGtype()) {
-                case 1:     //点
-                    geoJsonObject = new Point();
-                    try {
-                        LngLatAlt coord = objectMapper.readValue(gisItem.getData(), LngLatAlt.class);
-                        ((Point) geoJsonObject).setCoordinates(coord);
-                    } catch (IOException e) {
-
-                    }
-                    feature.setGeometry(geoJsonObject);
-                    break;
-                case 2:     //线
-                    geoJsonObject = new LineString();
-                    try {
-                        List<LngLatAlt> coord = objectMapper.readValue(gisItem.getData(), List.class);
-                        ((LineString) geoJsonObject).setCoordinates(coord);
-                    } catch (IOException e) {
-
-                    }
-                    feature.setGeometry(geoJsonObject);
-                    break;
-                case 3:     //面
-                    geoJsonObject = new Polygon();
-                    try {
-                        List<List<LngLatAlt>> coord = objectMapper.readValue(gisItem.getData(), List.class);
-                        ((Polygon) geoJsonObject).setCoordinates(coord);
-                    } catch (IOException e) {
-
-                    }
-                    feature.setGeometry(geoJsonObject);
-                    break;
-            }
-            featureCollection.add(feature);
-        }
-
-        // 转换成 json
-        try {
-            return objectMapper.writeValueAsString(featureCollection);
-        } catch (JsonProcessingException e) {
-            return null;
-        }
-
-    }
-
     // 列表
     @ExtDirectMethod(value = ExtDirectMethodType.STORE_READ)
     public List<Gis> list(ExtDirectStoreReadRequest request) {
-        int deviceId = (Integer) request.getParams().getOrDefault("device", 0);
+        int deviceId = (Integer) request.getParams().getOrDefault("masterId", 0);
         if (deviceId == 0) {
             return gisMapper.selectByExample(null);
         } else {

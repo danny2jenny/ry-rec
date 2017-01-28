@@ -10,6 +10,7 @@
  *
  * http://www.acuriousanimal.com/thebookofopenlayers3/
  * http://www.acuriousanimal.com/thebookofopenlayers3/chapter06_02_markers_overlays.html
+ * https://github.com/anzhihun/OpenLayers3Primer
  *
  */
 
@@ -78,7 +79,11 @@ gis.style.selected = new ol.style.Style({
     })
 });
 
-// 样式的一个Index，缓冲
+/**
+ * 样式的一个Index，缓冲
+ * index: icon-state 的方式，例如 101-10
+ */
+
 gis.style.cache = {};
 
 /**
@@ -117,13 +122,59 @@ gis.style.styleFun = function (feature, resolution) {
     return cachedStyle;
 };
 
+/**
+ * 改变一个feature的风格
+ * @param feature       //Feature 的Array
+ * @param type          //新的状态编码
+ */
+gis.style.changeStyle = function (features, type) {
+// 缓冲样式的 key，用于 gis.style.chace 的索引
+
+    for (var i in features) {
+        var feature = features[i];
+        var styleKey = feature.getProperties().icon + '-' + type;
+        var cachedStyle = gis.style.cache[styleKey];
+
+
+        if (!cachedStyle) {
+            // 没有缓冲，新建
+            var cachedStyle = new ol.style.Style({
+                fill: gis.style.fill,
+                stroke: gis.style.stroke,
+            });
+
+            // 建立点的样式
+            var icon = new ol.style.Icon({
+                src: gis.style.getIconPath(feature.getProperties().icon, type)
+            });
+
+            // 点样式加入到样式
+            cachedStyle.setImage(icon);
+
+            gis.style.cache[styleKey] = cachedStyle;
+        }
+
+        feature.setStyle(cachedStyle);
+    }
+};
+
+/**
+ * 改变 device 的图标
+ * @param device
+ * @param state
+ */
+gis.style.featureStyle = function (device, state) {
+    var features = gis.getFeaturesByIdofLayer(gis.getActiveVectorLayer(), device);
+    gis.style.changeStyle(features, state);
+};
+
 /*******************************************************
  * Map 对象                                             *
  *******************************************************/
 
 
 gis.map = new ol.Map({
-    //renderer: 'canvas',
+    renderer: 'canvas',
     view: new ol.View({
         projection: gis.projection,
         center: ol.extent.getCenter(gis.extent),
@@ -162,8 +213,8 @@ gis.editing = false;
 // 作图完成后的回调
 gis.interaction.drawFun = function (event) {
     var deviceGrid = Ext.ComponentQuery.query('#adminDeviceGrid')[0];
-    var deviceId = deviceGrid.getSelectionModel().selected.get(1).get('id');
-    var icon = deviceGrid.getSelectionModel().selected.get(1).get('icon');
+    var deviceId = deviceGrid.getSelectionModel().selected.get(0).get('id');
+    var icon = deviceGrid.getSelectionModel().selected.get(0).get('icon');
     var layer = gis.getActiveLayer().id;
 
     // 设置Feature 的属性
@@ -195,7 +246,7 @@ gis.interaction.drawFun = function (event) {
 };
 
 // 修改完成后的事件
-gis.interaction.editFun = function (event, a, b, c) {
+gis.interaction.editFun = function (event) {
     var feature = event.target.dragSegments_[0][0].feature;
 
     var parser = new ol.format.GeoJSON();
@@ -251,14 +302,50 @@ gis.interaction.modify = new ol.interaction.Modify({
 });
 gis.interaction.modify.on('modifyend', gis.interaction.editFun);
 
-// 选择工具
-gis.interaction.select = new ol.interaction.Select({
-    condition: ol.events.condition.click,
-    multi: true,
-    style: gis.style.styleFun
+
+// Hover选择工具
+gis.interaction.hoverSelect = new ol.interaction.Select({
+    condition: ol.events.condition.pointerMove,
+    multi: false,
+    //style: gis.style.styleFun
 });
 
-gis.map.addInteraction(gis.interaction.select);
+gis.interaction.hoverSelect.on('select', function (event) {
+    if (event.selected.length) {
+        gis.map.addOverlay(gis.interaction.popup);
+        gis.interaction.popup.show(event.selected[0].getGeometry().getCoordinates(), '高宏宇');
+    } else {
+        gis.interaction.popup.hide();
+        //gis.map.removeOverlay(gis.interaction.popup);
+    }
+});
+
+gis.map.addInteraction(gis.interaction.hoverSelect);
+
+// Click 选择工具
+gis.interaction.clickSelect = new ol.interaction.Select({
+    condition: ol.events.condition.click,
+    multi: false,
+    //style: gis.style.styleFun
+});
+
+gis.interaction.clickSelect.on('select', function (event) {
+    if (event.selected.length) {
+        //gis.overlayClean();
+    } else {
+        //gis.overlayClean();
+    }
+});
+
+gis.map.addInteraction(gis.interaction.clickSelect);
+
+//弹出的Overlay
+gis.interaction.popup = new ol.Overlay.Popup({
+    popupClass: "default", //"tooltips", "warning" "black" "default", "tips", "shadow",
+    positioning: 'auto',
+    autoPan: true,
+    autoPanAnimation: {duration: 250}
+});
 
 
 /*******************************************************
@@ -374,7 +461,7 @@ gis.getActiveVectorLayer = function () {
 };
 
 /**
- *
+ * 添加图层
  * @param layerId
  * @param layerName
  * @param layerFile

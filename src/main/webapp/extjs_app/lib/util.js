@@ -16,16 +16,12 @@ ry.trans = function (index, type) {
     return "*未知*";
 }
 
-//channel cat=1
-ry.CHANNEL_TYPE = [];
-//node cat = 2
-ry.NODE_TYPE = [];
-//deivce cat =3
-ry.DEVICE_TYPE = [];
-//deivceFun cat =4
-ry.DEVICE_FUN = [];
-//deivceFun cat =5
-ry.DEVICE_ICON = [];
+
+ry.CHANNEL_TYPE = [];       //channel cat=1
+ry.NODE_TYPE = [];          //node cat = 2
+ry.DEVICE_TYPE = [];        //deivce cat =3
+ry.DEVICE_FUN = [];         //deivceFun cat =4
+ry.DEVICE_ICON = [];        //deivceFun cat =5
 
 ry.OPT_CAT = [
     [1, '通道类型'],
@@ -99,6 +95,14 @@ ry.stom.error_callback = function (error) {
 // 收到消息
 ry.stom.onMsg = function (msg) {
     console.log('STOM 收到消息:' + msg);
+
+    var msgObject = JSON.parse(msg.body);
+
+    switch (msgObject.msg_no) {
+        case 401:
+            gis.style.featureStyle(msgObject.device, msgObject.state);
+            break;
+    }
 };
 
 /**
@@ -108,9 +112,6 @@ ry.stom.onMsg = function (msg) {
 ry.stom.sendMsg = function (msg) {
     ry.stom.client.send("/topic/broadcast", {}, msg);
 };
-
-// 连接到服务器
-//ry.stom.client.connect(null, null, ry.stom.connect_callback, ry.stom.error_callback);
 
 // 定时检查连接是否建立
 ry.stom.keepConnectRunner = function () {

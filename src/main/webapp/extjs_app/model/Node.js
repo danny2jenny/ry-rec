@@ -12,7 +12,7 @@ Ext.define('app.model.Node', {
         {name: 'no'},
         {name: 'name'},
         {name: 'type', type: 'int'},
-        {name: 'other'},
+        {name: 'opt'},
         {name: 'device'},
         {name: 'devicefun'},
     ],

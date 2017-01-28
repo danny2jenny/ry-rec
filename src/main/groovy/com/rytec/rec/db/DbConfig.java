@@ -1,11 +1,9 @@
 package com.rytec.rec.db;
 
 import com.rytec.rec.db.mapper.ChannelNodeMapper;
+import com.rytec.rec.db.mapper.DeviceMapper;
 import com.rytec.rec.db.mapper.DeviceNodeMapper;
-import com.rytec.rec.db.model.ChannelNode;
-import com.rytec.rec.db.model.ChannelNodeExample;
-import com.rytec.rec.db.model.DeviceNode;
-import com.rytec.rec.db.model.DeviceNodeExample;
+import com.rytec.rec.db.model.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +24,7 @@ public class DbConfig {
 
     private List<ChannelNode> channelNodeList;
     private List<DeviceNode> deviceNodeList;
+    private List<Device> deviceList;
 
     @Autowired
     ChannelNodeMapper channelNodeMapper;
@@ -33,6 +32,13 @@ public class DbConfig {
     @Autowired
     DeviceNodeMapper deviceNodeMapper;
 
+    @Autowired
+    DeviceMapper deviceMapper;
+
+
+    /**
+     * 初始化 ChannelNode 列表
+     */
     private void initChannelNode() {
 
         ChannelNodeExample channelNodeExample = new ChannelNodeExample();
@@ -43,6 +49,9 @@ public class DbConfig {
 
     }
 
+    /**
+     * 初始化 DeviceNode 列表
+     */
     private void initDeviceNode() {
 
         DeviceNodeExample deviceNodeExample = new DeviceNodeExample();
@@ -52,7 +61,17 @@ public class DbConfig {
         deviceNodeList = deviceNodeMapper.selectByExample(deviceNodeExample);
     }
 
-    // Channel 和 Node 的对应关系
+    /**
+     * 初始化Device 列表
+     */
+    private void initDevice() {
+        deviceList = deviceMapper.selectByExample(null);
+    }
+
+
+    /**
+     * @return ChannelNode 的列表
+     */
     public List<ChannelNode> getChannelNodeList() {
         if (channelNodeList == null) {
             initChannelNode();
@@ -60,12 +79,28 @@ public class DbConfig {
         return channelNodeList;
     }
 
-    //Node 和 Device 的对应关系
+    /**
+     * DeviceNode 的列表
+     *
+     * @return
+     */
     public List<DeviceNode> getDeviceNodeList() {
         if (deviceNodeList == null) {
             initDeviceNode();
         }
         return deviceNodeList;
+    }
+
+    /**
+     * Device 列表
+     *
+     * @return
+     */
+    public List<Device> getDeviceList() {
+        if (deviceList == null) {
+            initDevice();
+        }
+        return deviceList;
     }
 
 }
