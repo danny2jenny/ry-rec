@@ -6,6 +6,7 @@ import com.rytec.rec.device.AbstractOperator;
 import com.rytec.rec.messenger.Message.MsgDeviceState;
 import com.rytec.rec.messenger.MessageType;
 import com.rytec.rec.messenger.WebPush;
+import com.rytec.rec.util.Description;
 import com.rytec.rec.util.DeviceType;
 import com.rytec.rec.util.ConstantDeviceState;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @DeviceType(102)
+@Description("开关输入")
 public class Input extends AbstractOperator {
 
     @Autowired

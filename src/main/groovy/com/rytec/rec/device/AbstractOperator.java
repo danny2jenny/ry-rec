@@ -21,6 +21,9 @@ public class AbstractOperator {
     @Autowired
     DeviceManager deviceManager;
 
+    @Autowired
+    NodeManager nodeManager;
+
     /*
     * 设置输出的值
     */
@@ -47,7 +50,7 @@ public class AbstractOperator {
             } else {
                 // 填充NodeID
                 msg.node = funNode.getNid();
-                NodeInterface nodeCom = NodeManager.getNodeComInterface(funNode.getNtype());
+                NodeInterface nodeCom = nodeManager.getNodeComInterface(funNode.getNtype());
                 if (nodeCom == null) {
                     rst = ConstantErrorCode.NODE_TYPE_NOTEXIST;
                 } else {

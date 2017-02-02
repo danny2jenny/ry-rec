@@ -42,11 +42,15 @@ public class NodeManager {
     ApplicationContext context;
 
     // 具体Node的通讯实现接口对象
-    static Map<Integer, Object> nodeComList = new HashMap();
+    private Map<Integer, NodeInterface> nodeComList = new HashMap();
 
     //得到一个Node的接口对象，通过 type
-    public static NodeInterface getNodeComInterface(int type) {
-        return (NodeInterface) nodeComList.get(type);
+    public NodeInterface getNodeComInterface(int type) {
+        return nodeComList.get(type);
+    }
+
+    public Map<Integer, NodeInterface> getAllNodeInterface() {
+        return nodeComList;
     }
 
     @PostConstruct
@@ -69,7 +73,7 @@ public class NodeManager {
         for (Object node : nodes.values()) {
             Class<? extends Object> nodeClass = node.getClass();
             NodeType annotation = nodeClass.getAnnotation(NodeType.class);
-            nodeComList.put(annotation.value(), node);
+            nodeComList.put(annotation.value(), (NodeInterface) node);
         }
     }
 

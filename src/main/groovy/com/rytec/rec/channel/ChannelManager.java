@@ -25,7 +25,7 @@ public class ChannelManager {
     ApplicationContext context;
 
     // Channel 接口对象的列表
-    public static HashMap<Integer, Object> channelInterfaceMap = new HashMap();
+    private HashMap<Integer, ChannelInterface> channelInterfaceMap = new HashMap();
 
     @PostConstruct
     private void init() {
@@ -33,14 +33,18 @@ public class ChannelManager {
         for (Object channel : channels.values()) {
             Class<? extends Object> channelClass = channel.getClass();
             ChannelType annotation = channelClass.getAnnotation(ChannelType.class);
-            channelInterfaceMap.put(annotation.value(), channel);
+            channelInterfaceMap.put(annotation.value(), (ChannelInterface) channel);
         }
 
     }
 
     // 得到一个Channel的Interface
-    public static ChannelInterface getChannelInterface(int type) {
-        return (ChannelInterface) channelInterfaceMap.get(type);
+    public ChannelInterface getChannelInterface(int type) {
+        return channelInterfaceMap.get(type);
+    }
+
+    public HashMap<Integer, ChannelInterface> getAllChannelInterface() {
+        return channelInterfaceMap;
     }
 
     // Channnel 的状态改变

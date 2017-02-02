@@ -36,7 +36,7 @@ public class DeviceManager {
     @Autowired
     DbConfig dbConfig;
 
-    static Map<Integer, Object> deviceOperators = new HashMap();
+    private Map<Integer, AbstractOperator> deviceOperators = new HashMap();
 
     /*
     * 两级 HashMap
@@ -97,7 +97,7 @@ public class DeviceManager {
         for (Object device : deviceOperatorList.values()) {
             Class<? extends Object> deviceClass = device.getClass();
             DeviceType annotation = deviceClass.getAnnotation(DeviceType.class);
-            deviceOperators.put(annotation.value(), device);
+            deviceOperators.put(annotation.value(), (AbstractOperator) device);
         }
 
         // 初始化 Device 的运行时状态
@@ -115,7 +115,12 @@ public class DeviceManager {
 
     //得到一个设备的实例对象
     public AbstractOperator getDeviceOperator(int type) {
-        return (AbstractOperator) deviceOperators.get(type);
+        return deviceOperators.get(type);
+    }
+
+    //得到所有的设备实例列表
+    public Map<Integer, AbstractOperator> getAllDeviceOperator() {
+        return deviceOperators;
     }
 
 

@@ -3,6 +3,7 @@ package com.rytec.rec.node.DAM;
 import com.rytec.rec.channel.ChannelMessage;
 import com.rytec.rec.node.*;
 import com.rytec.rec.node.node.NodeInput;
+import com.rytec.rec.util.Description;
 import com.rytec.rec.util.NodeType;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
@@ -29,6 +30,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @NodeType(1002)
+@Description("DMA 输入")
 public class DAMInput extends NodeInput implements NodeInterface {
 
     @Autowired

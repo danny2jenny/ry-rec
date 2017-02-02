@@ -18,6 +18,7 @@ import com.rytec.rec.node.NodeMessage;
 import com.rytec.rec.util.CRC16;
 import com.rytec.rec.util.ChannelType;
 import com.rytec.rec.util.ConstantErrorCode;
+import com.rytec.rec.util.Description;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
@@ -42,6 +43,7 @@ import java.util.logging.Logger;
 
 @Service
 @ChannelType(1001)
+@Description("Modbus TCP Server")
 public class ModbusTcpServer implements ChannelInterface {
 
     private final org.slf4j.Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -186,7 +188,7 @@ public class ModbusTcpServer implements ChannelInterface {
         logger.debug("ConstantCommandType:" + response.type);
 
         ChannelNode cn = (ChannelNode) channelNodes.get(chaId).get(request.nodeId);
-        NodeInterface nodeBean = NodeManager.getNodeComInterface(cn.getCtype());
+        NodeInterface nodeBean = nodeManager.getNodeComInterface(cn.getCtype());
 
         // 解码值
 

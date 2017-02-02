@@ -23,6 +23,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @DeviceType(101)
+@Description("远程开关")
 public class Output extends AbstractOperator {
 
     @Autowired

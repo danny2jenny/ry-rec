@@ -30,6 +30,9 @@ public class ModbusHandler extends SimpleChannelInboundHandler<ChannelMessage> {
     @Autowired
     ChannelManager channelManager;
 
+    @Autowired
+    NodeManager nodeManager;
+
     // 由于Natty的机制，这里不能用Autowired的方式
     private ModbusTcpServer modbusTcpServer;
 
@@ -97,7 +100,7 @@ public class ModbusHandler extends SimpleChannelInboundHandler<ChannelMessage> {
                 HashMap<Integer, ChannelNode> cha = modbusTcpServer.channelNodes.get(modbusId);
 
                 for (ChannelNode cn : cha.values()) {
-                    NodeInterface node = NodeManager.getNodeComInterface(cn.getNtype());
+                    NodeInterface node = nodeManager.getNodeComInterface(cn.getNtype());
                     ChannelMessage msg = node.genMessage(ConstantFromWhere.FROM_TIMER, cn.getNid(), ConstantCommandType.GENERAL_READ, 0);
                     channeSession.timerQueryCmd.add(msg);
                 }

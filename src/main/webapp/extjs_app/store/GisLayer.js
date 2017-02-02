@@ -4,7 +4,7 @@
 
 Ext.define('app.store.GisLayer', {
     extend: 'Ext.data.Store',
-    autoLoad: true,
+    autoLoad: false,
     autoSync: true,
     model: 'app.model.GisLayer',
     proxy: {

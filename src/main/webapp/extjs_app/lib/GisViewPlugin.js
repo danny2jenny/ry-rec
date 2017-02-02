@@ -604,10 +604,6 @@ Ext.define('app.lib.GisViewPlugin', {
             this.maxExtent();
         }, me);
 
-        client.on('focus', function (panel, eOpts) {
-            debugger;
-        }, me);
-
         // 当Layer Store 刷新时触发
         me.onLayerFresh = function (store, opt) {
 
@@ -627,5 +623,9 @@ Ext.define('app.lib.GisViewPlugin', {
 
         me.layerStore = Ext.StoreMgr.get(me.layerStore);
         me.layerStore.on('refresh', me.onLayerFresh, me);
+
+        client.refresh = function () {
+            me.layerStore.load();
+        }
     }
 });
