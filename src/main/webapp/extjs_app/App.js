@@ -15,9 +15,6 @@ Ext.QuickTips.init();
 // Extjs Direct API
 Ext.direct.Manager.addProvider(Ext.app.REMOTING_API);
 
-// 从服务器读取配置
-extOption.getAll(ry.onGetOption);
-
 //应用程序入口
 Ext.application({
     name: 'app',

@@ -24,12 +24,7 @@ ry.DEVICE_FUN = [];         //deivceFun cat =4
 ry.DEVICE_ICON = [];        //deivceFun cat =5
 
 ry.OPT_CAT = [
-    [1, '通道类型'],
-    [2, '节点类型'],
-    [3, '设备基础类型'],
-    [4, '端口功能'],
     [5, '设备图标集']
-
 ]
 
 ry.GIS_FEATURE_TYPE = [

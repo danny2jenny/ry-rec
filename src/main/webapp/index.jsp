@@ -56,6 +56,7 @@
 
     <%--extjs 工具#--%>
     <script type="text/javascript" src="extjs_app/lib/util.js"></script>
+    <script type="text/javascript" src="srv/config"></script>
 
     <%--主程序入口--%>
     <script type="text/javascript" src="extjs_app/App.js"></script>
