@@ -24,7 +24,7 @@ ry.DEVICE_FUN = [];         //deivceFun cat =4
 ry.DEVICE_ICON = [];        //deivceFun cat =5
 
 ry.OPT_CAT = [
-    [5, '设备图标集']
+    [11, '设备图标集']
 ]
 
 ry.GIS_FEATURE_TYPE = [
