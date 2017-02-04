@@ -21,16 +21,28 @@ Ext.define('app.view.admin.frame.ChannelNode', {
             margins: '0 0 0 0',
         },
 
-        /**
-         * 子表设置
-         */
         {
-            xtype: 'admin.panel.node',
+            xtype: 'panel',
             region: 'south',
             height: 500,
             margins: '0 0 5 0',
-            split: true,
+            layout: 'border',
+            items:[
+                {
+                    xtype: 'admin.panel.node',
+                    region: 'center',
+                },
+                {
+                    xtype: 'admin.panel.nodeconfig',
+                    region:'east',
+                    width:400
+                }
+            ]
         }
+        /**
+         * 子表设置
+         */
+
     ],
 
 

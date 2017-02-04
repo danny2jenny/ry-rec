@@ -19,7 +19,7 @@ Ext.define('app.controller.AdminFrame', {
         'admin.frame.GisEditor',
         'admin.panel.FormLayerUpload',
         'admin.panel.GisLayer',
-        'admin.window.NodeConfig'
+        'admin.panel.NodeConfig'
     ],
 
     stores: [

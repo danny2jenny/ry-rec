@@ -195,10 +195,6 @@ Ext.define('app.lib.GisViewPlugin', {
         });
         me.map.owner = me;
 
-        me.map.on('change', function (event) {
-            debugger;
-        });
-
         // 添加图层切换
         me.map.addControl(new ol.control.LayerSwitcherImage());
 
@@ -266,36 +262,52 @@ Ext.define('app.lib.GisViewPlugin', {
          */
         me.addLayer = function (layerId, layerName, layerFile) {
 
+            // 图层：位图
+            var imageLayer = new ol.layer.Image({
+                source: new ol.source.ImageStatic({
+                    url: '/upload/gis/layer/' + layerFile,
+                    projection: me.projection,
+                    imageExtent: me.extent
+                })
+            });
+
+            // 图层：矢量图
+            var vectorLayer = new ol.layer.Vector({
+                source: new ol.source.Vector({
+                    url: "srv/gis/getFeaturesByLayer/" + layerId,
+                    format: new ol.format.GeoJSON()
+                }),
+                style: me.style.styleFun
+            });
+
             var newLayer = new ol.layer.Group({
                 baseLayer: true,
                 name: layerName,
                 preview: '/upload/gis/layer/_' + layerFile,
                 visible: false,
                 layers: [
-                    new ol.layer.Image({
-                        source: new ol.source.ImageStatic({
-                            url: '/upload/gis/layer/' + layerFile,
-                            projection: me.projection,
-                            imageExtent: me.extent
-                        })
-                    }),
-                    new ol.layer.Vector({
-                        source: new ol.source.Vector({
-                            url: "srv/gis/getFeaturesByLayer/" + layerId,
-                            format: new ol.format.GeoJSON()
-                        }),
-                        style: me.style.styleFun
-                    })
+                    imageLayer,
+                    vectorLayer
                 ]
             });
 
+            // todo: 这个地方不是很优化，可能需要两次请求
+            vectorLayer.on('change', function (event) {
+                // Features改变的时候触发，只触发一次
+                gisDevice.getFeaturesState(function (data, event, rst) {
+                    this.overlay.states = data;
+                    this.overlay.updateDevice(this);
+                }, this)
+
+            }, me);
+
             // Layer切换的事件
             newLayer.on('change:visible', function (event) {
+                // 状态改变的时候触发，多次触发
 
-                event.target;       //layer group
-                event.oldValue;     // 以前的状态 true false
+                //event.target;       //layer group
+                //event.oldValue;     // 以前的状态 true false
 
-                debugger;
                 // 当前激活的层
                 if (!event.oldValue) {
                     gisDevice.getFeaturesState(function (data, event, rst) {
@@ -339,6 +351,10 @@ Ext.define('app.lib.GisViewPlugin', {
             },
             devicesOverlay: new ol.Collection,    // Device 的 overlay
 
+            /**
+             * 更新当前层的Device状态
+             * @param me
+             */
             updateDevice: function (me) {
                 me.map.overlays_.clear();
                 var features = me.getActiveVectorLayer().getSource().getFeatures();

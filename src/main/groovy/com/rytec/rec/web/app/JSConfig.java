@@ -25,6 +25,12 @@ import java.util.Map;
  * Created by danny on 17-1-31.
  * <p>
  * 输出JavaScript的常量数组
+ * <p>
+ * 如果是接口定义的常量，在impliments中加入该接口。
+ * 接口需要使用：
+ *
+ * @JSExport("设备状态")
+ * @Description("DEVICE_STATE") 这样的方式进行修饰
  */
 
 @Controller
@@ -44,6 +50,12 @@ public class JSConfig implements ConstantDeviceFunction, ConstantDeviceState, Co
     @Autowired
     ConfigMapper configMapper;
 
+    /**
+     * 客户端JS，包含常量的定义
+     *
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/config")
     public String genJsConfig(Model model) {
 

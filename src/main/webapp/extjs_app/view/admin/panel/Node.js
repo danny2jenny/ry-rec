@@ -103,6 +103,25 @@ Ext.define('app.view.admin.panel.Node', {
             showField: 'name',
             enableDrop: false
         }
+    },
+
+    onSelectChange: function (view, selections, options) {
+        var panelConfig = Ext.ComponentQuery.query('#admin_panel_nodeconfig')[0];
+        if (selections.length) {
+            panelConfig.show();
+        } else {
+            panelConfig.hide();
+        }
+
+        debugger
+    },
+
+    initComponent: function () {
+        var me = this;
+
+        me.callParent(arguments);
+        me.on('selectionchange', me.onSelectChange, this);
     }
-});
+})
+;
 
