@@ -14,4 +14,5 @@ import org.springframework.stereotype.Service;
 @DeviceType(201)
 @Description("模拟输入")
 public class Analog extends AbstractOperator {
+
 }

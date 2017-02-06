@@ -106,14 +106,13 @@ Ext.define('app.view.admin.panel.Node', {
     },
 
     onSelectChange: function (view, selections, options) {
+        // todo: 根据Node类型的不同，可以弹出不同的配置Panel
         var panelConfig = Ext.ComponentQuery.query('#admin_panel_nodeconfig')[0];
         if (selections.length) {
-            panelConfig.show();
+            panelConfig.readConfig(selections[0], 'opt');
         } else {
             panelConfig.hide();
         }
-
-        debugger
     },
 
     initComponent: function () {

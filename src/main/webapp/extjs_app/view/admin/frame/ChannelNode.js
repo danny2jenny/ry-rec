@@ -63,7 +63,7 @@ Ext.define('app.view.admin.frame.ChannelNode', {
 
         // 当数据改变成功后的回调
         Ext.direct.Manager.on('event', function (event, provider, eOpts) {
-            // 当 Device 删除后，应该刷新 Node
+            // todo:当 Device 删除后，应该刷新 Node
             if (event.action == 'extDevice' && event.method == 'delete') {
             }
 
