@@ -173,7 +173,7 @@ public class ModbusTcpServer implements ChannelInterface {
     }
 
     @Autowired
-    NodeManager nodeManager;
+    public NodeManager nodeManager;
 
     /**
      * Channel 解码后调用该过程

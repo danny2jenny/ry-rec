@@ -26,7 +26,7 @@ public class ChanneSession {
     //channel的id  ip：port
     public String id;
 
-    // 最后一次发送的命令
+    // 最后一次发送的命令 todo: volatile 是否可以用其他方式
     public volatile ChannelMessage lastCmd = null;
 
     // 需要定时发送的队列命令

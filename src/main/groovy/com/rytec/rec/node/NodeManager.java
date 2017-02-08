@@ -22,6 +22,7 @@ import javax.annotation.PostConstruct;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Service
 public class NodeManager {
@@ -42,7 +43,7 @@ public class NodeManager {
     ApplicationContext context;
 
     // 具体Node的通讯实现接口对象
-    private Map<Integer, NodeInterface> nodeComList = new HashMap();
+    private Map<Integer, NodeInterface> nodeComList = new ConcurrentHashMap();
 
     //得到一个Node的接口对象，通过 type
     public NodeInterface getNodeComInterface(int type) {
@@ -67,6 +68,7 @@ public class NodeManager {
             nodeRuntimeBean.nodeConfig = BaseNode.parseConfig(cn.getNodeconf());   //Node的配置
             channelNodeList.put(cn.getNid(), nodeRuntimeBean);
         }
+
 
         // 初始化 node 接口实现
         Map<String, Object> nodes = context.getBeansWithAnnotation(NodeType.class);

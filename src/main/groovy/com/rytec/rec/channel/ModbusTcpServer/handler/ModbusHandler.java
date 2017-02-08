@@ -1,19 +1,16 @@
 package com.rytec.rec.channel.ModbusTcpServer.handler;
 
-import com.rytec.rec.channel.ChannelManager;
 import com.rytec.rec.channel.ModbusTcpServer.ChanneSession;
 import com.rytec.rec.channel.ModbusTcpServer.ModbusCommon;
 import com.rytec.rec.channel.ModbusTcpServer.ModbusTcpServer;
 import com.rytec.rec.channel.ChannelMessage;
 import com.rytec.rec.db.model.ChannelNode;
-import com.rytec.rec.node.NodeManager;
 import com.rytec.rec.node.NodeInterface;
 import com.rytec.rec.util.ConstantCommandType;
 import com.rytec.rec.util.ConstantFromWhere;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.net.InetSocketAddress;
 import java.util.HashMap;
@@ -26,12 +23,6 @@ import java.util.HashMap;
 public class ModbusHandler extends SimpleChannelInboundHandler<ChannelMessage> {
 
     private final org.slf4j.Logger logger = LoggerFactory.getLogger(this.getClass());
-
-    @Autowired
-    ChannelManager channelManager;
-
-    @Autowired
-    NodeManager nodeManager;
 
     // 由于Natty的机制，这里不能用Autowired的方式
     private ModbusTcpServer modbusTcpServer;
@@ -100,7 +91,7 @@ public class ModbusHandler extends SimpleChannelInboundHandler<ChannelMessage> {
                 HashMap<Integer, ChannelNode> cha = modbusTcpServer.channelNodes.get(modbusId);
 
                 for (ChannelNode cn : cha.values()) {
-                    NodeInterface node = nodeManager.getNodeComInterface(cn.getNtype());
+                    NodeInterface node = modbusTcpServer.nodeManager.getNodeComInterface(cn.getNtype());
                     ChannelMessage msg = node.genMessage(ConstantFromWhere.FROM_TIMER, cn.getNid(), ConstantCommandType.GENERAL_READ, 0);
                     channeSession.timerQueryCmd.add(msg);
                 }
