@@ -98,6 +98,7 @@ public class NodeManager {
 
         NodeInterface nodeInterface = getNodeComInterface(nodeRuntimeBean.channelNode.getNtype());
 
+        // 判断数据是否需要更新
         if (nodeInterface.valueCompare(nodeRuntimeBean.nodeConfig, oldValue, msg.value)) {
             // 数据需要更新
             nodeState.value = msg.value;

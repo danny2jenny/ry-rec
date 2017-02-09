@@ -188,7 +188,7 @@ public class ModbusTcpServer implements ChannelInterface {
         logger.debug("ConstantCommandType:" + response.type);
 
         ChannelNode cn = (ChannelNode) channelNodes.get(chaId).get(request.nodeId);
-        NodeInterface nodeBean = nodeManager.getNodeComInterface(cn.getCtype());
+        NodeInterface nodeBean = nodeManager.getNodeComInterface(cn.getNtype());
 
         // 解码值
 

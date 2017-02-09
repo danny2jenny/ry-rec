@@ -1,8 +1,11 @@
-package com.rytec.rec.node.DAM;
+package com.rytec.rec.node.HTKL;
 
 import com.rytec.rec.channel.ChannelMessage;
-import com.rytec.rec.node.*;
-import com.rytec.rec.node.node.NodeInput;
+import com.rytec.rec.node.NodeInterface;
+import com.rytec.rec.node.NodeManager;
+import com.rytec.rec.node.NodeMessage;
+import com.rytec.rec.node.NodeRuntimeBean;
+import com.rytec.rec.node.node.NodeAnalog;
 import com.rytec.rec.util.Description;
 import com.rytec.rec.util.NodeType;
 import io.netty.buffer.ByteBuf;
@@ -11,31 +14,31 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * Created by danny on 16-12-14.
+ * Created by danny on 17-2-8.
  * <p>
- * 命令格式：
- * byte     modbus地址
- * byes     0x02 命令
- * word     端口地址，从0开始
- * word     数量：1
- * word     CRC16 (不生成)
+ * 设置485地址
+ * 广播地址  功能号   地址     新地址   CRC
+ * 00       06      2000    0001    421b    发送
+ * 01       06      2000    0001    43ca    返回
  * <p>
- * 返回格式：
- * byte     modbus地址
- * byes     0x02 命令
- * byte     字节数
- * byte     端口值
- * word     CRC16 (不生成)
+ * 数据读取
+ * 地址   功能号     寄存器     读取数量    CRC
+ * 02     03        002a      0001      a5f1
+ * <p>
+ * 返回数据
+ * 地址   功能号     ？？        值      CRC
+ * 02     03        02        0000     fc44
+ * <p>
+ * ？？02应该是返回的整数的小数点位数。这里应该是0.01
  */
 
 @Service
-@NodeType(1002)
-@Description("DMA 输入")
-public class DAMInput extends NodeInput implements NodeInterface {
+@NodeType(2201)
+@Description("HT-C1风速")
+public class HT_C1 extends NodeAnalog implements NodeInterface {
 
     @Autowired
     NodeManager nodeManager;
-
 
     // 命令编码
     public ChannelMessage genMessage(int where, int nodeId, int cmd, int value) {
@@ -47,11 +50,11 @@ public class DAMInput extends NodeInput implements NodeInterface {
         frame.from = where;
         frame.nodeId = nodeId;
         frame.type = cmd;
-        frame.responseLen = 6;
+        frame.responseLen = 7;
 
         ByteBuf buf = Unpooled.buffer(6);
         buf.writeByte(nodeRuntimeBean.channelNode.getAdr());
-        buf.writeByte(0x02);
+        buf.writeByte(0x03);
         buf.writeShort(nodeRuntimeBean.channelNode.getNo());
         buf.writeShort(0x01);
 
@@ -62,18 +65,17 @@ public class DAMInput extends NodeInput implements NodeInterface {
 
     // 回应解码
     public NodeMessage decodeMessage(ChannelMessage msg) {
+
+
+        NodeRuntimeBean nodeRuntimeBean = nodeManager.getChannelNodeByNodeId(msg.nodeId);
+
         NodeMessage rst = new NodeMessage();
         rst.from = msg.from;
         rst.type = msg.type;
         rst.node = msg.nodeId;
         byte[] in = msg.payload;
         int val = in[3];
-        if (val > 0) {
-            rst.value = true;
-        } else {
-            rst.value = false;
-        }
-
+        rst.value = (Float) (val * nodeRuntimeBean.nodeConfig.pA + nodeRuntimeBean.nodeConfig.pB);
         return rst;
     }
 
