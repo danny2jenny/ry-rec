@@ -69,4 +69,16 @@ public class AbstractOperator {
     public void onValueChanged(int deviceId, int fun, Object oldValue, Object newValue) {
     }
 
+
+    /**
+     * 改变设备的状态
+     *
+     * @param device
+     * @param ste
+     */
+    public void setState(int device, int ste) {
+        DeviceRuntimeBean drb = deviceManager.deviceRuntimeList.get(device);
+        drb.state.state = ste;
+    }
+
 }

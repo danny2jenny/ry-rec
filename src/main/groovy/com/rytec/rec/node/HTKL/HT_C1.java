@@ -52,13 +52,14 @@ public class HT_C1 extends NodeAnalog implements NodeInterface {
         frame.type = cmd;
         frame.responseLen = 7;
 
+        // Unpooled.Buffer
         ByteBuf buf = Unpooled.buffer(6);
         buf.writeByte(nodeRuntimeBean.channelNode.getAdr());
         buf.writeByte(0x03);
         buf.writeShort(nodeRuntimeBean.channelNode.getNo());
         buf.writeShort(0x01);
 
-        frame.payload = buf.array();
+        frame.payload = buf;
 
         return frame;
     }
@@ -73,9 +74,10 @@ public class HT_C1 extends NodeAnalog implements NodeInterface {
         rst.from = msg.from;
         rst.type = msg.type;
         rst.node = msg.nodeId;
-        byte[] in = msg.payload;
-        int val = in[3];
-        rst.value = (Float) (val * nodeRuntimeBean.nodeConfig.pA + nodeRuntimeBean.nodeConfig.pB);
+        ByteBuf payload = (ByteBuf) msg.payload;
+
+        int val = payload.getShort(3);
+        rst.value = val * nodeRuntimeBean.nodeConfig.pA + nodeRuntimeBean.nodeConfig.pB;
         return rst;
     }
 

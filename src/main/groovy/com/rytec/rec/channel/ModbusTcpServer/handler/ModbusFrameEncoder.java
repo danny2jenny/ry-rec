@@ -18,12 +18,9 @@ public class ModbusFrameEncoder extends MessageToByteEncoder<ChannelMessage> {
     protected void encode(ChannelHandlerContext ctx, ChannelMessage msg, ByteBuf out) {
 
         //发送数据
-        int crc = CRC16.calcCrc16(msg.payload);
-        out.writeBytes(msg.payload);
+        int crc = CRC16.calcCrc16(((ByteBuf) msg.payload).array());
+        out.writeBytes((ByteBuf) msg.payload);
         out.writeShort(crc);
-
-        logger.debug("发送数据：" + CRC16.bytesToHexString(msg.payload));
-
         ctx.flush();
     }
 }

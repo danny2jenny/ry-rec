@@ -1,6 +1,7 @@
 package com.rytec.rec.device.operator;
 
 import com.rytec.rec.device.AbstractOperator;
+import com.rytec.rec.util.ConstantDeviceState;
 import com.rytec.rec.util.Description;
 import com.rytec.rec.util.DeviceType;
 import org.springframework.stereotype.Service;
@@ -15,4 +16,8 @@ import org.springframework.stereotype.Service;
 @Description("模拟输入")
 public class Analog extends AbstractOperator {
 
+    @Override
+    public void onValueChanged(int deviceId, int fun, Object oldValue, Object newValue) {
+        setState(deviceId, ConstantDeviceState.STATE_ON);
+    }
 }

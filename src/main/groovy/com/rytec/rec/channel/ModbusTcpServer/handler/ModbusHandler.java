@@ -8,6 +8,7 @@ import com.rytec.rec.db.model.ChannelNode;
 import com.rytec.rec.node.NodeInterface;
 import com.rytec.rec.util.ConstantCommandType;
 import com.rytec.rec.util.ConstantFromWhere;
+import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import org.slf4j.LoggerFactory;
@@ -72,7 +73,7 @@ public class ModbusHandler extends SimpleChannelInboundHandler<ChannelMessage> {
 
                 //设置Channel的ID
                 InetSocketAddress ip = (InetSocketAddress) ctx.channel().remoteAddress();
-                String modbusId = ip.getHostName() + ':' + response.payload[0];
+                String modbusId = ip.getHostName() + ':' + ((ByteBuf)response.payload).readByte();
 
                 logger.debug("客户端连接：" + modbusId);
 

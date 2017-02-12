@@ -3,6 +3,7 @@ package com.rytec.rec.channel.ModbusTcpServer.handler;
 import com.rytec.rec.channel.ChannelMessage;
 import com.rytec.rec.util.ConstantFromWhere;
 import io.netty.buffer.ByteBuf;
+import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ByteToMessageDecoder;
 import org.slf4j.LoggerFactory;
@@ -21,8 +22,8 @@ public class ModbusLoginDecoder extends ByteToMessageDecoder {
     protected void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) {
         ChannelMessage msg = new ChannelMessage();
         msg.from = ConstantFromWhere.FROM_LOGIN;
-        msg.payload = new byte[1];
-        msg.payload[0] = in.readByte();
+        msg.payload = Unpooled.buffer(1);
+        ((ByteBuf)msg.payload).writeByte(in.readByte());
         out.add(msg);
     }
 }

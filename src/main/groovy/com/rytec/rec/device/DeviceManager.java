@@ -143,6 +143,11 @@ public class DeviceManager {
         abstractOperator.onValueChanged(device, fun, oldValue, newValue);
     }
 
+    /**
+     * 得到设备的状态，用于改变显示的图标
+     *
+     * @return
+     */
     public HashMap<Integer, DeviceStateBean> getDeviceStateList() {
         HashMap<Integer, DeviceStateBean> deviceStateBeanHashMap = new HashMap();
         for (int i : deviceRuntimeList.keySet()) {

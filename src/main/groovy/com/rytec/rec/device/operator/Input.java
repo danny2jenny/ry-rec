@@ -21,31 +21,14 @@ import org.springframework.stereotype.Service;
 @Description("开关输入")
 public class Input extends AbstractOperator {
 
-    @Autowired
-    WebPush webPush;
-
     @Override
     public void onValueChanged(int deviceId, int fun, Object oldValue, Object newValue) {
 
-        // 向客户端广播状态改变
-        MsgDeviceState msgDeviceState = new MsgDeviceState();
-        msgDeviceState.state.device = deviceId;
-        msgDeviceState.msg_no = MessageType.DEVICE_STATE;
-
         if ((Boolean) newValue == true) {
-            msgDeviceState.state.state = ConstantDeviceState.STATE_ON;
+            setState(deviceId, ConstantDeviceState.STATE_ON);
         } else {
-            msgDeviceState.state.state = ConstantDeviceState.STATE_OFF;
+            setState(deviceId, ConstantDeviceState.STATE_OFF);
         }
 
-        ObjectMapper objectMapper = new ObjectMapper();
-        String json;
-        try {
-            json = objectMapper.writeValueAsString(msgDeviceState);
-        } catch (JsonProcessingException e) {
-            json = "";
-        }
-
-        webPush.clientBroadcast(json);
     }
 }

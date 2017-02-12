@@ -66,8 +66,8 @@ public class DAMInput extends NodeInput implements NodeInterface {
         rst.from = msg.from;
         rst.type = msg.type;
         rst.node = msg.nodeId;
-        byte[] in = msg.payload;
-        int val = in[3];
+        ByteBuf payload = (ByteBuf) msg.payload;
+        int val = payload.getShort(3);
         if (val > 0) {
             rst.value = true;
         } else {

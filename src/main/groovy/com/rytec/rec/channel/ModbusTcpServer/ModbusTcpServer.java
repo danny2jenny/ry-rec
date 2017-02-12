@@ -184,9 +184,6 @@ public class ModbusTcpServer implements ChannelInterface {
      */
     public void receiveMsg(String chaId, ChannelMessage request, ChannelMessage response) {
 
-        logger.debug("收到Modbus：" + chaId + ':' + CRC16.bytesToHexString(response.payload));
-        logger.debug("ConstantCommandType:" + response.type);
-
         ChannelNode cn = (ChannelNode) channelNodes.get(chaId).get(request.nodeId);
         NodeInterface nodeBean = nodeManager.getNodeComInterface(cn.getNtype());
 
