@@ -8,7 +8,7 @@ import io.netty.channel.socket.SocketChannel;
 
 /**
  * Created by danny on 16-11-22.
- *
+ * <p>
  * Modbus TCPServer 的初始化
  */
 public class ModbusChannelInitializer extends ChannelInitializer<SocketChannel> {

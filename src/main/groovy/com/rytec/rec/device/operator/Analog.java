@@ -10,6 +10,11 @@ import org.springframework.stereotype.Service;
  * Created by danny on 16-11-29.
  * 模拟量
  * 一个端口只读
+ *
+ * 信号：
+ * 1、超限（A）
+ * 2、超限（B）
+ * 3、超限（C）
  */
 @Service
 @DeviceType(201)

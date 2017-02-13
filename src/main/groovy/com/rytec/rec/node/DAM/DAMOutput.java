@@ -89,7 +89,7 @@ public class DAMOutput extends NodeOutput implements NodeInterface {
                 buf.writeByte(0x05);                     //命令
                 buf.writeShort(nodeRuntimeBean.channelNode.getNo());     //寄存器
                 buf.writeShort(value);
-                frame.payload = buf.array();
+                frame.payload = buf;
                 break;
 
             //状态查询
@@ -100,7 +100,7 @@ public class DAMOutput extends NodeOutput implements NodeInterface {
                 buf.writeByte(0x01);
                 buf.writeShort(nodeRuntimeBean.channelNode.getNo());     //地址
                 buf.writeShort(1);                       //查询数量
-                frame.payload = buf.array();
+                frame.payload = buf;
                 break;
         }
 

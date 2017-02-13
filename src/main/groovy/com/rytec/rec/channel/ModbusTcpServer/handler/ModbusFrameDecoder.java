@@ -20,20 +20,19 @@ public class ModbusFrameDecoder extends ReplayingDecoder {
 
     @Override
     protected void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) {
+
         ChanneSession channeSession = ctx.channel().attr(ModbusCommon.MODBUS_STATE).get();
 
         //读取希望返回的长度
         ByteBuf data = in.readBytes(channeSession.lastCmd.responseLen);
-        byte[] payload = new byte[channeSession.lastCmd.responseLen];    //包含去除CRC校验
-        data.readBytes(payload);
+
 
         ChannelMessage msg = new ChannelMessage(ConstantFromWhere.FROM_RPS);
         msg.nodeId = channeSession.lastCmd.nodeId;
         msg.type = channeSession.lastCmd.type;
-        msg.payload = payload;
+        msg.payload = data;
 
         out.add(msg);
-
     }
 
 }

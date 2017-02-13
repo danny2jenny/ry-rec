@@ -1,16 +1,10 @@
 package com.rytec.rec.device.operator;
 
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rytec.rec.device.AbstractOperator;
-import com.rytec.rec.messenger.Message.MsgDeviceState;
-import com.rytec.rec.messenger.MessageType;
-import com.rytec.rec.messenger.WebPush;
 import com.rytec.rec.node.NodeMessage;
 import com.rytec.rec.util.*;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -20,14 +14,42 @@ import org.springframework.stereotype.Service;
  * 101:control：开启、关闭
  * 102:feedback：辅助节点，判断开启、关闭是否成功
  * 103:remote：本地、远程
+ * <p>
+ * 信号
+ * 1、本地远程切换-远程
+ * 2、本地远程切换-本地
+ * 3、远程状态改变-开
+ * 4、远程状态改变-关
  */
 @Service
 @DeviceType(101)
 @Description("远程开关")
 public class Output extends AbstractOperator {
 
-    @Autowired
-    WebPush webPush;
+    /**
+     * 常量的列表，表示该设备可以输出那些信号
+     */
+    @Description("开启")
+    public static int SIG_ON = 1;           //开启信号1
+
+    @Description("关闭")
+    public static int SIG_OFF = 0;          //关闭信号0
+
+    @Description("就地")
+    public static int SIG_LOCAL = 11;       //就地
+
+    @Description("远程")
+    public static int SIG_REMOTE = 12;      //远程
+
+    /**
+     * 动作行常量
+     */
+
+    @Description("关闭")
+    public static int ACT_OFF = 100;        //关闭
+    @Description("开启")
+    public static int ACT_ON = 101;         //开启
+
 
     private final org.slf4j.Logger logger = LoggerFactory.getLogger(this.getClass());
 

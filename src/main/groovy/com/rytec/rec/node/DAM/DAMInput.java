@@ -55,7 +55,7 @@ public class DAMInput extends NodeInput implements NodeInterface {
         buf.writeShort(nodeRuntimeBean.channelNode.getNo());
         buf.writeShort(0x01);
 
-        frame.payload = buf.array();
+        frame.payload = buf;
 
         return frame;
     }

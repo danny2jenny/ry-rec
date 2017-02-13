@@ -6,8 +6,7 @@ package com.rytec.rec.util;
  * Feature 状态
  */
 
-@JSExport("设备状态")
-@Description("DEVICE_STATE")
+@JSExport("DEVICE_STATE")
 public interface ConstantDeviceState {
     @JSExport("不可用")
     int STATE_INAVAILABLE = 10;

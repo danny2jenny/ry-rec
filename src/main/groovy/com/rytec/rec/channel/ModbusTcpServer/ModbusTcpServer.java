@@ -15,7 +15,6 @@ import com.rytec.rec.db.model.ChannelNode;
 import com.rytec.rec.node.NodeInterface;
 import com.rytec.rec.node.NodeManager;
 import com.rytec.rec.node.NodeMessage;
-import com.rytec.rec.util.CRC16;
 import com.rytec.rec.util.ChannelType;
 import com.rytec.rec.util.ConstantErrorCode;
 import com.rytec.rec.util.Description;
@@ -92,12 +91,10 @@ public class ModbusTcpServer implements ChannelInterface {
                 public void operationComplete(ChannelFuture future) throws Exception {
                     workerGroup.shutdownGracefully();
                     bossGroup.shutdownGracefully();
-
                 }
             });
         } catch (Exception ex) {
             Logger.getLogger(ModbusTcpServer.class.getName()).log(Level.SEVERE, ex.getLocalizedMessage());
-
             throw new ConnectionException(ex.getLocalizedMessage());
         }
     }
@@ -151,24 +148,26 @@ public class ModbusTcpServer implements ChannelInterface {
         }
     }
 
-    /*
-    * 通讯率 9600
-    * 每秒1000个字节（双向累计）
-    * 每个通讯过程20个字节（最大）
-    * 最多可以是50个通讯过程
-    * 每个过程约20个毫秒
-    * 因此50~100个毫秒是安全的
-    *
-    * 每个Channel（Socket 连接都需要进行轮训）通过一个HashMap来进行
-    * <String, Integer>   ip:port -> 当前的轮训位置
-    */
+    /**
+     * Session 是一个生成的对象，无法使用Spring管理，
+     * 因此在这里一个定时任务去执行所有Session的任务
+     * 通讯率 9600
+     * 每秒1000个字节（双向累计）
+     * 每个通讯过程20个字节（最大）
+     * 最多可以是50个通讯过程
+     * 每个过程约20个毫秒
+     * 因此50~100个毫秒是安全的
+     * <p>
+     * 每个Channel（Socket 连接都需要进行轮训）通过一个HashMap来进行
+     * <String, Integer>   ip:port -> 当前的轮训位置
+     */
 
     @Scheduled(fixedDelay = 50)
     private void doOnTime() {
         // 遍历已经登录的远端，并执行队列
         for (Channel cha : clients.values()) {
             ChanneSession channeSession = cha.attr(ModbusCommon.MODBUS_STATE).get();
-            channeSession.processQueue();
+            channeSession.timerProcess();
         }
     }
 

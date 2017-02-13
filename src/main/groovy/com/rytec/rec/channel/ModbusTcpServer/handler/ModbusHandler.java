@@ -71,9 +71,10 @@ public class ModbusHandler extends SimpleChannelInboundHandler<ChannelMessage> {
             // 登录
             case ConstantFromWhere.FROM_LOGIN:
 
+
                 //设置Channel的ID
                 InetSocketAddress ip = (InetSocketAddress) ctx.channel().remoteAddress();
-                String modbusId = ip.getHostName() + ':' + ((ByteBuf)response.payload).readByte();
+                String modbusId = ip.getHostName() + ':' + ((ByteBuf) response.payload).readByte();
 
                 logger.debug("客户端连接：" + modbusId);
 
@@ -118,6 +119,7 @@ public class ModbusHandler extends SimpleChannelInboundHandler<ChannelMessage> {
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
         cause.printStackTrace();
-        ctx.close();
+        //ctx.close();
     }
+
 }

@@ -6,8 +6,7 @@ package com.rytec.rec.util;
  * 返回值的含义
  */
 
-@JSExport("通讯错误代码")
-@Description("ERROR_CODE")
+@JSExport("ERROR_CODE")
 public interface ConstantErrorCode {
 
     @JSExport("成功")
@@ -15,7 +14,6 @@ public interface ConstantErrorCode {
 
 
     // DEVICE 操作的错误代码
-
     @JSExport("设备未找到")
     int DEVICE_NOT_FOUND = 101;             //设备未找到
     @JSExport("设备的该功能端口未配置")

@@ -65,11 +65,11 @@ public class JSConfig implements ConstantDeviceFunction, ConstantDeviceState, Co
         HashMap<String, Object> rst = new HashMap<>();
 
         for (Class<?> constant : constSets) {
-            Description annotation = constant.getAnnotation(Description.class);
+            JSExport annotation = constant.getAnnotation(JSExport.class);
             HashMap<Integer, String> jsConst = new HashMap<>();
             try {
                 for (Field field : constant.getDeclaredFields()) {
-
+                    // todo: 最好生成常量名
                     String name = field.getName();
                     int value = field.getInt(null);
                     jsConst.put(value, field.getAnnotation(JSExport.class).value());

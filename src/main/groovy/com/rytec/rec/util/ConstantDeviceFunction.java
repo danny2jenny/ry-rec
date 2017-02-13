@@ -5,8 +5,7 @@ package com.rytec.rec.util;
  * 一个设备的端口配置
  */
 
-@JSExport("设备功能端口")
-@Description("DEVICE_FUN")
+@JSExport("DEVICE_FUN")
 public interface ConstantDeviceFunction {
 
     @JSExport("缺省端口")

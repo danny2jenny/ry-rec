@@ -26,7 +26,10 @@ public class ChanneSession {
     //channel的id  ip：port
     public String id;
 
-    // 最后一次发送的命令 todo: volatile 是否可以用其他方式
+    // 定时器，
+    private volatile int timmer = 0;
+
+    // 最后一次发送的命令
     public volatile ChannelMessage lastCmd = null;
 
     // 需要定时发送的队列命令
@@ -73,23 +76,39 @@ public class ChanneSession {
      */
     public void sendMsg(ChannelMessage msg) {
         instantQueueCmd.add(msg);
-        processQueue();
+        timerProcess();
     }
 
     /*
     * 处理命令队列
     * 优先处理命令队列，然后再处理查询命令
     */
-    public void processQueue() {
-        if (lastCmd != null) return;
+    public void timerProcess() {
+        //logger.debug("Timmer:" + timmer);
+        // 如果当前有未完成的命令，返回
+        if (lastCmd != null) {
+            // 判断超时
+            timmer++;
+            if (timmer > 5) {
+                logger.debug("超时：" + lastCmd.nodeId);
+                lastCmd = null;
+            } else {
+                return;
+            }
+        }
 
+        // 首先满足实时队列
         if (instantQueueCmd.size() > 0) {
+            //实时队列
             lastCmd = instantQueueCmd.poll();
         } else {
+            //定时发送
             lastCmd = getNextQuery();
         }
 
+        // 如果存在当前命令，就发送
         if (lastCmd != null) {
+            timmer = 0;
             cha.writeAndFlush(lastCmd);
         }
 

@@ -35,6 +35,11 @@ Ext.define('app.view.admin.panel.NodeConfig', {
             fieldLabel: '线性参数B',
             name: 'pB',
             itemId: 'pB'
+        }, {
+            xtype: 'textfield',
+            fieldLabel: '计量单位',
+            name: 'unit',
+            itemId: 'unit'
         }],
     buttons: [{
         text: "更新",
@@ -52,6 +57,7 @@ Ext.define('app.view.admin.panel.NodeConfig', {
             opt.sensitive = pa.down('#sensitive').getValue();
             opt.pA = pa.down('#pA').getValue();
             opt.pB = pa.down('#pB').getValue();
+            opt.unit = pa.down('#unit').getValue();
 
             selection.set('opt', JSON.stringify(opt))
             selection.endEdit();
