@@ -3,6 +3,7 @@ package com.rytec.rec.db;
 import com.rytec.rec.db.mapper.ChannelNodeMapper;
 import com.rytec.rec.db.mapper.DeviceMapper;
 import com.rytec.rec.db.mapper.DeviceNodeMapper;
+import com.rytec.rec.db.mapper.RuleActionMapper;
 import com.rytec.rec.db.model.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +26,7 @@ public class DbConfig {
     private List<ChannelNode> channelNodeList;
     private List<DeviceNode> deviceNodeList;
     private List<Device> deviceList;
+    private List<RuleAction> ruleActionList;
 
     @Autowired
     ChannelNodeMapper channelNodeMapper;
@@ -34,6 +36,9 @@ public class DbConfig {
 
     @Autowired
     DeviceMapper deviceMapper;
+
+    @Autowired
+    RuleActionMapper ruleActionMapper;
 
 
     /**
@@ -70,6 +75,14 @@ public class DbConfig {
 
 
     /**
+     * 初始化 RuleAction 列表
+     */
+    private void initRuleAction() {
+        ruleActionList = ruleActionMapper.selectByExample(null);
+    }
+
+
+    /**
      * @return ChannelNode 的列表
      */
     public List<ChannelNode> getChannelNodeList() {
@@ -101,6 +114,18 @@ public class DbConfig {
             initDevice();
         }
         return deviceList;
+    }
+
+    /**
+     * RuleAction 列表
+     */
+
+    public List<RuleAction> getRuleActionList() {
+        if (ruleActionList == null) {
+            initRuleAction();
+        }
+
+        return ruleActionList;
     }
 
 }

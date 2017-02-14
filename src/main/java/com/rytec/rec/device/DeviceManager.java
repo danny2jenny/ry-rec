@@ -114,8 +114,13 @@ public class DeviceManager {
     }
 
     //得到一个设备的实例对象
-    public AbstractOperator getDeviceOperator(int type) {
+    public AbstractOperator getOperatorByType(int type) {
         return deviceOperators.get(type);
+    }
+
+    public AbstractOperator getOperatorById(int id) {
+        DeviceRuntimeBean deviceRuntimeBean = deviceRuntimeList.get(id);
+        return deviceOperators.get(deviceRuntimeBean.device.getType());
     }
 
     //得到所有的设备实例列表
@@ -137,7 +142,7 @@ public class DeviceManager {
     public void onValueChange(int device, int fun, Object oldValue, Object newValue) {
         // 首先找到 Device 的实例
         DeviceNode deviceNode = (DeviceNode) deviceNodeListByFun.get(device).get(fun);
-        AbstractOperator abstractOperator = getDeviceOperator(deviceNode.getDtype());
+        AbstractOperator abstractOperator = getOperatorByType(deviceNode.getDtype());
 
         // 在实例中处理值的改变
         abstractOperator.onValueChanged(device, fun, oldValue, newValue);

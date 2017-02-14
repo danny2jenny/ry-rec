@@ -79,4 +79,20 @@ public class Output extends AbstractOperator {
 
     }
 
+    @Override
+    public int operate(int from, int device, int act, Object parm) {
+        switch (act) {
+            case 100:
+                setSwitch(device, from, false);
+                break;
+            case 101:
+                setSwitch(device, from, true);
+                break;
+            default:
+                return ConstantErrorCode.DEVICE_ACT_NOT_EXIST;
+        }
+
+        return 0;
+    }
+
 }

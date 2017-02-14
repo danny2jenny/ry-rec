@@ -6,7 +6,7 @@ Ext.define('app.store.NodeForDevice', {
     extend: 'Ext.data.Store',
     autoLoad: false,
     autoSync: true,
-    model: 'app.model.admin.Node',
+    model: 'app.model.Node',
     proxy: {
         type: 'direct',
         api: {

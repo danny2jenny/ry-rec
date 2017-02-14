@@ -1,5 +1,6 @@
 package com.rytec.rec.device;
 
+import com.rytec.rec.cooperate.CooperateManager;
 import com.rytec.rec.db.model.DeviceNode;
 import com.rytec.rec.node.NodeInterface;
 import com.rytec.rec.node.NodeManager;
@@ -19,6 +20,9 @@ public class AbstractOperator {
     private final org.slf4j.Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
+    CooperateManager cooperateManager;
+
+    @Autowired
     DeviceManager deviceManager;
 
     @Autowired
@@ -29,7 +33,7 @@ public class AbstractOperator {
     */
     public int setValue(int deviceId, int fun, NodeMessage msg) {
 
-        int rst = ConstantErrorCode.RST_SUCCESS;
+        int rst = 0;
 
         //对应Function 的Node
         DeviceNode funNode = null;
@@ -84,12 +88,24 @@ public class AbstractOperator {
     /**
      * 对设备的操作
      *
-     * @param act  //操作码
-     * @param parm //参数
+     * @param device 设备编号
+     * @param act    //操作码
+     * @param parm   //参数
      * @return //返回代码：0为成功，非O请参考错误代码
      */
-    public int operate(int act, Object parm) {
+    public int operate(int from, int device, int act, Object parm) {
         return 0;
+    }
+
+    /**
+     * 向联动发送状态改变的消息
+     *
+     * @param deviceId
+     * @param sig
+     * @param parm
+     */
+    public void sendSig(int deviceId, int sig, Object parm) {
+        cooperateManager.onSignal(deviceId, sig, parm);
     }
 
 }

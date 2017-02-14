@@ -20,6 +20,8 @@ public interface ConstantErrorCode {
     int DEVICE_FUN_NOT_CONFIG = 102;        //设备的该功能未配置
     @AnnotationJSExport("设备没有该功能")
     int DEVICE_FUN_NOT_EXIST = 103;         //设备没有该功能
+    @AnnotationJSExport("设备没有该动作")
+    int DEVICE_ACT_NOT_EXIST = 104;
 
     // Node通讯的错误列表
     @AnnotationJSExport("该类型的节点不存在")
@@ -28,5 +30,12 @@ public interface ConstantErrorCode {
     // Channel错误消息
     @AnnotationJSExport("通道未连接")
     int CHA_NOT_CONNECT = 301;
+
+    // 联动错误信息
+    @AnnotationJSExport("联动规则未设置")
+    int RULE_ACTION_NOT_EXIST = 401;
+    @AnnotationJSExport("联动动作未设置")
+    int RULE_ACTION_NO_ACTION = 402;
+
 
 }

@@ -34,8 +34,10 @@ public class Input extends AbstractOperator {
 
         if ((Boolean) newValue == true) {
             setState(deviceId, ConstantDeviceState.STATE_ON);
+            sendSig(deviceId, 1, null);
         } else {
             setState(deviceId, ConstantDeviceState.STATE_OFF);
+            sendSig(deviceId, 0, null);
         }
 
     }

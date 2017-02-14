@@ -113,10 +113,10 @@ public class DAMOutput extends NodeOutput implements NodeInterface {
 
         switch (respond.type) {
             case ConstantCommandType.GENERAL_WRITE:
-                value = ((ByteBuf) respond.payload).getShort(4);
+                value = ((ByteBuf) respond.payload).getByte(4);
                 break;
             case ConstantCommandType.GENERAL_READ:
-                value = ((ByteBuf) respond.payload).getShort(3);
+                value = ((ByteBuf) respond.payload).getByte(3);
                 break;
         }
 

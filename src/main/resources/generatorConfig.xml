@@ -22,7 +22,7 @@
 
         <!-- 对象实体 -->
         <javaModelGenerator targetPackage="com.rytec.rec.db.model"
-                            targetProject="src/main/groovy">
+                            targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
@@ -36,7 +36,7 @@
         <!-- mapper 接口 -->
         <javaClientGenerator type="XMLMAPPER"
                              targetPackage="com.rytec.rec.db.mapper"
-                             targetProject="src/main/groovy">
+                             targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
@@ -81,6 +81,17 @@
 
         </table>
 -->
+        <table schema="" tableName="actionrule" domainObjectName="ActionRule">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+
+        <table schema="" tableName="actions" domainObjectName="Actions">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+
+        <table schema="" tableName="ruleaction" domainObjectName="RuleAction">
+
+        </table>
 
     </context>
 </generatorConfiguration>

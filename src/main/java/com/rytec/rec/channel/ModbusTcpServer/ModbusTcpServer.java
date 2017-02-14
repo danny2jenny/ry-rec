@@ -127,7 +127,7 @@ public class ModbusTcpServer implements ChannelInterface {
 
         //第一级的Map ip:id-> map
         for (ChannelNode cn : chaNodeList) {
-            if (cn.getCtype() != 1001) {
+            if (cn.getCtype() != 1001) {        //只管理该类型的Channel
                 continue;
             }
 
