@@ -17,6 +17,8 @@ public class ChanneSession {
 
     private final org.slf4j.Logger logger = LoggerFactory.getLogger(this.getClass());
 
+    private ModbusTcpServer modbusTcpServer;
+
     //对应的Channel
     private Channel cha;
 
@@ -42,16 +44,10 @@ public class ChanneSession {
      * @param cid
      * @param channel
      */
-    public ChanneSession(String cid, Channel channel) {
+    public ChanneSession(ModbusTcpServer mts, String cid, Channel channel) {
         id = cid;
         cha = channel;
-    }
-
-    /**
-     * 当前通道是否在等待回应
-     */
-    private boolean isBusy() {
-        return lastCmd == null ? true : false;
+        modbusTcpServer = mts;
     }
 
 
@@ -89,8 +85,9 @@ public class ChanneSession {
         if (lastCmd != null) {
             // 判断超时
             timmer++;
-            if (timmer > 5) {
-                logger.debug("超时：" + lastCmd.nodeId);
+            if (timmer > 10) {
+                modbusTcpServer.nodeError(lastCmd);
+
                 lastCmd = null;
             } else {
                 return;

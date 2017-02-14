@@ -12,7 +12,7 @@ import com.rytec.rec.db.DbConfig;
 import com.rytec.rec.db.model.ChannelNode;
 import com.rytec.rec.device.DeviceManager;
 import com.rytec.rec.util.ConstantCommandType;
-import com.rytec.rec.util.NodeType;
+import com.rytec.rec.util.AnnotationNodeType;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -71,10 +71,10 @@ public class NodeManager {
 
 
         // 初始化 node 接口实现
-        Map<String, Object> nodes = context.getBeansWithAnnotation(NodeType.class);
+        Map<String, Object> nodes = context.getBeansWithAnnotation(AnnotationNodeType.class);
         for (Object node : nodes.values()) {
             Class<? extends Object> nodeClass = node.getClass();
-            NodeType annotation = nodeClass.getAnnotation(NodeType.class);
+            AnnotationNodeType annotation = nodeClass.getAnnotation(AnnotationNodeType.class);
             nodeComList.put(annotation.value(), (NodeInterface) node);
         }
     }

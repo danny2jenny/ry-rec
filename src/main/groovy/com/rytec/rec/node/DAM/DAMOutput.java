@@ -7,15 +7,13 @@ import com.rytec.rec.db.model.ChannelNode;
 import com.rytec.rec.node.*;
 import com.rytec.rec.node.node.NodeOutput;
 import com.rytec.rec.util.ConstantCommandType;
-import com.rytec.rec.util.Description;
-import com.rytec.rec.util.NodeType;
+import com.rytec.rec.util.AnnotationDescription;
+import com.rytec.rec.util.AnnotationNodeType;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.annotation.PostConstruct;
 
 
 /**
@@ -55,8 +53,8 @@ import javax.annotation.PostConstruct;
  */
 
 @Service
-@NodeType(1001)
-@Description("DMA 输出")
+@AnnotationNodeType(1001)
+@AnnotationDescription("DMA 输出")
 public class DAMOutput extends NodeOutput implements NodeInterface {
 
     private final org.slf4j.Logger logger = LoggerFactory.getLogger(this.getClass());

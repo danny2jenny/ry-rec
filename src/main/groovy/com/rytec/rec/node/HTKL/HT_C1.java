@@ -6,8 +6,8 @@ import com.rytec.rec.node.NodeManager;
 import com.rytec.rec.node.NodeMessage;
 import com.rytec.rec.node.NodeRuntimeBean;
 import com.rytec.rec.node.node.NodeAnalog;
-import com.rytec.rec.util.Description;
-import com.rytec.rec.util.NodeType;
+import com.rytec.rec.util.AnnotationDescription;
+import com.rytec.rec.util.AnnotationNodeType;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,8 +33,8 @@ import org.springframework.stereotype.Service;
  */
 
 @Service
-@NodeType(2201)
-@Description("HT-C1风速")
+@AnnotationNodeType(2201)
+@AnnotationDescription("HT-C1风速")
 public class HT_C1 extends NodeAnalog implements NodeInterface {
 
     @Autowired

@@ -65,14 +65,14 @@ public class JSConfig implements ConstantDeviceFunction, ConstantDeviceState, Co
         HashMap<String, Object> rst = new HashMap<>();
 
         for (Class<?> constant : constSets) {
-            JSExport annotation = constant.getAnnotation(JSExport.class);
+            AnnotationJSExport annotation = constant.getAnnotation(AnnotationJSExport.class);
             HashMap<Integer, String> jsConst = new HashMap<>();
             try {
                 for (Field field : constant.getDeclaredFields()) {
                     // todo: 最好生成常量名
                     String name = field.getName();
                     int value = field.getInt(null);
-                    jsConst.put(value, field.getAnnotation(JSExport.class).value());
+                    jsConst.put(value, field.getAnnotation(AnnotationJSExport.class).value());
                 }
             } catch (IllegalAccessException e) {
 
@@ -88,7 +88,7 @@ public class JSConfig implements ConstantDeviceFunction, ConstantDeviceState, Co
         HashMap<Integer, String> ccm = new HashMap<>();
         for (Integer i : cis.keySet()) {
             ChannelInterface ci = cis.get(i);
-            ccm.put(i, ci.getClass().getAnnotation(Description.class).value());
+            ccm.put(i, ci.getClass().getAnnotation(AnnotationDescription.class).value());
         }
         rst.put("CHANNEL_TYPE", ccm);
 
@@ -97,7 +97,7 @@ public class JSConfig implements ConstantDeviceFunction, ConstantDeviceState, Co
         HashMap<Integer, String> cnm = new HashMap<>();
         for (Integer i : nis.keySet()) {
             NodeInterface ni = nis.get(i);
-            cnm.put(i, ni.getClass().getAnnotation(Description.class).value());
+            cnm.put(i, ni.getClass().getAnnotation(AnnotationDescription.class).value());
         }
         rst.put("NODE_TYPE", cnm);
 
@@ -106,7 +106,7 @@ public class JSConfig implements ConstantDeviceFunction, ConstantDeviceState, Co
         HashMap<Integer, String> cdo = new HashMap<>();
         for (Integer i : dos.keySet()) {
             AbstractOperator doi = dos.get(i);
-            cdo.put(i, doi.getClass().getAnnotation(Description.class).value());
+            cdo.put(i, doi.getClass().getAnnotation(AnnotationDescription.class).value());
         }
         rst.put("DEVICE_TYPE", cdo);
 

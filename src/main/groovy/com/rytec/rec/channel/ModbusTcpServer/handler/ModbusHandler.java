@@ -82,7 +82,7 @@ public class ModbusHandler extends SimpleChannelInboundHandler<ChannelMessage> {
                 modbusTcpServer.clients.put(modbusId, ctx.channel());
 
                 //设置Channel的Session
-                channeSession = new ChanneSession(modbusId, ctx.channel());
+                channeSession = new ChanneSession(modbusTcpServer, modbusId, ctx.channel());
                 ctx.channel().attr(ModbusCommon.MODBUS_STATE).set(channeSession);
 
                 //移除相应的登录解码器，添加帧解码器

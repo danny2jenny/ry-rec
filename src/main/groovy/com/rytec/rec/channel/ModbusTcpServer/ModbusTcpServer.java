@@ -15,9 +15,9 @@ import com.rytec.rec.db.model.ChannelNode;
 import com.rytec.rec.node.NodeInterface;
 import com.rytec.rec.node.NodeManager;
 import com.rytec.rec.node.NodeMessage;
-import com.rytec.rec.util.ChannelType;
+import com.rytec.rec.util.AnnotationChannelType;
 import com.rytec.rec.util.ConstantErrorCode;
-import com.rytec.rec.util.Description;
+import com.rytec.rec.util.AnnotationDescription;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
@@ -41,8 +41,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Service
-@ChannelType(1001)
-@Description("Modbus TCP Server")
+@AnnotationChannelType(1001)
+@AnnotationDescription("Modbus TCP Server")
 public class ModbusTcpServer implements ChannelInterface {
 
     private final org.slf4j.Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -210,5 +210,14 @@ public class ModbusTcpServer implements ChannelInterface {
             channeSession.sendMsg(msg);
         }
         return rst;
+    }
+
+    /**
+     * Node 的通讯错误处理
+     *
+     * @param cm
+     */
+    public void nodeError(ChannelMessage cm) {
+        logger.debug("超时：" + cm.nodeId);
     }
 }

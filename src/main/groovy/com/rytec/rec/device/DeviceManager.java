@@ -13,7 +13,7 @@ import com.rytec.rec.db.DbConfig;
 import com.rytec.rec.db.model.Device;
 import com.rytec.rec.db.model.DeviceNode;
 import com.rytec.rec.util.ConstantDeviceState;
-import com.rytec.rec.util.DeviceType;
+import com.rytec.rec.util.AnnotationDeviceType;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -92,11 +92,11 @@ public class DeviceManager {
         }
 
         //初始化 Device 的实现
-        Map<String, Object> deviceOperatorList = context.getBeansWithAnnotation(DeviceType.class);
+        Map<String, Object> deviceOperatorList = context.getBeansWithAnnotation(AnnotationDeviceType.class);
 
         for (Object device : deviceOperatorList.values()) {
             Class<? extends Object> deviceClass = device.getClass();
-            DeviceType annotation = deviceClass.getAnnotation(DeviceType.class);
+            AnnotationDeviceType annotation = deviceClass.getAnnotation(AnnotationDeviceType.class);
             deviceOperators.put(annotation.value(), (AbstractOperator) device);
         }
 

@@ -1,6 +1,6 @@
 package com.rytec.rec.channel;
 
-import com.rytec.rec.util.ChannelType;
+import com.rytec.rec.util.AnnotationChannelType;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -29,10 +29,10 @@ public class ChannelManager {
 
     @PostConstruct
     private void init() {
-        Map<String, Object> channels = context.getBeansWithAnnotation(ChannelType.class);
+        Map<String, Object> channels = context.getBeansWithAnnotation(AnnotationChannelType.class);
         for (Object channel : channels.values()) {
             Class<? extends Object> channelClass = channel.getClass();
-            ChannelType annotation = channelClass.getAnnotation(ChannelType.class);
+            AnnotationChannelType annotation = channelClass.getAnnotation(AnnotationChannelType.class);
             channelInterfaceMap.put(annotation.value(), (ChannelInterface) channel);
         }
 

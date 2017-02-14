@@ -81,4 +81,15 @@ public class AbstractOperator {
         drb.state.state = ste;
     }
 
+    /**
+     * 对设备的操作
+     *
+     * @param act  //操作码
+     * @param parm //参数
+     * @return //返回代码：0为成功，非O请参考错误代码
+     */
+    public int operate(int act, Object parm) {
+        return 0;
+    }
+
 }

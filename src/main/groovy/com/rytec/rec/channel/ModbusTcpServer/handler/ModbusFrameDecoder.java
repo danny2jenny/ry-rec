@@ -24,15 +24,19 @@ public class ModbusFrameDecoder extends ReplayingDecoder {
         ChanneSession channeSession = ctx.channel().attr(ModbusCommon.MODBUS_STATE).get();
 
         //读取希望返回的长度
-        ByteBuf data = in.readBytes(channeSession.lastCmd.responseLen);
+        //
+        // todo：超时处理可能已经销毁了lastCmd，然后才读取道返回，这个时候需要重新把 in 中的写指针重置
+        if (channeSession.lastCmd == null) {
+            in.skipBytes(in.readableBytes());
+        } else {
+            ByteBuf data = in.readBytes(channeSession.lastCmd.responseLen);
 
+            ChannelMessage msg = new ChannelMessage(ConstantFromWhere.FROM_RPS);
+            msg.nodeId = channeSession.lastCmd.nodeId;
+            msg.type = channeSession.lastCmd.type;
+            msg.payload = data;
 
-        ChannelMessage msg = new ChannelMessage(ConstantFromWhere.FROM_RPS);
-        msg.nodeId = channeSession.lastCmd.nodeId;
-        msg.type = channeSession.lastCmd.type;
-        msg.payload = data;
-
-        out.add(msg);
+            out.add(msg);
+        }
     }
-
 }

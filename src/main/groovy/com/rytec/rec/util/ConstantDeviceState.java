@@ -6,14 +6,14 @@ package com.rytec.rec.util;
  * Feature 状态
  */
 
-@JSExport("DEVICE_STATE")
+@AnnotationJSExport("DEVICE_STATE")
 public interface ConstantDeviceState {
-    @JSExport("不可用")
+    @AnnotationJSExport("不可用")
     int STATE_INAVAILABLE = 10;
-    @JSExport("正常状态")
+    @AnnotationJSExport("正常状态")
     int STATE_NORMAL = 11;
-    @JSExport("工作状态")
+    @AnnotationJSExport("工作状态")
     int STATE_OFF = 20;
-    @JSExport("停止状态")
+    @AnnotationJSExport("停止状态")
     int STATE_ON = 21;
 }
