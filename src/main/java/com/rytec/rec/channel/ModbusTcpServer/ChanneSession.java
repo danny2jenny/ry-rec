@@ -33,9 +33,7 @@ public class ChanneSession {
     // ***********************以下变量需要同步**************************
     // 读取不需要锁定，写需要锁定
     // 最后一次发送的命令
-    private volatile ChannelMessage lastCmd = null;
-    // 定时器，
-    private volatile Integer timmer = 0;
+    public volatile ChannelMessage lastCmd = null;
     // 当前定时队列的位置
     private volatile Integer currentTimerQuerryIndex = 0;
 
@@ -46,15 +44,6 @@ public class ChanneSession {
     private Queue<ChannelMessage> instantQueueCmd = new ConcurrentLinkedQueue();
     // 需要定时发送的队列命令
     public volatile List<ChannelMessage> timerQueryCmd = new ArrayList();
-
-    public ChannelMessage getLastCmd() {
-        return lastCmd;
-    }
-
-    public synchronized void setLastCmd(ChannelMessage lastCmd) {
-        this.lastCmd = lastCmd;
-    }
-
 
     // ***************************************************************
 
@@ -72,9 +61,14 @@ public class ChanneSession {
         HashMap<Integer, ChannelNode> cha = modbusTcpServer.channelNodes.get(cid);
 
         for (ChannelNode cn : cha.values()) {
+
             NodeInterface node = modbusTcpServer.nodeManager.getNodeComInterface(cn.getNtype());
-            ChannelMessage msg = node.genMessage(ConstantFromWhere.FROM_TIMER, cn.getNid(), ConstantCommandType.GENERAL_READ, 0);
-            timerQueryCmd.add(msg);
+
+            if (node!=null){
+                ChannelMessage msg = node.genMessage(ConstantFromWhere.FROM_TIMER, cn.getNid(), ConstantCommandType.GENERAL_READ, 0);
+                timerQueryCmd.add(msg);
+            }
+
         }
     }
 
@@ -109,22 +103,13 @@ public class ChanneSession {
     * todo: 这里是定时线程，需要同步
     */
     public synchronized void timerProcess() {
-        // 如果当前有未完成的命令，返回
 
+        // 如果有未返回的命令，退出
         if (lastCmd != null) {
-            // 判断超时
-            timmer++;
-            if (timmer > 4) {
-                modbusTcpServer.nodeError(lastCmd);
-
-                lastCmd = null;
-            } else {
-                return;
-            }
+            return;
         }
 
         // 首先满足实时队列
-
         lastCmd = instantQueueCmd.poll();
 
         if (lastCmd == null) {
@@ -133,10 +118,8 @@ public class ChanneSession {
 
         // 如果存在当前命令，就发送
         if (lastCmd != null) {
-            timmer = 0;
             cha.writeAndFlush(lastCmd);
         }
-
     }
 
 }

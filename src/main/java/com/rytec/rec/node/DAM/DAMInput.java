@@ -5,8 +5,10 @@ import com.rytec.rec.node.*;
 import com.rytec.rec.node.node.NodeInput;
 import com.rytec.rec.util.AnnotationDescription;
 import com.rytec.rec.util.AnnotationNodeType;
+import com.rytec.rec.util.CRC16;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,6 +34,8 @@ import org.springframework.stereotype.Service;
 @AnnotationNodeType(1002)
 @AnnotationDescription("DMA 输入")
 public class DAMInput extends NodeInput implements NodeInterface {
+
+    private final org.slf4j.Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     NodeManager nodeManager;
@@ -66,8 +70,9 @@ public class DAMInput extends NodeInput implements NodeInterface {
         rst.from = msg.from;
         rst.type = msg.type;
         rst.node = msg.nodeId;
-        ByteBuf payload = (ByteBuf) msg.payload;
-        int val = payload.getByte(3);
+        ByteBuf payload =  (ByteBuf) msg.payload;
+        byte val = payload.getByte(3);
+
 
         if (val > 0) {
             rst.value = true;

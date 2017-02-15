@@ -33,7 +33,7 @@ import org.springframework.stereotype.Service;
  */
 
 @Service
-@AnnotationNodeType(2201)
+//@AnnotationNodeType(2201)
 @AnnotationDescription("HT-C1风速")
 public class HT_C1 extends NodeAnalog implements NodeInterface {
 

@@ -181,9 +181,9 @@ public class ModbusTcpServer implements ChannelInterface {
      * @param request  请求消息
      * @param response 回应消息
      */
-    public void receiveMsg(String chaId, ChannelMessage request, ChannelMessage response) {
+    public void receiveMsg(String chaId, ChannelMessage response) {
 
-        ChannelNode cn = (ChannelNode) channelNodes.get(chaId).get(request.nodeId);
+        ChannelNode cn = (ChannelNode) channelNodes.get(chaId).get(response.nodeId);
         NodeInterface nodeBean = nodeManager.getNodeComInterface(cn.getNtype());
 
         // 解码值

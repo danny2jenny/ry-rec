@@ -11,6 +11,7 @@ import com.rytec.rec.util.ConstantFromWhere;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
+import io.netty.handler.timeout.IdleStateEvent;
 import org.slf4j.LoggerFactory;
 
 import java.net.InetSocketAddress;
@@ -65,7 +66,7 @@ public class ModbusHandler extends SimpleChannelInboundHandler<ChannelMessage> {
     protected void channelRead0(ChannelHandlerContext ctx, ChannelMessage response) throws Exception {
 
         // 得到当前通道对应的Session
-        ChanneSession channeSession = ctx.channel().attr(ModbusCommon.MODBUS_STATE).get();
+        ChanneSession channelSession = ctx.channel().attr(ModbusCommon.MODBUS_STATE).get();
 
         switch (response.from) {
             // 登录
@@ -82,8 +83,8 @@ public class ModbusHandler extends SimpleChannelInboundHandler<ChannelMessage> {
                 modbusTcpServer.clients.put(modbusId, ctx.channel());
 
                 //设置Channel的Session
-                channeSession = new ChanneSession(modbusTcpServer, modbusId, ctx.channel());
-                ctx.channel().attr(ModbusCommon.MODBUS_STATE).set(channeSession);
+                channelSession = new ChanneSession(modbusTcpServer, modbusId, ctx.channel());
+                ctx.channel().attr(ModbusCommon.MODBUS_STATE).set(channelSession);
 
                 //移除相应的登录解码器，添加帧解码器
                 ctx.pipeline().remove("LoginDecoder");
@@ -92,9 +93,7 @@ public class ModbusHandler extends SimpleChannelInboundHandler<ChannelMessage> {
                 break;
             // 远端的回应
             case ConstantFromWhere.FROM_RPS:
-                modbusTcpServer.receiveMsg(channeSession.id, channeSession.getLastCmd(), response);
-                // 清除当前发送的命令
-                channeSession.setLastCmd(null);
+                modbusTcpServer.receiveMsg(channelSession.id, response);
                 break;
             default:
                 break;
@@ -111,6 +110,27 @@ public class ModbusHandler extends SimpleChannelInboundHandler<ChannelMessage> {
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
         cause.printStackTrace();
         //ctx.close();
+    }
+
+    /**
+     * 超时的处理
+     *
+     * @param ctx
+     * @param evt
+     * @throws Exception
+     */
+    @Override
+    public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception {
+        // 超时处理
+        if (evt instanceof IdleStateEvent) {
+            ChanneSession channelSession = ctx.channel().attr(ModbusCommon.MODBUS_STATE).get();
+            if (channelSession.lastCmd != null) {
+                logger.debug("超时:" + channelSession.lastCmd.nodeId);
+            }
+            channelSession.lastCmd=null;
+
+
+        }
     }
 
 }

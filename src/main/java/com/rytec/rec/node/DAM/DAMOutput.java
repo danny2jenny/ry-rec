@@ -108,7 +108,7 @@ public class DAMOutput extends NodeOutput implements NodeInterface {
     //消息解码
     public NodeMessage decodeMessage(ChannelMessage msg) {
 
-        int value = 0;
+        byte value = 0;
         ChannelMessage respond = msg;
 
         switch (respond.type) {
