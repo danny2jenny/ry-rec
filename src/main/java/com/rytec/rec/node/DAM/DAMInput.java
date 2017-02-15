@@ -5,7 +5,6 @@ import com.rytec.rec.node.*;
 import com.rytec.rec.node.node.NodeInput;
 import com.rytec.rec.util.AnnotationDescription;
 import com.rytec.rec.util.AnnotationNodeType;
-import com.rytec.rec.util.CRC16;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import org.slf4j.LoggerFactory;
