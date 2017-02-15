@@ -91,7 +91,6 @@ public class CooperateManager {
             AbstractOperator operator = deviceManager.getOperatorById(action.getTarget());
             operator.operate(ConstantFromWhere.FROM_ALI, action.getTarget(), action.getAct(), action.getParm());
         }
-
         return 0;
     }
 

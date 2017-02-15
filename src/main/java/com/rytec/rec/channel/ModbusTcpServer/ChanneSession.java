@@ -1,10 +1,15 @@
 package com.rytec.rec.channel.ModbusTcpServer;
 
 import com.rytec.rec.channel.ChannelMessage;
+import com.rytec.rec.db.model.ChannelNode;
+import com.rytec.rec.node.NodeInterface;
+import com.rytec.rec.util.ConstantCommandType;
+import com.rytec.rec.util.ConstantFromWhere;
 import io.netty.channel.Channel;
 import org.slf4j.LoggerFactory;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
  * Created by danny on 16-12-14.
@@ -22,23 +27,37 @@ public class ChanneSession {
     //对应的Channel
     private Channel cha;
 
-    // 当前定时队列的位置
-    private int currentTimerQuerryIndex = 0;
-
     //channel的id  ip：port
     public String id;
 
-    // 定时器，
-    private volatile int timmer = 0;
-
+    // ***********************以下变量需要同步**************************
+    // 读取不需要锁定，写需要锁定
     // 最后一次发送的命令
-    public volatile ChannelMessage lastCmd = null;
+    private volatile ChannelMessage lastCmd = null;
+    // 定时器，
+    private volatile Integer timmer = 0;
+    // 当前定时队列的位置
+    private volatile Integer currentTimerQuerryIndex = 0;
 
-    // 需要定时发送的队列命令
-    public List<ChannelMessage> timerQueryCmd = new ArrayList();
+    // 以下变量不需要锁定
 
     // 非定时队列的发送命令(用户，或者是联动)
-    volatile Queue<ChannelMessage> instantQueueCmd = new LinkedList();
+    // 可能多线程访问
+    private Queue<ChannelMessage> instantQueueCmd = new ConcurrentLinkedQueue();
+    // 需要定时发送的队列命令
+    public volatile List<ChannelMessage> timerQueryCmd = new ArrayList();
+
+    public ChannelMessage getLastCmd() {
+        return lastCmd;
+    }
+
+    public synchronized void setLastCmd(ChannelMessage lastCmd) {
+        this.lastCmd = lastCmd;
+    }
+
+
+    // ***************************************************************
+
 
     /**
      * @param cid
@@ -48,6 +67,15 @@ public class ChanneSession {
         id = cid;
         cha = channel;
         modbusTcpServer = mts;
+
+        //设置查询命令集合
+        HashMap<Integer, ChannelNode> cha = modbusTcpServer.channelNodes.get(cid);
+
+        for (ChannelNode cn : cha.values()) {
+            NodeInterface node = modbusTcpServer.nodeManager.getNodeComInterface(cn.getNtype());
+            ChannelMessage msg = node.genMessage(ConstantFromWhere.FROM_TIMER, cn.getNid(), ConstantCommandType.GENERAL_READ, 0);
+            timerQueryCmd.add(msg);
+        }
     }
 
 
@@ -78,14 +106,15 @@ public class ChanneSession {
     /*
     * 处理命令队列
     * 优先处理命令队列，然后再处理查询命令
+    * todo: 这里是定时线程，需要同步
     */
-    public void timerProcess() {
-        //logger.debug("Timmer:" + timmer);
+    public synchronized void timerProcess() {
         // 如果当前有未完成的命令，返回
+
         if (lastCmd != null) {
             // 判断超时
             timmer++;
-            if (timmer > 10) {
+            if (timmer > 4) {
                 modbusTcpServer.nodeError(lastCmd);
 
                 lastCmd = null;
@@ -95,11 +124,10 @@ public class ChanneSession {
         }
 
         // 首先满足实时队列
-        if (instantQueueCmd.size() > 0) {
-            //实时队列
-            lastCmd = instantQueueCmd.poll();
-        } else {
-            //定时发送
+
+        lastCmd = instantQueueCmd.poll();
+
+        if (lastCmd == null) {
             lastCmd = getNextQuery();
         }
 

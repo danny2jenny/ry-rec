@@ -89,21 +89,12 @@ public class ModbusHandler extends SimpleChannelInboundHandler<ChannelMessage> {
                 ctx.pipeline().remove("LoginDecoder");
                 ctx.pipeline().addFirst("FrameDecoder", new ModbusFrameDecoder());
 
-                //设置查询命令集合
-                HashMap<Integer, ChannelNode> cha = modbusTcpServer.channelNodes.get(modbusId);
-
-                for (ChannelNode cn : cha.values()) {
-                    NodeInterface node = modbusTcpServer.nodeManager.getNodeComInterface(cn.getNtype());
-                    ChannelMessage msg = node.genMessage(ConstantFromWhere.FROM_TIMER, cn.getNid(), ConstantCommandType.GENERAL_READ, 0);
-                    channeSession.timerQueryCmd.add(msg);
-                }
                 break;
             // 远端的回应
             case ConstantFromWhere.FROM_RPS:
-                modbusTcpServer.receiveMsg(channeSession.id, channeSession.lastCmd, response);
-
+                modbusTcpServer.receiveMsg(channeSession.id, channeSession.getLastCmd(), response);
                 // 清除当前发送的命令
-                channeSession.lastCmd = null;
+                channeSession.setLastCmd(null);
                 break;
             default:
                 break;
