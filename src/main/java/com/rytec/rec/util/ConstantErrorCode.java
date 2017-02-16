@@ -12,6 +12,8 @@ public interface ConstantErrorCode {
     @AnnotationJSExport("成功")
     int RST_SUCCESS = 0;
 
+    @AnnotationJSExport("CRC 错误")
+    int REST_CRC_ERROR = 10;
 
     // DEVICE 操作的错误代码
     @AnnotationJSExport("设备未找到")

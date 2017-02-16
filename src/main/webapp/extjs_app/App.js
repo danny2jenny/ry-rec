@@ -29,7 +29,8 @@ Ext.application({
     ],
 
     requires: [
-        'app.lib.GridDragPlugin'
+        'app.lib.GridDragPlugin',
+        'app.device.Device_201'
     ],
 
 

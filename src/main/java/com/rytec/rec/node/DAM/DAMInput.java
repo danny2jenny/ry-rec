@@ -78,7 +78,7 @@ public class DAMInput extends NodeInput implements NodeInterface {
         } else {
             rst.value = false;
         }
-
+        payload.release();
         return rst;
     }
 

@@ -131,7 +131,7 @@ public class DAMOutput extends NodeOutput implements NodeInterface {
         } else {
             rst.value = false;
         }
-
+        ((ByteBuf) respond.payload).release();
         return rst;
     }
 

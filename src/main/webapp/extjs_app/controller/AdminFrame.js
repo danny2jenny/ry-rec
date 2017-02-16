@@ -19,7 +19,8 @@ Ext.define('app.controller.AdminFrame', {
         'admin.frame.GisEditor',
         'admin.panel.FormLayerUpload',
         'admin.panel.GisLayer',
-        'admin.panel.NodeConfig'
+        'admin.panel.NodeConfig',
+        'admin.frame.Cooperate'
     ],
 
     stores: [

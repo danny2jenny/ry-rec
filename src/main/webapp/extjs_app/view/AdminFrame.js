@@ -34,6 +34,9 @@ Ext.define('app.view.AdminFrame', {
                     xtype: 'admin.frame.channelnode'
                 },
                 {
+                    xtype: 'admin.frame.cooperate'
+                },
+                {
                     xtype: 'admin.panel.option'
                 },
                 {

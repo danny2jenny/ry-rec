@@ -6,7 +6,7 @@
 
 
 Ext.define('app.view.admin.panel.NodeConfig', {
-    extend: 'Ext.form.Panel',
+    extend: 'Ext.panel.Panel',
     alias: 'widget.admin.panel.nodeconfig',
     itemId: 'admin_panel_nodeconfig',
     title: '节点参数配置',
@@ -15,9 +15,6 @@ Ext.define('app.view.admin.panel.NodeConfig', {
 
 
     bodyPadding: '5 5 0',
-    //layout: 'form',
-    //frame: true,
-    fileUpload: true,
     items: [
         {
             xtype: 'numberfield',
@@ -44,10 +41,6 @@ Ext.define('app.view.admin.panel.NodeConfig', {
     buttons: [{
         text: "更新",
         handler: function () {
-
-            var form = this.up('form').getForm();
-
-            debugger;
             var pa = this.ownerCt.ownerCt;
             var selection = pa.selection;
             var opt = {};

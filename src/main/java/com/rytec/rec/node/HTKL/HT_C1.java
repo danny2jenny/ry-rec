@@ -78,6 +78,7 @@ public class HT_C1 extends NodeAnalog implements NodeInterface {
 
         int val = payload.getShort(3);
         rst.value = val * nodeRuntimeBean.nodeConfig.pA + nodeRuntimeBean.nodeConfig.pB;
+        payload.release();
         return rst;
     }
 

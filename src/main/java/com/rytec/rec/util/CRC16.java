@@ -62,12 +62,10 @@ public class CRC16 {
             ucCRCLo = ucCRCHi ^ crc16_tab_h[iIndex];
             ucCRCHi = crc16_tab_l[iIndex];
         }
-        //return ((ucCRCHi & 0x00ff) << 8) | (ucCRCLo & 0x00ff) & 0xffff;
         return (ucCRCHi & 0x00ff) | ((ucCRCLo & 0x00ff) << 8) & 0xffff;
     }
 
     /**
-     *
      * @param src
      * @return
      */
@@ -88,11 +86,23 @@ public class CRC16 {
     }
 
     /**
-     *
      * @param b
      * @return
      */
     public static String byteToHex(byte b) {
         return Integer.toHexString(b & 0xFF);
+    }
+
+    public static int check(byte[] in) {
+        int crc = CRC16.calcCrc16(in, 0, in.length - 2);
+        byte a = in[in.length - 1];
+        byte b = in[in.length - 2];
+        int crc_ = (a & 0x00ff) | ((b & 0x00ff) << 8) & 0xffff;
+
+        if (crc == crc_) {
+            return 0;
+        } else {
+            return ConstantErrorCode.REST_CRC_ERROR;
+        }
     }
 }

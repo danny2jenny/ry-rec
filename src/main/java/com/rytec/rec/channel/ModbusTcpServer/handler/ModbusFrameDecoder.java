@@ -3,8 +3,10 @@ package com.rytec.rec.channel.ModbusTcpServer.handler;
 import com.rytec.rec.channel.ModbusTcpServer.ChanneSession;
 import com.rytec.rec.channel.ModbusTcpServer.ModbusCommon;
 import com.rytec.rec.channel.ChannelMessage;
+import com.rytec.rec.util.CRC16;
 import com.rytec.rec.util.ConstantFromWhere;
 import io.netty.buffer.ByteBuf;
+import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ByteToMessageDecoder;
 import org.slf4j.LoggerFactory;
@@ -23,28 +25,46 @@ public class ModbusFrameDecoder extends ByteToMessageDecoder {
 
         ChanneSession channelSession = ctx.channel().attr(ModbusCommon.MODBUS_STATE).get();
 
-        // todo：超时处理可能已经销毁了lastCmd，然后才读取道返回，这个时候需要重新把 in 中的写指针重置
-        // todo：这里应该加上CRC校验
+        int len = channelSession.getLastOutMsg().responseLen;
 
+        if (in.readableBytes() < len) {
+            return;
+        }
 
-        if (channelSession.getLastOutMsg() == null) {
-            // 没有发送，但是有接收的消息，跳过接收的内容
+            /*
+            * 这里应该是读取最后一段的内容，
+            * 因为重头读取可能读取到上一次没有处理完的脏数据
+            * 当成功收到回应后，清楚当前的缓冲
+            * -----------------------
+            * |  遗留数据 |  有效数据 |
+            * -----------------------
+            *
+            * readableBytes() - len ： 需要跳过的字节
+            */
+
+        // todo: data 和 payload 可以放在 session 中增加效率
+
+        byte[] data = new byte[len];
+        in.getBytes(in.readableBytes() - len, data, 0, len);
+        int error = CRC16.check(data);
+
+        if (error == 0) {
+
             in.skipBytes(in.readableBytes());
-        } else {
-            int len = channelSession.getLastOutMsg().responseLen;
+            // 成功组帧
+            ByteBuf payload = Unpooled.buffer(len);
+            payload.setBytes(0, data);
 
-            if (in.readableBytes() < len) {
-                return;
-            }
-
-            //收到完整的消息
             ChannelMessage msg = new ChannelMessage(ConstantFromWhere.FROM_RPS);
-            msg.payload = in.readBytes(len);
+            msg.payload = payload;
+
             msg.nodeId = channelSession.getLastOutMsg().nodeId;
             msg.type = channelSession.getLastOutMsg().type;
             // 清除当前发送的命令
             channelSession.clearLastOutMsg();
             out.add(msg);
         }
+
+
     }
 }

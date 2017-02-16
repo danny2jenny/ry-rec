@@ -6,6 +6,14 @@
 
 ry = new Object();
 
+/*
+ * Device 的管理额对象列表
+ * 'devicd_XXX'->Object
+ * 其中 XXX 是Device的类型编号
+ */
+
+ry.devices = {};
+
 //通过index翻译成对应的值
 ry.trans = function (index, type) {
     for (var i = 0; i < type.length; i++) {
@@ -14,7 +22,7 @@ ry.trans = function (index, type) {
         }
     }
     return "*未知*";
-}
+};
 
 
 ry.CHANNEL_TYPE = [];       //channel cat=1

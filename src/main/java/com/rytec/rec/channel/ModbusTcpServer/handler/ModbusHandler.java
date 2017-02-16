@@ -105,7 +105,7 @@ public class ModbusHandler extends SimpleChannelInboundHandler<ChannelMessage> {
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
         cause.printStackTrace();
-        //ctx.close();
+        ctx.close();
     }
 
     /**
