@@ -4,9 +4,6 @@ import com.rytec.rec.channel.ModbusTcpServer.ChanneSession;
 import com.rytec.rec.channel.ModbusTcpServer.ModbusCommon;
 import com.rytec.rec.channel.ModbusTcpServer.ModbusTcpServer;
 import com.rytec.rec.channel.ChannelMessage;
-import com.rytec.rec.db.model.ChannelNode;
-import com.rytec.rec.node.NodeInterface;
-import com.rytec.rec.util.ConstantCommandType;
 import com.rytec.rec.util.ConstantFromWhere;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
@@ -15,7 +12,6 @@ import io.netty.handler.timeout.IdleStateEvent;
 import org.slf4j.LoggerFactory;
 
 import java.net.InetSocketAddress;
-import java.util.HashMap;
 
 /**
  * Created by danny on 16-12-12.
@@ -124,12 +120,7 @@ public class ModbusHandler extends SimpleChannelInboundHandler<ChannelMessage> {
         // 超时处理
         if (evt instanceof IdleStateEvent) {
             ChanneSession channelSession = ctx.channel().attr(ModbusCommon.MODBUS_STATE).get();
-            if (channelSession.lastCmd != null) {
-                logger.debug("超时:" + channelSession.lastCmd.nodeId);
-            }
-            channelSession.lastCmd=null;
-
-
+            channelSession.checkOverTime();
         }
     }
 

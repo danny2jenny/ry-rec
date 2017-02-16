@@ -187,7 +187,6 @@ public class ModbusTcpServer implements ChannelInterface {
         NodeInterface nodeBean = nodeManager.getNodeComInterface(cn.getNtype());
 
         // 解码值
-
         NodeMessage val = nodeBean.decodeMessage(response);
 
         nodeManager.onMessage(val);

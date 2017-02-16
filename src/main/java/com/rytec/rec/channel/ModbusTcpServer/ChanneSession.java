@@ -33,7 +33,7 @@ public class ChanneSession {
     // ***********************以下变量需要同步**************************
     // 读取不需要锁定，写需要锁定
     // 最后一次发送的命令
-    public volatile ChannelMessage lastCmd = null;
+    private volatile ChannelMessage lastOutMsg = null;
     // 当前定时队列的位置
     private volatile Integer currentTimerQuerryIndex = 0;
 
@@ -43,7 +43,18 @@ public class ChanneSession {
     // 可能多线程访问
     private Queue<ChannelMessage> instantQueueCmd = new ConcurrentLinkedQueue();
     // 需要定时发送的队列命令
-    public volatile List<ChannelMessage> timerQueryCmd = new ArrayList();
+    private volatile List<ChannelMessage> timerQueryList = new ArrayList();
+
+    public ChannelMessage getLastOutMsg(){
+        return lastOutMsg;
+    }
+
+    /**
+     * 清除当前发送的消息
+     */
+    public synchronized void clearLastOutMsg() {
+        lastOutMsg = null;
+    }
 
     // ***************************************************************
 
@@ -64,9 +75,9 @@ public class ChanneSession {
 
             NodeInterface node = modbusTcpServer.nodeManager.getNodeComInterface(cn.getNtype());
 
-            if (node!=null){
+            if (node != null) {
                 ChannelMessage msg = node.genMessage(ConstantFromWhere.FROM_TIMER, cn.getNid(), ConstantCommandType.GENERAL_READ, 0);
-                timerQueryCmd.add(msg);
+                timerQueryList.add(msg);
             }
 
         }
@@ -78,11 +89,11 @@ public class ChanneSession {
      */
 
     private ChannelMessage getNextQuery() {
-        if (timerQueryCmd.size() == 0) {
+        if (timerQueryList.size() == 0) {
             return null;
         }
-        ChannelMessage msg = timerQueryCmd.get(currentTimerQuerryIndex);
-        currentTimerQuerryIndex = (currentTimerQuerryIndex + 1) % timerQueryCmd.size();
+        ChannelMessage msg = timerQueryList.get(currentTimerQuerryIndex);
+        currentTimerQuerryIndex = (currentTimerQuerryIndex + 1) % timerQueryList.size();
         return msg;
     }
 
@@ -97,28 +108,39 @@ public class ChanneSession {
         timerProcess();
     }
 
-    /*
-    * 处理命令队列
-    * 优先处理命令队列，然后再处理查询命令
-    * todo: 这里是定时线程，需要同步
-    */
+    /**
+     * 检查超时
+     */
+    public synchronized void checkOverTime() {
+        if (lastOutMsg != null) {
+            logger.debug("超时："+ lastOutMsg.nodeId);
+            lastOutMsg = null;
+            //todo: 超时处理
+        }
+    }
+
+    /**
+     * 处理命令队列
+     * 优先处理命令队列，然后再处理查询命令
+     * todo: 这里是定时线程，需要同步
+     */
     public synchronized void timerProcess() {
 
         // 如果有未返回的命令，退出
-        if (lastCmd != null) {
+        if (lastOutMsg != null) {
             return;
         }
 
         // 首先满足实时队列
-        lastCmd = instantQueueCmd.poll();
+        lastOutMsg = instantQueueCmd.poll();
 
-        if (lastCmd == null) {
-            lastCmd = getNextQuery();
+        if (lastOutMsg == null) {
+            lastOutMsg = getNextQuery();
         }
 
         // 如果存在当前命令，就发送
-        if (lastCmd != null) {
-            cha.writeAndFlush(lastCmd);
+        if (lastOutMsg != null) {
+            cha.writeAndFlush(lastOutMsg);
         }
     }
 
