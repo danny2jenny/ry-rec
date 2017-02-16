@@ -16,7 +16,7 @@ public interface NodeInterface {
      * @return
      */
 
-    // 生成一个消息对象 todo: 传入参数改成 NodeMessage
+    // 生成一个消息对象
     ChannelMessage genMessage(int where, int nodeId, int cmd, int value);
 
     /**

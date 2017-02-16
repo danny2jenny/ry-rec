@@ -59,7 +59,10 @@ public class JSConfig implements ConstantDeviceFunction, ConstantDeviceState, Co
     @RequestMapping(value = "/config")
     public String genJsConfig(Model model) {
 
-        // 把WEB端所需要的常量输出
+        /**
+         * 把WEB端所需要的常量输出
+         * 常量在该对象的实现的接口当中
+         */
         Class<?>[] constSets = this.getClass().getInterfaces();
 
         HashMap<String, Object> rst = new HashMap<>();
@@ -80,7 +83,23 @@ public class JSConfig implements ConstantDeviceFunction, ConstantDeviceState, Co
             rst.put(annotation.value(), jsConst);
         }
 
-        // 把 Channel、Node、Device 的类型进行常量的输出
+
+        /**
+         * 图标集的配置常量
+         */
+        ConfigExample configExample = new ConfigExample();
+        configExample.createCriteria().andCatEqualTo(11);
+        List<Config> icons = configMapper.selectByExample(configExample);
+        HashMap<Integer, String> cicon = new HashMap<>();
+        for (Config item : icons) {
+            cicon.put(Integer.parseInt(item.getValue()), item.getName());
+        }
+        rst.put("DEVICE_ICON", cicon);
+
+        /**
+         * 把 Channel、Node、Device 的类型进行常量的输出
+         *
+         */
 
         // 得到Channel的类型常量
         HashMap<Integer, ChannelInterface> cis = channelManager.getAllChannelInterface();
@@ -103,23 +122,60 @@ public class JSConfig implements ConstantDeviceFunction, ConstantDeviceState, Co
 
         // Device
         Map<Integer, AbstractOperator> dos = deviceManager.getAllDeviceOperator();
-        HashMap<Integer, String> cdo = new HashMap<>();
+        HashMap<Integer, String> deviceTypeList = new HashMap<>();
         for (Integer i : dos.keySet()) {
-            AbstractOperator doi = dos.get(i);
-            cdo.put(i, doi.getClass().getAnnotation(AnnotationDescription.class).value());
-        }
-        rst.put("DEVICE_TYPE", cdo);
+            // 输出设备类型
+            AbstractOperator deviceOperator = dos.get(i);
+            deviceTypeList.put(i, deviceOperator.getClass().getAnnotation(AnnotationJSExport.class).value());
 
 
-        // 图标集的配置常量
-        ConfigExample configExample = new ConfigExample();
-        configExample.createCriteria().andCatEqualTo(11);
-        List<Config> icons = configMapper.selectByExample(configExample);
-        HashMap<Integer, String> cicon = new HashMap<>();
-        for (Config item : icons) {
-            cicon.put(Integer.parseInt(item.getValue()), item.getName());
+            // 输出设备的信号和动作
+            HashMap<Integer, String> deviceSig = new HashMap<>();
+            HashMap<Integer, String> deviceAction = new HashMap<>();
+
+            String classFullName = deviceOperator.getClass().getName();
+            String className = classFullName.substring(classFullName.lastIndexOf('.') + 1);
+
+            for (Field field : deviceOperator.getClass().getDeclaredFields()) {
+                if (java.lang.reflect.Modifier.isStatic(field.getModifiers())) {
+                    AnnotationJSExport annotationDescription = field.getAnnotation(AnnotationJSExport.class);
+                    if (annotationDescription != null) {
+                        //需要输出的常量
+                        String fieldName = field.getName();
+                        if (fieldName.indexOf("SIG_") == 0) {
+                            // 信号常量
+                            try {
+                                deviceSig.put(field.getInt(null), annotationDescription.value());
+                            } catch (IllegalAccessException e) {
+
+                            }
+
+                        }
+
+                        if (fieldName.indexOf("ACT_") == 0) {
+                            // 动作常量
+                            try {
+                                deviceAction.put(field.getInt(null), annotationDescription.value());
+                            } catch (IllegalAccessException e) {
+
+                            }
+                        }
+                    }
+                }
+
+                if (!deviceSig.isEmpty()) {
+                    rst.put("DEVICE_SIG_" + i, deviceSig);
+                }
+
+                if (!deviceAction.isEmpty()) {
+                    rst.put("DEVICE_ACT_" + i, deviceAction);
+                }
+            }
+
+
         }
-        rst.put("DEVICE_ICON", cicon);
+        rst.put("DEVICE_TYPE", deviceTypeList);
+
 
         model.addAttribute("const", rst);
         return "const";

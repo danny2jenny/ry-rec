@@ -15,7 +15,7 @@ public class ChannelMessage {
     public int nodeId;                                //node的id
 
     public int responseLen = 0;                       //返回帧的长度
-    public Object payload;                            //有效数据，发送的或者是接收的  todo: 这个类型可能不方便
+    public Object payload;                            //有效数据，发送的或者是接收的
 
     public ChannelMessage() {
 

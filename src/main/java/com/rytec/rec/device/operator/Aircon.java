@@ -2,8 +2,8 @@ package com.rytec.rec.device.operator;
 
 
 import com.rytec.rec.device.AbstractOperator;
-import com.rytec.rec.util.AnnotationDescription;
 import com.rytec.rec.util.AnnotationDeviceType;
+import com.rytec.rec.util.AnnotationJSExport;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @AnnotationDeviceType(301)
-@AnnotationDescription("空调")
+@AnnotationJSExport("空调")
 public class Aircon extends AbstractOperator {
 
     private final org.slf4j.Logger logger = LoggerFactory.getLogger(this.getClass());

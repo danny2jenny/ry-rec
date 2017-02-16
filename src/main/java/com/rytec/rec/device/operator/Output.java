@@ -23,31 +23,31 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @AnnotationDeviceType(101)
-@AnnotationDescription("远程开关")
+@AnnotationJSExport("远程开关")
 public class Output extends AbstractOperator {
 
     /**
      * 常量的列表，表示该设备可以输出那些信号
      */
-    @AnnotationDescription("开启")
+    @AnnotationJSExport("开启")
     public static int SIG_ON = 1;           //开启信号1
 
-    @AnnotationDescription("关闭")
+    @AnnotationJSExport("关闭")
     public static int SIG_OFF = 0;          //关闭信号0
 
-    @AnnotationDescription("就地")
+    @AnnotationJSExport("就地")
     public static int SIG_LOCAL = 11;       //就地
 
-    @AnnotationDescription("远程")
+    @AnnotationJSExport("远程")
     public static int SIG_REMOTE = 12;      //远程
 
     /**
      * 动作行常量
      */
 
-    @AnnotationDescription("关闭")
+    @AnnotationJSExport("关闭")
     public static int ACT_OFF = 100;        //关闭
-    @AnnotationDescription("开启")
+    @AnnotationJSExport("开启")
     public static int ACT_ON = 101;         //开启
 
 

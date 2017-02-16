@@ -2,7 +2,6 @@ package com.rytec.rec.device.operator;
 
 import com.rytec.rec.device.AbstractOperator;
 import com.rytec.rec.util.ConstantDeviceState;
-import com.rytec.rec.util.AnnotationDescription;
 import com.rytec.rec.util.AnnotationDeviceType;
 import com.rytec.rec.util.AnnotationJSExport;
 import org.springframework.stereotype.Service;
@@ -19,7 +18,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @AnnotationDeviceType(201)
-@AnnotationDescription("模拟输入")
+@AnnotationJSExport("模拟输入")
 public class Analog extends AbstractOperator {
 
     @AnnotationJSExport("+高限告警")

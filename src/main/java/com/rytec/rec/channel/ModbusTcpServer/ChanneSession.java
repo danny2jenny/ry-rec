@@ -122,7 +122,6 @@ public class ChanneSession {
     /**
      * 处理命令队列
      * 优先处理命令队列，然后再处理查询命令
-     * todo: 这里是定时线程，需要同步
      */
     public synchronized void timerProcess() {
 
