@@ -25,9 +25,14 @@ public class ModbusFrameDecoder extends ByteToMessageDecoder {
 
         ChanneSession channelSession = ctx.channel().attr(ModbusCommon.MODBUS_STATE).get();
 
-        int len = channelSession.getLastOutMsg().responseLen;
+        ChannelMessage channelMessage = channelSession.getLastOutMsg();
 
-        if (in.readableBytes() < len) {
+        if (channelMessage == null){
+            return;
+        }
+
+
+        if (in.readableBytes() < channelMessage.responseLen) {
             return;
         }
 
@@ -44,15 +49,15 @@ public class ModbusFrameDecoder extends ByteToMessageDecoder {
 
         // todo: data 和 payload 可以放在 session 中增加效率
 
-        byte[] data = new byte[len];
-        in.getBytes(in.readableBytes() - len, data, 0, len);
+        byte[] data = new byte[channelMessage.responseLen];
+        in.getBytes(in.readableBytes() - channelMessage.responseLen, data, 0, channelMessage.responseLen);
         int error = CRC16.check(data);
 
         if (error == 0) {
 
             in.skipBytes(in.readableBytes());
             // 成功组帧
-            ByteBuf payload = Unpooled.buffer(len);
+            ByteBuf payload = Unpooled.buffer(channelMessage.responseLen);
             payload.setBytes(0, data);
 
             ChannelMessage msg = new ChannelMessage(ConstantFromWhere.FROM_RPS);
@@ -64,7 +69,5 @@ public class ModbusFrameDecoder extends ByteToMessageDecoder {
             channelSession.clearLastOutMsg();
             out.add(msg);
         }
-
-
     }
 }
