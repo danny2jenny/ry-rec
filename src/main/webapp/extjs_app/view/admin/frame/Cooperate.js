@@ -7,5 +7,12 @@ Ext.define('app.view.admin.frame.Cooperate', {
     layout: 'border',
     icon: '/icon/toolbar/gis.png',
     title: '联动配置',
-    items: []
+    items: [
+
+        {
+            xtype: 'admin.panel.ActionRule',
+            region: 'center',
+            margins: '0 0 0 0'
+        },
+    ]
 })

@@ -16,4 +16,4 @@ Ext.define('app.store.Channel', {
             destroy: extChannel.delete
         }
     }
-})
+});

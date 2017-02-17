@@ -88,4 +88,4 @@ Ext.define('app.view.admin.panel.Channel', {
             }
         }
     ]
-})
+});

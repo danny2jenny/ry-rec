@@ -20,6 +20,7 @@ Ext.define('app.controller.AdminFrame', {
         'admin.panel.FormLayerUpload',
         'admin.panel.GisLayer',
         'admin.panel.NodeConfig',
+        'admin.panel.ActionRule',
         'admin.frame.Cooperate'
     ],
 
@@ -31,7 +32,8 @@ Ext.define('app.controller.AdminFrame', {
         'Option',
         'ChannelType',
         'Gis',
-        'GisLayer'
+        'GisLayer',
+        'ActionRule'
     ],
 
     init: function () {

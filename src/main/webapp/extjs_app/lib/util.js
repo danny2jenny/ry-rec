@@ -13,6 +13,8 @@ ry = new Object();
  */
 
 ry.devices = {};
+// 存放Device编辑器下拉选项
+ry.deviceEditor = {};
 
 //通过index翻译成对应的值
 ry.trans = function (index, type) {

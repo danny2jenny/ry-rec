@@ -17,6 +17,7 @@
  * hideAdd: 隐藏添加按钮
  * hideDel：隐藏删除
  * hideRefresh:隐藏刷新
+ * isCell: true or false 不为空就是cell方式
  *
  */
 
@@ -143,41 +144,49 @@ Ext.define('app.lib.PluginGridEdit', {
         client.store.autoLoad = me.autoLoad;
 
         // 添加编辑控件
-        var rowEditing = Ext.create('Ext.grid.plugin.RowEditing', {
-            errorSummary: false,
 
-            /**
-             * 是否在取消编辑的时候自动删除添加的记录 if true, auto remove phantom record on
-             * cancel,default is true.
-             *
-             * @cfg {Boolean}
-             */
-            autoRecoverOnCancel: true,
+        if (me.isCell) {
+            var rowEditing = Ext.create('Ext.grid.plugin.CellEditing', {
+                clicksToEdit: 1
+            })
+        } else {
+            var rowEditing = Ext.create('Ext.grid.plugin.RowEditing', {
+                errorSummary: false,
 
-            /**
-             * 取消编辑 1.fireEvent 'canceledit' 2.when autoRecoverOnCancel is true,
-             * if record is phantom then remove it
-             *
-             * @private
-             * @override
-             */
-            cancelEdit: function () {
-                var me = this;
-                if (me.editing) {
-                    me.getEditor().cancelEdit();
-                    me.editing = false;
-                    me.fireEvent('canceledit', me.context);
-                    if (me.autoRecoverOnCancel) {
-                        me.grid.store.load();
+                /**
+                 * 是否在取消编辑的时候自动删除添加的记录 if true, auto remove phantom record on
+                 * cancel,default is true.
+                 *
+                 * @cfg {Boolean}
+                 */
+                autoRecoverOnCancel: true,
+
+                /**
+                 * 取消编辑 1.fireEvent 'canceledit' 2.when autoRecoverOnCancel is true,
+                 * if record is phantom then remove it
+                 *
+                 * @private
+                 * @override
+                 */
+                cancelEdit: function () {
+                    var me = this;
+                    if (me.editing) {
+                        me.getEditor().cancelEdit();
+                        me.editing = false;
+                        me.fireEvent('canceledit', me.context);
+                        if (me.autoRecoverOnCancel) {
+                            me.grid.store.load();
+                        }
                     }
-                }
-            },
+                },
 
-            saveBtnText: '保存',
-            cancelBtnText: '取消',
-            errorsText: "<font color='red'>错误信息</font>",
-            dirtyText: "已修改,你需要提交或取消变更"
-        });
+                saveBtnText: '保存',
+                cancelBtnText: '取消',
+                errorsText: "<font color='red'>错误信息</font>",
+                dirtyText: "已修改,你需要提交或取消变更"
+            });
+        }
+
 
         client.rowEditing = rowEditing;
         client.addPlugin(rowEditing);
@@ -190,6 +199,7 @@ Ext.define('app.lib.PluginGridEdit', {
             me.tbar.down('#buttonRefresh').setDisabled(false);
         }
 
+
         // 给主表增加事件
         if (me.master) {
             me.master.on('selectionchange', me.onMasterSelectChange, this);
@@ -198,7 +208,6 @@ Ext.define('app.lib.PluginGridEdit', {
         // 给自己的Grid添加事件
 
         me.getCmp().on('selectionchange', me.onSelectChange, this);
-
 
     }
 
