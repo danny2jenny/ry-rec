@@ -23,10 +23,10 @@ public class Input extends AbstractOperator {
      * 常量的列表，表示该设备可以输出那些信号
      */
     @AnnotationJSExport("开启")
-    public static int SIG_ON = 1;           //开启信号1
+    public static int SIG_ON = 10;           //开启信号1
 
     @AnnotationJSExport("关闭")
-    public static int SIG_OFF = 0;          //关闭信号0
+    public static int SIG_OFF = -10;          //关闭信号0
 
 
     @Override
@@ -34,10 +34,10 @@ public class Input extends AbstractOperator {
 
         if ((Boolean) newValue == true) {
             setState(deviceId, ConstantDeviceState.STATE_ON);
-            sendSig(deviceId, 1, null);
+            sendSig(deviceId, 10, null);
         } else {
             setState(deviceId, ConstantDeviceState.STATE_OFF);
-            sendSig(deviceId, 0, null);
+            sendSig(deviceId, -10, null);
         }
 
     }

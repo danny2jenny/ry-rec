@@ -21,6 +21,7 @@ Ext.define('app.controller.AdminFrame', {
         'admin.panel.GisLayer',
         'admin.panel.NodeConfig',
         'admin.panel.ActionRule',
+        'admin.panel.Actions',
         'admin.frame.Cooperate'
     ],
 
@@ -33,6 +34,7 @@ Ext.define('app.controller.AdminFrame', {
         'ChannelType',
         'Gis',
         'GisLayer',
+        'Actions',
         'ActionRule'
     ],
 

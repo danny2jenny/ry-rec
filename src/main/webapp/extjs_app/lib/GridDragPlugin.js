@@ -47,13 +47,9 @@ Ext.define('app.lib.GridDragPlugin', {
                     var fieldValue = this.dragData.records[0].get(this.dragField);
                     return Ext.String.format(this.dragText, fieldValue);
                 } else {
-                    //var count = this.dragData.records.length;
-                    //return Ext.String.format(this.dragText, count, count == 1 ? '' : 's');
                     return this.dragData.records[0].data[me.showField];
                 }
             }
         }
-
-
     }
 });

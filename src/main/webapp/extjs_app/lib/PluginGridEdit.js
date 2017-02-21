@@ -21,6 +21,8 @@
  *
  */
 
+//todo: 新添加数据得不到选中记录的id
+
 Ext.define('app.lib.PluginGridEdit', {
     alias: 'plugin.grid.editing',  //使用 ptypt:'grid.editing' 方式建立插件
     extend: 'Ext.AbstractPlugin',
@@ -29,7 +31,13 @@ Ext.define('app.lib.PluginGridEdit', {
         observable: 'Ext.util.Observable'
     },
 
-
+    // 主表新记录添加的通知
+    onMasterRecordCreated: function (rec) {
+        this.getCmp().newRec[this.fKey] = rec.data.id;
+        this.tbar.down('#buttonAdd').setDisabled(false);
+        this.tbar.down('#buttonRefresh').setDisabled(false);
+        this.getCmp().store.proxy.extraParams.masterId = rec.data.id;
+    },
     // 通过外键加载
     loadByMasterId: function (masterId) {
         var grid = this.getCmp();
@@ -39,10 +47,10 @@ Ext.define('app.lib.PluginGridEdit', {
 
     // 主表选择改变的事件
     onMasterSelectChange: function (view, selections, options) {
+        debugger;
         var me = this;
-
-        if (selections.length && selections[0].get('id')) {
-            var fkey = selections[0].get('id');
+        if (selections.length && selections[0].data.id) {
+            var fkey = selections[0].data.id;
             me.getCmp().newRec[this.fKey] = fkey;
             me.loadByMasterId(fkey);
 
@@ -64,6 +72,7 @@ Ext.define('app.lib.PluginGridEdit', {
     init: function (client) {
         var me = this;
 
+        // 在 grid 上建立缺省的添加记录 newRec
         if (!me.newRec) {
             me.getCmp().newRec = {};
         } else {
@@ -90,8 +99,8 @@ Ext.define('app.lib.PluginGridEdit', {
                             insertRecord = editGrid.newRec;
                         }
 
-                        editGrid.store.insert(0, insertRecord);
-                        this.ownerCt.ownerCt.rowEditing.startEdit(0, 0);
+                        var editRec = editGrid.store.insert(0, insertRecord);
+                        this.ownerCt.ownerCt.rowEditing.startEdit(editRec[0], 0);
                     }
                 },
 
@@ -202,12 +211,20 @@ Ext.define('app.lib.PluginGridEdit', {
 
         // 给主表增加事件
         if (me.master) {
-            me.master.on('selectionchange', me.onMasterSelectChange, this);
+            me.master.on('selectionchange', me.onMasterSelectChange, me);
+            me.master.on('masterRecordCreated', me.onMasterRecordCreated, me);
         }
 
         // 给自己的Grid添加事件
 
         me.getCmp().on('selectionchange', me.onSelectChange, this);
+
+        //主表添加记录成功后，触发事件
+        me.getCmp().store.on('write', function (store, operation, eOpts) {
+            if (operation.action == "create") {
+                me.getCmp().fireEvent('masterRecordCreated', operation.records[0]);
+            }
+        }, me)
 
     }
 

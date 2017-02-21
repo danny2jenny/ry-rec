@@ -89,3 +89,12 @@ Ext.define('app.device.Device_201', {
 
 // 加入到全局变量
 ry.devices['device_201'] = Ext.create('app.device.Device_201', {});
+
+ry.deviceEditor['sig_201'] =Ext.create('Ext.form.field.ComboBox',{
+    forceSelection: true,
+    allowBlank: false,
+    editable: false,
+    autoSelect: true,
+    triggerAction: 'all',
+    store: ry.DEVICE_SIG_201
+});

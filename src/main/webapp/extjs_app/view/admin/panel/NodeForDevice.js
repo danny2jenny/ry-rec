@@ -58,7 +58,7 @@ Ext.define('app.view.admin.panel.NodeForDevice', {
 
     viewConfig: {
         plugins: {
-            ddGroup: 'ddg_node',
+            dropGroup: 'groupNode',
             ptype: 'gridDragPlugin',
             enableDrop: true,
             enableDrag: false

@@ -2,8 +2,10 @@ package com.rytec.rec.web.admin;
 
 import ch.ralscha.extdirectspring.annotation.ExtDirectMethod;
 import ch.ralscha.extdirectspring.annotation.ExtDirectMethodType;
+import ch.ralscha.extdirectspring.bean.ExtDirectStoreReadRequest;
 import com.rytec.rec.db.mapper.ActionsMapper;
 import com.rytec.rec.db.model.Actions;
+import com.rytec.rec.db.model.ActionsExample;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +16,7 @@ import java.util.List;
 
 /**
  * Created by danny on 17-2-17.
- *
+ * <p>
  * Actions 的数据库维护
  */
 
@@ -28,8 +30,10 @@ public class ExtActions {
 
     // 列表
     @ExtDirectMethod(value = ExtDirectMethodType.STORE_READ)
-    public List<Actions> list() {
-        return actionsMapper.selectByExample(null);
+    public List<Actions> list(ExtDirectStoreReadRequest request) {
+        ActionsExample actionsExample = new ActionsExample();
+        actionsExample.createCriteria().andRuleEqualTo((Integer) request.getParams().get("masterId"));
+        return actionsMapper.selectByExample(actionsExample);
 
     }
 

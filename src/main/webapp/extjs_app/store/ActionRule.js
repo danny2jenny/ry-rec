@@ -8,6 +8,7 @@ Ext.define('app.store.ActionRule', {
     autoLoad: true,
     autoSync: true,
     model: 'app.model.ActionRule',
+    groupField: 'device',
     proxy: {
         type: 'direct',
         api: {

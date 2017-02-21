@@ -99,12 +99,3 @@ ry.deviceEditor['sig_102'] =Ext.create('Ext.form.field.ComboBox',{
     store: ry.DEVICE_SIG_102
 });
 
-ry.deviceEditor['act_102'] =Ext.create('Ext.form.field.ComboBox',{
-    forceSelection: true,
-    allowBlank: false,
-    editable: false,
-    autoSelect: true,
-    triggerAction: 'all',
-    store: ry.DEVICE_ACT_102
-});
-

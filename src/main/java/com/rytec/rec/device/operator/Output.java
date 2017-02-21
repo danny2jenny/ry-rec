@@ -29,16 +29,16 @@ public class Output extends AbstractOperator {
     /**
      * 常量的列表，表示该设备可以输出那些信号
      */
-    @AnnotationJSExport("开启")
+    //@AnnotationJSExport("开启")
     public static int SIG_ON = 1;           //开启信号1
 
-    @AnnotationJSExport("关闭")
-    public static int SIG_OFF = 0;          //关闭信号0
+    //@AnnotationJSExport("关闭")
+    public static int SIG_OFF = -1;          //关闭信号0
 
-    @AnnotationJSExport("就地")
+    //@AnnotationJSExport("就地")
     public static int SIG_LOCAL = 11;       //就地
 
-    @AnnotationJSExport("远程")
+    //@AnnotationJSExport("远程")
     public static int SIG_REMOTE = 12;      //远程
 
     /**

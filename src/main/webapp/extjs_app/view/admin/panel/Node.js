@@ -98,7 +98,7 @@ Ext.define('app.view.admin.panel.Node', {
     //拖放
     viewConfig: {
         plugins: {
-            ddGroup: 'ddg_node',
+            dragGroup: 'groupNode',
             ptype: 'gridDragPlugin',
             showField: 'name',
             enableDrop: false

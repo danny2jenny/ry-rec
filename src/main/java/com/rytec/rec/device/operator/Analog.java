@@ -22,19 +22,19 @@ import org.springframework.stereotype.Service;
 public class Analog extends AbstractOperator {
 
     @AnnotationJSExport("+高限告警")
-    public static int SIG_HIGH_2 = 2;
+    public static int SIG_HIGH_2 = 20;
 
     @AnnotationJSExport("+高限联动")
-    public static int SIG_HIGH_1 = 1;
+    public static int SIG_HIGH_1 = 10;
 
     @AnnotationJSExport("o正常")
-    public static int SIG_NORMAL = 0;
+    public static int SIG_NORMAL = 1;
 
     @AnnotationJSExport("-低限联动")
-    public static int SIG_LOW_1 = -1;
+    public static int SIG_LOW_1 = -10;
 
     @AnnotationJSExport("-低限告警")
-    public static int SIG_LOW_2 = -2;
+    public static int SIG_LOW_2 = -20;
 
     @Override
     public void onValueChanged(int deviceId, int fun, Object oldValue, Object newValue) {

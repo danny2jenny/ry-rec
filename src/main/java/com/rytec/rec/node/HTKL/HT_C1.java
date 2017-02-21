@@ -33,7 +33,7 @@ import org.springframework.stereotype.Service;
  */
 
 @Service
-//@AnnotationNodeType(2201)
+@AnnotationNodeType(2201)
 @AnnotationDescription("HT-C1风速")
 public class HT_C1 extends NodeAnalog implements NodeInterface {
 
@@ -52,7 +52,6 @@ public class HT_C1 extends NodeAnalog implements NodeInterface {
         frame.type = cmd;
         frame.responseLen = 7;
 
-        // Unpooled.Buffer
         ByteBuf buf = Unpooled.buffer(6);
         buf.writeByte(nodeRuntimeBean.channelNode.getAdr());
         buf.writeByte(0x03);

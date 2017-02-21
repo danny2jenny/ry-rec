@@ -21,11 +21,15 @@ Ext.define('app.view.admin.panel.ActionRule', {
         autoLoad: true,
     }],
 
-    // plugins: [
-    //     Ext.create('Ext.grid.plugin.CellEditing', {
-    //         clicksToEdit: 1
-    //     })
-    // ],
+    // 分组
+    features: [Ext.create('Ext.grid.feature.Grouping', {
+        groupHeaderTpl: ['{groupValue:this.formatValue}: 共 ({rows.length}) 个', {
+            formatValue: function (value) {
+                var store = Ext.getStore('Device');
+                return store.getById(value).getData().name;
+            }
+        }]
+    })],
 
     columns: [
         {
@@ -50,7 +54,6 @@ Ext.define('app.view.admin.panel.ActionRule', {
             width: 200,
             editor: ry.deviceEditor.sig_102,
             getEditor: function (record, defaultField) {
-                debugger;
                 var rec = record.getData();
                 var device = Ext.getStore('Device').getById(rec.device).getData();
 
@@ -67,12 +70,31 @@ Ext.define('app.view.admin.panel.ActionRule', {
         }
     ],
 
-    // 主表选择改变的事件
-    onSelectChange: function (view, selections, options) {
-        debugger;
-        var device = selections[0].getData().device;
-        var data = Ext.getStore('Device').getById(device).getData();
-        this.down('#fieldSig').setEditor(ry.deviceEditor['act_' + data.type]);
+    viewConfig: {
+        plugins: {
+            dropGroup: 'groupDevice',
+            ptype: 'gridDragPlugin',
+            enableDrop: true,
+            enableDrag: false
+        }
+    },
+
+    // 拖放后的事件
+    onDrop: function (data, targetRule, position) {
+
+        if (!data.records.length) {
+            return;
+        }
+        //data.view.ownerCt;
+        var data = data.records[0].data;
+
+        if(!ry.deviceEditor['sig_'+data.type]){
+            return;
+        }
+
+        var newItem = this.store.insert(this.store.getCount(), {
+            device: data.id
+        });
     },
 
     /**
@@ -81,7 +103,6 @@ Ext.define('app.view.admin.panel.ActionRule', {
     initComponent: function () {
         var me = this;
         me.callParent(arguments);
-
-        //me.on('selectionchange', me.onSelectChange, this);
+        me.on('onDragDrop', me.onDrop, this);
     }
 });
