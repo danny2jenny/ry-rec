@@ -16,8 +16,8 @@ import com.rytec.rec.node.NodeInterface;
 import com.rytec.rec.node.NodeManager;
 import com.rytec.rec.node.NodeMessage;
 import com.rytec.rec.util.AnnotationChannelType;
+import com.rytec.rec.util.AnnotationJSExport;
 import com.rytec.rec.util.ConstantErrorCode;
-import com.rytec.rec.util.AnnotationDescription;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
@@ -42,7 +42,7 @@ import java.util.logging.Logger;
 
 @Service
 @AnnotationChannelType(1001)
-@AnnotationDescription("Modbus TCP Server")
+@AnnotationJSExport("Modbus TCP Server")
 public class ModbusTcpServer implements ChannelInterface {
 
     private final org.slf4j.Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -162,7 +162,7 @@ public class ModbusTcpServer implements ChannelInterface {
      * <String, Integer>   ip:port -> 当前的轮训位置
      */
 
-    @Scheduled(fixedDelay = 50)
+    @Scheduled(fixedDelay = 100)
     private void doOnTime() {
         // 遍历已经登录的远端，并执行队列
         for (Channel cha : clients.values()) {

@@ -9,6 +9,9 @@ apply plugin: 'com.arenagod.gradle.MybatisGenerator'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
+// 解决Gradle缺省按照操作系统的编码来编译原文件
+compileJava.options.encoding = 'UTF-8'
+
 configurations {
     mybatisGenerator
 }
@@ -92,9 +95,17 @@ dependencies {
      */
     //compile "org.grails.plugins:asset-pipeline:2.13.1"
 
+    // Java 下面调用 .Net 的 Dll
+    //compile group: 'net.sf.jni4net', name: 'jni4net-bin', version: '0.8.8.0'
+
+    // https://mvnrepository.com/artifact/net.sf.jni4net/jni4net.j
+    //compile group: 'net.sf.jni4net', name: 'jni4net.j', version: '0.8.8.0'
+
+
     // 测试
     testCompile group: 'junit', name: 'junit', version: '4.11'
 
+    compile fileTree(dir: 'src/main/webapp/WEB-INF/lib', include: ['*.jar'])
 }
 
 

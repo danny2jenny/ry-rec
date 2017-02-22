@@ -85,11 +85,13 @@ public class ModbusHandler extends SimpleChannelInboundHandler<ChannelMessage> {
                 //移除相应的登录解码器，添加帧解码器
                 ctx.pipeline().remove("LoginDecoder");
                 ctx.pipeline().addFirst("FrameDecoder", new ModbusFrameDecoder());
-
+                channelSession.processQueue();
                 break;
             // 远端的回应
             case ConstantFromWhere.FROM_RPS:
                 modbusTcpServer.receiveMsg(channelSession.id, response);
+                //channelSession.clearLastOutMsg();
+                //channelSession.processQueue();
                 break;
             default:
                 break;
@@ -117,10 +119,10 @@ public class ModbusHandler extends SimpleChannelInboundHandler<ChannelMessage> {
      */
     @Override
     public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception {
-        // 超时处理
+        // 超时处理--不会被调用
         if (evt instanceof IdleStateEvent) {
-            ChanneSession channelSession = ctx.channel().attr(ModbusCommon.MODBUS_STATE).get();
-            channelSession.checkOverTime();
+            //ChanneSession channelSession = ctx.channel().attr(ModbusCommon.MODBUS_STATE).get();
+            //channelSession.checkOverTime();
         }
     }
 

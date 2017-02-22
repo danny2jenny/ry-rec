@@ -6,6 +6,7 @@ import com.rytec.rec.node.NodeInterface;
 import com.rytec.rec.util.ConstantCommandType;
 import com.rytec.rec.util.ConstantFromWhere;
 import io.netty.channel.Channel;
+import io.netty.channel.ChannelHandlerContext;
 import org.slf4j.LoggerFactory;
 
 import java.util.*;
@@ -25,7 +26,7 @@ public class ChanneSession {
     private ModbusTcpServer modbusTcpServer;
 
     //对应的Channel
-    private Channel cha;
+    private Channel channel;
 
     //channel的id  ip：port
     public String id;
@@ -35,7 +36,10 @@ public class ChanneSession {
     // 最后一次发送的命令
     private volatile ChannelMessage lastOutMsg = null;
     // 当前定时队列的位置
-    private volatile Integer currentTimerQuerryIndex = 0;
+    private volatile int currentTimerQuerryIndex = 0;
+    // 当前超时的计数
+    private volatile int timer = 0;
+
 
     // 以下变量不需要锁定
 
@@ -45,7 +49,7 @@ public class ChanneSession {
     // 需要定时发送的队列命令
     private volatile List<ChannelMessage> timerQueryList = new ArrayList();
 
-    public ChannelMessage getLastOutMsg(){
+    public ChannelMessage getLastOutMsg() {
         return lastOutMsg;
     }
 
@@ -53,6 +57,7 @@ public class ChanneSession {
      * 清除当前发送的消息
      */
     public synchronized void clearLastOutMsg() {
+        timer = 0;
         lastOutMsg = null;
     }
 
@@ -64,7 +69,7 @@ public class ChanneSession {
      */
     public ChanneSession(ModbusTcpServer mts, String cid, Channel channel) {
         id = cid;
-        cha = channel;
+        this.channel = channel;
         modbusTcpServer = mts;
 
         //设置查询命令集合
@@ -110,12 +115,11 @@ public class ChanneSession {
     /**
      * 检查超时
      */
-    public synchronized void checkOverTime() {
-        if (lastOutMsg != null) {
-            logger.debug("超时："+ lastOutMsg.nodeId);
-            lastOutMsg = null;
-            //todo: 超时处理
-        }
+    public void checkOverTime() {
+        timer = 0;
+        logger.debug("超时：" + lastOutMsg.nodeId);
+        lastOutMsg = null;
+        //todo: 超时处理
     }
 
     /**
@@ -124,9 +128,16 @@ public class ChanneSession {
      */
     public synchronized void timerProcess() {
 
-        // 如果有未返回的命令，退出
+        // 如果有未返回的命令，检查超时
         if (lastOutMsg != null) {
-            return;
+            timer++;
+            if (timer > 4) {
+                //超时处理
+                checkOverTime();
+            } else {
+                //没有超时
+                return;
+            }
         }
 
         // 首先满足实时队列
@@ -138,7 +149,23 @@ public class ChanneSession {
 
         // 如果存在当前命令，就发送
         if (lastOutMsg != null) {
-            cha.writeAndFlush(lastOutMsg);
+            channel.writeAndFlush(lastOutMsg);
+        }
+    }
+
+    /**
+     * 单独处理队列，由Channel收到回应后调用
+     */
+    public synchronized void processQueue() {
+        lastOutMsg = instantQueueCmd.poll();
+
+        if (lastOutMsg == null) {
+            lastOutMsg = getNextQuery();
+        }
+
+        // 如果存在当前命令，就发送
+        if (lastOutMsg != null) {
+            channel.writeAndFlush(lastOutMsg);
         }
     }
 
