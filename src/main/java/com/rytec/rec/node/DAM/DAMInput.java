@@ -2,13 +2,11 @@ package com.rytec.rec.node.DAM;
 
 import com.rytec.rec.channel.ChannelMessage;
 import com.rytec.rec.node.*;
-import com.rytec.rec.node.node.NodeInput;
 import com.rytec.rec.util.AnnotationJSExport;
 import com.rytec.rec.util.AnnotationNodeType;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -32,13 +30,9 @@ import org.springframework.stereotype.Service;
 @Service
 @AnnotationNodeType(1002)
 @AnnotationJSExport("DMA 输入")
-public class DAMInput extends NodeInput implements NodeInterface {
+public class DAMInput extends DAM_BASE {
 
     private final org.slf4j.Logger logger = LoggerFactory.getLogger(this.getClass());
-
-    @Autowired
-    NodeManager nodeManager;
-
 
     // 命令编码
     public ChannelMessage genMessage(int where, int nodeId, int cmd, int value) {
@@ -55,8 +49,8 @@ public class DAMInput extends NodeInput implements NodeInterface {
         ByteBuf buf = Unpooled.buffer(6);
         buf.writeByte(nodeRuntimeBean.channelNode.getAdr());
         buf.writeByte(0x02);
-        buf.writeShort(nodeRuntimeBean.channelNode.getNo());
-        buf.writeShort(0x01);
+        buf.writeShort(0x00);
+        buf.writeShort(0x08);
 
         frame.payload = buf;
 
@@ -64,22 +58,7 @@ public class DAMInput extends NodeInput implements NodeInterface {
     }
 
     // 回应解码
-    public NodeMessage decodeMessage(ChannelMessage msg) {
-        NodeMessage rst = new NodeMessage();
-        rst.from = msg.from;
-        rst.type = msg.type;
-        rst.node = msg.nodeId;
-        ByteBuf payload =  (ByteBuf) msg.payload;
-        byte val = payload.getByte(3);
-
-
-        if (val > 0) {
-            rst.value = true;
-        } else {
-            rst.value = false;
-        }
-        payload.release();
-        return rst;
-    }
 
 }
+
+

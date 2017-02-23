@@ -1,5 +1,7 @@
 package com.rytec.rec.channel;
 
+import com.rytec.rec.db.DbConfig;
+import com.rytec.rec.db.model.ChannelNode;
 import com.rytec.rec.util.AnnotationChannelType;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -24,8 +27,16 @@ public class ChannelManager {
     @Autowired
     ApplicationContext context;
 
+    @Autowired
+    DbConfig dbConfig;
+
     // Channel 接口对象的列表
     private HashMap<Integer, ChannelInterface> channelInterfaceMap = new HashMap();
+
+    /*
+     * Channel 和 Node 的关系
+     */
+    public HashMap<Integer, HashMap> channelNodes = new HashMap();
 
     @PostConstruct
     private void init() {
@@ -36,6 +47,20 @@ public class ChannelManager {
             channelInterfaceMap.put(annotation.value(), (ChannelInterface) channel);
         }
 
+        // 建立Channel和Node的关系
+        List<ChannelNode> chaNodeList = dbConfig.getChannelNodeList();
+        //第一级的Map cid-> map
+        for (ChannelNode cn : chaNodeList) {
+            int channelId = cn.getId();
+            HashMap<Integer, ChannelNode> cha = channelNodes.get(channelId);
+            //不存在，建立该Channel
+            if (cha == null) {
+                cha = new HashMap();
+                this.channelNodes.put(channelId, cha);
+            }
+            cha.put(cn.getNid(), cn);
+        }
+
     }
 
     // 得到一个Channel的Interface
@@ -43,13 +68,9 @@ public class ChannelManager {
         return channelInterfaceMap.get(type);
     }
 
+    // 得到所有Channel的接口
     public HashMap<Integer, ChannelInterface> getAllChannelInterface() {
         return channelInterfaceMap;
-    }
-
-    // Channnel 的状态改变
-    public void channelOnState(String cid, int state) {
-        logger.debug("通道信息：" + cid + '-' + state);
     }
 
 }

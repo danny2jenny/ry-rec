@@ -1,20 +1,16 @@
 package com.rytec.rec.node.DAM;
 
 import com.rytec.rec.channel.ChannelInterface;
-import com.rytec.rec.channel.ChannelManager;
 import com.rytec.rec.channel.ChannelMessage;
 import com.rytec.rec.db.model.ChannelNode;
 import com.rytec.rec.node.*;
-import com.rytec.rec.node.node.NodeOutput;
 import com.rytec.rec.util.AnnotationJSExport;
 import com.rytec.rec.util.ConstantCommandType;
 import com.rytec.rec.util.AnnotationNodeType;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 
 /**
  * Created by danny on 16-12-13.
@@ -55,15 +51,9 @@ import org.springframework.stereotype.Service;
 @Service
 @AnnotationNodeType(1001)
 @AnnotationJSExport("DMA 输出")
-public class DAMOutput extends NodeOutput implements NodeInterface {
+public class DAMOutput extends DAM_BASE {
 
     private final org.slf4j.Logger logger = LoggerFactory.getLogger(this.getClass());
-
-    @Autowired
-    NodeManager nodeManager;
-
-    @Autowired
-    ChannelManager channelManager;
 
     /*
      */
@@ -96,8 +86,8 @@ public class DAMOutput extends NodeOutput implements NodeInterface {
                 frame.responseLen = 6;
                 buf.writeByte(nodeRuntimeBean.channelNode.getAdr());
                 buf.writeByte(0x01);
-                buf.writeShort(nodeRuntimeBean.channelNode.getNo());     //地址
-                buf.writeShort(1);                       //查询数量
+                buf.writeShort(00);     //地址
+                buf.writeShort(8);                       //查询数量
                 frame.payload = buf;
                 break;
         }
@@ -106,35 +96,6 @@ public class DAMOutput extends NodeOutput implements NodeInterface {
     }
 
     //消息解码
-    public NodeMessage decodeMessage(ChannelMessage msg) {
-
-        byte value = 0;
-        ChannelMessage respond = msg;
-
-        switch (respond.type) {
-            case ConstantCommandType.GENERAL_WRITE:
-                value = ((ByteBuf) respond.payload).getByte(4);
-                break;
-            case ConstantCommandType.GENERAL_READ:
-                value = ((ByteBuf) respond.payload).getByte(3);
-                break;
-        }
-
-        NodeMessage rst = new NodeMessage();
-        rst.from = msg.from;
-        rst.type = msg.type;
-        rst.node = msg.nodeId;
-
-
-        if (value > 0) {
-            rst.value = true;
-        } else {
-            rst.value = false;
-        }
-        ((ByteBuf) respond.payload).release();
-        return rst;
-    }
-
 
     public int sendMessage(NodeMessage msg) {
         // todo: 完善错误处理
@@ -161,7 +122,6 @@ public class DAMOutput extends NodeOutput implements NodeInterface {
         if (msg.value instanceof Integer) {
             channelMessage = genMessage(msg.from, msg.node, msg.type, (Integer) msg.value);
         }
-
 
         channel.sendMsg(channelMessage);
 

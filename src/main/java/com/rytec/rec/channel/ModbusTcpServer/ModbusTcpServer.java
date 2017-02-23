@@ -42,7 +42,7 @@ import java.util.logging.Logger;
 
 @Service
 @AnnotationChannelType(1001)
-@AnnotationJSExport("Modbus TCP Server")
+@AnnotationJSExport("Modbus服务器")
 public class ModbusTcpServer implements ChannelInterface {
 
     private final org.slf4j.Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -178,7 +178,6 @@ public class ModbusTcpServer implements ChannelInterface {
      * Channel 解码后调用该过程
      *
      * @param chaId    ip:port 的形式
-     * @param request  请求消息
      * @param response 回应消息
      */
     public void receiveMsg(String chaId, ChannelMessage response) {
@@ -187,9 +186,8 @@ public class ModbusTcpServer implements ChannelInterface {
         NodeInterface nodeBean = nodeManager.getNodeComInterface(cn.getNtype());
 
         // 解码值
-        NodeMessage val = nodeBean.decodeMessage(response);
+        nodeBean.decodeMessage(response);
 
-        nodeManager.onMessage(val);
     }
 
     /**
@@ -209,14 +207,5 @@ public class ModbusTcpServer implements ChannelInterface {
             channeSession.sendMsg(msg);
         }
         return rst;
-    }
-
-    /**
-     * Node 的通讯错误处理
-     *
-     * @param cm
-     */
-    public void nodeError(ChannelMessage cm) {
-        logger.debug("超时：" + cm.nodeId);
     }
 }

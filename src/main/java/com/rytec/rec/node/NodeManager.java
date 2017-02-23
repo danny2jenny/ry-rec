@@ -38,6 +38,8 @@ public class NodeManager {
     //nid->ChannelNode 的一个Map
     private Map<Integer, NodeRuntimeBean> channelNodeList = new HashMap();
 
+
+
     //node的实现对象列表
     @Autowired
     ApplicationContext context;

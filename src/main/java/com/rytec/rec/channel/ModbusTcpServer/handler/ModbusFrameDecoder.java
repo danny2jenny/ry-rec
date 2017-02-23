@@ -27,14 +27,14 @@ public class ModbusFrameDecoder extends ByteToMessageDecoder {
         ChanneSession channelSession = ctx.channel().attr(ModbusCommon.MODBUS_STATE).get();
 
         // 当前发送的命令
-        ChannelMessage channelMessage = channelSession.getLastOutMsg();
+        ChannelMessage lastOutMsg = channelSession.getLastOutMsg();
 
         // 当前读取缓冲的状态
         int inBufferLen = in.readableBytes();
         int readIndex = in.readerIndex();
         int writeIndex = in.writerIndex();
 
-        if (channelMessage == null) {
+        if (lastOutMsg == null) {
             byte[] remain = new byte[inBufferLen];
             in.getBytes(readIndex, remain, 0, inBufferLen);
             logger.debug("超时遗留数据：" + CRC16.bytesToHexString(remain));
@@ -42,7 +42,7 @@ public class ModbusFrameDecoder extends ByteToMessageDecoder {
         }
 
         // 没有足够的长度，返回
-        if (inBufferLen < channelMessage.responseLen) {
+        if (inBufferLen < lastOutMsg.responseLen) {
             return;
         }
 
@@ -53,16 +53,28 @@ public class ModbusFrameDecoder extends ByteToMessageDecoder {
             * -----------------------
             * |  遗留数据 |  有效数据 |
             * -----------------------
-            *
+            * read                 write
             * readableBytes() - len ： 需要跳过的字节
             */
 
         // todo: data 和 payload 可以放在 session 中增加效率
+        // todo: 考虑还是使用netty的超时机制，使用写超时可能会更好控制一些
+        // 在某些情况下，会把前面一个端口的返回读取出来: 当前一个通信超时，在这个时候新通信已经发送，在等待返回的时候，解析到了前一个超时的返回
         /*
          * 只收取尾部期望的长度
          */
-        byte[] data = new byte[channelMessage.responseLen];
-        in.getBytes(writeIndex - channelMessage.responseLen, data, 0, channelMessage.responseLen);
+        byte[] data = new byte[lastOutMsg.responseLen];
+        in.getBytes(writeIndex - lastOutMsg.responseLen, data, 0, lastOutMsg.responseLen);
+        // 检查发送和接收的头部是相等的
+        ((ByteBuf) lastOutMsg.payload).resetReaderIndex();
+        if ((((ByteBuf) lastOutMsg.payload).getByte(0) == data[0]) & (((ByteBuf) lastOutMsg.payload).getByte(1) == data[1])){
+
+        } else {
+            logger.debug("失败！！！！！！！！！！！！！！！！");
+            return;
+        }
+
+
         // 检查包的CRC
         int error = CRC16.check(data);
 
@@ -71,7 +83,7 @@ public class ModbusFrameDecoder extends ByteToMessageDecoder {
 
             in.skipBytes(inBufferLen);
             // 成功组帧
-            ByteBuf payload = Unpooled.buffer(channelMessage.responseLen);
+            ByteBuf payload = Unpooled.buffer(lastOutMsg.responseLen);
             payload.setBytes(0, data);
 
             ChannelMessage msg = new ChannelMessage(ConstantFromWhere.FROM_RPS);
@@ -89,6 +101,7 @@ public class ModbusFrameDecoder extends ByteToMessageDecoder {
             in.getBytes(readIndex, remain, 0, inBufferLen);
             logger.debug("遗留数据：" + CRC16.bytesToHexString(remain));
             logger.debug("解码数据：" + CRC16.bytesToHexString(data));
+
         }
     }
 }

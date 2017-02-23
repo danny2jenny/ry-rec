@@ -25,7 +25,7 @@ public interface NodeInterface {
      * @param msg
      * @return 错误代码，没有错误是0
      */
-    NodeMessage decodeMessage(ChannelMessage msg);
+    void decodeMessage(ChannelMessage msg);
 
     /**
      * @param nodeMsg

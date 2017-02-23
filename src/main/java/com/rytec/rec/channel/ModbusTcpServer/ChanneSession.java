@@ -46,8 +46,11 @@ public class ChanneSession {
     // 非定时队列的发送命令(用户，或者是联动)
     // 可能多线程访问
     private Queue<ChannelMessage> instantQueueCmd = new ConcurrentLinkedQueue();
+
     // 需要定时发送的队列命令
-    private volatile List<ChannelMessage> timerQueryList = new ArrayList();
+    // "nodeType:adr" -> ChannelMessage
+    private volatile HashMap<String, ChannelMessage> timerQueryList = new HashMap();
+    private volatile List<String> timerQueryListIndex = new ArrayList();
 
     public ChannelMessage getLastOutMsg() {
         return lastOutMsg;
@@ -75,15 +78,23 @@ public class ChanneSession {
         //设置查询命令集合
         HashMap<Integer, ChannelNode> cha = modbusTcpServer.channelNodes.get(cid);
 
+        /*
+         * 地址一样的，组织成一个命令进行查询
+         */
         for (ChannelNode cn : cha.values()) {
 
+            // 得到 node 对应的操作接口
             NodeInterface node = modbusTcpServer.nodeManager.getNodeComInterface(cn.getNtype());
 
+            // 如果存在Node的操作接口
             if (node != null) {
-                ChannelMessage msg = node.genMessage(ConstantFromWhere.FROM_TIMER, cn.getNid(), ConstantCommandType.GENERAL_READ, 0);
-                timerQueryList.add(msg);
+                String key = "" + cn.getNtype() + ':' + cn.getAdr();
+                if (timerQueryList.get(key) == null) {
+                    timerQueryListIndex.add(key);
+                    ChannelMessage msg = node.genMessage(ConstantFromWhere.FROM_TIMER, cn.getNid(), ConstantCommandType.GENERAL_READ, 0);
+                    timerQueryList.put(key, msg);
+                }
             }
-
         }
     }
 
@@ -96,7 +107,7 @@ public class ChanneSession {
         if (timerQueryList.size() == 0) {
             return null;
         }
-        ChannelMessage msg = timerQueryList.get(currentTimerQuerryIndex);
+        ChannelMessage msg = timerQueryList.get(timerQueryListIndex.get(currentTimerQuerryIndex));
         currentTimerQuerryIndex = (currentTimerQuerryIndex + 1) % timerQueryList.size();
         return msg;
     }
@@ -116,8 +127,8 @@ public class ChanneSession {
      * 检查超时
      */
     public void checkOverTime() {
+        //logger.debug("超时：" + timer + ':' + lastOutMsg.nodeId);
         timer = 0;
-        logger.debug("超时：" + lastOutMsg.nodeId);
         lastOutMsg = null;
         //todo: 超时处理
     }
@@ -143,6 +154,7 @@ public class ChanneSession {
         // 首先满足实时队列
         lastOutMsg = instantQueueCmd.poll();
 
+        // 没有实时命令，发送定时命令
         if (lastOutMsg == null) {
             lastOutMsg = getNextQuery();
         }
