@@ -10,6 +10,7 @@ import com.rytec.rec.util.AnnotationNodeType;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Service;
 
 /**

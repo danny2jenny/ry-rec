@@ -70,10 +70,9 @@ Ext.define('app.view.admin.frame.ChannelNode', {
         });
 
         this.on('show', function (from, eOpts) {
+            Ext.ComponentQuery.query('#griddeviceNode')[0].hideAllSouthPanel();
             var node = Ext.ComponentQuery.query('#admin_panel_NodeForDevice')[0];
-            var gis = Ext.ComponentQuery.query('#admin_panel_gis')[0];
             node.show();
-            gis.hide();
         })
     }
 });

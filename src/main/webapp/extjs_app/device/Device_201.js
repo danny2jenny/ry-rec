@@ -10,38 +10,36 @@ Ext.define('app.device.Device_201', {
 
         itemId: 'device_config_201',
         title: '设备参数配置',
+        bodyPadding: '5 5 0',
         hidden: true,
-
+        height: 200,
         items: [
             {
                 xtype: 'numberfield',
-                fieldLabel: '+高告警门限：',
-                name: 'limit_h_2',
-                itemId: 'limit_h_2'
+                fieldLabel: '+高告警门限',
+                name: 'GATE_HIGH_2',
+                itemId: 'GATE_HIGH_2'
             },
             {
                 xtype: 'numberfield',
                 fieldLabel: '+高联动门限',
-                name: 'limit_h_1',
-                itemId: 'limit_h_1'
+                name: 'GATE_HIGH_1',
+                itemId: 'GATE_HIGH_1'
             }, {
                 xtype: 'numberfield',
                 fieldLabel: '-低联动门限',
-                name: 'limit_l_1',
-                itemId: 'pB'
+                name: 'GATE_LOW_1',
+                itemId: 'GATE_LOW_1'
             }, {
-                xtype: 'textfield',
+                xtype: 'numberfield',
                 fieldLabel: '-低告警门限',
-                name: 'limit_l_2',
-                itemId: 'limit_l_2'
+                name: 'GATE_LOW_2',
+                itemId: 'GATE_LOW_2'
             }
         ],
         buttons: [{
             text: "更新",
             handler: function () {
-
-                var form = this.up('form').getForm();
-
                 debugger;
                 var pa = this.ownerCt.ownerCt;
                 var selection = pa.selection;
@@ -49,10 +47,10 @@ Ext.define('app.device.Device_201', {
 
                 selection.beginEdit();
 
-                opt.sensitive = pa.down('#sensitive').getValue();
-                opt.pA = pa.down('#pA').getValue();
-                opt.pB = pa.down('#pB').getValue();
-                opt.unit = pa.down('#unit').getValue();
+                opt.GATE_HIGH_2 = pa.down('#GATE_HIGH_2').getValue();
+                opt.GATE_HIGH_1 = pa.down('#GATE_HIGH_1').getValue();
+                opt.GATE_LOW_1 = pa.down('#GATE_LOW_1').getValue();
+                opt.GATE_LOW_2 = pa.down('#GATE_LOW_2').getValue();
 
                 selection.set('opt', JSON.stringify(opt))
                 selection.endEdit();
@@ -72,25 +70,25 @@ Ext.define('app.device.Device_201', {
             //读取数据
             if (optStr.length) {
                 var opt = JSON.parse(optStr);
-                this.down('#sensitive').setValue(opt.sensitive);
-                this.down('#pA').setValue(opt.pA);
-                this.down('#pB').setValue(opt.pB);
+                this.down('#GATE_HIGH_2').setValue(opt.GATE_HIGH_2);
+                this.down('#GATE_HIGH_1').setValue(opt.GATE_HIGH_1);
+                this.down('#GATE_LOW_1').setValue(opt.GATE_LOW_1);
+                this.down('#GATE_LOW_2').setValue(opt.GATE_LOW_2);
             } else {
-                this.down('#sensitive').setValue(null);
-                this.down('#pA').setValue(null);
-                this.down('#pB').setValue(null);
+                this.down('#GATE_HIGH_2').setValue(9999);
+                this.down('#GATE_HIGH_1').setValue(8888);
+                this.down('#GATE_LOW_1').setValue(-8888);
+                this.down('#GATE_LOW_2').setValue(-9999);
             }
         }
 
     })
-
-
 });
 
 // 加入到全局变量
 ry.devices['device_201'] = Ext.create('app.device.Device_201', {});
 
-ry.deviceEditor['sig_201'] =Ext.create('Ext.form.field.ComboBox',{
+ry.deviceEditor['sig_201'] = Ext.create('Ext.form.field.ComboBox', {
     forceSelection: true,
     allowBlank: false,
     editable: false,

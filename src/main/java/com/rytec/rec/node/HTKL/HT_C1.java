@@ -11,6 +11,7 @@ import com.rytec.rec.util.AnnotationNodeType;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Service;
 
 /**

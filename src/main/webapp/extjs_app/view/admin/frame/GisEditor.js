@@ -38,9 +38,8 @@ Ext.define('app.view.admin.frame.GisEditor', {
         me.callParent(arguments);
 
         this.on('show', function (from, eOpts) {
-            var node = Ext.ComponentQuery.query('#admin_panel_NodeForDevice')[0];
+            Ext.ComponentQuery.query('#griddeviceNode')[0].hideAllSouthPanel();
             var gis = Ext.ComponentQuery.query('#admin_panel_gis')[0];
-            node.hide();
             gis.show();
             this.down('#gis_view').refresh();
         })

@@ -6,6 +6,7 @@ package com.rytec.rec.app;
  */
 public interface ManageableInterface {
 
+    public void stop();
+
     public void start();
-    public void stope();
 }

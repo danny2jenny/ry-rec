@@ -8,6 +8,7 @@ import com.rytec.rec.node.NodeMessage;
 import com.rytec.rec.util.ConstantErrorCode;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.Order;
 
 import java.util.HashMap;
 
@@ -15,6 +16,7 @@ import java.util.HashMap;
  * Created by danny on 16-11-21.
  * 这个是Device的基类
  */
+@Order(100)
 public class AbstractOperator {
 
     private final org.slf4j.Logger logger = LoggerFactory.getLogger(this.getClass());

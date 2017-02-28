@@ -9,6 +9,7 @@
 
 package com.rytec.rec.device;
 
+import com.rytec.rec.app.ManageableInterface;
 import com.rytec.rec.db.DbConfig;
 import com.rytec.rec.db.model.Device;
 import com.rytec.rec.db.model.DeviceNode;
@@ -17,6 +18,7 @@ import com.rytec.rec.util.AnnotationDeviceType;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -25,7 +27,8 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class DeviceManager {
+@Order(300)
+public class DeviceManager implements ManageableInterface {
 
     private final org.slf4j.Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -60,11 +63,22 @@ public class DeviceManager {
 
     HashMap<Integer, DeviceRuntimeBean> deviceRuntimeList = new HashMap();
 
+    // 初始化接口的索引
+    private void initOperatorInterface() {
+        //初始化 Device 的实现
+        Map<String, Object> deviceOperatorList = context.getBeansWithAnnotation(AnnotationDeviceType.class);
+
+        for (Object device : deviceOperatorList.values()) {
+            Class<? extends Object> deviceClass = device.getClass();
+            AnnotationDeviceType annotation = deviceClass.getAnnotation(AnnotationDeviceType.class);
+            deviceOperators.put(annotation.value(), (AbstractOperator) device);
+        }
+    }
+
     /*
     * 初始化Devices
     */
-    @PostConstruct
-    private void init() {
+    private void initConfig() {
 
         //初始化Device 和 Node 的关系
 
@@ -91,15 +105,6 @@ public class DeviceManager {
 
         }
 
-        //初始化 Device 的实现
-        Map<String, Object> deviceOperatorList = context.getBeansWithAnnotation(AnnotationDeviceType.class);
-
-        for (Object device : deviceOperatorList.values()) {
-            Class<? extends Object> deviceClass = device.getClass();
-            AnnotationDeviceType annotation = deviceClass.getAnnotation(AnnotationDeviceType.class);
-            deviceOperators.put(annotation.value(), (AbstractOperator) device);
-        }
-
         // 初始化 Device 的运行时状态
         List<Device> devices = dbConfig.getDeviceList();
         for (Device item : devices) {
@@ -111,6 +116,12 @@ public class DeviceManager {
             deviceRuntimeList.put(item.getId(), deviceRuntimeBean);
         }
 
+    }
+
+    @PostConstruct
+    private void init() {
+        initOperatorInterface();
+        initConfig();
     }
 
     //得到一个设备的实例对象
@@ -160,5 +171,15 @@ public class DeviceManager {
             deviceStateBeanHashMap.put(i, deviceRuntimeBean.state);
         }
         return deviceStateBeanHashMap;
+    }
+
+    public void stop() {
+        deviceNodeListByNode.clear();
+        deviceNodeListByFun.clear();
+        deviceRuntimeList.clear();
+    }
+
+    public void start() {
+        initConfig();
     }
 }

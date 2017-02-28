@@ -32,7 +32,8 @@ Ext.application({
         'app.lib.GridDragPlugin',
         'app.device.Device_101',
         'app.device.Device_102',
-        'app.device.Device_201'
+        'app.device.Device_201',
+        'app.device.Device_301'
     ],
 
 

@@ -15,6 +15,7 @@ Ext.define('app.model.Device', {
         {name: 'icon'},
         {name: 'lnodetype'},
         {name: 'lnodenum'},
+        {name: 'opt'},
     ],
 
     validations: [{

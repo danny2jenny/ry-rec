@@ -1,5 +1,6 @@
 package com.rytec.rec.web.device;
 
+import com.rytec.rec.app.AppManager;
 import com.rytec.rec.device.operator.Output;
 import com.rytec.rec.util.ConstantFromWhere;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,5 +27,14 @@ public class Action {
             output.setSwitch(device, ConstantFromWhere.FROM_USER, false);
         }
 
+    }
+
+    @Autowired
+    AppManager appManager;
+
+    @GetMapping("/system")
+    @ResponseBody
+    public void system() {
+        appManager.systemReload();
     }
 }

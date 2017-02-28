@@ -22,7 +22,6 @@ Ext.define('app.view.admin.panel.Device', {
     features: [Ext.create('Ext.grid.feature.Grouping', {
         groupHeaderTpl: ['{groupValue:this.formatValue}: 共 ({rows.length}) 个', {
             formatValue: function (value) {
-                debugger;
                 return '<img src="/icon/device/' + value + '.png">' + ry.trans(value, ry.DEVICE_TYPE)
             }
         }]

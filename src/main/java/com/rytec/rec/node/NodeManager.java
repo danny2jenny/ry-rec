@@ -8,6 +8,7 @@
  */
 package com.rytec.rec.node;
 
+import com.rytec.rec.app.ManageableInterface;
 import com.rytec.rec.db.DbConfig;
 import com.rytec.rec.db.model.ChannelNode;
 import com.rytec.rec.device.DeviceManager;
@@ -16,6 +17,7 @@ import com.rytec.rec.util.AnnotationNodeType;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -25,7 +27,8 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Service
-public class NodeManager {
+@Order(300)
+public class NodeManager implements ManageableInterface {
 
     private final org.slf4j.Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -39,8 +42,6 @@ public class NodeManager {
     private Map<Integer, NodeRuntimeBean> channelNodeList = new HashMap();
 
 
-
-    //node的实现对象列表
     @Autowired
     ApplicationContext context;
 
@@ -56,9 +57,19 @@ public class NodeManager {
         return nodeComList;
     }
 
-    @PostConstruct
-    private void initNodes() {
 
+    private void initNodeInterface() {
+        // 初始化 node 接口实现
+        Map<String, Object> nodes = context.getBeansWithAnnotation(AnnotationNodeType.class);
+        for (Object node : nodes.values()) {
+            Class<? extends Object> nodeClass = node.getClass();
+            AnnotationNodeType annotation = nodeClass.getAnnotation(AnnotationNodeType.class);
+            nodeComList.put(annotation.value(), (NodeInterface) node);
+        }
+    }
+
+
+    private void initConfig() {
         // 初始化node的map
         List<ChannelNode> channelNodes = db.getChannelNodeList();
 
@@ -70,16 +81,14 @@ public class NodeManager {
             nodeRuntimeBean.nodeConfig = BaseNode.parseConfig(cn.getNodeconf());   //Node的配置
             channelNodeList.put(cn.getNid(), nodeRuntimeBean);
         }
-
-
-        // 初始化 node 接口实现
-        Map<String, Object> nodes = context.getBeansWithAnnotation(AnnotationNodeType.class);
-        for (Object node : nodes.values()) {
-            Class<? extends Object> nodeClass = node.getClass();
-            AnnotationNodeType annotation = nodeClass.getAnnotation(AnnotationNodeType.class);
-            nodeComList.put(annotation.value(), (NodeInterface) node);
-        }
     }
+
+    @PostConstruct
+    private void init() {
+        initConfig();
+        initNodeInterface();
+    }
+
 
     /*
     * 通讯层发来的数据
@@ -117,5 +126,13 @@ public class NodeManager {
         return channelNodeList.get(nodeId);
     }
 
+
+    public void stop() {
+        channelNodeList.clear();
+    }
+
+    public void start() {
+        initConfig();
+    }
 
 }

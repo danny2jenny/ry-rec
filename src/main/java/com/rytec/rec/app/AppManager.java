@@ -1,11 +1,13 @@
 package com.rytec.rec.app;
 
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by danny on 17-2-12.
@@ -14,42 +16,61 @@ import java.util.Map;
  * 2、刷新配置
  */
 @Service
+@Order(500)
 public class AppManager {
+
+    private final org.slf4j.Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     ApplicationContext context;
 
     // 所有的管理接口
-    Map<String, ManageableInterface> serviceInterfaces;
+    // 按照启动顺序进行排序，升序
+    List<ManageableInterface> serviceInterfacesStart = new ArrayList<ManageableInterface>();
 
     @PostConstruct
     private void init() {
-        serviceInterfaces = context.getBeansOfType(ManageableInterface.class);
+        Map<String, ManageableInterface> interfaceMap = context.getBeansOfType(ManageableInterface.class);
+        for (ManageableInterface item : interfaceMap.values()) {
+            Class<? extends Object> itemClass = item.getClass();
+            Order order = itemClass.getAnnotation(Order.class);
+            serviceInterfacesStart.add(item);
+        }
+
+        // 排序
+        Collections.sort(serviceInterfacesStart, new Comparator<ManageableInterface>() {
+            @Override
+            public int compare(ManageableInterface o1, ManageableInterface o2) {
+                return o1.getClass().getAnnotation(Order.class).value() - o2.getClass().getAnnotation(Order.class).value();
+            }
+        });
     }
 
     /**
      * 重新启动服务器，重新加载配置
      * todo: 可能需要考虑启动和停止的顺序
+     * <p>
+     * 对象                   初始化级别       是否考虑Reload？
+     * DbConfig                 200
+     * CooperateManager         300
+     * ChannelManager           300
+     * ****Channel              400
+     * NodeManager              300
+     * ****Node                 100             否
+     * DeviceManager            300
+     * ****Device               100             否
      */
 
     public void systemReload() {
-        for (ManageableInterface manageableInterface: serviceInterfaces.values()){
-            manageableInterface.stope();
+        // 停止服务，最后运行的最先停止
+        for (int i = 0; i < serviceInterfacesStart.size(); i++) {
+            serviceInterfacesStart.get(serviceInterfacesStart.size()-1 - i).stop();
         }
 
-    }
-
-    /**
-     * 停止服务
-     */
-    public void systemStop() {
-
-    }
-
-    /**
-     * 启动服务器
-     */
-    public void systemStart() {
+        // 开始服务
+        for (int i = 0; i < serviceInterfacesStart.size(); i++) {
+            serviceInterfacesStart.get(i).start();
+        }
 
     }
 }

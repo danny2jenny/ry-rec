@@ -47,7 +47,6 @@ Ext.define('app.lib.PluginGridEdit', {
 
     // 主表选择改变的事件
     onMasterSelectChange: function (view, selections, options) {
-        debugger;
         var me = this;
         if (selections.length && selections[0].data.id) {
             var fkey = selections[0].data.id;

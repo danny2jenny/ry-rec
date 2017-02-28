@@ -4,6 +4,7 @@ import com.rytec.rec.channel.ChannelInterface;
 import com.rytec.rec.channel.ChannelMessage;
 import com.rytec.rec.util.AnnotationChannelType;
 import com.rytec.rec.util.AnnotationJSExport;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Service;
 
 /**
@@ -17,11 +18,20 @@ import org.springframework.stereotype.Service;
  */
 
 @Service
+@Order(400)
 @AnnotationChannelType(2001)
 @AnnotationJSExport("超视流媒体服务器")
 public class VideoManaget implements ChannelInterface {
 
     public int sendMsg(ChannelMessage msg) {
         return 0;
+    }
+
+    public void stop(){
+
+    }
+
+    public void start(){
+
     }
 }

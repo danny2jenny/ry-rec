@@ -14,7 +14,6 @@ import com.rytec.rec.db.DbConfig;
 import com.rytec.rec.db.model.ChannelNode;
 import com.rytec.rec.node.NodeInterface;
 import com.rytec.rec.node.NodeManager;
-import com.rytec.rec.node.NodeMessage;
 import com.rytec.rec.util.AnnotationChannelType;
 import com.rytec.rec.util.AnnotationJSExport;
 import com.rytec.rec.util.ConstantErrorCode;
@@ -29,6 +28,7 @@ import io.netty.util.concurrent.GenericFutureListener;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.annotation.Order;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -41,6 +41,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Service
+@Order(400)
 @AnnotationChannelType(1001)
 @AnnotationJSExport("Modbus服务器")
 public class ModbusTcpServer implements ChannelInterface {
@@ -51,8 +52,8 @@ public class ModbusTcpServer implements ChannelInterface {
     @Value("${tcp.server.modbus.port}")
     private int port;
 
+    //nety 服务
     private ServerBootstrap bootstrap;
-
     private Channel parentChannel;
 
     // 对应的客户端连接列表
@@ -60,16 +61,19 @@ public class ModbusTcpServer implements ChannelInterface {
 
     // 建立服务器
     @PostConstruct
-    public void setup() throws ConnectionException {
+    private void startServer() {
 
         // 读取数据库的配置
         initConfig();
 
         // 建立 TCP Server
         try {
+            // 监听端口
             final EventLoopGroup bossGroup = new NioEventLoopGroup();
+            // 工作端口
             final EventLoopGroup workerGroup = new NioEventLoopGroup();
 
+            // 一个新的netty服务器引导对象
             bootstrap = new ServerBootstrap();
             bootstrap.group(bossGroup, workerGroup)
                     .channel(NioServerSocketChannel.class)
@@ -85,7 +89,6 @@ public class ModbusTcpServer implements ChannelInterface {
 
             //添加一个关闭事件的监听
             parentChannel.closeFuture().addListener(new GenericFutureListener<ChannelFuture>() {
-
                 // Sever 关闭完成时调用，匿名对象
                 @Override
                 public void operationComplete(ChannelFuture future) throws Exception {
@@ -95,17 +98,20 @@ public class ModbusTcpServer implements ChannelInterface {
             });
         } catch (Exception ex) {
             Logger.getLogger(ModbusTcpServer.class.getName()).log(Level.SEVERE, ex.getLocalizedMessage());
-            throw new ConnectionException(ex.getLocalizedMessage());
+            //throw new ConnectionException(ex.getLocalizedMessage());
         }
     }
 
 
     //关闭服务，这里是同步还是异步？
     @PreDestroy
-    public void close() {
+    private void stopServer() {
         if (parentChannel != null) {
             parentChannel.close().awaitUninterruptibly();
         }
+        clients.clear();
+        parentChannel = null;
+        channelNodes.clear();
     }
 
     //----------------------------------对通道的初始化-----------------------------
@@ -167,7 +173,9 @@ public class ModbusTcpServer implements ChannelInterface {
         // 遍历已经登录的远端，并执行队列
         for (Channel cha : clients.values()) {
             ChanneSession channeSession = cha.attr(ModbusCommon.MODBUS_STATE).get();
-            channeSession.timerProcess();
+            if (channeSession != null) {
+                channeSession.timerProcess();
+            }
         }
     }
 
@@ -207,5 +215,14 @@ public class ModbusTcpServer implements ChannelInterface {
             channeSession.sendMsg(msg);
         }
         return rst;
+    }
+
+    public void stop() {
+        //关闭现有的连接
+        stopServer();
+    }
+
+    public void start() {
+        startServer();
     }
 }

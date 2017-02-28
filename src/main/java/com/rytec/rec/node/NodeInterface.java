@@ -6,6 +6,7 @@ import com.rytec.rec.channel.ChannelMessage;
  * Created by danny on 16-11-20.
  * Node 的通讯接口
  */
+
 public interface NodeInterface {
 
     /**

@@ -1,5 +1,6 @@
 package com.rytec.rec.db;
 
+import com.rytec.rec.app.ManageableInterface;
 import com.rytec.rec.db.mapper.ChannelNodeMapper;
 import com.rytec.rec.db.mapper.DeviceMapper;
 import com.rytec.rec.db.mapper.DeviceNodeMapper;
@@ -8,6 +9,7 @@ import com.rytec.rec.db.model.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,7 +21,8 @@ import java.util.List;
  */
 
 @Service
-public class DbConfig {
+@Order(200)
+public class DbConfig implements ManageableInterface {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -126,6 +129,20 @@ public class DbConfig {
         }
 
         return ruleActionList;
+    }
+
+    /**
+     * 实现管理接口
+     */
+    public void stop() {
+        channelNodeList = null;
+        deviceNodeList = null;
+        deviceList = null;
+        ruleActionList = null;
+    }
+
+    public void start() {
+
     }
 
 }

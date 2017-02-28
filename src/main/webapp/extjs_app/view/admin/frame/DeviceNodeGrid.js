@@ -41,6 +41,17 @@ Ext.define('app.view.admin.frame.DeviceNodeGrid', {
         }
     ],
 
+
+    // 隐藏所有的子面板
+    hideAllSouthPanel: function () {
+
+        var panels = this.query('panel[region=south]');
+        for (var index in panels) {
+            var panel = panels[index];
+            panel.hide();
+        }
+    },
+
     initComponent: function () {
         this.callParent(arguments);
 
@@ -84,7 +95,7 @@ Ext.define('app.view.admin.frame.DeviceNodeGrid', {
         nodeGrid.down('#buttonDelete').handler = function () {
             var node = nodeGrid.getSelectionModel().selected.get(0);
             node.set('device', 0);
-        }
+        };
 
         nodeGrid.store.on('update', function (store, record, operation, eOpts) {
             Ext.ComponentQuery.query('#admin_panel_NodeForDevice')[0].store.load();
