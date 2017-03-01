@@ -8,6 +8,7 @@ Ext.define('app.view.admin.panel.Gis', {
     extend: 'Ext.grid.Panel',
     alias: 'widget.admin.panel.gis',
     itemId: 'admin_panel_gis',
+    id:'admin.panel.gis',
     icon: '/icon/toolbar/gis.png',
     title: 'GIS',
     store: 'Gis',

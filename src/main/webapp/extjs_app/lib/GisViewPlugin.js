@@ -91,6 +91,8 @@ Ext.define('app.lib.GisViewPlugin', {
 
         var me = this;
 
+        client.gis = me;
+
 
         /*******************************************************
          * 样式的集合Style                                          *
@@ -417,6 +419,10 @@ Ext.define('app.lib.GisViewPlugin', {
             }
         };
 
+        /*******************************************************
+         * Features 操作接口                                     *
+         *******************************************************/
+
         /**
          * 得到一个Layer中对应的Device的Feature列表
          * @param id
@@ -468,6 +474,27 @@ Ext.define('app.lib.GisViewPlugin', {
                 me.map.removeOverlay(overlay);
             }
         };
+
+        /**
+         * 删除一个Id的Feature
+         */
+        me.deleteFeature = function (featureId) {
+            me.layers.each(function (key, value, length) {
+                // 得到Vector layer
+                var layer = value.getLayers().getArray()[1];
+                // 得到 Features 数组
+                var featureSource = layer.getSource();
+                // 得到 Feature
+                var feature = featureSource.getFeatureById(featureId);
+
+                if (feature) {
+                    featureSource.removeFeature(feature);
+                }
+            }, me);
+
+
+        };
+
 
         /*******************************************************
          * Map 编辑工具                                         *
