@@ -632,9 +632,10 @@ Ext.define('app.lib.GisViewPlugin', {
                 me.addLayer(item.id, item.name, item.file);
             }
 
-            //把第一个层作为显示层
-            this.layers.getValues()[0].setVisible(true);
-
+            if (this.layers.getValues().length){
+                //把第一个层作为显示层
+                this.layers.getValues()[0].setVisible(true);
+            }
         };
 
         me.layerStore = Ext.StoreMgr.get(me.layerStore);
