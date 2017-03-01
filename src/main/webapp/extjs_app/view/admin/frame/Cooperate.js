@@ -32,7 +32,6 @@ Ext.define('app.view.admin.frame.Cooperate', {
         var deviceFrame = Ext.ComponentQuery.query('#griddeviceNode')[0];
         deviceFrame.hideAllSouthPanel();
         if (selections.length) {
-            debugger;
             var device = ry.devices['device_' + selections[0].data.type];
             if (device.configPanel) {
                 var configPanel = device.configPanel;
@@ -60,7 +59,26 @@ Ext.define('app.view.admin.frame.Cooperate', {
         this.on('show', function (from, eOpts) {
             var deviceFrame = Ext.ComponentQuery.query('#griddeviceNode')[0];
             deviceFrame.hideAllSouthPanel();
-        })
+        });
+
+        // 当Device删除后需要做的工作
+        Ext.direct.Manager.on('event', function (event, provider, eOpts) {
+
+            var actionRules = Ext.ComponentQuery.query('#admin_panel_action_rule')[0];
+            var actions = Ext.ComponentQuery.query('#admin_panel_actions')[0];
+
+            // 当 ActionRule 删除后，应该刷新 Actions
+            if (event.action == 'extActionRule' && event.method == 'delete') {
+                actions.editPlugin.reload();
+            }
+
+            // 当 Device删除后，应该更新 Actions 和 ActionRule
+            if (event.action == 'extDevice' && event.method == 'delete') {
+                actions.editPlugin.reload();
+                actionRules.editPlugin.reload();
+            }
+
+        }, this);
 
     }
 });
