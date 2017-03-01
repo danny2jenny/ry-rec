@@ -113,6 +113,12 @@ public class DeviceManager implements ManageableInterface {
             deviceRuntimeBean.state = new DeviceStateBean();
             deviceRuntimeBean.state.device = item.getId();
             deviceRuntimeBean.state.state = ConstantDeviceState.STATE_INAVAILABLE;
+
+            // 生成Device的配置对象
+            AbstractOperator deviceOperator = getOperatorByType(item.getType());
+            Object config = deviceOperator.parseConfig(item.getOpt());
+            deviceRuntimeBean.config = config;
+
             deviceRuntimeList.put(item.getId(), deviceRuntimeBean);
         }
 
@@ -152,7 +158,13 @@ public class DeviceManager implements ManageableInterface {
      */
     public void onValueChange(int device, int fun, Object oldValue, Object newValue) {
         // 首先找到 Device 的实例
-        DeviceNode deviceNode = (DeviceNode) deviceNodeListByFun.get(device).get(fun);
+        // 可能没有对应的Device
+        HashMap<Integer, DeviceNode> devices = deviceNodeListByFun.get(device);
+
+        if (devices == null) {
+            return;
+        }
+        DeviceNode deviceNode = devices.get(fun);
         AbstractOperator abstractOperator = getOperatorByType(deviceNode.getDtype());
 
         // 在实例中处理值的改变

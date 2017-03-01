@@ -52,14 +52,15 @@ public abstract class DAM_BASE extends NodeInput implements NodeInterface {
          * 2、遍历后，得到状态
          */
 
-        NodeRuntimeBean msgNode = nodeManager.getChannelNodeByNodeId(msg.nodeId);
-        int channelId = msgNode.channelNode.getId();
-        HashMap<Integer, ChannelNode> nodes = channelManager.channelNodes.get(channelId);
+        NodeRuntimeBean nodeRunTime = nodeManager.getChannelNodeByNodeId(msg.nodeId);
+        int channelId = nodeRunTime.channelNode.getId();
+        HashMap<Integer, ChannelNode> nodes = (HashMap<Integer, ChannelNode>) channelManager.channelNodes.get(channelId);
+
         for (ChannelNode node : nodes.values()) {
 
             // 485 地址是一致的，类型是一致的
-            if ((msgNode.channelNode.getAdr().intValue() == node.getAdr().intValue()) &&
-                    (msgNode.channelNode.getNtype().intValue() == node.getNtype().intValue())) {
+            if ((nodeRunTime.channelNode.getAdr().intValue() == node.getAdr().intValue()) &&
+                    (nodeRunTime.channelNode.getNtype().intValue() == node.getNtype().intValue())) {
 
                 //是一个地址的设备，位操作后
                 int adrMask = 0x01 << node.getNo();
@@ -68,6 +69,12 @@ public abstract class DAM_BASE extends NodeInput implements NodeInterface {
                 } else {
                     nodeMsg.value = false;
                 }
+
+                // 判断是否需要反向
+                if (nodeRunTime.nodeConfig.pA<0){
+                    nodeMsg.value=!((Boolean) nodeMsg.value);
+                }
+
                 nodeMsg.node = node.getNid();
                 nodeManager.onMessage(nodeMsg);
             }

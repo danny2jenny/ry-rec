@@ -90,16 +90,31 @@ Ext.define('app.view.admin.frame.DeviceNodeGrid', {
         // 覆盖Node的Delete方法
         // 只是设置相应的 Node 的 device 为 0
 
-        var nodeGrid = Ext.ComponentQuery.query('#admin_panel_NodeForDevice')[0];
+        var nodeForDevice = Ext.ComponentQuery.query('#admin_panel_NodeForDevice')[0];
 
-        nodeGrid.down('#buttonDelete').handler = function () {
-            var node = nodeGrid.getSelectionModel().selected.get(0);
+        nodeForDevice.down('#buttonDelete').handler = function () {
+            var node = nodeForDevice.getSelectionModel().selected.get(0);
             node.set('device', 0);
+            node.commit();
         };
 
-        nodeGrid.store.on('update', function (store, record, operation, eOpts) {
-            Ext.ComponentQuery.query('#admin_panel_NodeForDevice')[0].store.load();
-            Ext.ComponentQuery.query('#adminNodeGridForChannel')[0].store.load();
-        })
+        Ext.direct.Manager.on('event', function (event, provider, eOpts) {
+
+            var nodeForDevice = Ext.ComponentQuery.query('#admin_panel_NodeForDevice')[0];
+            var nodeForChannel = Ext.ComponentQuery.query('#adminNodeGridForChannel')[0];
+
+            // 当 Device 删除后，应该刷新 NodeForChannel NodeForDevice
+            if (event.action == 'extDevice' && event.method == 'delete') {
+                nodeForChannel.editPlugin.reload();
+                nodeForDevice.editPlugin.reload();
+            }
+
+            // 当 NodeForDevice，更新，应该更新 NodeForChannel
+            if (event.action == 'extNodeForDevice' && event.method == 'update') {
+                nodeForChannel.editPlugin.reload();
+            }
+
+        }, this);
+
     }
-})
+});

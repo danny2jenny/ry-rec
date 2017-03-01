@@ -1,8 +1,6 @@
 package com.rytec.rec.node;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.rytec.rec.channel.ChannelMessage;
-import org.springframework.core.annotation.Order;
 
 import java.io.IOException;
 
@@ -10,7 +8,6 @@ import java.io.IOException;
  * Created by danny on 17-1-21.
  * Node 的基础类
  */
-@Order(100)
 public abstract class BaseNode {
 
     /**
@@ -25,7 +22,7 @@ public abstract class BaseNode {
             nodeConfig = new ObjectMapper().readValue(inStr, NodeConfig.class);
 
         } catch (IOException e) {
-            nodeConfig = null;
+            nodeConfig = new NodeConfig();
         }
 
         return nodeConfig;

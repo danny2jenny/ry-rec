@@ -27,21 +27,18 @@ Ext.define('app.view.admin.frame.ChannelNode', {
             height: 500,
             margins: '0 0 5 0',
             layout: 'border',
-            items:[
+            items: [
                 {
                     xtype: 'admin.panel.node',
                     region: 'center',
                 },
                 {
                     xtype: 'admin.panel.nodeconfig',
-                    region:'east',
-                    width:400
+                    region: 'east',
+                    width: 400
                 }
             ]
         }
-        /**
-         * 子表设置
-         */
 
     ],
 
@@ -55,16 +52,29 @@ Ext.define('app.view.admin.frame.ChannelNode', {
 
         me.callParent(arguments);
 
-        //更新成功后
-        this.down('#adminNodeGridForChannel').store.on('update', function (store, record, operation, eOpts) {
-            var nodeGrid = Ext.ComponentQuery.query('#admin_panel_NodeForDevice')[0];
-            nodeGrid.store.load();
-        })
-
         // 当数据改变成功后的回调
         Ext.direct.Manager.on('event', function (event, provider, eOpts) {
-            // todo:当 Device 删除后，应该刷新 Node
-            if (event.action == 'extDevice' && event.method == 'delete') {
+
+            var nodeForDevice = Ext.ComponentQuery.query('#admin_panel_NodeForDevice')[0];
+            var nodeForChannel = Ext.ComponentQuery.query('#adminNodeGridForChannel')[0];
+
+            // 当Channel删除后，应该更新 NodeForDevice 和 NodeForChannel
+            if (event.action == 'extChannel' && event.method == 'delete') {
+                nodeForChannel.editPlugin.reload();
+                nodeForDevice.editPlugin.reload();
+            }
+
+
+            // 当Node删除后，应该刷新 NodeForDevice
+            if (event.action == 'extNode' && event.method == 'delete') {
+                // node 删除，刷新 DeviceNode;
+                nodeForDevice.editPlugin.reload();
+            }
+
+            // 当Node更新后，应该刷新 NodeForDevice
+            if (event.action == 'extNode' && event.method == 'update') {
+                // node 删除，刷新 DeviceNode;
+                nodeForDevice.editPlugin.reload();
             }
 
         });

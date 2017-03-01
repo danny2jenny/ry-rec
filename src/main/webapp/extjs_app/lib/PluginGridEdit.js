@@ -19,9 +19,12 @@
  * hideRefresh:隐藏刷新
  * isCell: true or false 不为空就是cell方式
  *
+ * *************************************
+ * grid 的属性上加了一个属性：
+ * newRec：子表时存在，其 fKey 属性是当前主表的Id
+ * masterRecordCreated: 事件，当主表创建记录时调用
+ * editPlugin: 就是这个插件
  */
-
-//todo: 新添加数据得不到选中记录的id
 
 Ext.define('app.lib.PluginGridEdit', {
     alias: 'plugin.grid.editing',  //使用 ptypt:'grid.editing' 方式建立插件
@@ -29,6 +32,21 @@ Ext.define('app.lib.PluginGridEdit', {
 
     mixins: {
         observable: 'Ext.util.Observable'
+    },
+
+    // 刷新当前的数据
+    reload: function () {
+        var client = this.getCmp();
+
+        if (this.master) {
+            // 如果是子表
+            if (client.store.proxy.extraParams.masterId) {
+                client.store.load();
+            }
+        } else {
+            // 主表
+            client.store.load();
+        }
     },
 
     // 主表新记录添加的通知
@@ -146,6 +164,7 @@ Ext.define('app.lib.PluginGridEdit', {
                 }
             ]
         });
+
         client.addDocked(me.tbar, 'top');
 
         // 设置是否自动加载数据
@@ -216,15 +235,16 @@ Ext.define('app.lib.PluginGridEdit', {
 
         // 给自己的Grid添加事件
 
-        me.getCmp().on('selectionchange', me.onSelectChange, this);
+        client.on('selectionchange', me.onSelectChange, this);
 
         //主表添加记录成功后，触发事件
-        me.getCmp().store.on('write', function (store, operation, eOpts) {
+        client.store.on('write', function (store, operation, eOpts) {
             if (operation.action == "create") {
-                me.getCmp().fireEvent('masterRecordCreated', operation.records[0]);
+                this.getCmp().fireEvent('masterRecordCreated', operation.records[0]);
             }
-        }, me)
+        }, me);
 
+        client.editPlugin = me;
     }
 
-})
+});

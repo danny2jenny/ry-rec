@@ -9,8 +9,8 @@ package com.rytec.rec.node;
  */
 
 public class NodeConfig {
-    public float sensitive;            //更新条件：（oldValue-newValue）>= sensitive 的时候进行更新
-    public float pA;                   //模拟量转换条件：Y=aX + B，输入值X为整形
-    public float pB;                   //模拟量转换条件：Y=aX + B，输入值X为整形
-    public String unit = "单位";        //单位
+    public float sensitive = 1;            //更新条件：（oldValue-newValue）>= sensitive 的时候进行更新
+    public float pA = 1;                   //模拟量转换条件：Y=aX + B，输入值X为整形
+    public float pB = 0;                   //模拟量转换条件：Y=aX + B，输入值X为整形
+    public String unit = "单位";            //单位
 }

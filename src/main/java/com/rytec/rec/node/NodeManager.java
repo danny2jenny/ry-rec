@@ -114,12 +114,15 @@ public class NodeManager implements ManageableInterface {
             // 数据需要更新
             nodeState.value = msg.value;
             logger.debug("Node:" + msg.node + ':' + oldValue + ':' + msg.value);
-            deviceManager.onValueChange(nodeRuntimeBean.channelNode.getDevice(), nodeRuntimeBean.channelNode.getDevicefun(), oldValue, msg.value);
+            // Device 可能指针为空
+            Integer deviceId = nodeRuntimeBean.channelNode.getDevice();
+            if (deviceId == null) {
+                return;
+            }
+            deviceManager.onValueChange(deviceId, nodeRuntimeBean.channelNode.getDevicefun(), oldValue, msg.value);
         } else {
             // 数据不需要更新
         }
-
-
     }
 
     public NodeRuntimeBean getChannelNodeByNodeId(int nodeId) {

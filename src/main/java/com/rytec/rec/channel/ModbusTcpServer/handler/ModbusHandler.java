@@ -119,10 +119,10 @@ public class ModbusHandler extends SimpleChannelInboundHandler<ChannelMessage> {
      */
     @Override
     public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception {
-        // 超时处理--不会被调用
+        // 当一个channel太久没有写入数据，表示这个Channel是没有配置的，应该断开。
         if (evt instanceof IdleStateEvent) {
-            //ChanneSession channelSession = ctx.channel().attr(ModbusCommon.MODBUS_STATE).get();
-            //channelSession.checkOverTime();
+            ctx.close();
+            logger.debug("无效的连接！！！！！！！！！！！！");
         }
     }
 

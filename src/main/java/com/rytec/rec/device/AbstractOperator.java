@@ -8,7 +8,6 @@ import com.rytec.rec.node.NodeMessage;
 import com.rytec.rec.util.ConstantErrorCode;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.annotation.Order;
 
 import java.util.HashMap;
 
@@ -16,7 +15,6 @@ import java.util.HashMap;
  * Created by danny on 16-11-21.
  * 这个是Device的基类
  */
-@Order(100)
 public class AbstractOperator {
 
     private final org.slf4j.Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -108,6 +106,22 @@ public class AbstractOperator {
      */
     public void sendSig(int deviceId, int sig, Object parm) {
         cooperateManager.onSignal(deviceId, sig, parm);
+    }
+
+    /**
+     * 用来解析配置参数的，并生成配置对象。
+     * 子类重载该函数
+     *
+     * @param config
+     * @return
+     */
+    public Object parseConfig(String config) {
+        return null;
+    }
+
+    public Object getConfig(int deviceId) {
+        DeviceRuntimeBean drb = deviceManager.deviceRuntimeList.get(deviceId);
+        return drb.config;
     }
 
 }

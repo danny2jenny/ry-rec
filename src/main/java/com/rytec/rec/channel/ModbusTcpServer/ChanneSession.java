@@ -80,7 +80,12 @@ public class ChanneSession {
 
         /*
          * 地址一样的，组织成一个命令进行查询
+         * 可能该通道没有被配置 cha 可能为空
          */
+
+        if (cha==null){
+            return;
+        }
         for (ChannelNode cn : cha.values()) {
 
             // 得到 node 对应的操作接口

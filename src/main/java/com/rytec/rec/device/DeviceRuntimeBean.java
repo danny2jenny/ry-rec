@@ -10,4 +10,5 @@ import com.rytec.rec.db.model.Device;
 public class DeviceRuntimeBean {
     Device device;                  //Device ID
     DeviceStateBean state;          //Device 状态
+    Object config;                  //Device 的配置对象
 }
