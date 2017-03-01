@@ -67,13 +67,11 @@ Ext.define('app.view.admin.frame.ChannelNode', {
 
             // 当Node删除后，应该刷新 NodeForDevice
             if (event.action == 'extNode' && event.method == 'delete') {
-                // node 删除，刷新 DeviceNode;
                 nodeForDevice.editPlugin.reload();
             }
 
             // 当Node更新后，应该刷新 NodeForDevice
             if (event.action == 'extNode' && event.method == 'update') {
-                // node 删除，刷新 DeviceNode;
                 nodeForDevice.editPlugin.reload();
             }
 

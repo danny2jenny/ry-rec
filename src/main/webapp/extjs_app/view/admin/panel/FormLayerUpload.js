@@ -13,6 +13,7 @@ Ext.define('app.view.admin.panel.FormLayerUpload', {
     //layout: 'form',
     //frame: true,
     fileUpload: true,
+    icon:"icon/toolbar/upload.png",
     items: [
         {
             xtype: 'textfield',
@@ -35,8 +36,8 @@ Ext.define('app.view.admin.panel.FormLayerUpload', {
                 form.submit({
                     waitMsg: 'Uploading your files...',
                     success: function (form, action) {
-                        debugger;
-                        //textArea1.setValue(action.result.fileContents);
+                        // 不能在这个地方刷新，时序不对
+                        //Ext.getCmp('admin.panel.gislayer').editPlugin.reload();
                     }
                 });
             }
@@ -45,5 +46,18 @@ Ext.define('app.view.admin.panel.FormLayerUpload', {
     }],
     api: {
         submit: uploadService.gisLayer
+    },
+
+    // 初始化
+    initComponent: function () {
+        this.callParent(arguments);
+
+        Ext.direct.Manager.on('event', function (event, provider, eOpts) {
+
+            // 上传图层后，刷新图层列表
+            if (event.action == "uploadService" && event.method == "gisLayer") {
+                Ext.getCmp('admin.panel.gislayer').editPlugin.reload();
+            }
+        });
     }
 });

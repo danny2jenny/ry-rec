@@ -56,6 +56,17 @@ Ext.define('app.view.admin.frame.DeviceNodeGrid', {
         this.callParent(arguments);
 
         //Device 的拖放
+        /*
+         * 当 NodeForChannel 拖放到DeviceGrid这个Panel中的时候
+         * 以 NodeForChannel 的名字来建立一个Device记录
+         * todo：这个地方存在一个死循环？？？ 可能的原因，
+         * 1、Device表刷新后，在plugin中会刷新NodeForDevice
+         * 2、NodeForDevice刷新后，会刷新NodeForChannel《就在这里》
+         * 3、NodeForChannel刷新后，会通过刷新NodeForDevice《ChannelNode》
+         *
+         * 2、3 循环  《不是这个原因》
+         * todo： 错误没有找到，应该可以通过其他方式解决，好像是新添加的数据和以前被选中的数据间一直在重复不停的相互选中
+         */
         this.down('#adminDeviceGrid').on('onDragDrop', function (data, targetNode, position) {
             if (!data.records.length) {
                 return;
@@ -67,11 +78,15 @@ Ext.define('app.view.admin.frame.DeviceNodeGrid', {
                 name: data.records[0].get('name'),
                 type: 0
             })
+
         });
 
-        //Node 的拖放
+        /*
+         * 当NodeForChannel拖放到NodeForDevice中的时候
+         * 判断Device是否选择
+         * 以Device的Id来更新NodeForChannel的device字段
+         */
         this.down('#admin_panel_NodeForDevice').on('onDragDrop', function (data, targetNode, position) {
-            debugger;
             var deviceGrid = Ext.ComponentQuery.query('#adminDeviceGrid')[0];
             var nodeGrid = Ext.ComponentQuery.query('#admin_panel_NodeForDevice')[0];
 
@@ -87,9 +102,10 @@ Ext.define('app.view.admin.frame.DeviceNodeGrid', {
             updateItem.commit();
         });
 
-        // 覆盖Node的Delete方法
-        // 只是设置相应的 Node 的 device 为 0
-
+        /*
+         * 覆盖Node的Delete方法
+         * 只是设置相应的 Node 的 device 为 0
+         */
         var nodeForDevice = Ext.ComponentQuery.query('#admin_panel_NodeForDevice')[0];
 
         nodeForDevice.down('#buttonDelete').handler = function () {

@@ -6,6 +6,7 @@
  * 参考：
  * http://openlayers.org/workshop/en/index.html
  * http://viglino.github.io/ol3-ext/
+ * https://github.com/Viglino/ol3-ext
  * https://openlayersbook.github.io/
  * http://www.acuriousanimal.com/thebookofopenlayers3/
  * http://www.acuriousanimal.com/thebookofopenlayers3/chapter06_02_markers_overlays.html
@@ -64,7 +65,7 @@ Ext.define('app.lib.GisViewPlugin', {
         }),
 
         // 点填充样式
-        icon: new ol.style.Circle({
+        point: new ol.style.Circle({
             radius: 7,
             fill: new ol.style.Fill({
                 color: '#ffcc33'
@@ -87,6 +88,7 @@ Ext.define('app.lib.GisViewPlugin', {
 
         client.layout = 'fit';          // 强制使用fit
         this.callParent(arguments);
+
         var me = this;
 
 
@@ -98,7 +100,7 @@ Ext.define('app.lib.GisViewPlugin', {
         me.style.default = new ol.style.Style({
             fill: me.style.fill,
             stroke: me.style.stroke,
-            image: me.style.icon
+            image: me.style.point
         });
 
         // 选中的样式
@@ -110,7 +112,13 @@ Ext.define('app.lib.GisViewPlugin', {
             })
         });
 
-        // Style 初始化函数
+        /**
+         * 动态的图标在Overlay中显示，这里的样式只是在绘图的时候表示设备的静态状态
+         * @param feature
+         * @param resolution
+         * @returns {*}
+         */
+
         me.style.styleFun = function (feature, resolution) {
 
             // 缓冲样式的 key，用于 gis.style.chace 的索引
@@ -140,7 +148,12 @@ Ext.define('app.lib.GisViewPlugin', {
             return cachedStyle;
         };
 
-        // 改变一组 Feature 的样式
+        /**
+         * 改变一组 Feature 的样式
+         * @param features   features 集合
+         * @param type       样式的风格，整形
+         */
+
         me.style.changeStyle = function (features, type) {
 
             // 缓冲样式的 key，用于 gis.style.chace 的索引
@@ -173,9 +186,14 @@ Ext.define('app.lib.GisViewPlugin', {
             }
         };
 
-        // 改变 Device 的 Style
+        /**
+         * 改变当前层中 Device 的 Style
+         * @param device  device 的ID
+         * @param state   状态：整形
+         */
+
         me.setDeviceStyle = function (device, state) {
-            var features = me.getFeaturesByIdofLayer(gis.getActiveVectorLayer(), device);
+            var features = me.getFeaturesByIdOfLayer(gis.getActiveVectorLayer(), device);
             me.style.changeStyle(features, state);
         };
 
@@ -193,17 +211,25 @@ Ext.define('app.lib.GisViewPlugin', {
                 maxZoom: 4
             })
         });
+
+        // map.owner 可以访问到map插件
         me.map.owner = me;
 
         // 添加图层切换
         me.map.addControl(new ol.control.LayerSwitcherImage());
 
-        // 重新设置mapView
+        /**
+         * 重新设置mapView
+         */
         me.maxExtent = function () {
             me.map.getView().fit(me.extent, me.map.getSize());
         };
 
-        // 缩放到Features对应的区域
+        /**
+         * 缩放到Features对应的区域
+         * @param features
+         */
+
         me.zoomToFeatures = function (features) {
             var a = [];
             for (var i in features) {
@@ -211,7 +237,6 @@ Ext.define('app.lib.GisViewPlugin', {
             }
             var gc = new ol.geom.GeometryCollection(a);
             me.map.getView().fit(gc.getExtent(), me.map.getSize());
-
         };
 
         /*******************************************************
@@ -220,21 +245,29 @@ Ext.define('app.lib.GisViewPlugin', {
 
         me.layers = new Ext.util.HashMap();
 
-        // 删除所有的图层
+        /**
+         * 删除所有的图层
+         */
         me.clearLayers = function () {
             me.map.getLayers().clear();
             me.layers.clear();
         };
 
-        // 删除一个图层
+        /**
+         * 删除一个图层
+         * @param layerId
+         */
         me.delLayer = function (layerId) {
             var layer = me.layers.get(layerId);
             me.map.removeLayer(layer);
             me.layers.removeAtKey(layerId);
         };
 
-        // 得到当前激活的图层组
-        me.getActiveLayer = function () {
+        /**
+         * 得到当前激活的图层组的图层组
+         * @returns {*} 当前激活的图层对象
+         */
+        me.getActiveLayerGroup = function () {
             var r = null;
             me.layers.each(function (key, value, length) {
                 if (value.getVisible()) {
@@ -244,9 +277,12 @@ Ext.define('app.lib.GisViewPlugin', {
             return r;
         };
 
-        // 得到当前激活的设备显示图层
+        /**
+         * 得到当前激活图层的设备图层 Vecto 图层
+         * @returns {*}
+         */
         me.getActiveVectorLayer = function () {
-            var layer = me.getActiveLayer();
+            var layer = me.getActiveLayerGroup();
             if (layer) {
                 return layer.getLayers().getArray()[1];
             } else {
@@ -255,7 +291,10 @@ Ext.define('app.lib.GisViewPlugin', {
         };
 
         /**
-         * 添加图层
+         * 添加图层组
+         * 1、建立一个图层组：底图和设备图层
+         * 2、图层得到设备信息时，更新设备状态
+         * 3、图层激活的时候，更新设备状态
          * @param layerId
          * @param layerName
          * @param layerFile
@@ -291,28 +330,32 @@ Ext.define('app.lib.GisViewPlugin', {
                 ]
             });
 
-            // todo: 这个地方不是很优化，可能需要两次请求
+            /**
+             * 当设备的GIS信息被添加的时候，建立设备的状态Overlay
+             */
             vectorLayer.on('change', function (event) {
                 // Features改变的时候触发，只触发一次
                 gisDevice.getFeaturesState(function (data, event, rst) {
-                    this.overlay.states = data;
+                    this.overlay.devicdsState = data;
                     this.overlay.updateDevice(this);
                 }, this)
 
             }, me);
 
-            // Layer切换的事件
+            /**
+             * 当图层被激活的时候，更新设备状态
+             */
             newLayer.on('change:visible', function (event) {
                 // 状态改变的时候触发，多次触发
 
                 //event.target;       //layer group
                 //event.oldValue;     // 以前的状态 true false
-
                 // 当前激活的层
                 if (!event.oldValue) {
                     gisDevice.getFeaturesState(function (data, event, rst) {
-                        this.overlay.states = data;
+                        this.overlay.devicdsState = data;
                         this.overlay.updateDevice(this);
+                        this.maxExtent();
                     }, this)
                 }
             }, me);
@@ -325,14 +368,19 @@ Ext.define('app.lib.GisViewPlugin', {
 
 
         /*******************************************************
-         * Feature 管理                                         *
+         * 使用 overlay 来对设备的状态进行改变
+         * Feature 管理
+         *
          *******************************************************/
 
         me.overlay = {
-            states: null,
+            // 存放当前层的Overlay
+            devicdsState: null,
             /**
              * 通过Feature生成一个overlay
              * @param feature
+             * @param state
+             * @param me
              * @returns {ol.Overlay}
              */
             createFeatureOverlay: function (feature, state, me) {
@@ -349,18 +397,19 @@ Ext.define('app.lib.GisViewPlugin', {
                 });
                 return overlay;
             },
-            devicesOverlay: new ol.Collection,    // Device 的 overlay
 
             /**
              * 更新当前层的Device状态
              * @param me
+             *
+             * map.overlays_ 是 map 自己的一个对象
              */
             updateDevice: function (me) {
                 me.map.overlays_.clear();
                 var features = me.getActiveVectorLayer().getSource().getFeatures();
                 for (i in features) {
                     var feature = features[i];
-                    var state = this.states[feature.getProperties().deviceId].state;
+                    var state = this.devicdsState[feature.getProperties().deviceId].state;
                     var overlay = me.overlay.createFeatureOverlay(feature, state, me);
                     me.map.addOverlay(overlay);
                 }
@@ -369,11 +418,11 @@ Ext.define('app.lib.GisViewPlugin', {
         };
 
         /**
-         * 得到一个Layer中对应的id的Feature
+         * 得到一个Layer中对应的Device的Feature列表
          * @param id
          * @param layer
          */
-        me.getFeaturesByIdofLayer = function (layer, id) {
+        me.getFeaturesByIdOfLayer = function (layer, id) {
             var out = [];
             var features = layer.getSource().getFeatures();
             for (var index in features) {
@@ -443,7 +492,7 @@ Ext.define('app.lib.GisViewPlugin', {
                     var deviceGrid = Ext.ComponentQuery.query('#adminDeviceGrid')[0];
                     var deviceId = deviceGrid.getSelectionModel().selected.get(0).get('id');
                     var icon = deviceGrid.getSelectionModel().selected.get(0).get('icon');
-                    var layer = me.getActiveLayer().id;
+                    var layer = me.getActiveLayerGroup().id;
 
                     // 设置Feature 的属性
                     event.feature.setProperties(
@@ -632,17 +681,17 @@ Ext.define('app.lib.GisViewPlugin', {
                 me.addLayer(item.id, item.name, item.file);
             }
 
-            if (this.layers.getValues().length){
+            if (this.layers.getValues().length) {
                 //把第一个层作为显示层
                 this.layers.getValues()[0].setVisible(true);
             }
         };
 
-        me.layerStore = Ext.StoreMgr.get(me.layerStore);
-        me.layerStore.on('refresh', me.onLayerFresh, me);
+        me.store = Ext.StoreMgr.get(me.layerStore);
+        me.store.on('refresh', me.onLayerFresh, me);
 
         client.refresh = function () {
-            me.layerStore.load();
+            me.store.load();
         }
     }
 });

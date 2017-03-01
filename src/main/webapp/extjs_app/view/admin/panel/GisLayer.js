@@ -7,7 +7,7 @@ Ext.define('app.view.admin.panel.GisLayer', {
     extend: 'Ext.grid.Panel',
     alias: 'widget.admin.panel.gislayer',
 
-    itemId: 'admin.panel.gislayer',
+    id: 'admin.panel.gislayer',
     title: 'GIS 图层',
     store: 'GisLayer',
 

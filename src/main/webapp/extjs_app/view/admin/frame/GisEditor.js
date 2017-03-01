@@ -37,6 +37,7 @@ Ext.define('app.view.admin.frame.GisEditor', {
 
         me.callParent(arguments);
 
+        // 隐藏Device的所有配置Panel
         this.on('show', function (from, eOpts) {
             Ext.ComponentQuery.query('#griddeviceNode')[0].hideAllSouthPanel();
             var gis = Ext.ComponentQuery.query('#admin_panel_gis')[0];

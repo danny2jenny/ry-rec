@@ -164,7 +164,7 @@ gis.style.changeStyle = function (features, type) {
  * @param state
  */
 gis.style.featureStyle = function (device, state) {
-    var features = gis.getFeaturesByIdofLayer(gis.getActiveVectorLayer(), device);
+    var features = gis.getFeaturesByIdOfLayer(gis.getActiveVectorLayer(), device);
     gis.style.changeStyle(features, state);
 };
 
@@ -215,7 +215,7 @@ gis.interaction.drawFun = function (event) {
     var deviceGrid = Ext.ComponentQuery.query('#adminDeviceGrid')[0];
     var deviceId = deviceGrid.getSelectionModel().selected.get(0).get('id');
     var icon = deviceGrid.getSelectionModel().selected.get(0).get('icon');
-    var layer = gis.getActiveLayer().id;
+    var layer = gis.getActiveLayerGroup().id;
 
     // 设置Feature 的属性
     event.feature.setProperties(
@@ -440,7 +440,7 @@ gis.delLayer = function (layerId) {
 };
 
 // 得到当前激活的图层
-gis.getActiveLayer = function () {
+gis.getActiveLayerGroup = function () {
     var r = null;
     gis.layers.each(function (key, value, length) {
         if (value.getVisible()) {
@@ -452,7 +452,7 @@ gis.getActiveLayer = function () {
 
 // 得到当前激活的设备显示图层
 gis.getActiveVectorLayer = function () {
-    var layer = gis.getActiveLayer();
+    var layer = gis.getActiveLayerGroup();
     if (layer) {
         return layer.getLayers().getArray()[1];
     } else {
@@ -502,7 +502,7 @@ gis.addLayer = function (layerId, layerName, layerFile) {
  * @param id
  * @param layer
  */
-gis.getFeaturesByIdofLayer = function (layer, id) {
+gis.getFeaturesByIdOfLayer = function (layer, id) {
     var out = [];
     var features = layer.getSource().getFeatures();
     for (var index in features) {
