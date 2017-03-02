@@ -12,6 +12,7 @@ Ext.define('app.view.admin.panel.Device', {
     icon: '/icon/toolbar/device.png',
     store: 'Device',
     itemId: 'adminDeviceGrid',
+    id: 'admin.device.grid',
 
     plugins: [{
         ptype: 'grid.editing',
@@ -75,5 +76,15 @@ Ext.define('app.view.admin.panel.Device', {
             enableDrop: true,
             enableDrag: true
         }
+    },
+
+    onSelectChange: function (view, selections, options) {
+        var device = selections[0].getId();
+        Ext.getCmp('gis.view').gis.highlightDevice(device);
+    },
+
+    initComponent: function () {
+        this.callParent(arguments);
+        this.on('selectionchange', this.onSelectChange, this);
     }
 });

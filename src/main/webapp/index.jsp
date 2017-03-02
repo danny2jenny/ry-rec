@@ -61,9 +61,6 @@
     <%--主程序入口--%>
     <script type="text/javascript" src="extjs_app/App.js"></script>
 
-    <%--GIS 管理--%>
-    <script type="text/javascript" src="extjs_app/gis/map.js"></script>
-
 </head>
 
 <body>

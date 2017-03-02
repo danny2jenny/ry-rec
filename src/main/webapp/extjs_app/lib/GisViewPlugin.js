@@ -14,9 +14,10 @@
  *
  *
  *
- * 配置：
+ * 配置：todo: devicepanal需要添加到配置
  * layerStore：字符串， GisLayer对应 app.store.GisLayer
  * editable: boolean 是否允许编辑
+ * deviceGrid: 字符串，devicegrid的ID
  */
 
 Ext.define('app.lib.GisViewPlugin', {
@@ -352,18 +353,6 @@ Ext.define('app.lib.GisViewPlugin', {
             });
 
             /**
-             * 当设备的GIS信息被添加的时候，建立设备的状态Overlay
-             */
-            vectorLayer.on('change', function (event) {
-                // Features改变的时候触发，只触发一次
-                gisDevice.getFeaturesState(function (data, event, rst) {
-                    this.overlay.devicdsState = data;
-                    this.overlay.updateDevice(this);
-                }, this)
-
-            }, me);
-
-            /**
              * 当图层被激活的时候，更新设备状态
              */
             newLayer.on('change:visible', function (event) {
@@ -469,6 +458,9 @@ Ext.define('app.lib.GisViewPlugin', {
          */
         4
         me.getFeaturesByDeviceOfLayer = function (layer, id) {
+            if (!layer) {
+                return;
+            }
             var out = [];
             var features = layer.getSource().getFeatures();
             for (var index in features) {
@@ -538,6 +530,9 @@ Ext.define('app.lib.GisViewPlugin', {
             // 首先在当前层寻找Feature
             var features = me.getFeaturesByDeviceOnActiveLayer(device);
 
+            if (!features) {
+                return;
+            }
             if (features.length) {
                 // 当前层中没有
                 me.highlightFeatures(features, true);
@@ -599,9 +594,9 @@ Ext.define('app.lib.GisViewPlugin', {
 
                 // 判断是否可以编辑的函数
                 drawConditionFun: function (event) {
-                    // todo：这个需要添加到配置
-                    var deviceGrid = Ext.ComponentQuery.query('#adminDeviceGrid')[0];
+                    var deviceGrid = Ext.getCmp('admin.device.grid');
                     if (!deviceGrid.getSelectionModel().selected.length) {
+                        // 没有选中的Device，不能添加
                         return false;
                     } else {
                         return !me.editing;
@@ -610,8 +605,7 @@ Ext.define('app.lib.GisViewPlugin', {
 
                 // 作图完成后的事件
                 onDrawEnd: function (event) {
-                    // todo：这个需要添加到配置
-                    var deviceGrid = Ext.ComponentQuery.query('#adminDeviceGrid')[0];
+                    var deviceGrid = Ext.getCmp('admin.device.grid');
                     var deviceId = deviceGrid.getSelectionModel().selected.get(0).get('id');
                     var icon = deviceGrid.getSelectionModel().selected.get(0).get('icon');
                     var layer = me.getActiveLayerGroup().id;
@@ -640,8 +634,6 @@ Ext.define('app.lib.GisViewPlugin', {
                         this.editing = false;
                         this.lastFeature.setId(result.id);
                     }, me);
-
-
                 },
 
                 // 编辑完成后的事件
@@ -652,13 +644,12 @@ Ext.define('app.lib.GisViewPlugin', {
                     var geoJson = parser.writeFeature(feature);
 
                     //保存当前作图的状态
-                    this.editing = true;
-                    this.lastFeature = feature;
+                    //this.editing = true;
+                    //this.lastFeature = feature;
 
                     // 保存，回调
                     extGis.saveFeature(geoJson, function (result, e) {
-                        // todo: 更新 gis grid
-                        this.editing = false;
+                        //this.editing = false;
                     }, me);
                 }
             };
@@ -673,20 +664,21 @@ Ext.define('app.lib.GisViewPlugin', {
             // 画线工具
             me.interaction.drawLine = new ol.interaction.Draw({
                 type: "LineString",
-                condition: gis.interaction.drawConditionFun
+                condition: me.interaction.drawConditionFun
             });
             me.interaction.drawLine.on('drawend', me.interaction.onDrawEnd, me);
 
             // 画面工具
             me.interaction.drawPolygon = new ol.interaction.Draw({
                 type: "Polygon",
-                condition: gis.interaction.drawConditionFun
+                condition: me.interaction.drawConditionFun
             });
             me.interaction.drawPolygon.on('drawend', me.interaction.onDrawEnd, me);
 
             // 修改工具
             me.interaction.modify = new ol.interaction.Modify({
-                features: new ol.Collection()
+                features: new ol.Collection(),
+                //condition: me.interaction.drawConditionFun
             });
             me.interaction.modify.on('modifyend', me.interaction.onModifyEnd, me);
 
