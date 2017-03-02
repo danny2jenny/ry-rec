@@ -34,7 +34,6 @@ public class ExtActions {
         ActionsExample actionsExample = new ActionsExample();
         actionsExample.createCriteria().andRuleEqualTo((Integer) request.getParams().get("masterId"));
         return actionsMapper.selectByExample(actionsExample);
-
     }
 
     // 修改

@@ -195,7 +195,7 @@ Ext.define('app.lib.GisViewPlugin', {
          */
 
         me.setDeviceStyle = function (device, state) {
-            var features = me.getFeaturesByIdOfLayer(gis.getActiveVectorLayer(), device);
+            var features = me.getFeaturesByDeviceOfLayer(gis.getActiveVectorLayer(), device);
             me.style.changeStyle(features, state);
         };
 
@@ -246,6 +246,16 @@ Ext.define('app.lib.GisViewPlugin', {
          *******************************************************/
 
         me.layers = new Ext.util.HashMap();
+
+        // 为 layer 加载Feature
+        me.onLayerFeaturesLoad = function (response) {
+            var me = this;
+            var reader = new ol.format.GeoJSON();
+            var features = reader.readFeatures(response.responseText);
+            // 得到 Vector layer
+            var layer = me.layers.get(response.request.options.params.layer).getLayers().getArray()[1];
+            layer.getSource().addFeatures(features);
+        };
 
         /**
          * 删除所有的图层
@@ -303,6 +313,16 @@ Ext.define('app.lib.GisViewPlugin', {
          */
         me.addLayer = function (layerId, layerName, layerFile) {
 
+            // 请求layer的Features
+            Ext.Ajax.request({
+                url: 'srv/gis/features',
+                params: {
+                    layer: layerId
+                },
+                success: me.onLayerFeaturesLoad,
+                scope: me
+            });
+
             // 图层：位图
             var imageLayer = new ol.layer.Image({
                 source: new ol.source.ImageStatic({
@@ -314,12 +334,11 @@ Ext.define('app.lib.GisViewPlugin', {
 
             // 图层：矢量图
             var vectorLayer = new ol.layer.Vector({
-                source: new ol.source.Vector({
-                    url: "srv/gis/getFeaturesByLayer/" + layerId,
-                    format: new ol.format.GeoJSON()
-                }),
+                source: new ol.source.Vector({}),
                 style: me.style.styleFun
             });
+
+            vectorLayer.getSource().getExtent();
 
             var newLayer = new ol.layer.Group({
                 baseLayer: true,
@@ -369,6 +388,20 @@ Ext.define('app.lib.GisViewPlugin', {
         };
 
 
+        /**
+         * 通过LayerId来查询layer
+         * @param layerId
+         */
+        me.activeLayerById = function (layerId) {
+
+            me.layers.each(function (key, value, length) {
+                value.setVisible(false);
+            }, me);
+
+            me.layers.get(layerId).setVisible(true);
+        };
+
+
         /*******************************************************
          * 使用 overlay 来对设备的状态进行改变
          * Feature 管理
@@ -409,7 +442,7 @@ Ext.define('app.lib.GisViewPlugin', {
             updateDevice: function (me) {
                 me.map.overlays_.clear();
                 var features = me.getActiveVectorLayer().getSource().getFeatures();
-                for (i in features) {
+                for (var i in features) {
                     var feature = features[i];
                     var state = this.devicdsState[feature.getProperties().deviceId].state;
                     var overlay = me.overlay.createFeatureOverlay(feature, state, me);
@@ -428,7 +461,7 @@ Ext.define('app.lib.GisViewPlugin', {
          * @param id
          * @param layer
          */
-        me.getFeaturesByIdOfLayer = function (layer, id) {
+        me.getFeaturesByDeviceOfLayer = function (layer, id) {
             var out = [];
             var features = layer.getSource().getFeatures();
             for (var index in features) {
@@ -439,6 +472,15 @@ Ext.define('app.lib.GisViewPlugin', {
             return out;
         };
 
+        /**
+         * 得到当前激活图层上Device的Feature列表
+         * @param id
+         * @returns {Array}
+         */
+        me.getFeaturesByDeviceOnActiveLayer = function (id) {
+            return me.getFeaturesByDeviceOfLayer(me.getActiveVectorLayer(), id);
+        };
+
 
         /**
          * 高亮Feature，通过Overlayer
@@ -446,7 +488,16 @@ Ext.define('app.lib.GisViewPlugin', {
          * @param zoom              是否放大到该区域
          */
 
-        me.hightlightFeatures = function (features, zoom) {
+        me.highlightOverlays = [];
+
+        me.highlightFeatures = function (features, zoom) {
+            // 首先清理以前的高亮
+
+            for (var i in me.highlightOverlays) {
+                me.map.removeOverlay(me.highlightOverlays[i]);
+            }
+            me.highlightOverlays.length = 0;
+
             for (var i in features) {
                 var position = features[i].getGeometry().getCoordinates();
                 var elem = document.createElement('div');
@@ -456,23 +507,32 @@ Ext.define('app.lib.GisViewPlugin', {
                     position: position,
                     positioning: 'center-center'
                 });
-                me.map.addOverlay(overlay)
+
+                me.highlightOverlays.push(overlay);
+                me.map.addOverlay(overlay);
                 elem.setAttribute('class', 'circle');
             }
 
             if (zoom) {
-                me.map.zoomToFeatures(features);
+                me.zoomToFeatures(features);
             }
         };
 
-        // 清除Overlay
-        me.overlayClean = function () {
-            var overLays = me.map.getOverlays().getArray();
-            var len = overLays.length;
-            for (var i = 0; i < len; i++) {
-                var overlay = overLays[0];
-                me.map.removeOverlay(overlay);
+        /**
+         * 高亮 Device
+         * @param device   DeviceID
+         * @param layer    layerID
+         */
+
+        me.highlightDevice = function (device, layer) {
+
+            if (layer) {
+                // 切换到layer再高亮
+                me.activeLayerById(layer);
+                // todo: 需要把device先保存起来，因为切换图层后，会重新刷新overlay
             }
+            var features = me.getFeaturesByDeviceOnActiveLayer(device);
+            me.highlightFeatures(features, true);
         };
 
         /**
@@ -722,3 +782,6 @@ Ext.define('app.lib.GisViewPlugin', {
         }
     }
 });
+
+
+

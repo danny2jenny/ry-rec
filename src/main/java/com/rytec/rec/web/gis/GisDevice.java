@@ -11,9 +11,7 @@ import com.rytec.rec.device.DeviceStateBean;
 import org.geojson.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -42,9 +40,9 @@ public class GisDevice {
      * 2、deviceId
      * 3、layer
      */
-    @GetMapping("/gis/getFeaturesByLayer/{layer}")
+    @RequestMapping("/gis/features")
     @ResponseBody
-    public String getFeaturesByLayer(@PathVariable int layer) {
+    public String getFeaturesByLayer(@RequestParam int layer) {
 
         // 返回的FeatureCollection
         FeatureCollection featureCollection = new FeatureCollection();
@@ -130,4 +128,5 @@ public class GisDevice {
     public HashMap<Integer, DeviceStateBean> getFeaturesState() {
         return deviceManager.getDeviceStateList();
     }
+
 }

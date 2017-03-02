@@ -164,7 +164,7 @@ gis.style.changeStyle = function (features, type) {
  * @param state
  */
 gis.style.featureStyle = function (device, state) {
-    var features = gis.getFeaturesByIdOfLayer(gis.getActiveVectorLayer(), device);
+    var features = gis.getFeaturesByDeviceOfLayer(gis.getActiveVectorLayer(), device);
     gis.style.changeStyle(features, state);
 };
 
@@ -502,7 +502,7 @@ gis.addLayer = function (layerId, layerName, layerFile) {
  * @param id
  * @param layer
  */
-gis.getFeaturesByIdOfLayer = function (layer, id) {
+gis.getFeaturesByDeviceOfLayer = function (layer, id) {
     var out = [];
     var features = layer.getSource().getFeatures();
     for (var index in features) {
@@ -521,7 +521,7 @@ gis.getFeaturesByIdOfLayer = function (layer, id) {
  * @param zoom              是否放大到该区域
  */
 
-gis.hightlightFeatures = function (features, zoom) {
+gis.highlightFeatures = function (features, zoom) {
     for (var i in features) {
         var position = features[i].getGeometry().getCoordinates();
         var elem = document.createElement('div');
