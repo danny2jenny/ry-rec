@@ -377,6 +377,12 @@ Ext.define('app.lib.GisViewPlugin', {
                         this.overlay.devicdsState = data;
                         this.overlay.updateDevice(this);
                         this.maxExtent();
+
+                        // 是否需要有高亮的Device
+                        if (me.deviceNeedToBeHighlight) {
+                            me.highlightDevice(me.deviceNeedToBeHighlight);
+                        }
+
                     }, this)
                 }
             }, me);
@@ -461,6 +467,7 @@ Ext.define('app.lib.GisViewPlugin', {
          * @param id
          * @param layer
          */
+        4
         me.getFeaturesByDeviceOfLayer = function (layer, id) {
             var out = [];
             var features = layer.getSource().getFeatures();
@@ -490,14 +497,17 @@ Ext.define('app.lib.GisViewPlugin', {
 
         me.highlightOverlays = [];
 
+        // 需要被高亮的device，为0是没有
+        me.deviceNeedToBeHighlight = 0;
+
         me.highlightFeatures = function (features, zoom) {
             // 首先清理以前的高亮
-
             for (var i in me.highlightOverlays) {
                 me.map.removeOverlay(me.highlightOverlays[i]);
             }
             me.highlightOverlays.length = 0;
 
+            // 然后进行高亮
             for (var i in features) {
                 var position = features[i].getGeometry().getCoordinates();
                 var elem = document.createElement('div');
@@ -524,15 +534,40 @@ Ext.define('app.lib.GisViewPlugin', {
          * @param layer    layerID
          */
 
-        me.highlightDevice = function (device, layer) {
-
-            if (layer) {
-                // 切换到layer再高亮
-                me.activeLayerById(layer);
-                // todo: 需要把device先保存起来，因为切换图层后，会重新刷新overlay
-            }
+        me.highlightDevice = function (device) {
+            // 首先在当前层寻找Feature
             var features = me.getFeaturesByDeviceOnActiveLayer(device);
-            me.highlightFeatures(features, true);
+
+            if (features.length) {
+                // 当前层中没有
+                me.highlightFeatures(features, true);
+                me.deviceNeedToBeHighlight = 0;
+                return;
+            }
+
+            // 到其他的层中寻找
+            var vectorLayerId = 0;          // 找到的层
+            var keySet = me.layers.getKeys();
+
+            for (var i in keySet) {
+                var index = keySet[i];
+                var layerGroup = me.layers.get(index);
+                if (layerGroup.getVisible()) {
+                    continue;
+                }
+
+                var vectorLayer = layerGroup.getLayers().getArray()[1];
+                features = me.getFeaturesByDeviceOfLayer(vectorLayer, device);
+                if (features.length) {
+                    vectorLayerId = index;
+                    break;
+                }
+            }
+
+            if (vectorLayerId) {
+                me.deviceNeedToBeHighlight = device;
+                me.activeLayerById(vectorLayerId);
+            }
         };
 
         /**
