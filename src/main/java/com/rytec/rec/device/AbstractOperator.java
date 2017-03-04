@@ -82,7 +82,7 @@ public class AbstractOperator {
      */
     public void setState(int device, int ste) {
         DeviceRuntimeBean drb = deviceManager.deviceRuntimeList.get(device);
-        drb.state.state = ste;
+        drb.state.iconState = ste;
     }
 
     /**
@@ -122,6 +122,11 @@ public class AbstractOperator {
     public Object getConfig(int deviceId) {
         DeviceRuntimeBean drb = deviceManager.deviceRuntimeList.get(deviceId);
         return drb.config;
+    }
+
+    // 产生一个该设备的状态对象，实现类需要覆盖
+    public Object generateStateBean() {
+        return null;
     }
 
 }

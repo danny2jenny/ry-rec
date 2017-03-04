@@ -76,6 +76,7 @@ public class GisDevice {
             feature.setProperty("icon", gisItem.getIcon());
             feature.setProperty("deviceId", gisItem.getDid());
             feature.setProperty("layer", gisItem.getLayer());
+            feature.setProperty("type", gisItem.getDtype());
 
             switch (gisItem.getGtype()) {
                 case 1:     //点
@@ -125,7 +126,7 @@ public class GisDevice {
      * @return Device 的状态Hash 列表
      */
     @ExtDirectMethod
-    public HashMap<Integer, DeviceStateBean> getFeaturesState() {
+    public HashMap<Integer, DeviceStateBean> getDevicesState() {
         return deviceManager.getDeviceStateList();
     }
 

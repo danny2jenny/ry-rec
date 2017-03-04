@@ -14,7 +14,7 @@
  *
  *
  *
- * 配置：todo: devicepanal需要添加到配置
+ * 配置：
  * layerStore：字符串， GisLayer对应 app.store.GisLayer
  * editable: boolean 是否允许编辑
  * deviceGrid: 字符串，devicegrid的ID
@@ -46,12 +46,12 @@ Ext.define('app.lib.GisViewPlugin', {
     style: {
         /**
          *
-         * @param cls               图标的代码
-         * @param mod               图标模式
+         * @param icon               图标的代码
+         * @param iconState               图标模式
          * @returns {string}        返回图标的路径
          */
-        getIconPath: function (cls, mod) {
-            return "icon/device_icon/" + cls + "-" + mod + ".gif";
+        getIconPath: function (icon, iconState) {
+            return "icon/device_icon/" + icon + "-" + iconState + ".gif";
         },
 
         // 区域填充的样式
@@ -93,6 +93,7 @@ Ext.define('app.lib.GisViewPlugin', {
         var me = this;
 
         client.gis = me;
+        ry.gis = me;
 
 
         /*******************************************************
@@ -192,12 +193,12 @@ Ext.define('app.lib.GisViewPlugin', {
         /**
          * 改变当前层中 Device 的 Style
          * @param device  device 的ID
-         * @param state   状态：整形
+         * @param icon   状态：整形
          */
 
-        me.setDeviceStyle = function (device, state) {
+        me.setDeviceStyle = function (device, icon) {
             var features = me.getFeaturesByDeviceOfLayer(gis.getActiveVectorLayer(), device);
-            me.style.changeStyle(features, state);
+            me.style.changeStyle(features, icon);
         };
 
 
@@ -225,7 +226,8 @@ Ext.define('app.lib.GisViewPlugin', {
          * 重新设置mapView
          */
         me.maxExtent = function () {
-            me.map.getView().fit(me.extent, me.map.getSize());
+            //me.map.getView().fit(me.extent, me.map.getSize());   //-- v3.0
+            me.map.getView().fit(me.extent);   //-- v4.0
         };
 
         /**
@@ -339,6 +341,9 @@ Ext.define('app.lib.GisViewPlugin', {
                 style: me.style.styleFun
             });
 
+            // 在 click 事件中，只能有layer传过去，这里给layer添加一个属性
+            vectorLayer.owner = me;
+
             vectorLayer.getSource().getExtent();
 
             var newLayer = new ol.layer.Group({
@@ -362,8 +367,9 @@ Ext.define('app.lib.GisViewPlugin', {
                 //event.oldValue;     // 以前的状态 true false
                 // 当前激活的层
                 if (!event.oldValue) {
-                    gisDevice.getFeaturesState(function (data, event, rst) {
-                        this.overlay.devicdsState = data;
+                    // 获取设备的状态
+                    gisDevice.getDevicesState(function (data, event, rst) {
+                        this.overlay.devicesState = data;
                         this.overlay.updateDevice(this);
                         this.maxExtent();
 
@@ -404,26 +410,35 @@ Ext.define('app.lib.GisViewPlugin', {
          *******************************************************/
 
         me.overlay = {
+
             // 存放当前层的Overlay
-            devicdsState: null,
+            featureStateOverlays: new Ext.util.HashMap(),
+
+            // 所有设备的状态
+            devicesState: null,
+
+
             /**
              * 通过Feature生成一个overlay
              * @param feature
-             * @param state
+             * @param iconState
              * @param me
              * @returns {ol.Overlay}
+             *
+             * todo: 为了局部更新，需要把生成的Overlay加入到一个hash中进行管理
              */
-            createFeatureOverlay: function (feature, state, me) {
+            createFeatureOverlay: function (feature, iconState, me) {
                 var elem = document.createElement('div');
                 elem.style.width = '16px';
                 elem.style.height = '16px';
-                elem.style.backgroundImage = "url(" + me.style.getIconPath(feature.getProperties().icon, state) + ")";
+                elem.style.backgroundImage = "url(" + me.style.getIconPath(feature.getProperties().icon, iconState) + ")";
 
                 var overlay = new ol.Overlay({
                     id: feature.getId(),
                     element: elem,
                     position: feature.getGeometry().getCoordinates(),
-                    positioning: 'center-center'
+                    positioning: 'center-center',
+
                 });
                 return overlay;
             },
@@ -436,15 +451,39 @@ Ext.define('app.lib.GisViewPlugin', {
              */
             updateDevice: function (me) {
                 me.map.overlays_.clear();
+                me.overlay.featureStateOverlays.clear();
                 var features = me.getActiveVectorLayer().getSource().getFeatures();
                 for (var i in features) {
                     var feature = features[i];
-                    var state = this.devicdsState[feature.getProperties().deviceId].state;
-                    var overlay = me.overlay.createFeatureOverlay(feature, state, me);
+                    var icon = this.devicesState[feature.getProperties().deviceId].iconState;
+                    var overlay = me.overlay.createFeatureOverlay(feature, icon, me);
+                    me.overlay.featureStateOverlays.add(feature.getId(), overlay);
                     me.map.addOverlay(overlay);
                 }
 
             }
+        };
+
+        /**
+         * 设置一个Device的Icon，只在当前层有效
+         * @param deviceId
+         * @param iconState
+         */
+        me.deviceSetIcon = function (deviceId, iconState) {
+
+            // 找到device对应的features
+            var features = me.getFeaturesByDeviceOnActiveLayer(deviceId);
+
+            if (!features) {
+                return;
+            }
+
+            for (var i = 0; i < features.length; i++) {
+                var feature = features[i];
+                var overlay = me.overlay.featureStateOverlays.get(feature.getId());
+                overlay.getElement().style.backgroundImage = "url(" + me.style.getIconPath(feature.getProperties().icon, iconState) + ")";
+            }
+
         };
 
         /*******************************************************
@@ -456,7 +495,6 @@ Ext.define('app.lib.GisViewPlugin', {
          * @param id
          * @param layer
          */
-        4
         me.getFeaturesByDeviceOfLayer = function (layer, id) {
             if (!layer) {
                 return;
@@ -589,6 +627,7 @@ Ext.define('app.lib.GisViewPlugin', {
         /*******************************************************
          * Map 编辑工具                                         *
          *******************************************************/
+        me.interaction = {};
         if (me.editable) {
             me.interaction = {
 
@@ -682,7 +721,7 @@ Ext.define('app.lib.GisViewPlugin', {
             });
             me.interaction.modify.on('modifyend', me.interaction.onModifyEnd, me);
 
-            // 编辑工具条
+            // **********************编辑工具条***********************
             me.editBar = new ol.control.Bar();
             me.map.addControl(me.editBar);
             me.editBar.barItems = new ol.control.Bar({
@@ -764,11 +803,80 @@ Ext.define('app.lib.GisViewPlugin', {
 
                 if (active) {
                     this.map.overlays_.clear();
+                    this.interaction.hoverSelect.setActive(false);
                 } else {
                     this.overlay.updateDevice(this);
+                    this.interaction.hoverSelect.setActive(true);
                 }
             };
         }
+
+
+        // ***************************非编辑工具***************************
+
+        // Hover 控件
+        me.interaction.hoverSelect = new ol.interaction.Select({
+            condition: ol.events.condition.pointerMove,
+            multi: false,
+            //style: gis.style.styleFun
+        });
+
+        //弹出的Overlay
+        me.interaction.popup = new ol.Overlay.Popup({
+            popupClass: "default", //"tooltips", "warning" "black" "default", "tips", "shadow",
+            positioning: 'auto',
+            autoPan: true,
+            autoPanAnimation: {duration: 250}
+        });
+
+        me.interaction.hoverSelect.on('select', function (event) {
+            if (event.selected.length) {
+
+                debugger;
+
+                var fProperties = event.selected[0].getProperties();
+
+                //testPanel.hide();
+                this.map.addOverlay(this.interaction.popup);
+                this.interaction.popup.show(fProperties.geometry.getCoordinates());
+
+                //testPanel.render(this.interaction.popup.content);
+                if (!testPanel.rendered) {
+                    testPanel.render(this.interaction.popup.content);
+                }
+
+                //testPanel.show();
+
+            } else {
+
+                // 没有选中不能hide，否则不能使用面板了
+                //this.interaction.popup.hide();
+                //gis.map.removeOverlay(gis.interaction.popup);
+            }
+        }, me);
+
+        me.map.addInteraction(me.interaction.hoverSelect);
+
+
+        // Click 选择工具
+        me.interaction.clickSelect = new ol.interaction.Select({
+            //condition: ol.events.condition.click,
+            multi: false,
+            layers: function (layer) {
+                if (layer.owner) {
+                    layer.owner.interaction.popup.hide();
+                    //layer.owner.map.removeOverlay(gis.interaction.popup);
+                    // debugger;
+                }
+            }
+            //style: gis.style.styleFun
+        });
+
+        me.interaction.clickSelect.on('select', function (event) {
+
+        }, me);
+
+        me.map.addInteraction(me.interaction.clickSelect);
 
         /*******************************************************
          * Client 的事件                                        *

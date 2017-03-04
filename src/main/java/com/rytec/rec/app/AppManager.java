@@ -48,7 +48,6 @@ public class AppManager {
 
     /**
      * 重新启动服务器，重新加载配置
-     * todo: 可能需要考虑启动和停止的顺序
      * <p>
      * 对象                   初始化级别       是否考虑Reload？
      * DbConfig                 200

@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
  * 102:feedback：辅助节点，判断开启、关闭是否成功
  * 103:remote：本地、远程
  * <p>
- * 信号
+ * 信号  注意!!!!!!信号和动作不能是0
  * 1、本地远程切换-远程
  * 2、本地远程切换-本地
  * 3、远程状态改变-开
@@ -93,6 +93,11 @@ public class Output extends AbstractOperator {
         }
 
         return 0;
+    }
+
+    @Override
+    public Object generateStateBean() {
+        return new OutputState();
     }
 
 }

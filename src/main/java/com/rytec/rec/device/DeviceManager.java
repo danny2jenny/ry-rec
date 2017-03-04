@@ -112,10 +112,14 @@ public class DeviceManager implements ManageableInterface {
             deviceRuntimeBean.device = item;
             deviceRuntimeBean.state = new DeviceStateBean();
             deviceRuntimeBean.state.device = item.getId();
-            deviceRuntimeBean.state.state = ConstantDeviceState.STATE_INAVAILABLE;
+            deviceRuntimeBean.state.iconState = ConstantDeviceState.STATE_OFFLINE;
+
+            // 为 StateBean 中的State生成对象
+            AbstractOperator operator = getOperatorByDeviceType(item.getType());
+            deviceRuntimeBean.state.state = operator.generateStateBean();
 
             // 生成Device的配置对象
-            AbstractOperator deviceOperator = getOperatorByType(item.getType());
+            AbstractOperator deviceOperator = getOperatorByDeviceType(item.getType());
             Object config = deviceOperator.parseConfig(item.getOpt());
             deviceRuntimeBean.config = config;
 
@@ -131,11 +135,11 @@ public class DeviceManager implements ManageableInterface {
     }
 
     //得到一个设备的实例对象
-    public AbstractOperator getOperatorByType(int type) {
+    public AbstractOperator getOperatorByDeviceType(int type) {
         return deviceOperators.get(type);
     }
 
-    public AbstractOperator getOperatorById(int id) {
+    public AbstractOperator getOperatorByDeviceId(int id) {
         DeviceRuntimeBean deviceRuntimeBean = deviceRuntimeList.get(id);
         return deviceOperators.get(deviceRuntimeBean.device.getType());
     }
@@ -165,7 +169,7 @@ public class DeviceManager implements ManageableInterface {
             return;
         }
         DeviceNode deviceNode = devices.get(fun);
-        AbstractOperator abstractOperator = getOperatorByType(deviceNode.getDtype());
+        AbstractOperator abstractOperator = getOperatorByDeviceType(deviceNode.getDtype());
 
         // 在实例中处理值的改变
         abstractOperator.onValueChanged(device, fun, oldValue, newValue);

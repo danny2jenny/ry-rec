@@ -58,7 +58,6 @@ public class ModbusFrameDecoder extends ByteToMessageDecoder {
             */
 
         // todo: data 和 payload 可以放在 session 中增加效率
-        // todo: 考虑还是使用netty的超时机制，使用写超时可能会更好控制一些
         // 在某些情况下，会把前面一个端口的返回读取出来: 当前一个通信超时，在这个时候新通信已经发送，在等待返回的时候，解析到了前一个超时的返回
         /*
          * 只收取尾部期望的长度
