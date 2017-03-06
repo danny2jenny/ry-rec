@@ -1,13 +1,11 @@
 package com.rytec.rec.web.device;
 
-import com.rytec.rec.app.AppManager;
-import com.rytec.rec.device.operator.Output;
+import ch.ralscha.extdirectspring.annotation.ExtDirectMethod;
+import com.rytec.rec.device.AbstractOperator;
+import com.rytec.rec.device.DeviceManager;
 import com.rytec.rec.util.ConstantFromWhere;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * Created by danny on 17-1-16.
@@ -16,17 +14,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class Action {
 
     @Autowired
-    Output output;
+    DeviceManager deviceManager;
 
-    @GetMapping("/switch/{device}/{sw}")
-    @ResponseBody
-    public void getFeaturesByLayer(@PathVariable int device, @PathVariable int sw) {
-        if (sw > 0) {
-            output.setSwitch(device, ConstantFromWhere.FROM_USER, true);
-        } else {
-            output.setSwitch(device, ConstantFromWhere.FROM_USER, false);
+    @ExtDirectMethod
+    private void operate(int device, int act, Object parm) {
+        AbstractOperator operator = deviceManager.getOperatorByDeviceId(device);
+        if (operator != null) {
+            operator.operate(ConstantFromWhere.FROM_USER, device, act, parm);
         }
-
     }
+
 
 }

@@ -473,8 +473,16 @@ Ext.define('app.lib.GisViewPlugin', {
             if (!me.overlay.devicesState) {
                 return;
             }
+
+            // 更新数据和图标
             me.overlay.devicesState[state.device.id] = state;
             me.deviceSetIcon(state.device.id, state.runtime.iconState);
+
+            // 更新控制面板
+            var panel = ry.devices['device_' + state.device.type].controlPanel;
+            if (panel != null) {
+                panel.updateState(state);
+            }
         };
         /**
          * 设置一个Device的Icon，只在当前层有效
@@ -843,8 +851,16 @@ Ext.define('app.lib.GisViewPlugin', {
         me.interaction.hoverSelect.on('select', function (event) {
             if (event.selected.length) {
 
+                // 首先清理以前加入的Overlay
+                this.map.removeOverlay(this.interaction.popup);
+
                 var fProperties = event.selected[0].getProperties();
-                debugger;
+
+                if (!ry.deviceControlPanel.hasPanel(fProperties.type)) {
+                    return;
+                }
+
+                // 添加Overlay
                 this.map.addOverlay(this.interaction.popup);
 
                 this.interaction.popup.show(fProperties.geometry.getCoordinates());
@@ -854,13 +870,10 @@ Ext.define('app.lib.GisViewPlugin', {
                     ry.deviceControlPanel.getEl().setStyle('z-index', '80000');
                 }
 
-                ry.deviceControlPanel.show();
+                ry.deviceControlPanel.showPanel(fProperties.type, this.overlay.devicesState[fProperties.deviceId]);
 
             } else {
-
                 // 没有选中不能hide，否则不能使用面板了
-                //this.interaction.popup.hide();
-                //gis.map.removeOverlay(gis.interaction.popup);
             }
         }, me);
 
