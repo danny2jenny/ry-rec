@@ -1,6 +1,8 @@
 package com.rytec.rec.device.operator;
 
 import com.rytec.rec.device.AbstractOperator;
+import com.rytec.rec.device.DeviceRuntimeConfigBean;
+import com.rytec.rec.messenger.MessageType;
 import com.rytec.rec.util.AnnotationDeviceType;
 import com.rytec.rec.util.AnnotationJSExport;
 import com.rytec.rec.util.ConstantDeviceState;
@@ -32,14 +34,21 @@ public class Input extends AbstractOperator {
     @Override
     public void onValueChanged(int deviceId, int fun, Object oldValue, Object newValue) {
 
+        // 得到运行状态
+        DeviceRuntimeConfigBean deviceRuntimeConfigBean = deviceManager.deviceRuntimeList.get(deviceId);
+
+        deviceRuntimeConfigBean.runtime.state = newValue;
+
         if ((Boolean) newValue == true) {
-            setState(deviceId, ConstantDeviceState.STATE_ON);
             sendSig(deviceId, Input.SIG_ON, null);
+            deviceRuntimeConfigBean.runtime.iconState = ConstantDeviceState.STATE_ON;
         } else {
-            setState(deviceId, ConstantDeviceState.STATE_OFF);
             sendSig(deviceId, Input.SIG_OFF, null);
+            deviceRuntimeConfigBean.runtime.iconState = ConstantDeviceState.STATE_OFF;
         }
 
+        // 向客户端广播消息
+        clientBroadcast(MessageType.DEVICE_STATE, deviceRuntimeConfigBean);
     }
 
 

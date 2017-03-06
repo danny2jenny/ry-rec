@@ -17,7 +17,7 @@ public class WebPush {
     private SimpMessagingTemplate template;
 
     // 向web客户端广播消息
-    public void clientBroadcast(String msg) {
+    public void clientBroadcast(Object msg) {
         template.convertAndSend("/topic/broadcast", msg);
     }
 }

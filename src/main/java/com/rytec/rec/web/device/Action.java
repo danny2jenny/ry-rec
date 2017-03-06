@@ -29,12 +29,4 @@ public class Action {
 
     }
 
-    @Autowired
-    AppManager appManager;
-
-    @GetMapping("/system")
-    @ResponseBody
-    public void system() {
-        appManager.systemReload();
-    }
 }

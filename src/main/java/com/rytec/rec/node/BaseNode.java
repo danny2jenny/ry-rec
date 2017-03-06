@@ -20,9 +20,17 @@ public abstract class BaseNode {
         NodeConfig nodeConfig;
         try {
             nodeConfig = new ObjectMapper().readValue(inStr, NodeConfig.class);
-
         } catch (IOException e) {
             nodeConfig = new NodeConfig();
+
+        }
+
+        // 设定初始值
+        if (nodeConfig.pA == null) {
+            nodeConfig.pA = new Float(1);
+        }
+        if (nodeConfig.pB == null) {
+            nodeConfig.pB = new Float(0);
         }
 
         return nodeConfig;

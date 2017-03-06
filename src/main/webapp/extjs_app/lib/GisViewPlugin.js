@@ -369,6 +369,7 @@ Ext.define('app.lib.GisViewPlugin', {
                 if (!event.oldValue) {
                     // 获取设备的状态
                     gisDevice.getDevicesState(function (data, event, rst) {
+
                         this.overlay.devicesState = data;
                         this.overlay.updateDevice(this);
                         this.maxExtent();
@@ -436,9 +437,9 @@ Ext.define('app.lib.GisViewPlugin', {
                 var overlay = new ol.Overlay({
                     id: feature.getId(),
                     element: elem,
+                    stopEvent: false,
                     position: feature.getGeometry().getCoordinates(),
                     positioning: 'center-center',
-
                 });
                 return overlay;
             },
@@ -455,7 +456,7 @@ Ext.define('app.lib.GisViewPlugin', {
                 var features = me.getActiveVectorLayer().getSource().getFeatures();
                 for (var i in features) {
                     var feature = features[i];
-                    var icon = this.devicesState[feature.getProperties().deviceId].iconState;
+                    var icon = this.devicesState[feature.getProperties().deviceId].runtime.iconState;
                     var overlay = me.overlay.createFeatureOverlay(feature, icon, me);
                     me.overlay.featureStateOverlays.add(feature.getId(), overlay);
                     me.map.addOverlay(overlay);
@@ -464,6 +465,17 @@ Ext.define('app.lib.GisViewPlugin', {
             }
         };
 
+        /**
+         * 更新一个设备的状态，包括图标
+         * @param state
+         */
+        me.updateDeviceState = function (state) {
+            if (!me.overlay.devicesState) {
+                return;
+            }
+            me.overlay.devicesState[state.device.id] = state;
+            me.deviceSetIcon(state.device.id, state.runtime.iconState);
+        };
         /**
          * 设置一个Device的Icon，只在当前层有效
          * @param deviceId
@@ -818,7 +830,6 @@ Ext.define('app.lib.GisViewPlugin', {
         me.interaction.hoverSelect = new ol.interaction.Select({
             condition: ol.events.condition.pointerMove,
             multi: false,
-            //style: gis.style.styleFun
         });
 
         //弹出的Overlay
@@ -832,20 +843,18 @@ Ext.define('app.lib.GisViewPlugin', {
         me.interaction.hoverSelect.on('select', function (event) {
             if (event.selected.length) {
 
-                debugger;
-
                 var fProperties = event.selected[0].getProperties();
-
-                //testPanel.hide();
+                debugger;
                 this.map.addOverlay(this.interaction.popup);
+
                 this.interaction.popup.show(fProperties.geometry.getCoordinates());
 
-                //testPanel.render(this.interaction.popup.content);
-                if (!testPanel.rendered) {
-                    testPanel.render(this.interaction.popup.content);
+                if (!ry.deviceControlPanel.rendered) {
+                    ry.deviceControlPanel.render(this.interaction.popup.content);
+                    ry.deviceControlPanel.getEl().setStyle('z-index', '80000');
                 }
 
-                //testPanel.show();
+                ry.deviceControlPanel.show();
 
             } else {
 
@@ -860,20 +869,13 @@ Ext.define('app.lib.GisViewPlugin', {
 
         // Click 选择工具
         me.interaction.clickSelect = new ol.interaction.Select({
-            //condition: ol.events.condition.click,
+            condition: ol.events.condition.click,
             multi: false,
-            layers: function (layer) {
-                if (layer.owner) {
-                    layer.owner.interaction.popup.hide();
-                    //layer.owner.map.removeOverlay(gis.interaction.popup);
-                    // debugger;
-                }
-            }
-            //style: gis.style.styleFun
         });
 
+        //
         me.interaction.clickSelect.on('select', function (event) {
-
+            me.interaction.popup.hide();
         }, me);
 
         me.map.addInteraction(me.interaction.clickSelect);

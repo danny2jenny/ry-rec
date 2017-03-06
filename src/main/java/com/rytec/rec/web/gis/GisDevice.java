@@ -7,7 +7,7 @@ import com.rytec.rec.db.mapper.DeviceGisMapper;
 import com.rytec.rec.db.model.DeviceGis;
 import com.rytec.rec.db.model.DeviceGisExample;
 import com.rytec.rec.device.DeviceManager;
-import com.rytec.rec.device.DeviceStateBean;
+import com.rytec.rec.device.DeviceRuntimeBean;
 import org.geojson.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -126,8 +126,8 @@ public class GisDevice {
      * @return Device 的状态Hash 列表
      */
     @ExtDirectMethod
-    public HashMap<Integer, DeviceStateBean> getDevicesState() {
-        return deviceManager.getDeviceStateList();
+    public Object getDevicesState() {
+        return deviceManager.deviceRuntimeList;
     }
 
 }

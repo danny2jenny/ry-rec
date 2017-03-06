@@ -15,7 +15,7 @@ Ext.define('app.view.gis.GisView', {
     plugins: [{
         ptype: 'gis.view',
         layerStore: 'GisLayer',
-        editable: true
+        editable: false
     }],
 
     initComponent: function () {

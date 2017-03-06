@@ -2,6 +2,8 @@ package com.rytec.rec.device.operator;
 
 
 import com.rytec.rec.device.AbstractOperator;
+import com.rytec.rec.device.DeviceRuntimeConfigBean;
+import com.rytec.rec.messenger.MessageType;
 import com.rytec.rec.node.NodeMessage;
 import com.rytec.rec.util.*;
 import org.slf4j.LoggerFactory;
@@ -71,11 +73,44 @@ public class Output extends AbstractOperator {
     @Override
     public void onValueChanged(int deviceId, int fun, Object oldValue, Object newValue) {
 
-        if ((Boolean) newValue == true) {
-            setState(deviceId, ConstantDeviceState.STATE_ON);
-        } else {
-            setState(deviceId, ConstantDeviceState.STATE_OFF);
+        // 得到运行状态
+        DeviceRuntimeConfigBean deviceRuntimeConfigBean = deviceManager.deviceRuntimeList.get(deviceId);
+
+        // Output 的State对象
+        OutputState state = (OutputState) deviceRuntimeConfigBean.runtime.state;
+
+        // 根据fun对状态进行更新
+        switch (fun) {
+            case ConstantDeviceFunction.DEV_FUN_PORT_MAIN:
+                // 开关状态
+                if ((Boolean) newValue == true) {
+                    deviceRuntimeConfigBean.runtime.iconState = ConstantDeviceState.STATE_ON;
+                    state.output = ConstantDeviceState.STATE_ON;
+                } else {
+                    deviceRuntimeConfigBean.runtime.iconState = ConstantDeviceState.STATE_OFF;
+                    state.output = ConstantDeviceState.STATE_OFF;
+                }
+                break;
+            case ConstantDeviceFunction.DEV_FUN_PORT_RMOT:
+                // 远程就地状态
+                if ((Boolean) newValue == true) {
+                    state.remote = ConstantDeviceState.STATE_ON;
+                } else {
+                    state.remote = ConstantDeviceState.STATE_OFF;
+                }
+                break;
+            case ConstantDeviceFunction.DEV_FUN_PORT_FEDBK:
+                // 反馈状态
+                if ((Boolean) newValue == true) {
+                    state.feedback = ConstantDeviceState.STATE_ON;
+                } else {
+                    state.feedback = ConstantDeviceState.STATE_OFF;
+                }
+                break;
         }
+
+        // 向客户端广播消息
+        clientBroadcast(MessageType.DEVICE_STATE, deviceRuntimeConfigBean);
 
     }
 

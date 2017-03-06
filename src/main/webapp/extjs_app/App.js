@@ -15,46 +15,6 @@ Ext.QuickTips.init();
 // Extjs Direct API
 Ext.direct.Manager.addProvider(Ext.app.REMOTING_API);
 
-//应用程序入口
-Ext.application({
-    name: 'app',
-    appFolder: '/extjs_app',
-
-    controllers: [
-        'AdminFrame'        //主界面框架
-    ],
-
-    views: [
-        'AdminFrame'
-    ],
-
-    requires: [
-        'app.lib.GridDragPlugin',
-        'app.device.Device_101',
-        'app.device.Device_102',
-        'app.device.Device_201',
-        'app.device.Device_301'
-    ],
-
-
-    launch: function () {
-
-        Ext.Loader.setConfig({
-            enabled: true
-        });
-
-        // 防止插件遮挡窗口
-        Ext.useShims = true;
-
-        // 全局屏蔽浏览器右键菜单
-        Ext.getBody().on("contextmenu", Ext.emptyFn, null, {
-            preventDefault: true
-        });
-
-        // 建立主界面
-        Ext.create('app.view.AdminFrame', {});
-    }
-});
 
 /**
  * 修复 Extjs 4.2.1 提交按钮的bug
@@ -113,3 +73,49 @@ Ext.override(Ext.grid.RowEditor, {
         }
     }
 });
+
+//应用程序入口
+Ext.application({
+    name: 'app',
+    appFolder: '/extjs_app',
+
+    controllers: [
+        'AdminFrame'        //主界面框架
+    ],
+
+    views: [
+        'AdminFrame'
+    ],
+
+    requires: [
+        'app.lib.GridDragPlugin',
+        'app.device.Device_101',
+        'app.device.Device_102',
+        'app.device.Device_201',
+        'app.device.Device_301',
+        'app.view.device.DevicePanel'
+    ],
+
+
+    launch: function () {
+
+        // 防止插件被遮挡
+        Ext.useShims = true;
+
+        Ext.Loader.setConfig({
+            enabled: true
+        });
+
+        // 防止插件遮挡窗口
+        Ext.useShims = true;
+
+        // 全局屏蔽浏览器右键菜单
+        Ext.getBody().on("contextmenu", Ext.emptyFn, null, {
+            preventDefault: true
+        });
+
+        // 建立主界面
+        Ext.create('app.view.AdminFrame', {});
+    }
+});
+

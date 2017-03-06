@@ -7,6 +7,7 @@
 // 配置面板
 Ext.define('app.device.Device_102', {
     // 没有配置面板
+    // 没有控制面板
 });
 
 ry.devices['device_102'] = Ext.create('app.device.Device_102', {});

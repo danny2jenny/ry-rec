@@ -2,6 +2,9 @@ package com.rytec.rec.device;
 
 import com.rytec.rec.cooperate.CooperateManager;
 import com.rytec.rec.db.model.DeviceNode;
+import com.rytec.rec.messenger.Message.WebMessage;
+import com.rytec.rec.messenger.MessageType;
+import com.rytec.rec.messenger.WebPush;
 import com.rytec.rec.node.NodeInterface;
 import com.rytec.rec.node.NodeManager;
 import com.rytec.rec.node.NodeMessage;
@@ -23,14 +26,26 @@ public class AbstractOperator {
     CooperateManager cooperateManager;
 
     @Autowired
-    DeviceManager deviceManager;
+    public DeviceManager deviceManager;
 
     @Autowired
     NodeManager nodeManager;
 
+    @Autowired
+    WebPush webPush;
+
     /*
     * 设置输出的值
     */
+
+    /**
+     * 向Device的一个功能节点发送
+     *
+     * @param deviceId
+     * @param fun
+     * @param msg
+     * @return
+     */
     public int setValue(int deviceId, int fun, NodeMessage msg) {
 
         int rst = 0;
@@ -67,22 +82,24 @@ public class AbstractOperator {
     }
 
 
-    /*
-    * 当状态改变时，由通讯层的回调
-    */
-    public void onValueChanged(int deviceId, int fun, Object oldValue, Object newValue) {
-    }
-
-
     /**
-     * 改变设备的状态
+     * 一个功能节点的数据发生改变。
+     * 普通的Device只有一个节点（default），
+     * 1、写入到设备的状态
+     * 2、向客户端广播状态改变
      *
-     * @param device
-     * @param ste
+     * @param deviceId
+     * @param fun
+     * @param oldValue
+     * @param newValue
      */
-    public void setState(int device, int ste) {
-        DeviceRuntimeBean drb = deviceManager.deviceRuntimeList.get(device);
-        drb.state.iconState = ste;
+    public void onValueChanged(int deviceId, int fun, Object oldValue, Object newValue) {
+        DeviceRuntimeBean deviceRuntimeBean = deviceManager.deviceRuntimeList.get(deviceId).runtime;
+        deviceRuntimeBean.state = newValue;
+        WebMessage webMessage = new WebMessage();
+        webMessage.type = MessageType.DEVICE_STATE;
+        webMessage.msg = deviceRuntimeBean;
+        webPush.clientBroadcast(webMessage);
     }
 
     /**
@@ -120,13 +137,21 @@ public class AbstractOperator {
     }
 
     public Object getConfig(int deviceId) {
-        DeviceRuntimeBean drb = deviceManager.deviceRuntimeList.get(deviceId);
+        DeviceRuntimeConfigBean drb = deviceManager.deviceRuntimeList.get(deviceId);
         return drb.config;
     }
 
     // 产生一个该设备的状态对象，实现类需要覆盖
     public Object generateStateBean() {
         return null;
+    }
+
+    // 向客户端广播消息
+    public void clientBroadcast(int type, Object body) {
+        WebMessage webMessage = new WebMessage();
+        webMessage.type = type;
+        webMessage.msg = body;
+        webPush.clientBroadcast(webMessage);
     }
 
 }

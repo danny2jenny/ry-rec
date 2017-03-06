@@ -44,10 +44,11 @@ Ext.define('app.view.admin.frame.Cooperate', {
     initComponent: function () {
         this.callParent(arguments);
 
-        //把ry.devices中的Panel加入到这里
+
         var deviceFrame = Ext.ComponentQuery.query('#griddeviceNode')[0];
         deviceFrame.down('#adminDeviceGrid').on('selectionchange', this.onDeviceSelectChange, this);
 
+        //把ry.devices中的Panel加入到这里
         for (var deviceMgrIndex in ry.devices) {
             var deviceMgr = ry.devices[deviceMgrIndex];
             if (deviceMgr.configPanel) {

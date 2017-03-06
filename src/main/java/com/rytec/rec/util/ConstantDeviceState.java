@@ -27,7 +27,7 @@ public interface ConstantDeviceState {
 
     // 告警
     @AnnotationJSExport("告警状态")
-    int STATE_ALM = 21;
+    int STATE_ALM = 31;
 
 
 }

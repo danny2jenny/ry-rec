@@ -11,6 +11,13 @@
     <title>RYTEC 智能辅助控制系统 </title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
+
+    <%--extjs 启动器#--%>
+    <script type="text/javascript" src="extjs/bootstrap.js"></script>
+
+    <%--中文化--%>
+    <script type="text/javascript" src="extjs/locale/ext-lang-zh_CN.js"></script>
+
     <%--Extjs 的主题选择#--%>
     <link rel="stylesheet" type="text/css" href="/css/mark.css"/>
     <link rel="stylesheet" type="text/css" href="extjs/resources/css/ext-all-neptune-debug.css"/>
@@ -44,15 +51,8 @@
     <link rel="stylesheet" href="openlayers/overlay/popupoverlay.css"/>
     <script type="text/javascript" src="openlayers/overlay/popupoverlay.js"></script>
 
-
-    <%--extjs 启动器#--%>
-    <script type="text/javascript" src="extjs/bootstrap.js"></script>
-
     <%--Extjs Direct 的配置文件--%>
     <script type="text/javascript" src="/srv/api.js"></script>
-
-    <%--中文化--%>
-    <script type="text/javascript" src="extjs/locale/ext-lang-zh_CN.js"></script>
 
     <%--extjs 工具#--%>
     <script type="text/javascript" src="extjs_app/lib/util.js"></script>

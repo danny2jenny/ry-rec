@@ -2,7 +2,9 @@ package com.rytec.rec.device.operator;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rytec.rec.device.AbstractOperator;
+import com.rytec.rec.device.DeviceRuntimeConfigBean;
 import com.rytec.rec.device.config.AnalogConfig;
+import com.rytec.rec.messenger.MessageType;
 import com.rytec.rec.util.ConstantDeviceState;
 import com.rytec.rec.util.AnnotationDeviceType;
 import com.rytec.rec.util.AnnotationJSExport;
@@ -42,27 +44,42 @@ public class Analog extends AbstractOperator {
 
     @Override
     public void onValueChanged(int deviceId, int fun, Object oldValue, Object newValue) {
-        // 更新状态
-        setState(deviceId, ConstantDeviceState.STATE_ON);
+
+        // 得到运行状态
+        DeviceRuntimeConfigBean deviceRuntimeConfigBean = deviceManager.deviceRuntimeList.get(deviceId);
+
+        deviceRuntimeConfigBean.runtime.iconState = ConstantDeviceState.STATE_ON;
+        deviceRuntimeConfigBean.runtime.state = newValue;
 
         // 判断当前的值是否需要发送信号
         AnalogConfig config = (AnalogConfig) getConfig(deviceId);
 
-        if ((Float) newValue >= config.GATE_HIGH_2) {
-            sendSig(deviceId, Analog.SIG_HIGH_2, newValue);
 
+        if ((Float) newValue >= config.GATE_HIGH_2) {
+
+            // 高限告警
+            sendSig(deviceId, Analog.SIG_HIGH_2, newValue);
+            deviceRuntimeConfigBean.runtime.iconState = ConstantDeviceState.STATE_ALM;
         } else if ((Float) newValue >= config.GATE_HIGH_1) {
+            // 高限联动
             sendSig(deviceId, Analog.SIG_HIGH_1, newValue);
 
         } else if ((Float) newValue >= config.GATE_LOW_1) {
+            // 正常范围
             sendSig(deviceId, Analog.SIG_NORMAL, newValue);
 
         } else if ((Float) newValue >= config.GATE_LOW_2) {
+            // 低限联动
             sendSig(deviceId, Analog.SIG_LOW_1, newValue);
 
         } else {
+            // 低限告警
             sendSig(deviceId, Analog.SIG_LOW_2, newValue);
+            deviceRuntimeConfigBean.runtime.iconState = ConstantDeviceState.STATE_ALM;
         }
+
+        // 发广播
+        clientBroadcast(MessageType.DEVICE_STATE, deviceRuntimeConfigBean);
     }
 
     @Override

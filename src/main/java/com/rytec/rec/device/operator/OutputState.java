@@ -7,4 +7,5 @@ package com.rytec.rec.device.operator;
 public class OutputState {
     public Integer output;         // 开关状态
     public Integer remote;         // 远程、就地状态
+    public Integer feedback;       // 状态反馈
 }

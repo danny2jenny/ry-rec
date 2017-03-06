@@ -70,12 +70,19 @@ ry.stom.error_callback = function (error) {
 // 收到消息
 ry.stom.onMsg = function (msg) {
     console.log('STOM 收到消息:' + msg);
-
     var msgObject = JSON.parse(msg.body);
+    switch (msgObject.type) {
+        case 401:           // Device 消息
+            var msg = msgObject.msg;
+            var deviceId = msg.device;
+            // 更新GIS中Device的状态
+            ry.gis.updateDeviceState(msg);
+            break;
+        case 501:           // Node 消息
 
-    switch (msgObject.msg_no) {
-        case 401:
-            gis.style.featureStyle(msgObject.device, msgObject.state);
+            break;
+        case 601:           // Channel 消息
+
             break;
     }
 };
@@ -113,5 +120,6 @@ ry.timeTask.start({
     run: ry.stom.keepConnectRunner,
     interval: 1000
 });
+
 
 

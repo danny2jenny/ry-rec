@@ -59,9 +59,11 @@ public class DeviceManager implements ManageableInterface {
 
     /**
      * Device 的运行时状态
+     * <p>
+     * deviceId-> runtimeBean
      */
 
-    HashMap<Integer, DeviceRuntimeBean> deviceRuntimeList = new HashMap();
+    public HashMap<Integer, DeviceRuntimeConfigBean> deviceRuntimeList = new HashMap();
 
     // 初始化接口的索引
     private void initOperatorInterface() {
@@ -108,22 +110,22 @@ public class DeviceManager implements ManageableInterface {
         // 初始化 Device 的运行时状态
         List<Device> devices = dbConfig.getDeviceList();
         for (Device item : devices) {
-            DeviceRuntimeBean deviceRuntimeBean = new DeviceRuntimeBean();
-            deviceRuntimeBean.device = item;
-            deviceRuntimeBean.state = new DeviceStateBean();
-            deviceRuntimeBean.state.device = item.getId();
-            deviceRuntimeBean.state.iconState = ConstantDeviceState.STATE_OFFLINE;
+            DeviceRuntimeConfigBean deviceRuntimeConfigBean = new DeviceRuntimeConfigBean();
+            deviceRuntimeConfigBean.device = item;
+            deviceRuntimeConfigBean.runtime = new DeviceRuntimeBean();
+            deviceRuntimeConfigBean.runtime.device = item.getId();
+            deviceRuntimeConfigBean.runtime.iconState = ConstantDeviceState.STATE_OFFLINE;
 
             // 为 StateBean 中的State生成对象
-            AbstractOperator operator = getOperatorByDeviceType(item.getType());
-            deviceRuntimeBean.state.state = operator.generateStateBean();
+            AbstractOperator deviceOperator = getOperatorByDeviceType(item.getType());
+            deviceRuntimeConfigBean.runtime.state = deviceOperator.generateStateBean();
 
             // 生成Device的配置对象
-            AbstractOperator deviceOperator = getOperatorByDeviceType(item.getType());
             Object config = deviceOperator.parseConfig(item.getOpt());
-            deviceRuntimeBean.config = config;
+            deviceRuntimeConfigBean.config = config;
 
-            deviceRuntimeList.put(item.getId(), deviceRuntimeBean);
+
+            deviceRuntimeList.put(item.getId(), deviceRuntimeConfigBean);
         }
 
     }
@@ -140,8 +142,8 @@ public class DeviceManager implements ManageableInterface {
     }
 
     public AbstractOperator getOperatorByDeviceId(int id) {
-        DeviceRuntimeBean deviceRuntimeBean = deviceRuntimeList.get(id);
-        return deviceOperators.get(deviceRuntimeBean.device.getType());
+        DeviceRuntimeConfigBean deviceRuntimeConfigBean = deviceRuntimeList.get(id);
+        return deviceOperators.get(deviceRuntimeConfigBean.device.getType());
     }
 
     //得到所有的设备实例列表
@@ -173,20 +175,6 @@ public class DeviceManager implements ManageableInterface {
 
         // 在实例中处理值的改变
         abstractOperator.onValueChanged(device, fun, oldValue, newValue);
-    }
-
-    /**
-     * 得到设备的状态，用于改变显示的图标
-     *
-     * @return
-     */
-    public HashMap<Integer, DeviceStateBean> getDeviceStateList() {
-        HashMap<Integer, DeviceStateBean> deviceStateBeanHashMap = new HashMap();
-        for (int i : deviceRuntimeList.keySet()) {
-            DeviceRuntimeBean deviceRuntimeBean = deviceRuntimeList.get(i);
-            deviceStateBeanHashMap.put(i, deviceRuntimeBean.state);
-        }
-        return deviceStateBeanHashMap;
     }
 
     public void stop() {
