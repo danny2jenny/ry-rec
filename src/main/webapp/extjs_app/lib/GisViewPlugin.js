@@ -361,8 +361,14 @@ Ext.define('app.lib.GisViewPlugin', {
              * 当图层被激活的时候，更新设备状态
              */
             newLayer.on('change:visible', function (event) {
-                // 状态改变的时候触发，多次触发
+                // 清理选中的Feature
 
+                var s1 = this.interaction.clickSelect.getFeatures();
+                var s2 = this.interaction.hoverSelect.getFeatures();
+                s1.remove(s1.getArray()[0]);
+                s2.remove(s2.getArray()[0]);
+
+                // 状态改变的时候触发，多次触发
                 //event.target;       //layer group
                 //event.oldValue;     // 以前的状态 true false
                 // 当前激活的层
@@ -833,7 +839,7 @@ Ext.define('app.lib.GisViewPlugin', {
         // Hover 控件
         me.interaction.hoverSelect = new ol.interaction.Select({
             condition: ol.events.condition.pointerMove,
-            multi: false,
+            multi: false
         });
 
         //弹出的Overlay
@@ -879,7 +885,7 @@ Ext.define('app.lib.GisViewPlugin', {
         // Click 选择工具
         me.interaction.clickSelect = new ol.interaction.Select({
             condition: ol.events.condition.click,
-            multi: false,
+            multi: false
         });
 
         //
