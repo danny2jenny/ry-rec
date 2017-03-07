@@ -487,7 +487,7 @@ Ext.define('app.lib.GisViewPlugin', {
             // 更新控制面板
             var panel = ry.devices['device_' + state.device.type].controlPanel;
             if (panel != null) {
-                panel.updateState(state);
+                panel.refreshState(state);
             }
         };
         /**

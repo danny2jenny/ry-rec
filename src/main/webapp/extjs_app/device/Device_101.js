@@ -51,10 +51,31 @@ Ext.define('app.device.Device_101', {
             }
         }],
 
-        // 更新状态
+        /**
+         * 每个控制面板都应该实现
+         * 服务器数据更新后的刷新
+         * @param state
+         */
+        refreshState: function (state) {
+
+            if (!this.runtime) {
+                return;
+            }
+
+            if (this.runtime.device != state.device.id) {
+                return
+            }
+
+            this.updateState(state);
+        },
+
+        /**
+         * 读取客户端的状态数据，并显示
+         * 每个面板都应该实现
+         * @param state
+         */
         updateState: function (state) {
             // 不是自己的数据
-            // TODO: 错误，应该判断DeviceID
             if (state.device.type != 101) {
                 return;
             }
