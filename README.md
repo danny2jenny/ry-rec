@@ -60,6 +60,10 @@ https://34669493.world.taobao.com
 
 convert -resize 16x16 in out
 
+## git 问题
+
+git push origin HEAD:master
+
 
 
 
