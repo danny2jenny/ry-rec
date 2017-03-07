@@ -101,7 +101,7 @@ Ext.define('app.lib.PluginGridEdit', {
             items: [
                 {
                     text: '添加',
-                    icon: '/icon/toolbar/add.png',
+                    icon: 'res/toolbar/add.png',
                     itemId: 'buttonAdd',
                     disabled: true,
                     hidden: me.hideAdd,
@@ -125,7 +125,7 @@ Ext.define('app.lib.PluginGridEdit', {
                 {
                     itemId: 'buttonDelete',
                     text: '删除',
-                    icon: '/icon/toolbar/delete.png',
+                    icon: 'res/toolbar/delete.png',
                     disabled: true,
                     hidden: me.hideDel,
                     handler: function () {
@@ -155,7 +155,7 @@ Ext.define('app.lib.PluginGridEdit', {
                 {
                     itemId: 'buttonRefresh',
                     text: '刷新',
-                    icon: '/icon/toolbar/sync.png',
+                    icon: 'res/toolbar/sync.png',
                     disabled: true,
                     hidden: me.hideRefresh,
                     handler: function () {

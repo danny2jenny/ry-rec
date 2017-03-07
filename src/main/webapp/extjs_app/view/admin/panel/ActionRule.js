@@ -9,7 +9,7 @@ Ext.define('app.view.admin.panel.ActionRule', {
     extend: 'Ext.grid.Panel',
     alias: 'widget.admin.panel.ActionRule',
     title: '联动规则',
-    icon: 'icon/toolbar/channel.png',
+    icon: 'res/toolbar/rule.png',
 
     store: 'ActionRule',
     itemId: 'admin_panel_action_rule',

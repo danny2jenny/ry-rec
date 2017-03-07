@@ -8,8 +8,6 @@ Ext.define('app.view.admin.frame.DeviceNodeGrid', {
     extend: 'Ext.panel.Panel',
     alias: 'widget.admin.frame.devicenodegrid',
     layout: 'border',
-    // icon: 'icon/toolbar/control.png',
-    // title: '设备编辑',
     itemId: 'griddeviceNode',
 
     requires: [

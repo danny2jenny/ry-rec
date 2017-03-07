@@ -10,7 +10,7 @@ Ext.define('app.view.admin.panel.NodeForDevice', {
     itemId: 'admin_panel_NodeForDevice',
 
     title: '已经配置的节点',
-    icon: 'icon/toolbar/node.png',
+    icon: 'res/toolbar/node.png',
     // 定义 Model
     store: 'NodeForDevice',
     // 定义 autoload

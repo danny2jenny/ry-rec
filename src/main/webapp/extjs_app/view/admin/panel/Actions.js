@@ -8,7 +8,7 @@ Ext.define('app.view.admin.panel.Actions', {
     extend: 'Ext.grid.Panel',
     alias: 'widget.admin.panel.Actions',
     title: '规则动作',
-    icon: 'icon/toolbar/channel.png',
+    icon: 'res/toolbar/action.png',
 
     store: 'Actions',
     itemId: 'admin_panel_actions',

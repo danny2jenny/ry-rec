@@ -5,7 +5,7 @@ Ext.define('app.view.admin.frame.Cooperate', {
     extend: 'Ext.panel.Panel',
     alias: 'widget.admin.frame.cooperate',
     layout: 'border',
-    icon: '/icon/toolbar/gis.png',
+    icon: 'res/toolbar/gis.png',
     title: '联动配置',
     items: [
 

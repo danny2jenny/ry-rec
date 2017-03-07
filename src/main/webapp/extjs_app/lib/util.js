@@ -69,7 +69,6 @@ ry.stom.error_callback = function (error) {
 
 // 收到消息
 ry.stom.onMsg = function (msg) {
-    console.log('STOM 收到消息:' + msg);
     var msgObject = JSON.parse(msg.body);
     switch (msgObject.type) {
         case 401:           // Device 消息

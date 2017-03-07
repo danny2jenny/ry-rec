@@ -9,7 +9,7 @@ Ext.define('app.view.admin.panel.Device', {
     alias: 'widget.admin.panel.device',
 
     title: '设备列表',
-    icon: '/icon/toolbar/device.png',
+    icon: 'res/toolbar/device.png',
     store: 'Device',
     itemId: 'adminDeviceGrid',
     id: 'admin.device.grid',
@@ -23,7 +23,7 @@ Ext.define('app.view.admin.panel.Device', {
     features: [Ext.create('Ext.grid.feature.Grouping', {
         groupHeaderTpl: ['{groupValue:this.formatValue}: 共 ({rows.length}) 个', {
             formatValue: function (value) {
-                return '<img src="/icon/device/' + value + '.png">' + ry.trans(value, ry.DEVICE_TYPE)
+                return '<img src="res/device/' + value + '.png">' + ry.trans(value, ry.DEVICE_TYPE)
             }
         }]
     })],
@@ -62,7 +62,7 @@ Ext.define('app.view.admin.panel.Device', {
             },
             renderer: function (val, column, row) {
 
-                return "<img src='/icon/device_icon/" + val + "-11.gif'>"
+                return "<img src='res/gis/device/" + val + "-11.gif'>"
             }
         }
     ],

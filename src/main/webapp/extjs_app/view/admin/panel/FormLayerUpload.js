@@ -13,7 +13,7 @@ Ext.define('app.view.admin.panel.FormLayerUpload', {
     //layout: 'form',
     //frame: true,
     fileUpload: true,
-    icon:"icon/toolbar/upload.png",
+    icon:"res/toolbar/upload.png",
     items: [
         {
             xtype: 'textfield',

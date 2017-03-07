@@ -10,8 +10,13 @@ Ext.define('app.view.admin.panel.NodeConfig', {
     alias: 'widget.admin.panel.nodeconfig',
     itemId: 'admin_panel_nodeconfig',
     title: '节点参数配置',
-    icon: 'icon/toolbar/node.png',
+    icon: 'res/toolbar/config.png',
     hidden: true,
+
+    layout: {
+        type: 'vbox',
+        align: 'stretch'
+    },
 
 
     bodyPadding: '5 5 0',

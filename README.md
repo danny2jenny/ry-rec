@@ -54,6 +54,13 @@ https://34669493.world.taobao.com
 其中模拟的输出很少用到。
 
 
+# 工具使用
+
+## 图形处理
+
+convert -resize 16x16 in out
+
+
 
 
 

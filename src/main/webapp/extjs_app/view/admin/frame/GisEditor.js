@@ -6,7 +6,7 @@ Ext.define('app.view.admin.frame.GisEditor', {
     extend: 'Ext.panel.Panel',
     alias: 'widget.admin.frame.giseditor',
     layout: 'border',
-    icon: '/icon/toolbar/gis.png',
+    icon: 'res/toolbar/gis.png',
     title: 'GIS 编辑',
     items: [
         {

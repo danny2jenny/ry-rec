@@ -9,7 +9,7 @@ Ext.define('app.view.admin.panel.Channel', {
     extend: 'Ext.grid.Panel',
     alias: 'widget.admin.panel.channel',
     title: '控制器通道',
-    icon: 'icon/toolbar/channel.png',
+    icon: 'res/toolbar/channel.png',
 
     store: 'Channel',
     itemId: 'adminChannelGrid',

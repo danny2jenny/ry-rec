@@ -8,7 +8,7 @@ Ext.define('app.view.admin.panel.Option', {
     extend: 'Ext.grid.Panel',
     alias: 'widget.admin.panel.option',
     title: '系统属性配置',
-    icon: '/icon/toolbar/config.png',
+    icon: 'res/toolbar/config.png',
     //hideHeaders: true,
 
     store: 'Option',

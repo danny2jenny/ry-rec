@@ -8,7 +8,7 @@ Ext.define('app.view.admin.frame.ChannelNode', {
     extend: 'Ext.panel.Panel',
     alias: 'widget.admin.frame.channelnode',
     layout: 'border',
-    icon: 'icon/toolbar/control.png',
+    icon: 'res/toolbar/control.png',
     title: '通道和节点',
     itemId: 'gridChannelNode',
     items: [
@@ -35,7 +35,7 @@ Ext.define('app.view.admin.frame.ChannelNode', {
                 {
                     xtype: 'admin.panel.nodeconfig',
                     region: 'east',
-                    width: 400
+                    width: 200
                 }
             ]
         }

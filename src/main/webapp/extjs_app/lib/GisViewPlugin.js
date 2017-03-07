@@ -51,7 +51,7 @@ Ext.define('app.lib.GisViewPlugin', {
          * @returns {string}        返回图标的路径
          */
         getIconPath: function (icon, iconState) {
-            return "icon/device_icon/" + icon + "-" + iconState + ".gif";
+            return "res/gis/device/" + icon + "-" + iconState + ".gif";
         },
 
         // 区域填充的样式
@@ -112,7 +112,7 @@ Ext.define('app.lib.GisViewPlugin', {
             fill: me.style.fill,
             stroke: me.style.stroke,
             image: new ol.style.Icon({
-                src: '/icon/mark/light.gif'
+                src: 'res/gis/mark/light.gif'
             })
         });
 
@@ -702,10 +702,6 @@ Ext.define('app.lib.GisViewPlugin', {
                     var parser = new ol.format.GeoJSON();
                     var geoJson = parser.writeFeature(feature);
 
-                    //保存当前作图的状态
-                    //this.editing = true;
-                    //this.lastFeature = feature;
-
                     // 保存，回调
                     extGis.saveFeature(geoJson, function (result, e) {
                         //this.editing = false;
@@ -753,7 +749,7 @@ Ext.define('app.lib.GisViewPlugin', {
             // 添加画点
             me.editBar.barItems.addControl(new ol.control.Toggle(
                 {
-                    html: "<img src= 'icon/24/Point.png' />",
+                    html: "<img src= 'res/gis/toolbar/Point.png' />",
                     className: "point",
                     title: '点',
                     interaction: me.interaction.drawPoint,
@@ -766,7 +762,7 @@ Ext.define('app.lib.GisViewPlugin', {
             // 添加画线
             me.editBar.barItems.addControl(new ol.control.Toggle(
                 {
-                    html: "<img src= 'icon/24/Line.png' />",
+                    html: "<img src= 'res/gis/toolbar/Line.png' />",
                     className: "line",
                     title: '线',
                     interaction: me.interaction.drawLine,
@@ -779,7 +775,7 @@ Ext.define('app.lib.GisViewPlugin', {
             // 添加画面
             me.editBar.barItems.addControl(new ol.control.Toggle(
                 {
-                    html: "<img src= 'icon/24/Polygon.png' />",
+                    html: "<img src= 'res/gis/toolbar/Polygon.png' />",
                     className: "polygon",
                     title: '面',
                     interaction: me.interaction.drawPolygon,
@@ -792,7 +788,7 @@ Ext.define('app.lib.GisViewPlugin', {
             // 添加修改
             me.editBar.barItems.addControl(new ol.control.Toggle(
                 {
-                    html: "<img src= 'icon/24/Move.png' />",
+                    html: "<img src= 'res/gis/toolbar/Move.png' />",
                     className: "modify",
                     title: '移动',
                     interaction: me.interaction.modify,

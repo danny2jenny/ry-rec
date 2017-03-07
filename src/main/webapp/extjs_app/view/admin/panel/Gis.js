@@ -9,7 +9,7 @@ Ext.define('app.view.admin.panel.Gis', {
     alias: 'widget.admin.panel.gis',
     itemId: 'admin_panel_gis',
     id:'admin.panel.gis',
-    icon: '/icon/toolbar/gis.png',
+    icon: 'res/toolbar/gis.png',
     title: 'GIS',
     store: 'Gis',
     columns: [

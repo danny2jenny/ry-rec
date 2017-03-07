@@ -13,7 +13,7 @@ Ext.define('app.view.admin.panel.Node', {
 
     split: true,
     title: '节点',
-    icon: 'icon/toolbar/node.png',
+    icon: 'res/toolbar/node.png',
 
     store: 'Node',
     plugins: [{
@@ -75,25 +75,30 @@ Ext.define('app.view.admin.panel.Node', {
         width: 80,
         renderer: function (val, column, row) {
             if (val) {
-                return "<img src='/icon/true.png'>"
+                return "<img src='res/toolbar/true.png'>"
             } else {
-                return "<img src='/icon/false.png'>"
+                return "<img src='res/toolbar/false.png'>"
             }
         }
-    }, {
-        text: '其他配置',
-        xtype: 'actioncolumn',
-        width: 80,
-        items: [{
-            icon: '/icon/config.png', // Use a URL in the icon config
-            tooltip: 'Edit',
-            handler: function (grid, rowIndex, colIndex, a, b, c, d, e, f, g) {
-                var w = Ext.create('app.view.admin.window.NodeConfig', {});
-                w.showAt(b.xy);
-                debugger;
-            }
-        }]
-    }],
+    }
+
+        // ,
+        //     {
+        //         text: '其他配置',
+        //         xtype: 'actioncolumn',
+        //         width: 80,
+        //         items: [{
+        //             icon: '/icon/config.png', // Use a URL in the icon config
+        //             tooltip: 'Edit',
+        //             handler: function (grid, rowIndex, colIndex, a, b, c, d, e, f, g) {
+        //                 var w = Ext.create('app.view.admin.window.NodeConfig', {});
+        //                 w.showAt(b.xy);
+        //                 debugger;
+        //             }
+        //         }]
+        //     }
+
+    ],
 
     //拖放
     viewConfig: {
