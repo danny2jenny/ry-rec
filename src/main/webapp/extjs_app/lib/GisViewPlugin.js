@@ -248,6 +248,7 @@ Ext.define('app.lib.GisViewPlugin', {
          * 图层管理                                             *
          *******************************************************/
 
+        // todo: 有时候在第一次显示界面的时候，不能显示Overlay
         me.layers = new Ext.util.HashMap();
 
         // 为 layer 加载Feature
@@ -432,7 +433,6 @@ Ext.define('app.lib.GisViewPlugin', {
              * @param me
              * @returns {ol.Overlay}
              *
-             * todo: 为了局部更新，需要把生成的Overlay加入到一个hash中进行管理
              */
             createFeatureOverlay: function (feature, iconState, me) {
                 var elem = document.createElement('div');
@@ -851,11 +851,13 @@ Ext.define('app.lib.GisViewPlugin', {
         });
 
         me.interaction.hoverSelect.on('select', function (event) {
+
             if (event.selected.length) {
 
                 // 首先清理以前加入的Overlay
                 this.map.removeOverlay(this.interaction.popup);
 
+                // 得到当前选中 Feature 的属性
                 var fProperties = event.selected[0].getProperties();
 
                 if (!ry.deviceControlPanel.hasPanel(fProperties.type)) {
@@ -864,7 +866,7 @@ Ext.define('app.lib.GisViewPlugin', {
 
                 // 添加Overlay
                 this.map.addOverlay(this.interaction.popup);
-
+                // 显示 Overlay
                 this.interaction.popup.show(fProperties.geometry.getCoordinates());
 
                 if (!ry.deviceControlPanel.rendered) {
@@ -872,7 +874,7 @@ Ext.define('app.lib.GisViewPlugin', {
                     ry.deviceControlPanel.getEl().setStyle('z-index', '80000');
                 }
 
-                ry.deviceControlPanel.showPanel(fProperties.type, this.overlay.devicesState[fProperties.deviceId]);
+                ry.deviceControlPanel.showPanel(this.overlay.devicesState[fProperties.deviceId]);
 
             } else {
                 // 没有选中不能hide，否则不能使用面板了

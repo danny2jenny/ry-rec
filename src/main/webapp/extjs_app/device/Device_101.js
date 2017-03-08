@@ -54,6 +54,7 @@ Ext.define('app.device.Device_101', {
         // 更新状态
         updateState: function (state) {
             // 不是自己的数据
+            // TODO: 错误，应该判断DeviceID
             if (state.device.type != 101) {
                 return;
             }

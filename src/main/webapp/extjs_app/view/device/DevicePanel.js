@@ -23,13 +23,12 @@ Ext.define('app.view.device.DevicePanel', {
 
     // 显示Type相符合的Controlpanel
     // 返回true成表示有这个Controlpanel，否则返回false
-    showPanel: function (type, state) {
+    showPanel: function (state) {
         this.show();
         this.removeAll();
-        this.add(ry.devices['device_' + type].controlPanel);
+        this.add(ry.devices['device_' + state.device.type].controlPanel);
         // 设置当前显示的Device
-        this.deviceId = state.device.id;
-        ry.devices['device_' + type].controlPanel.updateState(state);
+        ry.devices['device_' + state.device.type].controlPanel.updateState(state);
     },
 
     initComponent: function () {
