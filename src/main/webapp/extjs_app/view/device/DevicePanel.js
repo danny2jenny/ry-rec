@@ -11,7 +11,21 @@ Ext.define('app.view.device.DevicePanel', {
     width: 230,
     autoDestroy: false,
 
+
     // 隐藏所有的ControlPanel
+    hideAll: function () {
+        var panels = this.query("panel");
+        for (var i = 0; i < panels.length; i++) {
+            try {
+                panels[i].hide();
+            } catch (error) {
+
+            }
+
+        }
+    },
+
+    // 判断是否有相应的controlPanel
     hasPanel: function (type) {
         var panel = ry.devices['device_' + type].controlPanel;
         if (panel) {
@@ -25,14 +39,25 @@ Ext.define('app.view.device.DevicePanel', {
     // 返回true成表示有这个Controlpanel，否则返回false
     showPanel: function (state) {
         this.show();
-        this.removeAll();
-        this.add(ry.devices['device_' + state.device.type].controlPanel);
+        this.hideAll();
+        var panel = ry.devices['device_' + state.device.type].controlPanel;
+        panel.show();
+
         // 设置当前显示的Device
         ry.devices['device_' + state.device.type].controlPanel.updateState(state);
     },
 
     initComponent: function () {
         this.callParent(arguments);
+
+        // 把所有的controlPanel 进行加载
+        for (var i in ry.devices) {
+            var deviceMgr = ry.devices[i];
+            if (deviceMgr.controlPanel) {
+                this.add(deviceMgr.controlPanel);
+            }
+        }
+
     }
 });
 

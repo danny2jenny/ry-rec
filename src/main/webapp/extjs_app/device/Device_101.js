@@ -82,7 +82,7 @@ Ext.define('app.device.Device_101', {
 
             this.runtime = state.runtime;
 
-            this.down("#button").setActive(true);
+            this.down("#button").enable();
             // 开关状态
             if (this.runtime.state.output == 20) {
                 this.down("#output").setValue("关闭");
@@ -94,7 +94,8 @@ Ext.define('app.device.Device_101', {
             }
             if (this.runtime.state.output == null) {
                 this.down("#output").setValue("失效！");
-                this.down("#button").setActive(false)
+                this.down("#button").setText("失效！");
+                this.down("#button").disable();
             }
 
             // 远程、就地状态
