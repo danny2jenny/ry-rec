@@ -6,6 +6,7 @@ import com.rytec.rec.db.mapper.ChannelMapper;
 import com.rytec.rec.db.model.Channel;
 import com.rytec.rec.db.model.ChannelExample;
 import com.rytec.rec.service.RyAbstractService;
+import com.rytec.rec.service.RyTcpServer.RyTcpMsg;
 import com.rytec.rec.service.RyTcpServer.RyTcpServer;
 import com.rytec.rec.db.DbConfig;
 import com.rytec.rec.db.model.ChannelNode;
@@ -115,6 +116,7 @@ public class VideoService extends RyAbstractService implements ManageableInterfa
         for (Channel item : channels) {
             cfgStr = cfgStr + item.getId() + ',' + item.getIp() + ',' + item.getPort() + ',' + item.getLogin() + ',' + item.getPass() + ',' + item.getType() + ';';
         }
+
 
         ByteBuf payload = Unpooled.buffer();
         payload.writeByte(ConstantTcpCommand.TCP_SEND_CFG);

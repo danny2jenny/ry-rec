@@ -13,6 +13,10 @@ public class RyTcpServerInitializer extends ChannelInitializer<Channel> {
     // 服务器的引用
     private RyTcpServer ryTcpServer;
 
+    static int maxLen = 65 * 1024;
+    static int lenOffset = 0;
+    static int lenLength = 4;
+
     public RyTcpServerInitializer(RyTcpServer server) {
         this.ryTcpServer = server;
     }
@@ -20,8 +24,7 @@ public class RyTcpServerInitializer extends ChannelInitializer<Channel> {
     @Override
     protected void initChannel(Channel ch) throws Exception {
         ChannelPipeline pipeline = ch.pipeline();
-        // 基于长度的解码
-        pipeline.addLast("FrameDepack", new LengthFieldBasedFrameDecoder(65 * 1024, 0, 4));
+        pipeline.addFirst("FrameDepack", new LengthFieldBasedFrameDecoder(maxLen, lenOffset, lenLength));
         pipeline.addLast("FrameEndoder", new RyTcpServerEncoder());         // 消息编码
         pipeline.addLast("LoginDecoder", new RyTcpServerLoginDecoder());    // 消息登录
         pipeline.addLast(new RyTcpServerHandler(ryTcpServer));              // 解码后的处理

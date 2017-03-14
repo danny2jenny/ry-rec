@@ -1,15 +1,13 @@
 package com.rytec.rec.service.RyTcpServer;
 
+import com.rytec.rec.channel.ChannelMessage;
 import com.rytec.rec.service.RyAbstractService;
 import com.rytec.rec.service.RyTcpServer.handler.RyTcpServerInitializer;
 import com.rytec.rec.util.AnnotationServiceType;
 import com.rytec.rec.util.ConstantErrorCode;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.ByteBuf;
-import io.netty.channel.Channel;
-import io.netty.channel.ChannelFuture;
-import io.netty.channel.ChannelOption;
-import io.netty.channel.EventLoopGroup;
+import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.util.concurrent.GenericFutureListener;
@@ -144,7 +142,7 @@ public class RyTcpServer {
             return ConstantErrorCode.SRV_NOT_ACTIVE;
         }
         payload.resetReaderIndex();
-        channel.write(payload);
+        channel.writeAndFlush(payload);
         return 0;
     }
 

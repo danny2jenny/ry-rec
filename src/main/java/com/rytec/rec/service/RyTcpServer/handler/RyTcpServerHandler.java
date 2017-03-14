@@ -80,6 +80,7 @@ public class RyTcpServerHandler extends SimpleChannelInboundHandler<ChannelMessa
         switch (response.from) {
             // 登录
             case ConstantFromWhere.FROM_LOGIN:
+                // 加入到连接列表中
                 ryTcpServer.clients.put((Integer) response.payload, ctx.channel());
                 RyClientSession ryClientSession = new RyClientSession(ryTcpServer, (Integer) response.payload, ctx.channel());
                 ctx.channel().attr(RyTcpServerCommon.TCP_STATE).set(ryClientSession);

@@ -12,8 +12,8 @@ import org.springframework.stereotype.Service;
  * Created by Danny on 2017/3/13.
  */
 @Service
-@AnnotationChannelType(2001)
-@AnnotationJSExport("海康DVR")
+@AnnotationChannelType(2002)
+@AnnotationJSExport("大华DVR")
 public class VideoDH implements ChannelInterface {
 
     @Autowired
