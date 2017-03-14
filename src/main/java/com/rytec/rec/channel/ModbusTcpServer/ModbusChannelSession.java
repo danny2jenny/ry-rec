@@ -19,7 +19,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
  * 2、每次从List中提取一个命令发送，查询远端状态
  * 3、当命令队列中有数据的时候，优先满足队列中的命令
  */
-public class ChanneSession {
+public class ModbusChannelSession {
 
     private final org.slf4j.Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -70,7 +70,7 @@ public class ChanneSession {
      * @param cid
      * @param channel
      */
-    public ChanneSession(ModbusTcpServer mts, String cid, Channel channel) {
+    public ModbusChannelSession(ModbusTcpServer mts, String cid, Channel channel) {
         id = cid;
         this.channel = channel;
         modbusTcpServer = mts;

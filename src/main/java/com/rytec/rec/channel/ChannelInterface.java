@@ -14,6 +14,6 @@ import com.rytec.rec.app.ManageableInterface;
  * 一个Channel可以管理多个Channel的连接对象
  */
 
-public interface ChannelInterface extends ManageableInterface {
+public interface ChannelInterface {
     int sendMsg(ChannelMessage msg);
 }

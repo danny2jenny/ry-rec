@@ -1,6 +1,6 @@
 package com.rytec.rec.channel.ModbusTcpServer.handler;
 
-import com.rytec.rec.channel.ModbusTcpServer.ChanneSession;
+import com.rytec.rec.channel.ModbusTcpServer.ModbusChannelSession;
 import com.rytec.rec.channel.ModbusTcpServer.ModbusCommon;
 import com.rytec.rec.channel.ModbusTcpServer.ModbusTcpServer;
 import com.rytec.rec.channel.ChannelMessage;
@@ -62,7 +62,7 @@ public class ModbusHandler extends SimpleChannelInboundHandler<ChannelMessage> {
     protected void channelRead0(ChannelHandlerContext ctx, ChannelMessage response) throws Exception {
 
         // 得到当前通道对应的Session
-        ChanneSession channelSession = ctx.channel().attr(ModbusCommon.MODBUS_STATE).get();
+        ModbusChannelSession modbusChannelSession = ctx.channel().attr(ModbusCommon.MODBUS_STATE).get();
 
         switch (response.from) {
             // 登录
@@ -79,19 +79,19 @@ public class ModbusHandler extends SimpleChannelInboundHandler<ChannelMessage> {
                 modbusTcpServer.clients.put(modbusId, ctx.channel());
 
                 //设置Channel的Session
-                channelSession = new ChanneSession(modbusTcpServer, modbusId, ctx.channel());
-                ctx.channel().attr(ModbusCommon.MODBUS_STATE).set(channelSession);
+                modbusChannelSession = new ModbusChannelSession(modbusTcpServer, modbusId, ctx.channel());
+                ctx.channel().attr(ModbusCommon.MODBUS_STATE).set(modbusChannelSession);
 
                 //移除相应的登录解码器，添加帧解码器
                 ctx.pipeline().remove("LoginDecoder");
                 ctx.pipeline().addFirst("FrameDecoder", new ModbusFrameDecoder());
-                channelSession.processQueue();
+                modbusChannelSession.processQueue();
                 break;
             // 远端的回应
             case ConstantFromWhere.FROM_RPS:
-                modbusTcpServer.receiveMsg(channelSession.id, response);
-                //channelSession.clearLastOutMsg();
-                //channelSession.processQueue();
+                modbusTcpServer.receiveMsg(modbusChannelSession.id, response);
+                //modbusChannelSession.clearLastOutMsg();
+                //modbusChannelSession.processQueue();
                 break;
             default:
                 break;

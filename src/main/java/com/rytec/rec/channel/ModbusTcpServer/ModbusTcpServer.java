@@ -6,10 +6,10 @@
 
 package com.rytec.rec.channel.ModbusTcpServer;
 
+import com.rytec.rec.app.ManageableInterface;
 import com.rytec.rec.channel.ChannelInterface;
 import com.rytec.rec.channel.ChannelMessage;
 import com.rytec.rec.channel.ModbusTcpServer.handler.ModbusChannelInitializer;
-import com.rytec.rec.channel.ModbusTcpServer.exception.ConnectionException;
 import com.rytec.rec.db.DbConfig;
 import com.rytec.rec.db.model.ChannelNode;
 import com.rytec.rec.node.NodeInterface;
@@ -37,14 +37,12 @@ import javax.annotation.PreDestroy;
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 @Service
 @Order(400)
 @AnnotationChannelType(1001)
 @AnnotationJSExport("Modbus服务器")
-public class ModbusTcpServer implements ChannelInterface {
+public class ModbusTcpServer implements ChannelInterface, ManageableInterface {
 
     private final org.slf4j.Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -97,7 +95,7 @@ public class ModbusTcpServer implements ChannelInterface {
                 }
             });
         } catch (Exception ex) {
-            Logger.getLogger(ModbusTcpServer.class.getName()).log(Level.SEVERE, ex.getLocalizedMessage());
+            // todo : 错误处理
             //throw new ConnectionException(ex.getLocalizedMessage());
         }
     }
@@ -172,9 +170,9 @@ public class ModbusTcpServer implements ChannelInterface {
     private void doOnTime() {
         // 遍历已经登录的远端，并执行队列
         for (Channel cha : clients.values()) {
-            ChanneSession channeSession = cha.attr(ModbusCommon.MODBUS_STATE).get();
-            if (channeSession != null) {
-                channeSession.timerProcess();
+            ModbusChannelSession modbusChannelSession = cha.attr(ModbusCommon.MODBUS_STATE).get();
+            if (modbusChannelSession != null) {
+                modbusChannelSession.timerProcess();
             }
         }
     }
@@ -211,8 +209,8 @@ public class ModbusTcpServer implements ChannelInterface {
         if (channel == null) {
             return ConstantErrorCode.CHA_NOT_CONNECT;
         } else {
-            ChanneSession channeSession = channel.attr(ModbusCommon.MODBUS_STATE).get();
-            channeSession.sendMsg(msg);
+            ModbusChannelSession modbusChannelSession = channel.attr(ModbusCommon.MODBUS_STATE).get();
+            modbusChannelSession.sendMsg(msg);
         }
         return rst;
     }

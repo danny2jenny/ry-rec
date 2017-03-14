@@ -12,9 +12,9 @@ public class ChannelMessage {
 
     public int type = ConstantCommandType.GENERAL_WRITE;      //命令类型
     public int from = ConstantFromWhere.FROM_TIMER;           //该命令的触发是哪里
-    public int nodeId;                                        //node的id
+    public int nodeId;                                       //node的id
 
-    public int responseLen = 0;                               //返回帧的长度
+    public int responseLen = 0;                              //返回帧的长度
     public Object payload;                                    //有效数据，发送的或者是接收的
 
     public ChannelMessage() {

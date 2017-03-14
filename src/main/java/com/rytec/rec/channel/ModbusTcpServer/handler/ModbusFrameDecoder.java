@@ -1,6 +1,6 @@
 package com.rytec.rec.channel.ModbusTcpServer.handler;
 
-import com.rytec.rec.channel.ModbusTcpServer.ChanneSession;
+import com.rytec.rec.channel.ModbusTcpServer.ModbusChannelSession;
 import com.rytec.rec.channel.ModbusTcpServer.ModbusCommon;
 import com.rytec.rec.channel.ChannelMessage;
 import com.rytec.rec.util.CRC16;
@@ -24,10 +24,10 @@ public class ModbusFrameDecoder extends ByteToMessageDecoder {
     protected void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) {
 
         // 得到Channel 对应的 Session
-        ChanneSession channelSession = ctx.channel().attr(ModbusCommon.MODBUS_STATE).get();
+        ModbusChannelSession modbusChannelSession = ctx.channel().attr(ModbusCommon.MODBUS_STATE).get();
 
         // 当前发送的命令
-        ChannelMessage lastOutMsg = channelSession.getLastOutMsg();
+        ChannelMessage lastOutMsg = modbusChannelSession.getLastOutMsg();
 
         // 当前读取缓冲的状态
         int inBufferLen = in.readableBytes();
@@ -88,11 +88,11 @@ public class ModbusFrameDecoder extends ByteToMessageDecoder {
             ChannelMessage msg = new ChannelMessage(ConstantFromWhere.FROM_RPS);
             msg.payload = payload;
 
-            msg.nodeId = channelSession.getLastOutMsg().nodeId;
-            msg.type = channelSession.getLastOutMsg().type;
+            msg.nodeId = modbusChannelSession.getLastOutMsg().nodeId;
+            msg.type = modbusChannelSession.getLastOutMsg().type;
             // 清除当前发送的命令
-            channelSession.clearLastOutMsg();
-            channelSession.processQueue();
+            modbusChannelSession.clearLastOutMsg();
+            modbusChannelSession.processQueue();
             out.add(msg);
         } else {
             // 解码错误，打印当前的内容和解码的内容

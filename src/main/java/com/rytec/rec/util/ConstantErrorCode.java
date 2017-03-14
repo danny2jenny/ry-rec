@@ -39,5 +39,9 @@ public interface ConstantErrorCode {
     @AnnotationJSExport("联动动作未设置")
     int RULE_ACTION_NO_ACTION = 402;
 
+    // Service 错误消息
+    int SRV_NOT_ACTIVE = 501;
+    int SRV_NOT_EXIST = 502;
+
 
 }
