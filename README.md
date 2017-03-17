@@ -64,6 +64,19 @@ convert -resize 16x16 in out
 
 git push origin HEAD:master
 
+# 消息队列
+http://www.cnblogs.com/huang0925/p/3558690.html
+
+http://elim.iteye.com/blog/1893038
+
+# 使用mqtt方式
+
+http://docs.spring.io/spring-integration/reference/html/mqtt.html
+
+http://blog.csdn.net/zhang89xiao/article/details/51871624
+
+http://blog.csdn.net/zhang89xiao/article/details/51871973
+
 
 
 

@@ -40,7 +40,9 @@ public interface ConstantErrorCode {
     int RULE_ACTION_NO_ACTION = 402;
 
     // Service 错误消息
+    @AnnotationJSExport("服务未激活")
     int SRV_NOT_ACTIVE = 501;
+    @AnnotationJSExport("服务不存在")
     int SRV_NOT_EXIST = 502;
 
 

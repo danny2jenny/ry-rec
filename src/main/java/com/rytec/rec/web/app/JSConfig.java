@@ -87,7 +87,7 @@ public class JSConfig implements ConstantDeviceFunction, ConstantDeviceState, Co
                     jsConst.put(value, field.getAnnotation(AnnotationJSExport.class).value());
                 }
             } catch (IllegalAccessException e) {
-
+                e.printStackTrace();
             }
             rst.put(annotation.value(), jsConst);
         }
