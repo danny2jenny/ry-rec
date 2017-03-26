@@ -57,7 +57,7 @@
         <!--<property name="password" value="密码"/>-->
         <property name="serverURIs">
             <array>
-                <value>tcp://localhost:61613</value>
+                <value>tcp://www.ronyao.com:1883</value>
             </array>
         </property>
     </bean>
