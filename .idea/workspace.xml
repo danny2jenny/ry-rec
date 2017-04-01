@@ -5,40 +5,8 @@
     <bookmark url="file://$PROJECT_DIR$/src/main/webapp/extjs_app/lib/GisViewPlugin.js" line="858" mnemonic="2" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d35ddd3d-c0e7-4f94-b111-72db3f8184b4" name="Default" comment="1、控制面板的显示换成了hide 与 show。js会出现错误，但是面板好像不会锁死。&#10;2、遗留问题：偶尔刷新GIS，状态图层不显示。&#10;&#10;3、必须使用 writeandflash 才能发送成功&#10;&#10;4、成功使用 mqtt 发送和接收消息">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/service/Video/ConstantVideo.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/service/RyAbstractService.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/service/RyTcpServer/RyClientSession.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/service/RyTcpServer/RyTcpMsg.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/service/RyTcpServer/RyTcpServer.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/service/RyTcpServer/RyTcpServerCommon.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/service/RyTcpServer/handler/RyTcpServerDecoder.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/service/RyTcpServer/handler/RyTcpServerEncoder.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/service/RyTcpServer/handler/RyTcpServerHandler.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/service/RyTcpServer/handler/RyTcpServerInitializer.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/service/RyTcpServer/handler/RyTcpServerLoginDecoder.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/util/AnnotationServiceType.java" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/Video_DH/VideoDH.java" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/BaseChannel/VideoBaseChannel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/Gradle___RYTEC___com_rytec_rec_1_0_SNAPSHOT_war__exploded_.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/Gradle___RYTEC___com_rytec_rec_1_0_SNAPSHOT_war__exploded_.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/gradle.xml" afterPath="$PROJECT_DIR$/.idea/gradle.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules/com.rytec.rec_main.iml" afterPath="$PROJECT_DIR$/.idea/modules/com.rytec.rec_main.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules/com.rytec.rec_test.iml" afterPath="$PROJECT_DIR$/.idea/modules/com.rytec.rec_test.iml" />
+    <list default="true" id="d35ddd3d-c0e7-4f94-b111-72db3f8184b4" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/document/icons.svg" afterPath="$PROJECT_DIR$/document/icons.svg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ChannelInterface.java" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ChannelInterface.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpServer/ModbusTcpServer.java" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpServer/ModbusTcpServer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/Video_HK/VideoHK.java" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/Video_HK/VideoHK.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/db/DbConfig.java" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/db/DbConfig.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/device/operator/Camera.java" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/device/operator/Camera.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/messenger/MqttService.java" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/messenger/MqttService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/node/HTKL/HT_C1.java" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/node/HTKL/HT_C1.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/node/Video/NodeCamera.java" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/node/Video/NodeCamera.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/service/Video/VideoService.java" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/service/Video/VideoService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/web/test/app.java" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/web/test/app.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/config.ini" afterPath="$PROJECT_DIR$/src/main/resources/config.ini" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/spring-root.xml" afterPath="$PROJECT_DIR$/src/main/resources/spring-root.xml" />
     </list>
     <ignored path="RyREC.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -176,9 +144,10 @@
       <file leaf-file-name="VideoBaseChannel.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/BaseChannel/VideoBaseChannel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="66">
-              <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+            <state relative-caret-position="396">
+              <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
               <folding>
+                <element signature="imports" expanded="true" />
                 <element signature="e#399#400#0" expanded="true" />
                 <element signature="e#447#448#0" expanded="true" />
               </folding>
@@ -1390,144 +1359,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com.rytec.rec" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RyREC" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com.rytec.rec" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RyREC" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="rec" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com.rytec.rec" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RyREC" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="rec" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Video" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com.rytec.rec" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RyREC" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="rec" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="channel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com.rytec.rec" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RyREC" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="rec" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="channel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BaseChannel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
       <pane id="PackagesPane">
@@ -2368,14 +2199,7 @@
       <workItem from="1490776865305" duration="1874000" />
       <workItem from="1490834338059" duration="4053000" />
       <workItem from="1491008870476" duration="1435000" />
-      <workItem from="1491014111012" duration="12115000" />
-    </task>
-    <task id="LOCAL-00016" summary="框架初步完成，存在以下问题&#10;1、通讯过程中的错误处理未实现&#10;2、超时未实现&#10;">
-      <created>1481874384182</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1481874384182</updated>
+      <workItem from="1491014111012" duration="12197000" />
     </task>
     <task id="LOCAL-00017" summary="调整名称&#10;&#10;">
       <created>1481874644113</created>
@@ -2713,11 +2537,18 @@
       <option name="project" value="LOCAL" />
       <updated>1489767896954</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="* mqtt通讯完成，ptz控制流程完成。&#10;&#10;1、控制面板的显示换成了hide 与 show。js会出现错误，但是面板好像不会锁死。&#10;2、遗留问题：偶尔刷新GIS，状态图层不显示。">
+      <created>1491050880572</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1491050880574</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1311848000" />
+    <option name="totallyTimeSpent" value="1311930000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2803,7 +2634,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="修复没有图标配置的错误" />
     <MESSAGE value="修正第一次layer载入的时候，得到features为空。一次feature的状态图标（overlay）不能生成的问题。&#10;为题在于feature的请求是异步的，layer状态改变的时候，可能feature还没有得到，这个时候去生成Overlay是不能生成的。" />
     <MESSAGE value="Clent 保存Node Opt字段" />
     <MESSAGE value="ModbusHandler 不能使用注入的方式" />
@@ -2828,7 +2658,8 @@
     <MESSAGE value="1、控制面板的显示换成了hide 与 show。js会出现错误，但是面板好像不会锁死。&#10;2、遗留问题：偶尔刷新GIS，状态图层不显示。&#10;&#10;3、添加了Socket Service 服务" />
     <MESSAGE value="1、控制面板的显示换成了hide 与 show。js会出现错误，但是面板好像不会锁死。&#10;2、遗留问题：偶尔刷新GIS，状态图层不显示。&#10;&#10;3、必须使用 writeandflash 才能发送成功" />
     <MESSAGE value="1、控制面板的显示换成了hide 与 show。js会出现错误，但是面板好像不会锁死。&#10;2、遗留问题：偶尔刷新GIS，状态图层不显示。&#10;&#10;3、必须使用 writeandflash 才能发送成功&#10;&#10;4、成功使用 mqtt 发送和接收消息" />
-    <option name="LAST_COMMIT_MESSAGE" value="1、控制面板的显示换成了hide 与 show。js会出现错误，但是面板好像不会锁死。&#10;2、遗留问题：偶尔刷新GIS，状态图层不显示。&#10;&#10;3、必须使用 writeandflash 才能发送成功&#10;&#10;4、成功使用 mqtt 发送和接收消息" />
+    <MESSAGE value="* mqtt通讯完成，ptz控制流程完成。&#10;&#10;1、控制面板的显示换成了hide 与 show。js会出现错误，但是面板好像不会锁死。&#10;2、遗留问题：偶尔刷新GIS，状态图层不显示。" />
+    <option name="LAST_COMMIT_MESSAGE" value="* mqtt通讯完成，ptz控制流程完成。&#10;&#10;1、控制面板的显示换成了hide 与 show。js会出现错误，但是面板好像不会锁死。&#10;2、遗留问题：偶尔刷新GIS，状态图层不显示。" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -3214,9 +3045,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/BaseChannel/VideoBaseChannel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+        <state relative-caret-position="396">
+          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
           <folding>
+            <element signature="imports" expanded="true" />
             <element signature="e#399#400#0" expanded="true" />
             <element signature="e#447#448#0" expanded="true" />
           </folding>
