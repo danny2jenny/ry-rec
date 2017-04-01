@@ -201,16 +201,16 @@ public class ModbusTcpServer implements ChannelInterface, ManageableInterface {
      *
      * @param msg
      */
-    public int sendMsg(ChannelMessage msg) {
+    public int sendMsg(Object msg) {
         int rst = 0;
-        ChannelNode channelNode = nodeManager.getChannelNodeByNodeId(msg.nodeId).channelNode;
+        ChannelNode channelNode = nodeManager.getChannelNodeByNodeId(((ChannelMessage) msg).nodeId).channelNode;
         String channelId = channelNode.getIp() + ':' + channelNode.getPort();
         Channel channel = clients.get(channelId);
         if (channel == null) {
             return ConstantErrorCode.CHA_NOT_CONNECT;
         } else {
             ModbusChannelSession modbusChannelSession = channel.attr(ModbusCommon.MODBUS_STATE).get();
-            modbusChannelSession.sendMsg(msg);
+            modbusChannelSession.sendMsg((ChannelMessage)msg);
         }
         return rst;
     }

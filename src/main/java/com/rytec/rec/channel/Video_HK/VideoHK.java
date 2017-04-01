@@ -1,11 +1,8 @@
 package com.rytec.rec.channel.Video_HK;
 
-import com.rytec.rec.channel.ChannelInterface;
-import com.rytec.rec.channel.ChannelMessage;
-import com.rytec.rec.service.Video.VideoService;
+import com.rytec.rec.channel.BaseChannel.VideoBaseChannel;
 import com.rytec.rec.util.AnnotationChannelType;
 import com.rytec.rec.util.AnnotationJSExport;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -14,13 +11,6 @@ import org.springframework.stereotype.Service;
 @Service
 @AnnotationChannelType(2001)
 @AnnotationJSExport("海康 DVR")
-public class VideoHK implements ChannelInterface {
+public class VideoHK extends VideoBaseChannel {
 
-    @Autowired
-    VideoService videoService;
-
-    @Override
-    public int sendMsg(ChannelMessage msg) {
-        return videoService.sendMsg(msg);
-    }
 }

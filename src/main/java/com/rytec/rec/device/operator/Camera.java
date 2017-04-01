@@ -10,6 +10,10 @@ import org.springframework.stereotype.Service;
 
 /**
  * Created by Danny on 2017/3/13.
+ *
+ * 摄像机设备
+ * 动作：PTZ
+ *
  */
 @Service
 @AnnotationDeviceType(401)
@@ -30,6 +34,6 @@ public class Camera extends AbstractOperator {
         nodeMsg.type = ConstantCommandType.GENERAL_WRITE;
         nodeMsg.value = parm;
 
-        return this.setValue(device, ConstantDeviceFunction.DEV_FUN_PORT_MAIN, nodeMsg);
+        return setValue(device, ConstantDeviceFunction.DEV_FUN_PORT_MAIN, nodeMsg);
     }
 }

@@ -77,6 +77,11 @@ http://blog.csdn.net/zhang89xiao/article/details/51871624
 
 http://blog.csdn.net/zhang89xiao/article/details/51871973
 
+# 主要问题
+1、gis状态图层偶尔不显示
+
+2、GIS控制面板偶尔出错
+
 
 
 

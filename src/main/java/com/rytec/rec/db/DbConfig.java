@@ -1,10 +1,7 @@
 package com.rytec.rec.db;
 
 import com.rytec.rec.app.ManageableInterface;
-import com.rytec.rec.db.mapper.ChannelNodeMapper;
-import com.rytec.rec.db.mapper.DeviceMapper;
-import com.rytec.rec.db.mapper.DeviceNodeMapper;
-import com.rytec.rec.db.mapper.RuleActionMapper;
+import com.rytec.rec.db.mapper.*;
 import com.rytec.rec.db.model.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,6 +27,7 @@ public class DbConfig implements ManageableInterface {
     private List<DeviceNode> deviceNodeList;
     private List<Device> deviceList;
     private List<RuleAction> ruleActionList;
+    private List<Channel> channelList;
 
     @Autowired
     ChannelNodeMapper channelNodeMapper;
@@ -42,6 +40,9 @@ public class DbConfig implements ManageableInterface {
 
     @Autowired
     RuleActionMapper ruleActionMapper;
+
+    @Autowired
+    ChannelMapper channelMapper;
 
 
     /**
@@ -82,6 +83,13 @@ public class DbConfig implements ManageableInterface {
      */
     private void initRuleAction() {
         ruleActionList = ruleActionMapper.selectByExample(null);
+    }
+
+    /**
+     * 初始化 Channel 列表
+     */
+    private void initChannel() {
+        channelList = channelMapper.selectByExample(null);
     }
 
 
@@ -131,6 +139,14 @@ public class DbConfig implements ManageableInterface {
         return ruleActionList;
     }
 
+    public List<Channel> getChannelList() {
+        if (channelList == null) {
+            initChannel();
+        }
+
+        return channelList;
+    }
+
     /**
      * 实现管理接口
      */
@@ -139,6 +155,7 @@ public class DbConfig implements ManageableInterface {
         deviceNodeList = null;
         deviceList = null;
         ruleActionList = null;
+        channelList = null;
     }
 
     public void start() {

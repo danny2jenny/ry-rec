@@ -43,7 +43,7 @@ public class app {
     @ResponseBody
     public String msg() {
         //webPush.clientBroadcast(new WebMessage());
-        Message<String> message = MessageBuilder.withPayload("==========1111111111111111111111111=========").setHeader(MqttHeaders.TOPIC, "sensor").build();
+        Message<String> message = MessageBuilder.withPayload("<1>").setHeader(MqttHeaders.TOPIC, "rec/srv/video").build();
         mqtt.handleMessage(message);
 
         return "OK";

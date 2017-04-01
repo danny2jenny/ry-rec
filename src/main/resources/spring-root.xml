@@ -57,7 +57,7 @@
         <!--<property name="password" value="密码"/>-->
         <property name="serverURIs">
             <array>
-                <value>tcp://www.ronyao.com:1883</value>
+                <value>tcp://localhost:1883</value>
             </array>
         </property>
     </bean>
@@ -65,10 +65,9 @@
     <!-- 消息适配器  -->
     <int-mqtt:message-driven-channel-adapter
             id="mqttInbound"
-            client-id="CID_2016524123457"
-
-            topics="sensor"
-            qos="1"
+            client-id="CID_RY_MQTT_MC_SUB"
+            topics="rec/mc/info"
+            qos="2"
             client-factory="clientFactory"
             auto-startup="true"
             send-timeout="12"
@@ -79,14 +78,15 @@
             id="startCaseService"
             input-channel="startCase"
             ref="mqttCaseService"
-            method="startCase"
+            method="onVideoMessage"
     />
 
     <bean id="mqttCaseService" class="com.rytec.rec.messenger.MqttService"/>
 
     <!--这里是发送-->
     <bean id="mqtt" class="org.springframework.integration.mqtt.outbound.MqttPahoMessageHandler">
-        <constructor-arg name="clientId" value="CID_2016524123456"></constructor-arg>
+        <constructor-arg name="clientId" value="CID_RY_MQTT_MC_PUB"></constructor-arg>
         <constructor-arg name="clientFactory" ref="clientFactory"></constructor-arg>
     </bean>
+
 </beans>

@@ -15,5 +15,5 @@ import com.rytec.rec.app.ManageableInterface;
  */
 
 public interface ChannelInterface {
-    int sendMsg(ChannelMessage msg);
+    int sendMsg(Object msg);
 }

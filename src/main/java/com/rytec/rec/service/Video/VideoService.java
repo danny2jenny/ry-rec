@@ -2,44 +2,41 @@ package com.rytec.rec.service.Video;
 
 import com.rytec.rec.app.ManageableInterface;
 import com.rytec.rec.channel.ChannelMessage;
-import com.rytec.rec.db.mapper.ChannelMapper;
-import com.rytec.rec.db.model.Channel;
-import com.rytec.rec.db.model.ChannelExample;
-import com.rytec.rec.service.RyAbstractService;
-import com.rytec.rec.service.RyTcpServer.RyTcpMsg;
-import com.rytec.rec.service.RyTcpServer.RyTcpServer;
 import com.rytec.rec.db.DbConfig;
+import com.rytec.rec.db.model.Channel;
 import com.rytec.rec.db.model.ChannelNode;
-import com.rytec.rec.util.AnnotationServiceType;
-import com.rytec.rec.util.ConstantTcpCommand;
-import io.netty.buffer.ByteBuf;
-import io.netty.buffer.Unpooled;
+import com.rytec.rec.messenger.MqttService;
+import com.rytec.rec.node.NodeManager;
+import com.rytec.rec.node.NodeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
-import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.List;
 
 /**
  * Created by Danny on 2017/3/13.
+ * <p>
+ * 与 video servie 进行通讯的接口
  */
 
 @Service
 @Order(300)
-@AnnotationServiceType(101)
-public class VideoService extends RyAbstractService implements ManageableInterface {
-
-    @Autowired
-    RyTcpServer ryTcpServer;
+public class VideoService implements ManageableInterface {
 
     @Autowired
     DbConfig dbConfig;
 
     @Autowired
-    ChannelMapper channelMapper;
+    public NodeManager nodeManager;
+
+    private MqttService mqttService;
+
+    public void setMqttService(MqttService mqttService) {
+        this.mqttService = mqttService;
+    }
 
     /**
      * 初始化对应的HashMap
@@ -76,13 +73,52 @@ public class VideoService extends RyAbstractService implements ManageableInterfa
 
     }
 
-    public int sendMsg(ChannelMessage msg) {
+    /**
+     * 发送消息
+     *
+     * @param msg
+     * @return
+     */
+    public int sendMsg(Object msg) {
+
+        NodeMessage sendMsg = (NodeMessage) msg;
+
+        ChannelNode channelNode = nodeManager.getChannelNodeByNodeId(sendMsg.node).channelNode;
 
         //通过 node 找到 channel 和 add，然后发送给RyTcpServer
-        ChannelNode channelNode = nodeMapList.get(msg.nodeId);
-
+        //ChannelNode channelNode = nodeMapList.get(msg.nodeId);
+        String payload = "" + 3 + ',' + channelNode.getId() + ',' + channelNode.getAdr() + ',' + sendMsg.value;
+        mqttService.videoCmd(ConstantVideo.VIDEO_PTZ, payload);
 
         return 0;
+    }
+
+    /**
+     * 得到视频设备的配置字符串
+     * ChannelId         IP      Port        Username           Password         Type
+     *
+     * @return
+     */
+    public String getConfig() {
+
+        List<Channel> channels = dbConfig.getChannelList();
+
+        String cfg = "";
+
+        for (Channel cn : channels) {
+            if (cn.getType() < 2000 || cn.getType() > 3000) {
+                continue;
+            }
+            cfg = cfg
+                    + cn.getId() + ','
+                    + cn.getIp() + ','
+                    + cn.getPort() + ','
+                    + cn.getLogin() + ','
+                    + cn.getPass() + ','
+                    + cn.getType() + ';';
+        }
+
+        return cfg;
     }
 
     @Override
@@ -95,34 +131,7 @@ public class VideoService extends RyAbstractService implements ManageableInterfa
     @Override
     public void start() {
         initConfig();   // 初始化配置
-        onLogin();      // 向Video服务发送配置
-    }
-
-
-    // 当登录的时候调用
-    @Override
-    public void onLogin() {
-        ChannelExample channelExample = new ChannelExample();
-        channelExample.createCriteria().andTypeBetween(2000, 3000);
-        List<Channel> channels = channelMapper.selectByExample(channelExample);
-
-        // 没有响应的配置，退出
-        if (channels.size() == 0) {
-            return;
-        }
-
-        String cfgStr = "";
-
-        for (Channel item : channels) {
-            cfgStr = cfgStr + item.getId() + ',' + item.getIp() + ',' + item.getPort() + ',' + item.getLogin() + ',' + item.getPass() + ',' + item.getType() + ';';
-        }
-
-
-        ByteBuf payload = Unpooled.buffer();
-        payload.writeByte(ConstantTcpCommand.TCP_SEND_CFG);
-        payload.writeCharSequence(cfgStr, Charset.forName("US-ASCII"));
-        payload.writeByte(0x00);
-        ryTcpServer.sendMsg(101, payload);
+        mqttService.videoCmd(ConstantVideo.VIDEO_INIT, getConfig());
     }
 
 
