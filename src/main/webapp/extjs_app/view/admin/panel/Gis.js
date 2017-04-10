@@ -8,7 +8,7 @@ Ext.define('app.view.admin.panel.Gis', {
     extend: 'Ext.grid.Panel',
     alias: 'widget.admin.panel.gis',
     itemId: 'admin_panel_gis',
-    id:'admin.panel.gis',
+    id: 'admin.panel.gis',
     icon: 'res/toolbar/gis.png',
     title: 'GIS',
     store: 'Gis',
@@ -33,5 +33,21 @@ Ext.define('app.view.admin.panel.Gis', {
         masterGrid: 'adminDeviceGrid',
         fKey: 'device',
         newRec: {}          //新建记录的缺省值
-    }]
+    }],
+
+    // 初始化
+    initComponent: function () {
+        this.callParent(arguments);
+
+        Ext.direct.Manager.on('event', function (event, provider, eOpts) {
+
+            // 上传图层后，刷新图层列表
+            if (event.action == "extVideo" && event.method == "listNvr") {
+                var cfg = JSON.stringify(event.result);
+                if (videoPlayer) {
+                    videoPlayer.initConfig(cfg);
+                }
+            }
+        });
+    }
 })

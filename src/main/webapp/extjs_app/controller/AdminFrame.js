@@ -35,7 +35,8 @@ Ext.define('app.controller.AdminFrame', {
         'Gis',
         'GisLayer',
         'Actions',
-        'ActionRule'
+        'ActionRule',
+        'Nvr'
     ],
 
     init: function () {

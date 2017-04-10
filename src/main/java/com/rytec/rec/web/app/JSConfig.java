@@ -15,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.List;
@@ -49,15 +48,6 @@ public class JSConfig implements ConstantDeviceFunction, ConstantDeviceState, Co
 
     @Autowired
     ConfigMapper configMapper;
-
-    public static String encodeStr(String str) {
-        try {
-            return new String(str.getBytes("ISO-8859-1"), "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
 
     /**
      * 客户端JS，包含常量的定义

@@ -17,4 +17,4 @@ Ext.define('app.store.Option', {
             destroy: extOption.delete
         }
     }
-})
+});
