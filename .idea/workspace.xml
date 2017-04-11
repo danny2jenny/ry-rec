@@ -5,23 +5,9 @@
     <bookmark url="file://$PROJECT_DIR$/src/main/webapp/extjs_app/lib/GisViewPlugin.js" line="904" mnemonic="2" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d35ddd3d-c0e7-4f94-b111-72db3f8184b4" name="Default" comment="1、修改了整个Device部分的结构，JS不会再出错&#10;2、加入了单击摄像机显示视频">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/extjs_app/controller/Devices.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/extjs_app/device/Device_401.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/extjs_app/model/DeviceNode.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/extjs_app/store/NvrNode.js" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/webapp/extjs_app/view/device/DevicePanel.js" afterPath="" />
+    <list default="true" id="d35ddd3d-c0e7-4f94-b111-72db3f8184b4" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/web/device/ExtVideo.java" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/web/device/ExtVideo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/extjs_app/App.js" afterPath="$PROJECT_DIR$/src/main/webapp/extjs_app/App.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/extjs_app/controller/AdminFrame.js" afterPath="$PROJECT_DIR$/src/main/webapp/extjs_app/controller/AdminFrame.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/extjs_app/device/Device_101.js" afterPath="$PROJECT_DIR$/src/main/webapp/extjs_app/device/Device_101.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/extjs_app/device/Device_102.js" afterPath="$PROJECT_DIR$/src/main/webapp/extjs_app/device/Device_102.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/extjs_app/device/Device_201.js" afterPath="$PROJECT_DIR$/src/main/webapp/extjs_app/device/Device_201.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/extjs_app/device/Device_301.js" afterPath="$PROJECT_DIR$/src/main/webapp/extjs_app/device/Device_301.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/extjs_app/lib/GisViewPlugin.js" afterPath="$PROJECT_DIR$/src/main/webapp/extjs_app/lib/GisViewPlugin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/extjs_app/lib/util.js" afterPath="$PROJECT_DIR$/src/main/webapp/extjs_app/lib/util.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/panel/Gis.js" afterPath="$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/panel/Gis.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
     </list>
     <ignored path="RyREC.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -108,7 +94,21 @@
     <favorites_list name="com.rytec.rec" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="457">
+                <caret line="89" column="0" lean-forward="true" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
+                <folding />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -945,7 +945,6 @@
         <option value="$PROJECT_DIR$/src/main/resources/spring-root.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/db/DbConfig.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/messenger/MqttService.java" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/device/operator/Camera.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/node/node/NodeCamera.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/BaseChannel/VideoChannel.java" />
@@ -981,6 +980,7 @@
         <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/device/Device_401.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/lib/util.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/controller/Devices.js" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -2243,14 +2243,7 @@
       <workItem from="1491629062410" duration="497000" />
       <workItem from="1491786744885" duration="2587000" />
       <workItem from="1491801079544" duration="27919000" />
-      <workItem from="1491897387033" duration="995000" />
-    </task>
-    <task id="LOCAL-00019" summary="添加 extjs 静态资源&#10;&#10;">
-      <created>1482112267831</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1482112267831</updated>
+      <workItem from="1491897387033" duration="2539000" />
     </task>
     <task id="LOCAL-00020" summary="1、加入了 mybatis&#10;2、加入了Openlayers&#10;3、管理界面框架&#10;&#10;">
       <created>1482303878102</created>
@@ -2588,11 +2581,18 @@
       <option name="project" value="LOCAL" />
       <updated>1491810291619</updated>
     </task>
-    <option name="localTasksCounter" value="68" />
+    <task id="LOCAL-00068" summary="1、修改了整个Device部分的结构，JS不会再出错&#10;2、加入了单击摄像机显示视频">
+      <created>1491898779100</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1491898779101</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1344147000" />
+    <option name="totallyTimeSpent" value="1345691000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2623,8 +2623,8 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32861805" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22431865" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28092244" sideWeight="0.4764957" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21907757" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28092244" sideWeight="0.4764957" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293348" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32809225" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24117647" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -2725,13 +2725,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/web/admin/ExtOption.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-165">
-          <caret line="21" column="13" lean-forward="false" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/web/admin/ExtNodeForDevice.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
@@ -3104,6 +3097,17 @@
         <state relative-caret-position="198">
           <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="457">
+            <caret line="89" column="0" lean-forward="true" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>

@@ -82,6 +82,13 @@ http://blog.csdn.net/zhang89xiao/article/details/51871973
 
 2、GIS控制面板偶尔出错
 
+# GIT 教程
+
+http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000
+
+detach 问题 http://www.tuicool.com/articles/F7RNzq2
+
+
 
 
 
