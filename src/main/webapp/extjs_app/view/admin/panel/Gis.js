@@ -39,15 +39,6 @@ Ext.define('app.view.admin.panel.Gis', {
     initComponent: function () {
         this.callParent(arguments);
 
-        Ext.direct.Manager.on('event', function (event, provider, eOpts) {
 
-            // 上传图层后，刷新图层列表
-            if (event.action == "extVideo" && event.method == "listNvr") {
-                var cfg = JSON.stringify(event.result);
-                if (videoPlayer) {
-                    videoPlayer.initConfig(cfg);
-                }
-            }
-        });
     }
 })

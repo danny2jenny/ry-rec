@@ -43,6 +43,14 @@ ry.GIS_FEATURE_TYPE = [
     [3, '面']
 ];
 
+// ******************************** 视频播放 ****************************
+ry.playRealVideo = function (nvr, adr) {
+    debugger;
+    if (typeof(videoPlayer) != 'undefined') {
+        videoPlayer.realPlay(nvr, adr)
+    }
+};
+
 /**
  * Stomp
  *

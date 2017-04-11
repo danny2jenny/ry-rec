@@ -80,7 +80,8 @@ Ext.application({
     appFolder: '/extjs_app',
 
     controllers: [
-        'AdminFrame'        //主界面框架
+        'AdminFrame',        // 主界面框架
+        'Devices'            // 设备相关资源的装载
     ],
 
     views: [
@@ -88,12 +89,7 @@ Ext.application({
     ],
 
     requires: [
-        'app.lib.GridDragPlugin',
-        'app.device.Device_101',
-        'app.device.Device_102',
-        'app.device.Device_201',
-        'app.device.Device_301',
-        'app.view.device.DevicePanel'
+        'app.lib.GridDragPlugin'
     ],
 
 

@@ -485,7 +485,7 @@ Ext.define('app.lib.GisViewPlugin', {
             me.deviceSetIcon(state.device.id, state.runtime.iconState);
 
             // 更新控制面板
-            var panel = ry.devices['device_' + state.device.type].controlPanel;
+            var panel = me.interaction.popup.ctlPanel;
             if (panel != null) {
                 panel.refreshState(state);
             }
@@ -850,17 +850,24 @@ Ext.define('app.lib.GisViewPlugin', {
             autoPanAnimation: {duration: 250}
         });
 
+        me.interaction.popup.ctlPanel = null;
+
         me.interaction.hoverSelect.on('select', function (event) {
 
             if (event.selected.length) {
 
                 // 首先清理以前加入的Overlay
+                if (this.interaction.popup.ctlPanel) {
+                    this.interaction.popup.ctlPanel.close();
+                    this.interaction.popup.ctlPanel = null;
+                }
                 this.map.removeOverlay(this.interaction.popup);
 
                 // 得到当前选中 Feature 的属性
                 var fProperties = event.selected[0].getProperties();
 
-                if (!ry.deviceControlPanel.hasPanel(fProperties.type)) {
+                // 判断是否有控制面板
+                if (!Ext.isDefined(app.view.device.control['_' + fProperties.type])) {
                     return;
                 }
 
@@ -869,13 +876,14 @@ Ext.define('app.lib.GisViewPlugin', {
                 // 显示 Overlay
                 this.interaction.popup.show(fProperties.geometry.getCoordinates());
 
-                if (!ry.deviceControlPanel.rendered) {
-                    ry.deviceControlPanel.render(this.interaction.popup.content);
-                    ry.deviceControlPanel.getEl().setStyle('z-index', '80000');
-                }
+                // 显示控制面板
+                this.interaction.popup.ctlPanel = Ext.create('app.view.device.control._' + fProperties.type, {
+                    renderTo: this.interaction.popup.content
+                });
 
-                ry.deviceControlPanel.showPanel(this.overlay.devicesState[fProperties.deviceId]);
-
+                this.interaction.popup.ctlPanel.show();
+                this.interaction.popup.ctlPanel.updateState(this.overlay.devicesState[fProperties.deviceId]);
+                this.interaction.popup.ctlPanel.getEl().setStyle('z-index', '80000');
             } else {
                 // 没有选中不能hide，否则不能使用面板了
             }
@@ -892,7 +900,15 @@ Ext.define('app.lib.GisViewPlugin', {
 
         //
         me.interaction.clickSelect.on('select', function (event) {
+            // 释放相应的控制面板
+            var fProperties = event.selected[0].getProperties();
             me.interaction.popup.hide();
+
+            // 单击的操作
+            if (ry.devices['device_' + fProperties.type].gisClick) {
+                ry.devices['device_' + fProperties.type].gisClick(fProperties);
+            }
+
         }, me);
 
         me.map.addInteraction(me.interaction.clickSelect);

@@ -7,7 +7,6 @@
 Ext.define('app.device.Device_201', {
 
     configPanel: Ext.create('Ext.panel.Panel', {
-
         itemId: 'device_config_201',
         title: '设备参数配置',
         bodyPadding: '5 5 0',
