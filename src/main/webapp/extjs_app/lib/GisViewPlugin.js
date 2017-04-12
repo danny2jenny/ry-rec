@@ -901,6 +901,9 @@ Ext.define('app.lib.GisViewPlugin', {
         //
         me.interaction.clickSelect.on('select', function (event) {
             // 释放相应的控制面板
+            if (!event.selected.length){
+                return;
+            }
             var fProperties = event.selected[0].getProperties();
             me.interaction.popup.hide();
 

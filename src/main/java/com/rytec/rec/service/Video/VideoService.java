@@ -131,7 +131,13 @@ public class VideoService implements ManageableInterface {
     @Override
     public void start() {
         initConfig();   // 初始化配置
-        mqttService.videoCmd(ConstantVideo.VIDEO_INIT, getConfig());
+
+        try{
+            mqttService.videoCmd(ConstantVideo.VIDEO_INIT, getConfig());
+        } catch (Exception e){
+
+        }
+
     }
 
 

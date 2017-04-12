@@ -72,7 +72,7 @@ Ext.define('app.view.admin.frame.DeviceNodeGrid', {
 
             var deviceGrid = Ext.ComponentQuery.query('#adminDeviceGrid')[0];
 
-            var newItem = deviceGrid.store.insert(1, {
+            var newItem = deviceGrid.store.insert(0, {
                 name: data.records[0].get('name'),
                 type: 0
             })

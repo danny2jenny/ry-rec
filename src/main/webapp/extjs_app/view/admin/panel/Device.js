@@ -7,7 +7,6 @@
 Ext.define('app.view.admin.panel.Device', {
     extend: 'Ext.grid.Panel',
     alias: 'widget.admin.panel.device',
-
     title: '设备列表',
     icon: 'res/toolbar/device.png',
     store: 'Device',
@@ -30,6 +29,11 @@ Ext.define('app.view.admin.panel.Device', {
 
     columns: [
         {
+            text: 'ID',
+            dataIndex: 'id',
+            width: 30
+        },
+        {
             text: '名称',
             width: 40,
             sortable: false,
@@ -44,6 +48,7 @@ Ext.define('app.view.admin.panel.Device', {
         {
             text: '类型',
             dataIndex: 'type',
+            width: 100,
             editor: {
                 xtype: 'combobox',
                 store: ry.DEVICE_TYPE,
@@ -55,13 +60,13 @@ Ext.define('app.view.admin.panel.Device', {
         {
             text: '图标',
             dataIndex: 'icon',
+            width: 40,
             editor: {
                 allowBlank: false,
                 xtype: 'combobox',
                 store: ry.DEVICE_ICON
             },
             renderer: function (val, column, row) {
-
                 return "<img src='res/gis/device/" + val + "-11.gif'>"
             }
         }
@@ -79,6 +84,9 @@ Ext.define('app.view.admin.panel.Device', {
     },
 
     onSelectChange: function (view, selections, options) {
+        if (!selections.length) {
+            return
+        }
         var device = selections[0].getId();
         Ext.getCmp('gis.view').gis.highlightDevice(device);
     },
