@@ -57,7 +57,7 @@
         <!--<property name="password" value="密码"/>-->
         <property name="serverURIs">
             <array>
-                <value>tcp://localhost:1883</value>
+                <value>${mq.url}</value>
             </array>
         </property>
     </bean>

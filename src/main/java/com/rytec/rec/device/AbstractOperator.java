@@ -2,8 +2,9 @@ package com.rytec.rec.device;
 
 import com.rytec.rec.cooperate.CooperateManager;
 import com.rytec.rec.db.model.DeviceNode;
+import com.rytec.rec.messenger.AlarmHub;
 import com.rytec.rec.messenger.Message.WebMessage;
-import com.rytec.rec.messenger.MessageType;
+import com.rytec.rec.util.ConstantMessageType;
 import com.rytec.rec.messenger.WebPush;
 import com.rytec.rec.node.NodeInterface;
 import com.rytec.rec.node.NodeManager;
@@ -33,6 +34,9 @@ public class AbstractOperator {
 
     @Autowired
     WebPush webPush;
+
+    @Autowired
+    AlarmHub alarmHub;
 
     /*
     * 设置输出的值
@@ -94,11 +98,11 @@ public class AbstractOperator {
      * @param newValue
      */
     public void onValueChanged(int deviceId, int fun, Object oldValue, Object newValue) {
-        DeviceRuntimeBean deviceRuntimeBean = deviceManager.deviceRuntimeList.get(deviceId).runtime;
-        deviceRuntimeBean.state = newValue;
+        DeviceStateBean deviceStateBean = deviceManager.deviceRuntimeList.get(deviceId).runtime;
+        deviceStateBean.state = newValue;
         WebMessage webMessage = new WebMessage();
-        webMessage.type = MessageType.DEVICE_STATE;
-        webMessage.msg = deviceRuntimeBean;
+        webMessage.type = ConstantMessageType.DEVICE_STATE;
+        webMessage.msg = deviceStateBean;
         webPush.clientBroadcast(webMessage);
     }
 
@@ -126,6 +130,16 @@ public class AbstractOperator {
     }
 
     /**
+     *  发送告警
+     * @param device
+     * @param sig
+     * @param value
+     */
+    public void sendAlarm(int device, int sig, Object value){
+        alarmHub.processAlarm(device,sig,value);
+    }
+
+    /**
      * 用来解析配置参数的，并生成配置对象。
      * 子类重载该函数
      *
@@ -137,7 +151,7 @@ public class AbstractOperator {
     }
 
     public Object getConfig(int deviceId) {
-        DeviceRuntimeConfigBean drb = deviceManager.deviceRuntimeList.get(deviceId);
+        DeviceRuntimeBean drb = deviceManager.deviceRuntimeList.get(deviceId);
         return drb.config;
     }
 

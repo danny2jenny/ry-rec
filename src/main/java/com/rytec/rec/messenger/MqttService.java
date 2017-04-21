@@ -1,7 +1,7 @@
 package com.rytec.rec.messenger;
 
-import com.rytec.rec.service.Video.ConstantVideo;
-import com.rytec.rec.service.Video.VideoService;
+import com.rytec.rec.util.ConstantVideo;
+import com.rytec.rec.service.VideoService;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.integration.mqtt.outbound.MqttPahoMessageHandler;

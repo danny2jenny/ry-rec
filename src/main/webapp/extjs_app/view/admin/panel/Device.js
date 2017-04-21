@@ -88,7 +88,7 @@ Ext.define('app.view.admin.panel.Device', {
             return
         }
         var device = selections[0].getId();
-        Ext.getCmp('gis.view').gis.highlightDevice(device);
+        ry.gis.highlightDevice(device);
     },
 
     initComponent: function () {

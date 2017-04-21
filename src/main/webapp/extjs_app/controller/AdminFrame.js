@@ -10,7 +10,7 @@ Ext.define('app.controller.AdminFrame', {
         'admin.frame.ChannelNode',
         'admin.frame.DeviceNodeGrid',
         'admin.panel.Option',
-        'gis.GisView',
+        'gis.GisEditor',
         'admin.panel.Channel',
         'admin.panel.Node',
         'admin.panel.Device',

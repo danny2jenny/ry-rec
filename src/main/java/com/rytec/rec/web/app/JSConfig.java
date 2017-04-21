@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.List;
@@ -33,7 +34,7 @@ import java.util.Map;
  */
 
 @Controller
-public class JSConfig implements ConstantDeviceFunction, ConstantDeviceState, ConstantErrorCode {
+public class JSConfig implements ConstantDeviceFunction, ConstantDeviceState, ConstantErrorCode, ConstantMessageType {
 
     private final org.slf4j.Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -64,22 +65,26 @@ public class JSConfig implements ConstantDeviceFunction, ConstantDeviceState, Co
          */
         Class<?>[] constSets = this.getClass().getInterfaces();
 
-        HashMap<String, Object> rst = new HashMap<>();
+        HashMap<String, Object> constHashMap = new HashMap<>();
+        HashMap<String, Object> constValues = new HashMap<>();
 
         for (Class<?> constant : constSets) {
             AnnotationJSExport annotation = constant.getAnnotation(AnnotationJSExport.class);
-            HashMap<Integer, String> jsConst = new HashMap<>();
+            HashMap<Integer, String> jsHash = new HashMap<>();
+            HashMap<String, Integer> jsValues = new HashMap<>();
             try {
                 for (Field field : constant.getDeclaredFields()) {
                     // todo: 最好生成常量名
                     String name = field.getName();
                     int value = field.getInt(null);
-                    jsConst.put(value, field.getAnnotation(AnnotationJSExport.class).value());
+                    jsHash.put(value, field.getAnnotation(AnnotationJSExport.class).value());
+                    jsValues.put(name, value);
                 }
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }
-            rst.put(annotation.value(), jsConst);
+            constHashMap.put(annotation.value(), jsHash);
+            constValues.put(annotation.value(), jsValues);
         }
 
 
@@ -93,7 +98,7 @@ public class JSConfig implements ConstantDeviceFunction, ConstantDeviceState, Co
         for (Config item : icons) {
             cicon.put(Integer.parseInt(item.getValue()), item.getName());
         }
-        rst.put("DEVICE_ICON", cicon);
+        constHashMap.put("DEVICE_ICON", cicon);
 
         /**
          * 把 Channel、Node、Device 的类型进行常量的输出
@@ -108,7 +113,7 @@ public class JSConfig implements ConstantDeviceFunction, ConstantDeviceState, Co
             ChannelInterface ci = cis.get(i);
             ccm.put(i, ci.getClass().getAnnotation(AnnotationJSExport.class).value());
         }
-        rst.put("CHANNEL_TYPE", ccm);
+        constHashMap.put("CHANNEL_TYPE", ccm);
 
         // Node 常量
         Map<Integer, NodeInterface> nis = nodeManager.getAllNodeInterface();
@@ -117,7 +122,7 @@ public class JSConfig implements ConstantDeviceFunction, ConstantDeviceState, Co
             NodeInterface ni = nis.get(i);
             cnm.put(i, ni.getClass().getAnnotation(AnnotationJSExport.class).value());
         }
-        rst.put("NODE_TYPE", cnm);
+        constHashMap.put("NODE_TYPE", cnm);
 
         // Device
         Map<Integer, AbstractOperator> dos = deviceManager.getAllDeviceOperator();
@@ -163,17 +168,22 @@ public class JSConfig implements ConstantDeviceFunction, ConstantDeviceState, Co
                 }
 
                 if (!deviceSig.isEmpty()) {
-                    rst.put("DEVICE_SIG_" + i, deviceSig);
+                    constHashMap.put("DEVICE_SIG_" + i, deviceSig);
                 }
 
                 if (!deviceAction.isEmpty()) {
-                    rst.put("DEVICE_ACT_" + i, deviceAction);
+                    constHashMap.put("DEVICE_ACT_" + i, deviceAction);
                 }
             }
 
         }
-        rst.put("DEVICE_TYPE", deviceTypeList);
-        model.addAttribute("const", rst);
+        constHashMap.put("DEVICE_TYPE", deviceTypeList);
+
+        // 添加模型
+        model.addAttribute("constHashMap", constHashMap);
+        model.addAttribute("constValues", constValues);
+
+        // ************************************************* 常量 *****************************************
 
         return "const";
     }

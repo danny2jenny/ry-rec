@@ -1,12 +1,14 @@
 package com.rytec.rec.device;
 
+import com.rytec.rec.db.model.Device;
+
 /**
  * Created by danny on 17-1-25.
  * <p>
- * Device 的状态
+ * Device 运行时的描述
  */
 public class DeviceRuntimeBean {
-    public int device;                     // 设备编号
-    public int iconState;                  // 图标
-    public Object state;                   // 状态值
+    public Device device;                //Device ID
+    public DeviceStateBean runtime;      //Device 状态
+    public Object config;                //Device 的配置对象
 }

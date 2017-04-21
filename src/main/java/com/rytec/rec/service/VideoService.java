@@ -1,13 +1,13 @@
-package com.rytec.rec.service.Video;
+package com.rytec.rec.service;
 
 import com.rytec.rec.app.ManageableInterface;
-import com.rytec.rec.channel.ChannelMessage;
 import com.rytec.rec.db.DbConfig;
 import com.rytec.rec.db.model.Channel;
 import com.rytec.rec.db.model.ChannelNode;
 import com.rytec.rec.messenger.MqttService;
 import com.rytec.rec.node.NodeManager;
 import com.rytec.rec.node.NodeMessage;
+import com.rytec.rec.util.ConstantVideo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Service;
@@ -54,7 +54,6 @@ public class VideoService implements ManageableInterface {
     private void initConfig() {
         List<ChannelNode> chaNodeList = dbConfig.getChannelNodeList();
 
-
         for (ChannelNode cn : chaNodeList) {
             // 只管理 2000~3000 的channel
             if ((cn.getCtype() < 2000) || (cn.getCtype() > 3000)) {
@@ -70,7 +69,6 @@ public class VideoService implements ManageableInterface {
 
             nodeMapList.put(cn.getNid(), cn);
         }
-
     }
 
     /**
@@ -80,7 +78,6 @@ public class VideoService implements ManageableInterface {
      * @return
      */
     public int sendMsg(Object msg) {
-
         NodeMessage sendMsg = (NodeMessage) msg;
 
         ChannelNode channelNode = nodeManager.getChannelNodeByNodeId(sendMsg.node).channelNode;
@@ -102,7 +99,6 @@ public class VideoService implements ManageableInterface {
     public String getConfig() {
 
         List<Channel> channels = dbConfig.getChannelList();
-
         String cfg = "";
 
         for (Channel cn : channels) {
@@ -117,7 +113,6 @@ public class VideoService implements ManageableInterface {
                     + cn.getPass() + ','
                     + cn.getType() + ';';
         }
-
         return cfg;
     }
 
@@ -131,14 +126,10 @@ public class VideoService implements ManageableInterface {
     @Override
     public void start() {
         initConfig();   // 初始化配置
-
-        try{
+        try {
             mqttService.videoCmd(ConstantVideo.VIDEO_INIT, getConfig());
-        } catch (Exception e){
+        } catch (Exception e) {
 
         }
-
     }
-
-
 }

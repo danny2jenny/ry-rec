@@ -10,7 +10,7 @@ Ext.define('app.view.admin.frame.GisEditor', {
     title: 'GIS 编辑',
     items: [
         {
-            xtype: 'gis.view',
+            xtype: 'gis.editor',
             region: 'center'
         },
         {
@@ -42,7 +42,7 @@ Ext.define('app.view.admin.frame.GisEditor', {
             Ext.ComponentQuery.query('#griddeviceNode')[0].hideAllSouthPanel();
             var gis = Ext.ComponentQuery.query('#admin_panel_gis')[0];
             gis.show();
-            this.down('#gis_view').refresh();
+            this.down('#gis_editor').refresh();
         })
     }
 });

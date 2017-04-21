@@ -6,7 +6,11 @@
  * 生成JS所需要的常量
  */
 
-<c:forEach items = "${const}" var = "set">
+ry = {};
+ry.CONST = {};
+
+// *************************** Hash 常量 **********************************
+<c:forEach items = "${constHashMap}" var = "set">
 ry.${set.key} = [
     <c:forEach items = "${set.value}" var = "val" varStatus = "status">
     <c:choose>
@@ -21,8 +25,18 @@ ry.${set.key} = [
 ];
 </c:forEach>
 
-
-
-
-
-
+// *************************** Value 常量 **********************************
+<c:forEach items = "${constValues}" var = "set">
+ry.CONST.${set.key} = {
+    <c:forEach items = "${set.value}" var = "val" varStatus = "status">
+    <c:choose>
+    <c:when test="${status.last}">
+    ${val.key}:${val.value}
+    </c:when>
+    <c:otherwise>
+    ${val.key}:${val.value},
+    </c:otherwise>
+    </c:choose>
+    </c:forEach>
+};
+</c:forEach>

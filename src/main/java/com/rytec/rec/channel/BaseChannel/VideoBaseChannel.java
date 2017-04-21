@@ -1,7 +1,7 @@
 package com.rytec.rec.channel.BaseChannel;
 
 import com.rytec.rec.channel.ChannelInterface;
-import com.rytec.rec.service.Video.VideoService;
+import com.rytec.rec.service.VideoService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**

@@ -4,8 +4,6 @@
  * 工具
  */
 
-ry = new Object();
-
 /*
  * Device 的管理额对象列表
  * 'devicd_XXX'->Object
@@ -26,13 +24,6 @@ ry.trans = function (index, type) {
     return "*未知*";
 };
 
-
-ry.CHANNEL_TYPE = [];       //channel cat=1
-ry.NODE_TYPE = [];          //node cat = 2
-ry.DEVICE_TYPE = [];        //deivce cat =3
-ry.DEVICE_FUN = [];         //deivceFun cat =4
-ry.DEVICE_ICON = [];        //deivceFun cat =5
-
 ry.OPT_CAT = [
     [11, '设备图标集']
 ]
@@ -42,12 +33,40 @@ ry.GIS_FEATURE_TYPE = [
     [2, '线'],
     [3, '面']
 ];
+// ******************************** 常用函数 ****************************
+
+/**
+ *
+ * @param icon               图标的代码
+ * @param iconState               图标模式
+ * @returns {string}        返回图标的路径
+ */
+ry.getDeviceStateIcon = function (icon, iconState) {
+    return "res/gis/device/" + icon + "-" + iconState + ".gif";
+};
 
 // ******************************** 视频播放 ****************************
-ry.playRealVideo = function (nvr, adr) {
-    debugger;
+
+
+ry.realPlayInGrid = function (device) {
+    var cfg = Ext.StoreMgr.get('NvrNode');
+    var rec = cfg.findRecord('id', device);
+    if (!rec) {
+        return;
+    }
     if (typeof(videoPlayer) != 'undefined') {
-        videoPlayer.realPlay(nvr, adr)
+        videoPlayer.realPlayInGrid(rec.data.cid, rec.data.nadd)
+    }
+};
+
+ry.realPlayInForm = function (device) {
+    var cfg = Ext.StoreMgr.get('NvrNode');
+    var rec = cfg.findRecord('id', device);
+    if (!rec) {
+        return;
+    }
+    if (typeof(videoPlayer) != 'undefined') {
+        videoPlayer.realPlayInForm(rec.data.cid, rec.data.nadd)
     }
 };
 
@@ -79,17 +98,21 @@ ry.stom.error_callback = function (error) {
 ry.stom.onMsg = function (msg) {
     var msgObject = JSON.parse(msg.body);
     switch (msgObject.type) {
-        case 401:           // Device 消息
+        case ry.CONST.MSG_TYPE.DEVICE_STATE:           // Device 消息
             var msg = msgObject.msg;
             var deviceId = msg.device;
             // 更新GIS中Device的状态
             ry.gis.updateDeviceState(msg);
             break;
-        case 501:           // Node 消息
+        case ry.CONST.MSG_TYPE.NODE_STATE:           // Node 消息
 
             break;
-        case 601:           // Channel 消息
+        case ry.CONST.MSG_TYPE.CHANNEL_STATE:           // Channel 消息
 
+            break;
+        case ry.CONST.MSG_TYPE.DEVICE_ALARM:            // 告警消息
+            var ap = Ext.getCmp('user.alarm.panel');
+            ap.alarm(msgObject);
             break;
     }
 };

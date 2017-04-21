@@ -1,4 +1,4 @@
-package com.rytec.rec.service.Video;
+package com.rytec.rec.util;
 
 /**
  * Created by danny on 17-3-28.

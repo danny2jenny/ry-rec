@@ -63,7 +63,7 @@ public class DeviceManager implements ManageableInterface {
      * deviceId-> runtimeBean
      */
 
-    public HashMap<Integer, DeviceRuntimeConfigBean> deviceRuntimeList = new HashMap();
+    public HashMap<Integer, DeviceRuntimeBean> deviceRuntimeList = new HashMap();
 
     // 初始化接口的索引
     private void initOperatorInterface() {
@@ -110,22 +110,22 @@ public class DeviceManager implements ManageableInterface {
         // 初始化 Device 的运行时状态
         List<Device> devices = dbConfig.getDeviceList();
         for (Device item : devices) {
-            DeviceRuntimeConfigBean deviceRuntimeConfigBean = new DeviceRuntimeConfigBean();
-            deviceRuntimeConfigBean.device = item;
-            deviceRuntimeConfigBean.runtime = new DeviceRuntimeBean();
-            deviceRuntimeConfigBean.runtime.device = item.getId();
-            deviceRuntimeConfigBean.runtime.iconState = ConstantDeviceState.STATE_OFFLINE;
+            DeviceRuntimeBean deviceRuntimeBean = new DeviceRuntimeBean();
+            deviceRuntimeBean.device = item;
+            deviceRuntimeBean.runtime = new DeviceStateBean();
+            deviceRuntimeBean.runtime.device = item.getId();
+            deviceRuntimeBean.runtime.iconState = ConstantDeviceState.STATE_OFFLINE;
 
             // 为 StateBean 中的State生成对象
             AbstractOperator deviceOperator = getOperatorByDeviceType(item.getType());
-            deviceRuntimeConfigBean.runtime.state = deviceOperator.generateStateBean();
+            deviceRuntimeBean.runtime.state = deviceOperator.generateStateBean();
 
             // 生成Device的配置对象
             Object config = deviceOperator.parseConfig(item.getOpt());
-            deviceRuntimeConfigBean.config = config;
+            deviceRuntimeBean.config = config;
 
 
-            deviceRuntimeList.put(item.getId(), deviceRuntimeConfigBean);
+            deviceRuntimeList.put(item.getId(), deviceRuntimeBean);
         }
 
     }
@@ -142,8 +142,8 @@ public class DeviceManager implements ManageableInterface {
     }
 
     public AbstractOperator getOperatorByDeviceId(int id) {
-        DeviceRuntimeConfigBean deviceRuntimeConfigBean = deviceRuntimeList.get(id);
-        return deviceOperators.get(deviceRuntimeConfigBean.device.getType());
+        DeviceRuntimeBean deviceRuntimeBean = deviceRuntimeList.get(id);
+        return deviceOperators.get(deviceRuntimeBean.device.getType());
     }
 
     //得到所有的设备实例列表

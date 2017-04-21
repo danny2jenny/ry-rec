@@ -2,8 +2,8 @@ package com.rytec.rec.device.operator;
 
 
 import com.rytec.rec.device.AbstractOperator;
-import com.rytec.rec.device.DeviceRuntimeConfigBean;
-import com.rytec.rec.messenger.MessageType;
+import com.rytec.rec.device.DeviceRuntimeBean;
+import com.rytec.rec.util.ConstantMessageType;
 import com.rytec.rec.node.NodeMessage;
 import com.rytec.rec.util.*;
 import org.slf4j.LoggerFactory;
@@ -74,20 +74,20 @@ public class Output extends AbstractOperator {
     public void onValueChanged(int deviceId, int fun, Object oldValue, Object newValue) {
 
         // 得到运行状态
-        DeviceRuntimeConfigBean deviceRuntimeConfigBean = deviceManager.deviceRuntimeList.get(deviceId);
+        DeviceRuntimeBean deviceRuntimeBean = deviceManager.deviceRuntimeList.get(deviceId);
 
         // Output 的State对象
-        OutputState state = (OutputState) deviceRuntimeConfigBean.runtime.state;
+        OutputState state = (OutputState) deviceRuntimeBean.runtime.state;
 
         // 根据fun对状态进行更新
         switch (fun) {
             case ConstantDeviceFunction.DEV_FUN_PORT_MAIN:
                 // 开关状态
                 if ((Boolean) newValue == true) {
-                    deviceRuntimeConfigBean.runtime.iconState = ConstantDeviceState.STATE_ON;
+                    deviceRuntimeBean.runtime.iconState = ConstantDeviceState.STATE_ON;
                     state.output = ConstantDeviceState.STATE_ON;
                 } else {
-                    deviceRuntimeConfigBean.runtime.iconState = ConstantDeviceState.STATE_OFF;
+                    deviceRuntimeBean.runtime.iconState = ConstantDeviceState.STATE_OFF;
                     state.output = ConstantDeviceState.STATE_OFF;
                 }
                 break;
@@ -110,7 +110,7 @@ public class Output extends AbstractOperator {
         }
 
         // 向客户端广播消息
-        clientBroadcast(MessageType.DEVICE_STATE, deviceRuntimeConfigBean);
+        clientBroadcast(ConstantMessageType.DEVICE_STATE, deviceRuntimeBean);
 
     }
 

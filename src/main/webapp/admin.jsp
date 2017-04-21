@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
-  User: danny
-  Date: 16-11-3
-  Time: 下午11:00
+  User: 12793
+  Date: 2017/4/14
+  Time: 1:18
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -59,13 +59,9 @@
     <script type="text/javascript" src="extjs_app/lib/util.js"></script>
 
     <%--主程序入口--%>
-    <script type="text/javascript" src="extjs_app/User.js"></script>
-
+    <script type="text/javascript" src="extjs_app/Admin.js"></script>
 </head>
+<body id="body">
 
-<body>
-<div id="body"></div>
-<%--告警声音--%>
-<audio id='wave.alarm' src='res/audio/alarm.wav' loop=true></audio>
 </body>
 </html>

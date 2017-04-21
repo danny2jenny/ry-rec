@@ -44,16 +44,6 @@ Ext.define('app.lib.GisViewPlugin', {
      * 基本的Style                                          *
      *******************************************************/
     style: {
-        /**
-         *
-         * @param icon               图标的代码
-         * @param iconState               图标模式
-         * @returns {string}        返回图标的路径
-         */
-        getIconPath: function (icon, iconState) {
-            return "res/gis/device/" + icon + "-" + iconState + ".gif";
-        },
-
         // 区域填充的样式
         fill: new ol.style.Fill({
             color: 'rgba(255, 255, 255, 0.2)'
@@ -86,7 +76,6 @@ Ext.define('app.lib.GisViewPlugin', {
      * @param client
      */
     init: function (client) {
-
         client.layout = 'fit';          // 强制使用fit
         this.callParent(arguments);
 
@@ -140,7 +129,7 @@ Ext.define('app.lib.GisViewPlugin', {
 
                 // 建立点的样式
                 var icon = new ol.style.Icon({
-                    src: me.style.getIconPath(feature.getProperties().icon, 11)
+                    src: ry.getDeviceStateIcon(feature.getProperties().icon, 11)
                 });
 
                 // 点样式加入到样式
@@ -177,7 +166,7 @@ Ext.define('app.lib.GisViewPlugin', {
 
                     // 建立点的样式
                     var icon = new ol.style.Icon({
-                        src: me.style.getIconPath(feature.getProperties().icon, type)
+                        src:ry.getDeviceStateIcon(feature.getProperties().icon, type)
                     });
 
                     // 点样式加入到样式
@@ -207,6 +196,10 @@ Ext.define('app.lib.GisViewPlugin', {
          *******************************************************/
         me.map = new ol.Map({
             renderer: 'canvas',
+            controls: [
+                new ol.control.Zoom(),
+                new ol.control.Rotate()
+            ],
             view: new ol.View({
                 projection: me.projection,
                 center: ol.extent.getCenter(me.extent),
@@ -438,7 +431,7 @@ Ext.define('app.lib.GisViewPlugin', {
                 var elem = document.createElement('div');
                 elem.style.width = '16px';
                 elem.style.height = '16px';
-                elem.style.backgroundImage = "url(" + me.style.getIconPath(feature.getProperties().icon, iconState) + ")";
+                elem.style.backgroundImage = "url(" + ry.getDeviceStateIcon(feature.getProperties().icon, iconState) + ")";
 
                 var overlay = new ol.Overlay({
                     id: feature.getId(),
@@ -507,7 +500,7 @@ Ext.define('app.lib.GisViewPlugin', {
             for (var i = 0; i < features.length; i++) {
                 var feature = features[i];
                 var overlay = me.overlay.featureStateOverlays.get(feature.getId());
-                overlay.getElement().style.backgroundImage = "url(" + me.style.getIconPath(feature.getProperties().icon, iconState) + ")";
+                overlay.getElement().style.backgroundImage = "url(" + ry.getDeviceStateIcon(feature.getProperties().icon, iconState) + ")";
             }
 
         };
@@ -901,7 +894,7 @@ Ext.define('app.lib.GisViewPlugin', {
         //
         me.interaction.clickSelect.on('select', function (event) {
             // 释放相应的控制面板
-            if (!event.selected.length){
+            if (!event.selected.length) {
                 return;
             }
             var fProperties = event.selected[0].getProperties();
@@ -946,7 +939,6 @@ Ext.define('app.lib.GisViewPlugin', {
                 this.layers.getValues()[0].setVisible(true);
             }
         };
-
         me.store = Ext.StoreMgr.get(me.layerStore);
         me.store.on('refresh', me.onLayerFresh, me);
 

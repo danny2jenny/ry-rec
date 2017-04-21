@@ -7,14 +7,12 @@ import com.rytec.rec.db.mapper.DeviceGisMapper;
 import com.rytec.rec.db.model.DeviceGis;
 import com.rytec.rec.db.model.DeviceGisExample;
 import com.rytec.rec.device.DeviceManager;
-import com.rytec.rec.device.DeviceRuntimeBean;
 import org.geojson.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
 
 /**

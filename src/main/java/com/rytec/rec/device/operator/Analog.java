@@ -2,9 +2,9 @@ package com.rytec.rec.device.operator;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rytec.rec.device.AbstractOperator;
-import com.rytec.rec.device.DeviceRuntimeConfigBean;
+import com.rytec.rec.device.DeviceRuntimeBean;
 import com.rytec.rec.device.config.AnalogConfig;
-import com.rytec.rec.messenger.MessageType;
+import com.rytec.rec.util.ConstantMessageType;
 import com.rytec.rec.util.ConstantDeviceState;
 import com.rytec.rec.util.AnnotationDeviceType;
 import com.rytec.rec.util.AnnotationJSExport;
@@ -46,10 +46,10 @@ public class Analog extends AbstractOperator {
     public void onValueChanged(int deviceId, int fun, Object oldValue, Object newValue) {
 
         // 得到运行状态
-        DeviceRuntimeConfigBean deviceRuntimeConfigBean = deviceManager.deviceRuntimeList.get(deviceId);
+        DeviceRuntimeBean deviceRuntimeBean = deviceManager.deviceRuntimeList.get(deviceId);
 
-        deviceRuntimeConfigBean.runtime.iconState = ConstantDeviceState.STATE_ON;
-        deviceRuntimeConfigBean.runtime.state = newValue;
+        deviceRuntimeBean.runtime.iconState = ConstantDeviceState.STATE_ON;
+        deviceRuntimeBean.runtime.state = newValue;
 
         // 判断当前的值是否需要发送信号
         AnalogConfig config = (AnalogConfig) getConfig(deviceId);
@@ -59,7 +59,8 @@ public class Analog extends AbstractOperator {
 
             // 高限告警
             sendSig(deviceId, Analog.SIG_HIGH_2, newValue);
-            deviceRuntimeConfigBean.runtime.iconState = ConstantDeviceState.STATE_ALM;
+            deviceRuntimeBean.runtime.iconState = ConstantDeviceState.STATE_ALM;
+            sendAlarm(deviceId, Input.SIG_ON, newValue);
         } else if ((Float) newValue >= config.GATE_HIGH_1) {
             // 高限联动
             sendSig(deviceId, Analog.SIG_HIGH_1, newValue);
@@ -75,11 +76,12 @@ public class Analog extends AbstractOperator {
         } else {
             // 低限告警
             sendSig(deviceId, Analog.SIG_LOW_2, newValue);
-            deviceRuntimeConfigBean.runtime.iconState = ConstantDeviceState.STATE_ALM;
+            deviceRuntimeBean.runtime.iconState = ConstantDeviceState.STATE_ALM;
+            sendAlarm(deviceId, Input.SIG_ON, newValue);
         }
 
         // 发广播
-        clientBroadcast(MessageType.DEVICE_STATE, deviceRuntimeConfigBean);
+        clientBroadcast(ConstantMessageType.DEVICE_STATE, deviceRuntimeBean);
     }
 
     @Override

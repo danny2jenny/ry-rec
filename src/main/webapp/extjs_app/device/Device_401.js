@@ -7,17 +7,18 @@
 
 ry.devices['device_401'] = {
     gisClick: function (fProperties) {
-        var did = fProperties.deviceId;
+        var deviceId = fProperties.deviceId;
         // 找到相应的adr和cid
-        var cfg = Ext.StoreMgr.get('NvrNode').data.items
-
-        for (var i in cfg) {
-            if (cfg[i].data.id == did) {
-                ry.playRealVideo(cfg[i].data.cid, cfg[i].data.nadd);
-                break;
-            }
-        }
-
-
+        ry.realPlayInGrid(deviceId);
     }
 };
+
+// 设备动作
+ry.deviceEditor['act_401'] = Ext.create('Ext.form.field.ComboBox', {
+    forceSelection: true,
+    allowBlank: false,
+    editable: false,
+    autoSelect: true,
+    triggerAction: 'all',
+    store: ry.DEVICE_ACT_401
+});

@@ -37,9 +37,7 @@ Ext.define('app.view.admin.panel.Actions', {
                 var store = Ext.getStore('Device');
                 return store.getById(val).getData().name;
             }
-        },
-
-        {
+        }, {
             text: '动作',
             itemId: 'fieldAct',
             dataIndex: 'act',
@@ -58,6 +56,14 @@ Ext.define('app.view.admin.panel.Actions', {
             renderer: function (val, column, row) {
                 var data = Ext.getStore('Device').getById(column.record.data.target).getData();
                 return ry.trans(val, ry['DEVICE_ACT_' + data.type]);
+            }
+        }, {
+            text: '参数',
+            itemId: 'fieldParm',
+            dataIndex: 'parm',
+            width: 200,
+            editor: {
+                xtype: 'numberfield'
             }
         }
     ],

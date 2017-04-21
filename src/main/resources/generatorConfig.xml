@@ -13,7 +13,7 @@
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
                         connectionURL="jdbc:mysql://localhost:3306/ryrec?useUnicode=true&amp;characterEncoding=UTF-8"
                         userId="root"
-                        password="">
+                        password="jennyzhan">
         </jdbcConnection>
 
         <javaTypeResolver>
@@ -92,7 +92,14 @@
                         <table schema="" tableName="ruleaction" domainObjectName="RuleAction">
 
                         </table>
- -->
+
+        <table schema="" tableName="alarm" domainObjectName="Alarm">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+         -->
+        <table schema="" tableName="alarmvideo" domainObjectName="AlarmVideo">
+
+        </table>
 
     </context>
 </generatorConfiguration>
