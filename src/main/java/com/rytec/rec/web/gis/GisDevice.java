@@ -8,6 +8,7 @@ import com.rytec.rec.db.model.DeviceGis;
 import com.rytec.rec.db.model.DeviceGisExample;
 import com.rytec.rec.device.DeviceManager;
 import org.geojson.*;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +23,8 @@ import java.util.List;
  */
 @Controller
 public class GisDevice {
+
+    private final org.slf4j.Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     DeviceGisMapper deviceGisMapper;
@@ -73,6 +76,7 @@ public class GisDevice {
             feature.setId(gisItem.getGid().toString());
             feature.setProperty("icon", gisItem.getIcon());
             feature.setProperty("deviceId", gisItem.getDid());
+            feature.setProperty("deviceName", gisItem.getDname());
             feature.setProperty("layer", gisItem.getLayer());
             feature.setProperty("type", gisItem.getDtype());
 

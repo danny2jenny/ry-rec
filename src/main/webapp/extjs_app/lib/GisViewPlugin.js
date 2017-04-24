@@ -114,32 +114,38 @@ Ext.define('app.lib.GisViewPlugin', {
 
         me.style.styleFun = function (feature, resolution) {
 
-            // 缓冲样式的 key，用于 gis.style.chace 的索引
-            var styleKey = feature.getProperties().icon + '-' + 11;
+            // 没有缓冲，新建
+            var cachedStyle = new ol.style.Style({
+                fill: me.style.fill,
+                stroke: me.style.stroke,
+            });
 
-            // 是否有缓冲
-            var cachedStyle = me.style.cache[styleKey];
+            // 建立点的样式
+            var icon = new ol.style.Icon({
+                src: ry.getDeviceStateIcon(feature.getProperties().icon, 11)
+            });
 
-            if (!cachedStyle) {
-                // 没有缓冲，新建
-                var cachedStyle = new ol.style.Style({
-                    fill: me.style.fill,
-                    stroke: me.style.stroke,
-                });
+            // 文字
+            var text = new ol.style.Text({
+                // font: '10px sans-serif' 默认这个字体，可以修改成其他的，格式和css的字体设置一样
+                offsetY: -16,
+                text: feature.getProperties().deviceName,
+                fill: new ol.style.Fill({
+                    color: 'black'
+                }),
+                stroke: new ol.style.Stroke({
+                    color: 'white',
+                    width: 4
+                })
+            });
 
-                // 建立点的样式
-                var icon = new ol.style.Icon({
-                    src: ry.getDeviceStateIcon(feature.getProperties().icon, 11)
-                });
-
-                // 点样式加入到样式
-                cachedStyle.setImage(icon);
-
-                me.style.cache[styleKey] = cachedStyle;
-            }
+            // 点样式加入到样式
+            cachedStyle.setImage(icon);
+            cachedStyle.setText(text);
 
             return cachedStyle;
-        };
+        }
+        ;
 
         /**
          * 改变一组 Feature 的样式
@@ -166,7 +172,7 @@ Ext.define('app.lib.GisViewPlugin', {
 
                     // 建立点的样式
                     var icon = new ol.style.Icon({
-                        src:ry.getDeviceStateIcon(feature.getProperties().icon, type)
+                        src: ry.getDeviceStateIcon(feature.getProperties().icon, type)
                     });
 
                     // 点样式加入到样式
