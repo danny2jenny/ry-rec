@@ -7,7 +7,7 @@
     <bookmark url="file://$PROJECT_DIR$/src/main/webapp/extjs_app/lib/GisViewPlugin.js" line="252" mnemonic="4" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d35ddd3d-c0e7-4f94-b111-72db3f8184b4" name="Default" comment="1、添加告警面板&#10;2、告警弹出关联摄像机">
+    <list default="true" id="d35ddd3d-c0e7-4f94-b111-72db3f8184b4" name="Default" comment="">
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/extjs_app/view/window/Panorama.js" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/gisFeatures.jsp" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/test.html" />
@@ -2496,14 +2496,7 @@
       <workItem from="1493476460131" duration="3466000" />
       <workItem from="1493619392194" duration="13710000" />
       <workItem from="1493789903776" duration="654000" />
-      <workItem from="1493792821357" duration="24288000" />
-    </task>
-    <task id="LOCAL-00022" summary="GridPanel 用的拖放插件。&#10;1、放置时，触发所属GridPanel 的 onDragDrop 事件&#10;2、拖动时，增加showField属性，用于在拖动时显示的字段名称。">
-      <created>1482460398270</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1482460398270</updated>
+      <workItem from="1493792821357" duration="24374000" />
     </task>
     <task id="LOCAL-00023" summary="完成 Channel Node Device 的UI，但是不太理想">
       <created>1482801283763</created>
@@ -2841,11 +2834,18 @@
       <option name="project" value="LOCAL" />
       <updated>1493885854427</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="1、增加全景的演示&#10;2、通过模板生成Gis 的 Features（暂时未使用）">
+      <created>1493887098217</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1493887098217</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1510994000" />
+    <option name="totallyTimeSpent" value="1511080000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2858,7 +2858,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1037" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -2967,7 +2966,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="channelmsg 的 payload 改成了Object类型&#10;在modbus中payload为 bytebuf 类型&#10;&#10;未进行测试" />
     <MESSAGE value="1、bytebuf 每次读后，指针的位置改变了&#10;2、加入了简单的超时机制" />
     <MESSAGE value="取消Groovy前的最后版本" />
     <MESSAGE value="联动基本功能实现，通过开关量输入控制开关量输出" />
@@ -2992,7 +2990,8 @@
     <MESSAGE value="1、修正Device面板不能删除的问题&#10;2、Node拖动到Device现在好像不死锁了" />
     <MESSAGE value="1、添加告警面板&#10;2、告警弹出关联摄像机" />
     <MESSAGE value="1、修正某些时候不能显示Device的状态Overlay" />
-    <option name="LAST_COMMIT_MESSAGE" value="1、修正某些时候不能显示Device的状态Overlay" />
+    <MESSAGE value="1、增加全景的演示&#10;2、通过模板生成Gis 的 Features（暂时未使用）" />
+    <option name="LAST_COMMIT_MESSAGE" value="1、增加全景的演示&#10;2、通过模板生成Gis 的 Features（暂时未使用）" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
