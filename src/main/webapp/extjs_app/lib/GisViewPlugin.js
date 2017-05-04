@@ -247,7 +247,6 @@ Ext.define('app.lib.GisViewPlugin', {
          * 图层管理                                             *
          *******************************************************/
 
-        // todo: 有时候在第一次显示界面的时候，不能显示Overlay
         me.layers = new Ext.util.HashMap();
 
         // 为 layer 加载Feature
@@ -256,8 +255,15 @@ Ext.define('app.lib.GisViewPlugin', {
             var reader = new ol.format.GeoJSON();
             var features = reader.readFeatures(response.responseText);
             // 得到 Vector layer
-            var layer = me.layers.get(response.request.options.params.layer).getLayers().getArray()[1];
+            var layerGroup = me.layers.get(response.request.options.params.layer);
+
+            var layer = layerGroup.getLayers().getArray()[1];
             layer.getSource().addFeatures(features);
+
+            // 防止layer features 没有得到时无法添加Overlay
+            if(layerGroup.getVisible()){
+                me.overlay.updateDevice(this);
+            }
         };
 
         /**
@@ -316,7 +322,7 @@ Ext.define('app.lib.GisViewPlugin', {
          */
         me.addLayer = function (layerId, layerName, layerFile) {
 
-            // 请求layer的Features
+            //请求layer的Features
             Ext.Ajax.request({
                 url: 'srv/gis/features',
                 params: {
@@ -337,7 +343,10 @@ Ext.define('app.lib.GisViewPlugin', {
 
             // 图层：矢量图
             var vectorLayer = new ol.layer.Vector({
-                source: new ol.source.Vector({}),
+                source: new ol.source.Vector({
+                    // format: new ol.format.GeoJSON(),
+                    // url: '/srv/gis/features?layer=' + layerId
+                }),
                 style: me.style.styleFun
             });
 
@@ -359,6 +368,8 @@ Ext.define('app.lib.GisViewPlugin', {
 
             /**
              * 当图层被激活的时候，更新设备状态
+             *
+             * todo: 在层切换的时候，可能还没有得到features，导致状态层绘制失败
              */
             newLayer.on('change:visible', function (event) {
                 // 清理选中的Feature
@@ -372,19 +383,13 @@ Ext.define('app.lib.GisViewPlugin', {
                 //event.target;       //layer group
                 //event.oldValue;     // 以前的状态 true false
                 // 当前激活的层
+
                 if (!event.oldValue) {
                     // 获取设备的状态
                     gisDevice.getDevicesState(function (data, event, rst) {
-
                         this.overlay.devicesState = data;
                         this.overlay.updateDevice(this);
                         this.maxExtent();
-
-                        // 是否需要有高亮的Device
-                        if (me.deviceNeedToBeHighlight) {
-                            me.highlightDevice(me.deviceNeedToBeHighlight);
-                        }
-
                     }, this)
                 }
             }, me);
@@ -451,20 +456,25 @@ Ext.define('app.lib.GisViewPlugin', {
 
             /**
              * 更新当前层的Device状态
-             * @param me
+             * @param scope
              *
              * map.overlays_ 是 map 自己的一个对象
              */
-            updateDevice: function (me) {
-                me.map.overlays_.clear();
-                me.overlay.featureStateOverlays.clear();
-                var features = me.getActiveVectorLayer().getSource().getFeatures();
+            updateDevice: function (scope) {
+                scope.map.overlays_.clear();
+                scope.overlay.featureStateOverlays.clear();
+                var features = scope.getActiveVectorLayer().getSource().getFeatures();
                 for (var i in features) {
                     var feature = features[i];
                     var icon = this.devicesState[feature.getProperties().deviceId].runtime.iconState;
-                    var overlay = me.overlay.createFeatureOverlay(feature, icon, me);
-                    me.overlay.featureStateOverlays.add(feature.getId(), overlay);
-                    me.map.addOverlay(overlay);
+                    var overlay = scope.overlay.createFeatureOverlay(feature, icon, scope);
+                    scope.overlay.featureStateOverlays.add(feature.getId(), overlay);
+                    scope.map.addOverlay(overlay);
+                }
+
+                // 是否需要有高亮的Device
+                if (scope.deviceNeedToBeHighlight) {
+                    scope.highlightDevice(scope.deviceNeedToBeHighlight);
                 }
 
             }
@@ -940,8 +950,8 @@ Ext.define('app.lib.GisViewPlugin', {
                 me.addLayer(item.id, item.name, item.file);
             }
 
+            //把第一个层作为显示层
             if (this.layers.getValues().length) {
-                //把第一个层作为显示层
                 this.layers.getValues()[0].setVisible(true);
             }
         };
