@@ -11,7 +11,7 @@ https://spring.io/guides
 # 硬件选型
 
 串口服务器：https://world.tmall.com/item/19918201549.htm?spm=a312a.7700824.w4011-5602068913.24.Uobbwv&id=19918201549&rn=c4a3772e642b1d277e17aa5f6c519671&abbucket=4
-开关控制：https://world.taobao.com/item/521055673361.htm?fromSite=main&spm=a312a.7728556.0.0.hMAGs0
+开关控制：https://34669493.taobao.com
 温湿度传感：https://world.taobao.com/item/525196117561.htm?fromSite=main&spm=a312a.7700824.w4002-12858767422.22.xl0SpS
 
 1、Websocket 通知框架
@@ -24,8 +24,7 @@ servlet    3.1.0
 网络通讯    Netty 4.1.6
 webUI      extjs ext 4.2.1.883
 gisUI      openlayers 3.19.1
-构建       gradle
-
+构建       gradlem
 
 # 基本思路
 
@@ -87,6 +86,9 @@ http://blog.csdn.net/zhang89xiao/article/details/51871973
 http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000
 
 detach 问题 http://www.tuicool.com/articles/F7RNzq2
+
+# Idea Intellij 
+http://idea.iteblog.com/key.php
 
 
 

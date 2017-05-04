@@ -38,7 +38,7 @@ public class MqttService {
     }
 
     /**
-     * MQTT收到的消息
+     * MQTT收到的Video消息
      *
      * @param message
      */
@@ -60,10 +60,12 @@ public class MqttService {
         switch (cmd) {
             // 初始化请求
             case ConstantVideo.VIDEO_INIT_REQUEST:
+                // 发送Video配置
                 videoCmd(ConstantVideo.VIDEO_INIT, videoService.getConfig());
                 break;
-            // NVR 消息
+            // NVR 消息 todo: 解析Video消息
             case ConstantVideo.VIDEO_INIT_INFO:
+
                 break;
         }
 

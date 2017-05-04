@@ -58,6 +58,7 @@ public class AppManager {
      * ****Node                 100             否
      * DeviceManager            300
      * ****Device               100             否
+     * VideoService             300
      */
 
     public void systemReload() {

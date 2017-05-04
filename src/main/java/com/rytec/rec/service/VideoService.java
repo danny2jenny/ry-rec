@@ -84,7 +84,7 @@ public class VideoService implements ManageableInterface {
 
         //通过 node 找到 channel 和 add，然后发送给RyTcpServer
         //ChannelNode channelNode = nodeMapList.get(msg.nodeId);
-        String payload = "" + 3 + ',' + channelNode.getId() + ',' + channelNode.getAdr() + ',' + sendMsg.value;
+        String payload = "" + ConstantVideo.PTZ_GOTO_PRESET + ',' + channelNode.getId() + ',' + channelNode.getAdr() + ',' + sendMsg.value;
         mqttService.videoCmd(ConstantVideo.VIDEO_PTZ, payload);
 
         return 0;

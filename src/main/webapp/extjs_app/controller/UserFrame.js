@@ -5,7 +5,8 @@ Ext.define('app.controller.UserFrame', {
     extend: 'Ext.app.Controller',
     views: [
         'gis.GisView',
-        'user.AlarmPanel'
+        'user.AlarmPanel',
+        'window.Panorama'
     ],
 
     stores: [

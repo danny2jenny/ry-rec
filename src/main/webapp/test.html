@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <script>
+        function speak(textToSpeak) {
+            var u = new SpeechSynthesisUtterance();
+            u.text = textToSpeak;
+            //汉语
+            u.lang = 'zh-CN';
+            //日语
+            //u.lang = 'ja-JP';
+            u.rate =1;
+            speechSynthesis.speak(u);
+        }
+        speak("月遂行OK");
+    </script>
+    <title>中文、日文测试</title>
+</head>
+<body>
+<p>Chrome TTS CN/JP</p>
+</body>
+</html>
+
+作者：叶痕
+链接：https://www.zhihu.com/question/24107807/answer/78176237
+来源：知乎
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。

@@ -30,6 +30,10 @@
     <script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="js/stomp.js"></script>
 
+    <%--全景展示--%>
+    <script type="text/javascript" src="js/pannellum.js"></script>
+    <link rel="stylesheet" type="text/css" href="js/pannellum.css"/>
+
 
     <%--OpenLayers--%>
     <link rel="stylesheet" href="openlayers/ol.css" type="text/css">

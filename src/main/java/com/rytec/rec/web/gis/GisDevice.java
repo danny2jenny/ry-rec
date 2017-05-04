@@ -4,16 +4,20 @@ import ch.ralscha.extdirectspring.annotation.ExtDirectMethod;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rytec.rec.db.mapper.DeviceGisMapper;
+import com.rytec.rec.db.mapper.GisLayerMapper;
 import com.rytec.rec.db.model.DeviceGis;
 import com.rytec.rec.db.model.DeviceGisExample;
+import com.rytec.rec.db.model.GisLayer;
 import com.rytec.rec.device.DeviceManager;
 import org.geojson.*;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -31,6 +35,9 @@ public class GisDevice {
 
     @Autowired
     DeviceManager deviceManager;
+
+    @Autowired
+    GisLayerMapper gisLayerMapper;
 
     /**
      * @param layer // 层ID
@@ -130,6 +137,28 @@ public class GisDevice {
     @ExtDirectMethod
     public Object getDevicesState() {
         return deviceManager.deviceRuntimeList;
+    }
+
+
+    /**
+     * 得到所有Device的Features
+     *
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "/gis/allFeatures")
+    public String genJsConfig(Model model) {
+
+        HashMap<Integer, String> layerFeatures = new HashMap<>();
+
+        List<GisLayer> gisLayers = gisLayerMapper.selectByExample(null);
+
+        for (GisLayer layer : gisLayers) {
+            layerFeatures.put(layer.getId(), getFeaturesByLayer(layer.getId()));
+        }
+
+        model.addAttribute("features", layerFeatures);
+        return "gisFeatures";
     }
 
 }

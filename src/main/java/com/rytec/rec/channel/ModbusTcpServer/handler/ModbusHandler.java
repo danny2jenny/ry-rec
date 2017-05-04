@@ -85,6 +85,8 @@ public class ModbusHandler extends SimpleChannelInboundHandler<ChannelMessage> {
                 //移除相应的登录解码器，添加帧解码器
                 ctx.pipeline().remove("LoginDecoder");
                 ctx.pipeline().addFirst("FrameDecoder", new ModbusFrameDecoder());
+
+                //处理命令队列
                 modbusChannelSession.processQueue();
                 break;
             // 远端的回应

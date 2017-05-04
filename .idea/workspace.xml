@@ -1,16 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/src/main/webapp/extjs_app/view/user/AlarmPanel.js" line="185" mnemonic="2" />
-    <bookmark url="file://$PROJECT_DIR$/src/main/webapp/extjs_app/view/user/AlarmPanel.js" line="102" mnemonic="1" />
+    <bookmark url="file://$PROJECT_DIR$/src/main/webapp/extjs_app/lib/GisViewPlugin.js" line="391" mnemonic="1" />
+    <bookmark url="file://$PROJECT_DIR$/src/main/webapp/extjs_app/lib/GisViewPlugin.js" line="462" mnemonic="2" />
+    <bookmark url="file://$PROJECT_DIR$/src/main/webapp/extjs_app/lib/GisViewPlugin.js" line="330" mnemonic="3" />
+    <bookmark url="file://$PROJECT_DIR$/src/main/webapp/extjs_app/lib/GisViewPlugin.js" line="252" mnemonic="4" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d35ddd3d-c0e7-4f94-b111-72db3f8184b4" name="Default" comment="1、添加告警面板&#10;2、告警弹出关联摄像机">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/extjs_app/view/window/Panorama.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/gisFeatures.jsp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/test.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/web/test/app.java" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/web/app/ServiceManage.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/app/AppManager.java" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/app/AppManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpServer/handler/ModbusHandler.java" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpServer/handler/ModbusHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/messenger/MqttService.java" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/messenger/MqttService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/service/VideoService.java" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/service/VideoService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/web/gis/GisDevice.java" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/web/gis/GisDevice.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/config.ini" afterPath="$PROJECT_DIR$/src/main/resources/config.ini" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/spring-mvc.xml" afterPath="$PROJECT_DIR$/src/main/resources/spring-mvc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/extjs_app/lib/GisViewPlugin.js" afterPath="$PROJECT_DIR$/src/main/webapp/extjs_app/lib/GisViewPlugin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/extjs_app/controller/UserFrame.js" afterPath="$PROJECT_DIR$/src/main/webapp/extjs_app/controller/UserFrame.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" />
     </list>
     <ignored path="RyREC.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -85,61 +96,69 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/build.gradle">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="756">
-              <caret line="28" column="57" lean-forward="false" selection-start-line="28" selection-start-column="57" selection-end-line="28" selection-end-column="57" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GisDevice.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/web/gis/GisDevice.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="78" column="62" lean-forward="true" selection-start-line="78" selection-start-column="62" selection-end-line="78" selection-end-column="62" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="web.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="297">
-              <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="spring-mvc.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/spring-mvc.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="486">
-              <caret line="18" column="28" lean-forward="false" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="config.ini" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/config.ini">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="243">
-              <caret line="9" column="29" lean-forward="false" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="GisViewPlugin.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/lib/GisViewPlugin.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3699">
-              <caret line="137" column="28" lean-forward="false" selection-start-line="137" selection-start-column="28" selection-end-line="137" selection-end-column="28" />
+            <state relative-caret-position="-1809">
+              <caret line="259" column="0" lean-forward="false" selection-start-line="259" selection-start-column="0" selection-end-line="259" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Panorama.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/view/window/Panorama.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="572">
+              <caret line="26" column="38" lean-forward="true" selection-start-line="26" selection-start-column="38" selection-end-line="26" selection-end-column="38" />
+              <folding>
+                <marker date="1493872503156" expanded="true" signature="451:475" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/test.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="15" lean-forward="true" selection-start-line="0" selection-start-column="15" selection-end-line="0" selection-end-column="15" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GisDevice.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/web/gis/GisDevice.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="462">
+              <caret line="159" column="36" lean-forward="false" selection-start-line="159" selection-start-column="28" selection-end-line="159" selection-end-column="36" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#4401#4402#0" expanded="true" />
+                <element signature="e#4455#4456#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="gisFeatures.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/gisFeatures.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="220">
+              <caret line="10" column="12" lean-forward="true" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
+              <folding>
+                <marker date="1493868955377" expanded="true" signature="321:395" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="const.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/const.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="330">
+              <caret line="15" column="14" lean-forward="true" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -151,27 +170,20 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="package-info" />
-        <option value="HTML File" />
         <option value="CSS File" />
         <option value="XSLT Stylesheet" />
         <option value="spring-beans.schema" />
         <option value="AnnotationType" />
         <option value="Interface" />
-        <option value="Jsp File" />
-        <option value="JavaScript File" />
         <option value="Class" />
+        <option value="JavaScript File" />
+        <option value="HTML File" />
+        <option value="Jsp File" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>highlightdev</find>
-      <find>interaction</find>
-      <find>deviceID</find>
-      <find>type</find>
-      <find>asc</find>
-      <find>utf</find>
-      <find>ascII</find>
       <find>mess</find>
       <find>send</find>
       <find>deviceRuntimeList</find>
@@ -195,6 +207,13 @@
       <find>icon</find>
       <find>play</find>
       <find>styleFun</find>
+      <find>map</find>
+      <find>body</find>
+      <find>debu</find>
+      <find>fit</find>
+      <find>debug</find>
+      <find>console</find>
+      <find>layer</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/src/main/webapp</dir>
@@ -219,15 +238,172 @@
       </GitPushTagMode>
     </option>
   </component>
+  <component name="GradleExtensions">
+    <project path="$PROJECT_DIR$">
+      <sub-project>
+        <project path="$PROJECT_DIR$">
+          <extensions>
+            <ext name="ext" type="org.gradle.api.internal.plugins.DefaultExtraPropertiesExtension" />
+            <ext name="defaultArtifacts" type="org.gradle.api.internal.plugins.DefaultArtifactPublicationSet" />
+            <ext name="reporting" type="org.gradle.api.reporting.ReportingExtension" />
+            <ext name="gretty" type="org.akhikhl.gretty.GrettyExtension" />
+            <ext name="farm" type="org.akhikhl.gretty.FarmExtension" />
+            <ext name="farms" type="org.akhikhl.gretty.FarmsExtension" />
+            <ext name="product" type="org.akhikhl.gretty.ProductExtension" />
+            <ext name="products" type="org.akhikhl.gretty.ProductsExtension" />
+            <ext name="mybatisGenerator" type="com.arenagod.gradle.MybatisGeneratorExtension" />
+            <prop name="tomcat8ServletApiVersion" />
+            <prop name="jetty8ServletApiVersion" />
+            <prop name="tomcat7ServletApiVersion" />
+            <prop name="jetty9ServletApiVersion" />
+            <prop name="grettyVersion" />
+            <prop name="gretty_" type="java.util.LinkedHashMap" />
+            <prop name="jettyAfterIntegrationTest" type="org.akhikhl.gretty.AppAfterIntegrationTestTask" />
+            <prop name="jetty9Version" />
+            <prop name="jettyBeforeIntegrationTest" type="org.akhikhl.gretty.AppBeforeIntegrationTestTask" />
+            <prop name="jetty7ServletApiVersion" />
+            <prop name="jetty8ServletApi" />
+            <prop name="jetty7Version" />
+            <prop name="jetty8Version" />
+            <prop name="tomcat7ServletApi" />
+            <prop name="jetty9ServletApi" />
+            <prop name="tomcat7Version" />
+            <prop name="tomcat8Version" />
+            <prop name="tomcat8ServletApi" />
+            <prop name="jetty7ServletApi" />
+            <task name="projects" type="org.gradle.api.tasks.diagnostics.ProjectReportTask">Displays the sub-projects of root project 'com.rytec.rec'.&lt;p&gt;&lt;i&gt;Task group: help&lt;i&gt;</task>
+            <task name="farmRunWarDebug" type="org.akhikhl.gretty.FarmStartTask">Starts default farm on WAR-files, in debug and in interactive mode.&lt;p&gt;&lt;i&gt;Task group: gretty&lt;i&gt;</task>
+            <task name="jettyRunWarDebug" type="org.akhikhl.gretty.JettyStartTask">Starts web-app on WAR-file, in debug and interactive mode.&lt;p&gt;&lt;i&gt;Task group: gretty&lt;i&gt;</task>
+            <task name="archiveProduct" type="org.gradle.api.tasks.bundling.Zip">Archives gretty product.&lt;p&gt;&lt;i&gt;Task group: gretty&lt;i&gt;</task>
+            <task name="farmIntegrationTest" type="org.akhikhl.gretty.FarmIntegrationTestTask">Runs integration tests on default farm web-apps.&lt;p&gt;&lt;i&gt;Task group: gretty&lt;i&gt;</task>
+            <task name="tomcatStop" type="org.akhikhl.gretty.AppStopTask">Sends 'stop' command to a running server.&lt;p&gt;&lt;i&gt;Task group: gretty&lt;i&gt;</task>
+            <task name="wrapper" type="org.gradle.api.tasks.wrapper.Wrapper">Generates Gradle wrapper files. [incubating]&lt;p&gt;&lt;i&gt;Task group: Build Setup&lt;i&gt;</task>
+            <task name="tomcatStartWarDebug" type="org.akhikhl.gretty.TomcatStartTask">Starts web-app on WAR-file, in debug mode (stopped by 'tomcatStop').&lt;p&gt;&lt;i&gt;Task group: gretty&lt;i&gt;</task>
+            <task name="tomcatRun" type="org.akhikhl.gretty.TomcatStartTask">Starts web-app inplace, in interactive mode.&lt;p&gt;&lt;i&gt;Task group: gretty&lt;i&gt;</task>
+            <task name="appRunWarDebug" type="org.akhikhl.gretty.AppStartTask">Starts web-app on WAR-file, in debug and interactive mode.&lt;p&gt;&lt;i&gt;Task group: gretty&lt;i&gt;</task>
+            <task name="createInplaceWebAppFolder">Creates directory ${buildDir}/inplaceWebapp&lt;p&gt;&lt;i&gt;Task group: gretty&lt;i&gt;</task>
+            <task name="jettyRunDebug" type="org.akhikhl.gretty.JettyStartTask">Starts web-app inplace, in debug and interactive mode.&lt;p&gt;&lt;i&gt;Task group: gretty&lt;i&gt;</task>
+            <task name="farmRestart" type="org.akhikhl.gretty.FarmRestartTask">Sends 'restart' command to a running default farm.&lt;p&gt;&lt;i&gt;Task group: gretty&lt;i&gt;</task>
+            <task name="jar" type="org.gradle.api.tasks.bundling.Jar">Assembles a jar archive containing the main classes.&lt;p&gt;&lt;i&gt;Task group: build&lt;i&gt;</task>
+            <task name="model" type="org.gradle.api.reporting.model.ModelReport">Displays the configuration model of root project 'com.rytec.rec'. [incubating]&lt;p&gt;&lt;i&gt;Task group: help&lt;i&gt;</task>
+            <task name="tomcatStartWar" type="org.akhikhl.gretty.TomcatStartTask">Starts web-app on WAR-file (stopped by 'tomcatStop').&lt;p&gt;&lt;i&gt;Task group: gretty&lt;i&gt;</task>
+            <task name="appAfterIntegrationTest" type="org.akhikhl.gretty.AppAfterIntegrationTestTask">Stops server after integration test.&lt;p&gt;&lt;i&gt;Task group: gretty&lt;i&gt;</task>
+            <task name="farmRunDebug" type="org.akhikhl.gretty.FarmStartTask">Starts default farm inplace, in debug and in interactive mode.&lt;p&gt;&lt;i&gt;Task group: gretty&lt;i&gt;</task>
+            <task name="processResources" type="org.gradle.language.jvm.tasks.ProcessResources">Processes main resources.&lt;p&gt;&lt;i&gt;Task group: other&lt;i&gt;</task>
+            <task name="tasks" type="org.gradle.api.tasks.diagnostics.TaskReportTask">Displays the tasks runnable from root project 'com.rytec.rec'.&lt;p&gt;&lt;i&gt;Task group: help&lt;i&gt;</task>
+            <task name="appBeforeIntegrationTest" type="org.akhikhl.gretty.AppBeforeIntegrationTestTask">Starts server before integration test.&lt;p&gt;&lt;i&gt;Task group: gretty&lt;i&gt;</task>
+            <task name="farmStartWarDebug" type="org.akhikhl.gretty.FarmStartTask">Starts default farm on WAR-files, in debug (stopped by 'farmStop').&lt;p&gt;&lt;i&gt;Task group: gretty&lt;i&gt;</task>
+            <task name="init" type="org.gradle.buildinit.tasks.InitBuild">Initializes a new Gradle build. [incubating]&lt;p&gt;&lt;i&gt;Task group: Build Setup&lt;i&gt;</task>
+            <task name="jettyStart" type="org.akhikhl.gretty.JettyStartTask">Starts web-app inplace (stopped by 'jettyStop').&lt;p&gt;&lt;i&gt;Task group: gretty&lt;i&gt;</task>
+            <task name="test" type="org.gradle.api.tasks.testing.Test">Runs the unit tests.&lt;p&gt;&lt;i&gt;Task group: verification&lt;i&gt;</task>
+            <task name="tomcatStartDebug" type="org.akhikhl.gretty.TomcatStartTask">Starts web-app inplace, in debug mode (stopped by 'tomcatStop').&lt;p&gt;&lt;i&gt;Task group: gretty&lt;i&gt;</task>
+            <task name="farmStart" type="org.akhikhl.gretty.FarmStartTask">Starts default farm inplace (stopped by 'farmStop').&lt;p&gt;&lt;i&gt;Task group: gretty&lt;i&gt;</task>
+            <task name="compileJava" type="org.gradle.api.tasks.compile.JavaCompile">Compiles main Java source.&lt;p&gt;&lt;i&gt;Task group: other&lt;i&gt;</task>
+            <task name="check">Runs all checks.&lt;p&gt;&lt;i&gt;Task group: verification&lt;i&gt;</task>
+            <task name="dependencies" type="org.gradle.api.tasks.diagnostics.DependencyReportTask">Displays all dependencies declared in root project 'com.rytec.rec'.&lt;p&gt;&lt;i&gt;Task group: help&lt;i&gt;</task>
+            <task name="processTestResources" type="org.gradle.language.jvm.tasks.ProcessResources">Processes test resources.&lt;p&gt;&lt;i&gt;Task group: other&lt;i&gt;</task>
+            <task name="appStart" type="org.akhikhl.gretty.AppStartTask">Starts web-app inplace (stopped by 'appStop').&lt;p&gt;&lt;i&gt;Task group: gretty&lt;i&gt;</task>
+            <task name="mbGenerator" type="com.arenagod.gradle.MybatisGeneratorTask">&lt;i&gt;Task group: other&lt;i&gt;</task>
+            <task name="buildNeeded">Assembles and tests this project and all projects it depends on.&lt;p&gt;&lt;i&gt;Task group: build&lt;i&gt;</task>
+            <task name="ideaProject" type="org.gradle.plugins.ide.idea.GenerateIdeaProject">Generates IDEA project file (IPR)&lt;p&gt;&lt;i&gt;Task group: other&lt;i&gt;</task>
+            <task name="farmRunWar" type="org.akhikhl.gretty.FarmStartTask">Starts default farm on WAR-files, in interactive mode.&lt;p&gt;&lt;i&gt;Task group: gretty&lt;i&gt;</task>
+            <task name="components" type="org.gradle.api.reporting.components.ComponentReport">Displays the components produced by root project 'com.rytec.rec'. [incubating]&lt;p&gt;&lt;i&gt;Task group: help&lt;i&gt;</task>
+            <task name="jettyRunWar" type="org.akhikhl.gretty.JettyStartTask">Starts web-app on WAR-file, in interactive mode.&lt;p&gt;&lt;i&gt;Task group: gretty&lt;i&gt;</task>
+            <task name="jettyStop" type="org.akhikhl.gretty.AppStopTask">Sends 'stop' command to a running server.&lt;p&gt;&lt;i&gt;Task group: gretty&lt;i&gt;</task>
+            <task name="buildDependents">Assembles and tests this project and all projects that depend on it.&lt;p&gt;&lt;i&gt;Task group: build&lt;i&gt;</task>
+            <task name="appRestart" type="org.akhikhl.gretty.AppRestartTask">Sends 'restart' command to a running server.&lt;p&gt;&lt;i&gt;Task group: gretty&lt;i&gt;</task>
+            <task name="prepareInplaceWebApp">Prepares inplace web-app&lt;p&gt;&lt;i&gt;Task group: gretty&lt;i&gt;</task>
+            <task name="idea">Generates IDEA project files (IML, IPR, IWS)&lt;p&gt;&lt;i&gt;Task group: IDE&lt;i&gt;</task>
+            <task name="classes">Assembles main classes.&lt;p&gt;&lt;i&gt;Task group: build&lt;i&gt;</task>
+            <task name="buildEnvironment" type="org.gradle.api.tasks.diagnostics.BuildEnvironmentReportTask">Displays all buildscript dependencies declared in root project 'com.rytec.rec'.&lt;p&gt;&lt;i&gt;Task group: help&lt;i&gt;</task>
+            <task name="jettyStartWar" type="org.akhikhl.gretty.JettyStartTask">Starts web-app on WAR-file (stopped by 'jettyStop').&lt;p&gt;&lt;i&gt;Task group: gretty&lt;i&gt;</task>
+            <task name="prepareInplaceWebAppFolder" type="org.gradle.api.tasks.Copy">Copies webAppDir of this web-app and all overlays (if any) to ${buildDir}/inplaceWebapp&lt;p&gt;&lt;i&gt;Task group: gretty&lt;i&gt;</task>
+            <task name="cleanIdeaModule" type="org.gradle.api.tasks.Delete">&lt;i&gt;Task group: other&lt;i&gt;</task>
+            <task name="appRun" type="org.akhikhl.gretty.AppStartTask">Starts web-app inplace, in interactive mode.&lt;p&gt;&lt;i&gt;Task group: gretty&lt;i&gt;</task>
+            <task name="testClasses">Assembles test classes.&lt;p&gt;&lt;i&gt;Task group: build&lt;i&gt;</task>
+            <task name="farmRun" type="org.akhikhl.gretty.FarmStartTask">Starts default farm inplace, in interactive mode.&lt;p&gt;&lt;i&gt;Task group: gretty&lt;i&gt;</task>
+            <task name="javadoc" type="org.gradle.api.tasks.javadoc.Javadoc">Generates Javadoc API documentation for the main source code.&lt;p&gt;&lt;i&gt;Task group: documentation&lt;i&gt;</task>
+            <task name="jettyRun" type="org.akhikhl.gretty.JettyStartTask">Starts web-app inplace, in interactive mode.&lt;p&gt;&lt;i&gt;Task group: gretty&lt;i&gt;</task>
+            <task name="jettyStartDebug" type="org.akhikhl.gretty.JettyStartTask">Starts web-app inplace, in debug mode (stopped by 'jettyStop').&lt;p&gt;&lt;i&gt;Task group: gretty&lt;i&gt;</task>
+            <task name="farmAfterIntegrationTest" type="org.akhikhl.gretty.FarmAfterIntegrationTestTask">Stops default farm after integration test.&lt;p&gt;&lt;i&gt;Task group: gretty&lt;i&gt;</task>
+            <task name="jettyStartWarDebug" type="org.akhikhl.gretty.JettyStartTask">Starts web-app on WAR-file, in debug mode (stopped by 'jettyStop').&lt;p&gt;&lt;i&gt;Task group: gretty&lt;i&gt;</task>
+            <task name="tomcatStart" type="org.akhikhl.gretty.TomcatStartTask">Starts web-app inplace (stopped by 'tomcatStop').&lt;p&gt;&lt;i&gt;Task group: gretty&lt;i&gt;</task>
+            <task name="prepareArchiveWebApp">Prepares war web-app&lt;p&gt;&lt;i&gt;Task group: gretty&lt;i&gt;</task>
+            <task name="tomcatRunDebug" type="org.akhikhl.gretty.TomcatStartTask">Starts web-app inplace, in debug and interactive mode.&lt;p&gt;&lt;i&gt;Task group: gretty&lt;i&gt;</task>
+            <task name="tomcatRunWar" type="org.akhikhl.gretty.TomcatStartTask">Starts web-app on WAR-file, in interactive mode.&lt;p&gt;&lt;i&gt;Task group: gretty&lt;i&gt;</task>
+            <task name="ideaModule" type="org.gradle.plugins.ide.idea.GenerateIdeaModule">Generates IDEA module files (IML)&lt;p&gt;&lt;i&gt;Task group: other&lt;i&gt;</task>
+            <task name="archiveAllProducts">Archives all configured gretty products.&lt;p&gt;&lt;i&gt;Task group: gretty&lt;i&gt;</task>
+            <task name="buildProduct">Builds gretty product.&lt;p&gt;&lt;i&gt;Task group: gretty&lt;i&gt;</task>
+            <task name="cleanIdea">Cleans IDEA project files (IML, IPR)&lt;p&gt;&lt;i&gt;Task group: IDE&lt;i&gt;</task>
+            <task name="farmStartWar" type="org.akhikhl.gretty.FarmStartTask">Starts default farm on WAR-files (stopped by 'farmStop').&lt;p&gt;&lt;i&gt;Task group: gretty&lt;i&gt;</task>
+            <task name="appRunWar" type="org.akhikhl.gretty.AppStartTask">Starts web-app on WAR-file, in interactive mode.&lt;p&gt;&lt;i&gt;Task group: gretty&lt;i&gt;</task>
+            <task name="appStartDebug" type="org.akhikhl.gretty.AppStartTask">Starts web-app inplace, in debug mode (stopped by 'appStop').&lt;p&gt;&lt;i&gt;Task group: gretty&lt;i&gt;</task>
+            <task name="buildAllProducts">Builds all configured gretty products.&lt;p&gt;&lt;i&gt;Task group: gretty&lt;i&gt;</task>
+            <task name="ideaWorkspace" type="org.gradle.plugins.ide.idea.GenerateIdeaWorkspace">Generates an IDEA workspace file (IWS)&lt;p&gt;&lt;i&gt;Task group: other&lt;i&gt;</task>
+            <task name="war" type="org.gradle.api.tasks.bundling.War">Generates a war archive with all the compiled classes, the web-app content and the libraries.&lt;p&gt;&lt;i&gt;Task group: build&lt;i&gt;</task>
+            <task name="dependencyInsight" type="org.gradle.api.tasks.diagnostics.DependencyInsightReportTask">Displays the insight into a specific dependency in root project 'com.rytec.rec'.&lt;p&gt;&lt;i&gt;Task group: help&lt;i&gt;</task>
+            <task name="assemble">Assembles the outputs of this project.&lt;p&gt;&lt;i&gt;Task group: build&lt;i&gt;</task>
+            <task name="clean" type="org.gradle.api.tasks.Delete">Deletes the build directory.&lt;p&gt;&lt;i&gt;Task group: build&lt;i&gt;</task>
+            <task name="compileTestJava" type="org.gradle.api.tasks.compile.JavaCompile">Compiles test Java source.&lt;p&gt;&lt;i&gt;Task group: other&lt;i&gt;</task>
+            <task name="tomcatRestart" type="org.akhikhl.gretty.AppRestartTask">Sends 'restart' command to a running server.&lt;p&gt;&lt;i&gt;Task group: gretty&lt;i&gt;</task>
+            <task name="tomcatRunWarDebug" type="org.akhikhl.gretty.TomcatStartTask">Starts web-app on WAR-file, in debug and interactive mode.&lt;p&gt;&lt;i&gt;Task group: gretty&lt;i&gt;</task>
+            <task name="farmStartDebug" type="org.akhikhl.gretty.FarmStartTask">Starts default farm inplace, in debug mode (stopped by 'farmStop').&lt;p&gt;&lt;i&gt;Task group: gretty&lt;i&gt;</task>
+            <task name="appStop" type="org.akhikhl.gretty.AppStopTask">Sends 'stop' command to a running server.&lt;p&gt;&lt;i&gt;Task group: gretty&lt;i&gt;</task>
+            <task name="cleanIdeaProject" type="org.gradle.api.tasks.Delete">&lt;i&gt;Task group: other&lt;i&gt;</task>
+            <task name="showClassPath">Shows classpath information&lt;p&gt;&lt;i&gt;Task group: gretty&lt;i&gt;</task>
+            <task name="appStartWarDebug" type="org.akhikhl.gretty.AppStartTask">Starts web-app on WAR-file, in debug mode (stopped by 'appStop').&lt;p&gt;&lt;i&gt;Task group: gretty&lt;i&gt;</task>
+            <task name="help" type="org.gradle.configuration.Help">Displays a help message.&lt;p&gt;&lt;i&gt;Task group: help&lt;i&gt;</task>
+            <task name="jettyRestart" type="org.akhikhl.gretty.AppRestartTask">Sends 'restart' command to a running server.&lt;p&gt;&lt;i&gt;Task group: gretty&lt;i&gt;</task>
+            <task name="build">Assembles and tests this project.&lt;p&gt;&lt;i&gt;Task group: build&lt;i&gt;</task>
+            <task name="appStartWar" type="org.akhikhl.gretty.AppStartTask">Starts web-app on WAR-file (stopped by 'appStop').&lt;p&gt;&lt;i&gt;Task group: gretty&lt;i&gt;</task>
+            <task name="farmBeforeIntegrationTest" type="org.akhikhl.gretty.FarmBeforeIntegrationTestTask">Starts default farm before integration test.&lt;p&gt;&lt;i&gt;Task group: gretty&lt;i&gt;</task>
+            <task name="appRunDebug" type="org.akhikhl.gretty.AppStartTask">Starts web-app inplace, in debug and interactive mode.&lt;p&gt;&lt;i&gt;Task group: gretty&lt;i&gt;</task>
+            <task name="farmStop" type="org.akhikhl.gretty.FarmStopTask">Sends 'stop' command to a running default farm.&lt;p&gt;&lt;i&gt;Task group: gretty&lt;i&gt;</task>
+            <task name="prepareInplaceWebAppClasses">Compiles classes of this web-app and all overlays (if any)&lt;p&gt;&lt;i&gt;Task group: gretty&lt;i&gt;</task>
+            <task name="properties" type="org.gradle.api.tasks.diagnostics.PropertyReportTask">Displays the properties of root project 'com.rytec.rec'.&lt;p&gt;&lt;i&gt;Task group: help&lt;i&gt;</task>
+            <task name="cleanIdeaWorkspace" type="org.gradle.api.tasks.Delete">&lt;i&gt;Task group: other&lt;i&gt;</task>
+            <conf name="archives">Configuration for archive artifacts.</conf>
+            <conf name="compile" visible="false">Dependencies for source set 'main'.</conf>
+            <conf name="compileClasspath" visible="false">Compile classpath for source set 'main'.</conf>
+            <conf name="compileOnly" visible="false">Compile dependencies for source set 'main'.</conf>
+            <conf name="default">Configuration for default artifacts.</conf>
+            <conf name="gretty" />
+            <conf name="grettyNoSpringBoot" />
+            <conf name="grettyProductRuntime" />
+            <conf name="grettyProvidedCompile" />
+            <conf name="grettyRunnerJetty7" />
+            <conf name="grettyRunnerJetty8" />
+            <conf name="grettyRunnerJetty9" />
+            <conf name="grettyRunnerJetty93" />
+            <conf name="grettyRunnerTomcat7" />
+            <conf name="grettyRunnerTomcat8" />
+            <conf name="grettySpringLoaded" />
+            <conf name="grettyStarter" />
+            <conf name="mybatisGenerator">The cargo libraries to be used for this project.</conf>
+            <conf name="providedCompile" visible="false">Additional compile classpath for libraries that should not be part of the WAR archive.</conf>
+            <conf name="providedRuntime" visible="false">Additional runtime classpath for libraries that should not be part of the WAR archive.</conf>
+            <conf name="runtime" visible="false">Runtime dependencies for source set 'main'.</conf>
+            <conf name="springBoot" />
+            <conf name="testCompile" visible="false">Dependencies for source set 'test'.</conf>
+            <conf name="testCompileClasspath" visible="false">Compile classpath for source set 'test'.</conf>
+            <conf name="testCompileOnly" visible="false">Compile dependencies for source set 'test'.</conf>
+            <conf name="testRuntime" visible="false">Runtime dependencies for source set 'test'.</conf>
+            <conf name="versionManagement" />
+            <conf name="classpath" scriptClasspath="true" />
+          </extensions>
+        </project>
+      </sub-project>
+    </project>
+  </component>
   <component name="GradleLocalSettings">
     <option name="myGradleHomes">
       <map>
-        <entry key="$PROJECT_DIR$" value="D:\DevTool\gradle-3.4" />
+        <entry key="$PROJECT_DIR$" value="$USER_HOME$/devtool/gradle" />
       </map>
     </option>
     <option name="myGradleVersions">
       <map>
-        <entry key="$PROJECT_DIR$" value="3.4" />
+        <entry key="$PROJECT_DIR$" value="3.1" />
       </map>
     </option>
     <option name="availableProjects">
@@ -465,11 +641,6 @@
                 <option name="name" value="classes" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Displays the dependent components of components in root project 'com.rytec.rec'. [incubating]" />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="dependentComponents" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
                 <option name="description" value="Displays all buildscript dependencies declared in root project 'com.rytec.rec'." />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
                 <option name="name" value="buildEnvironment" />
@@ -681,7 +852,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="2980415597579" />
+        <entry key="$PROJECT_DIR$" value="2968766185000" />
         <entry key="$PROJECT_DIR$/build.gradle" value="270865291" />
       </map>
     </option>
@@ -699,51 +870,29 @@
                           <list>
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.akhikhl.gretty/gretty/1.4.2/2774f33feb715a193dcc40803319d85bfe180397/gretty-1.4.2-sources.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.akhikhl.gretty/gretty/1.4.2/6c7d70ef628d994368541c7c5e1fd1ca52a3c07c/gretty-1.4.2.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/gradle.plugin.com.arenagod.gradle/mybatis-generator-plugin/1.3/26994c3c73682f2a26e630a0a21b2975b060ffa4/mybatis-generator-plugin-1.3-sources.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/gradle.plugin.com.arenagod.gradle/mybatis-generator-plugin/1.3/284663cd68bf54f5d890af346f2311ef86c57ab5/mybatis-generator-plugin-1.3.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.akhikhl.gretty/gretty-core/1.4.2/97df3f56a12dc038c8723d7b375419e9c007f8c5/gretty-core-1.4.2-sources.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.akhikhl.gretty/gretty-core/1.4.2/2c9a853bbe43e720003250ac71cdf1cb76af82de/gretty-core-1.4.2.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-loader-tools/1.2.3.RELEASE/4989db061faa7fb3e787ce05ebe3db3c02bc2ce4/spring-boot-loader-tools-1.2.3.RELEASE-sources.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-loader-tools/1.2.3.RELEASE/b3d6ae6c387652f5a5b0b409ebe4ef671030e2e3/spring-boot-loader-tools-1.2.3.RELEASE.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-dependency-tools/1.2.3.RELEASE/433281f6ee04c66125e785d3b2b903fad18f4e2f/spring-boot-dependency-tools-1.2.3.RELEASE-sources.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-dependency-tools/1.2.3.RELEASE/7752c50a0a66118d8d98248c9d1f2d80b5b8b7da/spring-boot-dependency-tools-1.2.3.RELEASE.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.jetty/jetty-util/8.1.8.v20121106/6f6f950cbb17ec8eab90d3b25a29664991945708/jetty-util-8.1.8.v20121106-sources.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.jetty/jetty-util/8.1.8.v20121106/3174e8d53033e3c4d350eba3112efdc170b40dc/jetty-util-8.1.8.v20121106.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.groovy/groovy/2.4.5/f5345ad232056d0167fdcb149faf3af75c6948b/groovy-2.4.5-sources.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.groovy/groovy/2.4.5/4c7cd3b294af0a32609402c9d12ccc4218890e12/groovy-2.4.5.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.groovy/groovy-json/2.4.5/f7c9b77370834d120c48136be2ffc6f3e14e598a/groovy-json-2.4.5-sources.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.groovy/groovy-json/2.4.5/ff21b54d65128ff46488286af056eed606481f97/groovy-json-2.4.5.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-cli/commons-cli/1.2/6c5459816530a1962ac18cd315cc775b1b384329/commons-cli-1.2-sources.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-cli/commons-cli/1.2/2bf96b7aa8b611c177d329452af1dc933e14501c/commons-cli-1.2.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-configuration/commons-configuration/1.10/2427d5eaf4011f855a95bd523febda041728393b/commons-configuration-1.10-sources.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-configuration/commons-configuration/1.10/2b36e4adfb66d966c5aef2d73deb6be716389dc9/commons-configuration-1.10.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-io/commons-io/2.4/f2d8698c46d1167ff24b06a840a87d91a02db891/commons-io-2.4-sources.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-io/commons-io/2.4/b1b6ea3b7e4aa4f492509a4952029cd8e48019ad/commons-io-2.4.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-lang3/3.3.2/d2a489573c0ed2c4942b3660decad5d65087b406/commons-lang3-3.3.2-sources.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-lang3/3.3.2/90a3822c38ec8c996e84c16a3477ef632cbc87a3/commons-lang3-3.3.2.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.servicemix.bundles/org.apache.servicemix.bundles.bcprov-jdk16/1.46_3/7dd02909524647efc021ae80c0c1fe57cdf8c896/org.apache.servicemix.bundles.bcprov-jdk16-1.46_3-sources.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.servicemix.bundles/org.apache.servicemix.bundles.bcprov-jdk16/1.46_3/bb45f2e86a211f6092e51a0494c73f3bd4bdec30/org.apache.servicemix.bundles.bcprov-jdk16-1.46_3.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-devtools/1.3.3.RELEASE/e07e960b8e72d94d11b36ad359cd1152189a34f8/spring-boot-devtools-1.3.3.RELEASE-sources.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-devtools/1.3.3.RELEASE/4802c8ddf34051b07a37124ca38dc7561fe44a47/spring-boot-devtools-1.3.3.RELEASE.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-core/4.2.5.RELEASE/86b9af475e134ba9f5c3843f33ff3ecd6cf95883/spring-core-4.2.5.RELEASE-sources.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-core/4.2.5.RELEASE/251207b29f0f38f61e3495a2f7fb053cf1bfe8c/spring-core-4.2.5.RELEASE.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-lang/commons-lang/2.6/67313d715fbf0ea4fd0bdb69217fb77f807a8ce5/commons-lang-2.6-sources.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-lang/commons-lang/2.6/ce1edb914c94ebc388f086c6827e8bdeec71ac2/commons-lang-2.6.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-logging/commons-logging/1.2/ecf26c7507d67782a3bbd148d170b31dfad001aa/commons-logging-1.2-sources.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-logging/commons-logging/1.2/4bfc12adfe4842bf07b657f0369c4cb522955686/commons-logging-1.2.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot/1.3.3.RELEASE/5e9756091cc536ab48a7f98bdb551f4246c4ed0d/spring-boot-1.3.3.RELEASE-sources.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot/1.3.3.RELEASE/641cc375499d444e4efbc1801902260daa79758d/spring-boot-1.3.3.RELEASE.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-autoconfigure/1.3.3.RELEASE/4cd398d2642324046f156929cd891dbfe822e0d3/spring-boot-autoconfigure-1.3.3.RELEASE-sources.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-autoconfigure/1.3.3.RELEASE/e7a4a25f74dac6b335ffabc43e3e8a6e3066340e/spring-boot-autoconfigure-1.3.3.RELEASE.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-context/4.2.5.RELEASE/8bcd5b15133bb5423cdc9f33da7e4ac585fd783a/spring-context-4.2.5.RELEASE-sources.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-context/4.2.5.RELEASE/a75e18322c7b362fe1daa26a245ae672ec0f3138/spring-context-4.2.5.RELEASE.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-aop/4.2.5.RELEASE/436d3d6181bbf498d8409525b449eb4ed94a2c5f/spring-aop-4.2.5.RELEASE-sources.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-aop/4.2.5.RELEASE/858d6c70909b3ce7e07b59fc936f8ccfcd81c0aa/spring-aop-4.2.5.RELEASE.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-beans/4.2.5.RELEASE/6135730c939697c15f33f092a64396bb21d6ba0e/spring-beans-4.2.5.RELEASE-sources.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-beans/4.2.5.RELEASE/fa992ae40f6fc47117282164e0433b71da385e94/spring-beans-4.2.5.RELEASE.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-expression/4.2.5.RELEASE/c55ae1e0e6858098c2b2b22a7a9638d6cd76db8d/spring-expression-4.2.5.RELEASE-sources.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-expression/4.2.5.RELEASE/a42bdfb833d0be6c18429aea3fb0fba81f85c6e8/spring-expression-4.2.5.RELEASE.jar" />
-                            <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/aopalliance/aopalliance/1.0/4a4b6d692e17846a9f3da036438a7ac491d3c814/aopalliance-1.0-sources.jar" />
                             <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/aopalliance/aopalliance/1.0/235ba8b489512805ac13a8f9ea77a1ca5ebe3e8/aopalliance-1.0.jar" />
                           </list>
                         </option>
@@ -756,75 +905,73 @@
               <option name="name" value="com.rytec.rec" />
               <option name="projectBuildClasspath">
                 <list>
-                  <option value="D:/DevTool/gradle-3.4/lib/ant-1.9.6.jar" />
-                  <option value="D:/DevTool/gradle-3.4/lib/ant-launcher-1.9.6.jar" />
-                  <option value="D:/DevTool/gradle-3.4/lib/gradle-base-services-3.4.jar" />
-                  <option value="D:/DevTool/gradle-3.4/lib/gradle-base-services-groovy-3.4.jar" />
-                  <option value="D:/DevTool/gradle-3.4/lib/gradle-cli-3.4.jar" />
-                  <option value="D:/DevTool/gradle-3.4/lib/gradle-core-3.4.jar" />
-                  <option value="D:/DevTool/gradle-3.4/lib/gradle-docs-3.4.jar" />
-                  <option value="D:/DevTool/gradle-3.4/lib/gradle-installation-beacon-3.4.jar" />
-                  <option value="D:/DevTool/gradle-3.4/lib/gradle-jvm-services-3.4.jar" />
-                  <option value="D:/DevTool/gradle-3.4/lib/gradle-launcher-3.4.jar" />
-                  <option value="D:/DevTool/gradle-3.4/lib/gradle-logging-3.4.jar" />
-                  <option value="D:/DevTool/gradle-3.4/lib/gradle-messaging-3.4.jar" />
-                  <option value="D:/DevTool/gradle-3.4/lib/gradle-model-core-3.4.jar" />
-                  <option value="D:/DevTool/gradle-3.4/lib/gradle-model-groovy-3.4.jar" />
-                  <option value="D:/DevTool/gradle-3.4/lib/gradle-native-3.4.jar" />
-                  <option value="D:/DevTool/gradle-3.4/lib/gradle-open-api-3.4.jar" />
-                  <option value="D:/DevTool/gradle-3.4/lib/gradle-process-services-3.4.jar" />
-                  <option value="D:/DevTool/gradle-3.4/lib/gradle-resources-3.4.jar" />
-                  <option value="D:/DevTool/gradle-3.4/lib/gradle-script-kotlin-0.5.1.jar" />
-                  <option value="D:/DevTool/gradle-3.4/lib/gradle-tooling-api-3.4.jar" />
-                  <option value="D:/DevTool/gradle-3.4/lib/gradle-ui-3.4.jar" />
-                  <option value="D:/DevTool/gradle-3.4/lib/gradle-version-info-3.4.jar" />
-                  <option value="D:/DevTool/gradle-3.4/lib/gradle-wrapper-3.4.jar" />
-                  <option value="D:/DevTool/gradle-3.4/lib/groovy-all-2.4.7.jar" />
-                  <option value="D:/DevTool/gradle-3.4/lib/plugins/gradle-announce-3.4.jar" />
-                  <option value="D:/DevTool/gradle-3.4/lib/plugins/gradle-antlr-3.4.jar" />
-                  <option value="D:/DevTool/gradle-3.4/lib/plugins/gradle-build-cache-http-3.4.jar" />
-                  <option value="D:/DevTool/gradle-3.4/lib/plugins/gradle-build-comparison-3.4.jar" />
-                  <option value="D:/DevTool/gradle-3.4/lib/plugins/gradle-build-init-3.4.jar" />
-                  <option value="D:/DevTool/gradle-3.4/lib/plugins/gradle-code-quality-3.4.jar" />
-                  <option value="D:/DevTool/gradle-3.4/lib/plugins/gradle-composite-builds-3.4.jar" />
-                  <option value="D:/DevTool/gradle-3.4/lib/plugins/gradle-dependency-management-3.4.jar" />
-                  <option value="D:/DevTool/gradle-3.4/lib/plugins/gradle-diagnostics-3.4.jar" />
-                  <option value="D:/DevTool/gradle-3.4/lib/plugins/gradle-ear-3.4.jar" />
-                  <option value="D:/DevTool/gradle-3.4/lib/plugins/gradle-ide-3.4.jar" />
-                  <option value="D:/DevTool/gradle-3.4/lib/plugins/gradle-ide-native-3.4.jar" />
-                  <option value="D:/DevTool/gradle-3.4/lib/plugins/gradle-ide-play-3.4.jar" />
-                  <option value="D:/DevTool/gradle-3.4/lib/plugins/gradle-ivy-3.4.jar" />
-                  <option value="D:/DevTool/gradle-3.4/lib/plugins/gradle-jacoco-3.4.jar" />
-                  <option value="D:/DevTool/gradle-3.4/lib/plugins/gradle-javascript-3.4.jar" />
-                  <option value="D:/DevTool/gradle-3.4/lib/plugins/gradle-jetty-3.4.jar" />
-                  <option value="D:/DevTool/gradle-3.4/lib/plugins/gradle-language-groovy-3.4.jar" />
-                  <option value="D:/DevTool/gradle-3.4/lib/plugins/gradle-language-java-3.4.jar" />
-                  <option value="D:/DevTool/gradle-3.4/lib/plugins/gradle-language-jvm-3.4.jar" />
-                  <option value="D:/DevTool/gradle-3.4/lib/plugins/gradle-language-native-3.4.jar" />
-                  <option value="D:/DevTool/gradle-3.4/lib/plugins/gradle-language-scala-3.4.jar" />
-                  <option value="D:/DevTool/gradle-3.4/lib/plugins/gradle-maven-3.4.jar" />
-                  <option value="D:/DevTool/gradle-3.4/lib/plugins/gradle-osgi-3.4.jar" />
-                  <option value="D:/DevTool/gradle-3.4/lib/plugins/gradle-platform-base-3.4.jar" />
-                  <option value="D:/DevTool/gradle-3.4/lib/plugins/gradle-platform-jvm-3.4.jar" />
-                  <option value="D:/DevTool/gradle-3.4/lib/plugins/gradle-platform-native-3.4.jar" />
-                  <option value="D:/DevTool/gradle-3.4/lib/plugins/gradle-platform-play-3.4.jar" />
-                  <option value="D:/DevTool/gradle-3.4/lib/plugins/gradle-plugin-development-3.4.jar" />
-                  <option value="D:/DevTool/gradle-3.4/lib/plugins/gradle-plugin-use-3.4.jar" />
-                  <option value="D:/DevTool/gradle-3.4/lib/plugins/gradle-plugins-3.4.jar" />
-                  <option value="D:/DevTool/gradle-3.4/lib/plugins/gradle-publish-3.4.jar" />
-                  <option value="D:/DevTool/gradle-3.4/lib/plugins/gradle-reporting-3.4.jar" />
-                  <option value="D:/DevTool/gradle-3.4/lib/plugins/gradle-resources-http-3.4.jar" />
-                  <option value="D:/DevTool/gradle-3.4/lib/plugins/gradle-resources-s3-3.4.jar" />
-                  <option value="D:/DevTool/gradle-3.4/lib/plugins/gradle-resources-sftp-3.4.jar" />
-                  <option value="D:/DevTool/gradle-3.4/lib/plugins/gradle-scala-3.4.jar" />
-                  <option value="D:/DevTool/gradle-3.4/lib/plugins/gradle-signing-3.4.jar" />
-                  <option value="D:/DevTool/gradle-3.4/lib/plugins/gradle-test-kit-3.4.jar" />
-                  <option value="D:/DevTool/gradle-3.4/lib/plugins/gradle-testing-base-3.4.jar" />
-                  <option value="D:/DevTool/gradle-3.4/lib/plugins/gradle-testing-jvm-3.4.jar" />
-                  <option value="D:/DevTool/gradle-3.4/lib/plugins/gradle-testing-native-3.4.jar" />
-                  <option value="D:/DevTool/gradle-3.4/lib/plugins/gradle-tooling-api-builders-3.4.jar" />
-                  <option value="D:/DevTool/gradle-3.4/lib/plugins/gradle-workers-3.4.jar" />
-                  <option value="D:/DevTool/gradle-3.4/lib/plugins/ivy-2.2.0.jar" />
+                  <option value="$USER_HOME$/devtool/gradle/lib/gradle-installation-beacon-3.1.jar" />
+                  <option value="$USER_HOME$/devtool/gradle/lib/gradle-model-groovy-3.1.jar" />
+                  <option value="$USER_HOME$/devtool/gradle/lib/gradle-core-3.1.jar" />
+                  <option value="$USER_HOME$/devtool/gradle/lib/gradle-model-core-3.1.jar" />
+                  <option value="$USER_HOME$/devtool/gradle/lib/gradle-logging-3.1.jar" />
+                  <option value="$USER_HOME$/devtool/gradle/lib/ant-launcher-1.9.6.jar" />
+                  <option value="$USER_HOME$/devtool/gradle/lib/gradle-tooling-api-3.1.jar" />
+                  <option value="$USER_HOME$/devtool/gradle/lib/gradle-native-3.1.jar" />
+                  <option value="$USER_HOME$/devtool/gradle/lib/ant-1.9.6.jar" />
+                  <option value="$USER_HOME$/devtool/gradle/lib/gradle-ui-3.1.jar" />
+                  <option value="$USER_HOME$/devtool/gradle/lib/gradle-process-services-3.1.jar" />
+                  <option value="$USER_HOME$/devtool/gradle/lib/gradle-jvm-services-3.1.jar" />
+                  <option value="$USER_HOME$/devtool/gradle/lib/gradle-messaging-3.1.jar" />
+                  <option value="$USER_HOME$/devtool/gradle/lib/gradle-base-services-groovy-3.1.jar" />
+                  <option value="$USER_HOME$/devtool/gradle/lib/gradle-open-api-3.1.jar" />
+                  <option value="$USER_HOME$/devtool/gradle/lib/gradle-script-kotlin-0.3.2.jar" />
+                  <option value="$USER_HOME$/devtool/gradle/lib/gradle-base-services-3.1.jar" />
+                  <option value="$USER_HOME$/devtool/gradle/lib/gradle-wrapper-3.1.jar" />
+                  <option value="$USER_HOME$/devtool/gradle/lib/gradle-resources-3.1.jar" />
+                  <option value="$USER_HOME$/devtool/gradle/lib/gradle-launcher-3.1.jar" />
+                  <option value="$USER_HOME$/devtool/gradle/lib/groovy-all-2.4.7.jar" />
+                  <option value="$USER_HOME$/devtool/gradle/lib/gradle-docs-3.1.jar" />
+                  <option value="$USER_HOME$/devtool/gradle/lib/gradle-cli-3.1.jar" />
+                  <option value="$USER_HOME$/devtool/gradle/lib/plugins/gradle-code-quality-3.1.jar" />
+                  <option value="$USER_HOME$/devtool/gradle/lib/plugins/ivy-2.2.0.jar" />
+                  <option value="$USER_HOME$/devtool/gradle/lib/plugins/gradle-ivy-3.1.jar" />
+                  <option value="$USER_HOME$/devtool/gradle/lib/plugins/gradle-language-groovy-3.1.jar" />
+                  <option value="$USER_HOME$/devtool/gradle/lib/plugins/gradle-platform-jvm-3.1.jar" />
+                  <option value="$USER_HOME$/devtool/gradle/lib/plugins/gradle-build-comparison-3.1.jar" />
+                  <option value="$USER_HOME$/devtool/gradle/lib/plugins/gradle-tooling-api-builders-3.1.jar" />
+                  <option value="$USER_HOME$/devtool/gradle/lib/plugins/gradle-announce-3.1.jar" />
+                  <option value="$USER_HOME$/devtool/gradle/lib/plugins/gradle-platform-native-3.1.jar" />
+                  <option value="$USER_HOME$/devtool/gradle/lib/plugins/gradle-ear-3.1.jar" />
+                  <option value="$USER_HOME$/devtool/gradle/lib/plugins/gradle-testing-base-3.1.jar" />
+                  <option value="$USER_HOME$/devtool/gradle/lib/plugins/gradle-language-native-3.1.jar" />
+                  <option value="$USER_HOME$/devtool/gradle/lib/plugins/gradle-reporting-3.1.jar" />
+                  <option value="$USER_HOME$/devtool/gradle/lib/plugins/gradle-platform-play-3.1.jar" />
+                  <option value="$USER_HOME$/devtool/gradle/lib/plugins/gradle-plugins-3.1.jar" />
+                  <option value="$USER_HOME$/devtool/gradle/lib/plugins/gradle-language-scala-3.1.jar" />
+                  <option value="$USER_HOME$/devtool/gradle/lib/plugins/gradle-antlr-3.1.jar" />
+                  <option value="$USER_HOME$/devtool/gradle/lib/plugins/gradle-resources-s3-3.1.jar" />
+                  <option value="$USER_HOME$/devtool/gradle/lib/plugins/gradle-composite-builds-3.1.jar" />
+                  <option value="$USER_HOME$/devtool/gradle/lib/plugins/gradle-osgi-3.1.jar" />
+                  <option value="$USER_HOME$/devtool/gradle/lib/plugins/gradle-resources-http-3.1.jar" />
+                  <option value="$USER_HOME$/devtool/gradle/lib/plugins/gradle-task-cache-http-3.1.jar" />
+                  <option value="$USER_HOME$/devtool/gradle/lib/plugins/gradle-plugin-use-3.1.jar" />
+                  <option value="$USER_HOME$/devtool/gradle/lib/plugins/gradle-language-java-3.1.jar" />
+                  <option value="$USER_HOME$/devtool/gradle/lib/plugins/gradle-publish-3.1.jar" />
+                  <option value="$USER_HOME$/devtool/gradle/lib/plugins/gradle-ide-3.1.jar" />
+                  <option value="$USER_HOME$/devtool/gradle/lib/plugins/gradle-build-init-3.1.jar" />
+                  <option value="$USER_HOME$/devtool/gradle/lib/plugins/gradle-language-jvm-3.1.jar" />
+                  <option value="$USER_HOME$/devtool/gradle/lib/plugins/gradle-scala-3.1.jar" />
+                  <option value="$USER_HOME$/devtool/gradle/lib/plugins/gradle-ide-native-3.1.jar" />
+                  <option value="$USER_HOME$/devtool/gradle/lib/plugins/gradle-javascript-3.1.jar" />
+                  <option value="$USER_HOME$/devtool/gradle/lib/plugins/gradle-testing-native-3.1.jar" />
+                  <option value="$USER_HOME$/devtool/gradle/lib/plugins/gradle-dependency-management-3.1.jar" />
+                  <option value="$USER_HOME$/devtool/gradle/lib/plugins/gradle-signing-3.1.jar" />
+                  <option value="$USER_HOME$/devtool/gradle/lib/plugins/gradle-maven-3.1.jar" />
+                  <option value="$USER_HOME$/devtool/gradle/lib/plugins/gradle-diagnostics-3.1.jar" />
+                  <option value="$USER_HOME$/devtool/gradle/lib/plugins/gradle-jacoco-3.1.jar" />
+                  <option value="$USER_HOME$/devtool/gradle/lib/plugins/gradle-platform-base-3.1.jar" />
+                  <option value="$USER_HOME$/devtool/gradle/lib/plugins/gradle-plugin-development-3.1.jar" />
+                  <option value="$USER_HOME$/devtool/gradle/lib/plugins/gradle-jetty-3.1.jar" />
+                  <option value="$USER_HOME$/devtool/gradle/lib/plugins/gradle-ide-play-3.1.jar" />
+                  <option value="$USER_HOME$/devtool/gradle/lib/plugins/gradle-test-kit-3.1.jar" />
+                  <option value="$USER_HOME$/devtool/gradle/lib/plugins/gradle-resources-sftp-3.1.jar" />
+                  <option value="$USER_HOME$/devtool/gradle/lib/plugins/gradle-testing-jvm-3.1.jar" />
                   <option value="$PROJECT_DIR$/buildSrc/src/main/java" />
                   <option value="$PROJECT_DIR$/buildSrc/src/main/groovy" />
                 </list>
@@ -841,23 +988,11 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/controller/Devices.js" />
-        <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/service/Video/VideoService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpServer/handler/ModbusChannelInitializer.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/frame/ChannelNode.js" />
-        <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/panel/Node.js" />
-        <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/lib/PluginGridEdit.js" />
-        <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/frame/DeviceNodeGrid.js" />
-        <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/view/User.js" />
-        <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/User.js" />
-        <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/controller/AdminFrame.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/frame/GisEditor.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/view/gis/GisView.js" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/device/DeviceRuntimeBean.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/device/DeviceStateBean.java" />
         <option value="$PROJECT_DIR$/src/main/resources/spring-root.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/service/VideoService.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/view/alarm/AlarmPanel.js" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/web/user/ExtAlarm.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/view/UserFrame.js" />
@@ -865,7 +1000,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/util/MessageType.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/util/ConstantVideo.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/admin.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/web/app/JSConfig.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/jsp/const.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/device/AbstractOperator.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/device/operator/Analog.java" />
@@ -879,19 +1013,32 @@
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/web/alarm/ExtAlarmCamera.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/web/alarm/ExtAlarmVideo.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/store/AlarmVideo.js" />
-        <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/controller/UserFrame.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/model/AlarmVideo.js" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/messenger/Message/AlarmMessage.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/messenger/AlarmHub.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/index.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/lib/util.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/device/Device_401.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/view/user/AlarmPanel.js" />
-        <option value="$PROJECT_DIR$/src/main/resources/config.ini" />
-        <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/lib/GisViewPlugin.js" />
-        <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/web/gis/GisDevice.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/spring-mvc.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/app/AppManager.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpServer/handler/ModbusHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/messenger/MqttService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/web/test/app.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/service/VideoService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/service/VideoMessage.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/web/app/app.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/web/app/ServiceManage.java" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/src/main/resources/config.ini" />
+        <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/controller/UserFrame.js" />
+        <option value="$PROJECT_DIR$/src/main/webapp/index.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/web/app/JSConfig.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/web/gis/GisDevice.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/jsp/gisFeatures.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/view/window/Panorama.js" />
+        <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/lib/GisViewPlugin.js" />
+        <option value="$PROJECT_DIR$/src/main/webapp/test.html" />
       </list>
     </option>
   </component>
@@ -911,10 +1058,8 @@
     <treeState />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-9" />
-    <option name="y" value="-9" />
-    <option name="width" value="1938" />
-    <option name="height" value="1060" />
+    <option name="width" value="1920" />
+    <option name="height" value="1037" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -984,16 +1129,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com.rytec.rec" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="RyREC" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -1010,6 +1145,336 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com.rytec.rec" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RyREC" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com.rytec.rec" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RyREC" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="extjs_app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com.rytec.rec" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RyREC" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="extjs_app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="view" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com.rytec.rec" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RyREC" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="extjs_app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="view" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="window" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com.rytec.rec" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RyREC" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com.rytec.rec" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RyREC" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="rec" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com.rytec.rec" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RyREC" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="rec" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com.rytec.rec" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RyREC" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="rec" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com.rytec.rec" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RyREC" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="rec" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="db" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="PackagesPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com.rytec.rec" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com.rytec.rec" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleGroupNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com.rytec.rec" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com.rytec.rec" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleGroupNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com.rytec.rec_main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com.rytec.rec" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com.rytec.rec" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleGroupNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com.rytec.rec_main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com.rytec.rec" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com.rytec.rec" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com.rytec.rec" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleGroupNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com.rytec.rec_main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com.rytec.rec" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="messenger" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -1240,74 +1705,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com.rytec.rec" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com.rytec.rec" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleGroupNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com.rytec.rec" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com.rytec.rec" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleGroupNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com.rytec.rec_main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com.rytec.rec" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com.rytec.rec" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleGroupNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com.rytec.rec_main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com.rytec.rec" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com.rytec.rec" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com.rytec.rec" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleGroupNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com.rytec.rec_main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com.rytec.rec" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="messenger" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1368,7 +1765,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Gradle.RyREC [appStop]">
+  <component name="RunManager" selected="Gradle.RyREC [appStart]">
     <configuration default="false" name="RyREC [appStart]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -1878,9 +2275,9 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Gradle.RyREC [war]" />
-        <item index="1" class="java.lang.String" itemvalue="Gradle.RyREC [appStart]" />
-        <item index="2" class="java.lang.String" itemvalue="Gradle.RyREC [appStop]" />
+        <item index="0" class="java.lang.String" itemvalue="Gradle.RyREC [appStart]" />
+        <item index="1" class="java.lang.String" itemvalue="Gradle.RyREC [appStop]" />
+        <item index="2" class="java.lang.String" itemvalue="Gradle.RyREC [war]" />
         <item index="3" class="java.lang.String" itemvalue="Gradle.RyREC [mbGenerator]" />
         <item index="4" class="java.lang.String" itemvalue="Gradle.RyREC [appStartDebug]" />
       </list>
@@ -2094,13 +2491,12 @@
       <workItem from="1492650039378" duration="27138000" />
       <workItem from="1492737054179" duration="3303000" />
       <workItem from="1492999876889" duration="19000" />
-    </task>
-    <task id="LOCAL-00021" summary="1、管理配置页面框架&#10;&#10;">
-      <created>1482385539000</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1482385539000</updated>
+      <workItem from="1493100620520" duration="781000" />
+      <workItem from="1493476326351" duration="100000" />
+      <workItem from="1493476460131" duration="3466000" />
+      <workItem from="1493619392194" duration="13710000" />
+      <workItem from="1493789903776" duration="654000" />
+      <workItem from="1493792821357" duration="24288000" />
     </task>
     <task id="LOCAL-00022" summary="GridPanel 用的拖放插件。&#10;1、放置时，触发所属GridPanel 的 onDragDrop 事件&#10;2、拖动时，增加showField属性，用于在拖动时显示的字段名称。">
       <created>1482460398270</created>
@@ -2438,11 +2834,18 @@
       <option name="project" value="LOCAL" />
       <updated>1491990957970</updated>
     </task>
-    <option name="localTasksCounter" value="70" />
+    <task id="LOCAL-00070" summary="1、修正某些时候不能显示Device的状态Overlay">
+      <created>1493885854426</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1493885854427</updated>
+    </task>
+    <option name="localTasksCounter" value="71" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1454268000" />
+    <option name="totallyTimeSpent" value="1510994000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2454,19 +2857,19 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1060" extended-state="6" />
+    <frame x="0" y="0" width="1920" height="1037" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32772166" sideWeight="0.5133547" order="12" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26477024" sideWeight="0.5255591" order="12" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3299356" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32939914" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20660277" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973376" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26703912" sideWeight="0.49786323" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32849163" sideWeight="0.4866453" order="6" side_tool="false" content_ui="tabs" />
@@ -2474,13 +2877,13 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32849163" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21899441" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2659218" sideWeight="0.4764957" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21881838" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26477024" sideWeight="0.4744409" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32849163" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3273743" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22585838" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17305644" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
-      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13090129" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13045794" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -2489,7 +2892,7 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23240224" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34748602" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34696016" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -2546,14 +2949,6 @@
               <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
                 <collection />
               </option>
-              <option name="COLUMN_ORDER">
-                <list>
-                  <option value="0" />
-                  <option value="1" />
-                  <option value="2" />
-                  <option value="3" />
-                </list>
-              </option>
             </State>
           </value>
         </entry>
@@ -2572,7 +2967,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="增加了风速&#10;改进了模拟量" />
     <MESSAGE value="channelmsg 的 payload 改成了Object类型&#10;在modbus中payload为 bytebuf 类型&#10;&#10;未进行测试" />
     <MESSAGE value="1、bytebuf 每次读后，指针的位置改变了&#10;2、加入了简单的超时机制" />
     <MESSAGE value="取消Groovy前的最后版本" />
@@ -2597,7 +2991,8 @@
     <MESSAGE value="1、修改了整个Device部分的结构，JS不会再出错&#10;2、加入了单击摄像机显示视频" />
     <MESSAGE value="1、修正Device面板不能删除的问题&#10;2、Node拖动到Device现在好像不死锁了" />
     <MESSAGE value="1、添加告警面板&#10;2、告警弹出关联摄像机" />
-    <option name="LAST_COMMIT_MESSAGE" value="1、添加告警面板&#10;2、告警弹出关联摄像机" />
+    <MESSAGE value="1、修正某些时候不能显示Device的状态Overlay" />
+    <option name="LAST_COMMIT_MESSAGE" value="1、修正某些时候不能显示Device的状态Overlay" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2610,7 +3005,7 @@
           <properties />
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="417" />
+      <option name="time" value="423" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -2619,204 +3014,204 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/panel/Actions.js">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/controller/UserFrame.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1512">
-          <caret line="65" column="35" lean-forward="false" selection-start-line="65" selection-start-column="35" selection-end-line="65" selection-end-column="35" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/device/Device_101.js">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/view/window/Panorama.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="131" column="0" lean-forward="true" selection-start-line="131" selection-start-column="0" selection-end-line="139" selection-end-column="3" />
+        <state relative-caret-position="572">
+          <caret line="26" column="112" lean-forward="false" selection-start-line="26" selection-start-column="103" selection-end-line="26" selection-end-column="112" />
+          <folding>
+            <marker date="1493872503156" expanded="true" signature="451:475" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/cooperate/CooperateManager.java">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/test.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="98" column="0" lean-forward="true" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
+        <state relative-caret-position="770">
+          <caret line="35" column="57" lean-forward="false" selection-start-line="35" selection-start-column="4" selection-end-line="35" selection-end-column="57" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/view/gis/GisView.js">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/view/user/AlarmPanel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2970">
+          <caret line="135" column="54" lean-forward="false" selection-start-line="135" selection-start-column="16" selection-end-line="135" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/lib/GisViewPlugin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="20350">
+          <caret line="925" column="42" lean-forward="false" selection-start-line="925" selection-start-column="38" selection-end-line="925" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/controller/UserFrame.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/view/window/Panorama.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="572">
+          <caret line="26" column="112" lean-forward="false" selection-start-line="26" selection-start-column="103" selection-end-line="26" selection-end-column="112" />
+          <folding>
+            <marker date="1493872503156" expanded="true" signature="451:475" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/test.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="770">
+          <caret line="35" column="57" lean-forward="true" selection-start-line="35" selection-start-column="4" selection-end-line="35" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/view/user/AlarmPanel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2970">
+          <caret line="135" column="54" lean-forward="true" selection-start-line="135" selection-start-column="16" selection-end-line="135" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/lib/GisViewPlugin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="20350">
+          <caret line="925" column="42" lean-forward="false" selection-start-line="925" selection-start-column="38" selection-end-line="925" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/config.ini">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="352">
+            <caret line="16" column="16" lean-forward="true" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/config.ini">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="2068">
+            <caret line="94" column="0" lean-forward="false" selection-start-line="94" selection-start-column="0" selection-end-line="94" selection-end-column="0" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/config.ini">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="2068">
+            <caret line="94" column="0" lean-forward="true" selection-start-line="94" selection-start-column="0" selection-end-line="94" selection-end-column="0" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="484">
+            <caret line="82" column="0" lean-forward="true" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/util/ConstantCommandType.java">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/device/Device_102.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="6" column="17" lean-forward="false" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/util/ConstantDeviceFunction.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/config.ini">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="10" column="4" lean-forward="false" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="31" />
+        <state relative-caret-position="198">
+          <caret line="9" column="24" lean-forward="false" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/web/app/JSConfig.java">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/frame/ChannelNode.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="36" column="76" lean-forward="false" selection-start-line="36" selection-start-column="57" selection-end-line="36" selection-end-column="76" />
+        <state relative-caret-position="-1356">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/util/ConstantDeviceState.java">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/frame/Cooperate.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="9" column="36" lean-forward="false" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="36" />
+        <state relative-caret-position="-990">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/res/gis/device/101-11.gif">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/panel/Device.js">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/frame/DeviceNodeGrid.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="547">
-          <caret line="71" column="9" lean-forward="true" selection-start-line="59" selection-start-column="8" selection-end-line="71" selection-end-column="9" />
+        <state relative-caret-position="-1584">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/db/mapper/DeviceNodeMapper.java">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/frame/GisEditor.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="8" column="17" lean-forward="false" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+        <state relative-caret-position="-542">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/db/mapper/AlarmMapper.java">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/view/gis/GisView.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="8" column="17" lean-forward="false" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/node/Video/NodeCamera.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="20" column="13" lean-forward="false" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/web/admin/ExtActions.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="23" column="13" lean-forward="false" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/web/admin/ExtDevice.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-84">
-          <caret line="19" column="13" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/web/admin/ExtNodeForDevice.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="29" column="100" lean-forward="true" selection-start-line="29" selection-start-column="64" selection-end-line="29" selection-end-column="100" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/store/Node.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
-          <caret line="11" column="14" lean-forward="true" selection-start-line="11" selection-start-column="14" selection-end-line="11" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/model/Actions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="21" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/store/Alarm.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="21" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/controller/UserFrame.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="358">
-          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/lib/PluginGridEdit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="61" column="36" lean-forward="false" selection-start-line="61" selection-start-column="19" selection-end-line="61" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/device/operator/Camera.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="321">
-          <caret line="35" column="0" lean-forward="true" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/model/AlarmVideo.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="358">
-          <caret line="18" column="17" lean-forward="true" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/store/AlarmVideo.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="13" column="5" lean-forward="true" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/messenger/Message/WebMessage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/messenger/Message/AlarmMessage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="13" column="11" lean-forward="false" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/web/alarm/ExtAlarmVideo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="321">
-          <caret line="32" column="69" lean-forward="true" selection-start-line="32" selection-start-column="69" selection-end-line="32" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/util/ConstantMessageType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="567">
-          <caret line="21" column="20" lean-forward="false" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/messenger/AlarmHub.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="65" column="51" lean-forward="false" selection-start-line="65" selection-start-column="51" selection-end-line="65" selection-end-column="51" />
+        <state relative-caret-position="110">
+          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="24" selection-end-column="3" />
         </state>
       </provider>
     </entry>
@@ -2827,156 +3222,183 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/web/device/Action.java">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/controller/AdminFrame.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/web/device/ExtVideo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="37" column="67" lean-forward="false" selection-start-line="37" selection-start-column="50" selection-end-line="37" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/User.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-243">
+        <state relative-caret-position="-264">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/device/Device_401.js">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/panel/ActionRule.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="11" column="34" lean-forward="false" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="34" />
+        <state relative-caret-position="-1840">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/view/user/AlarmPanel.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="126" column="25" lean-forward="true" selection-start-line="126" selection-start-column="25" selection-end-line="126" selection-end-column="25" />
+        <state relative-caret-position="22">
+          <caret line="135" column="54" lean-forward="false" selection-start-line="135" selection-start-column="16" selection-end-line="135" selection-end-column="54" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/model/Alarm.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-827">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/generatorConfig.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="134">
-          <caret line="40" column="10" lean-forward="false" selection-start-line="40" selection-start-column="10" selection-end-line="40" selection-end-column="10" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/index.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="134">
-          <caret line="54" column="40" lean-forward="false" selection-start-line="54" selection-start-column="40" selection-end-line="54" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/device/AbstractOperator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="34" column="4" lean-forward="false" selection-start-line="34" selection-start-column="4" selection-end-line="34" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/view/gis/GisEditor.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/lib/util.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="90" column="0" lean-forward="true" selection-start-line="90" selection-start-column="0" selection-end-line="90" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="756">
-          <caret line="28" column="57" lean-forward="false" selection-start-line="28" selection-start-column="57" selection-end-line="28" selection-end-column="57" />
+        <state relative-caret-position="352">
+          <caret line="34" column="65" lean-forward="false" selection-start-line="34" selection-start-column="65" selection-end-line="34" selection-end-column="65" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/config.ini">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/controller/UserFrame.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="9" column="29" lean-forward="false" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
+        <state relative-caret-position="484">
+          <caret line="22" column="3" lean-forward="false" selection-start-line="22" selection-start-column="3" selection-end-line="22" selection-end-column="3" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/lib/GisViewPlugin.js">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/upload/panorama/field.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/pannellum.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3699">
-          <caret line="137" column="28" lean-forward="false" selection-start-line="137" selection-start-column="28" selection-end-line="137" selection-end-column="28" />
+        <state relative-caret-position="434">
+          <caret line="90" column="22" lean-forward="false" selection-start-line="90" selection-start-column="22" selection-end-line="90" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/de.grundid.opendatalab/geojson-jackson/1.7/8d52bfc674bfa9b8c72219ff5debcfe9c6db1ff9/geojson-jackson-1.7-sources.jar!/org/geojson/Feature.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="15" column="16" lean-forward="false" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
-        </state>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/upload/panorama/alma-correlator-facility.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/service/VideoService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="26" column="13" lean-forward="false" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
-        </state>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/res/gis/device/201-10.gif">
+      <provider selected="true" editor-type-id="images">
+        <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/node/BaseNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="47">
-          <caret line="10" column="22" lean-forward="false" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
-        </state>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/res/gis/device/0-11.gif">
+      <provider selected="true" editor-type-id="images">
+        <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpServer/ModbusTcpServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="263">
-          <caret line="46" column="60" lean-forward="false" selection-start-line="46" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
-        </state>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/res/gis/device/101-11.gif">
+      <provider selected="true" editor-type-id="images">
+        <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/res/gis/device/101-21.gif">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/res/gis/device/201-11.gif">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/res/gis/device/201-20.gif">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/res/gis/device/101-10.gif">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/web/admin/ExtDeviceGis.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+        <state relative-caret-position="198">
+          <caret line="17" column="13" lean-forward="false" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/spring-mvc.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/web/admin/ExtGis.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="18" column="28" lean-forward="false" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
+        <state relative-caret-position="-1849">
+          <caret line="32" column="13" lean-forward="false" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/db/DbConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="21" column="10" lean-forward="false" selection-start-line="21" selection-start-column="10" selection-end-line="21" selection-end-column="10" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/web/app/JSConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2223">
+          <caret line="67" column="63" lean-forward="false" selection-start-line="67" selection-start-column="8" selection-end-line="67" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/const.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="15" column="14" lean-forward="true" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="14" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/web/gis/GisDevice.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="78" column="62" lean-forward="true" selection-start-line="78" selection-start-column="62" selection-end-line="78" selection-end-column="62" />
+        <state relative-caret-position="462">
+          <caret line="159" column="36" lean-forward="false" selection-start-line="159" selection-start-column="28" selection-end-line="159" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#4401#4402#0" expanded="true" />
+            <element signature="e#4455#4456#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/gisFeatures.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="10" column="12" lean-forward="true" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
+          <folding>
+            <marker date="1493868955377" expanded="true" signature="321:395" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/view/window/Panorama.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="572">
+          <caret line="26" column="38" lean-forward="true" selection-start-line="26" selection-start-column="38" selection-end-line="26" selection-end-column="38" />
+          <folding>
+            <marker date="1493872503156" expanded="true" signature="451:475" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/lib/GisViewPlugin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1809">
+          <caret line="259" column="0" lean-forward="false" selection-start-line="259" selection-start-column="0" selection-end-line="259" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/test.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="15" lean-forward="true" selection-start-line="0" selection-start-column="15" selection-end-line="0" selection-end-column="15" />
           <folding />
         </state>
       </provider>
