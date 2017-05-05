@@ -192,6 +192,13 @@ Ext.define('app.view.user.AlarmPanel', {
             value: record.data.value
         };
         detail.update(data);
+        // 地图上定位资源
+        ry.gis.highlightDevice(record.data.device);
+    },
+
+    // Alarm Action 选择
+    onAlarmActionSelected: function (event, record, index, eOpts) {
+        ry.gis.highlightDevice(record.data.target);
     },
 
     initComponent: function () {
@@ -203,8 +210,15 @@ Ext.define('app.view.user.AlarmPanel', {
         this.on('float', this.onFloat, this);
         this.on('unfloat', this.onUnfloat, this);
 
+
+
         // Alarm事件
         var alarm = this.down('#alarmGrid');
         alarm.on('select', this.onAlarmSelected, this);
+
+        // AlarmAction 事件
+        var actionsGrid = this.down('#alarmActions');
+        actionsGrid.on('select', this.onAlarmActionSelected);
+
     }
 });
