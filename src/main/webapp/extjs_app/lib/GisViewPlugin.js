@@ -461,6 +461,14 @@ Ext.define('app.lib.GisViewPlugin', {
              * map.overlays_ 是 map 自己的一个对象
              */
             updateDevice: function (scope) {
+
+                // 可能因为异步的原因，还没有得到devicesState
+                // 需要结合 newLayer.on('change:visible', function (event)
+                // 这两处都可能触发重新绘制 Overlay
+                if (!this.devicesState){
+                    return;
+                }
+
                 scope.map.overlays_.clear();
                 scope.overlay.featureStateOverlays.clear();
                 var features = scope.getActiveVectorLayer().getSource().getFeatures();

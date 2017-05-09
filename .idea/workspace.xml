@@ -8,16 +8,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d35ddd3d-c0e7-4f94-b111-72db3f8184b4" name="Default" comment="1、全景Demo图片&#10;2、全景的js和css">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/js/libpannellum.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/css/mark.css" afterPath="$PROJECT_DIR$/src/main/webapp/css/mark.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/extjs_app/device/Device_101.js" afterPath="$PROJECT_DIR$/src/main/webapp/extjs_app/device/Device_101.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/extjs_app/lib/GisViewPlugin.js" afterPath="$PROJECT_DIR$/src/main/webapp/extjs_app/lib/GisViewPlugin.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/extjs_app/lib/util.js" afterPath="$PROJECT_DIR$/src/main/webapp/extjs_app/lib/util.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/extjs_app/view/window/Panorama.js" afterPath="$PROJECT_DIR$/src/main/webapp/extjs_app/view/window/Panorama.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/js/pannellum.css" afterPath="$PROJECT_DIR$/src/main/webapp/js/pannellum.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/js/pannellum.js" afterPath="$PROJECT_DIR$/src/main/webapp/js/pannellum.js" />
     </list>
     <ignored path="RyREC.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -161,8 +154,8 @@
       <file leaf-file-name="UploadService.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/web/util/UploadService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="18" column="28" lean-forward="true" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
+            <state relative-caret-position="374">
+              <caret line="21" column="20" lean-forward="true" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -2518,14 +2511,7 @@
       <workItem from="1493789903776" duration="654000" />
       <workItem from="1493792821357" duration="24374000" />
       <workItem from="1493948783923" duration="38654000" />
-      <workItem from="1494307308481" duration="24113000" />
-    </task>
-    <task id="LOCAL-00027" summary="1、文件上传&#10;2、通过数据库生成GeoJson">
-      <created>1483677065615</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1483677065616</updated>
+      <workItem from="1494307308481" duration="24258000" />
     </task>
     <task id="LOCAL-00028" summary="添加 STOMP over Websocket 的支持">
       <created>1484053662528</created>
@@ -2863,11 +2849,18 @@
       <option name="project" value="LOCAL" />
       <updated>1494342072034</updated>
     </task>
-    <option name="localTasksCounter" value="76" />
+    <task id="LOCAL-00076" summary="1、Hotspot可以弹出操作面板&#10;2、Device_101.js 中的id去除，否则GIS和全景都调用会冲突">
+      <created>1494342216507</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1494342216508</updated>
+    </task>
+    <option name="localTasksCounter" value="77" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1573847000" />
+    <option name="totallyTimeSpent" value="1573992000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2954,7 +2947,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="没有用线程同步还更稳定？&#10;以前使用线程同步，收到的数据滞后，lastCmd 超前，使得返回数据和命令对应不上。" />
     <MESSAGE value="加入了同步锁定，&#10;时序上应该没有问题了。剩下的是需对收到包进行CRC" />
     <MESSAGE value="设备的信号和动作常量已经输出到javaScript中了" />
     <MESSAGE value="对Modbus的回应解码进行了优化&#10;1、加入了CRC校验&#10;2、从尾部取数据，降低脏数据的干扰" />
@@ -2979,7 +2971,8 @@
     <MESSAGE value="1、全景Demo图片&#10;2、全景的js和css" />
     <MESSAGE value="1、规范MQTT消息路径&#10;2、采用json进行消息封装" />
     <MESSAGE value="1、Gis layer 可以修改图片&#10;2、公共文件操作加入到 RyFile.java中" />
-    <option name="LAST_COMMIT_MESSAGE" value="1、Gis layer 可以修改图片&#10;2、公共文件操作加入到 RyFile.java中" />
+    <MESSAGE value="1、Hotspot可以弹出操作面板&#10;2、Device_101.js 中的id去除，否则GIS和全景都调用会冲突" />
+    <option name="LAST_COMMIT_MESSAGE" value="1、Hotspot可以弹出操作面板&#10;2、Device_101.js 中的id去除，否则GIS和全景都调用会冲突" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -3031,8 +3024,8 @@
         <state relative-caret-position="286">
           <caret line="15" column="28" lean-forward="false" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
           <folding>
-            <element signature="e#393#394#0" expanded="true" />
-            <element signature="e#444#445#0" expanded="true" />
+            <element signature="e#393#394#0" expanded="false" />
+            <element signature="e#444#445#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -3414,8 +3407,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/web/util/UploadService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="18" column="28" lean-forward="true" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
+        <state relative-caret-position="374">
+          <caret line="21" column="20" lean-forward="true" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="20" />
           <folding />
         </state>
       </provider>
