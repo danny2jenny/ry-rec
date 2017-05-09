@@ -9,7 +9,7 @@ Ext.define('app.view.device.control._101', {
     extend: 'Ext.panel.Panel',
     alias: 'widget.device.control.101',
     title: '开关控制',
-    id: 'device.control.101',
+    //id: 'device.control.101',
     width: 200,
 
     bodyPadding: 5,

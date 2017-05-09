@@ -32,6 +32,7 @@
 
     <%--全景展示--%>
     <script type="text/javascript" src="js/pannellum.js"></script>
+    <script type="text/javascript" src="js/libpannellum.js"></script>
     <link rel="stylesheet" type="text/css" href="js/pannellum.css"/>
 
 

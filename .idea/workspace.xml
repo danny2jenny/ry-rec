@@ -8,17 +8,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d35ddd3d-c0e7-4f94-b111-72db3f8184b4" name="Default" comment="1、全景Demo图片&#10;2、全景的js和css">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/util/RyFile.java" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/js/libpannellum.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/web/util/UploadService.java" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/web/util/UploadService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/css/mark.css" afterPath="$PROJECT_DIR$/src/main/webapp/css/mark.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/extjs_app/device/Device_101.js" afterPath="$PROJECT_DIR$/src/main/webapp/extjs_app/device/Device_101.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/extjs_app/lib/GisViewPlugin.js" afterPath="$PROJECT_DIR$/src/main/webapp/extjs_app/lib/GisViewPlugin.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/extjs_app/lib/util.js" afterPath="$PROJECT_DIR$/src/main/webapp/extjs_app/lib/util.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/frame/GisEditor.js" afterPath="$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/frame/GisEditor.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/panel/FormLayerUpload.js" afterPath="$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/panel/FormLayerUpload.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/panel/GisLayer.js" afterPath="$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/panel/GisLayer.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/extjs_app/view/window/Panorama.js" afterPath="$PROJECT_DIR$/src/main/webapp/extjs_app/view/window/Panorama.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/js/pannellum.css" afterPath="$PROJECT_DIR$/src/main/webapp/js/pannellum.css" />
@@ -166,8 +161,8 @@
       <file leaf-file-name="UploadService.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/web/util/UploadService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+            <state relative-caret-position="308">
+              <caret line="18" column="28" lean-forward="true" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -2523,14 +2518,7 @@
       <workItem from="1493789903776" duration="654000" />
       <workItem from="1493792821357" duration="24374000" />
       <workItem from="1493948783923" duration="38654000" />
-      <workItem from="1494307308481" duration="24001000" />
-    </task>
-    <task id="LOCAL-00026" summary="1、增加GIS&#10;2、增加Grid的编辑插件，不用继承Grid。还需要测试，可能有问题。">
-      <created>1483434455071</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1483434455071</updated>
+      <workItem from="1494307308481" duration="24113000" />
     </task>
     <task id="LOCAL-00027" summary="1、文件上传&#10;2、通过数据库生成GeoJson">
       <created>1483677065615</created>
@@ -2868,11 +2856,18 @@
       <option name="project" value="LOCAL" />
       <updated>1494341911640</updated>
     </task>
-    <option name="localTasksCounter" value="75" />
+    <task id="LOCAL-00075" summary="1、Gis layer 可以修改图片&#10;2、公共文件操作加入到 RyFile.java中">
+      <created>1494342072034</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1494342072034</updated>
+    </task>
+    <option name="localTasksCounter" value="76" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1573735000" />
+    <option name="totallyTimeSpent" value="1573847000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2959,7 +2954,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="在 ontime 中处理超时有问题" />
     <MESSAGE value="没有用线程同步还更稳定？&#10;以前使用线程同步，收到的数据滞后，lastCmd 超前，使得返回数据和命令对应不上。" />
     <MESSAGE value="加入了同步锁定，&#10;时序上应该没有问题了。剩下的是需对收到包进行CRC" />
     <MESSAGE value="设备的信号和动作常量已经输出到javaScript中了" />
@@ -2984,7 +2978,8 @@
     <MESSAGE value="1、点击告警，定位到地图&#10;2、点击告警关联摄像机，定位到摄像机" />
     <MESSAGE value="1、全景Demo图片&#10;2、全景的js和css" />
     <MESSAGE value="1、规范MQTT消息路径&#10;2、采用json进行消息封装" />
-    <option name="LAST_COMMIT_MESSAGE" value="1、规范MQTT消息路径&#10;2、采用json进行消息封装" />
+    <MESSAGE value="1、Gis layer 可以修改图片&#10;2、公共文件操作加入到 RyFile.java中" />
+    <option name="LAST_COMMIT_MESSAGE" value="1、Gis layer 可以修改图片&#10;2、公共文件操作加入到 RyFile.java中" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -3419,8 +3414,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/web/util/UploadService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+        <state relative-caret-position="308">
+          <caret line="18" column="28" lean-forward="true" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
           <folding />
         </state>
       </provider>
