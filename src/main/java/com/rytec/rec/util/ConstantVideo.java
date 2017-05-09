@@ -20,5 +20,5 @@ public interface ConstantVideo {
     int PTZ_GOTO_PRESET = 3;    //调用
 
     //TOPC
-    String TOPIC_VIDEO_SERVICE = "rec/srv/video";
+    String TOPIC_VIDEO_SERVICE = "rec/srv/video/to";
 }

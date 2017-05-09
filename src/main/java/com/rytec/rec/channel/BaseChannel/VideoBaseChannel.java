@@ -13,6 +13,6 @@ public class VideoBaseChannel implements ChannelInterface {
 
     @Override
     public int sendMsg(Object msg) {
-        return videoService.sendMsg(msg);
+        return videoService.ptzControl(msg);
     }
 }
