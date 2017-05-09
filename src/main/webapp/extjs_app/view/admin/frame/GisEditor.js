@@ -31,11 +31,24 @@ Ext.define('app.view.admin.frame.GisEditor', {
                 }
             ]
         }],
+
+    // 所属的Grid的选择事件
+    onSelectChange: function (view, selections, options) {
+        if (selections.length) {
+            this.layerId = selections[0].data.id;
+            this.down('#btn_replace').enable();
+        } else {
+            this.down('#btn_replace').disable();
+        }
+    },
+
     initComponent: function () {
+        this.callParent(arguments);
 
-        var me = this;
+        var layer_list = this.down('#grid_gislayer');
+        var form_upload = this.down('#formLayerUpload');
 
-        me.callParent(arguments);
+        layer_list.on('selectionchange', this.onSelectChange, form_upload);
 
         // 隐藏Device的所有配置Panel
         this.on('show', function (from, eOpts) {

@@ -8,17 +8,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d35ddd3d-c0e7-4f94-b111-72db3f8184b4" name="Default" comment="1、全景Demo图片&#10;2、全景的js和css">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/messenger/Message/MqttMessage.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/service/PayloadPtz.java" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/util/RyFile.java" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/js/libpannellum.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/BaseChannel/VideoBaseChannel.java" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/BaseChannel/VideoBaseChannel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/messenger/MqttService.java" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/messenger/MqttService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/service/VideoService.java" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/service/VideoService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/util/ConstantVideo.java" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/util/ConstantVideo.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/web/util/UploadService.java" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/web/util/UploadService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/spring-root.xml" afterPath="$PROJECT_DIR$/src/main/resources/spring-root.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/css/mark.css" afterPath="$PROJECT_DIR$/src/main/webapp/css/mark.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/extjs_app/device/Device_101.js" afterPath="$PROJECT_DIR$/src/main/webapp/extjs_app/device/Device_101.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/extjs_app/lib/GisViewPlugin.js" afterPath="$PROJECT_DIR$/src/main/webapp/extjs_app/lib/GisViewPlugin.js" />
@@ -160,11 +153,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GisLayer.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GisLayer.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/panel/GisLayer.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="9" column="28" lean-forward="true" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="28" />
+            <state relative-caret-position="193">
+              <caret line="15" column="14" lean-forward="true" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="14" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UploadService.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/web/util/UploadService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="374">
+              <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -1047,8 +1050,8 @@
         <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/frame/GisEditor.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/panel/FormLayerUpload.js" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/util/RyFile.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/web/util/UploadService.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/panel/GisLayer.js" />
+        <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/web/util/UploadService.java" />
       </list>
     </option>
   </component>
@@ -1632,6 +1635,40 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="main" />
               <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com.rytec.rec" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RyREC" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="rec" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="util" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -2486,14 +2523,7 @@
       <workItem from="1493789903776" duration="654000" />
       <workItem from="1493792821357" duration="24374000" />
       <workItem from="1493948783923" duration="38654000" />
-      <workItem from="1494307308481" duration="23758000" />
-    </task>
-    <task id="LOCAL-00025" summary="不使用 Groovy 操作数据库的配置初始化">
-      <created>1482916561161</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1482916561161</updated>
+      <workItem from="1494307308481" duration="24001000" />
     </task>
     <task id="LOCAL-00026" summary="1、增加GIS&#10;2、增加Grid的编辑插件，不用继承Grid。还需要测试，可能有问题。">
       <created>1483434455071</created>
@@ -2831,11 +2861,18 @@
       <option name="project" value="LOCAL" />
       <updated>1493950497506</updated>
     </task>
-    <option name="localTasksCounter" value="74" />
+    <task id="LOCAL-00074" summary="1、规范MQTT消息路径&#10;2、采用json进行消息封装">
+      <created>1494341911639</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1494341911640</updated>
+    </task>
+    <option name="localTasksCounter" value="75" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1573492000" />
+    <option name="totallyTimeSpent" value="1573735000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2922,7 +2959,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="联动基本功能实现，通过开关量输入控制开关量输出" />
     <MESSAGE value="在 ontime 中处理超时有问题" />
     <MESSAGE value="没有用线程同步还更稳定？&#10;以前使用线程同步，收到的数据滞后，lastCmd 超前，使得返回数据和命令对应不上。" />
     <MESSAGE value="加入了同步锁定，&#10;时序上应该没有问题了。剩下的是需对收到包进行CRC" />
@@ -2947,7 +2983,8 @@
     <MESSAGE value="1、增加全景的演示&#10;2、通过模板生成Gis 的 Features（暂时未使用）" />
     <MESSAGE value="1、点击告警，定位到地图&#10;2、点击告警关联摄像机，定位到摄像机" />
     <MESSAGE value="1、全景Demo图片&#10;2、全景的js和css" />
-    <option name="LAST_COMMIT_MESSAGE" value="1、全景Demo图片&#10;2、全景的js和css" />
+    <MESSAGE value="1、规范MQTT消息路径&#10;2、采用json进行消息封装" />
+    <option name="LAST_COMMIT_MESSAGE" value="1、规范MQTT消息路径&#10;2、采用json进行消息封装" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -3135,6 +3172,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="57">
           <caret line="20" column="13" lean-forward="false" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -3337,14 +3375,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/web/util/UploadService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1232">
-          <caret line="101" column="15" lean-forward="false" selection-start-line="101" selection-start-column="15" selection-end-line="101" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/util/RyFile.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1606">
@@ -3381,8 +3411,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/panel/GisLayer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="9" column="28" lean-forward="true" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="28" />
+        <state relative-caret-position="193">
+          <caret line="15" column="14" lean-forward="true" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/web/util/UploadService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
           <folding />
         </state>
       </provider>
