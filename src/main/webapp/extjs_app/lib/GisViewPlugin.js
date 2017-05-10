@@ -474,10 +474,15 @@ Ext.define('app.lib.GisViewPlugin', {
                 var features = scope.getActiveVectorLayer().getSource().getFeatures();
                 for (var i in features) {
                     var feature = features[i];
-                    var icon = this.devicesState[feature.getProperties().deviceId].runtime.iconState;
-                    var overlay = scope.overlay.createFeatureOverlay(feature, icon, scope);
-                    scope.overlay.featureStateOverlays.add(feature.getId(), overlay);
-                    scope.map.addOverlay(overlay);
+
+                    var deviceState = this.devicesState[feature.getProperties().deviceId];
+                    if (deviceState){
+                        var icon = deviceState.runtime.iconState;
+                        var overlay = scope.overlay.createFeatureOverlay(feature, icon, scope);
+                        scope.overlay.featureStateOverlays.add(feature.getId(), overlay);
+                        scope.map.addOverlay(overlay);
+                    }
+
                 }
 
                 // 是否需要有高亮的Device
