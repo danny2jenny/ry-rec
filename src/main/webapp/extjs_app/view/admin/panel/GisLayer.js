@@ -32,4 +32,4 @@ Ext.define('app.view.admin.panel.GisLayer', {
         hideAdd: true,
         autoLoad: true
     }]
-})
+});

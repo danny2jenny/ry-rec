@@ -10,7 +10,9 @@ import ch.ralscha.extdirectspring.annotation.ExtDirectMethod;
 import ch.ralscha.extdirectspring.annotation.ExtDirectMethodType;
 import ch.ralscha.extdirectspring.bean.ExtDirectFormPostResult;
 import com.rytec.rec.db.mapper.GisLayerMapper;
+import com.rytec.rec.db.mapper.PanoramaMapper;
 import com.rytec.rec.db.model.GisLayer;
+import com.rytec.rec.db.model.Panorama;
 import com.rytec.rec.util.RyFile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,7 +35,20 @@ public class UploadService {
     @Autowired
     GisLayerMapper gisLayerMapper;
 
+    @Autowired
+    PanoramaMapper panoramaMapper;
 
+
+    /**
+     * GIS 图层上传
+     *
+     * @param layerName
+     * @param upFile
+     * @param layer
+     * @param replace
+     * @return
+     * @throws IOException
+     */
     @ExtDirectMethod(ExtDirectMethodType.FORM_POST)
     public ExtDirectFormPostResult gisLayer(
             @RequestParam("layerName") String layerName,
@@ -96,5 +111,72 @@ public class UploadService {
         return resp;
     }
 
+
+    /**
+     * 全景场景上传
+     *
+     * @param name
+     * @param upFile
+     * @param scene
+     * @param replace
+     * @return
+     * @throws IOException
+     */
+    @ExtDirectMethod(ExtDirectMethodType.FORM_POST)
+    public ExtDirectFormPostResult panoramaScene(
+            @RequestParam("sceneName") String name,
+            @RequestParam("fileUpload") MultipartFile upFile,
+            @RequestParam("scene") Integer scene,
+            @RequestParam("replace") Boolean replace) throws IOException {
+
+        ExtDirectFormPostResult resp = new ExtDirectFormPostResult(true);
+
+        //文件上传的路径
+        String layerPath = System.getProperty("web.root") + "/upload/panorama/";
+
+
+        if (upFile == null || upFile.isEmpty()) {
+            return resp;
+        }
+
+        Panorama panorama;
+
+        if (replace) {
+            // 更新
+            panorama = panoramaMapper.selectByPrimaryKey(scene);
+            // 得到以前的文件
+            if (panorama != null) {
+                String orgFile = layerPath + panorama.getFile();
+                RyFile.deleteFile(orgFile);
+            } else {
+                return resp;
+            }
+
+        } else {
+            // 新建
+            //首先写入数据库
+            panorama = new Panorama();
+            panorama.setName(name);
+            panoramaMapper.insert(panorama);
+        }
+
+        //得到文件名和扩展名
+        String srcFileName = upFile.getOriginalFilename();
+        String extName = srcFileName.substring(srcFileName.lastIndexOf(".") + 1);
+        String outFullFileName = layerPath + panorama.getId() + '.' + extName;
+
+        //保存文件
+        File convFile = new File(outFullFileName);
+        convFile.createNewFile();
+        FileOutputStream fos = new FileOutputStream(convFile);
+        fos.write(upFile.getBytes());
+        fos.close();
+
+        //更新文件名
+        panorama.setFile("" + panorama.getId() + '.' + extName);
+        panoramaMapper.updateByPrimaryKey(panorama);
+
+        return resp;
+    }
 
 }

@@ -41,6 +41,9 @@ Ext.define('app.view.AdminFrame', {
                 },
                 {
                     xtype: 'admin.frame.giseditor'
+                },
+                {
+                    xtype: 'admin.frame.panoramaeditor'
                 }
 
             ]

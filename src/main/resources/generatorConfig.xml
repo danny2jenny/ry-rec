@@ -42,64 +42,72 @@
 
         <!-- 需要自动生成的表 -->
 
-        <!--
+<!--
+        <table schema="" tableName="device" domainObjectName="Device">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
 
-                        <table schema="" tableName="device" domainObjectName="Device">
-                            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
-                        </table>
+        <table schema="" tableName="channel" domainObjectName="Channel">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
 
-                        <table schema="" tableName="channel" domainObjectName="Channel">
-                            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
-                        </table>
-
-                        <table schema="" tableName="node" domainObjectName="Node">
-                            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
-                        </table>
+        <table schema="" tableName="node" domainObjectName="Node">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
 
 
-                        <table schema="" tableName="config" domainObjectName="Config">
-                            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
-                        </table>
+        <table schema="" tableName="config" domainObjectName="Config">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
 
-                        <table schema="" tableName="channelnode" domainObjectName="ChannelNode">
+        <table schema="" tableName="channelnode" domainObjectName="ChannelNode">
 
-                        </table>
+        </table>
 
-                        <table schema="" tableName="devicenode" domainObjectName="DeviceNode">
+        <table schema="" tableName="devicenode" domainObjectName="DeviceNode">
 
-                        </table>
+        </table>
 
-                        <table schema="" tableName="gislayer" domainObjectName="GisLayer">
-                            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
-                        </table>
+        <table schema="" tableName="gislayer" domainObjectName="GisLayer">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
 
-                        <table schema="" tableName="gis" domainObjectName="Gis">
-                            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
-                        </table>
+        <table schema="" tableName="gis" domainObjectName="Gis">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
 
-                        <table schema="" tableName="devicegis" domainObjectName="DeviceGis">
+        <table schema="" tableName="devicegis" domainObjectName="DeviceGis">
 
-                        </table>
+        </table>
 
-                        <table schema="" tableName="actionrule" domainObjectName="ActionRule">
-                            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
-                        </table>
+        <table schema="" tableName="actionrule" domainObjectName="ActionRule">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
 
-                        <table schema="" tableName="actions" domainObjectName="Actions">
-                            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
-                        </table>
+        <table schema="" tableName="actions" domainObjectName="Actions">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
 
-                        <table schema="" tableName="ruleaction" domainObjectName="RuleAction">
+        <table schema="" tableName="ruleaction" domainObjectName="RuleAction">
 
-                        </table>
+        </table>
 
         <table schema="" tableName="alarm" domainObjectName="Alarm">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
         </table>
-         -->
+
         <table schema="" tableName="alarmvideo" domainObjectName="AlarmVideo">
 
         </table>
+
+        <table schema="" tableName="panorama" domainObjectName="Panorama">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+
+        <table schema="" tableName="panoramadevice" domainObjectName="PanoramaDevice">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+-->
 
     </context>
 </generatorConfiguration>

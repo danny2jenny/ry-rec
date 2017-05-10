@@ -22,7 +22,13 @@ Ext.define('app.controller.AdminFrame', {
         'admin.panel.NodeConfig',
         'admin.panel.ActionRule',
         'admin.panel.Actions',
-        'admin.frame.Cooperate'
+        'admin.frame.Cooperate',
+        // 全景
+        'admin.panel.Panorama',
+        'admin.panel.PanoramaGrid',
+        'admin.panel.PanoramaUpload',
+        'admin.frame.PanoramaEditor'
+
     ],
 
     stores: [
@@ -37,7 +43,9 @@ Ext.define('app.controller.AdminFrame', {
         'Actions',
         'ActionRule',
         'Nvr',
-        'NvrNode'
+        'NvrNode',
+        'Panorama',
+        'PanoramaDevice'
     ],
 
     init: function () {

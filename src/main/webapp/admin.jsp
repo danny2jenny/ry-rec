@@ -31,6 +31,12 @@
     <script type="text/javascript" src="js/stomp.js"></script>
 
 
+    <%--全景展示--%>
+    <script type="text/javascript" src="js/pannellum.js"></script>
+    <script type="text/javascript" src="js/libpannellum.js"></script>
+    <link rel="stylesheet" type="text/css" href="js/pannellum.css"/>
+
+
     <%--OpenLayers--%>
     <link rel="stylesheet" href="openlayers/ol.css" type="text/css">
     <script type="text/javascript" src="openlayers/ol-debug.js"></script>

@@ -1660,6 +1660,7 @@ window.pannellum = (function (window, document, undefined) {
             div.setAttribute("id", hs.id);
             div.onmouseenter = pView.onHotSpotEnter;
             div.onmouseleave = pView.onHotSpotLeave;
+            div.onclick = pView.onHotSpotClick;
             div.innerHTML = hs.name;
 
             var subDiv = document.createElement('div');
@@ -2690,7 +2691,7 @@ window.pannellum = (function (window, document, undefined) {
             }
             if (sceneId === undefined || config.scene == sceneId) {
                 // Add to current scene
-                createHotSpot(hs, this);
+                createHotSpot(hs, this);            // 添加参数　this
                 renderHotSpot(hs);
             }
             return this;

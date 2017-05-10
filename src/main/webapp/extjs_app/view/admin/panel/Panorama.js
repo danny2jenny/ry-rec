@@ -1,30 +1,15 @@
 /**
- * Created by danny on 17-5-2.
+ * Created by danny on 17-5-9.
  *
- * 全景展示窗口
- * https://github.com/mpetroff/pannellum
- *
- * 每个Device包含以下关键变量
- * hotspot-id
- * device-id
- * name->text
- * icon
- * type
- *
- * 通过DeviceState来更新状态图标
- *
+ * 全景编辑界面
  */
 
-Ext.define('app.view.window.Panorama', {
-    extend: 'Ext.window.Window',
-    alias: 'widget.window.panorama',
-    id: 'window.panorama',
-    width: 640,
-    height: 480,
+Ext.define('app.view.admin.panel.Panorama', {
+    extend: 'Ext.panel.Panel',
+    alias: 'widget.admin.panel.Panorama',
+    id: 'panel.panorama.editor',
     layout: 'fit',
-    maximized: true,
     html: "<div id='panorama' style='width: 100%;height: 100%'></div>",
-
     onHotSpotEnter: function (node) {
         node.currentTarget.id;
 
@@ -61,10 +46,11 @@ Ext.define('app.view.window.Panorama', {
         //     ry.panorama.ctlPanel.close();
         //     ry.panorama.ctlPanel = null;
         // }
+
+
     },
 
-    onHotSpotClick: function (node) {
-
+    onHotSpotClick: function (event) {
     },
 
     ctlPanel: null,      // 控制面板
@@ -81,7 +67,7 @@ Ext.define('app.view.window.Panorama', {
         }
     },
 
-    whenShow: function (w, o) {
+    afterRender: function (panel, eOpts) {
 
         // 关闭 GIS 的POPUP
         ry.gis.interaction.popup.hide();
@@ -96,6 +82,7 @@ Ext.define('app.view.window.Panorama', {
 
         this.panorama.onHotSpotEnter = this.onHotSpotEnter;
         this.panorama.onHotSpotLeave = this.onHotSpotLeave;
+        this.panorama.onHotSpotClick = this.onHotSpotClick;
 
 
         // 鼠标事件
@@ -105,15 +92,19 @@ Ext.define('app.view.window.Panorama', {
         }, this);
 
         // 图片加载完成后的事件
-        this.panorama.on('load', function (a, b, c) {
+        this.panorama.on('load', function () {
             ry.panorama.panorama.addHotSpot(ry.panorama.hotspots[31]);
         })
     },
 
+    onResize: function (panel, layout, eOpts) {
+        //ry.panorama.panorama.resize();
+    },
+
     initComponent: function () {
         this.callParent(arguments);
-
-        this.on('show', this.whenShow, this);
+        //this.on('render', this.afterRender, this);
+        this.on('afterlayout', this.onResize, this);
         ry.panorama = this;
     }
 });
