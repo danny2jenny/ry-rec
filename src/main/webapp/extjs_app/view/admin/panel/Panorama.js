@@ -12,12 +12,17 @@ Ext.define('app.view.admin.panel.Panorama', {
     layout: 'fit',
     html: "<div id='panorama' style='width: 100%;height: 100%'></div>",
 
+    ctlPanel: null,      // 控制面板
+
+    // 所有的热点
+    hotspots: new Ext.util.HashMap(),
+
     /**
      * 鼠标进入
-     * @param node
+     * @param event
      */
-    onHotSpotEnter: function (node) {
-        node.currentTarget.id;
+    onHotSpotEnter: function (event) {
+        event.currentTarget.id;
 
         // 首先关闭以前的面板
         if (ry.panorama.ctlPanel) {
@@ -25,7 +30,7 @@ Ext.define('app.view.admin.panel.Panorama', {
             ry.panorama.ctlPanel = null;
         }
 
-        var hotspot = ry.panorama.hotspots.get(node.currentTarget.id);
+        var hotspot = ry.panorama.hotspots.get(event.currentTarget.id);
 
         if (!hotspot) {
             return;
@@ -48,10 +53,10 @@ Ext.define('app.view.admin.panel.Panorama', {
 
     /**
      * 鼠标离开
-     * @param node
+     * @param event
      */
-    onHotSpotLeave: function (node) {
-        node.currentTarget.id
+    onHotSpotLeave: function (event) {
+        event.currentTarget.id
 
         // 首先关闭以前的面板
         if (ry.panorama.ctlPanel) {
@@ -66,18 +71,33 @@ Ext.define('app.view.admin.panel.Panorama', {
      * @param event
      */
     onHotSpotClick: function (event) {
+
+        var hotspot = ry.panorama.hotspots.get(event.currentTarget.id);
+
         switch (event.button) {
             case 0:     // 左键----执行动作
+                if (ry.devices['device_' + hotspot.type].gisClick) {
+                    ry.devices['device_' + hotspot.type].gisClick(hotspot.device);
+                }
                 break;
             case 2:     // 右键----删除
+                ry.panorama.delHotspot(hotspot);
                 break;
         }
     },
 
-    ctlPanel: null,      // 控制面板
 
-    // 所有的热点
-    hotspots: new Ext.util.HashMap(),
+    /**
+     * 删除热点
+     * @param hotspot
+     */
+    delHotspot: function (hotspot) {
+        //从界面删除
+        ry.panorama.panorama.removeHotSpot(hotspot.id);
+        //从数据库删除
+        extPanoramaDevice.delPanoramaDevices(hotspot.id);
+    },
+
 
     // 改变大小，需要重绘
     onResize: function (panel, layout, eOpts) {
@@ -128,7 +148,7 @@ Ext.define('app.view.admin.panel.Panorama', {
     },
 
     // 添加新的Hotspot
-    onNewHotspot: function (even) {
+    onNewHotspot: function (event) {
 
         if (!event.altKey) {
             return;
@@ -159,7 +179,7 @@ Ext.define('app.view.admin.panel.Panorama', {
     },
 
     /**
-     * 通过数据库记录，添加一个单一的Hotspot
+     * 通过数据库返回记录，添加一个单一的Hotspot
      */
     addHotspot: function (result) {
         var deviceStore = Ext.StoreMgr.get('Device');

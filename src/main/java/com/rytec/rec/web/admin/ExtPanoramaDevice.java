@@ -72,6 +72,7 @@ public class ExtPanoramaDevice {
 
     /**
      * 得到一个scene的device
+     *
      * @param scene
      * @return
      */
@@ -80,6 +81,11 @@ public class ExtPanoramaDevice {
         PanoramaDeviceExample panoramaDeviceExample = new PanoramaDeviceExample();
         panoramaDeviceExample.createCriteria().andSceneEqualTo(scene);
         return panoramaDeviceMapper.selectByExample(panoramaDeviceExample);
+    }
+
+    @ExtDirectMethod
+    public void delPanoramaDevices(int id) {
+        panoramaDeviceMapper.deleteByPrimaryKey(id);
     }
 
 }
