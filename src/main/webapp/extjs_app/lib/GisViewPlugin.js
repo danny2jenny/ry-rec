@@ -261,7 +261,7 @@ Ext.define('app.lib.GisViewPlugin', {
             layer.getSource().addFeatures(features);
 
             // 防止layer features 没有得到时无法添加Overlay
-            if(layerGroup.getVisible()){
+            if (layerGroup.getVisible()) {
                 me.overlay.updateDevice(this);
             }
         };
@@ -465,7 +465,7 @@ Ext.define('app.lib.GisViewPlugin', {
                 // 可能因为异步的原因，还没有得到devicesState
                 // 需要结合 newLayer.on('change:visible', function (event)
                 // 这两处都可能触发重新绘制 Overlay
-                if (!this.devicesState){
+                if (!this.devicesState) {
                     return;
                 }
 
@@ -785,31 +785,31 @@ Ext.define('app.lib.GisViewPlugin', {
                 })
             );
 
-            // 添加画线
-            me.editBar.barItems.addControl(new ol.control.Toggle(
-                {
-                    html: "<img src= 'res/gis/toolbar/Line.png' />",
-                    className: "line",
-                    title: '线',
-                    interaction: me.interaction.drawLine,
-                    onToggle: function (active) {
-                        me.setEditing();
-                    }
-                })
-            );
-
-            // 添加画面
-            me.editBar.barItems.addControl(new ol.control.Toggle(
-                {
-                    html: "<img src= 'res/gis/toolbar/Polygon.png' />",
-                    className: "polygon",
-                    title: '面',
-                    interaction: me.interaction.drawPolygon,
-                    onToggle: function (active) {
-                        me.setEditing();
-                    }
-                })
-            );
+            // // 添加画线
+            // me.editBar.barItems.addControl(new ol.control.Toggle(
+            //     {
+            //         html: "<img src= 'res/gis/toolbar/Line.png' />",
+            //         className: "line",
+            //         title: '线',
+            //         interaction: me.interaction.drawLine,
+            //         onToggle: function (active) {
+            //             me.setEditing();
+            //         }
+            //     })
+            // );
+            //
+            // // 添加画面
+            // me.editBar.barItems.addControl(new ol.control.Toggle(
+            //     {
+            //         html: "<img src= 'res/gis/toolbar/Polygon.png' />",
+            //         className: "polygon",
+            //         title: '面',
+            //         interaction: me.interaction.drawPolygon,
+            //         onToggle: function (active) {
+            //             me.setEditing();
+            //         }
+            //     })
+            // );
 
             // 添加修改
             me.editBar.barItems.addControl(new ol.control.Toggle(
@@ -929,7 +929,7 @@ Ext.define('app.lib.GisViewPlugin', {
 
             // 单击的操作
             if (ry.devices['device_' + fProperties.type].gisClick) {
-                ry.devices['device_' + fProperties.type].gisClick(fProperties);
+                ry.devices['device_' + fProperties.type].gisClick(fProperties.deviceId);
             }
 
         }, me);

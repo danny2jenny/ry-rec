@@ -9,7 +9,7 @@
 
 // 必须有
 ry.devices['device_102'] = {
-    gisClick: function () {
+    gisClick: function (device) {
 
     }
 };

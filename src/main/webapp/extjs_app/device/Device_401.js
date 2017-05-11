@@ -6,10 +6,8 @@
 
 
 ry.devices['device_401'] = {
-    gisClick: function (fProperties) {
-        var deviceId = fProperties.deviceId;
-        // 找到相应的adr和cid
-        ry.realPlayInGrid(deviceId);
+    gisClick: function (device) {
+        ry.realPlayInGrid(device);
     }
 };
 

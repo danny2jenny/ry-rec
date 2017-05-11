@@ -6,10 +6,8 @@
 
 
 ry.devices['device_9999'] = {
-    gisClick: function (fProperties) {
-        var deviceId = fProperties.deviceId;
+    gisClick: function (device) {
         debugger;
-
     }
 };
 
