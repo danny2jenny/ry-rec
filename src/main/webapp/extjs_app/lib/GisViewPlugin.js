@@ -476,13 +476,11 @@ Ext.define('app.lib.GisViewPlugin', {
                     var feature = features[i];
 
                     var deviceState = this.devicesState[feature.getProperties().deviceId];
-                    if (deviceState){
-                        var icon = deviceState.runtime.iconState;
-                        var overlay = scope.overlay.createFeatureOverlay(feature, icon, scope);
-                        scope.overlay.featureStateOverlays.add(feature.getId(), overlay);
-                        scope.map.addOverlay(overlay);
-                    }
 
+                    var icon = deviceState.runtime.iconState;
+                    var overlay = scope.overlay.createFeatureOverlay(feature, icon, scope);
+                    scope.overlay.featureStateOverlays.add(feature.getId(), overlay);
+                    scope.map.addOverlay(overlay);
                 }
 
                 // 是否需要有高亮的Device
