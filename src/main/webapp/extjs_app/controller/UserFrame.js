@@ -6,15 +6,20 @@ Ext.define('app.controller.UserFrame', {
     views: [
         'gis.GisView',
         'user.AlarmPanel',
-        'window.Panorama'
+        'window.Panorama',
+        // 全景
+        'admin.panel.Panorama'
     ],
 
     stores: [
         'GisLayer',
         'Nvr',
         'NvrNode',
+        'Device',
         'Alarm',
-        'AlarmVideo'
+        'AlarmVideo',
+        'Panorama',
+        'PanoramaDevice'
     ],
 
     init: function () {

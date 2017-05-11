@@ -151,11 +151,3 @@ ry.timeTask.start({
     run: ry.stom.keepConnectRunner,
     interval: 1000
 });
-
-ry.test = function () {
-    var a = Ext.create('app.view.window.Panorama', {});
-    a.show();
-}
-
-
-

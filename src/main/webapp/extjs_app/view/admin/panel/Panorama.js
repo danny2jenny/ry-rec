@@ -12,6 +12,7 @@ Ext.define('app.view.admin.panel.Panorama', {
     layout: 'fit',
     html: "<div id='panorama' style='width: 100%;height: 100%'></div>",
 
+    editable: true,      // 缺省可以编辑
     ctlPanel: null,      // 控制面板
 
     // 所有的热点
@@ -81,7 +82,9 @@ Ext.define('app.view.admin.panel.Panorama', {
                 }
                 break;
             case 2:     // 右键----删除
-                ry.panorama.delHotspot(hotspot);
+                if (ry.panorama.editable) {
+                    ry.panorama.delHotspot(hotspot);
+                }
                 break;
         }
     },
@@ -149,6 +152,10 @@ Ext.define('app.view.admin.panel.Panorama', {
 
     // 添加新的Hotspot
     onNewHotspot: function (event) {
+
+        if (!ry.panorama.editable){
+            return;
+        }
 
         if (!event.altKey) {
             return;

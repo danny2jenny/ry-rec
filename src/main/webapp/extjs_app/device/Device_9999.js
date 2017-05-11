@@ -7,7 +7,13 @@
 
 ry.devices['device_9999'] = {
     gisClick: function (device) {
-        debugger;
+        var pView = Ext.create('app.view.window.Panorama', {});
+        pView.show();
+        pView.items.items[0].loadPanorama(device);
+
+        var store = Ext.StoreMgr.get('Panorama');
+        var record = store.findRecord('device', device);
+        pView.setTitle("全景：" + record.get('name'));
     }
 };
 
