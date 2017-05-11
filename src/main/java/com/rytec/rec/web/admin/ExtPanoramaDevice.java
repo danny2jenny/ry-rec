@@ -49,4 +49,37 @@ public class ExtPanoramaDevice {
         panoramaDeviceMapper.deleteByPrimaryKey(panoramaDevice.getId());
         return panoramaDevice;
     }
+
+    /**
+     * 添加新的PanoramaDevice
+     *
+     * @param device
+     * @param scene
+     * @param pitch
+     * @param yaw
+     * @return
+     */
+    @ExtDirectMethod
+    public PanoramaDevice savePanoramaDevice(int device, int scene, float pitch, float yaw) {
+        PanoramaDevice panoramaDevice = new PanoramaDevice();
+        panoramaDevice.setDevice(device);
+        panoramaDevice.setScene(scene);
+        panoramaDevice.setPitch(pitch);
+        panoramaDevice.setYaw(yaw);
+        panoramaDeviceMapper.insert(panoramaDevice);
+        return panoramaDevice;
+    }
+
+    /**
+     * 得到一个scene的device
+     * @param scene
+     * @return
+     */
+    @ExtDirectMethod
+    public List<PanoramaDevice> getPanoramaDevices(int scene) {
+        PanoramaDeviceExample panoramaDeviceExample = new PanoramaDeviceExample();
+        panoramaDeviceExample.createCriteria().andSceneEqualTo(scene);
+        return panoramaDeviceMapper.selectByExample(panoramaDeviceExample);
+    }
+
 }

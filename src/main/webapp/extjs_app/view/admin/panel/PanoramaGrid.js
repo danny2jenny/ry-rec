@@ -16,6 +16,7 @@ Ext.define('app.view.admin.panel.PanoramaGrid', {
     columns: [
         {
             text: 'ID',
+            width: 60,
             dataIndex: 'id'
         },
         {
@@ -25,7 +26,15 @@ Ext.define('app.view.admin.panel.PanoramaGrid', {
             editor: {
                 allowBlank: false
             }
-        }],
+        }, {
+            text: '设备',
+            dataIndex: 'device',
+            width: 60,
+            editor: {
+                allowBlank: false
+            }
+        }
+    ],
 
     plugins: [{
         ptype: 'grid.editing',

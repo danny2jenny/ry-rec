@@ -26,7 +26,8 @@ Ext.define('app.view.admin.panel.PanoramaUpload', {
     buttons: [
         {
             text: "新建场景",
-
+            itemId: "btn_new",
+            disabled: true,
             handler: function () {
 
                 var form = this.up('form').getForm();
@@ -36,6 +37,7 @@ Ext.define('app.view.admin.panel.PanoramaUpload', {
                         // 上传的附加参数
                         params: {
                             scene: 0,
+                            device: this.ownerCt.ownerCt.deviceId,
                             replace: false
                         },
                         success: function (form, action) {
@@ -60,6 +62,7 @@ Ext.define('app.view.admin.panel.PanoramaUpload', {
                         // 上传的附加参数
                         params: {
                             scene: this.ownerCt.ownerCt.sceneId,
+                            device: this.ownerCt.ownerCt.deviceId,
                             replace: true
                         }
                     });

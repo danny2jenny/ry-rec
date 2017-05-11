@@ -9,6 +9,7 @@ Ext.define('app.model.Panorama', {
         {name: 'id'},
         {name: 'name'},
         {name: 'file'},
+        {name: 'device'}
     ]
 
 });

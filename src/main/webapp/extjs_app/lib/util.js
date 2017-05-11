@@ -103,6 +103,7 @@ ry.stom.onMsg = function (msg) {
             var deviceId = msg.device;
             // 更新GIS中Device的状态
             ry.gis.updateDeviceState(msg);
+            ry.panorama.updateDeviceState(msg);
             break;
         case ry.CONST.MSG_TYPE.NODE_STATE:           // Node 消息
 
@@ -150,6 +151,11 @@ ry.timeTask.start({
     run: ry.stom.keepConnectRunner,
     interval: 1000
 });
+
+ry.test = function () {
+    var a = Ext.create('app.view.window.Panorama', {});
+    a.show();
+}
 
 
 

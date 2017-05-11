@@ -127,6 +127,7 @@ public class UploadService {
             @RequestParam("sceneName") String name,
             @RequestParam("fileUpload") MultipartFile upFile,
             @RequestParam("scene") Integer scene,
+            @RequestParam("device") Integer device,
             @RequestParam("replace") Boolean replace) throws IOException {
 
         ExtDirectFormPostResult resp = new ExtDirectFormPostResult(true);
@@ -157,8 +158,10 @@ public class UploadService {
             //首先写入数据库
             panorama = new Panorama();
             panorama.setName(name);
+            panorama.setDevice(device);
             panoramaMapper.insert(panorama);
         }
+
 
         //得到文件名和扩展名
         String srcFileName = upFile.getOriginalFilename();

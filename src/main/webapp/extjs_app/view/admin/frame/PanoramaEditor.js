@@ -32,13 +32,28 @@ Ext.define('app.view.admin.frame.PanoramaEditor', {
             ]
         }],
 
-    // 所属的Grid的选择事件
-    onSelectChange: function (view, selections, options) {
+    // Panorama Grid的选择事件
+    onPanoramaSelectChange: function (view, selections, options) {
         if (selections.length) {
             this.sceneId = selections[0].data.id;
             this.down('#btn_replace').enable();
+
+            // 加载场景
+            var panorama = Ext.getCmp('panel.panorama.editor');
+            ry.panorama.loadPanorama(selections[0].get('device'));
         } else {
             this.down('#btn_replace').disable();
+        }
+    },
+
+    // device 选择事件
+    onDeviceSelectChange: function (view, selections, options) {
+        if (selections[0].data.type == 9999) {
+            this.down('#btn_new').enable();
+            this.deviceId = selections[0].data.id;
+        } else {
+            this.down('#btn_new').disable();
+            this.deviceId = 0;
         }
     },
 
@@ -47,7 +62,11 @@ Ext.define('app.view.admin.frame.PanoramaEditor', {
 
         var panorama_list = this.down('#grid_panoramagrid');
         var form_upload = this.down('#admin_panel_panoramaupload');
+        panorama_list.on('selectionchange', this.onPanoramaSelectChange, form_upload);
 
-        panorama_list.on('selectionchange', this.onSelectChange, form_upload);
+        // device grid 选择事件
+        var device_grid = Ext.getCmp('admin.device.grid');
+
+        device_grid.on('selectionchange', this.onDeviceSelectChange, form_upload);
     }
 });
