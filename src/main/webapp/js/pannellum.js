@@ -1650,7 +1650,7 @@ window.pannellum = (function (window, document, undefined) {
 
             // 添加图标
             div.style.backgroundImage = "url(" + ry.getDeviceStateIcon(hs.icon, 11) + ")";
-            div.setAttribute("style", "height:16px;background-image: url("
+            div.setAttribute("style", "height:16px; width:auto; background-image: url("
                 + ry.getDeviceStateIcon(hs.icon, 11)
                 + "); background-position:left top;"        // 背景图片
                 + "background-repeat:no-repeat;"
@@ -1660,7 +1660,7 @@ window.pannellum = (function (window, document, undefined) {
             div.setAttribute("id", hs.id);
             div.onmouseenter = pView.onHotSpotEnter;
             div.onmouseleave = pView.onHotSpotLeave;
-            div.onclick = pView.onHotSpotClick;
+            div.onmouseup = pView.onHotSpotClick;
             div.innerHTML = hs.name;
 
             var subDiv = document.createElement('div');
@@ -1674,10 +1674,11 @@ window.pannellum = (function (window, document, undefined) {
                 + "font-family: helvetica, arial, verdana, sans-serif;"
                 + "text-shadow:0px 0px white");
 
+
             // ---------------------------------------------
             var span = document.createElement('span');
             if (hs.text)
-                span.innerHTML = escapeHTML(hs.text);
+                span.innerHTML = hs.name;
 
             var a;
             if (hs.video) {
