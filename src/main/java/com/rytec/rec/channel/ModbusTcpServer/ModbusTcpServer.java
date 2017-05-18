@@ -240,7 +240,7 @@ public class ModbusTcpServer implements ChannelInterface, ManageableInterface {
      *
      * @param channelId
      */
-    public void channelOnline(String channelId, boolean online) {
+    public void channelOnline(Object channelId, boolean online) {
         HashMap<Integer, ChannelNode> channelNodeMap = channelNodes.get(channelId);
         if (channelNodeMap == null) {
             return;

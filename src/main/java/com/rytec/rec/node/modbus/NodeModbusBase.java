@@ -11,6 +11,7 @@ import com.rytec.rec.node.NodeRuntimeBean;
 import com.rytec.rec.node.base.BaseNode;
 import com.rytec.rec.util.ConstantCommandType;
 import com.rytec.rec.util.ConstantErrorCode;
+import com.rytec.rec.util.ConstantFromWhere;
 import com.rytec.rec.util.ConstantModbusCommand;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
@@ -218,7 +219,36 @@ public abstract class NodeModbusBase extends BaseNode {
 
     }
 
+    /**
+     * 一个Modbus设备的健康状况
+     *
+     * @param msg ModbusMessage
+     * @param h
+     */
     public void goodHelth(Object msg, boolean h) {
+
+        if (h) {
+            return;
+        }
+
+        ModbusMessage modbusMessage = (ModbusMessage) msg;
+        // 得到Node的Channel
+        NodeRuntimeBean nodeRunTime = nodeManager.getChannelNodeByNodeId(modbusMessage.nodeId);
+        // 得到所有Channel下的Node
+        HashMap<Integer, ChannelNode> channelNodes = (HashMap<Integer, ChannelNode>) channelManager.channelNodes.get(nodeRunTime.channelNode.getId());
+
+        NodeMessage nodeMessage = new NodeMessage();
+        nodeMessage.from = ConstantFromWhere.FROM_SYSTEM;
+        nodeMessage.value = null;
+
+        // 该地址下的所有Node
+        for (ChannelNode node : channelNodes.values()) {
+            if ((nodeRunTime.channelNode.getAdr().intValue() == node.getAdr().intValue()) &&
+                    (nodeRunTime.channelNode.getNtype().intValue() == node.getNtype().intValue())) {
+                nodeMessage.node = node.getNid();
+                nodeManager.onMessage(nodeMessage);
+            }
+        }
 
     }
 

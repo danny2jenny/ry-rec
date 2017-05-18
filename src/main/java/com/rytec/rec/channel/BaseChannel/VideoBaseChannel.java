@@ -15,4 +15,8 @@ public class VideoBaseChannel implements ChannelInterface {
     public int sendMsg(Object msg) {
         return videoService.ptzControl(msg);
     }
+
+    public void channelOnline(Object channelId, boolean online){
+
+    }
 }

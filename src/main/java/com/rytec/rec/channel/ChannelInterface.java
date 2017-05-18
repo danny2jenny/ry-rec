@@ -16,4 +16,6 @@ import com.rytec.rec.app.ManageableInterface;
 
 public interface ChannelInterface {
     int sendMsg(Object msg);
+
+    void channelOnline(Object channelId, boolean online);
 }
