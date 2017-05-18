@@ -250,9 +250,8 @@ public class ModbusTcpServer implements ChannelInterface, ManageableInterface {
             ChannelNode cn = (ChannelNode) channelNodeMap.values().toArray()[0];
 
             if (online) {
-                channelManager.channelOnline(cn.getId(), true);
             } else {
-                channelManager.channelOnline(cn.getId(), false);
+                channelManager.channelOffline(cn.getId());
             }
 
         }

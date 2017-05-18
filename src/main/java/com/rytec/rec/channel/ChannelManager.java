@@ -108,10 +108,9 @@ public class ChannelManager implements ManageableInterface {
      *
      * @param cid
      */
-    public void channelOnline(int cid, boolean online) {
+    public void channelOffline(int cid) {
         // todo: 向消息中心发送通知
 
-        // 更新该Channel上的每一个节点的数据
         NodeMessage nodeMessage = new NodeMessage();
         nodeMessage.from = ConstantFromWhere.FROM_SYSTEM;
         nodeMessage.value = null;
@@ -120,6 +119,7 @@ public class ChannelManager implements ManageableInterface {
             nodeMessage.node = cn.getNid();
             nodeManager.onMessage(nodeMessage);
         }
+
     }
 
 }

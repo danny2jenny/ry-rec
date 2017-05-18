@@ -16,7 +16,13 @@ public class VideoBaseChannel implements ChannelInterface {
         return videoService.ptzControl(msg);
     }
 
-    public void channelOnline(Object channelId, boolean online){
+    /**
+     * 在VideoService中处理了，这里不用处理
+     *
+     * @param channelId Integer
+     * @param online
+     */
+    public void channelOnline(Object channelId, boolean online) {
 
     }
 }

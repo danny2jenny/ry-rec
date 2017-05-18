@@ -94,6 +94,8 @@ public class AbstractOperator {
 
         if (newValue == null) {
             deviceRuntimeBean.runtime.iconState = ConstantDeviceState.STATE_OFFLINE;
+        } else {
+            deviceRuntimeBean.runtime.iconState = ConstantDeviceState.STATE_NORMAL;
         }
 
         clientBroadcast(ConstantMessageType.DEVICE_STATE, deviceRuntimeBean);

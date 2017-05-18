@@ -1,8 +1,10 @@
 package com.rytec.rec.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rytec.rec.app.ManageableInterface;
+import com.rytec.rec.channel.ChannelManager;
 import com.rytec.rec.db.DbConfig;
 import com.rytec.rec.db.model.Channel;
 import com.rytec.rec.db.model.ChannelNode;
@@ -10,6 +12,7 @@ import com.rytec.rec.messenger.Message.MqttMessage;
 import com.rytec.rec.messenger.MqttService;
 import com.rytec.rec.node.NodeManager;
 import com.rytec.rec.node.NodeMessage;
+import com.rytec.rec.util.ConstantFromWhere;
 import com.rytec.rec.util.ConstantVideo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
@@ -36,6 +39,9 @@ public class VideoService implements ManageableInterface {
 
     @Autowired
     public NodeManager nodeManager;
+
+    @Autowired
+    ChannelManager channelManager;
 
     private MqttService mqttService;
 
@@ -99,11 +105,11 @@ public class VideoService implements ManageableInterface {
         payload.nvr = channelNode.getId();
         payload.channel = channelNode.getAdr();
 
-        if (sendMsg.value instanceof String){
+        if (sendMsg.value instanceof String) {
             payload.ptz = Integer.parseInt((String) sendMsg.value);
         }
 
-        if (sendMsg.value instanceof Integer){
+        if (sendMsg.value instanceof Integer) {
             payload.ptz = (Integer) sendMsg.value;
         }
 
@@ -123,17 +129,37 @@ public class VideoService implements ManageableInterface {
      * 收到VideoServie的消息
      */
     public void onVideoMessage(String str) {
-        MqttMessage msg;
+        int cmd = 0;
+        JsonNode jsonNode;
         try {
-            msg = objectMapper.readValue(str, MqttMessage.class);
+            jsonNode = objectMapper.readValue(str, JsonNode.class);
+            cmd = jsonNode.path("cmd").asInt();
         } catch (IOException e) {
             return;
         }
 
-        switch (msg.cmd) {
+        switch (cmd) {
             // 请求初始化
             case ConstantVideo.VIDEO_INIT_REQUEST:
                 sendVideoServiceConfig();
+                break;
+            case ConstantVideo.VIDEO_CHANNEL_ONLINE:
+                int channel = jsonNode.path("channel").asInt();
+                boolean online = jsonNode.path("online").asBoolean();
+
+                if (online) {
+                    NodeMessage nodeMessage = new NodeMessage();
+                    nodeMessage.from = ConstantFromWhere.FROM_SYSTEM;
+                    nodeMessage.value = 1;
+                    HashMap<Integer, ChannelNode> channelNodeMap = channelManager.channelNodes.get(channel);
+                    for (ChannelNode cn : channelNodeMap.values()) {
+                        nodeMessage.node = cn.getNid();
+                        nodeManager.onMessage(nodeMessage);
+                    }
+                } else {
+                    channelManager.channelOffline(channel);
+                }
+                break;
         }
     }
 

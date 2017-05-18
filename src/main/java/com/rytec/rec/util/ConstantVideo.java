@@ -14,6 +14,8 @@ public interface ConstantVideo {
     int VIDEO_INIT_REQUEST = 101;
     int VIDEO_INIT_INFO = 102;
 
+    int VIDEO_CHANNEL_ONLINE = 201;
+
 
     int PTZ_SET_PRESET = 1;     //设置
     int PTZ_CLE_PRESET = 2;     //清除
