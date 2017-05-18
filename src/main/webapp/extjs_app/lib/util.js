@@ -103,7 +103,9 @@ ry.stom.onMsg = function (msg) {
             var deviceId = msg.device;
             // 更新GIS中Device的状态
             ry.gis.updateDeviceState(msg);
-            ry.panorama.updateDeviceState(msg);
+            if (ry.panorama) {
+                ry.panorama.updateDeviceState(msg);
+            }
             break;
         case ry.CONST.MSG_TYPE.NODE_STATE:           // Node 消息
 

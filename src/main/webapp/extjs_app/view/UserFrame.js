@@ -14,7 +14,7 @@ Ext.define('app.view.UserFrame', {
         // 中间的 TabPanel
         {
             region: 'center',
-            xtype: 'tabpanel',
+            xtype: 'panel',
             id: 'centerPanel',
             margins: '0 0 0 0',
             layout: 'fit',
@@ -26,8 +26,8 @@ Ext.define('app.view.UserFrame', {
             items: [
                 {
                     xtype: 'panel',
-                    icon: 'res/toolbar/gis.png',
-                    title: '地图浏览',
+                    //icon: 'res/toolbar/gis.png',
+                    //title: '地图浏览',
                     layout: 'border',
                     items: [
                         {

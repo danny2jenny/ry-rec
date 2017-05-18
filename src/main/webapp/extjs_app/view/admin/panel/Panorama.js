@@ -190,16 +190,16 @@ Ext.define('app.view.admin.panel.Panorama', {
      */
     addHotspot: function (result) {
         var deviceStore = Ext.StoreMgr.get('Device');
-        var device = deviceStore.getById(result.device);
+        var device = ry.gis.overlay.devicesState[result.device].device;
 
         var hotspot = {};
         hotspot.id = result.id;
         hotspot.device = result.device;
         hotspot.pitch = result.pitch;
         hotspot.yaw = result.yaw;
-        hotspot.icon = device.data.icon;
-        hotspot.name = device.data.name;
-        hotspot.type = device.data.type;
+        hotspot.icon = device.icon;
+        hotspot.name = device.name;
+        hotspot.type = device.type;
 
         ry.panorama.hotspots.add(hotspot.id, hotspot);
         ry.panorama.panorama.addHotSpot(hotspot);

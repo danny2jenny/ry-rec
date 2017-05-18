@@ -47,9 +47,18 @@ public class Analog extends AbstractOperator {
 
         // 得到运行状态
         DeviceRuntimeBean deviceRuntimeBean = deviceManager.deviceRuntimeList.get(deviceId);
+        deviceRuntimeBean.runtime.state = newValue;
+
+        // 处理掉线
+        if (newValue == null) {
+            deviceRuntimeBean.runtime.iconState = ConstantDeviceState.STATE_OFFLINE;
+            // 向客户端广播消息
+            clientBroadcast(ConstantMessageType.DEVICE_STATE, deviceRuntimeBean);
+            return;
+        }
 
         deviceRuntimeBean.runtime.iconState = ConstantDeviceState.STATE_ON;
-        deviceRuntimeBean.runtime.state = newValue;
+
 
         // 判断当前的值是否需要发送信号
         AnalogConfig config = (AnalogConfig) getConfig(deviceId);

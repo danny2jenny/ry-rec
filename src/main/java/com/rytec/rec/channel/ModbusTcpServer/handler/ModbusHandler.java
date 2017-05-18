@@ -2,8 +2,8 @@ package com.rytec.rec.channel.ModbusTcpServer.handler;
 
 import com.rytec.rec.channel.ModbusTcpServer.ModbusChannelSession;
 import com.rytec.rec.channel.ModbusTcpServer.ModbusCommon;
+import com.rytec.rec.channel.ModbusTcpServer.ModbusMessage;
 import com.rytec.rec.channel.ModbusTcpServer.ModbusTcpServer;
-import com.rytec.rec.channel.ChannelMessage;
 import com.rytec.rec.util.ConstantFromWhere;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
@@ -18,7 +18,7 @@ import java.net.InetSocketAddress;
  * <p>
  * 所有收到的Modbus帧在这里进行处理
  */
-public class ModbusHandler extends SimpleChannelInboundHandler<ChannelMessage> {
+public class ModbusHandler extends SimpleChannelInboundHandler<ModbusMessage> {
 
     private final org.slf4j.Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -30,28 +30,6 @@ public class ModbusHandler extends SimpleChannelInboundHandler<ChannelMessage> {
     }
 
     /**
-     * 连接建立
-     *
-     * @param ctx
-     */
-    @Override
-    public void channelActive(ChannelHandlerContext ctx) {
-
-
-    }
-
-    /**
-     * 连接断开
-     *
-     * @param ctx
-     * @throws Exception
-     */
-    @Override
-    public void channelInactive(ChannelHandlerContext ctx) throws Exception {
-        modbusTcpServer.clients.remove(ctx.channel().attr(ModbusCommon.MODBUS_STATE).get().id);
-    }
-
-    /**
      * 读取消息
      *
      * @param ctx
@@ -59,7 +37,7 @@ public class ModbusHandler extends SimpleChannelInboundHandler<ChannelMessage> {
      * @throws Exception
      */
     @Override
-    protected void channelRead0(ChannelHandlerContext ctx, ChannelMessage response) throws Exception {
+    protected void channelRead0(ChannelHandlerContext ctx, ModbusMessage response) throws Exception {
 
         // 得到当前通道对应的Session
         ModbusChannelSession modbusChannelSession = ctx.channel().attr(ModbusCommon.MODBUS_STATE).get();
@@ -73,10 +51,9 @@ public class ModbusHandler extends SimpleChannelInboundHandler<ChannelMessage> {
                 InetSocketAddress ip = (InetSocketAddress) ctx.channel().remoteAddress();
                 String modbusId = ip.getHostName() + ':' + ((ByteBuf) response.payload).readByte();
 
-                logger.debug("客户端连接：" + modbusId);
-
                 //建立外部通过ip:port可以访问Channel的接口
                 modbusTcpServer.clients.put(modbusId, ctx.channel());
+                modbusTcpServer.channelOnline(modbusId, true);
 
                 //设置Channel的Session
                 modbusChannelSession = new ModbusChannelSession(modbusTcpServer, modbusId, ctx.channel());
@@ -126,6 +103,34 @@ public class ModbusHandler extends SimpleChannelInboundHandler<ChannelMessage> {
             ctx.close();
             logger.debug("无效的连接！！！！！！！！！！！！");
         }
+    }
+
+    /**
+     * 连接建立
+     *
+     * @param ctx
+     */
+    @Override
+    public void channelActive(ChannelHandlerContext ctx) {
+
+
+    }
+
+    /**
+     * 连接断开
+     *
+     * @param ctx
+     * @throws Exception
+     */
+    @Override
+    public void channelInactive(ChannelHandlerContext ctx) throws Exception {
+        ModbusChannelSession session = ctx.channel().attr(ModbusCommon.MODBUS_STATE).get();
+
+        if (session != null) {
+            modbusTcpServer.clients.remove(session.id);
+            modbusTcpServer.channelOnline(session.id, false);
+        }
+
     }
 
 }

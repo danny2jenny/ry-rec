@@ -11,9 +11,12 @@ package com.rytec.rec.node;
 import com.rytec.rec.app.ManageableInterface;
 import com.rytec.rec.db.DbConfig;
 import com.rytec.rec.db.model.ChannelNode;
+import com.rytec.rec.db.model.DeviceNode;
 import com.rytec.rec.device.DeviceManager;
+import com.rytec.rec.node.base.BaseNode;
 import com.rytec.rec.util.ConstantCommandType;
 import com.rytec.rec.util.AnnotationNodeType;
+import com.rytec.rec.util.ConstantErrorCode;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -75,7 +78,7 @@ public class NodeManager implements ManageableInterface {
 
         for (ChannelNode cn : channelNodes) {
             // 给 ChannelNode 的运行数据初始化
-            NodeRuntimeBean nodeRuntimeBean = new NodeRuntimeBean();
+            NodeRuntimeBean nodeRuntimeBean = new NodeRuntimeBean(this.nodeComList.get(cn.getNtype()));
             nodeRuntimeBean.channelNode = cn;                                      //ChannelNode
             nodeRuntimeBean.nodeState = new NodeState();                           //Node的状态
             nodeRuntimeBean.nodeConfig = BaseNode.parseConfig(cn.getNodeconf());   //Node的配置
@@ -85,8 +88,8 @@ public class NodeManager implements ManageableInterface {
 
     @PostConstruct
     private void init() {
-        initConfig();
         initNodeInterface();
+        initConfig();
     }
 
 
@@ -110,10 +113,9 @@ public class NodeManager implements ManageableInterface {
         NodeInterface nodeInterface = getNodeComInterface(nodeRuntimeBean.channelNode.getNtype());
 
         // 判断数据是否需要更新
-        if (nodeInterface.valueCompare(nodeRuntimeBean.nodeConfig, oldValue, msg.value)) {
+        if (nodeInterface.needUpdate(nodeRuntimeBean.nodeConfig, oldValue, msg.value)) {
             // 数据需要更新
             nodeState.value = msg.value;
-            logger.debug("Node:" + msg.node + ':' + oldValue + ':' + msg.value);
             // Device 可能指针为空
             Integer deviceId = nodeRuntimeBean.channelNode.getDevice();
             if (deviceId == null) {
@@ -123,6 +125,25 @@ public class NodeManager implements ManageableInterface {
         } else {
             // 数据不需要更新
         }
+    }
+
+    public int sendMsg(DeviceNode node, NodeMessage msg) {
+        int rst;
+        if (node == null) {
+            rst = ConstantErrorCode.DEVICE_FUN_NOT_CONFIG;
+        } else {
+            // 填充NodeID
+            msg.node = node.getNid();
+            // todo: 这里应该由 nodeManager来发送消息
+            NodeInterface nodeCom = getNodeComInterface(node.getNtype());
+            if (nodeCom == null) {
+                rst = ConstantErrorCode.NODE_TYPE_NOTEXIST;
+            } else {
+                rst = nodeCom.sendMessage(msg);
+            }
+        }
+
+        return rst;
     }
 
     public NodeRuntimeBean getChannelNodeByNodeId(int nodeId) {

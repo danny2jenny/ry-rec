@@ -79,6 +79,26 @@ public class Output extends AbstractOperator {
         // Output 的State对象
         OutputState state = (OutputState) deviceRuntimeBean.runtime.state;
 
+        // 处理掉线
+        // 处理掉线
+        if (newValue == null) {
+
+            switch (fun) {
+                case ConstantDeviceFunction.DEV_FUN_PORT_MAIN:
+                    deviceRuntimeBean.runtime.iconState = ConstantDeviceState.STATE_OFFLINE;
+                    state.output = null;
+                    break;
+                case ConstantDeviceFunction.DEV_FUN_PORT_RMOT:
+                    state.remote = null;
+                    break;
+                case ConstantDeviceFunction.DEV_FUN_PORT_FEDBK:
+                    state.feedback = null;
+                    break;
+            }
+            clientBroadcast(ConstantMessageType.DEVICE_STATE, deviceRuntimeBean);
+            return;
+        }
+
         // 根据fun对状态进行更新
         switch (fun) {
             case ConstantDeviceFunction.DEV_FUN_PORT_MAIN:

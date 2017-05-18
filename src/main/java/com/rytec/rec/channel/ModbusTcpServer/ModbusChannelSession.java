@@ -1,12 +1,11 @@
 package com.rytec.rec.channel.ModbusTcpServer;
 
-import com.rytec.rec.channel.ChannelMessage;
 import com.rytec.rec.db.model.ChannelNode;
 import com.rytec.rec.node.NodeInterface;
+import com.rytec.rec.node.NodeRuntimeBean;
 import com.rytec.rec.util.ConstantCommandType;
 import com.rytec.rec.util.ConstantFromWhere;
 import io.netty.channel.Channel;
-import io.netty.channel.ChannelHandlerContext;
 import org.slf4j.LoggerFactory;
 
 import java.util.*;
@@ -34,7 +33,7 @@ public class ModbusChannelSession {
     // ***********************以下变量需要同步**************************
     // 读取不需要锁定，写需要锁定
     // 最后一次发送的命令
-    private volatile ChannelMessage lastOutMsg = null;
+    private volatile ModbusMessage lastOutMsg = null;
     // 当前定时队列的位置
     private volatile int currentTimerQuerryIndex = 0;
     // 当前超时的计数
@@ -45,14 +44,14 @@ public class ModbusChannelSession {
 
     // 非定时队列的发送命令(用户，或者是联动)
     // 可能多线程访问
-    private Queue<ChannelMessage> instantQueueCmd = new ConcurrentLinkedQueue();
+    private Queue<ModbusMessage> instantQueueCmd = new ConcurrentLinkedQueue();
 
     // 需要定时发送的队列命令
-    // "nodeType:adr" -> ChannelMessage
-    private volatile HashMap<String, ChannelMessage> timerQueryList = new HashMap();
+    // "nodeType:adr" -> ModbusMessage
+    private volatile HashMap<String, ModbusMessage> timerQueryList = new HashMap();
     private volatile List<String> timerQueryListIndex = new ArrayList();
 
-    public ChannelMessage getLastOutMsg() {
+    public ModbusMessage getLastOutMsg() {
         return lastOutMsg;
     }
 
@@ -83,7 +82,7 @@ public class ModbusChannelSession {
          * 可能该通道没有被配置 cha 可能为空
          */
 
-        if (cha==null){
+        if (cha == null) {
             return;
         }
         for (ChannelNode cn : cha.values()) {
@@ -96,7 +95,7 @@ public class ModbusChannelSession {
                 String key = "" + cn.getNtype() + ':' + cn.getAdr();
                 if (timerQueryList.get(key) == null) {
                     timerQueryListIndex.add(key);
-                    ChannelMessage msg = node.genMessage(ConstantFromWhere.FROM_TIMER, cn.getNid(), ConstantCommandType.GENERAL_READ, 0);
+                    ModbusMessage msg = (ModbusMessage) node.genMessage(ConstantFromWhere.FROM_TIMER, cn.getNid(), ConstantCommandType.GENERAL_READ, 0);
                     timerQueryList.put(key, msg);
                 }
             }
@@ -108,11 +107,11 @@ public class ModbusChannelSession {
      * 得到下一个的查询命令
      */
 
-    private ChannelMessage getNextQuery() {
+    private ModbusMessage getNextQuery() {
         if (timerQueryList.size() == 0) {
             return null;
         }
-        ChannelMessage msg = timerQueryList.get(timerQueryListIndex.get(currentTimerQuerryIndex));
+        ModbusMessage msg = (ModbusMessage) timerQueryList.get(timerQueryListIndex.get(currentTimerQuerryIndex));
         currentTimerQuerryIndex = (currentTimerQuerryIndex + 1) % timerQueryList.size();
         return msg;
     }
@@ -123,7 +122,7 @@ public class ModbusChannelSession {
      *
      * @param msg
      */
-    public void sendMsg(ChannelMessage msg) {
+    public void sendMsg(ModbusMessage msg) {
         instantQueueCmd.add(msg);
         timerProcess();
     }
@@ -132,7 +131,7 @@ public class ModbusChannelSession {
      * 检查超时
      */
     public void checkOverTime() {
-        //logger.debug("超时：" + timer + ':' + lastOutMsg.nodeId);
+        logger.debug("超时：" + timer + ':' + lastOutMsg.nodeId);
         timer = 0;
         lastOutMsg = null;
         //todo: 超时处理
@@ -147,7 +146,7 @@ public class ModbusChannelSession {
         // 如果有未返回的命令，检查超时
         if (lastOutMsg != null) {
             timer++;
-            if (timer > 4) {
+            if (timer > 10) {
                 //超时处理
                 checkOverTime();
             } else {
@@ -184,6 +183,16 @@ public class ModbusChannelSession {
         if (lastOutMsg != null) {
             channel.writeAndFlush(lastOutMsg);
         }
+    }
+
+    /**
+     * 更新健康度
+     *
+     * @param h
+     */
+    public void goodHelth(ModbusMessage msg, Boolean h) {
+        NodeRuntimeBean nodeRuntimeBean = modbusTcpServer.nodeManager.getChannelNodeByNodeId(msg.nodeId);
+        nodeRuntimeBean.goodHelth(msg, h);
     }
 
 }

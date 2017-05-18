@@ -34,7 +34,11 @@ import java.util.Map;
  */
 
 @Controller
-public class JSConfig implements ConstantDeviceFunction, ConstantDeviceState, ConstantErrorCode, ConstantMessageType {
+public class JSConfig implements
+        ConstantDeviceFunction,
+        ConstantDeviceState,
+        ConstantErrorCode,
+        ConstantMessageType {
 
     private final org.slf4j.Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -74,7 +78,6 @@ public class JSConfig implements ConstantDeviceFunction, ConstantDeviceState, Co
             HashMap<String, Integer> jsValues = new HashMap<>();
             try {
                 for (Field field : constant.getDeclaredFields()) {
-                    // todo: 最好生成常量名
                     String name = field.getName();
                     int value = field.getInt(null);
                     jsHash.put(value, field.getAnnotation(AnnotationJSExport.class).value());

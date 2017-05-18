@@ -15,7 +15,6 @@ Ext.define('app.controller.UserFrame', {
         'GisLayer',
         'Nvr',
         'NvrNode',
-        'Device',
         'Alarm',
         'AlarmVideo',
         'Panorama',

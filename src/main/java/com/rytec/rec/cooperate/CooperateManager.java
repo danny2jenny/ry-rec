@@ -80,8 +80,6 @@ public class CooperateManager implements ManageableInterface {
      */
     public int onSignal(int deviceId, int sig, Object parm) {
 
-        logger.debug("收到信号：" + deviceId + ":" + sig);
-
         String raId = "" + deviceId + ':' + sig;
         List<RuleAction> actions = mapRules.get(raId);
         if (actions == null) {

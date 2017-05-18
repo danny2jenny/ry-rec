@@ -8,7 +8,7 @@ package com.rytec.rec.channel.ModbusTcpServer;
 
 import com.rytec.rec.app.ManageableInterface;
 import com.rytec.rec.channel.ChannelInterface;
-import com.rytec.rec.channel.ChannelMessage;
+import com.rytec.rec.channel.ChannelManager;
 import com.rytec.rec.channel.ModbusTcpServer.handler.ModbusChannelInitializer;
 import com.rytec.rec.db.DbConfig;
 import com.rytec.rec.db.model.ChannelNode;
@@ -46,6 +46,12 @@ public class ModbusTcpServer implements ChannelInterface, ManageableInterface {
 
     private final org.slf4j.Logger logger = LoggerFactory.getLogger(this.getClass());
 
+    @Autowired
+    private DbConfig dbConfig;
+
+    @Autowired
+    ChannelManager channelManager;
+
     //端口配置
     @Value("${tcp.server.modbus.port}")
     private int port;
@@ -55,7 +61,15 @@ public class ModbusTcpServer implements ChannelInterface, ManageableInterface {
     private Channel parentChannel;
 
     // 对应的客户端连接列表
+    // ip:port->Channel
     public final ConcurrentHashMap<String, Channel> clients = new ConcurrentHashMap<>();
+
+    /*
+    * 两级 HashMap
+    * 第一级：ip:port->Map
+    * 第二级：nodeId->ChannelNode
+    */
+    public HashMap<String, HashMap> channelNodes = new HashMap();
 
     // 建立服务器
     @PostConstruct
@@ -114,10 +128,6 @@ public class ModbusTcpServer implements ChannelInterface, ManageableInterface {
 
     //----------------------------------对通道的初始化-----------------------------
 
-    @Autowired
-    private DbConfig dbConfig;
-
-    public HashMap<String, HashMap> channelNodes = new HashMap();
 
     /*
     * 初始化对应的HashMap
@@ -186,7 +196,7 @@ public class ModbusTcpServer implements ChannelInterface, ManageableInterface {
      * @param chaId    ip:port 的形式
      * @param response 回应消息
      */
-    public void receiveMsg(String chaId, ChannelMessage response) {
+    public void receiveMsg(String chaId, ModbusMessage response) {
 
         ChannelNode cn = (ChannelNode) channelNodes.get(chaId).get(response.nodeId);
         NodeInterface nodeBean = nodeManager.getNodeComInterface(cn.getNtype());
@@ -203,14 +213,14 @@ public class ModbusTcpServer implements ChannelInterface, ManageableInterface {
      */
     public int sendMsg(Object msg) {
         int rst = 0;
-        ChannelNode channelNode = nodeManager.getChannelNodeByNodeId(((ChannelMessage) msg).nodeId).channelNode;
+        ChannelNode channelNode = nodeManager.getChannelNodeByNodeId(((ModbusMessage) msg).nodeId).channelNode;
         String channelId = channelNode.getIp() + ':' + channelNode.getPort();
         Channel channel = clients.get(channelId);
         if (channel == null) {
             return ConstantErrorCode.CHA_NOT_CONNECT;
         } else {
             ModbusChannelSession modbusChannelSession = channel.attr(ModbusCommon.MODBUS_STATE).get();
-            modbusChannelSession.sendMsg((ChannelMessage)msg);
+            modbusChannelSession.sendMsg((ModbusMessage) msg);
         }
         return rst;
     }
@@ -222,5 +232,29 @@ public class ModbusTcpServer implements ChannelInterface, ManageableInterface {
 
     public void start() {
         startServer();
+    }
+
+
+    /**
+     * 通道连接
+     *
+     * @param channelId
+     */
+    public void channelOnline(String channelId, boolean online) {
+        HashMap<Integer, ChannelNode> channelNodeMap = channelNodes.get(channelId);
+        if (channelNodeMap == null) {
+            return;
+        }
+
+        if (channelNodeMap.values().size() > 0) {
+            ChannelNode cn = (ChannelNode) channelNodeMap.values().toArray()[0];
+
+            if (online) {
+                channelManager.channelOnline(cn.getId(), true);
+            } else {
+                channelManager.channelOnline(cn.getId(), false);
+            }
+
+        }
     }
 }

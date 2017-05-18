@@ -57,13 +57,6 @@ Ext.define('app.view.admin.frame.DeviceNodeGrid', {
         /*
          * 当 NodeForChannel 拖放到DeviceGrid这个Panel中的时候
          * 以 NodeForChannel 的名字来建立一个Device记录
-         * todo：这个地方存在一个死循环？？？ 可能的原因，
-         * 1、Device表刷新后，在plugin中会刷新NodeForDevice
-         * 2、NodeForDevice刷新后，会刷新NodeForChannel《就在这里》
-         * 3、NodeForChannel刷新后，会通过刷新NodeForDevice《ChannelNode》
-         *
-         * 2、3 循环  《不是这个原因》
-         * todo： 错误没有找到，应该可以通过其他方式解决，好像是新添加的数据和以前被选中的数据间一直在重复不停的相互选中
          */
         this.down('#adminDeviceGrid').on('onDragDrop', function (data, targetNode, position) {
             if (!data.records.length) {

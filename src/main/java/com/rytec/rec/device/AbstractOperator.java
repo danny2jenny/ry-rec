@@ -4,6 +4,8 @@ import com.rytec.rec.cooperate.CooperateManager;
 import com.rytec.rec.db.model.DeviceNode;
 import com.rytec.rec.messenger.AlarmHub;
 import com.rytec.rec.messenger.Message.WebMessage;
+import com.rytec.rec.util.ConstantDeviceFunction;
+import com.rytec.rec.util.ConstantDeviceState;
 import com.rytec.rec.util.ConstantMessageType;
 import com.rytec.rec.messenger.WebPush;
 import com.rytec.rec.node.NodeInterface;
@@ -67,28 +69,17 @@ public class AbstractOperator {
             // 找到功能对应的Node
             funNode = deviceNodes.get(fun);
 
-            // 该功能是否有对应的Node
-            if (funNode == null) {
-                rst = ConstantErrorCode.DEVICE_FUN_NOT_CONFIG;
-            } else {
-                // 填充NodeID
-                msg.node = funNode.getNid();
-                NodeInterface nodeCom = nodeManager.getNodeComInterface(funNode.getNtype());
-                if (nodeCom == null) {
-                    rst = ConstantErrorCode.NODE_TYPE_NOTEXIST;
-                } else {
-                    rst = nodeCom.sendMessage(msg);
-                }
-            }
+            // 发送消息
+            rst = nodeManager.sendMsg(funNode, msg);
         }
-
         return rst;
     }
-
 
     /**
      * 一个功能节点的数据发生改变。
      * 普通的Device只有一个节点（default），
+     * <p>
+     * 需要处理newValue是null的情况
      * 1、写入到设备的状态
      * 2、向客户端广播状态改变
      *
@@ -98,12 +89,14 @@ public class AbstractOperator {
      * @param newValue
      */
     public void onValueChanged(int deviceId, int fun, Object oldValue, Object newValue) {
-        DeviceStateBean deviceStateBean = deviceManager.deviceRuntimeList.get(deviceId).runtime;
-        deviceStateBean.state = newValue;
-        WebMessage webMessage = new WebMessage();
-        webMessage.type = ConstantMessageType.DEVICE_STATE;
-        webMessage.msg = deviceStateBean;
-        webPush.clientBroadcast(webMessage);
+        DeviceRuntimeBean deviceRuntimeBean = deviceManager.deviceRuntimeList.get(deviceId);
+        deviceRuntimeBean.runtime.state = newValue;
+
+        if (newValue == null) {
+            deviceRuntimeBean.runtime.iconState = ConstantDeviceState.STATE_OFFLINE;
+        }
+
+        clientBroadcast(ConstantMessageType.DEVICE_STATE, deviceRuntimeBean);
     }
 
     /**
@@ -130,13 +123,14 @@ public class AbstractOperator {
     }
 
     /**
-     *  发送告警
+     * 发送告警
+     *
      * @param device
      * @param sig
      * @param value
      */
-    public void sendAlarm(int device, int sig, Object value){
-        alarmHub.processAlarm(device,sig,value);
+    public void sendAlarm(int device, int sig, Object value) {
+        alarmHub.processAlarm(device, sig, value);
     }
 
     /**

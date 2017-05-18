@@ -28,6 +28,8 @@ public interface ConstantErrorCode {
     // Node通讯的错误列表
     @AnnotationJSExport("该类型的节点不存在")
     int NODE_TYPE_NOTEXIST = 201;           //该类型的Node不存在
+    @AnnotationJSExport("发送值不匹配")
+    int NODE_VALUE_TYPE = 202;
 
     // Channel错误消息
     @AnnotationJSExport("通道未连接")

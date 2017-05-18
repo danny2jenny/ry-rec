@@ -369,7 +369,6 @@ Ext.define('app.lib.GisViewPlugin', {
             /**
              * 当图层被激活的时候，更新设备状态
              *
-             * todo: 在层切换的时候，可能还没有得到features，导致状态层绘制失败
              */
             newLayer.on('change:visible', function (event) {
                 // 清理选中的Feature

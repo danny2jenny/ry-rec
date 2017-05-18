@@ -1,6 +1,5 @@
 package com.rytec.rec.node;
 
-import com.rytec.rec.channel.ChannelMessage;
 
 /**
  * Created by danny on 16-11-20.
@@ -18,7 +17,7 @@ public interface NodeInterface {
      */
 
     // 生成一个消息对象
-    ChannelMessage genMessage(int where, int nodeId, int cmd, int value);
+    Object genMessage(int where, int nodeId, int cmd, int value);
 
     /**
      * 收到的消息解码，把ChannelMessage转换成NodeMessage给NodeManage使用
@@ -26,7 +25,7 @@ public interface NodeInterface {
      * @param msg
      * @return 错误代码，没有错误是0
      */
-    void decodeMessage(ChannelMessage msg);
+    void decodeMessage(Object msg);
 
     /**
      * @param nodeMsg
@@ -43,5 +42,13 @@ public interface NodeInterface {
      * @param newVal // 新值
      * @return //True 需要更新，False 不需要更新
      */
-    boolean valueCompare(NodeConfig cfg, Object oldVal, Object newVal);
+    boolean needUpdate(NodeConfig cfg, Object oldVal, Object newVal);
+
+
+    /**
+     * 节点的健康度
+     *
+     * @param h
+     */
+    void goodHelth(Object msg, boolean h);
 }

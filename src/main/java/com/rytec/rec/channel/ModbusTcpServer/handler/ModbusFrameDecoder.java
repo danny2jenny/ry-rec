@@ -2,7 +2,7 @@ package com.rytec.rec.channel.ModbusTcpServer.handler;
 
 import com.rytec.rec.channel.ModbusTcpServer.ModbusChannelSession;
 import com.rytec.rec.channel.ModbusTcpServer.ModbusCommon;
-import com.rytec.rec.channel.ChannelMessage;
+import com.rytec.rec.channel.ModbusTcpServer.ModbusMessage;
 import com.rytec.rec.util.CRC16;
 import com.rytec.rec.util.ConstantFromWhere;
 import io.netty.buffer.ByteBuf;
@@ -27,7 +27,7 @@ public class ModbusFrameDecoder extends ByteToMessageDecoder {
         ModbusChannelSession modbusChannelSession = ctx.channel().attr(ModbusCommon.MODBUS_STATE).get();
 
         // 当前发送的命令
-        ChannelMessage lastOutMsg = modbusChannelSession.getLastOutMsg();
+        ModbusMessage lastOutMsg = modbusChannelSession.getLastOutMsg();
 
         // 当前读取缓冲的状态
         int inBufferLen = in.readableBytes();
@@ -58,18 +58,18 @@ public class ModbusFrameDecoder extends ByteToMessageDecoder {
             */
 
         // todo: data 和 payload 可以放在 session 中增加效率
-        // 在某些情况下，会把前面一个端口的返回读取出来: 当前一个通信超时，在这个时候新通信已经发送，在等待返回的时候，解析到了前一个超时的返回
         /*
          * 只收取尾部期望的长度
          */
         byte[] data = new byte[lastOutMsg.responseLen];
         in.getBytes(writeIndex - lastOutMsg.responseLen, data, 0, lastOutMsg.responseLen);
         // 检查发送和接收的头部是相等的
-        ((ByteBuf) lastOutMsg.payload).resetReaderIndex();
-        if ((((ByteBuf) lastOutMsg.payload).getByte(0) == data[0]) & (((ByteBuf) lastOutMsg.payload).getByte(1) == data[1])){
+        (lastOutMsg.payload).resetReaderIndex();
+        if (((lastOutMsg.payload).getByte(0) == data[0]) & ((lastOutMsg.payload).getByte(1) == data[1])) {
 
         } else {
             logger.debug("失败！！！！！！！！！！！！！！！！");
+            modbusChannelSession.goodHelth(lastOutMsg, false);
             return;
         }
 
@@ -85,22 +85,25 @@ public class ModbusFrameDecoder extends ByteToMessageDecoder {
             ByteBuf payload = Unpooled.buffer(lastOutMsg.responseLen);
             payload.setBytes(0, data);
 
-            ChannelMessage msg = new ChannelMessage(ConstantFromWhere.FROM_RPS);
+            ModbusMessage msg = new ModbusMessage(ConstantFromWhere.FROM_RPS);
             msg.payload = payload;
 
-            msg.nodeId = modbusChannelSession.getLastOutMsg().nodeId;
-            msg.type = modbusChannelSession.getLastOutMsg().type;
+            msg.nodeId = lastOutMsg.nodeId;
+            msg.type = lastOutMsg.type;
+
+            modbusChannelSession.goodHelth(lastOutMsg, true);
+
             // 清除当前发送的命令
             modbusChannelSession.clearLastOutMsg();
             modbusChannelSession.processQueue();
             out.add(msg);
         } else {
             // 解码错误，打印当前的内容和解码的内容
+            modbusChannelSession.goodHelth(lastOutMsg, false);
             byte[] remain = new byte[inBufferLen];
             in.getBytes(readIndex, remain, 0, inBufferLen);
             logger.debug("遗留数据：" + CRC16.bytesToHexString(remain));
             logger.debug("解码数据：" + CRC16.bytesToHexString(data));
-
         }
     }
 }
