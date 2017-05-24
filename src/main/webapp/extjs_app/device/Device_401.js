@@ -8,6 +8,9 @@
 ry.devices['device_401'] = {
     gisClick: function (device) {
         ry.realPlayInGrid(device);
+    },
+    gisRightClick: function (device) {
+        ry.playBack(device);
     }
 };
 

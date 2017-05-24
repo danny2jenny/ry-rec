@@ -970,7 +970,33 @@ Ext.define('app.lib.GisViewPlugin', {
 
         client.refresh = function () {
             me.store.load();
-        }
+        };
+
+        // feature 单击事件
+        me.map.on("singleclick", function (e) {
+            var feature = ry.gis.map.forEachFeatureAtPixel(e.pixel,
+                function (feature, layer) {
+                    return feature;
+                });
+            if (feature) {
+            }
+        });
+
+        // feature 右键
+        me.map.getViewport().addEventListener('contextmenu', function (e) {
+            e.preventDefault();
+            var feature = ry.gis.map.forEachFeatureAtPixel(ry.gis.map.getEventPixel(e),
+                function (feature, layer) {
+                    return feature;
+                });
+            if (feature) {
+                var fProperties = feature.getProperties();
+                if (ry.devices['device_' + fProperties.type].gisRightClick) {
+                    ry.devices['device_' + fProperties.type].gisRightClick(fProperties.deviceId);
+                }
+            }
+        });
+
     }
 });
 

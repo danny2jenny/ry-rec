@@ -23,6 +23,12 @@ import java.util.HashMap;
 /**
  * Created by Danny on 2017/2/23.
  * 的基础类型
+ *
+ * 子类需要初始化
+ *
+ * modbuCmd
+ * regCount
+ * regOffset
  */
 public abstract class NodeModbusBase extends BaseNode {
 
@@ -33,6 +39,7 @@ public abstract class NodeModbusBase extends BaseNode {
      */
     public int modbusCmd = 1;  // Modbus的命令，1\2\3\4\5
     public int regCount = 1;   // 寄存器的数量
+    public int regOffset = 0;  // 寄存器偏移量
 
 
     @Autowired
@@ -56,7 +63,7 @@ public abstract class NodeModbusBase extends BaseNode {
             case ConstantModbusCommand.READ_WRITE_COILS:                  // 999
                 switch (cmd) {
                     case ConstantCommandType.GENERAL_READ:
-                        frame.payload = ModbusFrame.readCoils(cn.getAdr(), 0, regCount);
+                        frame.payload = ModbusFrame.readCoils(cn.getAdr(), regOffset, regCount);
                         frame.responseLen = 5 + (int) Math.ceil(((double) regCount) / 8);
                         break;
                     case ConstantCommandType.GENERAL_WRITE:
@@ -66,15 +73,15 @@ public abstract class NodeModbusBase extends BaseNode {
                 }
                 break;
             case ConstantModbusCommand.READ_INPUT:                  // 2
-                frame.payload = ModbusFrame.readInput(cn.getAdr(), 0, regCount);
+                frame.payload = ModbusFrame.readInput(cn.getAdr(), regOffset, regCount);
                 frame.responseLen = 5 + (int) Math.ceil(((double) regCount) / 8);
                 break;
             case ConstantModbusCommand.READ_HOLDING_REGISTERS:      // 3
-                frame.payload = ModbusFrame.readHoldingRegisters(cn.getAdr(), 0, regCount);
+                frame.payload = ModbusFrame.readHoldingRegisters(cn.getAdr(), regOffset, regCount);
                 frame.responseLen = 5 + regCount * 2;
                 break;
             case ConstantModbusCommand.READ_REGISTERS:              // 4
-                frame.payload = ModbusFrame.readRegisters(cn.getAdr(), 0, regCount);
+                frame.payload = ModbusFrame.readRegisters(cn.getAdr(), regOffset, regCount);
                 frame.responseLen = 5 + regCount * 2;
                 break;
         }

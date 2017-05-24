@@ -47,7 +47,10 @@ ry.getDeviceStateIcon = function (icon, iconState) {
 
 // ******************************** 视频播放 ****************************
 
-
+/**
+ * 在Grid中实时播放
+ * @param device
+ */
 ry.realPlayInGrid = function (device) {
     var cfg = Ext.StoreMgr.get('NvrNode');
     var rec = cfg.findRecord('id', device);
@@ -59,6 +62,10 @@ ry.realPlayInGrid = function (device) {
     }
 };
 
+/**
+ * 在新窗体中实时播放
+ * @param device
+ */
 ry.realPlayInForm = function (device) {
     var cfg = Ext.StoreMgr.get('NvrNode');
     var rec = cfg.findRecord('id', device);
@@ -67,6 +74,17 @@ ry.realPlayInForm = function (device) {
     }
     if (typeof(videoPlayer) != 'undefined') {
         videoPlayer.realPlayInForm(rec.data.cid, rec.data.nadd)
+    }
+};
+
+ry.playBack = function (device) {
+    var cfg = Ext.StoreMgr.get('NvrNode');
+    var rec = cfg.findRecord('id', device);
+    if (!rec) {
+        return;
+    }
+    if (typeof(videoPlayer) != 'undefined') {
+        videoPlayer.playBack(rec.data.cid, rec.data.nadd, rec.data.dname)
     }
 };
 
