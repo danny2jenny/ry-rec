@@ -33,11 +33,11 @@ Ext.define('app.model.Alarm', {
         }, {
             name: 'icon',
             convert: function (value, record) {
-                if (!ry.gis.overlay.devicesState) {
+                if (!ry.devicesState) {
                     return ry.getDeviceStateIcon(0, ry.CONST.DEVICE_STATE.STATE_NORMA);
                 }
                 if (record.raw) {
-                    return ry.getDeviceStateIcon(ry.gis.overlay.devicesState[record.raw.device].device.icon, ry.CONST.DEVICE_STATE.STATE_NORMAL);
+                    return ry.getDeviceStateIcon(ry.devicesState[record.raw.device].device.icon, ry.CONST.DEVICE_STATE.STATE_NORMAL);
                 } else {
                     return "NULL"
                 }

@@ -81,9 +81,9 @@ Ext.define('app.lib.GisViewPlugin', {
 
         var me = this;
 
+        // 建立全局变量
         client.gis = me;
         ry.gis = me;
-
 
         /*******************************************************
          * 样式的集合Style                                          *
@@ -111,7 +111,6 @@ Ext.define('app.lib.GisViewPlugin', {
          * @param resolution
          * @returns {*}
          */
-
         me.style.styleFun = function (feature, resolution) {
 
             // 没有缓冲，新建
@@ -144,15 +143,13 @@ Ext.define('app.lib.GisViewPlugin', {
             cachedStyle.setText(text);
 
             return cachedStyle;
-        }
-        ;
+        };
 
         /**
          * 改变一组 Feature 的样式
          * @param features   features 集合
          * @param type       样式的风格，整形
          */
-
         me.style.changeStyle = function (features, type) {
 
             // 缓冲样式的 key，用于 gis.style.chace 的索引
@@ -190,7 +187,6 @@ Ext.define('app.lib.GisViewPlugin', {
          * @param device  device 的ID
          * @param icon   状态：整形
          */
-
         me.setDeviceStyle = function (device, icon) {
             var features = me.getFeaturesByDeviceOfLayer(gis.getActiveVectorLayer(), device);
             me.style.changeStyle(features, icon);
@@ -262,7 +258,7 @@ Ext.define('app.lib.GisViewPlugin', {
 
             // 防止layer features 没有得到时无法添加Overlay
             if (layerGroup.getVisible()) {
-                me.overlay.updateDevice(this);
+                me.overlay.updateDevice();
             }
         };
 
@@ -373,9 +369,7 @@ Ext.define('app.lib.GisViewPlugin', {
             newLayer.on('change:visible', function (event) {
                 // 清理选中的Feature
 
-                var s1 = this.interaction.clickSelect.getFeatures();
                 var s2 = this.interaction.hoverSelect.getFeatures();
-                s1.remove(s1.getArray()[0]);
                 s2.remove(s2.getArray()[0]);
 
                 // 状态改变的时候触发，多次触发
@@ -385,11 +379,7 @@ Ext.define('app.lib.GisViewPlugin', {
 
                 if (!event.oldValue) {
                     // 获取设备的状态
-                    gisDevice.getDevicesState(function (data, event, rst) {
-                        this.overlay.devicesState = data;
-                        this.overlay.updateDevice(this);
-                        this.maxExtent();
-                    }, this)
+                    ry.getDeviceStates(this);
                 }
             }, me);
 
@@ -397,6 +387,11 @@ Ext.define('app.lib.GisViewPlugin', {
 
             newLayer.id = layerId;
             me.map.addLayer(newLayer);
+        };
+
+        // 载入了DevicesState
+        me.onDevicesState = function (data) {
+            this.overlay.updateDevice();
         };
 
 
@@ -422,12 +417,10 @@ Ext.define('app.lib.GisViewPlugin', {
 
         me.overlay = {
 
+            owner: me,
+
             // 存放当前层的Overlay
             featureStateOverlays: new Ext.util.HashMap(),
-
-            // 所有设备的状态
-            devicesState: null,
-
 
             /**
              * 通过Feature生成一个overlay
@@ -464,28 +457,29 @@ Ext.define('app.lib.GisViewPlugin', {
                 // 可能因为异步的原因，还没有得到devicesState
                 // 需要结合 newLayer.on('change:visible', function (event)
                 // 这两处都可能触发重新绘制 Overlay
-                if (!this.devicesState) {
+                if (!ry.devicesState) {
                     return;
                 }
 
-                scope.map.overlays_.clear();
-                scope.overlay.featureStateOverlays.clear();
-                var features = scope.getActiveVectorLayer().getSource().getFeatures();
+                this.owner.map.overlays_.clear();
+                this.owner.overlay.featureStateOverlays.clear();
+                var features = this.owner.getActiveVectorLayer().getSource().getFeatures();
                 for (var i in features) {
                     var feature = features[i];
 
-                    var deviceState = this.devicesState[feature.getProperties().deviceId];
-
+                    var deviceState = ry.devicesState[feature.getProperties().deviceId];
                     var icon = deviceState.runtime.iconState;
-                    var overlay = scope.overlay.createFeatureOverlay(feature, icon, scope);
-                    scope.overlay.featureStateOverlays.add(feature.getId(), overlay);
-                    scope.map.addOverlay(overlay);
+                    var overlay = this.owner.overlay.createFeatureOverlay(feature, icon, scope);
+                    this.owner.overlay.featureStateOverlays.add(feature.getId(), overlay);
+                    this.owner.map.addOverlay(overlay);
                 }
 
                 // 是否需要有高亮的Device
-                if (scope.deviceNeedToBeHighlight) {
-                    scope.highlightDevice(scope.deviceNeedToBeHighlight);
+                if (this.owner.deviceNeedToBeHighlight) {
+                    this.owner.highlightDevice(this.owner.deviceNeedToBeHighlight);
                 }
+
+                this.owner.maxExtent();
 
             }
         };
@@ -495,12 +489,12 @@ Ext.define('app.lib.GisViewPlugin', {
          * @param state
          */
         me.updateDeviceState = function (state) {
-            if (!me.overlay.devicesState) {
+            if (!ry.devicesState) {
                 return;
             }
 
             // 更新数据和图标
-            me.overlay.devicesState[state.device.id] = state;
+            ry.devicesState[state.device.id] = state;
             me.deviceSetIcon(state.device.id, state.runtime.iconState);
 
             // 更新控制面板
@@ -846,7 +840,7 @@ Ext.define('app.lib.GisViewPlugin', {
                     this.map.overlays_.clear();
                     this.interaction.hoverSelect.setActive(false);
                 } else {
-                    this.overlay.updateDevice(this);
+                    this.overlay.updateDevice();
                     this.interaction.hoverSelect.setActive(true);
                 }
             };
@@ -901,7 +895,7 @@ Ext.define('app.lib.GisViewPlugin', {
                 });
 
                 this.interaction.popup.ctlPanel.show();
-                this.interaction.popup.ctlPanel.updateState(this.overlay.devicesState[fProperties.deviceId]);
+                this.interaction.popup.ctlPanel.updateState(ry.devicesState[fProperties.deviceId]);
                 this.interaction.popup.ctlPanel.getEl().setStyle('z-index', '80000');
             } else {
                 // 没有选中不能hide，否则不能使用面板了
@@ -909,31 +903,6 @@ Ext.define('app.lib.GisViewPlugin', {
         }, me);
 
         me.map.addInteraction(me.interaction.hoverSelect);
-
-
-        // Click 选择工具
-        me.interaction.clickSelect = new ol.interaction.Select({
-            condition: ol.events.condition.click,
-            multi: false
-        });
-
-        //
-        me.interaction.clickSelect.on('select', function (event) {
-            // 释放相应的控制面板
-            if (!event.selected.length) {
-                return;
-            }
-            var fProperties = event.selected[0].getProperties();
-            me.interaction.popup.hide();
-
-            // 单击的操作
-            if (ry.devices['device_' + fProperties.type].gisClick) {
-                ry.devices['device_' + fProperties.type].gisClick(fProperties.deviceId);
-            }
-
-        }, me);
-
-        me.map.addInteraction(me.interaction.clickSelect);
 
         /*******************************************************
          * Client 的事件                                        *
@@ -979,6 +948,13 @@ Ext.define('app.lib.GisViewPlugin', {
                     return feature;
                 });
             if (feature) {
+                var fProperties = feature.getProperties();
+                me.interaction.popup.hide();
+                // 单击的操作
+                if (ry.devices['device_' + fProperties.type].gisClick) {
+                    ry.devices['device_' + fProperties.type].gisClick(fProperties.deviceId);
+                }
+
             }
         });
 

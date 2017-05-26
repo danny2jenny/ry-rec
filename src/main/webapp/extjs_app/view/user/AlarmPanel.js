@@ -68,7 +68,7 @@ Ext.define('app.view.user.AlarmPanel', {
                 dataIndex: 'device',
                 flex: 1,
                 renderer: function (val, column, row) {
-                    return ry.gis.overlay.devicesState[val].device.name
+                    return ry.devicesState[val].device.name
                 }
             }, {
                 header: '告警时间',
@@ -120,7 +120,7 @@ Ext.define('app.view.user.AlarmPanel', {
                     dataIndex: 'target',
                     flex: 1,
                     renderer: function (val, column, row) {
-                        return ry.gis.overlay.devicesState[val].device.name
+                        return ry.devicesState[val].device.name
                     }
                 }/*, {
                  text: '设备编号',
@@ -184,10 +184,10 @@ Ext.define('app.view.user.AlarmPanel', {
         // 更新告警详细信息
         var detail = this.down('#alarmDetail');
         var data = {
-            device: ry.gis.overlay.devicesState[record.data.device].device.name,
+            device: ry.devicesState[record.data.device].device.name,
             type: ry.trans(
                 record.data.sig,
-                ry['DEVICE_SIG_' + ry.gis.overlay.devicesState[record.data.device].device.type]
+                ry['DEVICE_SIG_' + ry.devicesState[record.data.device].device.type]
             ),
             value: record.data.value
         };

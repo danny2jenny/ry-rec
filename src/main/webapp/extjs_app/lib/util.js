@@ -4,12 +4,12 @@
  * 工具
  */
 
+
 /*
  * Device 的管理额对象列表
  * 'devicd_XXX'->Object
  * 其中 XXX 是Device的类型编号
  */
-
 ry.devices = {};
 // 存放Device编辑器下拉选项
 ry.deviceEditor = {};
@@ -77,6 +77,10 @@ ry.realPlayInForm = function (device) {
     }
 };
 
+/**
+ * 历史回放窗口
+ * @param device
+ */
 ry.playBack = function (device) {
     var cfg = Ext.StoreMgr.get('NvrNode');
     var rec = cfg.findRecord('id', device);
@@ -86,6 +90,27 @@ ry.playBack = function (device) {
     if (typeof(videoPlayer) != 'undefined') {
         videoPlayer.playBack(rec.data.cid, rec.data.nadd, rec.data.dname)
     }
+};
+
+
+ry.devicesState = null;
+/**
+ * 获取DeviceState
+ * @param scope  // 调用的对象，需要有onDeviceStates方法
+ */
+ry.getDeviceStates = function (scope) {
+    gisDevice.getDevicesState(function (data, event, rst) {
+        ry.devicesState = data;
+        // 如果有回调函数，执行回调函数
+        if (this.onDevicesState) {
+            this.onDevicesState(data);
+        } else {
+            // 更新GIS
+            var pa = Ext.getCmp("panel.panorama.editor");
+            if (pa) pa.updateAllIcon();
+            if (ry.gis) ry.gis.overlay.updateDevice();
+        }
+    }, scope);
 };
 
 /**
@@ -105,6 +130,8 @@ ry.stom.connect_callback = function () {
     console.log('STOM 连接建立。。。。');
     // 订阅消息
     ry.stom.msgChannel = ry.stom.client.subscribe("/topic/broadcast", ry.stom.onMsg);
+    // 需要刷新DeviceState
+    if (ry.gis) ry.getDeviceStates();
 };
 
 // 连接建立失败

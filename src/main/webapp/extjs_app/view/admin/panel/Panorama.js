@@ -46,7 +46,7 @@ Ext.define('app.view.admin.panel.Panorama', {
             renderTo: hotspot.div.children[0]
         });
 
-        ry.panorama.ctlPanel.updateState(ry.gis.overlay.devicesState[hotspot.device]);
+        ry.panorama.ctlPanel.updateState(ry.devicesState[hotspot.device]);
 
         ry.panorama.ctlPanel.show();
 
@@ -153,7 +153,7 @@ Ext.define('app.view.admin.panel.Panorama', {
     // 添加新的Hotspot
     onNewHotspot: function (event) {
 
-        if (!ry.panorama.editable){
+        if (!ry.panorama.editable) {
             return;
         }
 
@@ -189,8 +189,7 @@ Ext.define('app.view.admin.panel.Panorama', {
      * 通过数据库返回记录，添加一个单一的Hotspot
      */
     addHotspot: function (result) {
-        var deviceStore = Ext.StoreMgr.get('Device');
-        var device = ry.gis.overlay.devicesState[result.device].device;
+        var device = ry.devicesState[result.device].device;
 
         var hotspot = {};
         hotspot.id = result.id;
@@ -205,10 +204,10 @@ Ext.define('app.view.admin.panel.Panorama', {
         ry.panorama.panorama.addHotSpot(hotspot);
 
         // 更新图标状态
-        if (!ry.gis.overlay.devicesState) {
+        if (!ry.devicesState) {
             return;
         }
-        var state = ry.gis.overlay.devicesState[hotspot.device];
+        var state = ry.devicesState[hotspot.device];
 
         if (state) {
             hotspot.div.style.backgroundImage = "url(" + ry.getDeviceStateIcon(hotspot.icon, state.runtime.iconState) + ")";
@@ -217,13 +216,27 @@ Ext.define('app.view.admin.panel.Panorama', {
     },
 
     /**
-     * 更新 Icon 图标
+     * 更新 一个 Icon 图标
      */
     updateIconState: function (msg) {
         this.hotspots.each(function (key, hotspot, length) {
             if (hotspot.device == msg.device.id) {
                 hotspot.div.style.backgroundImage = "url("
                     + ry.getDeviceStateIcon(msg.device.icon, msg.runtime.iconState)
+                    + ")";
+            }
+        });
+    },
+
+    /**
+     * 更新所有的图标
+     */
+    updateAllIcon: function () {
+        this.hotspots.each(function (key, hotspot, length) {
+            var state = ry.devicesState[hotspot.device];
+            if (state) {
+                hotspot.div.style.backgroundImage = "url("
+                    + ry.getDeviceStateIcon(hotspot.icon, state.runtime.iconState)
                     + ")";
             }
         });
