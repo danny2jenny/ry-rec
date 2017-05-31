@@ -57,9 +57,6 @@ detach 问题 http://www.tuicool.com/articles/F7RNzq2
 
 git push origin HEAD:master
 
-# Idea Intellij 
-http://idea.iteblog.com/key.php
-
 # linux 系统WEB管理
 
 http://ajenti.org/
