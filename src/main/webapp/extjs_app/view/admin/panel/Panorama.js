@@ -2,6 +2,8 @@
  * Created by danny on 17-5-9.
  *
  * 全景编辑界面
+ * https://github.com/mpetroff/pannellum
+ * https://pannellum.org/
  *
  */
 

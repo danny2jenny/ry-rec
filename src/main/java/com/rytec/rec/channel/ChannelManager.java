@@ -7,7 +7,6 @@ import com.rytec.rec.node.NodeManager;
 import com.rytec.rec.node.NodeMessage;
 import com.rytec.rec.util.AnnotationChannelType;
 import com.rytec.rec.util.ConstantFromWhere;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.annotation.Order;
@@ -28,7 +27,7 @@ import java.util.Map;
 @Order(300)
 public class ChannelManager implements ManageableInterface {
 
-    private final org.slf4j.Logger logger = LoggerFactory.getLogger(this.getClass());
+    // private final org.slf4j.Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     NodeManager nodeManager;

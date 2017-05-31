@@ -1,7 +1,5 @@
 package com.rytec.rec.channel;
 
-import com.rytec.rec.app.ManageableInterface;
-
 /**
  * Created by danny on 16-11-17.
  * 通讯通道的抽象类

@@ -22,6 +22,6 @@ Ext.define('app.controller.UserFrame', {
     ],
 
     init: function () {
-
+        //ry.getDeviceStates();
     }
 });

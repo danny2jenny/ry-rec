@@ -1,6 +1,5 @@
 package com.rytec.rec.app;
 
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.annotation.Order;
@@ -19,8 +18,6 @@ import java.util.*;
 @Order(500)
 public class AppManager {
 
-    private final org.slf4j.Logger logger = LoggerFactory.getLogger(this.getClass());
-
     @Autowired
     ApplicationContext context;
 
@@ -32,8 +29,8 @@ public class AppManager {
     private void init() {
         Map<String, ManageableInterface> interfaceMap = context.getBeansOfType(ManageableInterface.class);
         for (ManageableInterface item : interfaceMap.values()) {
-            Class<? extends Object> itemClass = item.getClass();
-            Order order = itemClass.getAnnotation(Order.class);
+            //Class<? extends Object> itemClass = item.getClass();
+            //Order order = itemClass.getAnnotation(Order.class);
             serviceInterfacesStart.add(item);
         }
 
