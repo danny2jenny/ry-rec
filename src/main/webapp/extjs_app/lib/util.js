@@ -131,7 +131,7 @@ ry.stom.connect_callback = function () {
     // 订阅消息
     ry.stom.msgChannel = ry.stom.client.subscribe("/topic/broadcast", ry.stom.onMsg);
     // 需要刷新DeviceState
-    if (ry.gis) ry.getDeviceStates();
+    ry.getDeviceStates();
 };
 
 // 连接建立失败

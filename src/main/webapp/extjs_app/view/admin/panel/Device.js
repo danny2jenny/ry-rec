@@ -72,6 +72,18 @@ Ext.define('app.view.admin.panel.Device', {
         }
     ],
 
+    tools: [{
+        type: 'refresh',
+        tooltip: '当修改了设备、通道、节点、联动后需要保存配置才能生效！',
+        // hidden:true,
+        handler: function (event, toolEl, panelHeader) {
+            var url = window.document.location.origin + "/srv/system";
+            oAjax = new XMLHttpRequest();
+            oAjax.open('GET', url, true);
+            oAjax.send();
+        }
+    }],
+
     viewConfig: {
         plugins: {
             dropGroup: 'groupNode',

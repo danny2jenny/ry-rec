@@ -100,6 +100,11 @@ public class NodeManager implements ManageableInterface {
     public void onMessage(NodeMessage msg) {
         NodeRuntimeBean nodeRuntimeBean = channelNodeList.get(msg.node);
 
+        // todo: 为什么nodeRuntimeBean可能为空，可能顺序不对
+        if (nodeRuntimeBean == null) {
+            return;
+        }
+
         NodeState nodeState = nodeRuntimeBean.nodeState;
 
         Object oldValue = nodeState.value;

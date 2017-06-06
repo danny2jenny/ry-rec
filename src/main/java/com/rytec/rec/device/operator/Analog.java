@@ -48,7 +48,13 @@ public class Analog extends AbstractOperator {
         // 得到运行状态，更新状态
         DeviceRuntimeBean deviceRuntimeBean = deviceManager.deviceRuntimeList.get(deviceId);
         ((StateAnalog) deviceRuntimeBean.runtime.state).unit = unit;
-        ((StateAnalog) deviceRuntimeBean.runtime.state).value = (Float) newValue;
+
+        if (newValue == null) {
+            ((StateAnalog) deviceRuntimeBean.runtime.state).value = 0;
+        } else {
+            ((StateAnalog) deviceRuntimeBean.runtime.state).value = (Float) newValue;
+        }
+
 
         // 处理掉线
         if (newValue == null) {
