@@ -89,6 +89,9 @@ public class CooperateManager implements ManageableInterface {
         // 按照联动的规则来进行相应的动作
 
         for (RuleAction action : actions) {
+            if (action.getTarget()==null){
+                continue;
+            }
             AbstractOperator operator = deviceManager.getOperatorByDeviceId(action.getTarget());
             operator.operate(ConstantFromWhere.FROM_ALI, action.getTarget(), action.getAct(), action.getParm());
         }
