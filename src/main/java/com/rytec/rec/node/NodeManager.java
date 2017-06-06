@@ -121,7 +121,12 @@ public class NodeManager implements ManageableInterface {
             if (deviceId == null) {
                 return;
             }
-            deviceManager.onValueChange(deviceId, nodeRuntimeBean.channelNode.getDevicefun(), oldValue, msg.value);
+            deviceManager.onValueChange(
+                    deviceId,
+                    nodeRuntimeBean.channelNode.getDevicefun(),
+                    oldValue,
+                    msg.value,
+                    nodeRuntimeBean.nodeConfig.unit);
         } else {
             // 数据不需要更新
         }

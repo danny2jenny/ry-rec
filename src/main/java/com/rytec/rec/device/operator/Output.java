@@ -71,13 +71,13 @@ public class Output extends AbstractOperator {
     }
 
     @Override
-    public void onValueChanged(int deviceId, int fun, Object oldValue, Object newValue) {
+    public void onValueChanged(int deviceId, int fun, Object oldValue, Object newValue, String unit) {
 
         // 得到运行状态
         DeviceRuntimeBean deviceRuntimeBean = deviceManager.deviceRuntimeList.get(deviceId);
 
         // Output 的State对象
-        OutputState state = (OutputState) deviceRuntimeBean.runtime.state;
+        StateOutput state = (StateOutput) deviceRuntimeBean.runtime.state;
 
         // 处理掉线
         // 处理掉线
@@ -152,7 +152,7 @@ public class Output extends AbstractOperator {
 
     @Override
     public Object generateStateBean() {
-        return new OutputState();
+        return new StateOutput();
     }
 
 }

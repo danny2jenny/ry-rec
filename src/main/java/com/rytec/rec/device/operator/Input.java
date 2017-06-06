@@ -32,7 +32,7 @@ public class Input extends AbstractOperator {
 
 
     @Override
-    public void onValueChanged(int deviceId, int fun, Object oldValue, Object newValue) {
+    public void onValueChanged(int deviceId, int fun, Object oldValue, Object newValue, String unit) {
 
         // 得到运行状态
         DeviceRuntimeBean deviceRuntimeBean = deviceManager.deviceRuntimeList.get(deviceId);

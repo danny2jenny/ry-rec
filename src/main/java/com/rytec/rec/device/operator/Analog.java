@@ -43,11 +43,12 @@ public class Analog extends AbstractOperator {
     public static int SIG_LOW_2 = -20;
 
     @Override
-    public void onValueChanged(int deviceId, int fun, Object oldValue, Object newValue) {
+    public void onValueChanged(int deviceId, int fun, Object oldValue, Object newValue, String unit) {
 
-        // 得到运行状态
+        // 得到运行状态，更新状态
         DeviceRuntimeBean deviceRuntimeBean = deviceManager.deviceRuntimeList.get(deviceId);
-        deviceRuntimeBean.runtime.state = newValue;
+        ((StateAnalog) deviceRuntimeBean.runtime.state).unit = unit;
+        ((StateAnalog) deviceRuntimeBean.runtime.state).value = (Float) newValue;
 
         // 处理掉线
         if (newValue == null) {
@@ -102,5 +103,10 @@ public class Analog extends AbstractOperator {
             analogConfig = new AnalogConfig();
         }
         return analogConfig;
+    }
+
+    @Override
+    public Object generateStateBean() {
+        return new StateAnalog();
     }
 }

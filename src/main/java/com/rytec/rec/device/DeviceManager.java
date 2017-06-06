@@ -161,8 +161,9 @@ public class DeviceManager implements ManageableInterface {
      * @param fun      设备功能号
      * @param oldValue 原值
      * @param newValue 新值
+     * @param unit     单位
      */
-    public void onValueChange(int device, int fun, Object oldValue, Object newValue) {
+    public void onValueChange(int device, int fun, Object oldValue, Object newValue, String unit) {
         // 首先找到 Device 的实例
         // 可能没有对应的Device
         HashMap<Integer, DeviceNode> devices = deviceNodeListByFun.get(device);
@@ -174,7 +175,7 @@ public class DeviceManager implements ManageableInterface {
         AbstractOperator abstractOperator = getOperatorByDeviceType(deviceNode.getDtype());
 
         // 在实例中处理值的改变
-        abstractOperator.onValueChanged(device, fun, oldValue, newValue);
+        abstractOperator.onValueChanged(device, fun, oldValue, newValue, unit);
     }
 
     public void stop() {

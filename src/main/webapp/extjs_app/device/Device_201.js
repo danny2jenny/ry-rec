@@ -142,7 +142,7 @@ Ext.define('app.view.device.control._201', {
 
         this.setTitle("模拟量监测：" + state.device.name);
 
-        this.down("#aValue").setValue(state.runtime.state);
+        this.down("#aValue").setValue(state.runtime.state.value + state.runtime.state.unit);
 
     }
 });

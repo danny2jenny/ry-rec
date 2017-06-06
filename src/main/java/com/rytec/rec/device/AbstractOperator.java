@@ -88,7 +88,7 @@ public class AbstractOperator {
      * @param oldValue
      * @param newValue
      */
-    public void onValueChanged(int deviceId, int fun, Object oldValue, Object newValue) {
+    public void onValueChanged(int deviceId, int fun, Object oldValue, Object newValue, String unit) {
         DeviceRuntimeBean deviceRuntimeBean = deviceManager.deviceRuntimeList.get(deviceId);
         deviceRuntimeBean.runtime.state = newValue;
 
