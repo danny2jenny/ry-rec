@@ -83,6 +83,8 @@ Ext.define('app.view.device.control._101', {
 
         this.runtime = state.runtime;
 
+        this.setTitle("开关控制：" + state.device.name);
+
         this.down("#button").enable();
         // 开关状态
         if (this.runtime.state.output == 20) {
@@ -125,9 +127,7 @@ Ext.define('app.view.device.control._101', {
 });
 
 // 必须有
-ry.devices['device_101'] = {
-
-};
+ry.devices['device_101'] = {};
 
 // 设备动作
 ry.deviceEditor['act_101'] = Ext.create('Ext.form.field.ComboBox', {

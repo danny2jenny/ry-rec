@@ -87,6 +87,66 @@ Ext.define('app.device.Device_201', {
 // 加入到全局变量
 ry.devices['device_201'] = Ext.create('app.device.Device_201', {});
 
+// 控制面板
+Ext.define('app.view.device.control._201', {
+    extend: 'Ext.panel.Panel',
+    alias: 'widget.device.control.201',
+    title: '模拟量监测',
+    width: 200,
+
+    bodyPadding: 5,
+    autoDestroy: false,
+    layout: {
+        type: 'vbox',
+        align: 'stretch'
+    },
+
+    items: [{
+        xtype: 'textfield',
+        itemId: 'aValue',
+        readOnly: true,
+        fieldLabel: '监测值',
+        value: ""
+    }],
+
+    /**
+     * 每个控制面板都应该实现
+     * 服务器数据更新后的刷新
+     * @param state
+     */
+    refreshState: function (state) {
+
+        if (!this.runtime) {
+            return;
+        }
+
+        if (this.runtime.device != state.device.id) {
+            return
+        }
+
+        this.updateState(state);
+    },
+
+    /**
+     * 读取客户端的状态数据，并显示
+     * 每个面板都应该实现
+     * @param state
+     */
+    updateState: function (state) {
+        // 不是自己的数据
+        if (state.device.type != 201) {
+            return;
+        }
+
+        this.runtime = state.runtime;
+
+        this.setTitle("模拟量监测：" + state.device.name);
+
+        this.down("#aValue").setValue(state.runtime.state);
+
+    }
+});
+
 ry.deviceEditor['sig_201'] = Ext.create('Ext.form.field.ComboBox', {
     forceSelection: true,
     allowBlank: false,

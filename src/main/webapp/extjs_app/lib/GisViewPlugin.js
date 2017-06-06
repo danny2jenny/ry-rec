@@ -121,13 +121,15 @@ Ext.define('app.lib.GisViewPlugin', {
 
             // 建立点的样式
             var icon = new ol.style.Icon({
+                size: [16, 16],
+                imgSize: [16, 16],
                 src: ry.getDeviceStateIcon(feature.getProperties().icon, 11)
             });
 
             // 文字
             var text = new ol.style.Text({
                 // font: '10px sans-serif' 默认这个字体，可以修改成其他的，格式和css的字体设置一样
-                offsetY: -16,
+                offsetY: -24,
                 text: feature.getProperties().deviceName,
                 fill: new ol.style.Fill({
                     color: 'black'

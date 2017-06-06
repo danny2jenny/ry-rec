@@ -22,7 +22,7 @@ Ext.define('app.view.admin.panel.Device', {
     features: [Ext.create('Ext.grid.feature.Grouping', {
         groupHeaderTpl: ['{groupValue:this.formatValue}: 共 ({rows.length}) 个', {
             formatValue: function (value) {
-                return '<img src="res/device/' + value + '.png">' + ry.trans(value, ry.DEVICE_TYPE)
+                return '<img height="16" width="16" src="res/device/' + value + '.png">' + ry.trans(value, ry.DEVICE_TYPE)
             }
         }]
     })],
@@ -67,7 +67,7 @@ Ext.define('app.view.admin.panel.Device', {
                 store: ry.DEVICE_ICON
             },
             renderer: function (val, column, row) {
-                return "<img src='res/gis/device/" + val + "-11.gif'>"
+                return "<img height=16 width=16 src='res/gis/device/" + val + "-11.gif'>"
             }
         }
     ],
