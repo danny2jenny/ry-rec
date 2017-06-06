@@ -78,10 +78,13 @@ Ext.define('app.view.admin.panel.NodeConfig', {
             this.down('#sensitive').setValue(opt.sensitive);
             this.down('#pA').setValue(opt.pA);
             this.down('#pB').setValue(opt.pB);
+            this.down('#unit').setValue(opt.unit);
+
         } else {
             this.down('#sensitive').setValue(null);
             this.down('#pA').setValue(null);
             this.down('#pB').setValue(null);
+            this.down('#unit').setValue(null);
         }
     }
 
