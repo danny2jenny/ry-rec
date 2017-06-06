@@ -198,3 +198,12 @@ ry.timeTask.start({
     run: ry.stom.keepConnectRunner,
     interval: 1000
 });
+
+// 服务器重新读取配置
+ry.serverReload = function () {
+    var url = window.document.location.origin + "/srv/system";
+    oAjax = new XMLHttpRequest();
+    oAjax.open('GET', url, true);
+    oAjax.send();
+    console.log("System reload....");
+};

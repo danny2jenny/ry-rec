@@ -6,11 +6,16 @@
     <bookmark url="file://$PROJECT_DIR$/src/main/webapp/extjs_app/lib/GisViewPlugin.js" line="456" mnemonic="3" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d35ddd3d-c0e7-4f94-b111-72db3f8184b4" name="Default" comment="AnalogDevice 增加掉线，newValue为null的判断">
+    <list default="true" id="d35ddd3d-c0e7-4f94-b111-72db3f8184b4" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/webapp/upload/gis/layer/14.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/webapp/upload/gis/layer/15.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/webapp/upload/gis/layer/_14.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/webapp/upload/gis/layer/_15.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/webapp/upload/panorama/3.jpg" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/device/operator/Analog.java" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/device/operator/Analog.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/node/NodeManager.java" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/node/NodeManager.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/extjs_app/lib/util.js" afterPath="$PROJECT_DIR$/src/main/webapp/extjs_app/lib/util.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/frame/GisEditor.js" afterPath="$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/frame/GisEditor.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/frame/PanoramaEditor.js" afterPath="$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/frame/PanoramaEditor.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/panel/Device.js" afterPath="$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/panel/Device.js" />
     </list>
     <ignored path="RyREC.iws" />
@@ -79,6 +84,10 @@
                 <option name="myItemId" value="Tasks" />
                 <option name="myItemType" value="com.intellij.openapi.externalSystem.view.TasksNode" />
               </PATH_ELEMENT>
+              <PATH_ELEMENT>
+                <option name="myItemId" value="other" />
+                <option name="myItemType" value="com.intellij.openapi.externalSystem.view.TasksNode$1" />
+              </PATH_ELEMENT>
             </PATH>
           </tree_state>
         </projects_view>
@@ -89,30 +98,7 @@
     <favorites_list name="com.rytec.rec" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="util.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/lib/util.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="133" column="4" lean-forward="false" selection-start-line="133" selection-start-column="4" selection-end-line="133" selection-end-column="4" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AppManager.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/app/AppManager.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="392">
-              <caret line="59" column="0" lean-forward="true" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -784,8 +770,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/node/modbus/HT_C1.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/node/modbus/NodeModbusIO.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/node/NodeInterface.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/node/modbus/DAMInput.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/node/modbus/NodeOutput.java" />
@@ -830,11 +814,13 @@
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/device/operator/Input.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/device/Device_201.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/panel/PanoramaUpload.js" />
-        <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/panel/Device.js" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/device/operator/Analog.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/node/NodeManager.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/lib/util.js" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/app/AppManager.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/panel/Device.js" />
+        <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/frame/GisEditor.js" />
+        <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/frame/PanoramaEditor.js" />
+        <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/lib/util.js" />
       </list>
     </option>
   </component>
@@ -1249,6 +1235,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com.rytec.rec" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RyREC" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -1311,7 +1315,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Remote.Remote-Debug">
+  <component name="RunManager" selected="Gradle.RyREC [war]">
     <configuration default="false" name="RyREC [appStart]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -1384,7 +1388,7 @@
       </ExternalSystemSettings>
       <method />
     </configuration>
-    <configuration default="false" name="RyREC [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration default="false" name="RyREC [war]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -1395,7 +1399,7 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value="clean" />
+            <option value="war" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -1817,15 +1821,15 @@
       <item index="2" class="java.lang.String" itemvalue="Gradle.RyREC [appStartDebug]" />
       <item index="3" class="java.lang.String" itemvalue="Gradle.RyREC [appStop]" />
       <item index="4" class="java.lang.String" itemvalue="Gradle.RyREC [build]" />
-      <item index="5" class="java.lang.String" itemvalue="Gradle.RyREC [clean]" />
+      <item index="5" class="java.lang.String" itemvalue="Gradle.RyREC [war]" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Gradle.RyREC [appStartDebug]" />
-        <item index="1" class="java.lang.String" itemvalue="Gradle.RyREC [build]" />
+        <item index="0" class="java.lang.String" itemvalue="Gradle.RyREC [war]" />
+        <item index="1" class="java.lang.String" itemvalue="Gradle.RyREC [appStart]" />
         <item index="2" class="java.lang.String" itemvalue="Gradle.RyREC [appStop]" />
-        <item index="3" class="java.lang.String" itemvalue="Gradle.RyREC [appStart]" />
-        <item index="4" class="java.lang.String" itemvalue="Gradle.RyREC [clean]" />
+        <item index="3" class="java.lang.String" itemvalue="Gradle.RyREC [appStartDebug]" />
+        <item index="4" class="java.lang.String" itemvalue="Gradle.RyREC [build]" />
       </list>
     </recent_temporary>
     <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
@@ -2074,14 +2078,7 @@
       <workItem from="1496278922268" duration="3156000" />
       <workItem from="1496640557045" duration="8481000" />
       <workItem from="1496710604713" duration="3813000" />
-      <workItem from="1496719152822" duration="14136000" />
-    </task>
-    <task id="LOCAL-00053" summary="由于超时，lastOutMsg 可能为空，需要进行判断">
-      <created>1487293829334</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
-      <option name="project" value="LOCAL" />
-      <updated>1487293829335</updated>
+      <workItem from="1496719152822" duration="17794000" />
     </task>
     <task id="LOCAL-00054" summary="PluginGridEdit 增加Cell模式，便于根据条件建立下拉选项">
       <created>1487306024959</created>
@@ -2419,11 +2416,18 @@
       <option name="project" value="LOCAL" />
       <updated>1496735264840</updated>
     </task>
-    <option name="localTasksCounter" value="102" />
+    <task id="LOCAL-00102" summary="AnalogDevice 增加掉线，newValue为null的判断&#10;在Device面板增加保存配置的按钮&#10;NodeManager 为什么nodeRuntimeBean可能为空，可能顺序不对&#10;utils.js websocket连接后就得到相应的deviceState">
+      <created>1496740004997</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1496740004998</updated>
+    </task>
+    <option name="localTasksCounter" value="103" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1806102000" />
+    <option name="totallyTimeSpent" value="1809760000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2436,7 +2440,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1044" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -2459,7 +2462,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25929978" sideWeight="0.46791443" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32822758" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32713348" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21229947" sideWeight="0.63350123" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21229947" sideWeight="0.63350123" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21229947" sideWeight="0.36649874" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14705883" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -2518,7 +2521,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="1、Gis layer 可以修改图片&#10;2、公共文件操作加入到 RyFile.java中" />
     <MESSAGE value="1、Hotspot可以弹出操作面板&#10;2、Device_101.js 中的id去除，否则GIS和全景都调用会冲突" />
     <MESSAGE value="devicesState可能没有准备好，需要判断" />
     <MESSAGE value="增加全景上传功能" />
@@ -2543,7 +2545,8 @@
     <MESSAGE value="修正单位不更新的错误" />
     <MESSAGE value="添加模拟量可以显示单位" />
     <MESSAGE value="模拟量显示保留小数点位数" />
-    <option name="LAST_COMMIT_MESSAGE" value="模拟量显示保留小数点位数" />
+    <MESSAGE value="AnalogDevice 增加掉线，newValue为null的判断&#10;在Device面板增加保存配置的按钮&#10;NodeManager 为什么nodeRuntimeBean可能为空，可能顺序不对&#10;utils.js websocket连接后就得到相应的deviceState" />
+    <option name="LAST_COMMIT_MESSAGE" value="AnalogDevice 增加掉线，newValue为null的判断&#10;在Device面板增加保存配置的按钮&#10;NodeManager 为什么nodeRuntimeBean可能为空，可能顺序不对&#10;utils.js websocket连接后就得到相应的deviceState" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2571,74 +2574,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="352">
-            <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="28" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/node/modbus/HT_C1.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="32" column="4" lean-forward="true" selection-start-line="32" selection-start-column="4" selection-end-line="34" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/node/modbus/DMAOutput_16.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="16" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/util/ConstantModbusCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="11" column="8" lean-forward="false" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/node/modbus/DAMOutput_8.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1100">
-          <caret line="56" column="24" lean-forward="false" selection-start-line="56" selection-start-column="24" selection-end-line="56" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/node/modbus/DAMInput_12.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="594">
-          <caret line="33" column="4" lean-forward="false" selection-start-line="33" selection-start-column="4" selection-end-line="35" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/device/Device_401.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="12" column="14" lean-forward="false" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpServer/ModbusFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="302">
-          <caret line="55" column="26" lean-forward="false" selection-start-line="55" selection-start-column="26" selection-end-line="55" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/util/ConstantCommandType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="10" column="8" lean-forward="false" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpServer/ModbusTcpServer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="320">
@@ -2723,8 +2658,8 @@
         <state relative-caret-position="374">
           <caret line="20" column="11" lean-forward="false" selection-start-line="20" selection-start-column="11" selection-end-line="20" selection-end-column="11" />
           <folding>
-            <element signature="e#553#554#0" expanded="true" />
-            <element signature="e#597#598#0" expanded="true" />
+            <element signature="e#553#554#0" expanded="false" />
+            <element signature="e#597#598#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2806,7 +2741,7 @@
         <state relative-caret-position="440">
           <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2935,14 +2870,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/panel/Device.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="341">
-          <caret line="82" column="25" lean-forward="false" selection-start-line="82" selection-start-column="25" selection-end-line="82" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/device/operator/Analog.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="206">
@@ -2975,20 +2902,85 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/app/AppManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1166">
+          <caret line="59" column="0" lean-forward="true" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/settings.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/upload/gis/layer/15.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/upload/gis/layer/14.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/upload/gis/layer/_1.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/upload/panorama/1.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/upload/panorama/3.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/panel/Device.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="79" column="30" lean-forward="false" selection-start-line="79" selection-start-column="30" selection-end-line="79" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/lib/util.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="133" column="4" lean-forward="false" selection-start-line="133" selection-start-column="4" selection-end-line="133" selection-end-column="4" />
+        <state relative-caret-position="1001">
+          <caret line="207" column="34" lean-forward="false" selection-start-line="207" selection-start-column="34" selection-end-line="207" selection-end-column="34" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/app/AppManager.java">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/frame/PanoramaEditor.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="392">
-          <caret line="59" column="0" lean-forward="true" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+        <state relative-caret-position="517">
+          <caret line="72" column="30" lean-forward="false" selection-start-line="72" selection-start-column="30" selection-end-line="72" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/frame/GisEditor.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="473">
+          <caret line="59" column="12" lean-forward="true" selection-start-line="59" selection-start-column="12" selection-end-line="59" selection-end-column="30" />
           <folding />
         </state>
       </provider>

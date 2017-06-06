@@ -68,5 +68,9 @@ Ext.define('app.view.admin.frame.PanoramaEditor', {
         var device_grid = Ext.getCmp('admin.device.grid');
 
         device_grid.on('selectionchange', this.onDeviceSelectChange, form_upload);
+
+        this.on('show', function (from, eOpts) {
+            ry.serverReload();
+        })
     }
 });

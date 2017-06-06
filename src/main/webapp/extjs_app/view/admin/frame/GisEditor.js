@@ -56,6 +56,8 @@ Ext.define('app.view.admin.frame.GisEditor', {
             var gis = Ext.ComponentQuery.query('#admin_panel_gis')[0];
             gis.show();
             this.down('#gis_editor').refresh();
+
+            ry.serverReload();
         })
     }
 });
