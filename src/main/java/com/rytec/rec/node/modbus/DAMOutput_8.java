@@ -47,7 +47,7 @@ import javax.annotation.PostConstruct;
 @Service
 @AnnotationNodeType(1001)
 @AnnotationJSExport("DMA 输出 - 8")
-public class NodeOutput_8 extends NodeModbusBase {
+public class DAMOutput_8 extends NodeModbusBase {
 
     public boolean needUpdate(NodeConfig cfg, Object oldVal, Object newVal) {
         return ValueCompare.booleanNeedUpdate(cfg, oldVal, newVal);

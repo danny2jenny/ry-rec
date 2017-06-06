@@ -51,7 +51,7 @@ Ext.define('app.view.admin.panel.Node', {
     }, {
         text: '节点类型',
         dataIndex: 'type',
-        width: 100,
+        width: 200,
         editor: {
             xtype: 'combobox',
             store: ry.NODE_TYPE
