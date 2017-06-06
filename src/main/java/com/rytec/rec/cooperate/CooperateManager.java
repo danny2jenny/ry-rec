@@ -89,6 +89,7 @@ public class CooperateManager implements ManageableInterface {
         // 按照联动的规则来进行相应的动作
 
         for (RuleAction action : actions) {
+            // 可能一个信号没有相应的动作
             if (action.getTarget()==null){
                 continue;
             }

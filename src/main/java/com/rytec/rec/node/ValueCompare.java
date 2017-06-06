@@ -18,12 +18,14 @@ public class ValueCompare {
     public static boolean analogNeedUpdate(NodeConfig cfg, Object oldVal, Object newVal) {
         boolean rst = false;
 
-        if (oldVal == null) {
-            rst = true;
-        } else {
-            if (Math.abs((Float) newVal - (Float) oldVal) >= cfg.sensitive) {
-                rst = true;
+        if (newVal == null || oldVal == null) {
+            if (newVal != oldVal) {
+                return true;
             }
+        }
+
+        if (Math.abs((Float) newVal - (Float) oldVal) >= cfg.sensitive) {
+            rst = true;
         }
         return rst;
     }
