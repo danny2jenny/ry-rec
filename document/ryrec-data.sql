@@ -25,10 +25,12 @@ CREATE TABLE IF NOT EXISTS `actionrule` (
   PRIMARY KEY (`id`),
   KEY `FK_actionrule_device` (`device`),
   CONSTRAINT `FK_actionrule_device` FOREIGN KEY (`device`) REFERENCES `device` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='联动规则';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='联动规则';
 
 -- 正在导出表  ryrec.actionrule 的数据：~0 rows (大约)
 /*!40000 ALTER TABLE `actionrule` DISABLE KEYS */;
+INSERT INTO `actionrule` (`id`, `device`, `sig`) VALUES
+	(1, 1, 10);
 /*!40000 ALTER TABLE `actionrule` ENABLE KEYS */;
 
 
@@ -45,10 +47,12 @@ CREATE TABLE IF NOT EXISTS `actions` (
   KEY `FK_actions_actionrule` (`rule`),
   CONSTRAINT `FK_actions_actionrule` FOREIGN KEY (`rule`) REFERENCES `actionrule` (`id`) ON DELETE CASCADE,
   CONSTRAINT `FK_actions_device` FOREIGN KEY (`target`) REFERENCES `device` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='联动的动作';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='联动的动作';
 
--- 正在导出表  ryrec.actions 的数据：~0 rows (大约)
+-- 正在导出表  ryrec.actions 的数据：~1 rows (大约)
 /*!40000 ALTER TABLE `actions` DISABLE KEYS */;
+INSERT INTO `actions` (`id`, `rule`, `target`, `act`, `parm`) VALUES
+	(1, 1, 2, 101, '');
 /*!40000 ALTER TABLE `actions` ENABLE KEYS */;
 
 
@@ -133,15 +137,23 @@ CREATE TABLE IF NOT EXISTS `config` (
   `name` varchar(50) NOT NULL DEFAULT 'key' COMMENT '配置名称',
   `value` varchar(50) NOT NULL DEFAULT 'value' COMMENT '配置的值',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='配置文件，常量等\r\n\r\nGroup 分组\r\n1：Channel 类型\r\n2：Node 类型\r\n3：Device 类型';
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COMMENT='配置文件，常量等\r\n\r\nGroup 分组\r\n1：Channel 类型\r\n2：Node 类型\r\n3：Device 类型';
 
--- 正在导出表  ryrec.config 的数据：~4 rows (大约)
+-- 正在导出表  ryrec.config 的数据：~12 rows (大约)
 /*!40000 ALTER TABLE `config` DISABLE KEYS */;
 INSERT INTO `config` (`id`, `cat`, `name`, `value`) VALUES
 	(1, 11, '摄像机', '101'),
 	(2, 11, '灯光', '201'),
 	(3, 11, '通用告警', '1001'),
-	(4, 11, '全景', '9999');
+	(4, 11, '全景', '9999'),
+	(5, 11, '风机', '202'),
+	(6, 11, '红外入侵', '301'),
+	(7, 11, '水泵', '203'),
+	(8, 11, '一氧化碳', '401'),
+	(9, 11, '硫化氢', '402'),
+	(10, 11, '甲烷', '403'),
+	(11, 11, '氧气', '404'),
+	(12, 11, '水位', '421');
 /*!40000 ALTER TABLE `config` ENABLE KEYS */;
 
 
@@ -157,10 +169,16 @@ CREATE TABLE IF NOT EXISTS `device` (
   `lnodenum` int(11) DEFAULT '0',
   `opt` varchar(1024) DEFAULT NULL COMMENT '配置参数',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='设备列表\r\n一组功能node构成了一个功能集合的设备\r\n\r\n一个Device由1～n个nodes组成';
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='设备列表\r\n一组功能node构成了一个功能集合的设备\r\n\r\n一个Device由1～n个nodes组成';
 
--- 正在导出表  ryrec.device 的数据：~0 rows (大约)
+-- 正在导出表  ryrec.device 的数据：~5 rows (大约)
 /*!40000 ALTER TABLE `device` DISABLE KEYS */;
+INSERT INTO `device` (`id`, `no`, `name`, `type`, `icon`, `lnodetype`, `lnodenum`, `opt`) VALUES
+	(1, NULL, 'IN_0', 102, 1001, '', NULL, ''),
+	(2, NULL, 'OUT_0', 101, 202, '', NULL, ''),
+	(3, NULL, 'AI_0', 201, 401, '', NULL, ''),
+	(4, NULL, 'IN_1', 102, 1001, '', NULL, ''),
+	(5, NULL, '测试全景', 9999, 9999, '', NULL, '');
 /*!40000 ALTER TABLE `device` ENABLE KEYS */;
 
 
@@ -216,10 +234,17 @@ CREATE TABLE IF NOT EXISTS `gis` (
   KEY `FK_gisdevice_gislayer` (`layer`),
   CONSTRAINT `FK_gisdevice_device` FOREIGN KEY (`device`) REFERENCES `device` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_gisdevice_gislayer` FOREIGN KEY (`layer`) REFERENCES `gislayer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
--- 正在导出表  ryrec.gis 的数据：~0 rows (大约)
+-- 正在导出表  ryrec.gis 的数据：~6 rows (大约)
 /*!40000 ALTER TABLE `gis` DISABLE KEYS */;
+INSERT INTO `gis` (`id`, `device`, `type`, `layer`, `data`, `style`) VALUES
+	(1, 2, 1, 1, '[-106.34765625,63.45703125]', NULL),
+	(2, 1, 1, 1, '[-96.50390625,43.41796875]', NULL),
+	(3, 3, 1, 1, '[-45.307617188,77.915039063]', NULL),
+	(4, 3, 1, 1, '[-35.200195313,77.827148438]', NULL),
+	(5, 3, 1, 1, '[-57.788085938,76.333007813]', NULL),
+	(6, 5, 1, 1, '[-55.37109375,20.21484375]', NULL);
 /*!40000 ALTER TABLE `gis` ENABLE KEYS */;
 
 
@@ -230,10 +255,12 @@ CREATE TABLE IF NOT EXISTS `gislayer` (
   `name` varchar(254) NOT NULL DEFAULT '图层名称',
   `file` varchar(254) DEFAULT '图片位置',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- 正在导出表  ryrec.gislayer 的数据：~0 rows (大约)
 /*!40000 ALTER TABLE `gislayer` DISABLE KEYS */;
+INSERT INTO `gislayer` (`id`, `name`, `file`) VALUES
+	(1, '主图层', '1.jpg');
 /*!40000 ALTER TABLE `gislayer` ENABLE KEYS */;
 
 
@@ -252,10 +279,15 @@ CREATE TABLE IF NOT EXISTS `node` (
   PRIMARY KEY (`id`),
   KEY `FK_device_channel` (`cid`),
   CONSTRAINT `FK_device_channel` FOREIGN KEY (`cid`) REFERENCES `channel` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='节点列表\r\n包括所有的前端动环设备和摄像机';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='节点列表\r\n包括所有的前端动环设备和摄像机';
 
--- 正在导出表  ryrec.node 的数据：~0 rows (大约)
+-- 正在导出表  ryrec.node 的数据：~3 rows (大约)
 /*!40000 ALTER TABLE `node` DISABLE KEYS */;
+INSERT INTO `node` (`id`, `cid`, `adr`, `no`, `name`, `type`, `opt`, `device`, `deviceFun`) VALUES
+	(1, 1, 254, 0, 'IN_0', 1002, '', 1, 101),
+	(2, 1, 254, 15, 'OUT_0', 1003, '', 2, 101),
+	(3, 1, 254, 0, 'AI_0', 1004, '{"sensitive":1,"pA":0.1,"pB":0,"unit":"%"}', 3, 101),
+	(4, 1, 254, 1, 'IN_1', 1002, '', 4, 101);
 /*!40000 ALTER TABLE `node` ENABLE KEYS */;
 
 
@@ -269,10 +301,12 @@ CREATE TABLE IF NOT EXISTS `panorama` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `device` (`device`),
   CONSTRAINT `FK_panorama_device` FOREIGN KEY (`device`) REFERENCES `device` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='全景图片，关联到一个Device';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='全景图片，关联到一个Device';
 
--- 正在导出表  ryrec.panorama 的数据：~0 rows (大约)
+-- 正在导出表  ryrec.panorama 的数据：~1 rows (大约)
 /*!40000 ALTER TABLE `panorama` DISABLE KEYS */;
+INSERT INTO `panorama` (`id`, `name`, `file`, `device`) VALUES
+	(1, '测试全景', '1.jpg', 5);
 /*!40000 ALTER TABLE `panorama` ENABLE KEYS */;
 
 
@@ -289,10 +323,13 @@ CREATE TABLE IF NOT EXISTS `panoramadevice` (
   KEY `FK__panorama` (`scene`),
   CONSTRAINT `FK__device` FOREIGN KEY (`device`) REFERENCES `device` (`id`) ON DELETE CASCADE,
   CONSTRAINT `FK__panorama` FOREIGN KEY (`scene`) REFERENCES `panorama` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='全景图片上的device';
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='全景图片上的device';
 
--- 正在导出表  ryrec.panoramadevice 的数据：~0 rows (大约)
+-- 正在导出表  ryrec.panoramadevice 的数据：~2 rows (大约)
 /*!40000 ALTER TABLE `panoramadevice` DISABLE KEYS */;
+INSERT INTO `panoramadevice` (`id`, `device`, `scene`, `pitch`, `yaw`) VALUES
+	(6, 2, 1, 36.6421, -6.57891),
+	(7, 2, 1, -0.301726, -47.7569);
 /*!40000 ALTER TABLE `panoramadevice` ENABLE KEYS */;
 
 
