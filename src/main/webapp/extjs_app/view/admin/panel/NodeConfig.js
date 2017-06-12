@@ -25,16 +25,19 @@ Ext.define('app.view.admin.panel.NodeConfig', {
             xtype: 'numberfield',
             fieldLabel: '灵敏度：',
             name: 'sensitive',
+            decimalPrecision: 10,
             itemId: 'sensitive'
         },
         {
             xtype: 'numberfield',
             fieldLabel: '线性参数A',
             name: 'pA',
+            decimalPrecision: 10,
             itemId: 'pA'
         }, {
             xtype: 'numberfield',
             fieldLabel: '线性参数B',
+            decimalPrecision: 10,
             name: 'pB',
             itemId: 'pB'
         }, {
