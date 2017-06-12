@@ -18,7 +18,8 @@ Ext.define('app.view.admin.frame.Cooperate', {
             xtype: 'admin.panel.Actions',
             margins: '0 0 5 0',
             region: 'south',
-            height: 500,
+            height: 300,
+            split: true
         }
     ],
 

@@ -18,15 +18,16 @@ Ext.define('app.view.admin.frame.ChannelNode', {
         {
             xtype: 'admin.panel.channel',
             region: 'center',
-            margins: '0 0 0 0',
+            margins: '0 0 0 0'
         },
 
         {
             xtype: 'panel',
             region: 'south',
-            height: 500,
+            height: 300,
             margins: '0 0 5 0',
             layout: 'border',
+            split: true,
             items: [
                 {
                     xtype: 'admin.panel.node',
