@@ -53,6 +53,7 @@ Ext.define('app.view.admin.panel.Node', {
         dataIndex: 'type',
         width: 200,
         editor: {
+            allowBlank: false,
             xtype: 'combobox',
             store: ry.NODE_TYPE
         },

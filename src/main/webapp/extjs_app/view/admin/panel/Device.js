@@ -50,6 +50,7 @@ Ext.define('app.view.admin.panel.Device', {
             dataIndex: 'type',
             width: 100,
             editor: {
+                allowBlank: false,
                 xtype: 'combobox',
                 store: ry.DEVICE_TYPE,
             },

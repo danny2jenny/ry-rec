@@ -71,6 +71,7 @@ Ext.define('app.view.admin.panel.Channel', {
             dataIndex: 'type',
             width: 200,
             editor: {
+                allowBlank: false,
                 xtype: 'combobox',
                 store: ry.CHANNEL_TYPE,
             },
