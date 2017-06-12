@@ -48,6 +48,7 @@ Ext.define('app.view.admin.frame.PanoramaEditor', {
 
     // device 选择事件
     onDeviceSelectChange: function (view, selections, options) {
+        if (selections.length==0) return;
         if (selections[0].data.type == 9999) {
             this.down('#btn_new').enable();
             this.deviceId = selections[0].data.id;
