@@ -174,6 +174,7 @@ public class VideoService implements ManageableInterface {
 
         List<Channel> channels = dbConfig.getChannelList();
 
+        // 2001~3000 是视频的channel
         for (Channel cn : channels) {
             if (cn.getType() < 2000 || cn.getType() > 3000) {
                 continue;

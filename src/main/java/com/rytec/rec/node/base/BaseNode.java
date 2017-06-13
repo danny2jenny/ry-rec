@@ -36,6 +36,10 @@ public abstract class BaseNode implements NodeInterface {
             nodeConfig.pB = new Float(0);
         }
 
+        if (nodeConfig.sensitive == null){
+            nodeConfig.sensitive = new Float(0);
+        }
+
         return nodeConfig;
     }
 

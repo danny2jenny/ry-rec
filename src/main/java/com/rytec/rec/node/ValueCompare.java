@@ -21,12 +21,15 @@ public class ValueCompare {
         if (newVal == null || oldVal == null) {
             if (newVal != oldVal) {
                 return true;
+            } else {
+                return false;
             }
         }
 
         if (Math.abs((Float) newVal - (Float) oldVal) >= cfg.sensitive) {
             rst = true;
         }
+
         return rst;
     }
 }
