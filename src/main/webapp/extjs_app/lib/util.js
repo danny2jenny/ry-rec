@@ -189,6 +189,9 @@ ry.stom.keepConnectRunner = function () {
 ry.stom.connect = function () {
     // 不知道为什么，以下两句必须一同执行，否者不能连接
     ry.stom.client = Stomp.client(ry.stom.stomp_url);
+    ry.stom.client.debug = function(str) {
+
+    };
     ry.stom.client.connect(null, null, ry.stom.connect_callback, ry.stom.error_callback);
 }
 

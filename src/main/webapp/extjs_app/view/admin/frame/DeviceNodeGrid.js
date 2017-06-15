@@ -119,6 +119,7 @@ Ext.define('app.view.admin.frame.DeviceNodeGrid', {
             // 当 NodeForDevice，更新，应该更新 NodeForChannel
             if (event.action == 'extNodeForDevice' && event.method == 'update') {
                 nodeForChannel.editPlugin.reload();
+                nodeForDevice.editPlugin.reload();
             }
 
         }, this);
