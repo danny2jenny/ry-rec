@@ -86,6 +86,22 @@ Ext.define('app.view.device.control._101', {
         this.setTitle("开关控制：" + state.device.name);
 
         this.down("#button").enable();
+
+
+        // 远程、就地状态
+        if (this.runtime.state.remote == 20) {
+            this.down("#remote").setValue("远程控制");
+            this.down("#button").enable();
+        }
+        if (this.runtime.state.remote == 21) {
+            this.down("#remote").setValue("就地控制");
+            this.down("#button").disable();
+        }
+        if (this.runtime.state.remote == null) {
+            this.down("#remote").setValue("未配置/失效！")
+        }
+
+
         // 开关状态
         if (this.runtime.state.output == 20) {
             this.down("#output").setValue("关闭");
@@ -101,16 +117,7 @@ Ext.define('app.view.device.control._101', {
             this.down("#button").disable();
         }
 
-        // 远程、就地状态
-        if (this.runtime.state.remote == 20) {
-            this.down("#remote").setValue("远程控制")
-        }
-        if (this.runtime.state.remote == 21) {
-            this.down("#remote").setValue("就地控制")
-        }
-        if (this.runtime.state.remote == null) {
-            this.down("#remote").setValue("未配置/失效！")
-        }
+
 
         // 反馈状态
         if (this.runtime.state.feedback == 20) {
