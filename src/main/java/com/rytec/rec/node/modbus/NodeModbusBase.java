@@ -23,9 +23,9 @@ import java.util.HashMap;
 /**
  * Created by Danny on 2017/2/23.
  * 的基础类型
- *
+ * <p>
  * 子类需要初始化
- *
+ * <p>
  * modbuCmd
  * regCount
  * regOffset
@@ -180,12 +180,14 @@ public abstract class NodeModbusBase extends BaseNode {
                 }
 
                 // 判断是否需要反向
-                if (nodeRunTime.nodeConfig.pA < 0) {
+
+                if (nodeManager.getChannelNodeByNodeId(node.getNid()).nodeConfig.pA < 0) {
                     msg.value = !((Boolean) msg.value);
                 }
 
                 msg.node = node.getNid();
                 nodeManager.onMessage(msg);
+
             }
         }
         data.release();
@@ -271,15 +273,27 @@ public abstract class NodeModbusBase extends BaseNode {
 
         ModbusMessage outMsg = null;
 
+        NodeRuntimeBean nodeRuntimeBean = nodeManager.getChannelNodeByNodeId(msg.node);
         switch (msg.type) {
             case ConstantCommandType.GENERAL_READ:
                 break;
             case ConstantCommandType.GENERAL_WRITE:
                 if (msg.value instanceof Boolean) {
                     if ((Boolean) msg.value) {
-                        outMsg = (ModbusMessage) genMessage(msg.from, msg.node, msg.type, 0xFF00);
+                        // 打开
+                        if (nodeRuntimeBean.nodeConfig.pA < 0) {
+                            outMsg = (ModbusMessage) genMessage(msg.from, msg.node, msg.type, 0x0000);
+                        } else {
+                            outMsg = (ModbusMessage) genMessage(msg.from, msg.node, msg.type, 0xFF00);
+                        }
                     } else {
-                        outMsg = (ModbusMessage) genMessage(msg.from, msg.node, msg.type, 0x0000);
+                        // 关闭
+                        if (nodeRuntimeBean.nodeConfig.pA < 0) {
+                            outMsg = (ModbusMessage) genMessage(msg.from, msg.node, msg.type, 0xFF00);
+                        } else {
+                            outMsg = (ModbusMessage) genMessage(msg.from, msg.node, msg.type, 0x0000);
+                        }
+
                     }
                 } else {
                     return ConstantErrorCode.NODE_VALUE_TYPE;
