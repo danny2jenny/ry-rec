@@ -67,7 +67,7 @@ public abstract class NodeModbusBase extends BaseNode {
                         frame.responseLen = 5 + (int) Math.ceil(((double) regCount) / 8);
                         break;
                     case ConstantCommandType.GENERAL_WRITE:
-                        frame.payload = ModbusFrame.writeCoil(cn.getAdr(), cn.getNo(), value);
+                        frame.payload = ModbusFrame.writeCoil(cn.getAdr(), cn.getNo()-1, value);
                         frame.responseLen = 8;
                         break;
                 }
@@ -168,11 +168,11 @@ public abstract class NodeModbusBase extends BaseNode {
             if ((nodeRunTime.channelNode.getAdr().intValue() == node.getAdr().intValue()) &&
                     (nodeRunTime.channelNode.getNtype().intValue() == node.getNtype().intValue())) {
 
-                byteNumber = node.getNo() / 8;
+                byteNumber = (node.getNo()-1) / 8;
                 byteVal = data.getByte(byteNumber);
 
                 //是一个地址的设备，位操作后
-                adrMask = 0x01 << (node.getNo() % 8);
+                adrMask = 0x01 << ((node.getNo()-1) % 8);
                 if ((adrMask & byteVal) > 0) {
                     msg.value = true;
                 } else {
@@ -214,7 +214,7 @@ public abstract class NodeModbusBase extends BaseNode {
             if ((nodeRunTime.channelNode.getAdr().intValue() == node.getAdr().intValue()) &&
                     (nodeRunTime.channelNode.getNtype().intValue() == node.getNtype().intValue())) {
 
-                valueIndex = node.getNo() * 2;
+                valueIndex = (node.getNo()-1) * 2;
                 analogVal = data.getShort(valueIndex);
                 currentNodeRuntime = nodeManager.getChannelNodeByNodeId(node.getNid());
                 msg.value = currentNodeRuntime.nodeConfig.pA * analogVal + currentNodeRuntime.nodeConfig.pB;
