@@ -39,6 +39,9 @@ public class DeviceManager implements ManageableInterface {
     @Autowired
     DbConfig dbConfig;
 
+    /*
+     * device操作接口
+     */
     private Map<Integer, AbstractOperator> deviceOperators = new HashMap();
 
     /*

@@ -1,6 +1,8 @@
 package com.rytec.rec.messenger;
 
-import com.rytec.rec.util.ConstantVideo;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.rytec.rec.service.IEC61850Service;
 import com.rytec.rec.service.VideoService;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
+import java.io.IOException;
 
 /**
  * Created by Danny on 2017/3/17.
@@ -23,8 +26,13 @@ public class MqttService {
     @Autowired
     VideoService videoService;
 
+    @Autowired
+    IEC61850Service iec61850Service;
+
     @Resource
     private MqttPahoMessageHandler mqtt;
+
+    ObjectMapper objectMapper = new ObjectMapper();
 
     private final org.slf4j.Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -33,8 +41,8 @@ public class MqttService {
      *
      */
     @PostConstruct
-    void init(){
-       videoService.setMqttService(this);
+    void init() {
+        videoService.setMqttService(this);
     }
 
     /**
@@ -42,8 +50,31 @@ public class MqttService {
      *
      * @param message
      */
-    public void onVideoMessage(String message) {
-        videoService.onVideoMessage(message);
+    public void onMqttMessage(String message) {
+        int cmd = 0;
+        JsonNode jsonNode;
+        try {
+            jsonNode = objectMapper.readValue(message, JsonNode.class);
+            cmd = jsonNode.path("cmd").asInt();
+        } catch (IOException e) {
+            return;
+        }
+
+        if (cmd <= 100) {
+            videoService.onVideoMessage(message);
+        } else {
+            iec61850Service.onMqttMessage(message);
+        }
+
+    }
+
+    /**
+     * 收到61850消息
+     *
+     * @param message
+     */
+    public void on61850Message(String message) {
+        logger.debug(message);
     }
 
 

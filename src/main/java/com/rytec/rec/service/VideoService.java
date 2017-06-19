@@ -8,12 +8,12 @@ import com.rytec.rec.channel.ChannelManager;
 import com.rytec.rec.db.DbConfig;
 import com.rytec.rec.db.model.Channel;
 import com.rytec.rec.db.model.ChannelNode;
-import com.rytec.rec.messenger.Message.MqttMessage;
+import com.rytec.rec.messenger.Message.MqttMsg;
 import com.rytec.rec.messenger.MqttService;
 import com.rytec.rec.node.NodeManager;
 import com.rytec.rec.node.NodeMessage;
 import com.rytec.rec.util.ConstantFromWhere;
-import com.rytec.rec.util.ConstantVideo;
+import com.rytec.rec.util.ConstantMqtt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Service;
@@ -98,10 +98,10 @@ public class VideoService implements ManageableInterface {
         //通过 node 找到 channel 和 add，然后发送给RyTcpServer
         //ChannelNode channelNode = nodeMapList.get(msg.nodeId);
 
-        MqttMessage mqttMessage = new MqttMessage();
-        mqttMessage.cmd = ConstantVideo.VIDEO_PTZ;
+        MqttMsg mqttMsg = new MqttMsg();
+        mqttMsg.cmd = ConstantMqtt.VIDEO_PTZ;
         PayloadPtz payload = new PayloadPtz();
-        payload.ptzCmd = ConstantVideo.PTZ_GOTO_PRESET;
+        payload.ptzCmd = ConstantMqtt.PTZ_GOTO_PRESET;
         payload.nvr = channelNode.getId();
         payload.channel = channelNode.getAdr();
 
@@ -114,10 +114,10 @@ public class VideoService implements ManageableInterface {
         }
 
 
-        mqttMessage.payload = payload;
+        mqttMsg.payload = payload;
 
         try {
-            mqttService.sendMsg(ConstantVideo.TOPIC_VIDEO_SERVICE, objectMapper.writeValueAsString(mqttMessage));
+            mqttService.sendMsg(ConstantMqtt.TOPIC_VIDEO_SERVICE, objectMapper.writeValueAsString(mqttMsg));
         } catch (JsonProcessingException e) {
         }
 
@@ -140,10 +140,10 @@ public class VideoService implements ManageableInterface {
 
         switch (cmd) {
             // 请求初始化
-            case ConstantVideo.VIDEO_INIT_REQUEST:
+            case ConstantMqtt.VIDEO_INIT_REQUEST:
                 sendVideoServiceConfig();
                 break;
-            case ConstantVideo.VIDEO_CHANNEL_ONLINE:
+            case ConstantMqtt.VIDEO_CHANNEL_ONLINE:
                 int channel = jsonNode.path("channel").asInt();
                 boolean online = jsonNode.path("online").asBoolean();
 
@@ -189,11 +189,11 @@ public class VideoService implements ManageableInterface {
      * 向VideoService发送配置对象
      */
     public void sendVideoServiceConfig() {
-        MqttMessage msg = new MqttMessage();
-        msg.cmd = ConstantVideo.VIDEO_INIT;
+        MqttMsg msg = new MqttMsg();
+        msg.cmd = ConstantMqtt.VIDEO_INIT;
         msg.payload = getVideoChannelConfig();
         try {
-            mqttService.sendMsg(ConstantVideo.TOPIC_VIDEO_SERVICE, objectMapper.writeValueAsString(msg));
+            mqttService.sendMsg(ConstantMqtt.TOPIC_VIDEO_SERVICE, objectMapper.writeValueAsString(msg));
         } catch (JsonProcessingException e) {
         }
     }

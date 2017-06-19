@@ -50,7 +50,7 @@
     </bean>
 
     <!-- ##################################################################################-->
-    <!-- mqtt客户端 -->
+    <!-- 链接mqtt服务器 -->
     <bean id="clientFactory"
           class="org.springframework.integration.mqtt.core.DefaultMqttPahoClientFactory">
         <!--<property name="userName" value="用户名"/>-->
@@ -62,23 +62,23 @@
         </property>
     </bean>
 
-    <!-- 消息适配器  -->
+    <!-- 消息适配器 - Video  -->
     <int-mqtt:message-driven-channel-adapter
             id="mqttInbound"
             client-id="CID_RY_MQTT_MC_SUB"
-            topics="rec/srv/video/from"
+            topics="${mq.sub.video}"
             qos="2"
             client-factory="clientFactory"
             auto-startup="true"
             send-timeout="12"
             channel="startCase"/>
 
-    <!-- 消息处理类 -->
+    <!-- 消息处理类 -Video -->
     <int:service-activator
             id="startCaseService"
             input-channel="startCase"
             ref="mqttCaseService"
-            method="onVideoMessage"
+            method="onMqttMessage"
     />
 
     <bean id="mqttCaseService" class="com.rytec.rec.messenger.MqttService"/>
