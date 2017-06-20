@@ -13,9 +13,8 @@ Ext.define('app.model.Device', {
         {name: 'name'},
         {name: 'type'},
         {name: 'icon'},
-        {name: 'lnodetype'},
-        {name: 'lnodenum'},
-        {name: 'opt'},
+        {name: 'iec61850', defaultValue: 0},
+        {name: 'opt'}
     ],
 
     validations: [{
