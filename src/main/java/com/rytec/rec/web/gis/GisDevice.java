@@ -136,7 +136,7 @@ public class GisDevice {
      */
     @ExtDirectMethod
     public Object getDevicesState() {
-        return deviceManager.deviceRuntimeList;
+        return deviceManager.getDeviceRuntimeList();
     }
 
 

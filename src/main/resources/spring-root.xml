@@ -65,7 +65,7 @@
     <!-- 消息适配器 - Video  -->
     <int-mqtt:message-driven-channel-adapter
             id="mqttInbound"
-            client-id="CID_RY_MQTT_MC_SUB"
+            client-id="CID_RY_MQTT_MC_SUB___"
             topics="${mq.sub.video}"
             qos="2"
             client-factory="clientFactory"

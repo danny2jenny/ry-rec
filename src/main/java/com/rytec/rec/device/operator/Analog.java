@@ -46,7 +46,7 @@ public class Analog extends AbstractOperator {
     public void onValueChanged(int deviceId, int fun, Object oldValue, Object newValue, String unit) {
 
         // 得到运行状态，更新状态
-        DeviceRuntimeBean deviceRuntimeBean = deviceManager.deviceRuntimeList.get(deviceId);
+        DeviceRuntimeBean deviceRuntimeBean = deviceManager.getDeviceRuntimeList().get(deviceId);
         ((StateAnalog) deviceRuntimeBean.runtime.state).unit = unit;
 
         if (newValue == null) {

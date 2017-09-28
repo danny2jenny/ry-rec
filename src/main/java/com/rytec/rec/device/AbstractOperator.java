@@ -1,14 +1,13 @@
 package com.rytec.rec.device;
 
+import com.rytec.rec.app.RecBase;
 import com.rytec.rec.cooperate.CooperateManager;
 import com.rytec.rec.db.model.DeviceNode;
 import com.rytec.rec.messenger.AlarmHub;
 import com.rytec.rec.messenger.Message.WebMessage;
-import com.rytec.rec.util.ConstantDeviceFunction;
 import com.rytec.rec.util.ConstantDeviceState;
 import com.rytec.rec.util.ConstantMessageType;
 import com.rytec.rec.messenger.WebPush;
-import com.rytec.rec.node.NodeInterface;
 import com.rytec.rec.node.NodeManager;
 import com.rytec.rec.node.NodeMessage;
 import com.rytec.rec.util.ConstantErrorCode;
@@ -21,9 +20,7 @@ import java.util.HashMap;
  * Created by danny on 16-11-21.
  * 这个是Device的基类
  */
-public class AbstractOperator {
-
-    private final org.slf4j.Logger logger = LoggerFactory.getLogger(this.getClass());
+public class AbstractOperator extends RecBase {
 
     @Autowired
     CooperateManager cooperateManager;
@@ -89,7 +86,7 @@ public class AbstractOperator {
      * @param newValue
      */
     public void onValueChanged(int deviceId, int fun, Object oldValue, Object newValue, String unit) {
-        DeviceRuntimeBean deviceRuntimeBean = deviceManager.deviceRuntimeList.get(deviceId);
+        DeviceRuntimeBean deviceRuntimeBean = deviceManager.getDeviceRuntimeList().get(deviceId);
         deviceRuntimeBean.runtime.state = newValue;
 
         if (newValue == null) {
@@ -147,7 +144,7 @@ public class AbstractOperator {
     }
 
     public Object getConfig(int deviceId) {
-        DeviceRuntimeBean drb = deviceManager.deviceRuntimeList.get(deviceId);
+        DeviceRuntimeBean drb = deviceManager.getDeviceRuntimeList().get(deviceId);
         return drb.config;
     }
 

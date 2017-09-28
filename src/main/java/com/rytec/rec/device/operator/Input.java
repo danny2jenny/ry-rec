@@ -35,7 +35,7 @@ public class Input extends AbstractOperator {
     public void onValueChanged(int deviceId, int fun, Object oldValue, Object newValue, String unit) {
 
         // 得到运行状态
-        DeviceRuntimeBean deviceRuntimeBean = deviceManager.deviceRuntimeList.get(deviceId);
+        DeviceRuntimeBean deviceRuntimeBean = deviceManager.getDeviceRuntimeList().get(deviceId);
         deviceRuntimeBean.runtime.state = newValue;
 
         // 处理掉线

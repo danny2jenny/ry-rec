@@ -10,12 +10,13 @@
 package com.rytec.rec.device;
 
 import com.rytec.rec.app.ManageableInterface;
+import com.rytec.rec.app.RecBase;
 import com.rytec.rec.db.DbConfig;
 import com.rytec.rec.db.model.Device;
 import com.rytec.rec.db.model.DeviceNode;
+import com.rytec.rec.service.IEC61850Service;
 import com.rytec.rec.util.ConstantDeviceState;
 import com.rytec.rec.util.AnnotationDeviceType;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.annotation.Order;
@@ -28,16 +29,16 @@ import java.util.Map;
 
 @Service
 @Order(300)
-public class DeviceManager implements ManageableInterface {
-
-    private final org.slf4j.Logger logger = LoggerFactory.getLogger(this.getClass());
-
+public class DeviceManager extends RecBase implements ManageableInterface {
 
     @Autowired
     ApplicationContext context;
 
     @Autowired
     DbConfig dbConfig;
+
+    @Autowired
+    IEC61850Service iec61850Service;
 
     /*
      * device操作接口
@@ -66,7 +67,15 @@ public class DeviceManager implements ManageableInterface {
      * deviceId-> runtimeBean
      */
 
-    public HashMap<Integer, DeviceRuntimeBean> deviceRuntimeList = new HashMap();
+    HashMap<Integer, DeviceRuntimeBean> deviceRuntimeList = new HashMap();
+
+    /**
+     * 通过方法访问
+     * @return
+     */
+    public HashMap<Integer, DeviceRuntimeBean> getDeviceRuntimeList(){
+        return deviceRuntimeList;
+    }
 
     // 初始化接口的索引
     private void initOperatorInterface() {
@@ -84,7 +93,6 @@ public class DeviceManager implements ManageableInterface {
     * 初始化Devices
     */
     private void initConfig() {
-
         //初始化Device 和 Node 的关系
 
         List<DeviceNode> deviceNodeList = dbConfig.getDeviceNodeList();
@@ -107,7 +115,6 @@ public class DeviceManager implements ManageableInterface {
                 this.deviceNodeListByFun.put(item.getId(), dnByFun);
             }
             dnByFun.put(item.getNfun(), item);
-
         }
 
         // 初始化 Device 的运行时状态
@@ -131,6 +138,7 @@ public class DeviceManager implements ManageableInterface {
             deviceRuntimeList.put(item.getId(), deviceRuntimeBean);
         }
 
+        logger.debug("DeviceManager Init...");
     }
 
     @PostConstruct
@@ -174,11 +182,16 @@ public class DeviceManager implements ManageableInterface {
         if (devices == null) {
             return;
         }
+
         DeviceNode deviceNode = devices.get(fun);
         AbstractOperator abstractOperator = getOperatorByDeviceType(deviceNode.getDtype());
 
         // 在实例中处理值的改变
         abstractOperator.onValueChanged(device, fun, oldValue, newValue, unit);
+
+        // 向更新61850中的值
+        DeviceRuntimeBean deviceRuntimeBean = deviceRuntimeList.get(device);
+        iec61850Service.update(deviceRuntimeBean);
     }
 
     public void stop() {

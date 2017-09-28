@@ -208,8 +208,8 @@ Ext.define('app.lib.GisViewPlugin', {
                 projection: me.projection,
                 center: ol.extent.getCenter(me.extent),
                 extent: me.extent,
-                zoom: 4,
-                maxZoom: 4
+                zoom: 6,
+                maxZoom: 6
             })
         });
 

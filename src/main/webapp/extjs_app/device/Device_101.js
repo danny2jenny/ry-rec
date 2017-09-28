@@ -23,7 +23,7 @@ Ext.define('app.view.device.control._101', {
         xtype: 'textfield',
         itemId: 'output',
         readOnly: true,
-        fieldLabel: '状态',
+        fieldLabel: '远程控制状态',
         value: ""
     }, {
         xtype: 'textfield',
@@ -35,7 +35,7 @@ Ext.define('app.view.device.control._101', {
         xtype: 'textfield',
         itemId: 'feedback',
         readOnly: true,
-        fieldLabel: '反馈状态',
+        fieldLabel: '工作状态',
         value: ""
     }, {
         xtype: 'button',
