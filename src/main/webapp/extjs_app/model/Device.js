@@ -13,7 +13,18 @@ Ext.define('app.model.Device', {
         {name: 'name'},
         {name: 'type'},
         {name: 'icon'},
-        {name: 'iec61850', defaultValue: 0},
+        {
+            name: 'iec61850',
+            type: 'boolean',
+            convert: function (v) {
+                if (typeof v === 'boolean') {
+                    return v ? 1 : 0;
+                } else {
+                    return parseInt(v, 10);
+                }
+            },
+            defaultValue: 0
+        },
         {name: 'opt'}
     ],
 
