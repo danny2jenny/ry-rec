@@ -9,5 +9,6 @@ public interface ConstantModbusCommand {
     int READ_HOLDING_REGISTERS = 3;
     int READ_REGISTERS = 4;
     int WRITE_COIL = 5;
+    int WRITE_REGISTER = 6;
     int READ_WRITE_COILS = 999;
 }

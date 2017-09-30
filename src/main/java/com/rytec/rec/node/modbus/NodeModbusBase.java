@@ -49,6 +49,14 @@ public abstract class NodeModbusBase extends BaseNode {
     ChannelManager channelManager;
 
 
+    /**
+     *
+     * @param where  从哪里来的真 1 系统 2 联动 3 用户
+     * @param nodeId node 的ID
+     * @param cmd    命令  对应 util/ConstantCommandType
+     * @param value  值
+     * @return
+     */
     public Object genMessage(int where, int nodeId, int cmd, int value) {
 
         ChannelNode cn = nodeManager.getChannelNodeByNodeId(nodeId).channelNode;
@@ -90,7 +98,10 @@ public abstract class NodeModbusBase extends BaseNode {
     }
 
 
-    //消息解码
+    /**
+     * 消息解码，然后不同的类型返回，不同的处理
+     * @param msg
+     */
     public void decodeMessage(Object msg) {
 
         ModbusMessage modbusMessage = (ModbusMessage) msg;

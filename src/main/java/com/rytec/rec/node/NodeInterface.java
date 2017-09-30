@@ -9,14 +9,13 @@ package com.rytec.rec.node;
 public interface NodeInterface {
 
     /**
+     * 生成一个消息对象
      * @param where  从哪里来的真 1 系统 2 联动 3 用户
      * @param nodeId node 的ID
      * @param cmd    命令  对应 util/ConstantCommandType
      * @param value  值
      * @return
      */
-
-    // 生成一个消息对象
     Object genMessage(int where, int nodeId, int cmd, int value);
 
     /**
@@ -28,6 +27,7 @@ public interface NodeInterface {
     void decodeMessage(Object msg);
 
     /**
+     * 发送消息，一般用于控制
      * @param nodeMsg
      * @return
      */
@@ -47,7 +47,6 @@ public interface NodeInterface {
 
     /**
      * 节点的健康度
-     *
      * @param h
      */
     void goodHelth(Object msg, boolean h);

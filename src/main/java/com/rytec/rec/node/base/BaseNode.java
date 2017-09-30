@@ -1,6 +1,7 @@
 package com.rytec.rec.node.base;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.rytec.rec.app.RecBase;
 import com.rytec.rec.node.NodeConfig;
 import com.rytec.rec.node.NodeInterface;
 
@@ -11,7 +12,7 @@ import java.io.IOException;
  * Node 的基础类，实现配置文件的解析,
  * 以及设定初始值
  */
-public abstract class BaseNode implements NodeInterface {
+public abstract class BaseNode extends RecBase implements NodeInterface {
 
     /**
      * 从数据库的配置生成Node的配置对象
