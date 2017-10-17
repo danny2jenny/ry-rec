@@ -63,10 +63,11 @@ public class ModbusFrameDecoder extends ByteToMessageDecoder {
          */
         byte[] data = new byte[lastOutMsg.responseLen];
         in.getBytes(writeIndex - lastOutMsg.responseLen, data, 0, lastOutMsg.responseLen);
-        // 检查发送和接收的头部是相等的
+
+        // 检查发送和接收的头部是相等的，地址和功能码是否一致
         (lastOutMsg.payload).resetReaderIndex();
         if (((lastOutMsg.payload).getByte(0) == data[0]) & ((lastOutMsg.payload).getByte(1) == data[1])) {
-
+            // 地址和功能码一致，可以继续
         } else {
             logger.debug("失败！！！！！！！！！！！！！！！！");
             modbusChannelSession.goodHelth(lastOutMsg, false);

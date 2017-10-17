@@ -44,7 +44,7 @@ public class Output extends AbstractOperator {
     public static int SIG_REMOTE = 12;      //远程
 
     /**
-     * 动作行常量
+     * 动作常量
      */
 
     @AnnotationJSExport("关闭")

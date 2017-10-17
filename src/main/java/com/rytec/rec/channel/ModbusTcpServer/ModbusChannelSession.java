@@ -88,14 +88,16 @@ public class ModbusChannelSession {
         for (ChannelNode cn : cha.values()) {
 
             // 得到 node 对应的操作接口
-            NodeInterface node = modbusTcpServer.nodeManager.getNodeComInterface(cn.getNtype());
+            NodeInterface iNode = modbusTcpServer.nodeManager.getNodeComInterface(cn.getNtype());
 
-            // 如果存在Node的操作接口
-            if (node != null) {
+            /**
+             * Node类型一致，地址一致，组成一个查询
+             */
+            if (iNode != null) {
                 String key = "" + cn.getNtype() + ':' + cn.getAdr();
                 if (timerQueryList.get(key) == null) {
                     timerQueryListIndex.add(key);
-                    ModbusMessage msg = (ModbusMessage) node.genMessage(ConstantFromWhere.FROM_TIMER, cn.getNid(), ConstantCommandType.GENERAL_READ, 0);
+                    ModbusMessage msg = (ModbusMessage) iNode.genMessage(ConstantFromWhere.FROM_TIMER, cn.getNid(), ConstantCommandType.GENERAL_READ, 0);
                     timerQueryList.put(key, msg);
                 }
             }

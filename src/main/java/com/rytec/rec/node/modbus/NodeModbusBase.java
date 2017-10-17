@@ -37,7 +37,7 @@ public abstract class NodeModbusBase extends BaseNode {
     /**
      * 各个实现需要设置该值
      */
-    public int modbusCmd = 1;  // Modbus的命令，1\2\3\4\5
+    public int modbusCmd = 1;  // Modbus的命令，1\2\3\4\5\6
     public int regCount = 1;   // 寄存器的数量
     public int regOffset = 0;  // 寄存器偏移量
 
@@ -50,7 +50,6 @@ public abstract class NodeModbusBase extends BaseNode {
 
 
     /**
-     *
      * @param where  从哪里来的真 1 系统 2 联动 3 用户
      * @param nodeId node 的ID
      * @param cmd    命令  对应 util/ConstantCommandType
@@ -75,7 +74,7 @@ public abstract class NodeModbusBase extends BaseNode {
                         frame.responseLen = 5 + (int) Math.ceil(((double) regCount) / 8);
                         break;
                     case ConstantCommandType.GENERAL_WRITE:
-                        frame.payload = ModbusFrame.writeCoil(cn.getAdr(), cn.getNo()-1, value);
+                        frame.payload = ModbusFrame.writeCoil(cn.getAdr(), cn.getNo() - 1, value);
                         frame.responseLen = 8;
                         break;
                 }
@@ -92,6 +91,10 @@ public abstract class NodeModbusBase extends BaseNode {
                 frame.payload = ModbusFrame.readRegisters(cn.getAdr(), regOffset, regCount);
                 frame.responseLen = 5 + regCount * 2;
                 break;
+            case ConstantModbusCommand.WRITE_REGISTER:              // 6
+                frame.payload = ModbusFrame.writeRegister(cn.getAdr(), regOffset, value);
+                frame.responseLen = 8;
+                break;
         }
 
         return frame;
@@ -100,6 +103,7 @@ public abstract class NodeModbusBase extends BaseNode {
 
     /**
      * 消息解码，然后不同的类型返回，不同的处理
+     *
      * @param msg
      */
     public void decodeMessage(Object msg) {
@@ -179,11 +183,11 @@ public abstract class NodeModbusBase extends BaseNode {
             if ((nodeRunTime.channelNode.getAdr().intValue() == node.getAdr().intValue()) &&
                     (nodeRunTime.channelNode.getNtype().intValue() == node.getNtype().intValue())) {
 
-                byteNumber = (node.getNo()-1) / 8;
+                byteNumber = (node.getNo() - 1) / 8;
                 byteVal = data.getByte(byteNumber);
 
                 //是一个地址的设备，位操作后
-                adrMask = 0x01 << ((node.getNo()-1) % 8);
+                adrMask = 0x01 << ((node.getNo() - 1) % 8);
                 if ((adrMask & byteVal) > 0) {
                     msg.value = true;
                 } else {
@@ -225,7 +229,7 @@ public abstract class NodeModbusBase extends BaseNode {
             if ((nodeRunTime.channelNode.getAdr().intValue() == node.getAdr().intValue()) &&
                     (nodeRunTime.channelNode.getNtype().intValue() == node.getNtype().intValue())) {
 
-                valueIndex = (node.getNo()-1) * 2;
+                valueIndex = (node.getNo() - 1) * 2;
                 analogVal = data.getShort(valueIndex);
                 currentNodeRuntime = nodeManager.getChannelNodeByNodeId(node.getNid());
                 msg.value = currentNodeRuntime.nodeConfig.pA * analogVal + currentNodeRuntime.nodeConfig.pB;
@@ -251,6 +255,7 @@ public abstract class NodeModbusBase extends BaseNode {
             return;
         }
 
+        // 如果不健康，把Value设置成null，然后发送给Node
         ModbusMessage modbusMessage = (ModbusMessage) msg;
         // 得到Node的Channel
         NodeRuntimeBean nodeRunTime = nodeManager.getChannelNodeByNodeId(modbusMessage.nodeId);
@@ -289,7 +294,9 @@ public abstract class NodeModbusBase extends BaseNode {
             case ConstantCommandType.GENERAL_READ:
                 break;
             case ConstantCommandType.GENERAL_WRITE:
+
                 if (msg.value instanceof Boolean) {
+                    // 开关量发送
                     if ((Boolean) msg.value) {
                         // 打开
                         if (nodeRuntimeBean.nodeConfig.pA < 0) {
@@ -306,6 +313,9 @@ public abstract class NodeModbusBase extends BaseNode {
                         }
 
                     }
+                } else if (msg.value instanceof Integer) {
+                    // 整形量发送
+
                 } else {
                     return ConstantErrorCode.NODE_VALUE_TYPE;
                 }
