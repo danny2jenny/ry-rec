@@ -1,5 +1,6 @@
 package com.rytec.rec.node.modbus;
 
+import com.rytec.rec.channel.ModbusTcpServer.ModbusMessage;
 import com.rytec.rec.db.model.ChannelNode;
 import com.rytec.rec.node.NodeConfig;
 import com.rytec.rec.node.NodeMessage;
@@ -9,6 +10,7 @@ import com.rytec.rec.util.AnnotationJSExport;
 import com.rytec.rec.util.AnnotationNodeType;
 import com.rytec.rec.util.ConstantModbusCommand;
 import io.netty.buffer.ByteBuf;
+import io.netty.buffer.Unpooled;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -66,6 +68,21 @@ public class RS_SJ extends NodeModbusBase {
             }
         }
         data.release();
+    }
 
+    @Override
+    public void decodeMessage(Object msg) {
+        ModbusMessage modbusMessage = (ModbusMessage) msg;
+
+        NodeMessage nodeMsg = new NodeMessage();
+        nodeMsg.from = modbusMessage.from;
+        nodeMsg.type = modbusMessage.type;
+        nodeMsg.node = modbusMessage.nodeId;
+
+        ByteBuf payload = modbusMessage.payload;
+        ByteBuf data = Unpooled.buffer();
+
+        payload.getBytes(3, data, 1);
+        processAnalog(nodeMsg, data);
     }
 }

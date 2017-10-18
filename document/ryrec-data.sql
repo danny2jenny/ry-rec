@@ -1,46 +1,41 @@
 -- --------------------------------------------------------
--- 主机:                           localhost
--- 服务器版本:                        5.7.13 - Source distribution
+-- 主机:                           127.0.0.1
+-- 服务器版本:                        10.2.5-MariaDB - MariaDB Server
 -- 服务器操作系统:                      Linux
--- HeidiSQL 版本:                  9.3.0.4984
+-- HeidiSQL 版本:                  9.4.0.5125
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+
 
 -- 导出 ryrec 的数据库结构
 DROP DATABASE IF EXISTS `ryrec`;
 CREATE DATABASE IF NOT EXISTS `ryrec` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `ryrec`;
 
-
 -- 导出  表 ryrec.actionrule 结构
 DROP TABLE IF EXISTS `actionrule`;
 CREATE TABLE IF NOT EXISTS `actionrule` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `device` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '信号发出的Device',
-  `sig` int(10) NOT NULL DEFAULT '0' COMMENT '信号类型',
+  `device` int(10) unsigned NOT NULL DEFAULT 0 COMMENT '信号发出的Device',
+  `sig` int(10) NOT NULL DEFAULT 0 COMMENT '信号类型',
   PRIMARY KEY (`id`),
   KEY `FK_actionrule_device` (`device`),
   CONSTRAINT `FK_actionrule_device` FOREIGN KEY (`device`) REFERENCES `device` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='联动规则';
 
--- 正在导出表  ryrec.actionrule 的数据：~0 rows (大约)
-/*!40000 ALTER TABLE `actionrule` DISABLE KEYS */;
-INSERT INTO `actionrule` (`id`, `device`, `sig`) VALUES
-	(1, 1, 10);
-/*!40000 ALTER TABLE `actionrule` ENABLE KEYS */;
-
-
+-- 数据导出被取消选择。
 -- 导出  表 ryrec.actions 结构
 DROP TABLE IF EXISTS `actions`;
 CREATE TABLE IF NOT EXISTS `actions` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `rule` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '外键，actionrule',
-  `target` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '外键，相关的Device',
-  `act` int(10) NOT NULL DEFAULT '0' COMMENT '动作',
+  `rule` int(10) unsigned NOT NULL DEFAULT 0 COMMENT '外键，actionrule',
+  `target` int(10) unsigned NOT NULL DEFAULT 0 COMMENT '外键，相关的Device',
+  `act` int(10) NOT NULL DEFAULT 0 COMMENT '动作',
   `parm` varchar(255) DEFAULT NULL COMMENT '动作参数，可能是一个Json对象',
   PRIMARY KEY (`id`),
   KEY `FK_actions_device` (`target`),
@@ -49,19 +44,13 @@ CREATE TABLE IF NOT EXISTS `actions` (
   CONSTRAINT `FK_actions_device` FOREIGN KEY (`target`) REFERENCES `device` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='联动的动作';
 
--- 正在导出表  ryrec.actions 的数据：~1 rows (大约)
-/*!40000 ALTER TABLE `actions` DISABLE KEYS */;
-INSERT INTO `actions` (`id`, `rule`, `target`, `act`, `parm`) VALUES
-	(1, 1, 2, 101, '');
-/*!40000 ALTER TABLE `actions` ENABLE KEYS */;
-
-
+-- 数据导出被取消选择。
 -- 导出  表 ryrec.alarm 结构
 DROP TABLE IF EXISTS `alarm`;
 CREATE TABLE IF NOT EXISTS `alarm` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `device` int(10) unsigned NOT NULL DEFAULT '0',
-  `sig` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '告警信号',
+  `device` int(10) unsigned NOT NULL DEFAULT 0,
+  `sig` int(10) unsigned NOT NULL DEFAULT 0 COMMENT '告警信号',
   `value` varchar(50) DEFAULT NULL COMMENT '告警值',
   `time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -69,11 +58,7 @@ CREATE TABLE IF NOT EXISTS `alarm` (
   CONSTRAINT `FK_alarm_device` FOREIGN KEY (`device`) REFERENCES `device` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='告警历史记录';
 
--- 正在导出表  ryrec.alarm 的数据：~0 rows (大约)
-/*!40000 ALTER TABLE `alarm` DISABLE KEYS */;
-/*!40000 ALTER TABLE `alarm` ENABLE KEYS */;
-
-
+-- 数据导出被取消选择。
 -- 导出  视图 ryrec.alarmvideo 结构
 DROP VIEW IF EXISTS `alarmvideo`;
 -- 创建临时表以解决视图依赖性错误
@@ -83,29 +68,21 @@ CREATE TABLE `alarmvideo` (
 	`target` INT(10) UNSIGNED NULL COMMENT '外键，相关的Device'
 ) ENGINE=MyISAM;
 
-
 -- 导出  表 ryrec.channel 结构
 DROP TABLE IF EXISTS `channel`;
 CREATE TABLE IF NOT EXISTS `channel` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '自增量，唯一ID',
   `name` varchar(200) NOT NULL DEFAULT '#通道名称#' COMMENT '通道名称',
   `ip` varchar(50) DEFAULT NULL COMMENT ' ',
-  `port` int(11) NOT NULL DEFAULT '0',
+  `port` int(11) NOT NULL DEFAULT 0,
   `login` varchar(50) DEFAULT NULL,
   `pass` varchar(50) DEFAULT NULL,
-  `type` int(10) unsigned NOT NULL DEFAULT '1',
+  `type` int(10) unsigned NOT NULL DEFAULT 1,
   `opt` varchar(1024) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='通道表，主要用于描述网络通道。主要用于保存可以连接的信息。';
 
--- 正在导出表  ryrec.channel 的数据：~2 rows (大约)
-/*!40000 ALTER TABLE `channel` DISABLE KEYS */;
-INSERT INTO `channel` (`id`, `name`, `ip`, `port`, `login`, `pass`, `type`, `opt`) VALUES
-	(1, 'Modbus', '192.168.2.144', 2, '', '', 1001, ''),
-	(2, '海康NVR', '192.168.2.123', 8000, 'admin', 'jennyzhan1', 2001, '');
-/*!40000 ALTER TABLE `channel` ENABLE KEYS */;
-
-
+-- 数据导出被取消选择。
 -- 导出  视图 ryrec.channelnode 结构
 DROP VIEW IF EXISTS `channelnode`;
 -- 创建临时表以解决视图依赖性错误
@@ -128,60 +105,33 @@ CREATE TABLE `channelnode` (
 	`deviceFun` INT(10) UNSIGNED NULL COMMENT '哪个Device的哪个功能'
 ) ENGINE=MyISAM;
 
-
 -- 导出  表 ryrec.config 结构
 DROP TABLE IF EXISTS `config`;
 CREATE TABLE IF NOT EXISTS `config` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `cat` int(11) NOT NULL DEFAULT '0' COMMENT '配置的组',
+  `cat` int(11) NOT NULL DEFAULT 0 COMMENT '配置的组',
   `name` varchar(50) NOT NULL DEFAULT 'key' COMMENT '配置名称',
   `value` varchar(50) NOT NULL DEFAULT 'value' COMMENT '配置的值',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COMMENT='配置文件，常量等\r\n\r\nGroup 分组\r\n1：Channel 类型\r\n2：Node 类型\r\n3：Device 类型';
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COMMENT='配置文件，常量等\r\n\r\nGroup 分组\r\n1：Channel 类型\r\n2：Node 类型\r\n3：Device 类型';
 
--- 正在导出表  ryrec.config 的数据：~12 rows (大约)
-/*!40000 ALTER TABLE `config` DISABLE KEYS */;
-INSERT INTO `config` (`id`, `cat`, `name`, `value`) VALUES
-	(1, 11, '摄像机', '101'),
-	(2, 11, '灯光', '201'),
-	(3, 11, '通用告警', '1001'),
-	(4, 11, '全景', '9999'),
-	(5, 11, '风机', '202'),
-	(6, 11, '红外入侵', '301'),
-	(7, 11, '水泵', '203'),
-	(8, 11, '一氧化碳', '401'),
-	(9, 11, '硫化氢', '402'),
-	(10, 11, '甲烷', '403'),
-	(11, 11, '氧气', '404'),
-	(12, 11, '水位', '421');
-/*!40000 ALTER TABLE `config` ENABLE KEYS */;
-
-
+-- 数据导出被取消选择。
 -- 导出  表 ryrec.device 结构
 DROP TABLE IF EXISTS `device`;
 CREATE TABLE IF NOT EXISTS `device` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `no` int(10) unsigned DEFAULT '0' COMMENT '设备编号',
+  `no` int(10) unsigned DEFAULT 0 COMMENT '设备编号',
   `name` varchar(50) DEFAULT NULL,
-  `type` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '设备类型',
-  `icon` int(10) unsigned DEFAULT '0' COMMENT '设备图标',
+  `type` int(10) unsigned NOT NULL DEFAULT 0 COMMENT '设备类型',
+  `icon` int(10) unsigned DEFAULT 0 COMMENT '设备图标',
   `lnodetype` varchar(50) DEFAULT NULL,
-  `lnodenum` int(11) DEFAULT '0',
+  `lnodenum` int(11) DEFAULT 0,
   `opt` varchar(1024) DEFAULT NULL COMMENT '配置参数',
+  `iec61850` tinyint(4) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='设备列表\r\n一组功能node构成了一个功能集合的设备\r\n\r\n一个Device由1～n个nodes组成';
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='设备列表\r\n一组功能node构成了一个功能集合的设备\r\n\r\n一个Device由1～n个nodes组成';
 
--- 正在导出表  ryrec.device 的数据：~5 rows (大约)
-/*!40000 ALTER TABLE `device` DISABLE KEYS */;
-INSERT INTO `device` (`id`, `no`, `name`, `type`, `icon`, `lnodetype`, `lnodenum`, `opt`) VALUES
-	(1, NULL, 'IN_0', 102, 1001, '', NULL, ''),
-	(2, NULL, 'OUT_0', 101, 202, '', NULL, ''),
-	(3, NULL, 'AI_0', 201, 401, '', NULL, ''),
-	(4, NULL, 'IN_1', 102, 1001, '', NULL, ''),
-	(5, NULL, '测试全景', 9999, 9999, '', NULL, '');
-/*!40000 ALTER TABLE `device` ENABLE KEYS */;
-
-
+-- 数据导出被取消选择。
 -- 导出  视图 ryrec.devicegis 结构
 DROP VIEW IF EXISTS `devicegis`;
 -- 创建临时表以解决视图依赖性错误
@@ -193,12 +143,12 @@ CREATE TABLE `devicegis` (
 	`icon` INT(10) UNSIGNED NULL COMMENT '设备图标',
 	`lnodetype` VARCHAR(50) NULL COLLATE 'utf8_general_ci',
 	`lnodenum` INT(11) NULL,
+	`iec61850` TINYINT(4) NOT NULL,
 	`gid` INT(10) UNSIGNED NULL COMMENT '主键',
 	`gtype` INT(10) UNSIGNED NULL COMMENT '点线面的类型',
 	`layer` INT(10) UNSIGNED NULL COMMENT '在那一层',
 	`data` VARCHAR(1024) NULL COMMENT '具体的空间数据' COLLATE 'utf8_general_ci'
 ) ENGINE=MyISAM;
-
 
 -- 导出  视图 ryrec.devicenode 结构
 DROP VIEW IF EXISTS `devicenode`;
@@ -210,6 +160,7 @@ CREATE TABLE `devicenode` (
 	`dtype` INT(10) UNSIGNED NOT NULL COMMENT '设备类型',
 	`lnodetype` VARCHAR(50) NULL COLLATE 'utf8_general_ci',
 	`lnodenum` INT(11) NULL,
+	`iec61850` TINYINT(4) NOT NULL,
 	`nid` INT(10) UNSIGNED NULL COMMENT '设备的唯一编号',
 	`cid` INT(10) UNSIGNED NULL,
 	`nadd` INT(10) UNSIGNED NULL COMMENT '地址，或者是个控制器的编号。在Modbus中是一个设备的485地址',
@@ -219,35 +170,23 @@ CREATE TABLE `devicenode` (
 	`nfun` INT(10) UNSIGNED NULL COMMENT '哪个Device的哪个功能'
 ) ENGINE=MyISAM;
 
-
 -- 导出  表 ryrec.gis 结构
 DROP TABLE IF EXISTS `gis`;
 CREATE TABLE IF NOT EXISTS `gis` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `device` int(10) unsigned NOT NULL DEFAULT '0',
-  `type` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '点线面的类型',
-  `layer` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '在那一层',
+  `device` int(10) unsigned NOT NULL DEFAULT 0,
+  `type` int(10) unsigned NOT NULL DEFAULT 0 COMMENT '点线面的类型',
+  `layer` int(10) unsigned NOT NULL DEFAULT 0 COMMENT '在那一层',
   `data` varchar(1024) DEFAULT '0' COMMENT '具体的空间数据',
-  `style` int(11) DEFAULT '0' COMMENT '展示方式，图标等',
+  `style` int(11) DEFAULT 0 COMMENT '展示方式，图标等',
   PRIMARY KEY (`id`),
   KEY `FK_gisdevice_device` (`device`),
   KEY `FK_gisdevice_gislayer` (`layer`),
   CONSTRAINT `FK_gisdevice_device` FOREIGN KEY (`device`) REFERENCES `device` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_gisdevice_gislayer` FOREIGN KEY (`layer`) REFERENCES `gislayer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
--- 正在导出表  ryrec.gis 的数据：~6 rows (大约)
-/*!40000 ALTER TABLE `gis` DISABLE KEYS */;
-INSERT INTO `gis` (`id`, `device`, `type`, `layer`, `data`, `style`) VALUES
-	(1, 2, 1, 1, '[-106.34765625,63.45703125]', NULL),
-	(2, 1, 1, 1, '[-96.50390625,43.41796875]', NULL),
-	(3, 3, 1, 1, '[-45.307617188,77.915039063]', NULL),
-	(4, 3, 1, 1, '[-35.200195313,77.827148438]', NULL),
-	(5, 3, 1, 1, '[-57.788085938,76.333007813]', NULL),
-	(6, 5, 1, 1, '[-55.37109375,20.21484375]', NULL);
-/*!40000 ALTER TABLE `gis` ENABLE KEYS */;
-
-
+-- 数据导出被取消选择。
 -- 导出  表 ryrec.gislayer 结构
 DROP TABLE IF EXISTS `gislayer`;
 CREATE TABLE IF NOT EXISTS `gislayer` (
@@ -257,40 +196,25 @@ CREATE TABLE IF NOT EXISTS `gislayer` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
--- 正在导出表  ryrec.gislayer 的数据：~0 rows (大约)
-/*!40000 ALTER TABLE `gislayer` DISABLE KEYS */;
-INSERT INTO `gislayer` (`id`, `name`, `file`) VALUES
-	(1, '主图层', '1.jpg');
-/*!40000 ALTER TABLE `gislayer` ENABLE KEYS */;
-
-
+-- 数据导出被取消选择。
 -- 导出  表 ryrec.node 结构
 DROP TABLE IF EXISTS `node`;
 CREATE TABLE IF NOT EXISTS `node` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '设备的唯一编号',
-  `cid` int(10) unsigned DEFAULT '0',
-  `adr` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '地址，或者是个控制器的编号。在Modbus中是一个设备的485地址',
-  `no` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '预留设备的地址，目前好像不需要',
+  `cid` int(10) unsigned DEFAULT 0,
+  `adr` int(10) unsigned NOT NULL DEFAULT 0 COMMENT '地址，或者是个控制器的编号。在Modbus中是一个设备的485地址',
+  `no` int(10) unsigned NOT NULL DEFAULT 0 COMMENT '预留设备的地址，目前好像不需要',
   `name` varchar(200) NOT NULL,
-  `type` int(10) unsigned NOT NULL DEFAULT '0',
+  `type` int(10) unsigned NOT NULL DEFAULT 0,
   `opt` varchar(1024) DEFAULT NULL,
-  `device` int(10) unsigned DEFAULT '0' COMMENT '属于哪个Device',
-  `deviceFun` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '哪个Device的哪个功能',
+  `device` int(10) unsigned DEFAULT 0 COMMENT '属于哪个Device',
+  `deviceFun` int(10) unsigned NOT NULL DEFAULT 0 COMMENT '哪个Device的哪个功能',
   PRIMARY KEY (`id`),
   KEY `FK_device_channel` (`cid`),
   CONSTRAINT `FK_device_channel` FOREIGN KEY (`cid`) REFERENCES `channel` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='节点列表\r\n包括所有的前端动环设备和摄像机';
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='节点列表\r\n包括所有的前端动环设备和摄像机';
 
--- 正在导出表  ryrec.node 的数据：~3 rows (大约)
-/*!40000 ALTER TABLE `node` DISABLE KEYS */;
-INSERT INTO `node` (`id`, `cid`, `adr`, `no`, `name`, `type`, `opt`, `device`, `deviceFun`) VALUES
-	(1, 1, 254, 0, 'IN_0', 1002, '', 1, 101),
-	(2, 1, 254, 15, 'OUT_0', 1003, '', 2, 101),
-	(3, 1, 254, 0, 'AI_0', 1004, '{"sensitive":1,"pA":0.1,"pB":0,"unit":"%"}', 3, 101),
-	(4, 1, 254, 1, 'IN_1', 1002, '', 4, 101);
-/*!40000 ALTER TABLE `node` ENABLE KEYS */;
-
-
+-- 数据导出被取消选择。
 -- 导出  表 ryrec.panorama 结构
 DROP TABLE IF EXISTS `panorama`;
 CREATE TABLE IF NOT EXISTS `panorama` (
@@ -303,21 +227,15 @@ CREATE TABLE IF NOT EXISTS `panorama` (
   CONSTRAINT `FK_panorama_device` FOREIGN KEY (`device`) REFERENCES `device` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='全景图片，关联到一个Device';
 
--- 正在导出表  ryrec.panorama 的数据：~1 rows (大约)
-/*!40000 ALTER TABLE `panorama` DISABLE KEYS */;
-INSERT INTO `panorama` (`id`, `name`, `file`, `device`) VALUES
-	(1, '测试全景', '1.jpg', 5);
-/*!40000 ALTER TABLE `panorama` ENABLE KEYS */;
-
-
+-- 数据导出被取消选择。
 -- 导出  表 ryrec.panoramadevice 结构
 DROP TABLE IF EXISTS `panoramadevice`;
 CREATE TABLE IF NOT EXISTS `panoramadevice` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `device` int(10) unsigned DEFAULT '0',
-  `scene` int(10) unsigned DEFAULT '0',
-  `pitch` float DEFAULT '0',
-  `yaw` float DEFAULT '0',
+  `device` int(10) unsigned DEFAULT 0,
+  `scene` int(10) unsigned DEFAULT 0,
+  `pitch` float DEFAULT 0,
+  `yaw` float DEFAULT 0,
   PRIMARY KEY (`id`),
   KEY `FK__device` (`device`),
   KEY `FK__panorama` (`scene`),
@@ -325,14 +243,7 @@ CREATE TABLE IF NOT EXISTS `panoramadevice` (
   CONSTRAINT `FK__panorama` FOREIGN KEY (`scene`) REFERENCES `panorama` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='全景图片上的device';
 
--- 正在导出表  ryrec.panoramadevice 的数据：~2 rows (大约)
-/*!40000 ALTER TABLE `panoramadevice` DISABLE KEYS */;
-INSERT INTO `panoramadevice` (`id`, `device`, `scene`, `pitch`, `yaw`) VALUES
-	(6, 2, 1, 36.6421, -6.57891),
-	(7, 2, 1, -0.301726, -47.7569);
-/*!40000 ALTER TABLE `panoramadevice` ENABLE KEYS */;
-
-
+-- 数据导出被取消选择。
 -- 导出  视图 ryrec.ruleaction 结构
 DROP VIEW IF EXISTS `ruleaction`;
 -- 创建临时表以解决视图依赖性错误
@@ -346,24 +257,19 @@ CREATE TABLE `ruleaction` (
 	`parm` VARCHAR(255) NULL COMMENT '动作参数，可能是一个Json对象' COLLATE 'utf8_general_ci'
 ) ENGINE=MyISAM;
 
-
 -- 导出  表 ryrec.user 结构
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `type` int(10) unsigned NOT NULL DEFAULT '1' COMMENT '1普通用户（只能查看），2操作员（可以操作），11系统配置（后台管理）',
-  `rank` int(10) unsigned NOT NULL DEFAULT '1' COMMENT '用户的等级，越大等级越高',
+  `type` int(10) unsigned NOT NULL DEFAULT 1 COMMENT '1普通用户（只能查看），2操作员（可以操作），11系统配置（后台管理）',
+  `rank` int(10) unsigned NOT NULL DEFAULT 1 COMMENT '用户的等级，越大等级越高',
   `name` varchar(50) NOT NULL DEFAULT '用户名',
   `pass` varchar(50) NOT NULL DEFAULT '密码',
   `mobile` varchar(32) NOT NULL DEFAULT '13911111111',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户表';
 
--- 正在导出表  ryrec.user 的数据：~0 rows (大约)
-/*!40000 ALTER TABLE `user` DISABLE KEYS */;
-/*!40000 ALTER TABLE `user` ENABLE KEYS */;
-
-
+-- 数据导出被取消选择。
 -- 导出  触发器 ryrec.device_before_delete 结构
 DROP TRIGGER IF EXISTS `device_before_delete`;
 SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
@@ -375,7 +281,6 @@ update node set device = 0 where device=OLD.id;
 END//
 DELIMITER ;
 SET SQL_MODE=@OLDTMP_SQL_MODE;
-
 
 -- 导出  触发器 ryrec.node_before_insert 结构
 DROP TRIGGER IF EXISTS `node_before_insert`;
@@ -389,40 +294,36 @@ END//
 DELIMITER ;
 SET SQL_MODE=@OLDTMP_SQL_MODE;
 
-
 -- 导出  视图 ryrec.alarmvideo 结构
 DROP VIEW IF EXISTS `alarmvideo`;
 -- 移除临时表并创建最终视图结构
 DROP TABLE IF EXISTS `alarmvideo`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `alarmvideo` AS select `actionrule`.`device` AS `device`,`actionrule`.`sig` AS `sig`,`actions`.`target` AS `target` from ((`actionrule` left join `actions` on((`actionrule`.`id` = `actions`.`rule`))) left join `node` on((`node`.`device` = `actions`.`target`))) where ((`node`.`deviceFun` = 101) and (`node`.`type` >= 4000) and (`node`.`type` <= 5000));
-
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `alarmvideo` AS select `actionrule`.`device` AS `device`,`actionrule`.`sig` AS `sig`,`actions`.`target` AS `target` from ((`actionrule` left join `actions` on(`actionrule`.`id` = `actions`.`rule`)) left join `node` on(`node`.`device` = `actions`.`target`)) where `node`.`deviceFun` = 101 and `node`.`type` >= 4000 and `node`.`type` <= 5000;
 
 -- 导出  视图 ryrec.channelnode 结构
 DROP VIEW IF EXISTS `channelnode`;
 -- 移除临时表并创建最终视图结构
 DROP TABLE IF EXISTS `channelnode`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `channelnode` AS select `channel`.`id` AS `id`,`channel`.`name` AS `cname`,`channel`.`ip` AS `ip`,`channel`.`port` AS `port`,`channel`.`login` AS `login`,`channel`.`pass` AS `pass`,`channel`.`type` AS `ctype`,`channel`.`opt` AS `channelConf`,`node`.`id` AS `nid`,`node`.`adr` AS `adr`,`node`.`no` AS `no`,`node`.`name` AS `nname`,`node`.`type` AS `ntype`,`node`.`opt` AS `nodeConf`,`node`.`device` AS `device`,`node`.`deviceFun` AS `deviceFun` from (`channel` left join `node` on((`channel`.`id` = `node`.`cid`)));
-
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `channelnode` AS select `channel`.`id` AS `id`,`channel`.`name` AS `cname`,`channel`.`ip` AS `ip`,`channel`.`port` AS `port`,`channel`.`login` AS `login`,`channel`.`pass` AS `pass`,`channel`.`type` AS `ctype`,`channel`.`opt` AS `channelConf`,`node`.`id` AS `nid`,`node`.`adr` AS `adr`,`node`.`no` AS `no`,`node`.`name` AS `nname`,`node`.`type` AS `ntype`,`node`.`opt` AS `nodeConf`,`node`.`device` AS `device`,`node`.`deviceFun` AS `deviceFun` from (`channel` left join `node` on(`channel`.`id` = `node`.`cid`));
 
 -- 导出  视图 ryrec.devicegis 结构
 DROP VIEW IF EXISTS `devicegis`;
 -- 移除临时表并创建最终视图结构
 DROP TABLE IF EXISTS `devicegis`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `devicegis` AS select `device`.`id` AS `did`,`device`.`no` AS `dno`,`device`.`name` AS `dname`,`device`.`type` AS `dtype`,`device`.`icon` AS `icon`,`device`.`lnodetype` AS `lnodetype`,`device`.`lnodenum` AS `lnodenum`,`gis`.`id` AS `gid`,`gis`.`type` AS `gtype`,`gis`.`layer` AS `layer`,`gis`.`data` AS `data` from (`device` left join `gis` on((`device`.`id` = `gis`.`device`)));
-
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `devicegis` AS select `device`.`id` AS `did`,`device`.`no` AS `dno`,`device`.`name` AS `dname`,`device`.`type` AS `dtype`,`device`.`icon` AS `icon`,`device`.`lnodetype` AS `lnodetype`,`device`.`lnodenum` AS `lnodenum`,`device`.`iec61850` AS `iec61850`,`gis`.`id` AS `gid`,`gis`.`type` AS `gtype`,`gis`.`layer` AS `layer`,`gis`.`data` AS `data` from (`device` left join `gis` on(`device`.`id` = `gis`.`device`));
 
 -- 导出  视图 ryrec.devicenode 结构
 DROP VIEW IF EXISTS `devicenode`;
 -- 移除临时表并创建最终视图结构
 DROP TABLE IF EXISTS `devicenode`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `devicenode` AS select `device`.`id` AS `id`,`device`.`no` AS `dno`,`device`.`name` AS `dname`,`device`.`type` AS `dtype`,`device`.`lnodetype` AS `lnodetype`,`device`.`lnodenum` AS `lnodenum`,`node`.`id` AS `nid`,`node`.`cid` AS `cid`,`node`.`adr` AS `nadd`,`node`.`no` AS `nno`,`node`.`type` AS `ntype`,`node`.`opt` AS `conf`,`node`.`deviceFun` AS `nfun` from (`device` left join `node` on((`device`.`id` = `node`.`device`)));
-
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `devicenode` AS select `device`.`id` AS `id`,`device`.`no` AS `dno`,`device`.`name` AS `dname`,`device`.`type` AS `dtype`,`device`.`lnodetype` AS `lnodetype`,`device`.`lnodenum` AS `lnodenum`,`device`.`iec61850` AS `iec61850`,`node`.`id` AS `nid`,`node`.`cid` AS `cid`,`node`.`adr` AS `nadd`,`node`.`no` AS `nno`,`node`.`type` AS `ntype`,`node`.`opt` AS `conf`,`node`.`deviceFun` AS `nfun` from (`device` left join `node` on(`device`.`id` = `node`.`device`));
 
 -- 导出  视图 ryrec.ruleaction 结构
 DROP VIEW IF EXISTS `ruleaction`;
 -- 移除临时表并创建最终视图结构
 DROP TABLE IF EXISTS `ruleaction`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `ruleaction` AS select `actionrule`.`id` AS `rid`,`actionrule`.`device` AS `device`,`actionrule`.`sig` AS `sig`,`actions`.`id` AS `aid`,`actions`.`target` AS `target`,`actions`.`act` AS `act`,`actions`.`parm` AS `parm` from (`actionrule` left join `actions` on((`actionrule`.`id` = `actions`.`rule`)));
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `ruleaction` AS select `actionrule`.`id` AS `rid`,`actionrule`.`device` AS `device`,`actionrule`.`sig` AS `sig`,`actions`.`id` AS `aid`,`actions`.`target` AS `target`,`actions`.`act` AS `act`,`actions`.`parm` AS `parm` from (`actionrule` left join `actions` on(`actionrule`.`id` = `actions`.`rule`));
+
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -28,7 +28,7 @@ public class Aircon extends AbstractOperator {
     @AnnotationJSExport("开启制冷")
     public static int ACT_COLD = 2;         //开启制冷
 
-    @AnnotationJSExport("开启")
+    @AnnotationJSExport("开启制热")
     public static int ACT_HOT = 3;          //开启制热
 
 
@@ -54,9 +54,12 @@ public class Aircon extends AbstractOperator {
     @Override
     public void onValueChanged(int deviceId, int fun, Object oldValue, Object newValue, String unit) {
 
+        Short val = (Short) newValue;
+
         // 得到运行状态
         DeviceRuntimeBean deviceRuntimeBean = deviceManager.getDeviceRuntimeList().get(deviceId);
-        deviceRuntimeBean.runtime.state = newValue;
+        StateAircon stateAircon = (StateAircon)deviceRuntimeBean.runtime.state;
+        stateAircon.value = val.intValue();
 
         // 处理掉线
         if (newValue == null) {
@@ -66,7 +69,7 @@ public class Aircon extends AbstractOperator {
             return;
         }
 
-        Integer val = (Integer) newValue;
+
 
         switch (val) {
             case ConstantAircon.STATE_STOP:

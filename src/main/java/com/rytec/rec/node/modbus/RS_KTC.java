@@ -97,6 +97,7 @@ public class RS_KTC extends NodeModbusBase {
      *
      * @param msg
      */
+    @Override
     public void decodeMessage(Object msg) {
         ModbusMessage modbusMessage = (ModbusMessage) msg;
 
@@ -120,6 +121,7 @@ public class RS_KTC extends NodeModbusBase {
                 // 控制
                 // 控制返回可以不做处理
                 break;
+
         }
 
         payload.release();
@@ -131,6 +133,7 @@ public class RS_KTC extends NodeModbusBase {
      * @param msg
      * @return
      */
+    @Override
     public int sendMessage(NodeMessage msg) {
         int rst = 0;
 

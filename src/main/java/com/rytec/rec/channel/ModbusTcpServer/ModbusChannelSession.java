@@ -133,10 +133,12 @@ public class ModbusChannelSession {
      * 检查超时
      */
     public void checkOverTime() {
-        logger.debug("超时：" + timer + ':' + lastOutMsg.nodeId);
+        logger.debug("超时--" + "次数：" + timer + "--" + "Node：" + lastOutMsg.nodeId);
         timer = 0;
-        lastOutMsg = null;
         //todo: 超时处理
+        goodHelth(lastOutMsg,false);
+
+        lastOutMsg = null;
     }
 
     /**
