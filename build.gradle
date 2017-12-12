@@ -35,6 +35,7 @@ mybatisGenerator {
 repositories {
     maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
     maven { url "https://maven.repository.redhat.com/ga/" }
+    maven { url "https://maven.mangoautomation.net/repository/ias-release/" }
     jcenter()
     mavenLocal()
 }
@@ -94,6 +95,14 @@ dependencies {
     // Servlet
     providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
     compile group: 'javax.servlet', name: 'jstl', version: '1.2'
+
+    //modbus
+    compile group: 'com.infiniteautomation', name: 'modbus4j', version: '3.0.3'
+    // 60870
+    compile group: 'org.openmuc', name: 'j60870', version: '1.2.1'
+    // 61850
+    compile group: 'org.openmuc', name: 'openiec61850', version: '1.4.1'
+
 
     // 测试
     testCompile group: 'junit', name: 'junit', version: '4.11'

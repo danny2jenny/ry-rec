@@ -1,0 +1,1191 @@
+<?xml version = '1.0' encoding = 'utf-8'?>
+<SCL xmlns="http://www.iec.ch/61850/2003/SCL" >
+    <Header nameStructure="IEDName" id="" >
+        <History>
+            <Hitem revision="1" when="2015-04-29 11:41:23" version="1" />
+            <Hitem revision="2" when="2015-04-29 11:43:30" version="1" />
+            <Hitem revision="3" when="2015-04-29 13:01:28" version="1" />
+            <Hitem revision="4" when="2015-04-29 13:33:57" version="1" />
+            <Hitem revision="5" when="2015-04-29 14:06:32" version="1" />
+            <Hitem revision="6" when="2015-04-29 14:08:25" version="1" />
+            <Hitem revision="7" when="2015-04-29 15:07:34" version="1" />
+            <Hitem revision="8" when="2015-05-04 15:02:27" version="1" />
+            <Hitem revision="9" when="2015-05-12 15:12:46" version="1" />
+            <Hitem revision="10" when="2015-05-14 15:04:12" version="1" />
+            <Hitem revision="11" when="2015-05-14 16:23:07" version="1" />
+            <Hitem revision="12" when="2015-07-20 11:22:26" version="1" />
+            <Hitem revision="13" when="2015-07-20 11:25:15" version="1" />
+            <Hitem revision="14" when="2015-07-20 11:31:21" version="1" />
+            <Hitem revision="15" when="2015-07-20 11:36:17" version="1" />
+            <Hitem revision="16" when="2015-07-20 11:38:33" version="1" />
+            <Hitem revision="17" when="2015-07-20 11:41:32" version="1" />
+            <Hitem revision="18" when="2015-07-20 14:03:02" version="1" />
+        </History>
+    </Header>
+    <Communication>
+        <SubNetwork type="8-MMS" name="subnetwork1" >
+            <Text>Station bus</Text>
+            <BitRate unit="b/s" >10</BitRate>
+            <ConnectedAP iedName="TEMPLATE" apName="AP1" >
+                <Address>
+                    <P type="IP" >192.168.1.230</P>
+                    <P type="IP-SUBNET" >255.255.255.0</P>
+                    <P type="IP-GATEWAY" >192.168.1.1</P>
+                    <P type="OSI-TSEL" >0001</P>
+                    <P type="OSI-PSEL" >00000001</P>
+                    <P type="OSI-SSEL" >0001</P>
+                </Address>
+                <GSE cbName="ItlGsseTest" ldInst="IAS" >
+                    <Address>
+                        <P type="MAC-Address" >01-0C-CD-01-00-02</P>
+                        <P type="APPID" >3000</P>
+                        <P type="VLAN-PRIORITY" >4</P>
+                    </Address>
+                </GSE>
+            </ConnectedAP>
+        </SubNetwork>
+    </Communication>
+    <IED name="TEMPLATE" >
+        <Services>
+            <DynAssociation/>
+            <GetDirectory/>
+            <GetDataObjectDefinition/>
+            <GetDataSetValue/>
+            <DataSetDirectory/>
+            <ConfDataSet maxAttributes="60" max="8" />
+            <ReadWrite/>
+            <ConfReportControl max="12" />
+            <GetCBValues/>
+            <ConfLogControl max="1" />
+            <ReportSettings optFields="Conf" cbName="Conf" rptID="Dyn" intgPd="Dyn" datSet="Conf" bufTime="Dyn" />
+            <GSESettings cbName="Conf" datSet="Conf" />
+            <GOOSE max="2" />
+            <FileHandling/>
+            <ConfLNs fixLnInst="true" />
+        </Services>
+        <AccessPoint name="AP1" >
+            <Server>
+                <Authentication/>
+                <LDevice inst="IAS" >
+                    <LN0 inst="" lnClass="LLN0" lnType="LLN01" >
+                        <DataSet name="dsIAS" >
+                            <FCDA doName="GrAlm" lnInst="1" lnClass="CALH" daName="stVal" ldInst="IAS" fc="ST" />
+                            <FCDA doName="GrAlm" lnInst="2" lnClass="CALH" daName="stVal" ldInst="IAS" fc="ST" />
+                            <FCDA doName="GrAlm" lnInst="3" lnClass="CALH" daName="stVal" ldInst="IAS" fc="ST" />
+                            <FCDA doName="GrAlm" lnInst="4" lnClass="CALH" daName="stVal" ldInst="IAS" fc="ST" />
+                            <FCDA doName="GrAlm" lnInst="5" lnClass="CALH" daName="stVal" ldInst="IAS" fc="ST" />
+                            <FCDA doName="GrAlm" lnInst="6" lnClass="CALH" daName="stVal" ldInst="IAS" fc="ST" />
+                            <FCDA doName="GrAlm" lnInst="7" lnClass="CALH" daName="stVal" ldInst="IAS" fc="ST" />
+                            <FCDA doName="GrAlm" lnInst="8" lnClass="CALH" daName="stVal" ldInst="IAS" fc="ST" />
+                            <FCDA doName="SPCSO" lnInst="1" lnClass="GGIO" daName="stVal" ldInst="IAS" fc="ST" />
+                            <FCDA doName="SPCSO" lnInst="2" lnClass="GGIO" daName="stVal" ldInst="IAS" fc="ST" />
+                            <FCDA doName="SPCSO" lnInst="3" lnClass="GGIO" daName="stVal" ldInst="IAS" fc="ST" />
+                            <FCDA doName="SPCSO" lnInst="3" lnClass="GGIO" daName="q" ldInst="IAS" fc="ST" />
+                            <FCDA doName="SPCSO" lnInst="4" lnClass="GGIO" daName="stVal" ldInst="IAS" fc="ST" />
+                            <FCDA doName="SPCSO" lnInst="4" lnClass="GGIO" daName="q" ldInst="IAS" fc="ST" />
+                            <FCDA doName="TotW" lnInst="1" lnClass="MMXU" daName="mag.f" ldInst="IAS" fc="MX" />
+                            <FCDA doName="TotW" lnInst="2" lnClass="MMXU" daName="mag.f" ldInst="IAS" fc="MX" />
+                            <FCDA doName="TotW" lnInst="3" lnClass="MMXU" daName="mag.f" ldInst="IAS" fc="MX" />
+                            <FCDA doName="TotW" lnInst="4" lnClass="MMXU" daName="mag.f" ldInst="IAS" fc="MX" />
+                            <FCDA doName="AirStatus" lnInst="1" lnClass="SACT" daName="stVal" ldInst="IAS" fc="ST" />
+                        </DataSet>
+                        <DOI name="Mod" >
+                            <DAI name="ctlModel" >
+                                <Val>direct-with-normal-security</Val>
+                            </DAI>
+                            <DAI name="stVal" >
+                                <Val>on</Val>
+                            </DAI>
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                        <DOI name="NamPlt" >
+                            <DAI name="vendor" >
+                                <Val>RYTECH</Val>
+                            </DAI>
+                            <DAI name="swRev" >
+                                <Val>IAS-3.1</Val>
+                            </DAI>
+                            <DAI name="ldNs" >
+                                <Val>IEC 61850-7-4:2003</Val>
+                            </DAI>
+                            <DAI name="configRev" >
+                                <Val>1.0</Val>
+                            </DAI>
+                        </DOI>
+                        <DOI name="Beh" >
+                            <DAI name="stVal" >
+                                <Val>on</Val>
+                            </DAI>
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                        <DOI name="Health" >
+                            <DAI name="stVal" >
+                                <Val>Ok</Val>
+                            </DAI>
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                        <GSEControl confRev="1.0" appID="Itl" name="ItlGsseTest" datSet="dsIAS" />
+                    </LN0>
+                    <LN desc="输入1" inst="1" lnClass="CALH" lnType="CALH1" >
+                        <DOI name="Mod" >
+                            <DAI name="ctlModel" >
+                                <Val>status-only</Val>
+                            </DAI>
+                            <DAI name="stVal" >
+                                <Val>on</Val>
+                            </DAI>
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                        <DOI name="Beh" >
+                            <DAI name="stVal" >
+                                <Val>on</Val>
+                            </DAI>
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                        <DOI name="Health" >
+                            <DAI name="stVal" >
+                                <Val>Ok</Val>
+                            </DAI>
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                        <DOI name="GrAlm" >
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                    </LN>
+                    <LN desc="输入2" inst="2" lnClass="CALH" lnType="CALH1" >
+                        <DOI name="Mod" >
+                            <DAI name="ctlModel" >
+                                <Val>status-only</Val>
+                            </DAI>
+                            <DAI name="stVal" >
+                                <Val>on</Val>
+                            </DAI>
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                        <DOI name="Beh" >
+                            <DAI name="stVal" >
+                                <Val>on</Val>
+                            </DAI>
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                        <DOI name="Health" >
+                            <DAI name="stVal" >
+                                <Val>Ok</Val>
+                            </DAI>
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                        <DOI name="GrAlm" >
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                    </LN>
+                    <LN desc="输入3" inst="3" lnClass="CALH" lnType="CALH1" >
+                        <DOI name="Mod" >
+                            <DAI name="ctlModel" >
+                                <Val>status-only</Val>
+                            </DAI>
+                            <DAI name="stVal" >
+                                <Val>on</Val>
+                            </DAI>
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                        <DOI name="Beh" >
+                            <DAI name="stVal" >
+                                <Val>on</Val>
+                            </DAI>
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                        <DOI name="Health" >
+                            <DAI name="stVal" >
+                                <Val>Ok</Val>
+                            </DAI>
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                        <DOI name="GrAlm" >
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                    </LN>
+                    <LN desc="输入4" inst="4" lnClass="CALH" lnType="CALH1" >
+                        <DOI name="Mod" >
+                            <DAI name="ctlModel" >
+                                <Val>status-only</Val>
+                            </DAI>
+                            <DAI name="stVal" >
+                                <Val>on</Val>
+                            </DAI>
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                        <DOI name="Beh" >
+                            <DAI name="stVal" >
+                                <Val>on</Val>
+                            </DAI>
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                        <DOI name="Health" >
+                            <DAI name="stVal" >
+                                <Val>Ok</Val>
+                            </DAI>
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                        <DOI name="GrAlm" >
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                    </LN>
+                    <LN desc="输入5" inst="5" lnClass="CALH" lnType="CALH1" >
+                        <DOI name="Mod" >
+                            <DAI name="ctlModel" >
+                                <Val>status-only</Val>
+                            </DAI>
+                            <DAI name="stVal" >
+                                <Val>on</Val>
+                            </DAI>
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                        <DOI name="Beh" >
+                            <DAI name="stVal" >
+                                <Val>on</Val>
+                            </DAI>
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                        <DOI name="Health" >
+                            <DAI name="stVal" >
+                                <Val>Ok</Val>
+                            </DAI>
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                        <DOI name="GrAlm" >
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                    </LN>
+                    <LN desc="输入6" inst="6" lnClass="CALH" lnType="CALH1" >
+                        <DOI name="Mod" >
+                            <DAI name="ctlModel" >
+                                <Val>status-only</Val>
+                            </DAI>
+                            <DAI name="stVal" >
+                                <Val>on</Val>
+                            </DAI>
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                        <DOI name="Beh" >
+                            <DAI name="stVal" >
+                                <Val>on</Val>
+                            </DAI>
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                        <DOI name="Health" >
+                            <DAI name="stVal" >
+                                <Val>Ok</Val>
+                            </DAI>
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                        <DOI name="GrAlm" >
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                    </LN>
+                    <LN desc="输入7" inst="7" lnClass="CALH" lnType="CALH1" >
+                        <DOI name="Mod" >
+                            <DAI name="ctlModel" >
+                                <Val>status-only</Val>
+                            </DAI>
+                            <DAI name="stVal" >
+                                <Val>on</Val>
+                            </DAI>
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                        <DOI name="Beh" >
+                            <DAI name="stVal" >
+                                <Val>on</Val>
+                            </DAI>
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                        <DOI name="Health" >
+                            <DAI name="stVal" >
+                                <Val>Ok</Val>
+                            </DAI>
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                        <DOI name="GrAlm" >
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                    </LN>
+                    <LN desc="输入8" inst="8" lnClass="CALH" lnType="CALH1" >
+                        <DOI name="Mod" >
+                            <DAI name="ctlModel" >
+                                <Val>status-only</Val>
+                            </DAI>
+                            <DAI name="stVal" >
+                                <Val>on</Val>
+                            </DAI>
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                        <DOI name="Beh" >
+                            <DAI name="stVal" >
+                                <Val>on</Val>
+                            </DAI>
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                        <DOI name="Health" >
+                            <DAI name="stVal" >
+                                <Val>Ok</Val>
+                            </DAI>
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                        <DOI name="GrAlm" >
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                    </LN>
+                    <LN desc="输出1" inst="1" lnClass="GGIO" lnType="GGIO1" >
+                        <DOI name="SPCSO" >
+                            <SDI name="pulseConfig" >
+                                <DAI name="cmdQual" >
+                                    <Val>pulse</Val>
+                                </DAI>
+                                <DAI name="onDur" >
+                                    <Val>0</Val>
+                                </DAI>
+                            </SDI>
+                            <DAI name="ctlModel" >
+                                <Val>direct-with-normal-security</Val>
+                            </DAI>
+                            <DAI name="sboTimeout" >
+                                <Val>2000</Val>
+                            </DAI>
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                        <DOI name="Mod" >
+                            <DAI name="ctlModel" >
+                                <Val>direct-with-normal-security</Val>
+                            </DAI>
+                            <DAI name="stVal" >
+                                <Val>on</Val>
+                            </DAI>
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                        <DOI name="Beh" >
+                            <DAI name="stVal" >
+                                <Val>on</Val>
+                            </DAI>
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                        <DOI name="Health" >
+                            <DAI name="stVal" >
+                                <Val>Ok</Val>
+                            </DAI>
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                    </LN>
+                    <LN desc="输出2" inst="2" lnClass="GGIO" lnType="GGIO1" >
+                        <DOI name="SPCSO" >
+                            <SDI name="pulseConfig" >
+                                <DAI name="cmdQual" >
+                                    <Val>pulse</Val>
+                                </DAI>
+                                <DAI name="onDur" >
+                                    <Val>0</Val>
+                                </DAI>
+                            </SDI>
+                            <DAI name="ctlModel" >
+                                <Val>direct-with-normal-security</Val>
+                            </DAI>
+                            <DAI name="sboTimeout" >
+                                <Val>2000</Val>
+                            </DAI>
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                        <DOI name="Mod" >
+                            <DAI name="ctlModel" >
+                                <Val>direct-with-normal-security</Val>
+                            </DAI>
+                            <DAI name="stVal" >
+                                <Val>on</Val>
+                            </DAI>
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                        <DOI name="Beh" >
+                            <DAI name="stVal" >
+                                <Val>on</Val>
+                            </DAI>
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                        <DOI name="Health" >
+                            <DAI name="stVal" >
+                                <Val>Ok</Val>
+                            </DAI>
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                    </LN>
+                    <LN desc="输出3" inst="3" lnClass="GGIO" lnType="GGIO1" >
+                        <DOI name="SPCSO" >
+                            <SDI name="pulseConfig" >
+                                <DAI name="cmdQual" >
+                                    <Val>pulse</Val>
+                                </DAI>
+                                <DAI name="onDur" >
+                                    <Val>0</Val>
+                                </DAI>
+                            </SDI>
+                            <DAI name="ctlModel" >
+                                <Val>direct-with-normal-security</Val>
+                            </DAI>
+                            <DAI name="sboTimeout" >
+                                <Val>2000</Val>
+                            </DAI>
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                        <DOI name="Mod" >
+                            <DAI name="ctlModel" >
+                                <Val>direct-with-normal-security</Val>
+                            </DAI>
+                            <DAI name="stVal" >
+                                <Val>on</Val>
+                            </DAI>
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                        <DOI name="Beh" >
+                            <DAI name="stVal" >
+                                <Val>on</Val>
+                            </DAI>
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                        <DOI name="Health" >
+                            <DAI name="stVal" >
+                                <Val>Ok</Val>
+                            </DAI>
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                    </LN>
+                    <LN desc="输出4" inst="4" lnClass="GGIO" lnType="GGIO1" >
+                        <DOI name="SPCSO" >
+                            <SDI name="pulseConfig" >
+                                <DAI name="cmdQual" >
+                                    <Val>pulse</Val>
+                                </DAI>
+                                <DAI name="onDur" >
+                                    <Val>0</Val>
+                                </DAI>
+                            </SDI>
+                            <DAI name="ctlModel" >
+                                <Val>direct-with-normal-security</Val>
+                            </DAI>
+                            <DAI name="sboTimeout" >
+                                <Val>2000</Val>
+                            </DAI>
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                        <DOI name="Mod" >
+                            <DAI name="ctlModel" >
+                                <Val>direct-with-normal-security</Val>
+                            </DAI>
+                            <DAI name="stVal" >
+                                <Val>on</Val>
+                            </DAI>
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                        <DOI name="Beh" >
+                            <DAI name="stVal" >
+                                <Val>on</Val>
+                            </DAI>
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                        <DOI name="Health" >
+                            <DAI name="stVal" >
+                                <Val>Ok</Val>
+                            </DAI>
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                    </LN>
+                    <LN inst="1" lnClass="LPHD" lnType="LPHD1" >
+                        <DOI name="PhyNam" >
+                            <DAI name="vendor" >
+                                <Val>RYTECH</Val>
+                            </DAI>
+                        </DOI>
+                        <DOI name="PhyHealth" >
+                            <DAI name="stVal" >
+                                <Val>Ok</Val>
+                            </DAI>
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                        <DOI name="Proxy" >
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                    </LN>
+                    <LN desc="温度" inst="1" lnClass="MMXU" lnType="MMXU1" >
+                        <DOI name="TotW" >
+                            <SDI name="units" >
+                                <DAI name="SIUnit" >
+                                    <Val>°C</Val>
+                                </DAI>
+                            </SDI>
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                        <DOI name="Mod" >
+                            <DAI name="ctlModel" >
+                                <Val>status-only</Val>
+                            </DAI>
+                            <DAI name="stVal" >
+                                <Val>on</Val>
+                            </DAI>
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                        <DOI name="Beh" >
+                            <DAI name="stVal" >
+                                <Val>on</Val>
+                            </DAI>
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                        <DOI name="Health" >
+                            <DAI name="stVal" >
+                                <Val>Ok</Val>
+                            </DAI>
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                    </LN>
+                    <LN desc="湿度" inst="2" lnClass="MMXU" lnType="MMXU1" >
+                        <DOI name="TotW" >
+                            <SDI name="units" >
+                                <DAI name="multiplier" >
+                                    <Val>c</Val>
+                                </DAI>
+                            </SDI>
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                        <DOI name="Mod" >
+                            <DAI name="ctlModel" >
+                                <Val>status-only</Val>
+                            </DAI>
+                            <DAI name="stVal" >
+                                <Val>on</Val>
+                            </DAI>
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                        <DOI name="Beh" >
+                            <DAI name="stVal" >
+                                <Val>on</Val>
+                            </DAI>
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                        <DOI name="Health" >
+                            <DAI name="stVal" >
+                                <Val>Ok</Val>
+                            </DAI>
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                    </LN>
+                    <LN desc="风速" inst="3" lnClass="MMXU" lnType="MMXU1" >
+                        <DOI name="TotW" >
+                            <SDI name="units" >
+                                <DAI name="SIUnit" >
+                                    <Val>m/s</Val>
+                                </DAI>
+                            </SDI>
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                        <DOI name="Mod" >
+                            <DAI name="ctlModel" >
+                                <Val>status-only</Val>
+                            </DAI>
+                            <DAI name="stVal" >
+                                <Val>on</Val>
+                            </DAI>
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                        <DOI name="Beh" >
+                            <DAI name="stVal" >
+                                <Val>on</Val>
+                            </DAI>
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                        <DOI name="Health" >
+                            <DAI name="stVal" >
+                                <Val>Ok</Val>
+                            </DAI>
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                    </LN>
+                    <LN desc="氧气" inst="4" lnClass="MMXU" lnType="MMXU1" >
+                        <DOI name="TotW" >
+                            <SDI name="units" >
+                                <DAI name="SIUnit" >
+                                    <Val>ppm</Val>
+                                </DAI>
+                            </SDI>
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                        <DOI name="Mod" >
+                            <DAI name="ctlModel" >
+                                <Val>status-only</Val>
+                            </DAI>
+                            <DAI name="stVal" >
+                                <Val>on</Val>
+                            </DAI>
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                        <DOI name="Beh" >
+                            <DAI name="stVal" >
+                                <Val>on</Val>
+                            </DAI>
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                        <DOI name="Health" >
+                            <DAI name="stVal" >
+                                <Val>Ok</Val>
+                            </DAI>
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                    </LN>
+                    <LN desc="空调控制" inst="1" lnClass="SACT" lnType="SACT1" >
+                        <DOI name="Mod" >
+                            <DAI name="ctlModel" >
+                                <Val>direct-with-normal-security</Val>
+                            </DAI>
+                            <DAI name="stVal" >
+                                <Val>on</Val>
+                            </DAI>
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                        <DOI name="Beh" >
+                            <DAI name="stVal" >
+                                <Val>on</Val>
+                            </DAI>
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                        <DOI name="Health" >
+                            <DAI name="stVal" >
+                                <Val>Ok</Val>
+                            </DAI>
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                        <DOI name="AirMode" >
+                            <DAI name="setVal" >
+                                <Val>0</Val>
+                            </DAI>
+                            <DAI name="minVal" >
+                                <Val>0</Val>
+                            </DAI>
+                            <DAI name="maxVal" >
+                                <Val>3</Val>
+                            </DAI>
+                        </DOI>
+                        <DOI name="AirTemp" >
+                            <DAI name="setVal" >
+                                <Val>16</Val>
+                            </DAI>
+                            <DAI name="minVal" >
+                                <Val>16</Val>
+                            </DAI>
+                            <DAI name="maxVal" >
+                                <Val>32</Val>
+                            </DAI>
+                        </DOI>
+                        <DOI name="NamPlt" >
+                            <DAI name="vendor" >
+                                <Val>RYTECH</Val>
+                            </DAI>
+                            <DAI name="swRev" >
+                                <Val>IAS-3.1</Val>
+                            </DAI>
+                            <DAI name="lnNs" >
+                                <Val>IEC 61850-7-4:2003</Val>
+                            </DAI>
+                        </DOI>
+                        <DOI name="AirStatus" >
+                            <DAI name="q" >
+                                <Val>0</Val>
+                            </DAI>
+                        </DOI>
+                    </LN>
+                </LDevice>
+            </Server>
+        </AccessPoint>
+    </IED>
+    <DataTypeTemplates>
+        <LNodeType desc="开关量输入节点" lnClass="CALH" id="CALH1" >
+            <DO type="CN_INC_Mod" name="Mod" />
+            <DO type="CN_INS_Beh" name="Beh" />
+            <DO type="CN_INS_Health" name="Health" />
+            <DO type="CN_LPL" name="NamPlt" />
+            <DO type="CN_SPS" name="GrAlm" />
+        </LNodeType>
+        <LNodeType desc="开关量输出节点" lnClass="GGIO" id="GGIO1" >
+            <DO type="CN_INC_Mod" name="Mod" />
+            <DO type="CN_INS_Beh" name="Beh" />
+            <DO type="CN_INS_Health" name="Health" />
+            <DO type="CN_LPL" name="NamPlt" />
+            <DO type="CN_SPC" name="SPCSO" />
+        </LNodeType>
+        <LNodeType desc="逻辑节点装置" lnClass="LLN0" id="LLN01" >
+            <DO type="CN_INC_Mod" name="Mod" />
+            <DO type="CN_INS_Beh" name="Beh" />
+            <DO type="CN_INS_Health" name="Health" />
+            <DO type="CN_LPL_LN0" name="NamPlt" />
+        </LNodeType>
+        <LNodeType desc="物理设备信息" lnClass="LPHD" id="LPHD1" >
+            <DO type="CN_DPL" name="PhyNam" />
+            <DO type="CN_INS_Health" name="PhyHealth" />
+            <DO type="CN_SPS" name="Proxy" />
+        </LNodeType>
+        <LNodeType desc="模拟量测量节点" lnClass="MMXU" id="MMXU1" >
+            <DO type="CN_INC_Mod" name="Mod" />
+            <DO type="CN_INS_Beh" name="Beh" />
+            <DO type="CN_INS_Health" name="Health" />
+            <DO type="CN_LPL" name="NamPlt" />
+            <DO type="CN_MV" name="TotW" />
+        </LNodeType>
+        <LNodeType desc="空调控制节点" lnClass="SACT" id="SACT1" >
+            <DO type="CN_INC_Mod" name="Mod" />
+            <DO type="CN_INS_Beh" name="Beh" />
+            <DO type="CN_INS_Health" name="Health" />
+            <DO type="CN_LPL_EX" name="NamPlt" />
+            <DO type="CN_ING_SP" name="AirMode" />
+            <DO type="CN_ING_SP" name="AirTemp" />
+            <DO type="CN_SPS" name="AirStatus" />
+        </LNodeType>
+        <DOType id="CN_DPL" cdc="DPL" >
+            <DA bType="VisString255" name="vendor" fc="DC" />
+            <DA bType="VisString255" name="hwRev" fc="DC" />
+            <DA bType="VisString255" name="swRev" fc="DC" />
+            <DA bType="VisString255" name="serNum" fc="DC" />
+            <DA bType="VisString255" name="model" fc="DC" />
+            <DA bType="VisString255" name="location" fc="DC" />
+        </DOType>
+        <DOType id="CN_INC_EX" cdc="INC" >
+            <DA bType="Struct" type="CN_SBOw_Oper_INC" name="SBOw" fc="CO" />
+            <DA bType="Struct" type="CN_SBOw_Oper_INC" name="Oper" fc="CO" />
+            <DA bType="Struct" type="CN_Cancel_INC" name="Cancel" fc="CO" />
+            <DA bType="INT32" name="stVal" fc="ST" dchg="true" />
+            <DA qchg="true" bType="Quality" name="q" fc="ST" />
+            <DA bType="Timestamp" name="t" fc="ST" />
+            <DA bType="BOOLEAN" name="subEna" fc="SV" />
+            <DA bType="INT32" name="subVal" fc="SV" />
+            <DA bType="Quality" name="subQ" fc="SV" />
+            <DA bType="VisString64" name="subID" fc="SV" />
+            <DA bType="Enum" type="ctlModel" name="ctlModel" fc="CF" />
+            <DA bType="INT32U" name="sboTimeout" fc="CF" />
+            <DA bType="Enum" type="sboClass" name="sboClass" fc="CF" />
+            <DA bType="INT32" name="minVal" fc="CF" />
+            <DA bType="INT32" name="maxVal" fc="CF" />
+            <DA bType="INT32U" name="stepSize" fc="CF" />
+            <DA bType="Unicode255" name="dU" fc="DC" />
+            <DA bType="VisString255" name="dataNs" fc="EX" />
+        </DOType>
+        <DOType id="CN_INC_Mod" cdc="INC" >
+            <DA bType="Enum" type="Mod" name="stVal" fc="ST" dchg="true" />
+            <DA qchg="true" bType="Quality" name="q" fc="ST" />
+            <DA bType="Timestamp" name="t" fc="ST" />
+            <DA bType="Enum" type="ctlModel" name="ctlModel" fc="CF" />
+        </DOType>
+        <DOType id="CN_ING_SP" cdc="ING" >
+            <DA bType="INT32" name="setVal" fc="SP" />
+            <DA bType="INT32" name="minVal" fc="CF" />
+            <DA bType="INT32" name="maxVal" fc="CF" />
+            <DA bType="INT32U" name="stepSize" fc="CF" />
+            <DA bType="Unicode255" name="dU" fc="DC" />
+        </DOType>
+        <DOType id="CN_INS_Beh" cdc="INS" >
+            <DA bType="Enum" type="Beh" name="stVal" fc="ST" dchg="true" />
+            <DA qchg="true" bType="Quality" name="q" fc="ST" />
+            <DA bType="Timestamp" name="t" fc="ST" />
+        </DOType>
+        <DOType id="CN_INS_Health" cdc="INS" >
+            <DA bType="Enum" type="Health" name="stVal" fc="ST" dchg="true" />
+            <DA qchg="true" bType="Quality" name="q" fc="ST" />
+            <DA bType="Timestamp" name="t" fc="ST" />
+        </DOType>
+        <DOType id="CN_LPL" cdc="LPL" >
+            <DA bType="VisString255" name="vendor" fc="DC" />
+            <DA bType="VisString255" name="swRev" fc="DC" />
+            <DA bType="VisString255" name="d" fc="DC" />
+            <DA bType="Unicode255" name="dU" fc="DC" />
+        </DOType>
+        <DOType id="CN_LPL_EX" cdc="LPL" >
+            <DA bType="VisString255" name="vendor" fc="DC" />
+            <DA bType="VisString255" name="swRev" fc="DC" />
+            <DA bType="VisString255" name="d" fc="DC" />
+            <DA bType="Unicode255" name="dU" fc="DC" />
+            <DA bType="VisString255" name="lnNs" fc="EX" />
+        </DOType>
+        <DOType id="CN_LPL_LN0" cdc="LPL" >
+            <DA bType="VisString255" name="vendor" fc="DC" />
+            <DA bType="VisString255" name="swRev" fc="DC" />
+            <DA bType="VisString255" name="d" fc="DC" />
+            <DA bType="Unicode255" name="dU" fc="DC" />
+            <DA bType="VisString255" name="configRev" fc="DC" />
+            <DA bType="VisString255" name="ldNs" fc="EX" />
+        </DOType>
+        <DOType id="CN_MV" cdc="MV" >
+            <DA bType="Struct" type="CN_AnalogueValue" name="mag" fc="MX" dchg="true" />
+            <DA qchg="true" bType="Quality" name="q" fc="MX" />
+            <DA bType="Timestamp" name="t" fc="MX" />
+            <DA bType="BOOLEAN" name="subEna" fc="SV" />
+            <DA bType="Struct" type="CN_AnalogueValue" name="subMag" fc="SV" />
+            <DA bType="Quality" name="subQ" fc="SV" />
+            <DA bType="VisString64" name="subID" fc="SV" />
+            <DA bType="Struct" type="CN_units" name="units" fc="CF" />
+            <DA bType="INT32U" name="db" fc="CF" />
+            <DA bType="INT32U" name="zeroDb" fc="CF" />
+            <DA bType="Struct" type="CN_ScaledValueConfig" name="sVC" fc="CF" />
+            <DA bType="Struct" type="CN_RangeConfig" name="rangeC" fc="CF" />
+            <DA bType="INT32U" name="smpRate" fc="CF" />
+            <DA bType="Unicode255" name="dU" fc="DC" />
+        </DOType>
+        <DOType id="CN_SPC" cdc="SPC" >
+            <DA bType="Struct" type="CN_SBOw_Oper_SDPC" name="SBOw" fc="CO" />
+            <DA bType="Struct" type="CN_SBOw_Oper_SDPC" name="Oper" fc="CO" />
+            <DA bType="Struct" type="CN_Cancel_SDPC" name="Cancel" fc="CO" />
+            <DA bType="BOOLEAN" name="stVal" fc="ST" dchg="true" />
+            <DA qchg="true" bType="Quality" name="q" fc="ST" />
+            <DA bType="Timestamp" name="t" fc="ST" />
+            <DA bType="BOOLEAN" name="subEna" fc="SV" />
+            <DA bType="BOOLEAN" name="subVal" fc="SV" />
+            <DA bType="Quality" name="subQ" fc="SV" />
+            <DA bType="VisString64" name="subID" fc="SV" />
+            <DA bType="Struct" type="CN_PulseConfig" name="pulseConfig" fc="CF" />
+            <DA bType="Enum" type="ctlModel" name="ctlModel" fc="CF" />
+            <DA bType="INT32U" name="sboTimeout" fc="CF" />
+            <DA bType="Enum" type="sboClass" name="sboClass" fc="CF" />
+            <DA bType="Unicode255" name="dU" fc="DC" />
+        </DOType>
+        <DOType id="CN_SPS" cdc="SPS" >
+            <DA bType="BOOLEAN" name="stVal" fc="ST" dchg="true" />
+            <DA qchg="true" bType="Quality" name="q" fc="ST" />
+            <DA bType="Timestamp" name="t" fc="ST" />
+            <DA bType="BOOLEAN" name="subEna" fc="SV" />
+            <DA bType="BOOLEAN" name="subVal" fc="SV" />
+            <DA bType="Quality" name="subQ" fc="SV" />
+            <DA bType="VisString64" name="subID" fc="SV" />
+            <DA bType="Unicode255" name="dU" fc="DC" />
+        </DOType>
+        <DAType id="CN_AnalogueValue" >
+            <BDA bType="FLOAT32" name="f" />
+        </DAType>
+        <DAType id="CN_Cancel_INC" >
+            <BDA bType="INT32" name="ctlVal" />
+            <BDA bType="Struct" type="CN_Originator" name="origin" />
+            <BDA bType="INT8U" name="ctlNum" />
+            <BDA bType="Timestamp" name="T" />
+            <BDA bType="BOOLEAN" name="Test" />
+        </DAType>
+        <DAType id="CN_Cancel_SDPC" >
+            <BDA bType="BOOLEAN" name="ctlVal" />
+            <BDA bType="Struct" type="CN_Originator" name="origin" />
+            <BDA bType="INT8U" name="ctlNum" />
+            <BDA bType="Timestamp" name="T" />
+            <BDA bType="BOOLEAN" name="Test" />
+        </DAType>
+        <DAType id="CN_Originator" >
+            <BDA bType="Enum" type="orCategory" name="orCat" />
+            <BDA bType="Octet64" name="orIdent" />
+        </DAType>
+        <DAType id="CN_PulseConfig" >
+            <BDA bType="Enum" type="PulseConfigCmdQual" name="cmdQual" />
+            <BDA bType="INT32U" name="onDur" />
+            <BDA bType="INT32U" name="offDur" />
+            <BDA bType="INT32U" name="numPls" />
+        </DAType>
+        <DAType id="CN_RangeConfig" >
+            <BDA bType="Struct" type="CN_AnalogueValue" name="hhLim" />
+            <BDA bType="Struct" type="CN_AnalogueValue" name="hLim" />
+            <BDA bType="Struct" type="CN_AnalogueValue" name="lLim" />
+            <BDA bType="Struct" type="CN_AnalogueValue" name="llLim" />
+            <BDA bType="Struct" type="CN_AnalogueValue" name="min" />
+            <BDA bType="Struct" type="CN_AnalogueValue" name="max" />
+        </DAType>
+        <DAType id="CN_SBOw_Oper_INC" >
+            <BDA bType="INT32" name="ctlVal" />
+            <BDA bType="Struct" type="CN_Originator" name="origin" />
+            <BDA bType="INT8U" name="ctlNum" />
+            <BDA bType="Timestamp" name="T" />
+            <BDA bType="BOOLEAN" name="Test" />
+            <BDA bType="Check" name="Check" />
+        </DAType>
+        <DAType id="CN_SBOw_Oper_SDPC" >
+            <BDA bType="BOOLEAN" name="ctlVal" />
+            <BDA bType="Struct" type="CN_Originator" name="origin" />
+            <BDA bType="INT8U" name="ctlNum" />
+            <BDA bType="Timestamp" name="T" />
+            <BDA bType="BOOLEAN" name="Test" />
+            <BDA bType="Check" name="Check" />
+        </DAType>
+        <DAType id="CN_ScaledValueConfig" >
+            <BDA bType="FLOAT32" name="scaleFactor" />
+            <BDA bType="FLOAT32" name="offset" />
+        </DAType>
+        <DAType id="CN_units" >
+            <BDA bType="Enum" type="SIUnit" name="SIUnit" />
+            <BDA bType="Enum" type="multiplier" name="multiplier" />
+        </DAType>
+        <EnumType id="Beh" >
+            <EnumVal ord="1" >on</EnumVal>
+            <EnumVal ord="2" >blocked</EnumVal>
+            <EnumVal ord="3" >test</EnumVal>
+            <EnumVal ord="4" >test/blocked</EnumVal>
+            <EnumVal ord="5" >off</EnumVal>
+        </EnumType>
+        <EnumType id="Health" >
+            <EnumVal ord="1" >Ok</EnumVal>
+            <EnumVal ord="2" >Warning</EnumVal>
+            <EnumVal ord="3" >Alarm</EnumVal>
+        </EnumType>
+        <EnumType id="Mod" >
+            <EnumVal ord="1" >on</EnumVal>
+            <EnumVal ord="2" >blocked</EnumVal>
+            <EnumVal ord="3" >test</EnumVal>
+            <EnumVal ord="4" >test/blocked</EnumVal>
+            <EnumVal ord="5" >off</EnumVal>
+        </EnumType>
+        <EnumType id="PulseConfigCmdQual" >
+            <EnumVal ord="0" >pulse</EnumVal>
+            <EnumVal ord="1" >persistent</EnumVal>
+        </EnumType>
+        <EnumType id="SIUnit" >
+            <EnumVal ord="1" ></EnumVal>
+            <EnumVal ord="2" >m</EnumVal>
+            <EnumVal ord="3" >kg</EnumVal>
+            <EnumVal ord="4" >s</EnumVal>
+            <EnumVal ord="5" >A</EnumVal>
+            <EnumVal ord="6" >K</EnumVal>
+            <EnumVal ord="7" >mol</EnumVal>
+            <EnumVal ord="8" >cd</EnumVal>
+            <EnumVal ord="9" >deg</EnumVal>
+            <EnumVal ord="10" >rad</EnumVal>
+            <EnumVal ord="11" >sr</EnumVal>
+            <EnumVal ord="21" >Gy</EnumVal>
+            <EnumVal ord="22" >q</EnumVal>
+            <EnumVal ord="23" >°C</EnumVal>
+            <EnumVal ord="24" >Sv</EnumVal>
+            <EnumVal ord="25" >F</EnumVal>
+            <EnumVal ord="26" >C</EnumVal>
+            <EnumVal ord="27" >S</EnumVal>
+            <EnumVal ord="28" >H</EnumVal>
+            <EnumVal ord="29" >V</EnumVal>
+            <EnumVal ord="30" >ohm</EnumVal>
+            <EnumVal ord="31" >J</EnumVal>
+            <EnumVal ord="32" >N</EnumVal>
+            <EnumVal ord="33" >Hz</EnumVal>
+            <EnumVal ord="34" >lx</EnumVal>
+            <EnumVal ord="35" >Lm</EnumVal>
+            <EnumVal ord="36" >Wb</EnumVal>
+            <EnumVal ord="37" >T</EnumVal>
+            <EnumVal ord="38" >W</EnumVal>
+            <EnumVal ord="39" >Pa</EnumVal>
+            <EnumVal ord="41" >m²</EnumVal>
+            <EnumVal ord="42" >m³</EnumVal>
+            <EnumVal ord="43" >m/s</EnumVal>
+            <EnumVal ord="44" >m/s²</EnumVal>
+            <EnumVal ord="45" >m³/s</EnumVal>
+            <EnumVal ord="46" >m/m³</EnumVal>
+            <EnumVal ord="47" >M</EnumVal>
+            <EnumVal ord="48" >kg/m³</EnumVal>
+            <EnumVal ord="49" >m²/s</EnumVal>
+            <EnumVal ord="50" >W/m K</EnumVal>
+            <EnumVal ord="51" >J/K</EnumVal>
+            <EnumVal ord="52" >ppm</EnumVal>
+            <EnumVal ord="53" >1/s</EnumVal>
+            <EnumVal ord="54" >rad/s</EnumVal>
+            <EnumVal ord="61" >VA</EnumVal>
+            <EnumVal ord="62" >Watts</EnumVal>
+            <EnumVal ord="63" >VAr</EnumVal>
+            <EnumVal ord="64" >phi</EnumVal>
+            <EnumVal ord="65" >cos(phi)</EnumVal>
+            <EnumVal ord="66" >Vs</EnumVal>
+            <EnumVal ord="67" >V²</EnumVal>
+            <EnumVal ord="68" >As</EnumVal>
+            <EnumVal ord="69" >A²</EnumVal>
+            <EnumVal ord="70" >A²t</EnumVal>
+            <EnumVal ord="71" >VAh</EnumVal>
+            <EnumVal ord="72" >Wh</EnumVal>
+            <EnumVal ord="73" >VArh</EnumVal>
+            <EnumVal ord="74" >V/Hz</EnumVal>
+        </EnumType>
+        <EnumType id="ctlModel" >
+            <EnumVal ord="0" >status-only</EnumVal>
+            <EnumVal ord="1" >direct-with-normal-security</EnumVal>
+            <EnumVal ord="2" >sbo-with-normal-security</EnumVal>
+            <EnumVal ord="3" >direct-with-enhanced-security</EnumVal>
+            <EnumVal ord="4" >sbo-with-enhanced-security</EnumVal>
+        </EnumType>
+        <EnumType id="multiplier" >
+            <EnumVal ord="-24" >y</EnumVal>
+            <EnumVal ord="-21" >z</EnumVal>
+            <EnumVal ord="-18" >a</EnumVal>
+            <EnumVal ord="-15" >f</EnumVal>
+            <EnumVal ord="-12" >p</EnumVal>
+            <EnumVal ord="-9" >n</EnumVal>
+            <EnumVal ord="-6" >µ</EnumVal>
+            <EnumVal ord="-3" >m</EnumVal>
+            <EnumVal ord="-2" >c</EnumVal>
+            <EnumVal ord="-1" >d</EnumVal>
+            <EnumVal ord="0" ></EnumVal>
+            <EnumVal ord="1" >da</EnumVal>
+            <EnumVal ord="2" >h</EnumVal>
+            <EnumVal ord="3" >k</EnumVal>
+            <EnumVal ord="6" >M</EnumVal>
+            <EnumVal ord="9" >G</EnumVal>
+            <EnumVal ord="12" >T</EnumVal>
+            <EnumVal ord="15" >P</EnumVal>
+            <EnumVal ord="18" >E</EnumVal>
+            <EnumVal ord="21" >Z</EnumVal>
+            <EnumVal ord="24" >Y</EnumVal>
+        </EnumType>
+        <EnumType id="orCategory" >
+            <EnumVal ord="0" >not-supported</EnumVal>
+            <EnumVal ord="1" >bay-control</EnumVal>
+            <EnumVal ord="2" >station-control</EnumVal>
+            <EnumVal ord="3" >remote-control</EnumVal>
+            <EnumVal ord="4" >automatic-bay</EnumVal>
+            <EnumVal ord="5" >automatic-station</EnumVal>
+            <EnumVal ord="6" >automatic-remote</EnumVal>
+            <EnumVal ord="7" >maintenance</EnumVal>
+            <EnumVal ord="8" >process</EnumVal>
+        </EnumType>
+        <EnumType id="sboClass" >
+            <EnumVal ord="0" >operate-once</EnumVal>
+            <EnumVal ord="1" >operate-many</EnumVal>
+        </EnumType>
+    </DataTypeTemplates>
+</SCL>

@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.openmuc:j60870:1.2.1">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.openmuc/j60870/1.2.1/8d66bb574efbdc25dfdf1d1c091c939de3ce01ce/j60870-1.2.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.openmuc/j60870/1.2.1/25072247d8414c0dc21229ceae9802638cfdb5c0/j60870-1.2.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -17,6 +17,8 @@ public class ModbusMessage {
     public int responseLen = 0;                               //返回帧的长度
     public ByteBuf payload;                                   //有效数据，发送的或者是接收的
 
+    public int retry = 0;                                     // 命令重试次数，大于三次后失败
+
     public ModbusMessage() {
 
     }

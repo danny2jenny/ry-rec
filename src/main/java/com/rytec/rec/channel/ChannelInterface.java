@@ -13,6 +13,7 @@ package com.rytec.rec.channel;
  */
 
 public interface ChannelInterface {
+
     int sendMsg(Object msg);
 
     void channelOnline(Object channelId, boolean online);

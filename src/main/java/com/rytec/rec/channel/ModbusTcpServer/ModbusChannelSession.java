@@ -133,12 +133,29 @@ public class ModbusChannelSession {
      * 检查超时
      */
     public void checkOverTime() {
-        logger.debug("超时--" + "次数：" + timer + "--" + "Node：" + lastOutMsg.nodeId);
+        logger.debug("超时--Node：" + lastOutMsg.nodeId);
         timer = 0;
         //todo: 超时处理
         goodHelth(lastOutMsg,false);
 
-        lastOutMsg = null;
+        /**
+         * 如果是用户命令，或者是联动命令，需要重新执行
+         * 重新执行超过三次还不成功就丢弃
+         */
+        //
+        if ((lastOutMsg.from == ConstantFromWhere.FROM_USER)||(lastOutMsg.from == ConstantFromWhere.FROM_ALI)){
+            lastOutMsg.retry++;
+            if (lastOutMsg.retry<3){
+                sendMsg(lastOutMsg);
+                logger.debug("命令重试：Node:"+lastOutMsg.nodeId);
+            } else {
+                logger.debug("重试失败！！！！：Node:"+lastOutMsg.nodeId);
+                lastOutMsg = null;
+            }
+        } else {
+            lastOutMsg = null;
+        }
+
     }
 
     /**
@@ -146,11 +163,11 @@ public class ModbusChannelSession {
      * 优先处理命令队列，然后再处理查询命令
      */
     public synchronized void timerProcess() {
-
+        // todo 这种方式判断有问题！！！！
         // 如果有未返回的命令，检查超时
         if (lastOutMsg != null) {
             timer++;
-            if (timer > 10) {
+            if (timer > 1) {
                 //超时处理
                 checkOverTime();
             } else {

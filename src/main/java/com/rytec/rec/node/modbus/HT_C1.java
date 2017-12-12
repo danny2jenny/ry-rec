@@ -29,7 +29,7 @@ import javax.annotation.PostConstruct;
  */
 @Service
 @AnnotationNodeType(3001)
-@AnnotationJSExport("HT-C1 温湿度")
+@AnnotationJSExport("HT-C1 风速")
 public class HT_C1 extends NodeModbusBase {
     @Override
     public boolean needUpdate(NodeConfig cfg, Object oldVal, Object newVal) {
