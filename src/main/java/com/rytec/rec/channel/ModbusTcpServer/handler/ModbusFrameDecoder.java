@@ -5,6 +5,7 @@ import com.rytec.rec.channel.ModbusTcpServer.ModbusCommon;
 import com.rytec.rec.channel.ModbusTcpServer.ModbusMessage;
 import com.rytec.rec.util.CRC16;
 import com.rytec.rec.util.ConstantFromWhere;
+import com.rytec.rec.util.Tools;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
@@ -32,12 +33,12 @@ public class ModbusFrameDecoder extends ByteToMessageDecoder {
         // 当前读取缓冲的状态
         int inBufferLen = in.readableBytes();
         int readIndex = in.readerIndex();
-        int writeIndex = in.writerIndex();
+
+        byte[] receivedData = new byte[inBufferLen];
 
         if (lastOutMsg == null) {
-            byte[] remain = new byte[inBufferLen];
-            in.getBytes(readIndex, remain, 0, inBufferLen);
-            logger.debug("超时遗留数据：" + CRC16.bytesToHexString(remain));
+            in.readBytes(receivedData);
+            logger.debug("超时遗留数据：" + CRC16.bytesToHexString(receivedData));
             return;
         }
 
@@ -46,45 +47,38 @@ public class ModbusFrameDecoder extends ByteToMessageDecoder {
             return;
         }
 
-        /*
-         * 这里应该是读取最后一段的内容，
-         * 因为重头读取可能读取到上一次没有处理完的脏数据
-         * 当成功收到回应后，清楚当前的缓冲
-         * -----------------------
-         * |  遗留数据 |  有效数据 |
-         * -----------------------
-         * read                 write
-         * readableBytes() - len ： 需要跳过的字节
+        /**
+         * 1、读取所有的长度
+         * 2、匹配命令字和地址
+         * 3、丢弃
          */
 
-        // todo: data 和 payload 可以放在 session 中增加效率
-        /*
-         * 只收取尾部期望的长度
-         */
-        byte[] data = new byte[lastOutMsg.responseLen];
-        in.getBytes(writeIndex - lastOutMsg.responseLen, data, 0, lastOutMsg.responseLen);
+        in.getBytes(readIndex, receivedData, 0, inBufferLen);
 
-        // 检查发送和接收的头部是相等的，地址和功能码是否一致
-        lastOutMsg.payload.resetReaderIndex();
-        if (((lastOutMsg.payload).getByte(0) == data[0]) & ((lastOutMsg.payload).getByte(1) == data[1])) {
-            // 地址和功能码一致，可以继续
-        } else {
-            logger.debug("解码失败！！！！！！！！！！！！！！！！");
-            modbusChannelSession.goodHelth(lastOutMsg, false);
+        int headIndex = Tools.findSubArray(receivedData, lastOutMsg.payload.copy(0, 2).array());
+
+        if (headIndex < 0) {
+            // 没有找到头
             return;
         }
 
+        if ((inBufferLen - headIndex) < lastOutMsg.responseLen) {
+            // 数据长度不够
+            return;
+        }
 
-        // 检查包的CRC
-        int error = CRC16.check(data);
+        // ----------------- 以下可以对返回数据进行解码了 ----------------------
+        byte[] aData = new byte[lastOutMsg.responseLen];
+        System.arraycopy(receivedData,headIndex,aData,0,lastOutMsg.responseLen);
+
+        int error = CRC16.check(aData);
 
         // 没有错误
         if (error == 0) {
 
-            in.skipBytes(inBufferLen);
             // 成功组帧
             ByteBuf payload = Unpooled.buffer(lastOutMsg.responseLen);
-            payload.setBytes(0, data);
+            payload.writeBytes(aData);
 
             ModbusMessage msg = new ModbusMessage(ConstantFromWhere.FROM_RPS);
             msg.payload = payload;
@@ -99,12 +93,12 @@ public class ModbusFrameDecoder extends ByteToMessageDecoder {
 
             out.add(msg);
         } else {
-            // 解码错误，打印当前的内容和解码的内容
+            // CRC错误，打印当前的内容和解码的内容
             modbusChannelSession.goodHelth(lastOutMsg, false);
-            byte[] remain = new byte[inBufferLen];
-            in.getBytes(readIndex, remain, 0, inBufferLen);
-            logger.debug("遗留数据：" + CRC16.bytesToHexString(remain));
-            logger.debug("解码数据：" + CRC16.bytesToHexString(data));
+            logger.debug("CRC错误：" + CRC16.bytesToHexString(aData));
         }
+
+        in.skipBytes(inBufferLen);
+
     }
 }

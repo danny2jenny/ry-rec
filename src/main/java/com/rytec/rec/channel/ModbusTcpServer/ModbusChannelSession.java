@@ -167,7 +167,7 @@ public class ModbusChannelSession {
         // 如果有未返回的命令，检查超时
         if (lastOutMsg != null) {
             timer++;
-            if (timer > 1) {
+            if (timer > 5) {
                 //超时处理
                 checkOverTime();
             } else {

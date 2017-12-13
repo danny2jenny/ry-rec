@@ -93,6 +93,11 @@ public class CRC16 {
         return Integer.toHexString(b & 0xFF);
     }
 
+    /**
+     * 计算数组的最后两位CRC值，是不是与前面的CRC计算值相等
+     * @param in
+     * @return
+     */
     public static int check(byte[] in) {
         int crc = CRC16.calcCrc16(in, 0, in.length - 2);
         byte a = in[in.length - 1];
