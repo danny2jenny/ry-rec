@@ -7,13 +7,10 @@
     <bookmark url="file://$PROJECT_DIR$/src/main/webapp/js/pannellum.js" line="1794" mnemonic="2" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d35ddd3d-c0e7-4f94-b111-72db3f8184b4" name="Default" comment="增加一个工业空调&#10;修正HT_C1 风速的描述&#10;用户和联动命令增加重发机制&#10;上一个命令发送成功后，不会立即发送命令，等待定时到来再发送&#10;增加61850的接口和60870接口">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/util/Tools.java" />
+    <list default="true" id="d35ddd3d-c0e7-4f94-b111-72db3f8184b4" name="Default" comment="Modbus 通讯稳定&#10;&#10;调整返回帧识别的算法，&#10;定时器调整到50ms，&#10;延时调整到5个定时器周期">
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/Gradle___RYTEC___com_rytec_rec_1_0_SNAPSHOT_war__exploded_.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/Gradle___RYTEC___com_rytec_rec_1_0_SNAPSHOT_war__exploded_.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpServer/ModbusChannelSession.java" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpServer/ModbusChannelSession.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpServer/handler/ModbusFrameDecoder.java" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpServer/handler/ModbusFrameDecoder.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/service/Iec60870.java" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/service/Iec60870.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/util/CRC16.java" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/util/CRC16.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/util/Tools.java" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/util/Tools.java" />
     </list>
     <ignored path="RyREC.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -33,12 +30,15 @@
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
     <option name="GROUP_SCHEMA" value="true" />
     <option name="GROUP_CONTENTS" value="false" />
     <option name="SORT_POSITIONED" value="false" />
     <option name="SHOW_TABLE_DETAILS" value="true" />
     <option name="SHOW_EMPTY_GROUPS" value="false" />
     <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <expand />
+    <select />
   </component>
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
@@ -94,18 +94,28 @@
       <file leaf-file-name="ModbusTcpServer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpServer/ModbusTcpServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="334">
+            <state relative-caret-position="2592">
               <caret line="178" column="29" lean-forward="false" selection-start-line="178" selection-start-column="29" selection-end-line="178" selection-end-column="29" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ModbusChannelSession.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ModbusChannelSession.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpServer/ModbusChannelSession.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1166">
+            <state relative-caret-position="2844">
               <caret line="169" column="25" lean-forward="false" selection-start-line="169" selection-start-column="25" selection-end-line="169" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Tools.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/util/Tools.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="370">
+              <caret line="29" column="9" lean-forward="true" selection-start-line="29" selection-start-column="9" selection-end-line="29" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -114,8 +124,8 @@
       <file leaf-file-name="ModbusFrameDecoder.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpServer/handler/ModbusFrameDecoder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
-              <caret line="56" column="0" lean-forward="true" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
+            <state relative-caret-position="792">
+              <caret line="56" column="0" lean-forward="false" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -666,6 +676,7 @@
       <map>
         <entry key="$PROJECT_DIR$" value="3020606196000" />
         <entry key="$PROJECT_DIR$/build.gradle" value="3967420220" />
+        <entry key="$PROJECT_DIR$/settings.gradle" value="2336703169" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -821,6 +832,11 @@
     <option name="externalProjectsViewState">
       <projects_view />
     </option>
+    <option name="projectSyncType">
+      <map>
+        <entry key="$PROJECT_DIR$" value="RE_IMPORT" />
+      </map>
+    </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -872,10 +888,10 @@
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpServer/handler/ModbusHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/service/Iec60870.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/util/CRC16.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/util/Tools.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpServer/ModbusTcpServer.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpServer/handler/ModbusFrameDecoder.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpServer/ModbusChannelSession.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/util/Tools.java" />
       </list>
     </option>
   </component>
@@ -959,9 +975,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -972,7 +985,13 @@
             <path>
               <item name="com.rytec.rec" type="b2602c69:ProjectViewProjectNode" />
               <item name="ry-rec" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="doc" type="462c0819:PsiDirectoryNode" />
+              <item name="document" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="com.rytec.rec" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ry-rec" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="document" type="462c0819:PsiDirectoryNode" />
+              <item name="说明" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="com.rytec.rec" type="b2602c69:ProjectViewProjectNode" />
@@ -1061,6 +1080,9 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="AndroidView" />
     </panes>
   </component>
@@ -1956,14 +1978,9 @@
       <workItem from="1512976756754" duration="7868000" />
       <workItem from="1512988029309" duration="4406000" />
       <workItem from="1513041073627" duration="3429000" />
-      <workItem from="1513060464149" duration="23527000" />
-    </task>
-    <task id="LOCAL-00073" summary="1、全景Demo图片&#10;2、全景的js和css">
-      <created>1493950497506</created>
-      <option name="number" value="00073" />
-      <option name="presentableId" value="LOCAL-00073" />
-      <option name="project" value="LOCAL" />
-      <updated>1493950497506</updated>
+      <workItem from="1513060464149" duration="24838000" />
+      <workItem from="1513131793597" duration="48000" />
+      <workItem from="1513131886636" duration="2461000" />
     </task>
     <task id="LOCAL-00074" summary="1、规范MQTT消息路径&#10;2、采用json进行消息封装">
       <created>1494341911639</created>
@@ -2301,11 +2318,18 @@
       <option name="project" value="LOCAL" />
       <updated>1513077930404</updated>
     </task>
-    <option name="localTasksCounter" value="122" />
+    <task id="LOCAL-00122" summary="Modbus 通讯稳定&#10;&#10;调整返回帧识别的算法，&#10;定时器调整到50ms，&#10;延时调整到5个定时器周期">
+      <created>1513130004594</created>
+      <option name="number" value="00122" />
+      <option name="presentableId" value="LOCAL-00122" />
+      <option name="project" value="LOCAL" />
+      <updated>1513130004594</updated>
+    </task>
+    <option name="localTasksCounter" value="123" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2071860000" />
+    <option name="totallyTimeSpent" value="2075680000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2321,7 +2345,6 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16210295" sideWeight="0.4866453" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22914349" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32703003" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29922137" sideWeight="0.5407288" order="11" side_tool="true" content_ui="tabs" />
@@ -2329,14 +2352,15 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29922137" sideWeight="0.45927116" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26362625" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32711306" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32601535" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3259177" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2368703" sideWeight="0.62629247" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24330118" sideWeight="0.62629247" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20855615" sideWeight="0.37370753" order="6" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32939914" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14308682" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32925472" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290461" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14308682" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20641711" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973261" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973205" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2788145" sideWeight="0.49786323" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -2347,7 +2371,7 @@
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32925472" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22914349" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -2421,7 +2445,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="1、修正一个信号没有相应的动作的判断&#10;2、模拟量可能newValue为null，断线的时候" />
     <MESSAGE value="1、增加模拟量显示&#10;2、目前还不能显示模拟量的单位" />
     <MESSAGE value="修正单位不更新的错误" />
     <MESSAGE value="添加模拟量可以显示单位" />
@@ -2446,7 +2469,8 @@
     <MESSAGE value="增加：建大仁科的设备，未测试&#10;&#10;1、温湿度&#10;2、风速&#10;3、水浸&#10;4、空调控制" />
     <MESSAGE value="增加：空调和温湿度已经测试&#10;&#10;1、ModbusChannelSession 中，超时需要进行健康度的操作&#10;2、更新SQL到对应的代码版本&#10;3、空调、温湿度测试通过" />
     <MESSAGE value="增加一个工业空调&#10;修正HT_C1 风速的描述&#10;用户和联动命令增加重发机制&#10;上一个命令发送成功后，不会立即发送命令，等待定时到来再发送&#10;增加61850的接口和60870接口" />
-    <option name="LAST_COMMIT_MESSAGE" value="增加一个工业空调&#10;修正HT_C1 风速的描述&#10;用户和联动命令增加重发机制&#10;上一个命令发送成功后，不会立即发送命令，等待定时到来再发送&#10;增加61850的接口和60870接口" />
+    <MESSAGE value="Modbus 通讯稳定&#10;&#10;调整返回帧识别的算法，&#10;定时器调整到50ms，&#10;延时调整到5个定时器周期" />
+    <option name="LAST_COMMIT_MESSAGE" value="Modbus 通讯稳定&#10;&#10;调整返回帧识别的算法，&#10;定时器调整到50ms，&#10;延时调整到5个定时器周期" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2565,7 +2589,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
           <caret line="14" column="22" lean-forward="false" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2573,7 +2596,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
           <caret line="21" column="13" lean-forward="false" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2581,7 +2603,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
           <caret line="26" column="13" lean-forward="false" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2589,7 +2610,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="17" column="13" lean-forward="false" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2597,7 +2617,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="669">
           <caret line="60" column="58" lean-forward="false" selection-start-line="60" selection-start-column="42" selection-end-line="60" selection-end-column="58" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2605,7 +2624,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="441">
           <caret line="32" column="13" lean-forward="false" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2613,7 +2631,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2621,11 +2638,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-333">
           <caret line="64" column="22" lean-forward="true" selection-start-line="64" selection-start-column="22" selection-end-line="64" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#846#847#0" expanded="false" />
-            <element signature="e#885#886#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2633,7 +2645,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2649,7 +2660,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-909">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2657,10 +2667,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="27">
           <caret line="78" column="79" lean-forward="false" selection-start-line="78" selection-start-column="79" selection-end-line="78" selection-end-column="79" />
-          <folding>
-            <element signature="e#799#800#0" expanded="false" />
-            <element signature="e#839#840#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2668,9 +2674,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-9">
           <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2678,7 +2681,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-432">
           <caret line="126" column="33" lean-forward="true" selection-start-line="126" selection-start-column="33" selection-end-line="126" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2686,7 +2688,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1704">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2695,25 +2696,16 @@
         <state split_layout="SPLIT">
           <first_editor relative-caret-position="108">
             <caret line="6" column="22" lean-forward="false" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
-            <folding />
           </first_editor>
           <second_editor />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/service/test60870.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="20" column="17" lean-forward="false" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/service/test60870.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpServer/handler/ModbusHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="600">
           <caret line="71" column="18" lean-forward="false" selection-start-line="71" selection-start-column="18" selection-end-line="71" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2729,7 +2721,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="540">
           <caret line="42" column="49" lean-forward="false" selection-start-line="42" selection-start-column="49" selection-end-line="42" selection-end-column="49" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2746,7 +2737,6 @@
         <state split_layout="SPLIT">
           <first_editor relative-caret-position="0">
             <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-            <folding />
           </first_editor>
           <second_editor />
         </state>
@@ -2756,10 +2746,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="438">
           <caret line="421" column="25" lean-forward="false" selection-start-line="421" selection-start-column="25" selection-end-line="421" selection-end-column="25" />
-          <folding>
-            <element signature="e#16338#16339#0" expanded="false" />
-            <element signature="e#16420#16421#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2767,7 +2753,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
           <caret line="72" column="3" lean-forward="false" selection-start-line="72" selection-start-column="3" selection-end-line="72" selection-end-column="3" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2775,7 +2760,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-4206">
           <caret line="39" column="12" lean-forward="false" selection-start-line="39" selection-start-column="12" selection-end-line="39" selection-end-column="12" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2783,10 +2767,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="222">
           <caret line="213" column="15" lean-forward="false" selection-start-line="213" selection-start-column="15" selection-end-line="213" selection-end-column="15" />
-          <folding>
-            <element signature="e#9044#9045#0" expanded="false" />
-            <element signature="e#9073#9074#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2794,10 +2774,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1488">
           <caret line="47" column="24" lean-forward="false" selection-start-line="47" selection-start-column="24" selection-end-line="47" selection-end-column="24" />
-          <folding>
-            <element signature="e#3766#3767#0" expanded="false" />
-            <element signature="e#3813#3814#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2805,7 +2781,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="186">
           <caret line="2142" column="41" lean-forward="false" selection-start-line="2142" selection-start-column="41" selection-end-line="2142" selection-end-column="41" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2821,7 +2796,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="384">
           <caret line="896" column="22" lean-forward="false" selection-start-line="896" selection-start-column="22" selection-end-line="896" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2830,8 +2804,8 @@
         <state relative-caret-position="259">
           <caret line="96" column="36" lean-forward="false" selection-start-line="96" selection-start-column="36" selection-end-line="96" selection-end-column="36" />
           <folding>
-            <element signature="e#8714#8715#0" expanded="true" />
-            <element signature="e#8766#8767#0" expanded="true" />
+            <element signature="e#8714#8715#0" expanded="false" />
+            <element signature="e#8766#8767#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2840,7 +2814,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="482">
           <caret line="2263" column="27" lean-forward="false" selection-start-line="2263" selection-start-column="27" selection-end-line="2263" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2849,7 +2822,7 @@
         <state relative-caret-position="576">
           <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2867,25 +2840,15 @@
         <state relative-caret-position="342">
           <caret line="54" column="28" lean-forward="false" selection-start-line="54" selection-start-column="28" selection-end-line="54" selection-end-column="28" />
           <folding>
-            <element signature="e#2014#2015#0" expanded="true" />
-            <element signature="e#2043#2044#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/util/Tools.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="12" column="34" lean-forward="false" selection-start-line="12" selection-start-column="34" selection-end-line="12" selection-end-column="34" />
-          <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#2014#2015#0" expanded="false" />
+            <element signature="e#2043#2044#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpServer/ModbusTcpServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="334">
+        <state relative-caret-position="2592">
           <caret line="178" column="29" lean-forward="false" selection-start-line="178" selection-start-column="29" selection-end-line="178" selection-end-column="29" />
           <folding />
         </state>
@@ -2893,8 +2856,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpServer/handler/ModbusFrameDecoder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="56" column="0" lean-forward="true" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
+        <state relative-caret-position="792">
+          <caret line="56" column="0" lean-forward="false" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -2903,8 +2866,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpServer/ModbusChannelSession.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1166">
+        <state relative-caret-position="2844">
           <caret line="169" column="25" lean-forward="false" selection-start-line="169" selection-start-column="25" selection-end-line="169" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/util/Tools.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="370">
+          <caret line="29" column="9" lean-forward="true" selection-start-line="29" selection-start-column="9" selection-end-line="29" selection-end-column="9" />
           <folding />
         </state>
       </provider>
