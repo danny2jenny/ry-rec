@@ -1,10 +1,14 @@
 package com.rytec.rec.node.modbus;
 
+import com.rytec.rec.channel.ChannelInterface;
 import com.rytec.rec.channel.ModbusTcpServer.ModbusFrame;
 import com.rytec.rec.channel.ModbusTcpServer.ModbusMessage;
 import com.rytec.rec.db.model.ChannelNode;
 import com.rytec.rec.node.NodeConfig;
+import com.rytec.rec.node.NodeMessage;
+import com.rytec.rec.node.ValueCompare;
 import com.rytec.rec.util.*;
+import io.netty.buffer.ByteBuf;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -16,9 +20,14 @@ import javax.annotation.PostConstruct;
  * 控制：WRITE_REGISTER = 6
  */
 @Service
-@AnnotationNodeType(4001)
+@AnnotationNodeType(5001)
 @AnnotationJSExport("U3-EC 工业空调")
-public class U3_EC extends RS_KTC{
+public class U3_EC extends NodeModbusBase{
+
+    @Override
+    public boolean needUpdate(NodeConfig cfg, Object oldVal, Object newVal) {
+        return oldVal != newVal;
+    }
 
     @PostConstruct
     private void init() {
@@ -76,6 +85,62 @@ public class U3_EC extends RS_KTC{
                 break;
         }
         return frame;
+    }
+
+    /**
+     * 消息解码
+     *
+     * @param msg
+     */
+    @Override
+    public void decodeMessage(Object msg) {
+        ModbusMessage modbusMessage = (ModbusMessage) msg;
+
+        NodeMessage nodeMsg = new NodeMessage();
+        nodeMsg.from = modbusMessage.from;
+        nodeMsg.type = modbusMessage.type;
+        nodeMsg.node = modbusMessage.nodeId;
+
+        ByteBuf payload = modbusMessage.payload;
+
+        int val;
+        int modbusCmd = payload.getByte(1);
+
+        switch (modbusCmd) {
+            case ConstantModbusCommand.READ_HOLDING_REGISTERS:      // 3
+                // 读取状态
+                nodeMsg.value = payload.getShort(3);
+                nodeManager.onMessage(nodeMsg);
+                break;
+            case ConstantModbusCommand.WRITE_REGISTER:              // 6
+                // 控制
+                // 控制返回可以不做处理
+                break;
+
+        }
+
+        payload.release();
+    }
+
+    /**
+     * 发送命令
+     *
+     * @param msg
+     * @return
+     */
+    @Override
+    public int sendMessage(NodeMessage msg) {
+        int rst = 0;
+
+        //找到对应的 Channel
+        ChannelNode channelNode = nodeManager.getChannelNodeByNodeId(msg.node).channelNode;
+        ChannelInterface channel = channelManager.getChannelInterface(channelNode.getCtype());
+        ModbusMessage outMsg;
+
+        outMsg = (ModbusMessage) genMessage(msg.from, msg.node, msg.type, (Integer) msg.value);
+        channel.sendMsg(outMsg);
+
+        return rst;
     }
 
 }

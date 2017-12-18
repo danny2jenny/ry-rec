@@ -13,7 +13,6 @@ import java.util.List;
 /**
  * 61850 的Java实现
  */
-@Service
 public class Iec61850Adapter extends RecBase implements ServerEventListener {
 
     List<ServerSap> serverSaps = null;
