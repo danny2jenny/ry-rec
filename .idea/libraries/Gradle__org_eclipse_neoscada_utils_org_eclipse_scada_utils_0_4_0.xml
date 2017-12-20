@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.eclipse.neoscada.utils:org.eclipse.scada.utils:0.4.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.neoscada.utils/org.eclipse.scada.utils/0.4.0/7a585447c17c7417d9a3af2ee6ad77a5e5d3028c/org.eclipse.scada.utils-0.4.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.neoscada.utils/org.eclipse.scada.utils/0.4.0/4f3d4836afe4a7cb6e241f980de15ad3161d261b/org.eclipse.scada.utils-0.4.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

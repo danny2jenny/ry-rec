@@ -1,6 +1,7 @@
-package com.rytec.rec.service;
+package com.rytec.rec.service.iec60870;
 
 import com.rytec.rec.app.RecBase;
+import com.rytec.rec.service.SystemTime;
 import org.openmuc.j60870.Connection;
 import org.openmuc.j60870.Server;
 import org.openmuc.j60870.ServerEventListener;
@@ -13,6 +14,9 @@ import javax.annotation.PreDestroy;
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 
+/**
+ * 60870 的服务器构建，并管理对应的连接
+ */
 @Service
 public class Iec60870 extends RecBase implements ServerEventListener {
 

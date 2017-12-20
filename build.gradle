@@ -98,8 +98,12 @@ dependencies {
 
     //modbus
     compile group: 'com.infiniteautomation', name: 'modbus4j', version: '3.0.3'
+
     // 60870
-    compile group: 'org.openmuc', name: 'j60870', version: '1.2.1'
+    //    compile group: 'org.openmuc', name: 'j60870', version: '1.2.1'
+    compile group: 'org.eclipse.neoscada.protocols', name: 'org.eclipse.neoscada.protocol.iec60870.server', version: '0.4.0'
+    compile group: 'org.eclipse.neoscada.protocols', name: 'org.eclipse.neoscada.protocol.iec60870.server.data', version: '0.4.0'
+
     // 61850
     compile group: 'org.openmuc', name: 'openiec61850', version: '1.4.1'
 
