@@ -18,7 +18,7 @@ import java.util.concurrent.TimeoutException;
  * 60870 的服务器构建，并管理对应的连接
  */
 @Service
-public class Iec60870 extends RecBase implements ServerEventListener {
+public class Iec60870Server extends RecBase implements ServerEventListener {
 
     private int connectionIdCounter = 1;
 
@@ -32,6 +32,10 @@ public class Iec60870 extends RecBase implements ServerEventListener {
     Server.Builder builder;
     Server server;
 
+    /**
+     * 每一个连接生成一个连接对象
+     * @param connection
+     */
     @Override
     public void connectionIndication(Connection connection) {
         int myConnectionId = connectionIdCounter++;

@@ -17,6 +17,7 @@ public interface ConstantMqtt {
     int IEC61850_INIT = 101;
     int IEC61850_UPDATE = 102;
     int IEC61850_INIT_REQUEST = 111;
+    int IEC61850_SWITCH = 120;
 
 
     // Video 相关控制

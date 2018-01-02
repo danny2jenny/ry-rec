@@ -4,10 +4,12 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rytec.rec.app.ManageableInterface;
+import com.rytec.rec.device.AbstractOperator;
 import com.rytec.rec.device.DeviceManager;
 import com.rytec.rec.device.DeviceRuntimeBean;
 import com.rytec.rec.messenger.Message.MqttMsg;
 import com.rytec.rec.messenger.MqttService;
+import com.rytec.rec.util.ConstantFromWhere;
 import com.rytec.rec.util.ConstantMqtt;
 import com.rytec.rec.app.RecBase;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,9 +42,7 @@ public class IEC61850Service extends RecBase implements ManageableInterface {
     private void initConfig() {
         // 添加需要61850接口的device
         for (DeviceRuntimeBean deviceRuntimeBean : deviceManager.getDeviceRuntimeList().values()) {
-            if (deviceRuntimeBean.device.getIec61850() > 0) {
-                iec61850runtime.add(deviceRuntimeBean);
-            }
+            iec61850runtime.add(deviceRuntimeBean);
         }
         logger.debug("61850Manager Init...");
     }
@@ -53,6 +53,9 @@ public class IEC61850Service extends RecBase implements ManageableInterface {
      * @param msg
      */
     public void onMqttMessage(String msg) {
+        int device;
+        boolean val;
+        AbstractOperator deviceOperator;
 
         int cmd = 0;
         JsonNode jsonNode;
@@ -65,7 +68,22 @@ public class IEC61850Service extends RecBase implements ManageableInterface {
 
         switch (cmd) {
             case ConstantMqtt.IEC61850_INIT_REQUEST:
+                // 初始化请求
                 sendServieConfig();
+                break;
+            case ConstantMqtt.IEC61850_SWITCH:
+                //开关控制
+                device = jsonNode.path("device").asInt();
+                val = jsonNode.path("val").asBoolean();
+                deviceOperator = deviceManager.getOperatorByDeviceId(device);
+                if (deviceOperator!=null){
+                    if (val){
+                        deviceOperator.operate(ConstantFromWhere.FROM_USER, device, 101, null );
+                    } else {
+                        deviceOperator.operate(ConstantFromWhere.FROM_USER, device, 100, null );
+                    }
+
+                }
                 break;
         }
 
@@ -78,7 +96,7 @@ public class IEC61850Service extends RecBase implements ManageableInterface {
         /**
          * 因为循环依赖的关系，在发送配置前，先得到61850的设备
          */
-        if (iec61850runtime.size()==0){
+        if (iec61850runtime.size() == 0) {
             initConfig();
         }
         MqttMsg msg = new MqttMsg();

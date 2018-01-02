@@ -9,6 +9,7 @@ import java.io.IOException;
 
 /**
  * 60870 通讯处理
+ * 每个客户端对应一个该对象
  */
 public class Iec60870Listener extends RecBase implements ConnectionEventListener {
 
@@ -67,6 +68,14 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
                  * 文件传输：目录召唤
                  */
                 case F_SC_NA_1:
+                    switch (aSdu.getCauseOfTransmission()) {
+                        case REQUEST:                           // 目录请求
+                            break;
+                        case FILE_TRANSFER:                     // 文件传输
+                            break;
+					default:
+						break;
+                    }
 
                     byte[] filename = {0x31, 0x32, 0x33, 0x2E, 0x6A, 0x70, 0x67, 0x00};
 
@@ -93,7 +102,7 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
 
                                     )});
                     connection.send(asduBack);
-                    logger.debug("文件目录");
+                    logger.debug("传输原因：" + aSdu.getCauseOfTransmission().toString());
                     break;
                 default:
                     logger.debug("Got unknown request: " + aSdu + ". Will not confirm it.\n");

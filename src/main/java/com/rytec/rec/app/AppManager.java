@@ -50,12 +50,13 @@ public class AppManager {
      * DbConfig                 200
      * CooperateManager         300
      * ChannelManager           300
-     * ****Channel              400
+     * ****Channel              400                             // Channel 的实现
      * NodeManager              300
      * ****Node                 100             否
      * DeviceManager            300
      * ****Device               100             否
      * VideoService             300
+     * FileManager              300                             // 60870 文件管理
      */
 
     public void systemReload() {

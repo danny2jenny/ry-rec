@@ -1,7 +1,7 @@
 package com.rytec.rec.service.iec60870;
 
 
-public interface DeviceType {
+public interface C_DeviceType {
 
     int ADDR_TYPE_DIGITAL = 1;          // 遥信
     int ADDR_TYPE_ANALOG = 2;           // 遥测

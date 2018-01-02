@@ -1,7 +1,5 @@
 package com.rytec.rec.util;
 
-import com.rytec.rec.util.AnnotationJSExport;
-
 /**
  * Created by danny on 17-1-25.
  * 消息类型

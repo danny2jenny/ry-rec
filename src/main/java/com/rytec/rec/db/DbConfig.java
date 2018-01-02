@@ -28,6 +28,8 @@ public class DbConfig implements ManageableInterface {
     private List<Device> deviceList;
     private List<RuleAction> ruleActionList;
     private List<Channel> channelList;
+    private List<Config> configList;
+    private List<DeviceGis> deviceGisList;
 
     @Autowired
     ChannelNodeMapper channelNodeMapper;
@@ -43,6 +45,12 @@ public class DbConfig implements ManageableInterface {
 
     @Autowired
     ChannelMapper channelMapper;
+
+    @Autowired
+    ConfigMapper configMapper;
+
+    @Autowired
+    DeviceGisMapper deviceGisMapper;
 
 
     /**
@@ -90,6 +98,14 @@ public class DbConfig implements ManageableInterface {
      */
     private void initChannel() {
         channelList = channelMapper.selectByExample(null);
+    }
+
+    private void initConfig() {
+        configList = configMapper.selectByExample(null);
+    }
+
+    private void initDeviceGis() {
+        deviceGisList = deviceGisMapper.selectByExample(null);
     }
 
 
@@ -147,6 +163,22 @@ public class DbConfig implements ManageableInterface {
         return channelList;
     }
 
+    public List<Config> getConfigList() {
+        if (configList == null) {
+            initConfig();
+        }
+
+        return configList;
+    }
+
+    public List<DeviceGis> getDeviceGisList() {
+        if (deviceGisList == null) {
+            initDeviceGis();
+        }
+
+        return deviceGisList;
+    }
+
     /**
      * 实现管理接口
      */
@@ -156,6 +188,8 @@ public class DbConfig implements ManageableInterface {
         deviceList = null;
         ruleActionList = null;
         channelList = null;
+        configList = null;
+        deviceGisList = null;
     }
 
     public void start() {

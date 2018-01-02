@@ -13,7 +13,7 @@
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
                         connectionURL="jdbc:mysql://localhost:3306/ryrec?useUnicode=true&amp;characterEncoding=UTF-8"
                         userId="root"
-                        password="jennyzhan">
+                        password="">
         </jdbcConnection>
 
         <javaTypeResolver>
@@ -108,6 +108,9 @@
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
         </table>
 -->
+        <table schema="" tableName="config" domainObjectName="Config">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
 
 
     </context>
