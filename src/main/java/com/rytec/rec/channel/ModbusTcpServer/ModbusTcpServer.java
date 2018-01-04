@@ -176,7 +176,7 @@ public class ModbusTcpServer implements ChannelInterface, ManageableInterface {
      * <String, Integer>   ip:port -> 当前的轮训位置
      */
 
-    @Scheduled(fixedDelay = 50)
+    @Scheduled(fixedDelay = 100)
     private void doOnTime() {
         // 遍历已经登录的远端，并执行队列
         for (Channel cha : clients.values()) {

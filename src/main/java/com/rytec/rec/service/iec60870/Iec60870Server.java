@@ -1,12 +1,12 @@
 package com.rytec.rec.service.iec60870;
 
 import com.rytec.rec.app.RecBase;
-import com.rytec.rec.service.SystemTime;
 import org.openmuc.j60870.Connection;
 import org.openmuc.j60870.Server;
 import org.openmuc.j60870.ServerEventListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -18,6 +18,7 @@ import java.util.concurrent.TimeoutException;
  * 60870 的服务器构建，并管理对应的连接
  */
 @Service
+@Order(400)
 public class Iec60870Server extends RecBase implements ServerEventListener {
 
     private int connectionIdCounter = 1;
@@ -25,13 +26,17 @@ public class Iec60870Server extends RecBase implements ServerEventListener {
     //端口配置
     @Value("${iec60870.port}")
     private int port;
+    
+    @Value("${iec60870.xml}")
+    public String xmlFileName;
 
     @Autowired
-    SystemTime systemTime;
+    RecAsduFile asduFileList;
 
     Server.Builder builder;
     Server server;
 
+    int timerOffset;
     /**
      * 每一个连接生成一个连接对象
      * @param connection
@@ -44,7 +49,10 @@ public class Iec60870Server extends RecBase implements ServerEventListener {
 
         try {
             Iec60870Listener iec60870Listener = new Iec60870Listener(connection, myConnectionId);
-            iec60870Listener.systemTime = systemTime;
+            // 为非托管类传递一些参数
+            iec60870Listener.setServer(this);
+
+
             connection.waitForStartDT(iec60870Listener, 15000);
         } catch (IOException e) {
             logger.debug("Connection (" + myConnectionId + ") interrupted while waiting for StartDT: "

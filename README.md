@@ -69,6 +69,12 @@ http://idea.iteblog.com/key.php
 
 http://idea.imsxm.com/
 
+# 其他问题
+
+idea运行慢
+
+https://bintray.com/package/files/jetbrains/intellij-jdk/openjdk8-linux-x64
+
 
 
 

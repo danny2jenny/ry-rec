@@ -26,7 +26,8 @@ import java.util.List;
 /**
  * 60870 接口的相关文件
  */
-
+@Service
+@Order(400)
 public class FileManager extends RecBase implements ManageableInterface {
 
     @Autowired
@@ -167,10 +168,10 @@ public class FileManager extends RecBase implements ManageableInterface {
                     msgType.setText(iconConfig.get(deviceRuntimeBean.device.getIcon()).getFun().toString());
 
                     addrType = function.addElement("AddrType");
-                    addrType.setText(String.valueOf(C_DeviceType.ADDR_TYPE_ANALOG));
+                    addrType.setText(String.valueOf(C_DeviceType.ADDR_TYPE_MEASURE));
 
                     addr = function.addElement("Addr");
-                    addr.setText(String.valueOf(deviceRuntimeBean.device.getId() + C_DeviceAddr.ANALOG_ADDR));
+                    addr.setText(String.valueOf(deviceRuntimeBean.device.getId() + C_DeviceAddr.MEASURE_ADDR));
                     break;
                 case 102:           // 开关输入
                     function = device.addElement("Function");
@@ -182,10 +183,10 @@ public class FileManager extends RecBase implements ManageableInterface {
                     msgType.setText(iconConfig.get(deviceRuntimeBean.device.getIcon()).getFun().toString());
 
                     addrType = function.addElement("AddrType");
-                    addrType.setText(String.valueOf(C_DeviceType.ADDR_TYPE_DIGITAL));
+                    addrType.setText(String.valueOf(C_DeviceType.ADDR_TYPE_STATE));
 
                     addr = function.addElement("Addr");
-                    addr.setText(String.valueOf(deviceRuntimeBean.device.getId() + C_DeviceAddr.DIGITAL_ADDR));
+                    addr.setText(String.valueOf(deviceRuntimeBean.device.getId() + C_DeviceAddr.STATE_ADDR));
                     break;
                 case 101:           // 开关控制
 
@@ -214,10 +215,10 @@ public class FileManager extends RecBase implements ManageableInterface {
                     msgType.setText("2");
 
                     addrType = function.addElement("AddrType");
-                    addrType.setText(String.valueOf(C_DeviceType.ADDR_TYPE_DIGITAL));
+                    addrType.setText(String.valueOf(C_DeviceType.ADDR_TYPE_STATE));
 
                     addr = function.addElement("Addr");
-                    addr.setText(String.valueOf(deviceRuntimeBean.device.getId() + C_DeviceAddr.DIGITAL_STATE));
+                    addr.setText(String.valueOf(deviceRuntimeBean.device.getId() + C_DeviceAddr.RUN_STATE));
 
                     // 远程就地
                     function = device.addElement("Function");
@@ -229,10 +230,10 @@ public class FileManager extends RecBase implements ManageableInterface {
                     msgType.setText("3");
 
                     addrType = function.addElement("AddrType");
-                    addrType.setText(String.valueOf(C_DeviceType.ADDR_TYPE_DIGITAL));
+                    addrType.setText(String.valueOf(C_DeviceType.ADDR_TYPE_STATE));
 
                     addr = function.addElement("Addr");
-                    addr.setText(String.valueOf(deviceRuntimeBean.device.getId() + C_DeviceAddr.DIGITAL_MODE));
+                    addr.setText(String.valueOf(deviceRuntimeBean.device.getId() + C_DeviceAddr.RUN_MODE));
 
                     break;
             }

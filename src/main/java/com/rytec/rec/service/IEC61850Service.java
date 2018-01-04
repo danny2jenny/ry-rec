@@ -13,7 +13,6 @@ import com.rytec.rec.util.ConstantFromWhere;
 import com.rytec.rec.util.ConstantMqtt;
 import com.rytec.rec.app.RecBase;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Service;
 
@@ -25,7 +24,6 @@ import java.util.List;
  * Created by danny on 17-6-17.
  */
 @Service
-@Lazy
 @Order(400)
 public class IEC61850Service extends RecBase implements ManageableInterface {
 

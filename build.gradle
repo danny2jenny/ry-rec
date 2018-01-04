@@ -58,7 +58,7 @@ buildscript {
 gretty {
     // port = 8080
     contextPath = '/'
-    servletContainer = 'jetty9'
+    servletContainer = 'jetty9.3'
 }
 
 dependencies {
