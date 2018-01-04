@@ -5,6 +5,7 @@ import com.rytec.rec.app.RecBase;
 import com.rytec.rec.db.DbConfig;
 import com.rytec.rec.db.model.Config;
 import com.rytec.rec.db.model.DeviceGis;
+import com.rytec.rec.db.model.GisLayer;
 import com.rytec.rec.device.DeviceManager;
 import com.rytec.rec.device.DeviceRuntimeBean;
 import org.dom4j.Document;
@@ -18,6 +19,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
@@ -25,6 +27,9 @@ import java.util.List;
 
 /**
  * 60870 接口的相关文件
+ * <p>
+ * 1、生成XML配置文件
+ * 2、根据index返回文件的相关信息
  */
 @Service
 @Order(400)
@@ -51,15 +56,19 @@ public class FileManager extends RecBase implements ManageableInterface {
      * 图标类型到config的Hash
      * value -> config
      */
-    public HashMap<Integer, Config> iconConfig = new HashMap<>();
+    public HashMap<Integer, Config> iconConfigMap = new HashMap<>();
 
     // 设备对应的GIS  deviceId-> deviceGis
     public HashMap<Integer, DeviceGis> deviceGisHashMap = new HashMap<>();
 
+    // GIS 图层
+    public HashMap<Integer, String> gisLayerMap = new HashMap<>();
+
     @Override
     public void stop() {
-        iconConfig.clear();
+        iconConfigMap.clear();
         deviceGisHashMap.clear();
+        gisLayerMap.clear();
     }
 
     @Override
@@ -74,19 +83,22 @@ public class FileManager extends RecBase implements ManageableInterface {
      */
     private void getConfig() {
         List<Config> configList = dbConfig.getConfigList();
-
         for (Config configItem : configList) {
             if (configItem.getCat() == 11) {
-                iconConfig.put(Integer.parseInt(configItem.getValue()), configItem);
+                iconConfigMap.put(Integer.parseInt(configItem.getValue()), configItem);
             }
         }
 
         List<DeviceGis> deviceGisList = dbConfig.getDeviceGisList();
-
         for (DeviceGis deviceGis : deviceGisList) {
             if (deviceGis.getGtype() == 1) {
                 deviceGisHashMap.put(deviceGis.getDid(), deviceGis);
             }
+        }
+
+        List<GisLayer> gisLayerList = dbConfig.getGisLayerList();
+        for (GisLayer gisLayer : gisLayerList) {
+            gisLayerMap.put(gisLayer.getId(), gisLayer.getFile());
         }
     }
 
@@ -145,7 +157,7 @@ public class FileManager extends RecBase implements ManageableInterface {
 
 
             type = device.addElement("Type");
-            type.setText(iconConfig.get(deviceRuntimeBean.device.getIcon()).getType().toString());
+            type.setText(iconConfigMap.get(deviceRuntimeBean.device.getIcon()).getType().toString());
 
 
             // todo 生成 Function 段
@@ -162,10 +174,10 @@ public class FileManager extends RecBase implements ManageableInterface {
                     function = device.addElement("Function");
 
                     name = function.addElement("Name");
-                    name.setText(iconConfig.get(deviceRuntimeBean.device.getIcon()).getName());
+                    name.setText(iconConfigMap.get(deviceRuntimeBean.device.getIcon()).getName());
 
                     msgType = function.addElement("MsgType");
-                    msgType.setText(iconConfig.get(deviceRuntimeBean.device.getIcon()).getFun().toString());
+                    msgType.setText(iconConfigMap.get(deviceRuntimeBean.device.getIcon()).getFun().toString());
 
                     addrType = function.addElement("AddrType");
                     addrType.setText(String.valueOf(C_DeviceType.ADDR_TYPE_MEASURE));
@@ -177,10 +189,10 @@ public class FileManager extends RecBase implements ManageableInterface {
                     function = device.addElement("Function");
 
                     name = function.addElement("Name");
-                    name.setText(iconConfig.get(deviceRuntimeBean.device.getIcon()).getName());
+                    name.setText(iconConfigMap.get(deviceRuntimeBean.device.getIcon()).getName());
 
                     msgType = function.addElement("MsgType");
-                    msgType.setText(iconConfig.get(deviceRuntimeBean.device.getIcon()).getFun().toString());
+                    msgType.setText(iconConfigMap.get(deviceRuntimeBean.device.getIcon()).getFun().toString());
 
                     addrType = function.addElement("AddrType");
                     addrType.setText(String.valueOf(C_DeviceType.ADDR_TYPE_STATE));
@@ -194,7 +206,7 @@ public class FileManager extends RecBase implements ManageableInterface {
                     function = device.addElement("Function");
 
                     name = function.addElement("Name");
-                    name.setText(iconConfig.get(deviceRuntimeBean.device.getIcon()).getName());
+                    name.setText(iconConfigMap.get(deviceRuntimeBean.device.getIcon()).getName());
 
                     msgType = function.addElement("MsgType");
                     msgType.setText("1");
@@ -262,5 +274,28 @@ public class FileManager extends RecBase implements ManageableInterface {
 
             e.printStackTrace();
         }
+    }
+
+    /**
+     * 根据 index 返回文件信息
+     * @param index
+     * @return
+     */
+    public FileInfo getFileInfo(int index) {
+        FileInfo fileInfo = null;
+        File file;
+        if (index == 0) {
+            file = new File(xmlFileName);
+            if (file.exists()) {
+                fileInfo = new FileInfo();
+
+                fileInfo.index = 0;
+                fileInfo.fullName = xmlFileName;
+                fileInfo.name = file.getName();
+                fileInfo.size = (int) file.length();
+                fileInfo.modifyTime = file.lastModified();
+            }
+        }
+        return fileInfo;
     }
 }

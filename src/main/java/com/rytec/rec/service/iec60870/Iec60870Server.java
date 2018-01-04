@@ -30,13 +30,16 @@ public class Iec60870Server extends RecBase implements ServerEventListener {
     @Value("${iec60870.xml}")
     public String xmlFileName;
 
+    @Value("${iec60870.addr}")
+    public int Iec60870Addr;            // 60870 地址
+
     @Autowired
-    RecAsduFile asduFileList;
+    public FileManager fileManager;
 
     Server.Builder builder;
     Server server;
 
-    int timerOffset;
+    public long timerOffset;            // 时间差
     /**
      * 每一个连接生成一个连接对象
      * @param connection

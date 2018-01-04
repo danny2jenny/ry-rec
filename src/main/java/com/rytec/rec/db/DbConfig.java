@@ -30,6 +30,7 @@ public class DbConfig implements ManageableInterface {
     private List<Channel> channelList;
     private List<Config> configList;
     private List<DeviceGis> deviceGisList;
+    private List<GisLayer> gisLayerList;
 
     @Autowired
     ChannelNodeMapper channelNodeMapper;
@@ -51,6 +52,9 @@ public class DbConfig implements ManageableInterface {
 
     @Autowired
     DeviceGisMapper deviceGisMapper;
+
+    @Autowired
+    GisLayerMapper gisLayerMapper;
 
 
     /**
@@ -108,7 +112,9 @@ public class DbConfig implements ManageableInterface {
         deviceGisList = deviceGisMapper.selectByExample(null);
     }
 
-
+    private void initGisLayer(){
+        gisLayerList = gisLayerMapper.selectByExample(null);
+    }
     /**
      * @return ChannelNode 的列表
      */
@@ -179,6 +185,13 @@ public class DbConfig implements ManageableInterface {
         return deviceGisList;
     }
 
+    public List<GisLayer> getGisLayerList(){
+        if (gisLayerList == null){
+            initGisLayer();
+        }
+        return gisLayerList;
+    }
+
     /**
      * 实现管理接口
      */
@@ -190,6 +203,7 @@ public class DbConfig implements ManageableInterface {
         channelList = null;
         configList = null;
         deviceGisList = null;
+        gisLayerList = null;
     }
 
     public void start() {
