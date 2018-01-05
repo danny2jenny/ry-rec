@@ -4,9 +4,7 @@ import com.rytec.rec.app.RecBase;
 
 import org.openmuc.j60870.*;
 
-import java.io.EOFException;
-import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.*;
 
 /**
  * 60870 通讯处理 每个客户端对应一个该对象
@@ -32,6 +30,7 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
     int segment = 0;                                    // 当前段
     int fileSize = 0;                                   // 文件大小
     int fileNameIndex = 0;                              // 文件名称
+    String fileNameStr;                                 // 文件名称，字符串
 
     // -----------------------------------------------------------
 
@@ -68,7 +67,7 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
 
                     asduBack = new ASdu(
                             TypeId.C_CS_NA_1,
-                            true,
+                            1,
                             CauseOfTransmission.ACTIVATION_CON,
                             false,
                             false,
@@ -122,7 +121,6 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
                     }
                     break;
                 case F_AF_NA_1:     // 节回应
-                    logger.debug("节回应-------------------" + aSdu);
                     InformationElement[] ies = aSdu.getInformationObjects()[0].getInformationElements()[0];
                     int fileRequest = ((IeAckFileOrSectionQualifier) ies[2]).getRequest();
 
@@ -168,6 +166,7 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
         if (fileInfo == null) {
             return;
         }
+
         asduBack = new ASdu(
                 TypeId.F_DR_TA_1,
                 1,
@@ -181,7 +180,7 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
                                 new InformationElement[][]{
                                         {
                                                 new IeNameOfFile(0),      // 文件名称Index
-                                                new IeLengthOfFileOrSection((int) fileInfo.size),    // 文件长度
+                                                new IeLengthOfFileOrSection(fileInfo.size),    // 文件长度
                                                 new IeStatusOfFile(
                                                         0,
                                                         false,
@@ -207,8 +206,12 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
      * 关闭已经打开的文件
      */
     private void closeFile() {
+        if (fileSendStream == null) {
+            return;
+        }
         try {
             fileSendStream.close();
+            fileSendStream = null;
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -233,6 +236,7 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
         if (fileInfo != null) {
             fileSize = fileInfo.size;
             fileNameIndex = index;
+            fileNameStr = fileInfo.name;
             sectionAmt = (int) Math.ceil(((double) fileSize) / SEGMENT_MAX_COUNT / SEGMENT_MAX_SIZE);
             section = 0;                                    // 当前节
             segment = 0;                                    // 当前段
@@ -241,6 +245,11 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
 
         // 计算文件的分段和分节，以及更新大小
 
+        try {
+            fileSendStream = new FileInputStream(new File(fileInfo.fullName));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
 
         try {
             connection.fileReady(
@@ -322,7 +331,7 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
         // 发送段确认
         ASdu aSdu = new ASdu(
                 TypeId.F_LS_NA_1,
-                false,
+                1,
                 CauseOfTransmission.FILE_TRANSFER,
                 false, false,
                 0,
@@ -353,7 +362,7 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
     private void sendLastSectionInfo() {
         ASdu aSdu = new ASdu(
                 TypeId.F_LS_NA_1,
-                false,
+                1,
                 CauseOfTransmission.FILE_TRANSFER,
                 false,
                 false,
@@ -384,7 +393,7 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
     private void sendFileEndInfo() {
         ASdu aSdu = new ASdu(
                 TypeId.F_DR_TA_1,
-                false,
+                1,
                 CauseOfTransmission.REQUEST,
                 false,
                 false,
@@ -397,9 +406,9 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
                                         {
                                                 new IeNameOfFile(fileNameIndex),
                                                 new IeLengthOfFileOrSection(fileSize),
-                                                new IeChecksum(80),
+                                                new IeChecksum(0x80),
                                                 new IeTime56(System.currentTimeMillis()),
-                                                new IeFileNameStr("cfg.xml".getBytes()),  // 文件名称
+                                                new IeFileNameStr(fileNameStr.getBytes()),  // 文件名称
                                                 new IeChecksum(0)
                                         }
                                 })

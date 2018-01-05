@@ -84,6 +84,7 @@ public class Iec60870Server extends RecBase implements ServerEventListener {
     public void start() {
         builder = new Server.Builder();
         builder.setPort(port);
+        // TODO 可以设置不同的超时
 
         server = builder.build();
 
