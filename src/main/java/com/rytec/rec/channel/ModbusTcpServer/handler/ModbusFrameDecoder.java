@@ -31,8 +31,8 @@ public class ModbusFrameDecoder extends ByteToMessageDecoder {
         ModbusMessage lastOutMsg = modbusChannelSession.getLastOutMsg();
 
         // 当前读取缓冲的状态
-        int inBufferLen = in.readableBytes();
-        int readIndex = in.readerIndex();
+        int inBufferLen = in.readableBytes();       // 接收数据长度
+        int readIndex = in.readerIndex();           // 接收缓冲读指针
 
         byte[] receivedData = new byte[inBufferLen];
 
@@ -53,52 +53,58 @@ public class ModbusFrameDecoder extends ByteToMessageDecoder {
          * 3、丢弃
          */
 
+        // 不改变读指针，得到收到的数据到 receivedData
         in.getBytes(readIndex, receivedData, 0, inBufferLen);
 
-        int headIndex = Tools.findSubArray(receivedData, lastOutMsg.payload.copy(0, 2).array());
+        int headIndex = Tools.findSubArray(receivedData, lastOutMsg.payload.copy(0, 2).array(), 0);
 
-        if (headIndex < 0) {
-            // 没有找到头
-            return;
+        while (headIndex >= 0) {
+
+            if ((inBufferLen - headIndex) < lastOutMsg.responseLen) {
+                // 剩余的数据长度不够
+                return;
+            }
+
+            // ----------------- 以下可以对返回数据进行解码了 ----------------------
+            byte[] aData = new byte[lastOutMsg.responseLen];    // 期望的返回数据
+            System.arraycopy(receivedData, headIndex, aData, 0, lastOutMsg.responseLen);
+
+            int error = CRC16.check(aData);
+
+            // 没有错误
+            if (error == 0) {
+
+                // 成功组帧
+                ByteBuf payload = Unpooled.buffer(lastOutMsg.responseLen);
+                payload.writeBytes(aData);
+
+                ModbusMessage msg = new ModbusMessage(ConstantFromWhere.FROM_RPS);
+                msg.payload = payload;
+
+                msg.nodeId = lastOutMsg.nodeId;
+                msg.type = lastOutMsg.type;
+
+                modbusChannelSession.goodHelth(lastOutMsg, true);
+
+                // 清除当前发送的命令
+                modbusChannelSession.clearLastOutMsg();
+
+                out.add(msg);
+                in.skipBytes(in.readableBytes());          // 全部跳过
+                return;
+            } else {
+                // CRC错误，打印当前的内容和解码的内容
+                modbusChannelSession.goodHelth(lastOutMsg, false);
+                logger.debug("CRC错误：" + CRC16.bytesToHexString(aData));
+                //跳过无用的数据, 再次寻找 headindex
+
+                int preIndex = headIndex;
+                headIndex = Tools.findSubArray(receivedData, lastOutMsg.payload.copy(0, 2).array(), headIndex + 2);
+
+                if (headIndex<0){
+                    in.skipBytes(preIndex + 2);
+                }
+            }
         }
-
-        if ((inBufferLen - headIndex) < lastOutMsg.responseLen) {
-            // 数据长度不够
-            return;
-        }
-
-        // ----------------- 以下可以对返回数据进行解码了 ----------------------
-        byte[] aData = new byte[lastOutMsg.responseLen];
-        System.arraycopy(receivedData,headIndex,aData,0,lastOutMsg.responseLen);
-
-        int error = CRC16.check(aData);
-
-        // 没有错误
-        if (error == 0) {
-
-            // 成功组帧
-            ByteBuf payload = Unpooled.buffer(lastOutMsg.responseLen);
-            payload.writeBytes(aData);
-
-            ModbusMessage msg = new ModbusMessage(ConstantFromWhere.FROM_RPS);
-            msg.payload = payload;
-
-            msg.nodeId = lastOutMsg.nodeId;
-            msg.type = lastOutMsg.type;
-
-            modbusChannelSession.goodHelth(lastOutMsg, true);
-
-            // 清除当前发送的命令
-            modbusChannelSession.clearLastOutMsg();
-
-            out.add(msg);
-        } else {
-            // CRC错误，打印当前的内容和解码的内容
-            modbusChannelSession.goodHelth(lastOutMsg, false);
-            logger.debug("CRC错误：" + CRC16.bytesToHexString(aData));
-        }
-
-        in.skipBytes(inBufferLen);
-
     }
 }
