@@ -2,6 +2,7 @@ package com.rytec.rec.service.iec60870;
 
 import com.rytec.rec.app.RecBase;
 
+import com.rytec.rec.device.DeviceRuntimeBean;
 import org.openmuc.j60870.*;
 
 import java.io.*;
@@ -17,17 +18,15 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
     private final Connection connection;
     private final int connectionId;
 
-    ASdu asduBack;
-
     private Iec60870Server iec60870Server;
 
     // ----------------------- 通讯状态 ----------------------------
     FileInputStream fileSendStream;                     // 当前上传文件
     int sectionAmt = 0;                                 // 总节数
     int remainSize = 0;                                 // 剩余大小
-    int sectionLen = 0;                                 // 当前Section大小
-    int section = 0;                                    // 当前节
-    int segment = 0;                                    // 当前段
+    int crtSectionLen = 0;                              // 当前Section大小
+    int crtSectionIndex = 0;                            // 当前节
+    int crtSegmentIndex = 0;                            // 当前段
     int fileSize = 0;                                   // 文件大小
     int fileNameIndex = 0;                              // 文件名称
     String fileNameStr;                                 // 文件名称，字符串
@@ -50,124 +49,136 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
      */
     @Override
     public void newASdu(ASdu aSdu) {
-        try {
 
-            switch (aSdu.getTypeIdentification()) {
-                case C_IC_NA_1:             // 站召
-                    break;
-                case C_CS_NA_1:             // 对时命令
-                    /**
-                     * 只保持远端时间和本地时间的差值。 发送时间的时候，加上这个差值。
-                     */
-                    IeTime56 time56 = (IeTime56) aSdu.getInformationObjects()[0].getInformationElements()[0][0];
-                    long currentTimestamp = System.currentTimeMillis();
-                    long receivedTimestamp = time56.getTimestamp();
+        switch (aSdu.getTypeIdentification()) {
+            case C_IC_NA_1:             // 站召
+                sendAllData();
+                break;
+            case C_CS_NA_1:             // 对时命令
+                IeTime56 time56 = (IeTime56) aSdu.getInformationObjects()[0].getInformationElements()[0][0];
+                sendTimeSync(time56.getTimestamp());
+                break;
+            case F_SC_NA_1: //文件传输
+                switch (aSdu.getCauseOfTransmission()) {
+                    case REQUEST:           // 目录请求
+                        sendFileList();
+                        break;
+                    case FILE_TRANSFER:     // 文件传输
+                        InformationElement[] ies = aSdu.getInformationObjects()[0].getInformationElements()[0];
+                        int fileIndex, fileSection, fileRequest;
+                        fileIndex = ((IeNameOfFile) ies[0]).getValue();                 // 文件名
+                        fileSection = ((IeNameOfSection) ies[1]).getValue();            // 节
+                        fileRequest = ((IeSelectAndCallQualifier) ies[2]).getRequest(); // 请求类型
 
-                    iec60870Server.timerOffset = receivedTimestamp - currentTimestamp;
+                        switch (fileRequest) {
+                            case C_FileRequest.FILE_SELECT_FILE:        // 选择文件
+                                sendFileReady(fileIndex);
+                                break;
+                            case C_FileRequest.FILE_REQUST_FILE:        // 请求文件，并说明Section
+                                sendSectionReady();                     // 第一个节发送完成后，需要继续发送剩余的节
+                                break;
+                            case C_FileRequest.FILE_REQUST_SECTION:     // 请求节,可能请求不同的节 Section
+                                sendSection(fileSection);
+                                break;
+                        }
 
-                    asduBack = new ASdu(
-                            TypeId.C_CS_NA_1,
-                            1,
-                            CauseOfTransmission.ACTIVATION_CON,
-                            false,
-                            false,
-                            0,
-                            iec60870Server.Iec60870Addr,
-                            new InformationObject[]{
-                                    new InformationObject(
-                                            0,
-                                            new InformationElement[][]{
-                                                    {
-                                                            new IeTime56(receivedTimestamp)
-                                                    }
-                                            }
-                                    )
-                            }
-                    );
-                    connection.send(asduBack);
-                    break;
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case F_AF_NA_1:     // 节回应
+                InformationElement[] ies = aSdu.getInformationObjects()[0].getInformationElements()[0];
+                int fileSection = ((IeNameOfSection) ies[1]).getValue();
+                int fileRequest = ((IeAckFileOrSectionQualifier) ies[2]).getRequest();
 
-                /**
-                 * 文件传输：目录召唤
-                 */
-                case F_SC_NA_1:
-                    switch (aSdu.getCauseOfTransmission()) {
-                        case REQUEST:           // 目录请求
-                            sendFileList();
-                            break;
-                        case FILE_TRANSFER:     // 文件传输
-                            InformationElement[] ies = aSdu.getInformationObjects()[0].getInformationElements()[0];
-                            int fileIndex, fileSection, fileRequest;
-                            fileIndex = ((IeNameOfFile) ies[0]).getValue();                 // 文件名
-                            fileSection = ((IeNameOfSection) ies[1]).getValue();            // 节
-                            fileRequest = ((IeSelectAndCallQualifier) ies[2]).getRequest(); // 请求类型
-
-                            logger.debug("文件命令:" + fileRequest);
-                            switch (fileRequest) {
-                                case C_FileRequest.FILE_SELECT_FILE:        // 选择文件
-                                    sendFileReady(fileIndex);
-                                    break;
-                                case C_FileRequest.FILE_REQUST_FILE:        // 请求文件
-                                    sendSectionReady();
-                                    break;
-                                case C_FileRequest.FILE_REQUST_SECTION:     // 请求节
-                                    sendSegment();
-                                    break;
-                            }
-
-                            break;
-                        default:
-                            break;
-                    }
-                    break;
-                case F_AF_NA_1:     // 节回应
-                    InformationElement[] ies = aSdu.getInformationObjects()[0].getInformationElements()[0];
-                    int fileRequest = ((IeAckFileOrSectionQualifier) ies[2]).getRequest();
-
-
-                    switch (fileRequest) {
-                        case 1:             // 文件接收成功
-                            sendFileEndInfo();
-                            break;
-                        case 2:             // 文件接收失败
-                            break;
-                        case 3:             // 节成功
-                            sendLastSectionInfo();
-                            break;
-                        case 4:             // 节失败
-                            break;
-                    }
-
-                    break;
-                default:
-                    logger.debug("Got unknown request: " + aSdu + ". Will not confirm it.\n");
-            }
-
-        } catch (EOFException e) {
-            logger.debug(
-                    "Will quit listening for commands on connection (" + connectionId + ") because socket was closed.");
-        } catch (IOException e) {
-            logger.debug("Will quit listening for commands on connection (" + connectionId + ") because of error: \""
-                    + e.getMessage() + "\".");
+                switch (fileRequest) {
+                    case 1:             // 文件接收成功
+                        sendFileEnd();
+                        closeFile();
+                        break;
+                    case 2:             // 文件接收失败
+                        closeFile();
+                        break;
+                    case 3:             // 节成功，判断是否是最后的节，如果不是，发送下一节
+                        crtSectionIndex++;
+                        if (crtSectionIndex == sectionAmt) {
+                            // 最后的 section 已经发送了
+                            sendLastSectionFilish();
+                        } else {
+                            // 没有发送完成
+                            sendSectionReady();
+                        }
+                        break;
+                    case 4:             // 节失败，需要重新发送节
+                        sendSectionReady();
+                        break;
+                }
+                break;
+            case C_SC_NA_1:             // 遥控
+                InformationObject io = aSdu.getInformationObjects()[0];
+                int addr = io.getInformationObjectAddress();
+                boolean val = ((IeSingleCommand) (io.getInformationElements()[0][0])).isCommandStateOn();
+                control(addr, val);
+                break;
+            default:
+                logger.debug("Got unknown request: " + aSdu + ". Will not confirm it.\n");
         }
-
     }
 
     @Override
     public void connectionClosed(IOException e) {
+        closeFile();
         logger.debug("Connection (" + connectionId + ") was closed. " + e.getMessage());
+    }
+
+    /**
+     * 发送对时响应
+     */
+    private void sendTimeSync(long timestamp) {
+        long currentTimestamp = System.currentTimeMillis();
+        long receivedTimestamp = timestamp;
+
+        iec60870Server.timerOffset = receivedTimestamp - currentTimestamp;
+
+        ASdu asduBack = new ASdu(
+                TypeId.C_CS_NA_1,
+                1,
+                CauseOfTransmission.ACTIVATION_CON,
+                false,
+                false,
+                0,
+                iec60870Server.Iec60870Addr,
+                new InformationObject[]{
+                        new InformationObject(
+                                0,
+                                new InformationElement[][]{
+                                        {
+                                                new IeTime56(receivedTimestamp)
+                                        }
+                                }
+                        )
+                }
+        );
+        try {
+            connection.send(asduBack);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
      * 发送文件目录
      */
     private void sendFileList() {
+        iec60870Server.fileManager.start();
+
         FileInfo fileInfo = iec60870Server.fileManager.getFileInfo(0);
         if (fileInfo == null) {
             return;
         }
 
-        asduBack = new ASdu(
+        ASdu asduBack = new ASdu(
                 TypeId.F_DR_TA_1,
                 1,
                 CauseOfTransmission.REQUEST,
@@ -238,17 +249,17 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
             fileNameIndex = index;
             fileNameStr = fileInfo.name;
             sectionAmt = (int) Math.ceil(((double) fileSize) / SEGMENT_MAX_COUNT / SEGMENT_MAX_SIZE);
-            section = 0;                                    // 当前节
-            segment = 0;                                    // 当前段
+            crtSectionIndex = 0;                                    // 当前节
+            crtSegmentIndex = 0;                                    // 当前段
             fileReady = true;
         }
 
-        // 计算文件的分段和分节，以及更新大小
-
+        // 打开文件，以便进行后续的操作
         try {
             fileSendStream = new FileInputStream(new File(fileInfo.fullName));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+            return;
         }
 
         try {
@@ -267,12 +278,13 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
      * 节准备就绪
      */
     private void sendSectionReady() {
-        remainSize = fileSize - section * SEGMENT_MAX_COUNT * SEGMENT_MAX_SIZE;
+        remainSize = fileSize - crtSectionIndex * SEGMENT_MAX_COUNT * SEGMENT_MAX_SIZE;
 
+        // 更新当前 Section 的大小
         if (remainSize >= SEGMENT_MAX_COUNT * SEGMENT_MAX_SIZE) {
-            sectionLen = SEGMENT_MAX_COUNT * SEGMENT_MAX_SIZE;
+            crtSectionLen = SEGMENT_MAX_COUNT * SEGMENT_MAX_SIZE;
         } else {
-            sectionLen = remainSize;
+            crtSectionLen = remainSize;
         }
 
         try {
@@ -280,8 +292,8 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
                     iec60870Server.Iec60870Addr,
                     0,
                     new IeNameOfFile(fileNameIndex),  // 文件名称
-                    new IeNameOfSection(section),                                                       // 节名称
-                    new IeLengthOfFileOrSection(sectionLen),                                            // 节长度
+                    new IeNameOfSection(crtSectionIndex),                                                  // 节名称
+                    new IeLengthOfFileOrSection(crtSectionLen),                                            // 节长度
                     new IeSectionReadyQualifier(0, false)
             );
         } catch (IOException e) {
@@ -291,12 +303,13 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
     }
 
     /**
-     * 发送节
+     * 发送节 section
      */
-    private void sendSegment() {
-        int segmentCount = (int) Math.ceil(((double) sectionLen) / SEGMENT_MAX_SIZE);
+    private void sendSection(int section) {
+        int segmentCount = (int) Math.ceil(((double) crtSectionLen) / SEGMENT_MAX_SIZE);
         byte[] buffer = new byte[SEGMENT_MAX_SIZE];
         int segmentLen;
+
         // 循环发送Segment
         for (int i = 0; i < segmentCount; i++) {
 
@@ -305,7 +318,7 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
                 segmentLen = SEGMENT_MAX_SIZE;
             } else {
                 // 是最后一段
-                segmentLen = sectionLen - i * SEGMENT_MAX_SIZE;
+                segmentLen = crtSectionLen - i * SEGMENT_MAX_SIZE;
             }
 
 
@@ -328,7 +341,7 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
             }
         }
 
-        // 发送段确认
+        // 发最后一段完成的消息
         ASdu aSdu = new ASdu(
                 TypeId.F_LS_NA_1,
                 1,
@@ -359,7 +372,7 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
     /**
      * 通知最后一节传输完成
      */
-    private void sendLastSectionInfo() {
+    private void sendLastSectionFilish() {
         ASdu aSdu = new ASdu(
                 TypeId.F_LS_NA_1,
                 1,
@@ -374,7 +387,7 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
                                 new InformationElement[][]{
                                         {
                                                 new IeNameOfFile(fileNameIndex),
-                                                new IeNameOfSection(section),
+                                                new IeNameOfSection(crtSectionIndex),
                                                 new IeChecksum(1)
                                         }
                                 })
@@ -390,7 +403,7 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
     /**
      * 文件发送成功的确认
      */
-    private void sendFileEndInfo() {
+    private void sendFileEnd() {
         ASdu aSdu = new ASdu(
                 TypeId.F_DR_TA_1,
                 1,
@@ -419,8 +432,112 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
         } catch (IOException e) {
             e.printStackTrace();
         }
+        closeFile();
+    }
+
+    /**
+     * 响应总召唤，返回所有数据
+     * 1、站召唤应答
+     * 2、单个设备信息
+     * 3、站召唤结束
+     */
+    private void sendAllData() {
+
+
+        // 站召应答
+        try {
+            connection.interrogation(
+                    iec60870Server.Iec60870Addr,
+                    CauseOfTransmission.ACTIVATION_CON,
+                    new IeQualifierOfInterrogation(0x14)
+            );
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // TODO 循环发送每个设备的状态
+        for (DeviceRuntimeBean deviceRuntimeBean : iec60870Server.deviceManager.getDeviceRuntimeList().values()) {
+
+            switch (deviceRuntimeBean.device.getType()) {
+                case 101:           // 开关
+                    break;
+                case 102:           // 遥信
+                    break;
+                case 201:           // 遥测
+                    break;
+                case 301:           // 空调
+                    break;
+            }
+
+        }
+
+        // 发送数据
+        try {
+            connection.singleCommand(
+                    iec60870Server.Iec60870Addr,
+                    CauseOfTransmission.ACTIVATION,
+                    1,
+                    new IeSingleCommand(true, 20, false)
+            );
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // 站召唤结束
+        try {
+            connection.interrogation(
+                    iec60870Server.Iec60870Addr,
+                    CauseOfTransmission.ACTIVATION_TERMINATION,
+                    new IeQualifierOfInterrogation(0x14)
+            );
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * TODO 更新设备状态
+     *
+     * @param deviceRuntimeBean
+     */
+    public void updateDevice(DeviceRuntimeBean deviceRuntimeBean) {
+
+    }
+
+    /**
+     * TODO 遥控
+     *
+     * @param addr  60870 地址，需要转换
+     * @param state 遥控值
+     */
+    public void control(int addr, boolean state) {
+        int deviceId = addr - 24577;
+
+        ASdu aSdu = new ASdu(
+                TypeId.C_SC_NA_1,
+                0x81,
+                CauseOfTransmission.ACTIVATION_CON,
+                false,
+                false,
+                0,
+                iec60870Server.Iec60870Addr,
+                new InformationObject[]{
+                        new InformationObject(
+                                addr,
+                                new InformationElement[][]{
+                                        {
+                                                new IeChecksum(1)
+                                        }
+                                })
+                }
+        );
+
+        // 发送数据
+        try {
+            connection.send(aSdu);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }
-
-

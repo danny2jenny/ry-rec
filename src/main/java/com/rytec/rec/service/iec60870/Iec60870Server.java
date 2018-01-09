@@ -1,6 +1,8 @@
 package com.rytec.rec.service.iec60870;
 
 import com.rytec.rec.app.RecBase;
+import com.rytec.rec.device.DeviceManager;
+import com.rytec.rec.device.DeviceRuntimeBean;
 import org.openmuc.j60870.Connection;
 import org.openmuc.j60870.Server;
 import org.openmuc.j60870.ServerEventListener;
@@ -26,7 +28,7 @@ public class Iec60870Server extends RecBase implements ServerEventListener {
     //端口配置
     @Value("${iec60870.port}")
     private int port;
-    
+
     @Value("${iec60870.xml}")
     public String xmlFileName;
 
@@ -36,17 +38,37 @@ public class Iec60870Server extends RecBase implements ServerEventListener {
     @Autowired
     public FileManager fileManager;
 
+    @Autowired
+    public DeviceManager deviceManager;
+
     Server.Builder builder;
     Server server;
 
+    Connection crtConnection;           // 当前的连接
+    Iec60870Listener crtListener;       // 当前的监听对象
+
     public long timerOffset;            // 时间差
+
+    /**
+     * 关闭久连接
+     */
+    private void closeOldConnection() {
+        if (crtConnection != null) {
+            crtConnection.close();
+        }
+    }
+
+
     /**
      * 每一个连接生成一个连接对象
+     *
      * @param connection
      */
     @Override
     public void connectionIndication(Connection connection) {
         int myConnectionId = connectionIdCounter++;
+        closeOldConnection();
+        crtConnection = connection;
         logger.debug("A client has connected using TCP/IP. Will listen for a StartDT request. Connection ID: "
                 + myConnectionId);
 
@@ -54,7 +76,7 @@ public class Iec60870Server extends RecBase implements ServerEventListener {
             Iec60870Listener iec60870Listener = new Iec60870Listener(connection, myConnectionId);
             // 为非托管类传递一些参数
             iec60870Listener.setServer(this);
-
+            crtListener = iec60870Listener;
 
             connection.waitForStartDT(iec60870Listener, 15000);
         } catch (IOException e) {
@@ -100,4 +122,18 @@ public class Iec60870Server extends RecBase implements ServerEventListener {
     public void stop() {
         server.stop();
     }
+
+    /**
+     * 更新设备状态
+     *
+     * @param deviceRuntimeBean
+     */
+    public void update(DeviceRuntimeBean deviceRuntimeBean) {
+
+        if (crtListener != null) {
+            crtListener.updateDevice(deviceRuntimeBean);
+        }
+
+    }
+
 }

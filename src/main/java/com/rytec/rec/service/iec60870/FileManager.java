@@ -121,7 +121,7 @@ public class FileManager extends RecBase implements ManageableInterface {
      * 5：文件类型
      * Addr：地址，应该对应我们的端口
      */
-    public void init() {
+    private void init() {
 
         // 创建XML文档树
         Document document = DocumentHelper.createDocument();

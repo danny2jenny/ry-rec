@@ -15,6 +15,7 @@ import com.rytec.rec.db.DbConfig;
 import com.rytec.rec.db.model.Device;
 import com.rytec.rec.db.model.DeviceNode;
 import com.rytec.rec.service.IEC61850Service;
+import com.rytec.rec.service.iec60870.Iec60870Server;
 import com.rytec.rec.util.ConstantDeviceState;
 import com.rytec.rec.util.AnnotationDeviceType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,24 +41,27 @@ public class DeviceManager extends RecBase implements ManageableInterface {
     @Autowired
     IEC61850Service iec61850Service;
 
+    @Autowired
+    Iec60870Server iec60870Server;
+
     /*
      * device操作接口
      */
     private Map<Integer, AbstractOperator> deviceOperators = new HashMap();
 
     /*
-    * 两级 HashMap
-    * 第一级：deviceId -> hashmap
-    * 第二级：nodeId -> DeviceNode
-    */
+     * 两级 HashMap
+     * 第一级：deviceId -> hashmap
+     * 第二级：nodeId -> DeviceNode
+     */
     HashMap<Integer, HashMap> deviceNodeListByNode = new HashMap();
 
 
     /*
-    * 两级 HashMap
-    * 第一级：deviceId -> hashmap
-    * 第二级：funId -> DeviceNode
-    */
+     * 两级 HashMap
+     * 第一级：deviceId -> hashmap
+     * 第二级：funId -> DeviceNode
+     */
     HashMap<Integer, HashMap> deviceNodeListByFun = new HashMap();
 
 
@@ -71,9 +75,10 @@ public class DeviceManager extends RecBase implements ManageableInterface {
 
     /**
      * 通过方法访问
+     *
      * @return
      */
-    public HashMap<Integer, DeviceRuntimeBean> getDeviceRuntimeList(){
+    public HashMap<Integer, DeviceRuntimeBean> getDeviceRuntimeList() {
         return deviceRuntimeList;
     }
 
@@ -90,8 +95,8 @@ public class DeviceManager extends RecBase implements ManageableInterface {
     }
 
     /*
-    * 初始化Devices
-    */
+     * 初始化Devices
+     */
     private void initConfig() {
         //初始化Device 和 Node 的关系
 
@@ -192,6 +197,9 @@ public class DeviceManager extends RecBase implements ManageableInterface {
         // 向更新61850中的值
         DeviceRuntimeBean deviceRuntimeBean = deviceRuntimeList.get(device);
         iec61850Service.update(deviceRuntimeBean);
+
+        // 向60870更新值
+        iec60870Server.update(deviceRuntimeBean);
     }
 
     public void stop() {
