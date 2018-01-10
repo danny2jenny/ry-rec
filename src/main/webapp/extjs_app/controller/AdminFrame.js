@@ -28,7 +28,10 @@ Ext.define('app.controller.AdminFrame', {
         'admin.panel.PanoramaGrid',
         'admin.panel.PanoramaUpload',
         'admin.frame.PanoramaEditor',
-        'admin.panel.Iec61850'
+        // 61850
+        'admin.panel.Iec61850',
+        'admin.frame.Iec61850',
+        'admin.panel.IcdUpload'
 
     ],
 

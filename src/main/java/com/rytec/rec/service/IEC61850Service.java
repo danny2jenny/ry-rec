@@ -13,6 +13,7 @@ import com.rytec.rec.util.ConstantFromWhere;
 import com.rytec.rec.util.ConstantMqtt;
 import com.rytec.rec.app.RecBase;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Service;
 
@@ -34,6 +35,9 @@ public class IEC61850Service extends RecBase implements ManageableInterface {
 
     @Autowired
     MqttService mqttService;
+
+    @Value("${iec61850.cfg}")
+    public String iecCfgFile;            // 61850 配置文件
 
     ObjectMapper objectMapper = new ObjectMapper();
 

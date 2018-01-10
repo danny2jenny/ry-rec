@@ -9,24 +9,27 @@ package com.rytec.rec.web.util;
 import ch.ralscha.extdirectspring.annotation.ExtDirectMethod;
 import ch.ralscha.extdirectspring.annotation.ExtDirectMethodType;
 import ch.ralscha.extdirectspring.bean.ExtDirectFormPostResult;
+import com.libiec61850.scl.SclParserException;
+import com.libiec61850.tools.DynamicModelGenerator;
+import com.rytec.rec.app.RecBase;
 import com.rytec.rec.db.mapper.GisLayerMapper;
 import com.rytec.rec.db.mapper.PanoramaMapper;
 import com.rytec.rec.db.model.GisLayer;
 import com.rytec.rec.db.model.Panorama;
+import com.rytec.rec.service.IEC61850Service;
 import com.rytec.rec.util.RyFile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 
 @Controller
-public class UploadService {
+public class UploadService extends RecBase {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -37,6 +40,9 @@ public class UploadService {
 
     @Autowired
     PanoramaMapper panoramaMapper;
+
+    @Autowired
+    IEC61850Service iec61850Service;
 
 
     /**
@@ -180,6 +186,38 @@ public class UploadService {
         panoramaMapper.updateByPrimaryKey(panorama);
 
         return resp;
+    }
+
+    /**
+     * 61850 icd 文件上传，并生成配置
+     *
+     * @param icdFile
+     * @return
+     */
+    @ExtDirectMethod(ExtDirectMethodType.FORM_POST)
+    public ExtDirectFormPostResult iec61850icd(@RequestParam("icdFile") MultipartFile icdFile) {
+        String filePath = System.getProperty("web.root") + "/upload/61850.icd";
+
+        if (icdFile == null || icdFile.isEmpty()) {
+            return new ExtDirectFormPostResult(false);
+        }
+
+        try {
+            PrintStream outputStream = new PrintStream(new FileOutputStream(new File(iec61850Service.iecCfgFile)));
+            new DynamicModelGenerator(icdFile.getInputStream(), null, outputStream, null, null);
+            return new ExtDirectFormPostResult(true);
+        } catch (SclParserException e) {
+            e.printStackTrace();
+            return new ExtDirectFormPostResult(false);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return new ExtDirectFormPostResult(false);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return new ExtDirectFormPostResult(false);
+        }
+
+
     }
 
 }
