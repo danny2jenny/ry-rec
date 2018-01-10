@@ -3,6 +3,8 @@ package com.rytec.rec.service.iec60870;
 import com.rytec.rec.app.RecBase;
 
 import com.rytec.rec.device.DeviceRuntimeBean;
+import com.rytec.rec.device.operator.StateAnalog;
+import com.rytec.rec.device.operator.StateOutput;
 import org.openmuc.j60870.*;
 
 import java.io.*;
@@ -11,6 +13,9 @@ import java.io.*;
  * 60870 通讯处理 每个客户端对应一个该对象
  */
 public class Iec60870Listener extends RecBase implements ConnectionEventListener {
+
+    private static int STATE_ON = 21;                           // 开关状态值 开
+    private static int STATE_OFF = 20;                          // 开关状态值 关
 
     private static int SEGMENT_MAX_SIZE = 236;                  // 每一段的最大容量
     private static int SEGMENT_MAX_COUNT = 255;                 // 每一节最大段的数量
@@ -130,6 +135,7 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
     public void connectionClosed(IOException e) {
         closeFile();
         logger.debug("Connection (" + connectionId + ") was closed. " + e.getMessage());
+        iec60870Server.crtListener = null;
     }
 
     /**
@@ -436,6 +442,185 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
     }
 
     /**
+     * 生成状态ASDU
+     *
+     * @param ste
+     * @param active
+     * @return
+     */
+    private ASdu genState(int addr, boolean ste, boolean active) {
+
+        CauseOfTransmission cause;
+
+        if (active) {
+            cause = CauseOfTransmission.SPONTANEOUS;
+        } else {
+            cause = CauseOfTransmission.INTERROGATED_BY_STATION;
+        }
+
+        ASdu asduBack = new ASdu(
+                TypeId.M_SP_NA_1,        //M_SP_TB_1,
+                1,
+                cause,
+                false,
+                false,
+                0,
+                iec60870Server.Iec60870Addr,
+                new InformationObject[]{
+                        new InformationObject(
+                                addr,
+                                new InformationElement[][]{
+                                        {
+                                                new IeSingleCommand(ste, 0, false)
+                                                //new IeTime56(System.currentTimeMillis())
+                                        }
+                                }
+                        )
+                }
+        );
+
+
+        return asduBack;
+    }
+
+    /**
+     * 生成遥测ASDU
+     *
+     * @param val
+     * @param active
+     * @return
+     */
+    private ASdu genMeasure(int addr, float val, boolean active) {
+        CauseOfTransmission cause;
+
+        if (active) {
+            cause = CauseOfTransmission.SPONTANEOUS;
+        } else {
+            cause = CauseOfTransmission.INTERROGATED_BY_STATION;
+        }
+
+        ASdu asduBack = new ASdu(
+                TypeId.M_ME_NC_1,           //M_ME_TF_1,
+                1,
+                cause,
+                false,
+                false,
+                0,
+                iec60870Server.Iec60870Addr,
+                new InformationObject[]{
+                        new InformationObject(
+                                addr,
+                                new InformationElement[][]{
+                                        {
+                                                new IeShortFloat(val)
+                                                //new IeTime56(System.currentTimeMillis())
+                                        }
+                                }
+                        )
+                }
+        );
+
+
+        return asduBack;
+    }
+
+    /**
+     * @param devRuntime 设备运行状态对象
+     * @param active     是否为主动发送
+     */
+    private void sendDeviceState(DeviceRuntimeBean devRuntime, boolean active) {
+        boolean state = false;
+        float val = 0;
+        Integer addr;
+
+        ASdu aSdu;      // 需要发送的ASDU
+
+        switch (devRuntime.device.getType()) {
+            case 101:           // 开关
+                // 发送开关状态
+                if (((StateOutput) devRuntime.runtime.state).output == STATE_ON) {
+                    state = true;
+                } else {
+                    state = false;
+                }
+
+                addr = devRuntime.device.getId() + C_DeviceAddr.CONTROL_ADDR;
+                aSdu = genState(addr, state, active);
+
+                try {
+                    connection.send(aSdu);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                // 发送反馈状态
+                if (((StateOutput) devRuntime.runtime.state).feedback == STATE_ON) {
+                    state = true;
+                } else {
+                    state = false;
+                }
+
+                addr = devRuntime.device.getId() + C_DeviceAddr.RUN_STATE;
+                aSdu = genState(addr, state, active);
+
+                try {
+                    connection.send(aSdu);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+
+                // 发送远程就地
+                if (((StateOutput) devRuntime.runtime.state).remote == STATE_ON) {
+                    state = true;
+                } else {
+                    state = false;
+                }
+
+                addr = devRuntime.device.getId() + C_DeviceAddr.RUN_MODE;
+                aSdu = genState(addr, state, active);
+
+                try {
+                    connection.send(aSdu);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                break;
+            case 102:           // 遥信
+                // 发送远程就地
+                if ((Boolean) devRuntime.runtime.state == Boolean.TRUE) {
+                    state = true;
+                } else {
+                    state = false;
+                }
+
+                addr = devRuntime.device.getId() + C_DeviceAddr.STATE_ADDR;
+                aSdu = genState(addr, state, active);
+
+                try {
+                    connection.send(aSdu);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                break;
+            case 201:           // 遥测
+                val = ((StateAnalog) devRuntime.runtime.state).value;
+                addr = devRuntime.device.getId() + C_DeviceAddr.MEASURE_ADDR;
+                aSdu = genMeasure(addr, val, active);
+
+                try {
+                    connection.send(aSdu);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                break;
+            case 301:           // 空调
+                break;
+        }
+    }
+
+    /**
      * 响应总召唤，返回所有数据
      * 1、站召唤应答
      * 2、单个设备信息
@@ -455,32 +640,9 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
             e.printStackTrace();
         }
 
-        // TODO 循环发送每个设备的状态
+        // 循环发送每个设备的状态
         for (DeviceRuntimeBean deviceRuntimeBean : iec60870Server.deviceManager.getDeviceRuntimeList().values()) {
-
-            switch (deviceRuntimeBean.device.getType()) {
-                case 101:           // 开关
-                    break;
-                case 102:           // 遥信
-                    break;
-                case 201:           // 遥测
-                    break;
-                case 301:           // 空调
-                    break;
-            }
-
-        }
-
-        // 发送数据
-        try {
-            connection.singleCommand(
-                    iec60870Server.Iec60870Addr,
-                    CauseOfTransmission.ACTIVATION,
-                    1,
-                    new IeSingleCommand(true, 20, false)
-            );
-        } catch (IOException e) {
-            e.printStackTrace();
+            sendDeviceState(deviceRuntimeBean, false);
         }
 
         // 站召唤结束
@@ -501,7 +663,7 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
      * @param deviceRuntimeBean
      */
     public void updateDevice(DeviceRuntimeBean deviceRuntimeBean) {
-
+        sendDeviceState(deviceRuntimeBean, true);
     }
 
     /**

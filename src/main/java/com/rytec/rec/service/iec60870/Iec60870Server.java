@@ -44,7 +44,6 @@ public class Iec60870Server extends RecBase implements ServerEventListener {
     Server.Builder builder;
     Server server;
 
-    Connection crtConnection;           // 当前的连接
     Iec60870Listener crtListener;       // 当前的监听对象
 
     public long timerOffset;            // 时间差
@@ -53,9 +52,7 @@ public class Iec60870Server extends RecBase implements ServerEventListener {
      * 关闭久连接
      */
     private void closeOldConnection() {
-        if (crtConnection != null) {
-            crtConnection.close();
-        }
+        crtListener = null;
     }
 
 
@@ -68,38 +65,31 @@ public class Iec60870Server extends RecBase implements ServerEventListener {
     public void connectionIndication(Connection connection) {
         int myConnectionId = connectionIdCounter++;
         closeOldConnection();
-        crtConnection = connection;
-        logger.debug("A client has connected using TCP/IP. Will listen for a StartDT request. Connection ID: "
-                + myConnectionId);
+        logger.debug("客户端连接: " + myConnectionId);
 
         try {
             Iec60870Listener iec60870Listener = new Iec60870Listener(connection, myConnectionId);
             // 为非托管类传递一些参数
             iec60870Listener.setServer(this);
             crtListener = iec60870Listener;
-
             connection.waitForStartDT(iec60870Listener, 15000);
         } catch (IOException e) {
-            logger.debug("Connection (" + myConnectionId + ") interrupted while waiting for StartDT: "
-                    + e.getMessage() + ". Will quit.");
+            logger.debug("连接： (" + myConnectionId + ") 中断 StartDT: " + e.getMessage());
             return;
         } catch (TimeoutException e) {
-        }
 
-        logger.debug(
-                "Started data transfer on connection (" + myConnectionId + ") Will listen for incoming commands.");
+        }
 
     }
 
     @Override
     public void serverStoppedListeningIndication(IOException e) {
-        logger.debug(
-                "Server has stopped listening for new connections : \"" + e.getMessage() + "\". Will quit.");
+        logger.debug("服务器停止 : \"" + e.getMessage() + "\"");
     }
 
     @Override
     public void connectionAttemptFailed(IOException e) {
-        logger.debug("Connection attempt failed: " + e.getMessage());
+        logger.debug("连接失败: " + e.getMessage());
     }
 
     @PostConstruct
