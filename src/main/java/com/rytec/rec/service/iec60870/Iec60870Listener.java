@@ -512,8 +512,9 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
                                 addr,
                                 new InformationElement[][]{
                                         {
-                                                new IeShortFloat(val)
+                                                new IeShortFloat(val),
                                                 //new IeTime56(System.currentTimeMillis())
+                                                new IeChecksum(0)
                                         }
                                 }
                         )
@@ -538,23 +539,23 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
         switch (devRuntime.device.getType()) {
             case 101:           // 开关
                 // 发送开关状态
-                if (((StateOutput) devRuntime.runtime.state).output == STATE_ON) {
-                    state = true;
-                } else {
-                    state = false;
-                }
-
-                addr = devRuntime.device.getId() + C_DeviceAddr.CONTROL_ADDR;
-                aSdu = genState(addr, state, active);
-
-                try {
-                    connection.send(aSdu);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+//                if (((StateOutput) devRuntime.runtime.state).output == (Integer) STATE_ON) {
+//                    state = true;
+//                } else {
+//                    state = false;
+//                }
+//
+//                addr = devRuntime.device.getId() + C_DeviceAddr.CONTROL_ADDR;
+//                aSdu = genState(addr, state, active);
+//
+//                try {
+//                    connection.send(aSdu);
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
 
                 // 发送反馈状态
-                if (((StateOutput) devRuntime.runtime.state).feedback == STATE_ON) {
+                if (((StateOutput) devRuntime.runtime.state).feedback == (Integer) STATE_ON) {
                     state = true;
                 } else {
                     state = false;
@@ -571,7 +572,7 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
 
 
                 // 发送远程就地
-                if (((StateOutput) devRuntime.runtime.state).remote == STATE_ON) {
+                if (((StateOutput) devRuntime.runtime.state).remote == (Integer) STATE_ON) {
                     state = true;
                 } else {
                     state = false;
@@ -673,7 +674,7 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
      * @param state 遥控值
      */
     public void control(int addr, boolean state) {
-        int deviceId = addr - 24577;
+        int deviceId = addr - C_DeviceAddr.CONTROL_ADDR;
 
         ASdu aSdu = new ASdu(
                 TypeId.C_SC_NA_1,

@@ -112,7 +112,7 @@ public class FileManager extends RecBase implements ManageableInterface {
      * <p>
      * Function 子段
      * Name：功能名
-     * MsgType：功能号，这个需要特别的处理
+     * MsgType：功能号，这个需要特别的处理，相当于功能号
      * AddrType：
      * 1：遥信
      * 2：遥测
@@ -189,10 +189,10 @@ public class FileManager extends RecBase implements ManageableInterface {
                     function = device.addElement("Function");
 
                     name = function.addElement("Name");
-                    name.setText(iconConfigMap.get(deviceRuntimeBean.device.getIcon()).getName());
+                    name.setText("报警信息");
 
                     msgType = function.addElement("MsgType");
-                    msgType.setText(iconConfigMap.get(deviceRuntimeBean.device.getIcon()).getFun().toString());
+                    msgType.setText("3");
 
                     addrType = function.addElement("AddrType");
                     addrType.setText(String.valueOf(C_DeviceType.ADDR_TYPE_STATE));
@@ -206,10 +206,10 @@ public class FileManager extends RecBase implements ManageableInterface {
                     function = device.addElement("Function");
 
                     name = function.addElement("Name");
-                    name.setText(iconConfigMap.get(deviceRuntimeBean.device.getIcon()).getName());
+                    name.setText("控制");
 
                     msgType = function.addElement("MsgType");
-                    msgType.setText("1");
+                    msgType.setText("201");
 
                     addrType = function.addElement("AddrType");
                     addrType.setText(String.valueOf(C_DeviceType.ADDR_TYPE_CONTROL));
@@ -224,7 +224,7 @@ public class FileManager extends RecBase implements ManageableInterface {
                     name.setText("运行状态");
 
                     msgType = function.addElement("MsgType");
-                    msgType.setText("2");
+                    msgType.setText("1");
 
                     addrType = function.addElement("AddrType");
                     addrType.setText(String.valueOf(C_DeviceType.ADDR_TYPE_STATE));
@@ -239,7 +239,7 @@ public class FileManager extends RecBase implements ManageableInterface {
                     name.setText("运行模式");
 
                     msgType = function.addElement("MsgType");
-                    msgType.setText("3");
+                    msgType.setText("2");
 
                     addrType = function.addElement("AddrType");
                     addrType.setText(String.valueOf(C_DeviceType.ADDR_TYPE_STATE));

@@ -9,9 +9,8 @@
   <component name="ChangeListManager">
     <list default="true" id="d35ddd3d-c0e7-4f94-b111-72db3f8184b4" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/service/iec60870/FileManager.java" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/service/iec60870/FileManager.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/service/iec60870/Iec60870Listener.java" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/service/iec60870/Iec60870Listener.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/service/iec60870/Iec60870Server.java" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/service/iec60870/Iec60870Server.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/openmuc/j60870/IeCP56Time2A.java" afterPath="" />
     </list>
     <ignored path="RyREC.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -90,15 +89,48 @@
       <file leaf-file-name="Iec60870Listener.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/service/iec60870/Iec60870Listener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="326">
-              <caret line="514" column="69" lean-forward="true" selection-start-line="514" selection-start-column="69" selection-end-line="514" selection-end-column="69" />
+            <state relative-caret-position="308">
+              <caret line="516" column="65" lean-forward="false" selection-start-line="516" selection-start-column="65" selection-end-line="516" selection-end-column="65" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1587#1588#0" expanded="true" />
                 <element signature="e#1626#1627#0" expanded="true" />
-                <element signature="e#22232#22233#0" expanded="true" />
-                <element signature="e#22288#22289#0" expanded="true" />
+                <element signature="e#22357#22358#0" expanded="true" />
+                <element signature="e#22413#22414#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IeShortFloat.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/openmuc/j60870/IeShortFloat.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="34" column="11" lean-forward="false" selection-start-line="34" selection-start-column="11" selection-end-line="34" selection-end-column="11" />
+              <folding>
+                <element signature="e#1082#1083#0" expanded="true" />
+                <element signature="e#1116#1117#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="C_DeviceAddr.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/service/iec60870/C_DeviceAddr.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="252">
+              <caret line="14" column="20" lean-forward="false" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="20" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CauseOfTransmission.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/openmuc/j60870/CauseOfTransmission.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="202">
+              <caret line="37" column="4" lean-forward="false" selection-start-line="37" selection-start-column="4" selection-end-line="37" selection-end-column="4" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -106,8 +138,8 @@
       <file leaf-file-name="Iec60870Server.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/service/iec60870/Iec60870Server.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-581">
-              <caret line="67" column="0" lean-forward="false" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
+            <state relative-caret-position="-808">
+              <caret line="37" column="14" lean-forward="true" selection-start-line="37" selection-start-column="14" selection-end-line="37" selection-end-column="14" />
               <folding>
                 <element signature="e#1362#1363#0" expanded="true" />
                 <element signature="e#1396#1397#0" expanded="true" />
@@ -122,21 +154,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ModbusTcpServer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpServer/ModbusTcpServer.java">
+      <file leaf-file-name="FileManager.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/service/iec60870/FileManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="392">
-              <caret line="253" column="0" lean-forward="false" selection-start-line="253" selection-start-column="0" selection-end-line="253" selection-end-column="0" />
+            <state relative-caret-position="3116">
+              <caret line="208" column="36" lean-forward="false" selection-start-line="208" selection-start-column="36" selection-end-line="208" selection-end-column="36" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TypeId.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/openmuc/j60870/TypeId.java">
+      <file leaf-file-name="ModbusTcpServer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpServer/ModbusTcpServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="214">
-              <caret line="152" column="8" lean-forward="false" selection-start-line="152" selection-start-column="8" selection-end-line="152" selection-end-column="8" />
+            <state relative-caret-position="392">
+              <caret line="253" column="0" lean-forward="false" selection-start-line="253" selection-start-column="0" selection-end-line="253" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -163,7 +195,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>proce</find>
       <find>goodHelth</find>
       <find>for</find>
       <find>RYTEC-RECSENSORS/CALH1.value.stVal</find>
@@ -193,6 +224,7 @@
       <find>logger</find>
       <find>M_sp</find>
       <find>M_ME</find>
+      <find>control</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/src/main/webapp</dir>
@@ -901,8 +933,8 @@
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/util/Tools.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpServer/handler/ModbusFrameDecoder.java" />
         <option value="$PROJECT_DIR$/src/main/resources/logback.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/service/iec60870/FileManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/service/iec60870/Iec60870Server.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/service/iec60870/FileManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/service/iec60870/Iec60870Listener.java" />
       </list>
     </option>
@@ -993,6 +1025,59 @@
             <path>
               <item name="com.rytec.rec" type="b2602c69:ProjectViewProjectNode" />
               <item name="ry-rec" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+            <path>
+              <item name="com.rytec.rec" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ry-rec" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="com.rytec.rec" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ry-rec" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+            <path>
+              <item name="com.rytec.rec" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ry-rec" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="com.rytec.rec" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ry-rec" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="rec" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="com.rytec.rec" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ry-rec" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="rec" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="com.rytec.rec" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ry-rec" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="rec" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+              <item name="iec60870" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="com.rytec.rec" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ry-rec" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="j60870" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -1937,14 +2022,7 @@
       <workItem from="1515140597670" duration="39000" />
       <workItem from="1515140674467" duration="3325000" />
       <workItem from="1515327220285" duration="9537000" />
-      <workItem from="1515463963439" duration="23878000" />
-    </task>
-    <task id="LOCAL-00083" summary="添加全景图标">
-      <created>1494467336898</created>
-      <option name="number" value="00083" />
-      <option name="presentableId" value="LOCAL-00083" />
-      <option name="project" value="LOCAL" />
-      <updated>1494467336898</updated>
+      <workItem from="1515463963439" duration="28937000" />
     </task>
     <task id="LOCAL-00084" summary="1、设备点击传递的参数修改成为deviceid&#10;2、暂时屏蔽画线和画面的工具">
       <created>1494470684456</created>
@@ -2282,11 +2360,18 @@
       <option name="project" value="LOCAL" />
       <updated>1515479918077</updated>
     </task>
-    <option name="localTasksCounter" value="132" />
+    <task id="LOCAL-00132" summary="1、修正客户端断开后主动发送信息的异常&#10;2、遥测，遥信改成不带时标的">
+      <created>1515547866294</created>
+      <option name="number" value="00132" />
+      <option name="presentableId" value="LOCAL-00132" />
+      <option name="project" value="LOCAL" />
+      <updated>1515547866294</updated>
+    </task>
+    <option name="localTasksCounter" value="133" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2320998000" />
+    <option name="totallyTimeSpent" value="2326057000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2402,7 +2487,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="修正小数点位数不够的问题" />
     <MESSAGE value="Device, Channel, Node 必须选择Type，否则初始化可能出错" />
     <MESSAGE value="修复某些情况下，值为空的错误" />
     <MESSAGE value="增加开关输出的反向功能" />
@@ -2427,7 +2511,8 @@
     <MESSAGE value="第一次请求文件成功，&#10;第二次流程走不完" />
     <MESSAGE value="增加了modbus通讯的可靠性" />
     <MESSAGE value="1、可以发送较大的文件，多个Section，没有测试&#10;2、配置文件在发送目录的时候重新生成。" />
-    <option name="LAST_COMMIT_MESSAGE" value="1、可以发送较大的文件，多个Section，没有测试&#10;2、配置文件在发送目录的时候重新生成。" />
+    <MESSAGE value="1、修正客户端断开后主动发送信息的异常&#10;2、遥测，遥信改成不带时标的" />
+    <option name="LAST_COMMIT_MESSAGE" value="1、修正客户端断开后主动发送信息的异常&#10;2、遥测，遥信改成不带时标的" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2453,7 +2538,7 @@
           <properties />
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="592" />
+      <option name="time" value="593" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Remote">
@@ -2490,13 +2575,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="183">
           <caret line="35" column="11" lean-forward="false" selection-start-line="35" selection-start-column="11" selection-end-line="35" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/service/iec60870/C_DeviceType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="40" lean-forward="false" selection-start-line="6" selection-start-column="40" selection-end-line="6" selection-end-column="40" />
         </state>
       </provider>
     </entry>
@@ -2620,14 +2698,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/service/iec60870/FileManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4590">
-          <caret line="278" column="0" lean-forward="false" selection-start-line="278" selection-start-column="0" selection-end-line="278" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/service/iec60870/C_FileRequest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -2743,30 +2813,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/service/iec60870/C_DeviceAddr.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="14" column="20" lean-forward="false" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/openmuc/j60870/IeAbstractQualifierOfCommand.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
           <caret line="29" column="4" lean-forward="false" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="4" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/openmuc/j60870/IeShortFloat.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="34" column="11" lean-forward="false" selection-start-line="34" selection-start-column="11" selection-end-line="34" selection-end-column="11" />
-          <folding>
-            <element signature="e#1082#1083#0" expanded="false" />
-            <element signature="e#1116#1117#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2793,14 +2844,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/openmuc/j60870/CauseOfTransmission.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="41" column="4" lean-forward="false" selection-start-line="41" selection-start-column="4" selection-end-line="41" selection-end-column="4" />
           <folding />
         </state>
       </provider>
@@ -2838,6 +2881,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/service/iec60870/C_DeviceType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="6" column="8" lean-forward="false" selection-start-line="6" selection-start-column="8" selection-end-line="6" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/service/iec60870/FileManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3116">
+          <caret line="208" column="36" lean-forward="false" selection-start-line="208" selection-start-column="36" selection-end-line="208" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpServer/ModbusTcpServer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="392">
@@ -2846,10 +2905,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/service/iec60870/C_DeviceAddr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="14" column="20" lean-forward="false" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/openmuc/j60870/TypeId.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="92" column="4" lean-forward="false" selection-start-line="92" selection-start-column="4" selection-end-line="92" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/service/iec60870/Iec60870Server.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-581">
-          <caret line="67" column="0" lean-forward="false" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
+        <state relative-caret-position="-808">
+          <caret line="37" column="14" lean-forward="true" selection-start-line="37" selection-start-column="14" selection-end-line="37" selection-end-column="14" />
           <folding>
             <element signature="e#1362#1363#0" expanded="true" />
             <element signature="e#1396#1397#0" expanded="true" />
@@ -2863,24 +2938,35 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/openmuc/j60870/TypeId.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/openmuc/j60870/CauseOfTransmission.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="152" column="8" lean-forward="false" selection-start-line="152" selection-start-column="8" selection-end-line="152" selection-end-column="8" />
+        <state relative-caret-position="202">
+          <caret line="37" column="4" lean-forward="false" selection-start-line="37" selection-start-column="4" selection-end-line="37" selection-end-column="4" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/openmuc/j60870/IeShortFloat.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="34" column="11" lean-forward="false" selection-start-line="34" selection-start-column="11" selection-end-line="34" selection-end-column="11" />
+          <folding>
+            <element signature="e#1082#1083#0" expanded="true" />
+            <element signature="e#1116#1117#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/service/iec60870/Iec60870Listener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="514" column="69" lean-forward="true" selection-start-line="514" selection-start-column="69" selection-end-line="514" selection-end-column="69" />
+        <state relative-caret-position="308">
+          <caret line="516" column="65" lean-forward="false" selection-start-line="516" selection-start-column="65" selection-end-line="516" selection-end-column="65" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1587#1588#0" expanded="true" />
             <element signature="e#1626#1627#0" expanded="true" />
-            <element signature="e#22232#22233#0" expanded="true" />
-            <element signature="e#22288#22289#0" expanded="true" />
+            <element signature="e#22357#22358#0" expanded="true" />
+            <element signature="e#22413#22414#0" expanded="true" />
           </folding>
         </state>
       </provider>
