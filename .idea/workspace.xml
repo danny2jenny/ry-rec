@@ -7,10 +7,10 @@
     <bookmark url="file://$PROJECT_DIR$/src/main/webapp/js/pannellum.js" line="1794" mnemonic="2" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d35ddd3d-c0e7-4f94-b111-72db3f8184b4" name="Default" comment="">
+    <list default="true" id="d35ddd3d-c0e7-4f94-b111-72db3f8184b4" name="Default" comment="修正遥测的最后一个字节">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/service/iec60870/FileManager.java" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/service/iec60870/FileManager.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/service/iec60870/Iec60870Listener.java" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/service/iec60870/Iec60870Listener.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/service/iec60870/Iec60870Server.java" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/service/iec60870/Iec60870Server.java" />
     </list>
     <ignored path="RyREC.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -89,27 +89,14 @@
       <file leaf-file-name="Iec60870Listener.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/service/iec60870/Iec60870Listener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="516" column="65" lean-forward="false" selection-start-line="516" selection-start-column="65" selection-end-line="516" selection-end-column="65" />
+            <state relative-caret-position="163">
+              <caret line="548" column="32" lean-forward="true" selection-start-line="548" selection-start-column="32" selection-end-line="548" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1587#1588#0" expanded="true" />
                 <element signature="e#1626#1627#0" expanded="true" />
-                <element signature="e#22357#22358#0" expanded="true" />
-                <element signature="e#22413#22414#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="IeShortFloat.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/openmuc/j60870/IeShortFloat.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="34" column="11" lean-forward="false" selection-start-line="34" selection-start-column="11" selection-end-line="34" selection-end-column="11" />
-              <folding>
-                <element signature="e#1082#1083#0" expanded="true" />
-                <element signature="e#1116#1117#0" expanded="true" />
+                <element signature="e#23636#23637#0" expanded="true" />
+                <element signature="e#23692#23693#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -118,57 +105,8 @@
       <file leaf-file-name="C_DeviceAddr.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/service/iec60870/C_DeviceAddr.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="14" column="20" lean-forward="false" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CauseOfTransmission.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/openmuc/j60870/CauseOfTransmission.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="202">
-              <caret line="37" column="4" lean-forward="false" selection-start-line="37" selection-start-column="4" selection-end-line="37" selection-end-column="4" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Iec60870Server.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/service/iec60870/Iec60870Server.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-808">
-              <caret line="37" column="14" lean-forward="true" selection-start-line="37" selection-start-column="14" selection-end-line="37" selection-end-column="14" />
-              <folding>
-                <element signature="e#1362#1363#0" expanded="true" />
-                <element signature="e#1396#1397#0" expanded="true" />
-                <element signature="e#2249#2250#0" expanded="true" />
-                <element signature="e#2315#2316#0" expanded="true" />
-                <element signature="e#2387#2388#0" expanded="true" />
-                <element signature="e#2442#2443#0" expanded="true" />
-                <element signature="e#2874#2875#0" expanded="true" />
-                <element signature="e#2903#2904#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FileManager.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/service/iec60870/FileManager.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3116">
-              <caret line="208" column="36" lean-forward="false" selection-start-line="208" selection-start-column="36" selection-end-line="208" selection-end-column="36" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ModbusTcpServer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpServer/ModbusTcpServer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="392">
-              <caret line="253" column="0" lean-forward="false" selection-start-line="253" selection-start-column="0" selection-end-line="253" selection-end-column="0" />
+            <state relative-caret-position="288">
+              <caret line="16" column="28" lean-forward="false" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -195,7 +133,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>goodHelth</find>
       <find>for</find>
       <find>RYTEC-RECSENSORS/CALH1.value.stVal</find>
       <find>超时</find>
@@ -224,6 +161,7 @@
       <find>logger</find>
       <find>M_sp</find>
       <find>M_ME</find>
+      <find>devc</find>
       <find>control</find>
     </findStrings>
     <dirStrings>
@@ -933,8 +871,8 @@
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/util/Tools.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpServer/handler/ModbusFrameDecoder.java" />
         <option value="$PROJECT_DIR$/src/main/resources/logback.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/service/iec60870/Iec60870Server.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/service/iec60870/FileManager.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/service/iec60870/Iec60870Server.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/service/iec60870/Iec60870Listener.java" />
       </list>
     </option>
@@ -2022,14 +1960,7 @@
       <workItem from="1515140597670" duration="39000" />
       <workItem from="1515140674467" duration="3325000" />
       <workItem from="1515327220285" duration="9537000" />
-      <workItem from="1515463963439" duration="28937000" />
-    </task>
-    <task id="LOCAL-00084" summary="1、设备点击传递的参数修改成为deviceid&#10;2、暂时屏蔽画线和画面的工具">
-      <created>1494470684456</created>
-      <option name="number" value="00084" />
-      <option name="presentableId" value="LOCAL-00084" />
-      <option name="project" value="LOCAL" />
-      <updated>1494470684456</updated>
+      <workItem from="1515463963439" duration="30392000" />
     </task>
     <task id="LOCAL-00085" summary="完成全景中设备删除的功能">
       <created>1494470712666</created>
@@ -2367,11 +2298,18 @@
       <option name="project" value="LOCAL" />
       <updated>1515547866294</updated>
     </task>
-    <option name="localTasksCounter" value="133" />
+    <task id="LOCAL-00133" summary="修正遥测的最后一个字节">
+      <created>1515553593426</created>
+      <option name="number" value="00133" />
+      <option name="presentableId" value="LOCAL-00133" />
+      <option name="project" value="LOCAL" />
+      <updated>1515553593431</updated>
+    </task>
+    <option name="localTasksCounter" value="134" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2326057000" />
+    <option name="totallyTimeSpent" value="2327512000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2384,6 +2322,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1044" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16129032" sideWeight="0.4866453" order="6" side_tool="false" content_ui="tabs" />
@@ -2396,7 +2335,7 @@
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32703003" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20912124" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21543409" sideWeight="0.62629247" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21543409" sideWeight="0.62629247" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20855615" sideWeight="0.37370753" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290461" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21579532" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -2487,7 +2426,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Device, Channel, Node 必须选择Type，否则初始化可能出错" />
     <MESSAGE value="修复某些情况下，值为空的错误" />
     <MESSAGE value="增加开关输出的反向功能" />
     <MESSAGE value="1、修正IO配置反向的错误&#10;2、开关控制可以反向" />
@@ -2512,7 +2450,8 @@
     <MESSAGE value="增加了modbus通讯的可靠性" />
     <MESSAGE value="1、可以发送较大的文件，多个Section，没有测试&#10;2、配置文件在发送目录的时候重新生成。" />
     <MESSAGE value="1、修正客户端断开后主动发送信息的异常&#10;2、遥测，遥信改成不带时标的" />
-    <option name="LAST_COMMIT_MESSAGE" value="1、修正客户端断开后主动发送信息的异常&#10;2、遥测，遥信改成不带时标的" />
+    <MESSAGE value="修正遥测的最后一个字节" />
+    <option name="LAST_COMMIT_MESSAGE" value="修正遥测的最后一个字节" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2639,6 +2578,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="23" column="13" lean-forward="false" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2686,14 +2626,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="324">
           <caret line="18" column="14" lean-forward="false" selection-start-line="18" selection-start-column="14" selection-end-line="18" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/service/IEC61850Service.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="41" column="8" lean-forward="false" selection-start-line="41" selection-start-column="8" selection-end-line="43" selection-end-column="9" />
           <folding />
         </state>
       </provider>
@@ -2905,43 +2837,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/service/iec60870/C_DeviceAddr.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="14" column="20" lean-forward="false" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/openmuc/j60870/TypeId.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="202">
           <caret line="92" column="4" lean-forward="false" selection-start-line="92" selection-start-column="4" selection-end-line="92" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/service/iec60870/Iec60870Server.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-808">
-          <caret line="37" column="14" lean-forward="true" selection-start-line="37" selection-start-column="14" selection-end-line="37" selection-end-column="14" />
-          <folding>
-            <element signature="e#1362#1363#0" expanded="true" />
-            <element signature="e#1396#1397#0" expanded="true" />
-            <element signature="e#2249#2250#0" expanded="true" />
-            <element signature="e#2315#2316#0" expanded="true" />
-            <element signature="e#2387#2388#0" expanded="true" />
-            <element signature="e#2442#2443#0" expanded="true" />
-            <element signature="e#2874#2875#0" expanded="true" />
-            <element signature="e#2903#2904#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/openmuc/j60870/CauseOfTransmission.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="37" column="4" lean-forward="false" selection-start-line="37" selection-start-column="4" selection-end-line="37" selection-end-column="4" />
           <folding />
         </state>
       </provider>
@@ -2957,16 +2856,58 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/service/IEC61850Service.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="354">
+          <caret line="76" column="16" lean-forward="true" selection-start-line="76" selection-start-column="16" selection-end-line="83" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/openmuc/j60870/CauseOfTransmission.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="41" column="4" lean-forward="false" selection-start-line="41" selection-start-column="4" selection-end-line="41" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/service/iec60870/Iec60870Server.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="218">
+          <caret line="132" column="20" lean-forward="true" selection-start-line="132" selection-start-column="20" selection-end-line="132" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1453#1454#0" expanded="true" />
+            <element signature="e#1487#1488#0" expanded="true" />
+            <element signature="e#2340#2341#0" expanded="true" />
+            <element signature="e#2406#2407#0" expanded="true" />
+            <element signature="e#2478#2479#0" expanded="true" />
+            <element signature="e#2533#2534#0" expanded="true" />
+            <element signature="e#2965#2966#0" expanded="true" />
+            <element signature="e#2994#2995#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/service/iec60870/C_DeviceAddr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="16" column="28" lean-forward="false" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/service/iec60870/Iec60870Listener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="516" column="65" lean-forward="false" selection-start-line="516" selection-start-column="65" selection-end-line="516" selection-end-column="65" />
+        <state relative-caret-position="163">
+          <caret line="548" column="32" lean-forward="true" selection-start-line="548" selection-start-column="32" selection-end-line="548" selection-end-column="32" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1587#1588#0" expanded="true" />
             <element signature="e#1626#1627#0" expanded="true" />
-            <element signature="e#22357#22358#0" expanded="true" />
-            <element signature="e#22413#22414#0" expanded="true" />
+            <element signature="e#23636#23637#0" expanded="true" />
+            <element signature="e#23692#23693#0" expanded="true" />
           </folding>
         </state>
       </provider>

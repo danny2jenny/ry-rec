@@ -124,7 +124,7 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
                 InformationObject io = aSdu.getInformationObjects()[0];
                 int addr = io.getInformationObjectAddress();
                 boolean val = ((IeSingleCommand) (io.getInformationElements()[0][0])).isCommandStateOn();
-                control(addr, val);
+                devControl(addr, val);
                 break;
             default:
                 logger.debug("Got unknown request: " + aSdu + ". Will not confirm it.\n");
@@ -533,11 +533,44 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
         boolean state = false;
         float val = 0;
         Integer addr;
+        int kg = 0;
 
         ASdu aSdu;      // 需要发送的ASDU
 
         switch (devRuntime.device.getType()) {
             case 101:           // 开关
+
+                // 发送开关状态--遥信的返回消息
+                if (((StateOutput) devRuntime.runtime.state).output == (Integer) STATE_ON) {
+                    kg = 1;
+                } else {
+                    kg = 0;
+                }
+                aSdu = new ASdu(
+                        TypeId.C_SC_NA_1,
+                        0x81,
+                        CauseOfTransmission.ACTIVATION_CON,
+                        false,
+                        false,
+                        0,
+                        iec60870Server.Iec60870Addr,
+                        new InformationObject[]{
+                                new InformationObject(
+                                        devRuntime.device.getId() + C_DeviceAddr.CONTROL_ADDR,
+                                        new InformationElement[][]{
+                                                {
+                                                        new IeChecksum(kg)
+                                                }
+                                        })
+                        }
+                );
+
+                // 发送数据
+                try {
+                    connection.send(aSdu);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 // 发送开关状态
 //                if (((StateOutput) devRuntime.runtime.state).output == (Integer) STATE_ON) {
 //                    state = true;
@@ -673,34 +706,9 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
      * @param addr  60870 地址，需要转换
      * @param state 遥控值
      */
-    public void control(int addr, boolean state) {
+    public void devControl(int addr, boolean state) {
         int deviceId = addr - C_DeviceAddr.CONTROL_ADDR;
-
-        ASdu aSdu = new ASdu(
-                TypeId.C_SC_NA_1,
-                0x81,
-                CauseOfTransmission.ACTIVATION_CON,
-                false,
-                false,
-                0,
-                iec60870Server.Iec60870Addr,
-                new InformationObject[]{
-                        new InformationObject(
-                                addr,
-                                new InformationElement[][]{
-                                        {
-                                                new IeChecksum(1)
-                                        }
-                                })
-                }
-        );
-
-        // 发送数据
-        try {
-            connection.send(aSdu);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        iec60870Server.devCtl(deviceId, state);
     }
 
 }

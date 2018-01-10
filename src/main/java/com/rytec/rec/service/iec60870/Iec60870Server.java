@@ -1,8 +1,10 @@
 package com.rytec.rec.service.iec60870;
 
 import com.rytec.rec.app.RecBase;
+import com.rytec.rec.device.AbstractOperator;
 import com.rytec.rec.device.DeviceManager;
 import com.rytec.rec.device.DeviceRuntimeBean;
+import com.rytec.rec.util.ConstantFromWhere;
 import org.openmuc.j60870.Connection;
 import org.openmuc.j60870.Server;
 import org.openmuc.j60870.ServerEventListener;
@@ -124,6 +126,23 @@ public class Iec60870Server extends RecBase implements ServerEventListener {
             crtListener.updateDevice(deviceRuntimeBean);
         }
 
+    }
+
+    /**
+     * 控制开关
+     * @param device
+     * @param ste
+     */
+    public void devCtl(int device, boolean ste){
+        AbstractOperator deviceOperator = deviceManager.getOperatorByDeviceId(device);
+        if (deviceOperator!=null){
+            if (ste){
+                deviceOperator.operate(ConstantFromWhere.FROM_USER, device, 101, null );
+            } else {
+                deviceOperator.operate(ConstantFromWhere.FROM_USER, device, 100, null );
+            }
+
+        }
     }
 
 }
