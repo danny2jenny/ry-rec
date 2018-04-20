@@ -34,6 +34,6 @@ public class Camera extends AbstractOperator {
         nodeMsg.type = ConstantCommandType.GENERAL_WRITE;
         nodeMsg.value = parm;
 
-        return setValue(device, ConstantDeviceFunction.DEV_FUN_PORT_MAIN, nodeMsg);
+        return setValue(device, ConstantDeviceFunction.DEV_FUN_PORT_A, nodeMsg);
     }
 }

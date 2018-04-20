@@ -8,82 +8,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d35ddd3d-c0e7-4f94-b111-72db3f8184b4" name="Default" comment="1、4~20mA模拟量输入的时候，如果小于0，就输出0&#10;2、60870 因为殷图的问题，需要改动底层">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/KhFiber/KhFiberService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpClient/ModbusClientMsg.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpClient/RecModbusMasterSession.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/node/modbus/DAMInput_4.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/node/modbus/DAMOutput_2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/node/modbus/KH_Current.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/node/modbus/KH_MC.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/node/modbus/ModbusNodeCfg.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/generatorSqlServer.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/extjs_app/store/NodeAll.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/document/ryrec-data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/document/ryrec-data.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/document/说明/img/discoveride.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/document/说明/img/icdedit.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/document/说明/img/savescl.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/app/AppManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/app/AppManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ChannelManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ChannelManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpClient/RecModbusMaster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpClient/RecModbusMaster.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpServer/ModbusChannelSession.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpServer/ModbusChannelSession.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpServer/ModbusFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpServer/ModbusFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpServer/ModbusTcpServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpServer/ModbusTcpServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/cooperate/CooperateManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/cooperate/CooperateManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/db/DbConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/db/DbConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/db/mapper/ChannelNodeMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/db/mapper/ChannelNodeMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/db/mapper/DeviceGisMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/db/mapper/DeviceGisMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/db/mapper/DeviceMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/db/mapper/DeviceMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/db/mapper/DeviceNodeMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/db/mapper/DeviceNodeMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/db/mapper/NodeMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/db/mapper/NodeMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/db/model/ChannelNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/db/model/ChannelNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/db/model/ChannelNodeExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/db/model/ChannelNodeExample.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/db/model/Device.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/db/model/Device.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/db/model/DeviceExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/db/model/DeviceExample.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/db/model/DeviceGis.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/db/model/DeviceGis.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/db/model/DeviceGisExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/db/model/DeviceGisExample.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/db/model/DeviceNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/db/model/DeviceNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/db/model/DeviceNodeExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/db/model/DeviceNodeExample.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/db/model/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/db/model/Node.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/db/model/NodeExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/db/model/NodeExample.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/device/DeviceManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/device/DeviceManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/device/operator/Aircon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/device/operator/Aircon.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/device/operator/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/device/operator/Camera.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/device/operator/Output.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/device/operator/Output.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/messenger/MqttService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/messenger/MqttService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/node/NodeInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/node/NodeInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/node/NodeManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/node/NodeManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/node/modbus/DAMInput_12.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/node/modbus/DAMInput_12.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/node/modbus/NodeModbusBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/node/modbus/NodeModbusBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/node/modbus/RS_SJ.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/node/modbus/RS_SJ.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/node/modbus/U3_EC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/node/modbus/U3_EC.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/node/video/NodeCamera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/node/video/NodeCamera.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/service/VideoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/service/VideoService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/service/iec60870/FileManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/service/iec60870/FileManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/service/iec60870/Iec60870Listener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/service/iec60870/Iec60870Listener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/service/iec60870/Iec60870Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/service/iec60870/Iec60870Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/util/ConstantDeviceFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/util/ConstantDeviceFunction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/web/admin/ExtNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/web/admin/ExtNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/web/device/ExtVideo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/web/device/ExtVideo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/rytec/rec/db/mapper/ChannelNodeMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/rytec/rec/db/mapper/ChannelNodeMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/rytec/rec/db/mapper/DeviceGisMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/rytec/rec/db/mapper/DeviceGisMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/rytec/rec/db/mapper/DeviceMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/rytec/rec/db/mapper/DeviceMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/rytec/rec/db/mapper/DeviceNodeMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/rytec/rec/db/mapper/DeviceNodeMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/rytec/rec/db/mapper/NodeMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/rytec/rec/db/mapper/NodeMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/config.ini" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/spring-root.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/spring-root.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/extjs_app/controller/AdminFrame.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/extjs_app/controller/AdminFrame.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/extjs_app/model/Device.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/extjs_app/model/Device.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/extjs_app/model/Node.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/extjs_app/model/Node.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/extjs_app/model/Option.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/extjs_app/model/Option.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/frame/Iec61850.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/frame/Iec61850.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/panel/IcdUpload.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/panel/IcdUpload.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/panel/Iec61850.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/panel/Iec61850.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/panel/Node.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/panel/Node.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/panel/Option.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/panel/Option.js" afterDir="false" />
     </list>
     <ignored path="RyREC.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -223,11 +154,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Connection.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Connection.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/openmuc/j60870/Connection.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="226">
-              <caret line="444" column="14" selection-start-line="444" selection-start-column="14" selection-end-line="444" selection-end-column="14" />
+            <state relative-caret-position="387">
+              <caret line="451" column="38" lean-forward="true" selection-start-line="451" selection-start-column="38" selection-end-line="451" selection-end-column="38" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DAMInput_8.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/node/modbus/DAMInput_8.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="377">
+              <caret line="29" column="25" lean-forward="true" selection-start-line="29" selection-start-column="25" selection-end-line="29" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -270,15 +210,6 @@
               <folding>
                 <element signature="e#2530#2531#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="config.ini" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/config.ini">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="713">
-              <caret line="31" column="10" selection-start-line="31" selection-start-column="10" selection-end-line="31" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -1066,7 +997,6 @@
         <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/panel/IcdUpload.js" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/service/iec60870/Iec60870Listener.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/openmuc/j60870/Connection.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/node/modbus/DAMInput_8.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/node/modbus/DAMInput_4.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/node/modbus/DAMOutput_2.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/node/NodeInterface.java" />
@@ -1076,7 +1006,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpServer/ModbusFrame.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/node/modbus/U3_EC.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpServer/handler/ModbusFrameEncoder.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/node/modbus/DAMInput_12.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/node/modbus/RS_SJ.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpServer/ModbusChannelSession.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/db/DbConfig.java" />
@@ -1113,6 +1042,8 @@
         <option value="$PROJECT_DIR$/src/main/resources/generatorSqlServer.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/KhFiber/KhFiberService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/util/ConstantDeviceFunction.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/node/modbus/DAMInput_12.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/node/modbus/DAMInput_8.java" />
       </list>
     </option>
   </component>
@@ -1161,6 +1092,11 @@
             <path>
               <item name="com.rytec.rec" type="b2602c69:ProjectViewProjectNode" />
               <item name="ry-rec" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="doc" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="com.rytec.rec" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ry-rec" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -1192,6 +1128,27 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="com" type="462c0819:PsiDirectoryNode" />
               <item name="rec" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="com.rytec.rec" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ry-rec" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="rec" type="462c0819:PsiDirectoryNode" />
+              <item name="node" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="com.rytec.rec" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ry-rec" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="rec" type="462c0819:PsiDirectoryNode" />
+              <item name="node" type="462c0819:PsiDirectoryNode" />
+              <item name="modbus" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -2134,63 +2091,7 @@
       <workItem from="1523513729854" duration="5153000" />
       <workItem from="1523840809079" duration="6446000" />
       <workItem from="1523886749316" duration="25918000" />
-      <workItem from="1524188440184" duration="2115000" />
-    </task>
-    <task id="LOCAL-00091" summary="1、DevicesState 改在了ry空间中，便于其他的模块调用&#10;2、GIS的选择控件被删除了&#10;3、GIS在增加Feature单击的相应，而不是单击选择Feature">
-      <created>1495782412231</created>
-      <option name="number" value="00091" />
-      <option name="presentableId" value="LOCAL-00091" />
-      <option name="project" value="LOCAL" />
-      <updated>1495782412234</updated>
-    </task>
-    <task id="LOCAL-00092" summary="1、加入了eclipse支持&#10;2、加入了测试图片">
-      <created>1496196186254</created>
-      <option name="number" value="00092" />
-      <option name="presentableId" value="LOCAL-00092" />
-      <option name="project" value="LOCAL" />
-      <updated>1496196186256</updated>
-    </task>
-    <task id="LOCAL-00093" summary="1、加入了eclipse支持&#10;2、加入了测试图片">
-      <created>1496207748081</created>
-      <option name="number" value="00093" />
-      <option name="presentableId" value="LOCAL-00093" />
-      <option name="project" value="LOCAL" />
-      <updated>1496207748081</updated>
-    </task>
-    <task id="LOCAL-00094" summary="1、加入SQL文件">
-      <created>1496364669316</created>
-      <option name="number" value="00094" />
-      <option name="presentableId" value="LOCAL-00094" />
-      <option name="project" value="LOCAL" />
-      <updated>1496364669317</updated>
-    </task>
-    <task id="LOCAL-00095" summary="增加了几个DAM的设备">
-      <created>1496710963088</created>
-      <option name="number" value="00095" />
-      <option name="presentableId" value="LOCAL-00095" />
-      <option name="project" value="LOCAL" />
-      <updated>1496710963089</updated>
-    </task>
-    <task id="LOCAL-00096" summary="1、加入了eclipse支持&#10;2、加入了测试图片">
-      <created>1496710973327</created>
-      <option name="number" value="00096" />
-      <option name="presentableId" value="LOCAL-00096" />
-      <option name="project" value="LOCAL" />
-      <updated>1496710973328</updated>
-    </task>
-    <task id="LOCAL-00097" summary="1、修正一个信号没有相应的动作的判断&#10;2、模拟量可能newValue为null，断线的时候">
-      <created>1496713300756</created>
-      <option name="number" value="00097" />
-      <option name="presentableId" value="LOCAL-00097" />
-      <option name="project" value="LOCAL" />
-      <updated>1496713300756</updated>
-    </task>
-    <task id="LOCAL-00098" summary="1、增加模拟量显示&#10;2、目前还不能显示模拟量的单位">
-      <created>1496732076324</created>
-      <option name="number" value="00098" />
-      <option name="presentableId" value="LOCAL-00098" />
-      <option name="project" value="LOCAL" />
-      <updated>1496732076325</updated>
+      <workItem from="1524188440184" duration="4769000" />
     </task>
     <task id="LOCAL-00099" summary="修正单位不更新的错误">
       <created>1496733192980</created>
@@ -2479,11 +2380,67 @@
       <option name="project" value="LOCAL" />
       <updated>1524190571091</updated>
     </task>
-    <option name="localTasksCounter" value="140" />
+    <task id="LOCAL-00140" summary="文档更新，工程文件更新">
+      <created>1524190623731</created>
+      <option name="number" value="00140" />
+      <option name="presentableId" value="LOCAL-00140" />
+      <option name="project" value="LOCAL" />
+      <updated>1524190623732</updated>
+    </task>
+    <task id="LOCAL-00141" summary="文档更新">
+      <created>1524197060901</created>
+      <option name="number" value="00141" />
+      <option name="presentableId" value="LOCAL-00141" />
+      <option name="project" value="LOCAL" />
+      <updated>1524197060901</updated>
+    </task>
+    <task id="LOCAL-00142" summary="删除无用的61850模型文件">
+      <created>1524197180930</created>
+      <option name="number" value="00142" />
+      <option name="presentableId" value="LOCAL-00142" />
+      <option name="project" value="LOCAL" />
+      <updated>1524197180930</updated>
+    </task>
+    <task id="LOCAL-00143" summary="增加两个 Channel&#10;&#10;1、Modbus Client&#10;2、科华的光纤测温">
+      <created>1524197506594</created>
+      <option name="number" value="00143" />
+      <option name="presentableId" value="LOCAL-00143" />
+      <option name="project" value="LOCAL" />
+      <updated>1524197506594</updated>
+    </task>
+    <task id="LOCAL-00144" summary="完善科华光纤的数据库接口">
+      <created>1524197608229</created>
+      <option name="number" value="00144" />
+      <option name="presentableId" value="LOCAL-00144" />
+      <option name="project" value="LOCAL" />
+      <updated>1524197608229</updated>
+    </task>
+    <task id="LOCAL-00145" summary="数据库重要更新！！！&#10;&#10;1、老的61850控制字段在Device下面，现在全面改成了在Node下面&#10;2、node增加了enable字段，表示该node是否可用。并在 DbConfig 中只读取可用的Node">
+      <created>1524197935857</created>
+      <option name="number" value="00145" />
+      <option name="presentableId" value="LOCAL-00145" />
+      <option name="project" value="LOCAL" />
+      <updated>1524197935857</updated>
+    </task>
+    <task id="LOCAL-00146" summary="AppManager 启动方式改变&#10;&#10;1、在AppManager 中判断根容器加载完成后才加载自定义服务。省去了每个服务都需要 @PostConstruct 的注解&#10;2、ModbusTcpServer 的超时周期改成了200ms，满足科华的井盖。">
+      <created>1524198395814</created>
+      <option name="number" value="00146" />
+      <option name="presentableId" value="LOCAL-00146" />
+      <option name="project" value="LOCAL" />
+      <updated>1524198395814</updated>
+    </task>
+    <task id="LOCAL-00147" summary="修改 Node 接口&#10;&#10;1、DAMInput_12 改成了 DAMInput_8&#10;2、增加 DAM 4路输入和2两路输出的 Node&#10;3、增加环流的Node，没有n完善&#10;4、增加科华井盖 KH_MC&#10;5、为Modbus Client 增加读取Node配置的方法&#10;6、水浸可以反向 RS_SJ&#10;7、Node端口的名称改成通用的ABCD">
+      <created>1524198753067</created>
+      <option name="number" value="00147" />
+      <option name="presentableId" value="LOCAL-00147" />
+      <option name="project" value="LOCAL" />
+      <updated>1524198753067</updated>
+    </task>
+    <option name="localTasksCounter" value="148" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2612936000" />
+    <option name="totallyTimeSpent" value="2615590000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2500,7 +2457,7 @@
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4866453" weight="0.16100767" />
-      <window_info active="true" anchor="bottom" id="Messages" order="7" visible="true" weight="0.22782037" />
+      <window_info anchor="bottom" id="Messages" order="7" visible="true" weight="0.22782037" />
       <window_info anchor="right" id="Palette&#9;" order="6" />
       <window_info anchor="bottom" id="Java Enterprise" order="10" weight="0.3263965" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5535906" side_tool="true" weight="1.0" />
@@ -2511,7 +2468,7 @@
       <window_info anchor="bottom" id="Spring" order="8" weight="0.3263965" />
       <window_info anchor="bottom" id="Terminal" order="13" weight="0.20810515" />
       <window_info id="Designer" order="3" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.62629247" visible="true" weight="0.24305555" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.62629247" visible="true" weight="0.24305555" />
       <window_info id="Web" order="6" sideWeight="0.37370753" side_tool="true" weight="0.20855615" />
       <window_info anchor="right" id="Database" order="5" sideWeight="0.49917898" weight="0.16025642" />
       <window_info anchor="right" id="Gradle" order="8" sideWeight="0.49917898" visible="true" weight="0.14797008" />
@@ -2603,13 +2560,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="气体图标正常工作模式不告警" />
-    <MESSAGE value="修正ext js中device的model与数据库保持同步&#10;增加缺省值" />
-    <MESSAGE value="1、升级了依赖库&#10;2、解决了IEC61850Service 第一次启动的时候得不到配置的Device列表的问题" />
-    <MESSAGE value="增加：&#10;&#10;61850上报界面，勾选那些设备需要上报。" />
-    <MESSAGE value="增加：建大仁科的设备，未测试&#10;&#10;1、温湿度&#10;2、风速&#10;3、水浸&#10;4、空调控制" />
-    <MESSAGE value="增加：空调和温湿度已经测试&#10;&#10;1、ModbusChannelSession 中，超时需要进行健康度的操作&#10;2、更新SQL到对应的代码版本&#10;3、空调、温湿度测试通过" />
-    <MESSAGE value="增加一个工业空调&#10;修正HT_C1 风速的描述&#10;用户和联动命令增加重发机制&#10;上一个命令发送成功后，不会立即发送命令，等待定时到来再发送&#10;增加61850的接口和60870接口" />
     <MESSAGE value="Modbus 通讯稳定&#10;&#10;调整返回帧识别的算法，&#10;定时器调整到50ms，&#10;延时调整到5个定时器周期" />
     <MESSAGE value="添加使用说明" />
     <MESSAGE value="1 修正U3_EC 工业空调的类型错误&#10;2 60870 对时成功" />
@@ -2624,11 +2574,18 @@
     <MESSAGE value="修正遥测的最后一个字节" />
     <MESSAGE value="完成遥控，&#10;目前所有功能完成，初步测试" />
     <MESSAGE value="通过网页生成61850的模型配置文件" />
-    <MESSAGE value="文档更新" />
     <MESSAGE value="文档更新，增加新的设备图标：水位" />
     <MESSAGE value="1、4~20mA模拟量输入的时候，如果小于0，就输出0&#10;2、60870 因为殷图的问题，需要改动底层" />
     <MESSAGE value="ideag工程文档更新" />
-    <option name="LAST_COMMIT_MESSAGE" value="ideag工程文档更新" />
+    <MESSAGE value="文档更新，工程文件更新" />
+    <MESSAGE value="文档更新" />
+    <MESSAGE value="删除无用的61850模型文件" />
+    <MESSAGE value="增加两个 Channel&#10;&#10;1、Modbus Client&#10;2、科华的光纤测温" />
+    <MESSAGE value="完善科华光纤的数据库接口" />
+    <MESSAGE value="数据库重要更新！！！&#10;&#10;1、老的61850控制字段在Device下面，现在全面改成了在Node下面&#10;2、node增加了enable字段，表示该node是否可用。并在 DbConfig 中只读取可用的Node" />
+    <MESSAGE value="AppManager 启动方式改变&#10;&#10;1、在AppManager 中判断根容器加载完成后才加载自定义服务。省去了每个服务都需要 @PostConstruct 的注解&#10;2、ModbusTcpServer 的超时周期改成了200ms，满足科华的井盖。" />
+    <MESSAGE value="修改 Node 接口&#10;&#10;1、DAMInput_12 改成了 DAMInput_8&#10;2、增加 DAM 4路输入和2两路输出的 Node&#10;3、增加环流的Node，没有n完善&#10;4、增加科华井盖 KH_MC&#10;5、为Modbus Client 增加读取Node配置的方法&#10;6、水浸可以反向 RS_SJ&#10;7、Node端口的名称改成通用的ABCD" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改 Node 接口&#10;&#10;1、DAMInput_12 改成了 DAMInput_8&#10;2、增加 DAM 4路输入和2两路输出的 Node&#10;3、增加环流的Node，没有n完善&#10;4、增加科华井盖 KH_MC&#10;5、为Modbus Client 增加读取Node配置的方法&#10;6、水浸可以反向 RS_SJ&#10;7、Node端口的名称改成通用的ABCD" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2671,13 +2628,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/resources/config.ini">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="713">
-          <caret line="31" column="10" selection-start-line="31" selection-start-column="10" selection-end-line="31" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/KhFiber/KhFiberService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="207">
@@ -2843,6 +2793,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="385">
           <caret line="121" column="73" selection-start-line="121" selection-start-column="73" selection-end-line="121" selection-end-column="73" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -3101,8 +3054,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/openmuc/j60870/Connection.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="444" column="14" selection-start-line="444" selection-start-column="14" selection-end-line="444" selection-end-column="14" />
+        <state relative-caret-position="387">
+          <caret line="451" column="38" lean-forward="true" selection-start-line="451" selection-start-column="38" selection-end-line="451" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/node/modbus/DAMInput_8.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="377">
+          <caret line="29" column="25" lean-forward="true" selection-start-line="29" selection-start-column="25" selection-end-line="29" selection-end-column="25" />
         </state>
       </provider>
     </entry>

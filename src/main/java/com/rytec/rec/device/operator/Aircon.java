@@ -111,7 +111,7 @@ public class Aircon extends AbstractOperator {
                 return ConstantErrorCode.DEVICE_ACT_NOT_EXIST;
         }
 
-        return this.setValue(device, ConstantDeviceFunction.DEV_FUN_PORT_MAIN, nodeMsg);
+        return this.setValue(device, ConstantDeviceFunction.DEV_FUN_PORT_A, nodeMsg);
     }
 
 }

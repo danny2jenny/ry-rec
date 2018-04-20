@@ -67,7 +67,7 @@ public class Output extends AbstractOperator {
         nodeMsg.from = from;
         nodeMsg.type = ConstantCommandType.GENERAL_WRITE;
         nodeMsg.value = value;
-        return this.setValue(deviceId, ConstantDeviceFunction.DEV_FUN_PORT_MAIN, nodeMsg);
+        return this.setValue(deviceId, ConstantDeviceFunction.DEV_FUN_PORT_A, nodeMsg);
     }
 
     @Override
@@ -84,14 +84,14 @@ public class Output extends AbstractOperator {
         if (newValue == null) {
 
             switch (fun) {
-                case ConstantDeviceFunction.DEV_FUN_PORT_MAIN:
+                case ConstantDeviceFunction.DEV_FUN_PORT_A:
                     deviceRuntimeBean.runtime.iconState = ConstantDeviceState.STATE_OFFLINE;
                     state.output = null;
                     break;
-                case ConstantDeviceFunction.DEV_FUN_PORT_RMOT:
+                case ConstantDeviceFunction.DEV_FUN_PORT_C:
                     state.remote = null;
                     break;
-                case ConstantDeviceFunction.DEV_FUN_PORT_FEDBK:
+                case ConstantDeviceFunction.DEV_FUN_PORT_B:
                     state.feedback = null;
                     break;
             }
@@ -101,7 +101,7 @@ public class Output extends AbstractOperator {
 
         // 根据fun对状态进行更新
         switch (fun) {
-            case ConstantDeviceFunction.DEV_FUN_PORT_MAIN:
+            case ConstantDeviceFunction.DEV_FUN_PORT_A:
                 // 开关状态
                 if ((Boolean) newValue == true) {
                     deviceRuntimeBean.runtime.iconState = ConstantDeviceState.STATE_ON;
@@ -111,7 +111,7 @@ public class Output extends AbstractOperator {
                     state.output = ConstantDeviceState.STATE_OFF;
                 }
                 break;
-            case ConstantDeviceFunction.DEV_FUN_PORT_RMOT:
+            case ConstantDeviceFunction.DEV_FUN_PORT_C:
                 // 远程就地状态
                 if ((Boolean) newValue == true) {
                     state.remote = ConstantDeviceState.STATE_ON;
@@ -119,7 +119,7 @@ public class Output extends AbstractOperator {
                     state.remote = ConstantDeviceState.STATE_OFF;
                 }
                 break;
-            case ConstantDeviceFunction.DEV_FUN_PORT_FEDBK:
+            case ConstantDeviceFunction.DEV_FUN_PORT_B:
                 // 反馈状态
                 if ((Boolean) newValue == true) {
                     state.feedback = ConstantDeviceState.STATE_ON;

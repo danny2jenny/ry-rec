@@ -1,5 +1,6 @@
 package com.rytec.rec.service.iec60870;
 
+import com.rytec.rec.app.ManageableInterface;
 import com.rytec.rec.app.RecBase;
 import com.rytec.rec.device.AbstractOperator;
 import com.rytec.rec.device.DeviceManager;
@@ -13,7 +14,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
@@ -23,7 +23,7 @@ import java.util.concurrent.TimeoutException;
  */
 @Service
 @Order(400)
-public class Iec60870Server extends RecBase implements ServerEventListener {
+public class Iec60870Server extends RecBase implements ServerEventListener, ManageableInterface {
 
     private int connectionIdCounter = 1;
 
@@ -44,19 +44,25 @@ public class Iec60870Server extends RecBase implements ServerEventListener {
     public DeviceManager deviceManager;
 
     Server.Builder builder;
-    Server server;
+    Server server = null;
 
-    Iec60870Listener crtListener;       // 当前的监听对象
+    private Iec60870Listener crtListener = null;       // 当前的监听对象
 
-    public long timerOffset;            // 时间差
+    public long timerOffset;                    // 时间差
+
 
     /**
-     * 关闭久连接
+     * 客户端断开
+     *
+     * @param client
      */
-    private void closeOldConnection() {
-        crtListener = null;
-    }
+    public void clientClosed(Iec60870Listener client) {
+        if (client == crtListener) {
+            crtListener = null;
+            logger.debug("当前活动链接关闭");
+        }
 
+    }
 
     /**
      * 每一个连接生成一个连接对象
@@ -66,7 +72,6 @@ public class Iec60870Server extends RecBase implements ServerEventListener {
     @Override
     public void connectionIndication(Connection connection) {
         int myConnectionId = connectionIdCounter++;
-        closeOldConnection();
         logger.debug("客户端连接: " + myConnectionId);
 
         try {
@@ -74,7 +79,7 @@ public class Iec60870Server extends RecBase implements ServerEventListener {
             // 为非托管类传递一些参数
             iec60870Listener.setServer(this);
             crtListener = iec60870Listener;
-            connection.waitForStartDT(iec60870Listener, 15000);
+            connection.waitForStartDT(iec60870Listener, 5000);
         } catch (IOException e) {
             logger.debug("连接： (" + myConnectionId + ") 中断 StartDT: " + e.getMessage());
             return;
@@ -94,7 +99,6 @@ public class Iec60870Server extends RecBase implements ServerEventListener {
         logger.debug("连接失败: " + e.getMessage());
     }
 
-    @PostConstruct
     public void start() {
         builder = new Server.Builder();
         builder.setPort(port);
@@ -112,7 +116,10 @@ public class Iec60870Server extends RecBase implements ServerEventListener {
 
     @PreDestroy
     public void stop() {
-        server.stop();
+        if (server != null) {
+            server.stop();
+        }
+        server = null;
     }
 
     /**
@@ -130,16 +137,17 @@ public class Iec60870Server extends RecBase implements ServerEventListener {
 
     /**
      * 控制开关
+     *
      * @param device
      * @param ste
      */
-    public void devCtl(int device, boolean ste){
+    public void devCtl(int device, boolean ste) {
         AbstractOperator deviceOperator = deviceManager.getOperatorByDeviceId(device);
-        if (deviceOperator!=null){
-            if (ste){
-                deviceOperator.operate(ConstantFromWhere.FROM_USER, device, 101, null );
+        if (deviceOperator != null) {
+            if (ste) {
+                deviceOperator.operate(ConstantFromWhere.FROM_USER, device, 101, null);
             } else {
-                deviceOperator.operate(ConstantFromWhere.FROM_USER, device, 100, null );
+                deviceOperator.operate(ConstantFromWhere.FROM_USER, device, 100, null);
             }
 
         }

@@ -18,7 +18,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -51,6 +50,8 @@ public class FileManager extends RecBase implements ManageableInterface {
     private String projectAddr;
     @Value("${project.company}")
     private String projectCompany;
+    @Value("${iec60870.addr}")
+    public int iec60870Addr;            // 60870 地址
 
     /**
      * 图标类型到config的Hash
@@ -72,7 +73,6 @@ public class FileManager extends RecBase implements ManageableInterface {
     }
 
     @Override
-    @PostConstruct
     public void start() {
         getConfig();
         init();
@@ -91,6 +91,11 @@ public class FileManager extends RecBase implements ManageableInterface {
 
         List<DeviceGis> deviceGisList = dbConfig.getDeviceGisList();
         for (DeviceGis deviceGis : deviceGisList) {
+
+            if (deviceGis.getGtype() == null) {
+                continue;
+            }
+
             if (deviceGis.getGtype() == 1) {
                 deviceGisHashMap.put(deviceGis.getDid(), deviceGis);
             }
@@ -127,8 +132,8 @@ public class FileManager extends RecBase implements ManageableInterface {
         Document document = DocumentHelper.createDocument();
         // 创建根节点items
         Element rootElement = document.addElement("Site");
-        rootElement.addAttribute("Name", projectName);
-        rootElement.addAttribute("addr", projectAddr);
+        rootElement.addAttribute("SName", projectName);
+        rootElement.addAttribute("SAddr", String.valueOf(iec60870Addr));
 
 
         // 创建根节点下的item子节点
@@ -140,6 +145,11 @@ public class FileManager extends RecBase implements ManageableInterface {
          */
         Element device, name, map, type, position, function, msgType, addrType, addr;
         for (DeviceRuntimeBean deviceRuntimeBean : deviceManager.getDeviceRuntimeList().values()) {
+
+            if (deviceRuntimeBean.device.getType() == 301 | deviceRuntimeBean.device.getType() == 401 | deviceRuntimeBean.device.getType() == 9999) {
+                continue;
+            }
+
             device = rootElement.addElement("Device");
 
             name = device.addElement("Name");
@@ -192,7 +202,7 @@ public class FileManager extends RecBase implements ManageableInterface {
                     name.setText("报警信息");
 
                     msgType = function.addElement("MsgType");
-                    msgType.setText("3");
+                    msgType.setText(iconConfigMap.get(deviceRuntimeBean.device.getIcon()).getFun().toString());
 
                     addrType = function.addElement("AddrType");
                     addrType.setText(String.valueOf(C_DeviceType.ADDR_TYPE_STATE));
@@ -278,6 +288,7 @@ public class FileManager extends RecBase implements ManageableInterface {
 
     /**
      * 根据 index 返回文件信息
+     *
      * @param index
      * @return
      */

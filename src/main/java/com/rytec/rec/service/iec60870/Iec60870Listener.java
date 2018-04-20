@@ -77,12 +77,15 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
 
                         switch (fileRequest) {
                             case C_FileRequest.FILE_SELECT_FILE:        // 选择文件
+                                logger.debug("M-选择文件:" + fileIndex);
                                 sendFileReady(fileIndex);
                                 break;
                             case C_FileRequest.FILE_REQUST_FILE:        // 请求文件，并说明Section
+                                logger.debug("M-请求文件:" + fileIndex);
                                 sendSectionReady();                     // 第一个节发送完成后，需要继续发送剩余的节
                                 break;
                             case C_FileRequest.FILE_REQUST_SECTION:     // 请求节,可能请求不同的节 Section
+                                logger.debug("M-请求节:" + fileIndex);
                                 sendSection(fileSection);
                                 break;
                         }
@@ -103,9 +106,11 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
                         closeFile();
                         break;
                     case 2:             // 文件接收失败
+                        logger.debug("M-文件接收失败");
                         closeFile();
                         break;
                     case 3:             // 节成功，判断是否是最后的节，如果不是，发送下一节
+                        logger.debug("M-节完成：" + crtSectionIndex);
                         crtSectionIndex++;
                         if (crtSectionIndex == sectionAmt) {
                             // 最后的 section 已经发送了
@@ -116,6 +121,7 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
                         }
                         break;
                     case 4:             // 节失败，需要重新发送节
+                        logger.debug("M-节失败，重新发送");
                         sendSectionReady();
                         break;
                 }
@@ -134,8 +140,8 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
     @Override
     public void connectionClosed(IOException e) {
         closeFile();
-        logger.debug("Connection (" + connectionId + ") was closed. " + e.getMessage());
-        iec60870Server.crtListener = null;
+        logger.debug("Connection (" + connectionId + ") was closed!!!+. " + e.getMessage());
+        iec60870Server.clientClosed(this);
     }
 
     /**
@@ -216,6 +222,7 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
 
@@ -278,6 +285,8 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
         } catch (IOException e1) {
             e1.printStackTrace();
         }
+
+        logger.debug("S-发送文件就绪，共：" + sectionAmt + "节");
     }
 
     /**
@@ -306,6 +315,8 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+
+        logger.debug("S-文件传输，节：" + crtSectionIndex + "准备就绪");
     }
 
     /**
@@ -316,6 +327,7 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
         byte[] buffer = new byte[SEGMENT_MAX_SIZE];
         int segmentLen;
 
+        logger.debug("S-节发送：" + crtSectionIndex + "...");
         // 循环发送Segment
         for (int i = 0; i < segmentCount; i++) {
 
@@ -345,6 +357,8 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
+            logger.debug("S-段发送：" + i);
         }
 
         // 发最后一段完成的消息
@@ -373,6 +387,8 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        logger.debug("S-最后一段发送完成：" + crtSectionIndex + "节");
     }
 
     /**
@@ -393,7 +409,7 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
                                 new InformationElement[][]{
                                         {
                                                 new IeNameOfFile(fileNameIndex),
-                                                new IeNameOfSection(crtSectionIndex),
+                                                new IeNameOfSection(crtSectionIndex - 1),
                                                 new IeChecksum(1)
                                         }
                                 })
@@ -404,6 +420,8 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        logger.debug("S-最后节完成：" + (crtSectionIndex - 1));
     }
 
     /**
@@ -439,6 +457,8 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
             e.printStackTrace();
         }
         closeFile();
+
+        logger.debug("S-文件传输完成：" + crtSectionIndex);
     }
 
     /**
@@ -539,38 +559,6 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
 
         switch (devRuntime.device.getType()) {
             case 101:           // 开关
-
-                // 发送开关状态--遥信的返回消息
-                if (((StateOutput) devRuntime.runtime.state).output == (Integer) STATE_ON) {
-                    kg = 1;
-                } else {
-                    kg = 0;
-                }
-                aSdu = new ASdu(
-                        TypeId.C_SC_NA_1,
-                        0x81,
-                        CauseOfTransmission.ACTIVATION_CON,
-                        false,
-                        false,
-                        0,
-                        iec60870Server.Iec60870Addr,
-                        new InformationObject[]{
-                                new InformationObject(
-                                        devRuntime.device.getId() + C_DeviceAddr.CONTROL_ADDR,
-                                        new InformationElement[][]{
-                                                {
-                                                        new IeChecksum(kg)
-                                                }
-                                        })
-                        }
-                );
-
-                // 发送数据
-                try {
-                    connection.send(aSdu);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
                 // 发送开关状态
 //                if (((StateOutput) devRuntime.runtime.state).output == (Integer) STATE_ON) {
 //                    state = true;
@@ -709,6 +697,34 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
     public void devControl(int addr, boolean state) {
         int deviceId = addr - C_DeviceAddr.CONTROL_ADDR;
         iec60870Server.devCtl(deviceId, state);
+
+        ASdu aSdu;      // 需要发送的ASDU
+
+        aSdu = new ASdu(
+                TypeId.C_SC_NA_1,
+                0x81,
+                CauseOfTransmission.ACTIVATION_CON,
+                false,
+                false,
+                0,
+                iec60870Server.Iec60870Addr,
+                new InformationObject[]{
+                        new InformationObject(
+                                addr,
+                                new InformationElement[][]{
+                                        {
+                                                new IeChecksum(1)
+                                        }
+                                })
+                }
+        );
+
+        // 发送数据
+        try {
+            connection.send(aSdu);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }
