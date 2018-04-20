@@ -53,6 +53,9 @@ public class Analog extends AbstractOperator {
             ((StateAnalog) deviceRuntimeBean.runtime.state).value = 0;
         } else {
             ((StateAnalog) deviceRuntimeBean.runtime.state).value = (Float) newValue;
+            if ((Float) newValue < 0) {
+                ((StateAnalog) deviceRuntimeBean.runtime.state).value = 0;
+            }
         }
 
 

@@ -242,9 +242,10 @@ public class Connection {
 
                 if (getSequenceNumberDifference(aPdu.getReceiveSeqNumber(),
                         acknowledgedSendSequenceNumber) > getNumUnconfirmedIPdusSent()) {
-                    throw new IOException("Got unexpected receive sequence number: " + aPdu.getReceiveSeqNumber()
-                            + ", expected a number between: " + acknowledgedSendSequenceNumber + " and "
-                            + sendSequenceNumber);
+//                    throw new IOException("Got unexpected receive sequence number: " + aPdu.getReceiveSeqNumber()
+//                            + ", expected a number between: " + acknowledgedSendSequenceNumber + " and "
+//                            + sendSequenceNumber);
+
                 }
 
                 if (maxTimeNoAckReceivedFuture != null) {
