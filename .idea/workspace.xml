@@ -8,11 +8,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d35ddd3d-c0e7-4f94-b111-72db3f8184b4" name="Default" comment="1、4~20mA模拟量输入的时候，如果小于0，就输出0&#10;2、60870 因为殷图的问题，需要改动底层">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__ch_qos_logback_logback_classic_1_1_7.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__ch_qos_logback_logback_core_1_1_7.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_microsoft_sqlserver_mssql_jdbc_6_4_0_jre8.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_slf4j_slf4j_api_1_7_20.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/KhFiber/KhFiberService.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpClient/ModbusClientMsg.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpClient/RecModbusMasterSession.java" afterDir="false" />
@@ -23,15 +18,6 @@
       <change afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/node/modbus/ModbusNodeCfg.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/resources/generatorSqlServer.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/webapp/extjs_app/store/NodeAll.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/Gradle___RYTEC___com_rytec_rec_1_0_SNAPSHOT_war__exploded_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/Gradle___RYTEC___com_rytec_rec_1_0_SNAPSHOT_war__exploded_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__ch_qos_logback_logback_classic_1_2_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__ch_qos_logback_logback_core_1_2_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_toedter_jcalendar_1_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_openmuc_jasn1_1_9_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_openmuc_openiec61850_1_5_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_slf4j_slf4j_api_1_7_25.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/com.rytec.rec_main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/com.rytec.rec_main.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/com.rytec.rec_test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/com.rytec.rec_test.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/document/ryrec-data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/document/ryrec-data.sql" afterDir="false" />
@@ -64,7 +50,6 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/db/model/NodeExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/db/model/NodeExample.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/device/DeviceManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/device/DeviceManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/device/operator/Aircon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/device/operator/Aircon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/device/operator/Analog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/device/operator/Analog.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/device/operator/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/device/operator/Camera.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/device/operator/Output.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/device/operator/Output.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/messenger/MqttService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/messenger/MqttService.java" afterDir="false" />
@@ -82,7 +67,6 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/util/ConstantDeviceFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/util/ConstantDeviceFunction.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/web/admin/ExtNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/web/admin/ExtNode.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/web/device/ExtVideo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/web/device/ExtVideo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/openmuc/j60870/Connection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/openmuc/j60870/Connection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/rytec/rec/db/mapper/ChannelNodeMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/rytec/rec/db/mapper/ChannelNodeMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/rytec/rec/db/mapper/DeviceGisMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/rytec/rec/db/mapper/DeviceGisMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/rytec/rec/db/mapper/DeviceMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/rytec/rec/db/mapper/DeviceMapper.xml" afterDir="false" />
@@ -1217,7 +1201,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="ChangesTree.GroupingKeys" value="module" />
+    <property name="ChangesTree.GroupingKeys" value="module&#10;directory" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SearchEverywhereHistoryKey" value="cp56&#9;FILE&#9;file:///home/danny/projects/ry-rec/src/main/java/org/openmuc/j60870/IeCP56Time2A.java&#10;sof&#9;FILE&#9;jar:///home/danny/.gradle/caches/modules-2/files-2.1/org.openmuc/j60870/1.2.1/25072247d8414c0dc21229ceae9802638cfdb5c0/j60870-1.2.1-sources.jar!/org/openmuc/j60870/IeStatusOfFile.java&#10;control.png&#9;FILE&#9;file:///home/danny/workspace/RyREC/src/main/webapp/res/toolbar/control.png&#10;vola&#9;PSI&#9;JAVA://javax.swing.RepaintManager#volatileBufferType&#10;require&#9;null&#9;null&#10;gridEditBase&#9;null&#9;null&#10;synchronized&#9;FILE&#9;jar:///home/danny/devtool/jdk1.8.0_101/jre/lib/rt.jar!/com/sun/org/apache/xerces/internal/util/SynchronizedSymbolTable.class" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -2150,21 +2134,7 @@
       <workItem from="1523513729854" duration="5153000" />
       <workItem from="1523840809079" duration="6446000" />
       <workItem from="1523886749316" duration="25918000" />
-      <workItem from="1524188440184" duration="1862000" />
-    </task>
-    <task id="LOCAL-00089" summary="视频通道实现online和offline功能">
-      <created>1495108980656</created>
-      <option name="number" value="00089" />
-      <option name="presentableId" value="LOCAL-00089" />
-      <option name="project" value="LOCAL" />
-      <updated>1495108980657</updated>
-    </task>
-    <task id="LOCAL-00090" summary="1、DEVICE增加右键的功能&#10;2、所有feature可以左键单击和右键单击&#10;3、modbus增加地址偏移&#10;4、历史视频发送视频的名称给客户端">
-      <created>1495613854913</created>
-      <option name="number" value="00090" />
-      <option name="presentableId" value="LOCAL-00090" />
-      <option name="project" value="LOCAL" />
-      <updated>1495613854917</updated>
+      <workItem from="1524188440184" duration="2115000" />
     </task>
     <task id="LOCAL-00091" summary="1、DevicesState 改在了ry空间中，便于其他的模块调用&#10;2、GIS的选择控件被删除了&#10;3、GIS在增加Feature单击的相应，而不是单击选择Feature">
       <created>1495782412231</created>
@@ -2495,11 +2465,25 @@
       <option name="project" value="LOCAL" />
       <updated>1524189877600</updated>
     </task>
-    <option name="localTasksCounter" value="138" />
+    <task id="LOCAL-00138" summary="1、4~20mA模拟量输入的时候，如果小于0，就输出0&#10;2、60870 因为殷图的问题，需要改动底层">
+      <created>1524190358907</created>
+      <option name="number" value="00138" />
+      <option name="presentableId" value="LOCAL-00138" />
+      <option name="project" value="LOCAL" />
+      <updated>1524190358907</updated>
+    </task>
+    <task id="LOCAL-00139" summary="ideag工程文档更新">
+      <created>1524190571091</created>
+      <option name="number" value="00139" />
+      <option name="presentableId" value="LOCAL-00139" />
+      <option name="project" value="LOCAL" />
+      <updated>1524190571091</updated>
+    </task>
+    <option name="localTasksCounter" value="140" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2612683000" />
+    <option name="totallyTimeSpent" value="2612936000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2619,7 +2603,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="所有的端口编号从1开始，以前是从0开始" />
     <MESSAGE value="气体图标正常工作模式不告警" />
     <MESSAGE value="修正ext js中device的model与数据库保持同步&#10;增加缺省值" />
     <MESSAGE value="1、升级了依赖库&#10;2、解决了IEC61850Service 第一次启动的时候得不到配置的Device列表的问题" />
@@ -2644,7 +2627,8 @@
     <MESSAGE value="文档更新" />
     <MESSAGE value="文档更新，增加新的设备图标：水位" />
     <MESSAGE value="1、4~20mA模拟量输入的时候，如果小于0，就输出0&#10;2、60870 因为殷图的问题，需要改动底层" />
-    <option name="LAST_COMMIT_MESSAGE" value="1、4~20mA模拟量输入的时候，如果小于0，就输出0&#10;2、60870 因为殷图的问题，需要改动底层" />
+    <MESSAGE value="ideag工程文档更新" />
+    <option name="LAST_COMMIT_MESSAGE" value="ideag工程文档更新" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

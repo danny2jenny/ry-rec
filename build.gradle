@@ -26,7 +26,8 @@ configurations {
 
 mybatisGenerator {
     verbose = true
-    configFile = 'src/main/resources/generatorConfig.xml'
+    //configFile = 'src/main/resources/generatorConfig.xml'
+    configFile = 'src/main/resources/generatorSqlServer.xml'
 }
 
 /**
@@ -48,7 +49,8 @@ buildscript {
 
     dependencies {
         classpath 'org.akhikhl.gretty:gretty:+'
-        classpath "gradle.plugin.com.arenagod.gradle:mybatis-generator-plugin:1.3"
+        classpath "gradle.plugin.com.arenagod.gradle:mybatis-generator-plugin:1.4"
+        classpath "com.microsoft.sqlserver:mssql-jdbc:6.4.0.jre8"
     }
 }
 
@@ -68,6 +70,7 @@ dependencies {
     // Spring
     compile 'org.springframework:spring-webmvc:4.3.11.RELEASE'
     compile 'org.springframework:spring-jdbc:4.3.11.RELEASE'
+
     // Apache apollo 消息 STOMP
     compile 'org.springframework:spring-websocket:4.3.11.RELEASE'
     compile 'org.springframework:spring-messaging:4.3.11.RELEASE'
@@ -76,11 +79,12 @@ dependencies {
     // Netty
     compile "io.netty:netty-all:4.1.6.Final"
 
-    //Mysql
+    // 数据库
     compile "com.alibaba:druid:1.0.9"
     compile "mysql:mysql-connector-java:5.1.40"
     compile group: 'org.mybatis', name: 'mybatis', version: '3.4.1'
     compile group: 'org.mybatis', name: 'mybatis-spring', version: '1.3.0'
+    compile group: 'com.microsoft.sqlserver', name: 'mssql-jdbc', version: '6.4.0.jre8'
 
     // Extjs Direct
     compile group: 'ch.ralscha', name: 'extdirectspring', version: '1.7.2'
@@ -96,16 +100,11 @@ dependencies {
     providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
     compile group: 'javax.servlet', name: 'jstl', version: '1.2'
 
-    //modbus
+    // modbus
     compile group: 'com.infiniteautomation', name: 'modbus4j', version: '3.0.3'
-
-    // 60870
-    // compile group: 'org.openmuc', name: 'j60870', version: '1.2.1'
-    // compile group: 'org.eclipse.neoscada.protocols', name: 'org.eclipse.neoscada.protocol.iec60870.server', version: '0.4.0'
-    // compile group: 'org.eclipse.neoscada.protocols', name: 'org.eclipse.neoscada.protocol.iec60870.server.data', version: '0.4.0'
-
-    // 61850
-    compile group: 'org.openmuc', name: 'openiec61850', version: '1.5.0'
+    //compile group: 'com.digitalpetri.modbus', name: 'modbus-master-tcp', version: '1.1.0'
+    //compile group: 'com.ghgande', name: 'j2mod', version: '2.3.9'
+    //compile group: 'com.github.kochedykov', name: 'jlibmodbus', version: '1.2.9.0'
 
 
     // 工具类
