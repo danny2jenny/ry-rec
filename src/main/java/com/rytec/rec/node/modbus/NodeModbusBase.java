@@ -327,4 +327,17 @@ public abstract class NodeModbusBase extends BaseNode {
         return rst;
     }
 
+    /**
+     *
+     * @return
+     */
+    public Object getCfg(){
+        ModbusNodeCfg cfg = new ModbusNodeCfg();
+        cfg.modbusCmd = modbusCmd;
+        cfg.regCount = regCount;
+        cfg.regOffset = regOffset;
+
+        return cfg;
+    };
+
 }

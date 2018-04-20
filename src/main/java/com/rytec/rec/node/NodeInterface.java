@@ -50,4 +50,10 @@ public interface NodeInterface {
      * @param h
      */
     void goodHelth(Object msg, boolean h);
+
+    /**
+     * 得到节点的配置
+     * @return
+     */
+    Object getCfg();
 }

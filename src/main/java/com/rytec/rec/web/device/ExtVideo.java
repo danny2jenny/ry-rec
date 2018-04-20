@@ -36,7 +36,7 @@ public class ExtVideo {
     @ExtDirectMethod(value = ExtDirectMethodType.STORE_READ)
     public List<DeviceNode> listNvrNode() {
         DeviceNodeExample deviceNodeExample = new DeviceNodeExample();
-        deviceNodeExample.createCriteria().andDtypeEqualTo(401).andNfunEqualTo(ConstantDeviceFunction.DEV_FUN_PORT_MAIN);
+        deviceNodeExample.createCriteria().andDtypeEqualTo(401).andNfunEqualTo(ConstantDeviceFunction.DEV_FUN_PORT_A);
         return deviceNodeMapper.selectByExample(deviceNodeExample);
     }
 

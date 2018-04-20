@@ -11,37 +11,30 @@ import com.rytec.rec.util.*;
 import io.netty.buffer.ByteBuf;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
-
 /**
- *  * 状态地址：0x0801，(READ_HOLDING_REGISTERS=3)
- * 0：停止
- * 1：工作
- * 控制：WRITE_REGISTER = 6
+ * 山东科华的井盖
+ * <p>
+ * 状态地址：3100
+ * 长度:3
+ * 1：版本号
+ * 2：0、正常；1、倾斜
+ * 3:1、开启；2、关闭；3、表示进入保护状态 不可以操作推杆；4、表示推杆运动中；5、表示解除保护状态，可以操作推杆
+ * <p>
+ * 控制地址：3300
+ * 1、开启
+ * 2、关闭
  */
 @Service
-@AnnotationNodeType(5001)
-@AnnotationJSExport("U3-EC 工业空调")
-public class U3_EC extends NodeModbusBase{
+@AnnotationNodeType(1101)
+@AnnotationJSExport("科华-井盖")
+public class KH_MC extends NodeModbusBase {
 
     @Override
     public boolean needUpdate(NodeConfig cfg, Object oldVal, Object newVal) {
-        return oldVal != newVal;
-    }
-
-    @PostConstruct
-    private void init() {
-        /**
-         * 各个实现需要设置该值
-         */
-        modbusCmd = ConstantModbusCommand.READ_HOLDING_REGISTERS;
-        regOffset = 0x0801;
-        regCount = 1;   // 寄存器的数量
+        return ValueCompare.booleanNeedUpdate(cfg, oldVal, newVal);
     }
 
     /**
-     * 需要重载命令生成
-     *
      * @param where  从哪里来的真 1 系统 2 联动 3 用户
      * @param nodeId node 的ID
      * @param cmd    命令  对应 util/ConstantCommandType
@@ -60,35 +53,21 @@ public class U3_EC extends NodeModbusBase{
         switch (cmd) {
             case ConstantCommandType.GENERAL_READ:
                 // 读取状态
-                frame.payload = ModbusFrame.readHoldingRegisters(cn.getAdr(), 0x0801, 1);
-                frame.responseLen = 7;
+                frame.payload = ModbusFrame.readHoldingRegisters(cn.getAdr(), 3000, 3);
+                frame.responseLen = 11;
                 break;
             case ConstantCommandType.GENERAL_WRITE:
-                /**
-                 * 控制，根据Value来写入不同的寄存器
-                 */
-                switch (value) {
-                    case ConstantAircon.STATE_STOP:
-                        // 停止
-                        frame.payload = ModbusFrame.writeRegister(cn.getAdr(), 0x0801, 0);
-                        break;
-                    case ConstantAircon.STATE_COLD:
-                        // 制冷
-                        frame.payload = ModbusFrame.writeRegister(cn.getAdr(), 0x0801, 1);
-                        break;
-                    case ConstantAircon.STATE_HOT:
-                        // 制热
-                        frame.payload = ModbusFrame.writeRegister(cn.getAdr(), 0x0801, 1);
-                        break;
-                }
+                // 控制，根据Value来写入不同的寄存器
+                frame.payload = ModbusFrame.writeRegister(cn.getAdr(), 3300, value);
                 frame.responseLen = 8;
                 break;
         }
+
         return frame;
     }
 
     /**
-     * 消息解码
+     * Decode message
      *
      * @param msg
      */
@@ -96,6 +75,7 @@ public class U3_EC extends NodeModbusBase{
     public void decodeMessage(Object msg) {
         ModbusMessage modbusMessage = (ModbusMessage) msg;
 
+        // Create a exchange NodeMessage for nodeManager
         NodeMessage nodeMsg = new NodeMessage();
         nodeMsg.from = modbusMessage.from;
         nodeMsg.type = modbusMessage.type;
@@ -108,13 +88,22 @@ public class U3_EC extends NodeModbusBase{
         switch (modbusCmd) {
             case ConstantModbusCommand.READ_HOLDING_REGISTERS:      // 3
                 // 读取状态
-                nodeMsg.value = payload.getShort(3);
+                int v = payload.getShort(7);
+
+                if (v == 1) {
+                    nodeMsg.value = true;
+                } else {
+                    nodeMsg.value = false;
+                }
+
                 nodeManager.onMessage(nodeMsg);
                 break;
         }
 
         payload.release();
+
     }
+
 
     /**
      * 发送命令
@@ -129,12 +118,23 @@ public class U3_EC extends NodeModbusBase{
         //找到对应的 Channel
         ChannelNode channelNode = nodeManager.getChannelNodeByNodeId(msg.node).channelNode;
         ChannelInterface channel = channelManager.getChannelInterface(channelNode.getCtype());
+
         ModbusMessage outMsg;
 
-        outMsg = (ModbusMessage) genMessage(msg.from, msg.node, msg.type, (Integer) msg.value);
-        channel.sendMsg(outMsg);
+        if (msg.value instanceof Boolean) {
+            if ((Boolean) msg.value) {
+                // Switch ON
+                outMsg = (ModbusMessage) genMessage(msg.from, msg.node, msg.type, 1);
+            } else {
+                // Switch OFF
+                outMsg = (ModbusMessage) genMessage(msg.from, msg.node, msg.type, 2);
+            }
+
+            channel.sendMsg(outMsg);
+        }
 
         return rst;
     }
+
 
 }

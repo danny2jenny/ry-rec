@@ -62,4 +62,12 @@ public class NodeCamera extends BaseNode implements NodeInterface {
 
     }
 
+    /**
+     *
+     * @return
+     */
+    public Object getCfg(){
+        return null;
+    };
+
 }

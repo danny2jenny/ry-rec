@@ -7,11 +7,12 @@ package com.rytec.rec.util;
 
 @AnnotationJSExport("DEVICE_FUN")
 public interface ConstantDeviceFunction {
-
-    @AnnotationJSExport("缺省端口")
-    int DEV_FUN_PORT_MAIN = 101;
-    @AnnotationJSExport("反馈端口")
-    int DEV_FUN_PORT_FEDBK = 102;
-    @AnnotationJSExport("远程就地切换端口")
-    int DEV_FUN_PORT_RMOT = 103;
+    @AnnotationJSExport("1-缺省")
+    int DEV_FUN_PORT_A = 101;
+    @AnnotationJSExport("2-反馈")
+    int DEV_FUN_PORT_B = 102;
+    @AnnotationJSExport("3-切换")
+    int DEV_FUN_PORT_C = 103;
+    @AnnotationJSExport("4-备用")
+    int DEV_FUN_PORT_D = 104;
 }

@@ -63,6 +63,12 @@ public class RS_SJ extends NodeModbusBase {
                     msg.value = true;
                 }
 
+                // 判断是否需要反向
+
+                if (nodeManager.getChannelNodeByNodeId(node.getNid()).nodeConfig.pA < 0) {
+                    msg.value = !((Boolean) msg.value);
+                }
+
                 msg.node = node.getNid();
                 nodeManager.onMessage(msg);
             }
