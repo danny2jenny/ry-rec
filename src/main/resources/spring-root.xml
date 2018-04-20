@@ -31,8 +31,8 @@
 
     <context:component-scan base-package="com.rytec.rec"/>
 
-    <!--数据库连接池-->
-    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close">
+    <!-- _______________________数据库连接池_________________________-->
+    <bean id="dataSourceMysql" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close">
         <property name="driverClassName" value="${jdbc.driverClassName}"/>
         <property name="url" value="${jdbc.url}"/>
         <property name="username" value="${jdbc.username}"/>
@@ -40,18 +40,38 @@
     </bean>
 
     <!-- sessionFactory -->
-    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="dataSource"/>
+    <bean id="sqlSessionFactoryMysql" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSourceMysql"/>
     </bean>
 
     <!-- scan for mappers and let them be autowired -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.rytec.rec.db.model, com.rytec.rec.db.mapper"/>
-        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactoryMysql"/>
     </bean>
 
-    <!-- ##################################################################################-->
-    <!-- 链接mqtt服务器 -->
+    <!-- ____________________________科华数据库接口_____________________________ -->
+    <bean id="dataSourceKhFiber" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close">
+        <property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+        <property name="url" value="${kh.db.url}"/>
+        <property name="username" value="${kh.db.user}"/>
+        <property name="password" value="${kh.db.pass}"/>
+    </bean>
+
+    <!-- sessionFactory -->
+    <bean id="sqlSessionFactoryKhFiber" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSourceKhFiber"/>
+    </bean>
+
+    <!-- scan for mappers and let them be autowired -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage"
+                  value="com.rytec.rec.channel.KhFiber.db.model, com.rytec.rec.channel.KhFiber.db.mapper"/>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactoryKhFiber"/>
+    </bean>
+
+
+    <!-- _____________________________链接mqtt服务器_________________________ -->
     <bean id="clientFactory"
           class="org.springframework.integration.mqtt.core.DefaultMqttPahoClientFactory">
         <!--<property name="userName" value="用户名"/>-->

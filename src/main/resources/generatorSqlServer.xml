@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+    <!--<classPathEntry location="/home/danny/.gradle/caches/modules-2/files-2.1/com.microsoft.sqlserver/mssql-jdbc/6.4.0.jre8/d35eaaa34e061d362977d88821bf08c0797af612/mssql-jdbc-6.4.0.jre8.jar" />-->
+    <classPathEntry location="lib/mssql-jdbc-6.4.0.jre8.jar" />
+    <context id="kh" targetRuntime="MyBatis3">
+
+        <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"/>
+
+        <!-- 数据源 -->
+        <jdbcConnection driverClass="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+                        connectionURL="jdbc:sqlserver://127.0.0.1:1433;database=SenDTS"
+                        userId="sa"
+                        password="jennyzhan">
+        </jdbcConnection>
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <!-- 对象实体 -->
+        <javaModelGenerator targetPackage="com.rytec.rec.channel.KhFiber.db.model"
+                            targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!-- xml 配置文件 -->
+        <sqlMapGenerator targetPackage="com.rytec.rec.channel.KhFiber.db.mapper"
+                         targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <!-- mapper 接口 -->
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="com.rytec.rec.channel.KhFiber.db.mapper"
+                             targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <!-- 需要自动生成的表 -->
+        <table schema="" tableName="DataAlarm" domainObjectName="KhDataAlarm">
+        </table>
+
+    </context>
+</generatorConfiguration>
