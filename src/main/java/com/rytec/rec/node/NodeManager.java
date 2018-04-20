@@ -89,7 +89,6 @@ public class NodeManager implements ManageableInterface {
     @PostConstruct
     private void init() {
         initNodeInterface();
-        initConfig();
     }
 
 

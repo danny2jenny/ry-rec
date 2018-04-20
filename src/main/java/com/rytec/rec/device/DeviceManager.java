@@ -149,7 +149,6 @@ public class DeviceManager extends RecBase implements ManageableInterface {
     @PostConstruct
     private void init() {
         initOperatorInterface();
-        initConfig();
     }
 
     //得到一个设备的实例对象

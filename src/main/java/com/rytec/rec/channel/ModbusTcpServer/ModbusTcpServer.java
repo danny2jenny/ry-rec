@@ -72,7 +72,6 @@ public class ModbusTcpServer implements ChannelInterface, ManageableInterface {
     public HashMap<String, HashMap> channelNodes = new HashMap();
 
     // 建立服务器
-    @PostConstruct
     private void startServer() {
 
         // 读取数据库的配置
@@ -176,7 +175,7 @@ public class ModbusTcpServer implements ChannelInterface, ManageableInterface {
      * <String, Integer>   ip:port -> 当前的轮训位置
      */
 
-    @Scheduled(fixedDelay = 100)
+    @Scheduled(fixedDelay = 200)
     private void doOnTime() {
         // 遍历已经登录的远端，并执行队列
         for (Channel cha : clients.values()) {

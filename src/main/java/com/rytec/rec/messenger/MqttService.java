@@ -38,7 +38,7 @@ public class MqttService {
 
 
     /**
-     *
+     * 让 videoService 可以找到该服务
      */
     @PostConstruct
     void init() {
@@ -67,16 +67,6 @@ public class MqttService {
         }
 
     }
-
-    /**
-     * 收到61850消息
-     *
-     * @param message
-     */
-    public void on61850Message(String message) {
-        logger.debug(message);
-    }
-
 
     /**
      * 所有发送的消息

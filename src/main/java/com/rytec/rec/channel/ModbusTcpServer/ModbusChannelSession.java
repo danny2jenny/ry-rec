@@ -113,7 +113,7 @@ public class ModbusChannelSession {
         if (timerQueryList.size() == 0) {
             return null;
         }
-        ModbusMessage msg = (ModbusMessage) timerQueryList.get(timerQueryListIndex.get(currentTimerQuerryIndex));
+        ModbusMessage msg = timerQueryList.get(timerQueryListIndex.get(currentTimerQuerryIndex));
         currentTimerQuerryIndex = (currentTimerQuerryIndex + 1) % timerQueryList.size();
         return msg;
     }
@@ -136,20 +136,20 @@ public class ModbusChannelSession {
         logger.debug("超时--Node：" + lastOutMsg.nodeId);
         timer = 0;
         //todo: 超时处理
-        goodHelth(lastOutMsg,false);
+        goodHelth(lastOutMsg, false);
 
         /**
          * 如果是用户命令，或者是联动命令，需要重新执行
          * 重新执行超过三次还不成功就丢弃
          */
         //
-        if ((lastOutMsg.from == ConstantFromWhere.FROM_USER)||(lastOutMsg.from == ConstantFromWhere.FROM_ALI)){
+        if ((lastOutMsg.from == ConstantFromWhere.FROM_USER) || (lastOutMsg.from == ConstantFromWhere.FROM_ALI)) {
             lastOutMsg.retry++;
-            if (lastOutMsg.retry<3){
+            if (lastOutMsg.retry < 3) {
                 sendMsg(lastOutMsg);
-                logger.debug("命令重试：Node:"+lastOutMsg.nodeId);
+                logger.debug("命令重试：Node:" + lastOutMsg.nodeId);
             } else {
-                logger.debug("重试失败！！！！：Node:"+lastOutMsg.nodeId);
+                logger.debug("重试失败！！！！：Node:" + lastOutMsg.nodeId);
                 lastOutMsg = null;
             }
         } else {

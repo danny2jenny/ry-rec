@@ -2,7 +2,10 @@ package com.rytec.rec.app;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationListener;
+import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.core.annotation.Order;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -16,10 +19,13 @@ import java.util.*;
  */
 @Service
 @Order(500)
-public class AppManager {
+public class AppManager extends RecBase implements ApplicationListener<ContextRefreshedEvent> {
 
     @Autowired
     ApplicationContext context;
+
+    // 系统是否准备好了，是否需要初始化
+    private volatile boolean appNeedInit =false;
 
     // 所有的管理接口
     // 按照启动顺序进行排序，升序
@@ -59,6 +65,7 @@ public class AppManager {
      * FileManager              300                             // 60870 文件管理
      */
 
+    @PostConstruct
     public void systemReload() {
         // 停止服务，最后运行的最先停止
         for (int i = 0; i < serviceInterfacesStart.size(); i++) {
@@ -70,5 +77,28 @@ public class AppManager {
             serviceInterfacesStart.get(i).start();
         }
 
+    }
+
+    /**
+     * 根容器初始化完成，设置appNeedInit
+     * @param event
+     */
+    @Override
+    public void onApplicationEvent(ContextRefreshedEvent event) {
+        //
+        if(event.getApplicationContext().getParent() == null){
+            appNeedInit = true;
+        }
+    }
+
+    /**
+     * 定时检查是否需要重新初始化系统
+     */
+    @Scheduled(fixedDelay = 1000)
+    void firstCheck(){
+        if (appNeedInit){
+            appNeedInit = false;
+            systemReload();
+        }
     }
 }

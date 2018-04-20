@@ -27,8 +27,6 @@ import java.util.Map;
 @Order(300)
 public class ChannelManager implements ManageableInterface {
 
-    // private final org.slf4j.Logger logger = LoggerFactory.getLogger(this.getClass());
-
     @Autowired
     NodeManager nodeManager;
 
@@ -79,7 +77,6 @@ public class ChannelManager implements ManageableInterface {
     @PostConstruct
     void init() {
         initChannelInterface();
-        initConfig();
     }
 
     // 得到一个Channel的Interface
@@ -108,8 +105,6 @@ public class ChannelManager implements ManageableInterface {
      * @param cid
      */
     public void channelOffline(int cid) {
-        // todo: 向消息中心发送通知
-
         NodeMessage nodeMessage = new NodeMessage();
         nodeMessage.from = ConstantFromWhere.FROM_SYSTEM;
         nodeMessage.value = null;

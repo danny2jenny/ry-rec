@@ -62,7 +62,7 @@ public class ModbusFrame {
         return generalCmd(ConstantModbusCommand.WRITE_COIL, adr, reg, val);
     }
 
-    // 写寄存器
+    // 写寄存器: 6
     static public ByteBuf writeRegister(int adr, int reg, int val){
         return generalCmd(ConstantModbusCommand.WRITE_REGISTER, adr, reg, val);
     }

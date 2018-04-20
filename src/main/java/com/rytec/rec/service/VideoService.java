@@ -18,7 +18,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -63,7 +62,6 @@ public class VideoService implements ManageableInterface {
     public HashMap<Integer, ChannelNode> nodeMapList = new HashMap();
 
 
-    @PostConstruct
     private void initConfig() {
         List<ChannelNode> chaNodeList = dbConfig.getChannelNodeList();
 

@@ -51,7 +51,6 @@ public class CooperateManager implements ManageableInterface {
      */
     private Map<String, List> mapRules = new HashMap();
 
-    @PostConstruct
     void initConfig() {
         List<RuleAction> ruleActionList = dbConfig.getRuleActionList();
 
