@@ -2,8 +2,8 @@ Ext.define('app.view.admin.frame.Iec61850', {
     extend: 'Ext.panel.Panel',
     alias: 'widget.admin.frame.iec61850',
     layout: 'border',
-    icon: 'res/toolbar/device.png',
-    title: '设备列表',
+    icon: 'res/toolbar/platform.png',
+    title: '平台上传',
     items: [
         {
             xtype: 'admin.panel.iec61850',

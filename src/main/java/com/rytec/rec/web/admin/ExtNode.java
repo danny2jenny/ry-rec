@@ -26,9 +26,18 @@ public class ExtNode {
     // 列表
     @ExtDirectMethod(value = ExtDirectMethodType.STORE_READ)
     public List<Node> list(ExtDirectStoreReadRequest request) {
-        NodeExample nodeExample = new NodeExample();
-        nodeExample.createCriteria().andCidEqualTo((Integer) request.getParams().get("masterId"));
-        return nodeMapper.selectByExample(nodeExample);
+        int channelId = (Integer) request.getParams().getOrDefault("masterId", 0);
+
+        if (channelId == 0) {
+            // 返回所有的行
+            return nodeMapper.selectByExample(null);
+        } else {
+            // 返回制定Channel的行
+            NodeExample nodeExample = new NodeExample();
+            nodeExample.createCriteria().andCidEqualTo((Integer) request.getParams().get("masterId"));
+            return nodeMapper.selectByExample(nodeExample);
+        }
+
     }
 
     // 修改

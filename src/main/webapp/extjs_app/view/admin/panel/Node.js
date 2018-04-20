@@ -81,6 +81,13 @@ Ext.define('app.view.admin.panel.Node', {
                 return "<img src='res/toolbar/false.png'>"
             }
         }
+    }, {
+
+        xtype: 'checkcolumn',
+        text: '是否有效',
+        width: 80,
+        dataIndex: 'enable',
+        stopSelection: false
     }
 
         // ,

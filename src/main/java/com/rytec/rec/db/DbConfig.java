@@ -62,9 +62,11 @@ public class DbConfig implements ManageableInterface {
      */
     private void initChannelNode() {
 
+        byte a = 0;
+
         ChannelNodeExample channelNodeExample = new ChannelNodeExample();
 
-        channelNodeExample.createCriteria().andNidGreaterThan(0);
+        channelNodeExample.createCriteria().andNidGreaterThan(0).andEnableGreaterThan(a);
 
         channelNodeList = channelNodeMapper.selectByExample(channelNodeExample);
 

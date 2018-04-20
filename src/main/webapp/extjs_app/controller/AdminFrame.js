@@ -38,6 +38,7 @@ Ext.define('app.controller.AdminFrame', {
     stores: [
         'Channel',
         'Node',
+        'NodeAll',
         'NodeForDevice',
         'Device',
         'Option',

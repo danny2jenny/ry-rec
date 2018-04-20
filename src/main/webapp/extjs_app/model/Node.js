@@ -15,6 +15,22 @@ Ext.define('app.model.Node', {
         {name: 'opt'},
         {name: 'device'},
         {name: 'devicefun'},
+        {
+            name: 'addr104',
+            defaultValue: 0
+        },
+        {
+            name: 'enable',
+            type: 'boolean',
+            convert: function (v) {
+                if (typeof v === 'boolean') {
+                    return v ? 1 : 0;
+                } else {
+                    return parseInt(v, 10);
+                }
+            },
+            defaultValue: 1
+        }
     ],
 
     validations: [{

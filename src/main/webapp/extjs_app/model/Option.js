@@ -9,7 +9,9 @@ Ext.define('app.model.Option', {
         {name: 'id'},
         {name: 'cat', type: 'int'},
         {name: 'name'},
-        {name: 'value'}
+        {name: 'value'},
+        {name: 'type'},
+        {name: 'fun'}
     ],
 
     validations: [{

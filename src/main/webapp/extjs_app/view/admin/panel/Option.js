@@ -45,12 +45,35 @@ Ext.define('app.view.admin.panel.Option', {
                 allowBlank: false
             }
         },
-
         {
             text: '名称',
             width: 40,
             sortable: false,
             dataIndex: 'name',
+            menuDisabled: true,
+            flex: 1,
+
+            editor: {
+                allowBlank: false
+            }
+        },
+        {
+            text: '设备类型',
+            width: 40,
+            sortable: false,
+            dataIndex: 'type',
+            menuDisabled: true,
+            flex: 1,
+
+            editor: {
+                allowBlank: false
+            }
+        },
+        {
+            text: '设备功能',
+            width: 40,
+            sortable: false,
+            dataIndex: 'fun',
             menuDisabled: true,
             flex: 1,
 

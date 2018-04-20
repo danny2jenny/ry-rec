@@ -23,7 +23,7 @@ Ext.define('app.view.admin.panel.IcdUpload', {
         {
             xtype: 'filefield',
             buttonOnly: false,
-            fieldLabel: '场景文件：',
+            fieldLabel: '模型文件',
             name: 'icdFile',
             buttonText: '选择上传文件...',
         }],
