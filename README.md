@@ -77,6 +77,23 @@ https://bintray.com/package/files/jetbrains/intellij-jdk/openjdk8-linux-x64
 
 
 
+# 运行环境
+
+mysql的定时任务
+
+nano /etc/mysql/my.cnf
+
+```
+[mysqld]
+#
+# * Basic Settings
+#
+event_scheduler = 1
+
+```
+
+
+
 
 
 
