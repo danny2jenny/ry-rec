@@ -1,6 +1,7 @@
 package com.rytec.rec.channel;
 
 import com.rytec.rec.app.ManageableInterface;
+import com.rytec.rec.app.RecBase;
 import com.rytec.rec.db.DbConfig;
 import com.rytec.rec.db.model.ChannelNode;
 import com.rytec.rec.node.NodeManager;
@@ -25,7 +26,7 @@ import java.util.Map;
 
 @Service
 @Order(300)
-public class ChannelManager implements ManageableInterface {
+public class ChannelManager extends RecBase implements ManageableInterface {
 
     @Autowired
     NodeManager nodeManager;

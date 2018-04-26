@@ -3,6 +3,7 @@ package com.rytec.rec.device.operator;
 
 import com.rytec.rec.device.AbstractOperator;
 import com.rytec.rec.device.DeviceRuntimeBean;
+import com.rytec.rec.device.state.StateAircon;
 import com.rytec.rec.node.NodeMessage;
 import com.rytec.rec.util.*;
 import org.springframework.stereotype.Service;

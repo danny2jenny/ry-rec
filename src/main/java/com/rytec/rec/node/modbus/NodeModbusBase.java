@@ -9,6 +9,7 @@ import com.rytec.rec.node.NodeManager;
 import com.rytec.rec.node.NodeMessage;
 import com.rytec.rec.node.NodeRuntimeBean;
 import com.rytec.rec.node.base.BaseNode;
+import com.rytec.rec.node.modbus.cfg.ModbusNodeCfg;
 import com.rytec.rec.util.ConstantCommandType;
 import com.rytec.rec.util.ConstantErrorCode;
 import com.rytec.rec.util.ConstantFromWhere;

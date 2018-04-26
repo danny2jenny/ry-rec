@@ -18,7 +18,7 @@ public class ModbusClientMsg {
     public int modbusMsg = ConstantModbusCommand.READ_COILS;    // modbus 命令
     public int modbusOffset = 0;                                // 地址偏移
     public int modbusCount = 1;                                 // 读取数量
-    public Object val;                                          // 值
+    public Object val;                                          // 发送值
     public ModbusRequest readCmdCache;                          // 读命令缓冲
 
     /**

@@ -1,4 +1,4 @@
-package com.rytec.rec.node.modbus;
+package com.rytec.rec.node.modbus.cfg;
 
 /**
  * Modbus Node 的配置信息

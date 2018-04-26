@@ -132,12 +132,12 @@ public class JSConfig implements
         Map<Integer, AbstractOperator> dos = deviceManager.getAllDeviceOperator();
         HashMap<Integer, String> deviceTypeList = new HashMap<>();
         for (Integer i : dos.keySet()) {
-            // 输出设备类型
+            // 设备类型
             AbstractOperator deviceOperator = dos.get(i);
             deviceTypeList.put(i, deviceOperator.getClass().getAnnotation(AnnotationJSExport.class).value());
 
 
-            // 输出设备的信号和动作
+            // 设备的信号和动作
             HashMap<Integer, String> deviceSig = new HashMap<>();
             HashMap<Integer, String> deviceAction = new HashMap<>();
 

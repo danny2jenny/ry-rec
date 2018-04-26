@@ -32,7 +32,6 @@ import org.springframework.core.annotation.Order;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import java.util.HashMap;
 import java.util.List;
@@ -65,10 +64,10 @@ public class ModbusTcpServer implements ChannelInterface, ManageableInterface {
     public final ConcurrentHashMap<String, Channel> clients = new ConcurrentHashMap<>();
 
     /*
-    * 两级 HashMap
-    * 第一级：ip:port->Map
-    * 第二级：nodeId->ChannelNode
-    */
+     * 两级 HashMap
+     * 第一级：ip:port->Map
+     * 第二级：nodeId->ChannelNode
+     */
     public HashMap<String, HashMap> channelNodes = new HashMap();
 
     // 建立服务器
@@ -129,10 +128,10 @@ public class ModbusTcpServer implements ChannelInterface, ManageableInterface {
 
 
     /*
-    * 初始化对应的HashMap
-    * 两级 HashMap
-    * 第一级：ip:port->Map
-    * 第二级：nodeId->ChannelNode
+     * 初始化对应的HashMap
+     * 两级 HashMap
+     * 第一级：ip:port->Map
+     * 第二级：nodeId->ChannelNode
      */
     private void initConfig() {
 
@@ -230,6 +229,7 @@ public class ModbusTcpServer implements ChannelInterface, ManageableInterface {
     }
 
     public void start() {
+        stopServer();
         startServer();
     }
 

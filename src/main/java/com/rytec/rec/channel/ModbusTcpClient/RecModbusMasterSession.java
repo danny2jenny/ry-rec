@@ -3,7 +3,9 @@ package com.rytec.rec.channel.ModbusTcpClient;
 import com.rytec.rec.app.RecBase;
 import com.rytec.rec.db.model.ChannelNode;
 import com.rytec.rec.node.NodeInterface;
-import com.rytec.rec.node.modbus.ModbusNodeCfg;
+import com.rytec.rec.node.NodeMessage;
+import com.rytec.rec.node.NodeRuntimeBean;
+import com.rytec.rec.node.modbus.cfg.ModbusNodeCfg;
 import com.rytec.rec.util.ConstantCommandType;
 import com.rytec.rec.util.ConstantFromWhere;
 import com.serotonin.modbus4j.ModbusMaster;
@@ -30,7 +32,7 @@ public class RecModbusMasterSession extends RecBase {
 
     public ModbusMaster modbusMaster;
 
-    private RecModbusMaster recModbusMaster;
+    private ChannelModbusMaster channelModbusMaster;
 
     // 实时命令队列
     private Queue<ModbusClientMsg> instantQueueCmd = new ConcurrentLinkedQueue();
@@ -48,8 +50,8 @@ public class RecModbusMasterSession extends RecBase {
      *
      * @param mm modbusClient 管理对象
      */
-    public RecModbusMasterSession(RecModbusMaster mm) {
-        this.recModbusMaster = mm;
+    public RecModbusMasterSession(ChannelModbusMaster mm) {
+        this.channelModbusMaster = mm;
     }
 
     /**
@@ -65,7 +67,7 @@ public class RecModbusMasterSession extends RecBase {
         }
 
         for (ChannelNode cn : cha.values()) {
-            NodeInterface iNode = recModbusMaster.nodeManager.getNodeComInterface(cn.getNtype());
+            NodeInterface iNode = channelModbusMaster.nodeManager.getNodeComInterface(cn.getNtype());
 
             // 类型一致，地址一致组织成为一个读取
             if (iNode != null) {
@@ -104,64 +106,68 @@ public class RecModbusMasterSession extends RecBase {
     }
 
     /**
-     * 定时检查任务
+     * 开始通讯
      * 1、检查连接
      * 2、发送命令
      */
     @Async
-    public void startLoop() {
-        while (recModbusMaster.inLoop) {
-            // 检查是否连接
-            if (modbusMaster == null) {
-                // 连接Slave
-                IpParameters params = new IpParameters();
-                params.setHost(ip);
-                params.setPort(port);
-                params.setEncapsulated(true);
+    public void startCom() {
+        // 检查是否连接
+        if (modbusMaster == null) {
+            // 连接Slave
+            IpParameters params = new IpParameters();
+            params.setHost(ip);
+            params.setPort(port);
+            params.setEncapsulated(true);
 
-                modbusMaster = recModbusMaster.modbusFactory.createTcpMaster(params, true);
+            modbusMaster = channelModbusMaster.modbusFactory.createTcpMaster(params, true);
 
-                try {
-                    // 连接成功
-                    modbusMaster.init();
-                    recModbusMaster.channelOnline(channelId, true);
-                } catch (ModbusInitException e) {
-                    // 连接失败
-                    modbusMaster = null;
-                    recModbusMaster.channelOnline(channelId, false);
-                }
+            try {
+                // 连接成功
+                modbusMaster.init();
+                channelModbusMaster.channelOnline(channelId, true);
+            } catch (ModbusInitException e) {
+                // 连接失败
+                modbusMaster = null;
+                channelModbusMaster.channelOnline(channelId, false);
             }
-            // 连接不成功，退出
-            if (modbusMaster == null) {
-                continue;
-            }
-
-            // 首先执行及时命令
-            ModbusClientMsg outMsg = instantQueueCmd.poll();
-
-            // 再执行定时命令
-            if (outMsg == null) {
-                outMsg = getNextQuery();
-            }
-
-            if (outMsg == null) {
-                continue;
-            }
-
-            sendMsg(outMsg);
         }
+        // 连接不成功，退出
+        if (modbusMaster == null) {
+            return;
+        }
+
+        // 首先执行及时命令
+        ModbusClientMsg outMsg = instantQueueCmd.poll();
+
+        // 再执行定时命令
+        if (outMsg == null) {
+            outMsg = getNextQuery();
+        }
+
+        if (outMsg == null) {
+            return;
+        }
+
+        sendMsg(outMsg);
     }
 
     /**
-     * 发送命令
+     * 发送命令，并立即获得返回，这是同步的方式
      *
      * @param msg
      */
     private void sendMsg(ModbusClientMsg msg) {
         ModbusResponse response;
+
+        short[] rstInt;                         // 返回的数据，整数，未处理
+        float[] rstFloat = new float[4];        // 浮点，已经处理
+
         try {
             response = modbusMaster.send(msg.genReadRequest());
             // todo 读取返回，进行解析
+
+            NodeRuntimeBean nodeRunTime = channelModbusMaster.nodeManager.getChannelNodeByNodeId(msg.node);
 
             if (response instanceof ReadCoilsResponse) {
                 // 1
@@ -169,8 +175,40 @@ public class RecModbusMasterSession extends RecBase {
             } else if (response instanceof ReadDiscreteInputsResponse) {
                 // 2
             } else if (response instanceof ReadHoldingRegistersResponse) {
+                // 3
+                rstInt = ((ReadHoldingRegistersResponse) response).getShortData();
+
+                // 转换成浮点数据
+                rstFloat[0] = nodeRunTime.nodeConfig.pA * rstInt[0];
+                rstFloat[1] = nodeRunTime.nodeConfig.pA * rstInt[1];
+                rstFloat[2] = nodeRunTime.nodeConfig.pA * rstInt[2];
+                rstFloat[3] = nodeRunTime.nodeConfig.pA * rstInt[3];
+
+                // 组建 NodeMessage 发送给 NodeManager 进行处理
+                NodeMessage nodeMessage = new NodeMessage();
+                nodeMessage.from = msg.from;
+                nodeMessage.node = msg.node;
+                nodeMessage.type = msg.type;
+                nodeMessage.value = rstFloat;
+                channelModbusMaster.nodeManager.onMessage(nodeMessage);
 
             } else if (response instanceof ReadInputRegistersResponse) {
+                // 4
+                rstInt = ((ReadInputRegistersResponse) response).getShortData();
+
+                // 转换成浮点数据
+                rstFloat[0] = nodeRunTime.nodeConfig.pA * rstInt[0];
+                rstFloat[1] = nodeRunTime.nodeConfig.pA * rstInt[1];
+                rstFloat[2] = nodeRunTime.nodeConfig.pA * rstInt[2];
+                rstFloat[3] = nodeRunTime.nodeConfig.pA * rstInt[3];
+
+                // 组建 NodeMessage 发送给 NodeManager 进行处理
+                NodeMessage nodeMessage = new NodeMessage();
+                nodeMessage.from = msg.from;
+                nodeMessage.node = msg.node;
+                nodeMessage.type = msg.type;
+                nodeMessage.value = rstFloat;
+                channelModbusMaster.nodeManager.onMessage(nodeMessage);
 
             } else if (response instanceof WriteCoilResponse) {
                 // 5

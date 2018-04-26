@@ -40,6 +40,9 @@ public class FileManager extends RecBase implements ManageableInterface {
     @Autowired
     DbConfig dbConfig;
 
+    @Autowired
+    AddrConvert addrConvert;
+
     //文件上传的路径
     @Value("${iec60870.xml}")
     String xmlFileName;
@@ -74,8 +77,9 @@ public class FileManager extends RecBase implements ManageableInterface {
 
     @Override
     public void start() {
+        stop();
         getConfig();
-        init();
+        genXML();
     }
 
     /**
@@ -126,7 +130,7 @@ public class FileManager extends RecBase implements ManageableInterface {
      * 5：文件类型
      * Addr：地址，应该对应我们的端口
      */
-    private void init() {
+    private void genXML() {
 
         // 创建XML文档树
         Document document = DocumentHelper.createDocument();
@@ -257,6 +261,11 @@ public class FileManager extends RecBase implements ManageableInterface {
                     addr = function.addElement("Addr");
                     addr.setText(String.valueOf(deviceRuntimeBean.device.getId() + C_DeviceAddr.RUN_MODE));
 
+                    break;
+                case 501:                   // 电流传感（环流）
+
+                    break;
+                case 502:                   // 光纤测温告警
                     break;
             }
 

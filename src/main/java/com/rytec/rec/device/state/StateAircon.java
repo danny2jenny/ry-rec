@@ -1,4 +1,4 @@
-package com.rytec.rec.device.operator;
+package com.rytec.rec.device.state;
 
 /**
  * 空调控制状态

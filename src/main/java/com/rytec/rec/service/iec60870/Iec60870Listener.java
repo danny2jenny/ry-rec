@@ -3,8 +3,10 @@ package com.rytec.rec.service.iec60870;
 import com.rytec.rec.app.RecBase;
 
 import com.rytec.rec.device.DeviceRuntimeBean;
-import com.rytec.rec.device.operator.StateAnalog;
-import com.rytec.rec.device.operator.StateOutput;
+import com.rytec.rec.device.state.StateAnalog;
+import com.rytec.rec.device.state.StateCurrent;
+import com.rytec.rec.device.state.StateFiber;
+import com.rytec.rec.device.state.StateOutput;
 import org.openmuc.j60870.*;
 
 import java.io.*;
@@ -533,7 +535,6 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
                                 new InformationElement[][]{
                                         {
                                                 new IeShortFloat(val),
-                                                //new IeTime56(System.currentTimeMillis())
                                                 new IeChecksum(0)
                                         }
                                 }
@@ -544,6 +545,88 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
 
         return asduBack;
     }
+
+    /**
+     * 生成电流 ASDU
+     *
+     * @param addr
+     * @param val
+     * @param active
+     * @return
+     */
+    private ASdu genCurrent(int addr, StateCurrent val, boolean active) {
+        CauseOfTransmission cause;
+
+        if (active) {
+            cause = CauseOfTransmission.SPONTANEOUS;
+        } else {
+            cause = CauseOfTransmission.INTERROGATED_BY_STATION;
+        }
+
+        ASdu asduBack = new ASdu(
+                TypeId.M_ME_NC_1,           //M_ME_TF_1,
+                1,
+                cause,
+                false,
+                false,
+                0,
+                iec60870Server.Iec60870Addr,
+                new InformationObject[]{
+                        new InformationObject(
+                                addr,
+                                new InformationElement[][]{
+                                        {
+                                                new IeShortFloat(val.A),
+                                                new IeChecksum(0)
+                                        }
+                                }
+                        ),
+                        new InformationObject(
+                                addr + 1,
+                                new InformationElement[][]{
+                                        {
+                                                new IeShortFloat(val.B),
+                                                new IeChecksum(0)
+                                        }
+                                }
+                        ),
+                        new InformationObject(
+                                addr + 2,
+                                new InformationElement[][]{
+                                        {
+                                                new IeShortFloat(val.C),
+                                                new IeChecksum(0)
+                                        }
+                                }
+                        ),
+                        new InformationObject(
+                                addr + 3,
+                                new InformationElement[][]{
+                                        {
+                                                new IeShortFloat(val.O),
+                                                new IeChecksum(0)
+                                        }
+                                }
+                        )
+                }
+        );
+
+
+        return asduBack;
+    }
+
+    /**
+     * 生成光纤测温告警 ASDU
+     *
+     * @param addr
+     * @param val
+     * @param active
+     * @return
+     */
+    private ASdu genFiber(int addr, StateFiber val, boolean active) {
+        return null;
+    }
+
 
     /**
      * @param devRuntime 设备运行状态对象
@@ -588,7 +671,7 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
                 try {
                     connection.send(aSdu);
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    // e.printStackTrace();
                 }
 
 
@@ -605,7 +688,7 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
                 try {
                     connection.send(aSdu);
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    // e.printStackTrace();
                 }
 
                 break;
@@ -623,7 +706,7 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
                 try {
                     connection.send(aSdu);
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    // e.printStackTrace();
                 }
                 break;
             case 201:           // 遥测
@@ -634,10 +717,31 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
                 try {
                     connection.send(aSdu);
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    // e.printStackTrace();
                 }
                 break;
             case 301:           // 空调
+                break;
+            case 501:           // 电流
+                StateCurrent stateCurrent = (StateCurrent) devRuntime.runtime.state;
+                addr = iec60870Server.addrConvert.getBase104Addr(devRuntime.device.getId());
+                aSdu = genCurrent(addr, stateCurrent, active);
+                try {
+                    connection.send(aSdu);
+                } catch (IOException e) {
+                    // e.printStackTrace();
+                }
+                break;
+            case 502:           // 光纤告警
+
+//                StateFiber stateFiber = (StateFiber) devRuntime.runtime.state;
+//                addr = addrConvert.getBase104Addr(devRuntime.device.getId());
+//                aSdu = genFiber(addr, stateFiber, active);
+//                try {
+//                    connection.send(aSdu);
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
                 break;
         }
     }
@@ -680,8 +784,6 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
     }
 
     /**
-     * TODO 更新设备状态
-     *
      * @param deviceRuntimeBean
      */
     public void updateDevice(DeviceRuntimeBean deviceRuntimeBean) {

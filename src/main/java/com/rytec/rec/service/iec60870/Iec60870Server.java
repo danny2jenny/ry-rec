@@ -38,6 +38,9 @@ public class Iec60870Server extends RecBase implements ServerEventListener, Mana
     public int Iec60870Addr;            // 60870 地址
 
     @Autowired
+    AddrConvert addrConvert;
+
+    @Autowired
     public FileManager fileManager;
 
     @Autowired
@@ -99,6 +102,7 @@ public class Iec60870Server extends RecBase implements ServerEventListener, Mana
         logger.debug("连接失败: " + e.getMessage());
     }
 
+    @Override
     public void start() {
         builder = new Server.Builder();
         builder.setPort(port);
@@ -115,6 +119,7 @@ public class Iec60870Server extends RecBase implements ServerEventListener, Mana
     }
 
     @PreDestroy
+    @Override
     public void stop() {
         if (server != null) {
             server.stop();

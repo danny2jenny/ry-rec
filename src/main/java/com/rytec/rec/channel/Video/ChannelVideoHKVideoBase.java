@@ -1,6 +1,6 @@
-package com.rytec.rec.channel.Video_HK;
+package com.rytec.rec.channel.Video;
 
-import com.rytec.rec.channel.BaseChannel.VideoBaseChannel;
+import com.rytec.rec.channel.Video.BaseChannel.ChannelVideoBase;
 import com.rytec.rec.util.AnnotationChannelType;
 import com.rytec.rec.util.AnnotationJSExport;
 import org.springframework.stereotype.Service;
@@ -11,6 +11,6 @@ import org.springframework.stereotype.Service;
 @Service
 @AnnotationChannelType(2001)
 @AnnotationJSExport("海康 DVR")
-public class VideoHK extends VideoBaseChannel {
+public class ChannelVideoHKVideoBase extends ChannelVideoBase {
 
 }

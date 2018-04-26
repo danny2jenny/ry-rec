@@ -31,7 +31,7 @@ import java.util.List;
 @Order(400)
 @AnnotationChannelType(1002)
 @AnnotationJSExport("Modbus 客户端")
-public class RecModbusMaster extends RecBase implements ChannelInterface, ManageableInterface {
+public class ChannelModbusMaster extends RecBase implements ChannelInterface, ManageableInterface {
 
     static ModbusFactory modbusFactory;
 
@@ -44,11 +44,14 @@ public class RecModbusMaster extends RecBase implements ChannelInterface, Manage
     @Autowired
     public NodeManager nodeManager;
 
+    @Autowired
+    AsyncRunner asyncRunner;
+
     public volatile boolean inLoop = false;      // 是否进行循环
 
     // 客户端对象
     // <ChannelId: Session>
-    HashMap<Integer, RecModbusMasterSession> modbusClients = new HashMap();
+    public HashMap<Integer, RecModbusMasterSession> modbusClients = new HashMap();
 
     /*
      * 两级 HashMap，保存Channel下面的Node
@@ -63,7 +66,7 @@ public class RecModbusMaster extends RecBase implements ChannelInterface, Manage
         //
         List<ChannelNode> chaNodeList = dbConfig.getChannelNodeList();
 
-        //第一级的Map ip:id-> map
+        //第一级的Map ChannelId-> map
         for (ChannelNode cn : chaNodeList) {
             if (cn.getCtype() != 1002) {        //只管理该类型的Channel
                 continue;
@@ -101,6 +104,7 @@ public class RecModbusMaster extends RecBase implements ChannelInterface, Manage
     }
 
     @Override
+    @PreDestroy
     public void stop() {
         stopLoop();
         for (RecModbusMasterSession session : modbusClients.values()) {
@@ -109,6 +113,9 @@ public class RecModbusMaster extends RecBase implements ChannelInterface, Manage
                 session.modbusMaster = null;
             }
         }
+
+        modbusClients.clear();
+        channelNodes.clear();
     }
 
     /**
@@ -118,20 +125,12 @@ public class RecModbusMaster extends RecBase implements ChannelInterface, Manage
     @Override
     public void start() {
         stop();
-        getConfig();            // 得到配置
+        getConfig();                                    // 得到配置
         if (modbusFactory == null) {
             modbusFactory = new ModbusFactory();
         }
 
         startLoop();
-    }
-
-    /**
-     * 销毁连接
-     */
-    @PreDestroy
-    void stopServer() {
-        stop();
     }
 
     @Override
@@ -160,11 +159,10 @@ public class RecModbusMaster extends RecBase implements ChannelInterface, Manage
     /**
      * 定时任务，检测连接和发送命令
      */
-    private void startLoop() {
+    public void startLoop() {
         inLoop = true;
-        for (RecModbusMasterSession session : modbusClients.values()) {
-            session.startLoop();
-        }
+        asyncRunner.runLoop();
+        logger.debug("--------------结束循环------------------");
     }
 
     /**

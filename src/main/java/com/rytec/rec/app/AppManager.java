@@ -25,7 +25,7 @@ public class AppManager extends RecBase implements ApplicationListener<ContextRe
     ApplicationContext context;
 
     // 系统是否准备好了，是否需要初始化
-    private volatile boolean appNeedInit =false;
+    private volatile boolean appNeedInit = false;
 
     // 所有的管理接口
     // 按照启动顺序进行排序，升序
@@ -65,15 +65,18 @@ public class AppManager extends RecBase implements ApplicationListener<ContextRe
      * FileManager              300                             // 60870 文件管理
      */
 
-    @PostConstruct
     public void systemReload() {
         // 停止服务，最后运行的最先停止
+        logger.debug("----------------停止-----------------");
         for (int i = 0; i < serviceInterfacesStart.size(); i++) {
-            serviceInterfacesStart.get(serviceInterfacesStart.size()-1 - i).stop();
+            logger.debug("----------停止：" + serviceInterfacesStart.get(serviceInterfacesStart.size() - 1 - i).getClass());
+            serviceInterfacesStart.get(serviceInterfacesStart.size() - 1 - i).stop();
         }
 
+        logger.debug("----------------启动-----------------");
         // 开始服务
         for (int i = 0; i < serviceInterfacesStart.size(); i++) {
+            logger.debug("++++++++++启动：" + serviceInterfacesStart.get(i).getClass());
             serviceInterfacesStart.get(i).start();
         }
 
@@ -81,12 +84,13 @@ public class AppManager extends RecBase implements ApplicationListener<ContextRe
 
     /**
      * 根容器初始化完成，设置appNeedInit
+     *
      * @param event
      */
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
         //
-        if(event.getApplicationContext().getParent() == null){
+        if (event.getApplicationContext().getParent() == null) {
             appNeedInit = true;
         }
     }
@@ -95,8 +99,8 @@ public class AppManager extends RecBase implements ApplicationListener<ContextRe
      * 定时检查是否需要重新初始化系统
      */
     @Scheduled(fixedDelay = 1000)
-    void firstCheck(){
-        if (appNeedInit){
+    void firstCheck() {
+        if (appNeedInit) {
             appNeedInit = false;
             systemReload();
         }

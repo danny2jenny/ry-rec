@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rytec.rec.device.AbstractOperator;
 import com.rytec.rec.device.DeviceRuntimeBean;
 import com.rytec.rec.device.config.AnalogConfig;
+import com.rytec.rec.device.state.StateAnalog;
 import com.rytec.rec.util.ConstantMessageType;
 import com.rytec.rec.util.ConstantDeviceState;
 import com.rytec.rec.util.AnnotationDeviceType;

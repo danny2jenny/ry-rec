@@ -17,11 +17,9 @@
 		   http://www.springframework.org/schema/integration/mqtt/spring-integration-mqtt.xsd
 ">
 
-    <context:annotation-config/>
-
-    <task:executor id="executor" pool-size="5"/>
-    <task:scheduler id="taskScheduler" pool-size="10"/>
     <task:annotation-driven executor="executor" scheduler="taskScheduler"/>
+    <task:executor id="executor" pool-size="10"/>
+    <task:scheduler id="taskScheduler" pool-size="10"/>
 
     <!--配置文件-->
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
@@ -49,27 +47,6 @@
         <property name="basePackage" value="com.rytec.rec.db.model, com.rytec.rec.db.mapper"/>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactoryMysql"/>
     </bean>
-
-    <!-- ____________________________科华数据库接口_____________________________ -->
-    <bean id="dataSourceKhFiber" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close">
-        <property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
-        <property name="url" value="${kh.db.url}"/>
-        <property name="username" value="${kh.db.user}"/>
-        <property name="password" value="${kh.db.pass}"/>
-    </bean>
-
-    <!-- sessionFactory -->
-    <bean id="sqlSessionFactoryKhFiber" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="dataSourceKhFiber"/>
-    </bean>
-
-    <!-- scan for mappers and let them be autowired -->
-    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage"
-                  value="com.rytec.rec.channel.KhFiber.db.model, com.rytec.rec.channel.KhFiber.db.mapper"/>
-        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactoryKhFiber"/>
-    </bean>
-
 
     <!-- _____________________________链接mqtt服务器_________________________ -->
     <bean id="clientFactory"

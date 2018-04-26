@@ -1,4 +1,4 @@
-package com.rytec.rec.device.operator;
+package com.rytec.rec.device.state;
 
 /**
  * Created by danny on 17-6-6.

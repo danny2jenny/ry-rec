@@ -1,4 +1,4 @@
-package com.rytec.rec.channel.BaseChannel;
+package com.rytec.rec.channel.Video.BaseChannel;
 
 import com.rytec.rec.channel.ChannelInterface;
 import com.rytec.rec.service.VideoService;
@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 /**
  * Created by danny on 17-4-1.
  */
-public class VideoBaseChannel implements ChannelInterface {
+public class ChannelVideoBase implements ChannelInterface {
     @Autowired
     VideoService videoService;
 
