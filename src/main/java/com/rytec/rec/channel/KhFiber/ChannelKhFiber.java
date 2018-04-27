@@ -184,8 +184,7 @@ public class ChannelKhFiber extends RecBase implements ChannelInterface, Managea
                 stmt.close();
                 cn.close();
             } catch (SQLException e) {
-                // 错误处理
-                e.printStackTrace();
+
             }
         }
 

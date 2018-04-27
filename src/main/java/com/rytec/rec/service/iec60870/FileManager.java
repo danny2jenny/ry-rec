@@ -263,9 +263,106 @@ public class FileManager extends RecBase implements ManageableInterface {
 
                     break;
                 case 501:                   // 电流传感（环流）
+                    // A 相
+                    function = device.addElement("Function");
 
+                    name = function.addElement("Name");
+                    name.setText("A相电流");
+
+                    msgType = function.addElement("MsgType");
+                    msgType.setText("102");
+
+                    addrType = function.addElement("AddrType");
+                    addrType.setText(String.valueOf(C_DeviceType.ADDR_TYPE_MEASURE));
+
+                    addr = function.addElement("Addr");
+                    addr.setText(String.valueOf(addrConvert.getBase104Addr(deviceRuntimeBean.device.getId())));
+                    // B 相
+                    function = device.addElement("Function");
+
+                    name = function.addElement("Name");
+                    name.setText("B相电流");
+
+                    msgType = function.addElement("MsgType");
+                    msgType.setText("103");
+
+                    addrType = function.addElement("AddrType");
+                    addrType.setText(String.valueOf(C_DeviceType.ADDR_TYPE_MEASURE));
+
+                    addr = function.addElement("Addr");
+                    addr.setText(String.valueOf(addrConvert.getBase104Addr(deviceRuntimeBean.device.getId()) + 1));
+                    // C 相
+                    function = device.addElement("Function");
+
+                    name = function.addElement("Name");
+                    name.setText("C相电流");
+
+                    msgType = function.addElement("MsgType");
+                    msgType.setText("104");
+
+                    addrType = function.addElement("AddrType");
+                    addrType.setText(String.valueOf(C_DeviceType.ADDR_TYPE_MEASURE));
+
+                    addr = function.addElement("Addr");
+                    addr.setText(String.valueOf(addrConvert.getBase104Addr(deviceRuntimeBean.device.getId()) + 2));
+                    // 0 相
+                    function = device.addElement("Function");
+
+                    name = function.addElement("Name");
+                    name.setText("O序电流");
+
+                    msgType = function.addElement("MsgType");
+                    msgType.setText("101");
+
+                    addrType = function.addElement("AddrType");
+                    addrType.setText(String.valueOf(C_DeviceType.ADDR_TYPE_MEASURE));
+
+                    addr = function.addElement("Addr");
+                    addr.setText(String.valueOf(addrConvert.getBase104Addr(deviceRuntimeBean.device.getId()) + 3));
                     break;
                 case 502:                   // 光纤测温告警
+                    // 告警类型
+                    function = device.addElement("Function");
+
+                    name = function.addElement("Name");
+                    name.setText("告警类型");
+
+                    msgType = function.addElement("MsgType");
+                    msgType.setText("104");
+
+                    addrType = function.addElement("AddrType");
+                    addrType.setText(String.valueOf(C_DeviceType.ADDR_TYPE_MEASURE));
+
+                    addr = function.addElement("Addr");
+                    addr.setText(String.valueOf(addrConvert.getBase104Addr(deviceRuntimeBean.device.getId())));
+                    // 告警位置
+                    function = device.addElement("Function");
+
+                    name = function.addElement("Name");
+                    name.setText("告警位置");
+
+                    msgType = function.addElement("MsgType");
+                    msgType.setText("105");
+
+                    addrType = function.addElement("AddrType");
+                    addrType.setText(String.valueOf(C_DeviceType.ADDR_TYPE_MEASURE));
+
+                    addr = function.addElement("Addr");
+                    addr.setText(String.valueOf(addrConvert.getBase104Addr(deviceRuntimeBean.device.getId()) + 1));
+                    // 告警值
+                    function = device.addElement("Function");
+
+                    name = function.addElement("Name");
+                    name.setText("告警值");
+
+                    msgType = function.addElement("MsgType");
+                    msgType.setText("106");
+
+                    addrType = function.addElement("AddrType");
+                    addrType.setText(String.valueOf(C_DeviceType.ADDR_TYPE_MEASURE));
+
+                    addr = function.addElement("Addr");
+                    addr.setText(String.valueOf(addrConvert.getBase104Addr(deviceRuntimeBean.device.getId()) + 2));
                     break;
             }
 

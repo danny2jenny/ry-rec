@@ -624,7 +624,54 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
      * @return
      */
     private ASdu genFiber(int addr, StateFiber val, boolean active) {
-        return null;
+        CauseOfTransmission cause;
+
+        if (active) {
+            cause = CauseOfTransmission.SPONTANEOUS;
+        } else {
+            cause = CauseOfTransmission.INTERROGATED_BY_STATION;
+        }
+
+        ASdu asduBack = new ASdu(
+                TypeId.M_ME_NC_1,           //M_ME_TF_1,
+                1,
+                cause,
+                false,
+                false,
+                0,
+                iec60870Server.Iec60870Addr,
+                new InformationObject[]{
+                        new InformationObject(
+                                addr,
+                                new InformationElement[][]{
+                                        {
+                                                new IeShortFloat(val.type),
+                                                new IeChecksum(0)
+                                        }
+                                }
+                        ),
+                        new InformationObject(
+                                addr + 1,
+                                new InformationElement[][]{
+                                        {
+                                                new IeShortFloat(val.position),
+                                                new IeChecksum(0)
+                                        }
+                                }
+                        ),
+                        new InformationObject(
+                                addr + 2,
+                                new InformationElement[][]{
+                                        {
+                                                new IeShortFloat(val.val),
+                                                new IeChecksum(0)
+                                        }
+                                }
+                        )
+                }
+        );
+
+        return asduBack;
     }
 
 
@@ -734,14 +781,13 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
                 break;
             case 502:           // 光纤告警
 
-//                StateFiber stateFiber = (StateFiber) devRuntime.runtime.state;
-//                addr = addrConvert.getBase104Addr(devRuntime.device.getId());
-//                aSdu = genFiber(addr, stateFiber, active);
-//                try {
-//                    connection.send(aSdu);
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
+                StateFiber stateFiber = (StateFiber) devRuntime.runtime.state;
+                addr = iec60870Server.addrConvert.getBase104Addr(devRuntime.device.getId());
+                aSdu = genFiber(addr, stateFiber, active);
+                try {
+                    connection.send(aSdu);
+                } catch (IOException e) {
+                }
                 break;
         }
     }
