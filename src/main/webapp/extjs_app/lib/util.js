@@ -152,7 +152,7 @@ ry.stom.onMsg = function (msg) {
                 ry.panorama.updateDeviceState(msg);
             }
             break;
-        case ry.CONST.MSG_TYPE.NODE_STATE:           // Node 消息
+        case ry.CONST.MSG_TYPE.NODE_STATE:              // Node 消息
 
             break;
         case ry.CONST.MSG_TYPE.CHANNEL_STATE:           // Channel 消息
@@ -161,6 +161,9 @@ ry.stom.onMsg = function (msg) {
         case ry.CONST.MSG_TYPE.DEVICE_ALARM:            // 告警消息
             var ap = Ext.getCmp('user.alarm.panel');
             ap.alarm(msgObject);
+            break;
+        case ry.CONST.MSG_TYPE.WEB_NOTIFY_MSG:          // 普通的通知消息
+            console.log(msgObject.msg);
             break;
     }
 };
@@ -189,7 +192,7 @@ ry.stom.keepConnectRunner = function () {
 ry.stom.connect = function () {
     // 不知道为什么，以下两句必须一同执行，否者不能连接
     ry.stom.client = Stomp.client(ry.stom.stomp_url);
-    ry.stom.client.debug = function(str) {
+    ry.stom.client.debug = function (str) {
 
     };
     ry.stom.client.connect(null, null, ry.stom.connect_callback, ry.stom.error_callback);

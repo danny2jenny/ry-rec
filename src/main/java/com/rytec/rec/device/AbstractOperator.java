@@ -7,11 +7,9 @@ import com.rytec.rec.messenger.AlarmHub;
 import com.rytec.rec.messenger.Message.WebMessage;
 import com.rytec.rec.util.ConstantDeviceState;
 import com.rytec.rec.util.ConstantMessageType;
-import com.rytec.rec.messenger.WebPush;
 import com.rytec.rec.node.NodeManager;
 import com.rytec.rec.node.NodeMessage;
 import com.rytec.rec.util.ConstantErrorCode;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.HashMap;
@@ -30,9 +28,6 @@ public class AbstractOperator extends RecBase {
 
     @Autowired
     NodeManager nodeManager;
-
-    @Autowired
-    WebPush webPush;
 
     @Autowired
     AlarmHub alarmHub;

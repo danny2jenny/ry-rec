@@ -190,6 +190,8 @@ public class UploadService extends RecBase {
 
     /**
      * 61850 icd 文件上传，并生成配置
+     * 1、保存61850模型文件
+     * 2、生成配置文件
      *
      * @param icdFile
      * @return
@@ -202,18 +204,24 @@ public class UploadService extends RecBase {
             return new ExtDirectFormPostResult(false);
         }
 
+        //保存文件
+        File convFile = new File(filePath);
+        try {
+            convFile.createNewFile();
+            FileOutputStream fos = new FileOutputStream(convFile);
+            fos.write(icdFile.getBytes());
+            fos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
         try {
             PrintStream outputStream = new PrintStream(new FileOutputStream(new File(iec61850Service.iecCfgFile)));
             new DynamicModelGenerator(icdFile.getInputStream(), null, outputStream, null, null);
             return new ExtDirectFormPostResult(true);
-        } catch (SclParserException e) {
-            e.printStackTrace();
-            return new ExtDirectFormPostResult(false);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            return new ExtDirectFormPostResult(false);
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            // 错误处理
             return new ExtDirectFormPostResult(false);
         }
 

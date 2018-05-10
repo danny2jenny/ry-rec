@@ -1,5 +1,6 @@
 package com.rytec.rec.messenger;
 
+import com.rytec.rec.app.RecBase;
 import com.rytec.rec.db.mapper.AlarmMapper;
 import com.rytec.rec.db.mapper.AlarmVideoMapper;
 import com.rytec.rec.db.model.Alarm;
@@ -16,7 +17,7 @@ import java.util.Date;
  * Created by 12793 on 2017/4/14.
  */
 @Service
-public class AlarmHub {
+public class AlarmHub extends RecBase {
 
     /**
      * 处理告警
@@ -26,9 +27,6 @@ public class AlarmHub {
 
     @Autowired
     AlarmMapper alarmMapper;
-
-    @Autowired
-    WebPush webPush;
 
     @Autowired
     AlarmVideoMapper alarmVideoMapper;

@@ -9,6 +9,7 @@ Ext.define('app.view.admin.panel.IcdUpload', {
     bodyPadding: '5 5 0',
     fileUpload: true,
     icon: "res/toolbar/upload.png",
+    html:'<a href="/upload/61850.icd">模型文件下载</a>',
     items: [
         {
             xtype: 'textfield',

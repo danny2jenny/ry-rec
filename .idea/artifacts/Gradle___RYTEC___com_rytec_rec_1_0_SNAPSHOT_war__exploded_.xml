@@ -17,8 +17,14 @@
           <element id="dir-copy" path="$PROJECT_DIR$/out/production/resources" />
         </element>
         <element id="directory" name="lib">
-          <element id="library" level="project" name="Gradle: ch.qos.logback:logback-classic:1.1.7" />
           <element id="library" level="project" name="Gradle: ch.ralscha:extdirectspring:1.7.2" />
+          <element id="library" level="project" name="Gradle: org.springframework:spring-webmvc:4.3.11.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework:spring-jdbc:4.3.11.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework:spring-websocket:4.3.11.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework:spring-jms:4.3.11.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework.integration:spring-integration-mqtt:4.3.11.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework.integration:spring-integration-core:4.3.11.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework:spring-messaging:4.3.11.RELEASE" />
           <element id="library" level="project" name="Gradle: io.netty:netty-all:4.1.6.Final" />
           <element id="library" level="project" name="Gradle: com.alibaba:druid:1.0.9" />
           <element id="library" level="project" name="Gradle: mysql:mysql-connector-java:5.1.40" />
@@ -30,8 +36,13 @@
           <element id="library" level="project" name="Gradle: javax.servlet:jstl:1.2" />
           <element id="library" level="project" name="Gradle: com.infiniteautomation:modbus4j:3.0.3" />
           <element id="library" level="project" name="Gradle: org.dom4j:dom4j:2.1.0" />
-          <element id="library" level="project" name="Gradle: ch.qos.logback:logback-core:1.1.7" />
-          <element id="library" level="project" name="Gradle: org.slf4j:slf4j-api:1.7.20" />
+          <element id="library" level="project" name="Gradle: org.springframework:spring-web:4.3.11.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework:spring-context:4.3.11.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework:spring-aop:4.3.11.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework:spring-tx:4.3.11.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework:spring-beans:4.3.11.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework:spring-expression:4.3.11.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework:spring-core:4.3.11.RELEASE" />
           <element id="library" level="project" name="Gradle: com.fasterxml.jackson.core:jackson-databind:2.9.1" />
           <element id="library" level="project" name="Gradle: com.google.code.findbugs:jsr305:3.0.2" />
           <element id="library" level="project" name="Gradle: com.fasterxml.jackson.core:jackson-core:2.9.1" />
@@ -40,20 +51,12 @@
           <element id="library" level="project" name="Gradle: jaxen:jaxen:1.1.6" />
           <element id="library" level="project" name="Gradle: org.springframework.retry:spring-retry:1.1.3.RELEASE" />
           <element id="library" level="project" name="Gradle: com.fasterxml.jackson.core:jackson-annotations:2.9.0" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-webmvc/4.3.11.RELEASE/814f91ec4dc324e724bbe7cbc5045b234604c539/spring-webmvc-4.3.11.RELEASE.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-jdbc/4.3.11.RELEASE/642ed7497d327f299caccb930af6b65e229864c4/spring-jdbc-4.3.11.RELEASE.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-websocket/4.3.11.RELEASE/8ded98732aa6606535fc9d18e5c8dc3e3f2c059b/spring-websocket-4.3.11.RELEASE.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-jms/4.3.11.RELEASE/82acd056c5ce8b6b836a664a659b1e67d164e231/spring-jms-4.3.11.RELEASE.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.integration/spring-integration-mqtt/4.3.11.RELEASE/b132a0953ea6e2714197fa82adf9fc0c5bbc5256/spring-integration-mqtt-4.3.11.RELEASE.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.integration/spring-integration-core/4.3.11.RELEASE/6fd7ce45365ae66952b6d46beeaad6a870154dbb/spring-integration-core-4.3.11.RELEASE.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-messaging/4.3.11.RELEASE/1e99d0fcc51044594c1ffb484b997dcd864241f6/spring-messaging-4.3.11.RELEASE.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-web/4.3.11.RELEASE/50a3dfce550bdf9459dfb2c6282aa104b040258e/spring-web-4.3.11.RELEASE.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-context/4.3.11.RELEASE/3efec2d7c7469d49108a2b21c3f15831f7297569/spring-context-4.3.11.RELEASE.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-aop/4.3.11.RELEASE/461d0bb58f1de30203d9331adf4b51de9554de5a/spring-aop-4.3.11.RELEASE.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-tx/4.3.11.RELEASE/c931ee363d2269f03edfeb83d7d7fe23924ab8a1/spring-tx-4.3.11.RELEASE.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-beans/4.3.11.RELEASE/591cc35fd39292adae13f01aa13e978d0bb11936/spring-beans-4.3.11.RELEASE.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-expression/4.3.11.RELEASE/fca662a2fccdad90ec22b2aaecb021047dcbe249/spring-expression-4.3.11.RELEASE.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-core/4.3.11.RELEASE/eb30ed093f628279d3aead068fd478fa343f1dad/spring-core-4.3.11.RELEASE.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.openmuc/openiec61850/1.5.0/462c2000ed64abaa46029125550d63dfc0523ddc/openiec61850-1.5.0.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/ch.qos.logback/logback-classic/1.2.3/7c4f3c474fb2c041d8028740440937705ebb473a/logback-classic-1.2.3.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/ch.qos.logback/logback-core/1.2.3/864344400c3d4d92dfeb0a305dc87d953677c03c/logback-core-1.2.3.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/1.7.25/da76ca59f6a57ee3102f8f9bd9cee742973efa8a/slf4j-api-1.7.25.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.openmuc/jasn1/1.9.0/833882bea46ad3d84ae7c84c7e904f2c4c520ddb/jasn1-1.9.0.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.toedter/jcalendar/1.4/180cf82b37b0c1324e7de33bd0114be7d86678cd/jcalendar-1.4.jar" />
         </element>
       </element>
     </root>

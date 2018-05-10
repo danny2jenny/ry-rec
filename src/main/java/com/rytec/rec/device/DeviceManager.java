@@ -191,7 +191,14 @@ public class DeviceManager extends RecBase implements ManageableInterface {
         AbstractOperator abstractOperator = getOperatorByDeviceType(deviceNode.getDtype());
 
         // 在实例中处理值的改变
-        abstractOperator.onValueChanged(device, fun, oldValue, newValue, unit);
+        // 可能产生类型转换错误
+        try {
+            abstractOperator.onValueChanged(device, fun, oldValue, newValue, unit);
+        } catch (Exception e) {
+            webNotify("设备：" + device + "功能：" + fun + "---类型转换错误。节点类型可能设置错误");
+            return;
+        }
+
 
         // 向更新61850中的值
         DeviceRuntimeBean deviceRuntimeBean = deviceRuntimeList.get(device);

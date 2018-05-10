@@ -105,6 +105,8 @@ dependencies {
     //compile group: 'com.ghgande', name: 'j2mod', version: '2.3.9'
     //compile group: 'com.github.kochedykov', name: 'jlibmodbus', version: '1.2.9.0'
 
+    // 61850
+    compile group: 'org.openmuc', name: 'openiec61850', version: '1.5.0'
 
     // 工具类
     compile group: 'org.dom4j', name: 'dom4j', version: '2.1.0'
