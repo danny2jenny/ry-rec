@@ -65,10 +65,10 @@ public class KH_Current extends NodeModbusBase {
          * 各个实现需要设置该值
          */
         modbusCmd = ConstantModbusCommand.READ_HOLDING_REGISTERS;
-        modbusCmd = ConstantModbusCommand.READ_REGISTERS;
+        //modbusCmd = ConstantModbusCommand.READ_REGISTERS;
         regCount = 4;   // 寄存器的数量
-        regOffset = 0;
-        //regOffset = 0x07D0;
+        //regOffset = 0;
+        regOffset = 0x07D0;
     }
 
 

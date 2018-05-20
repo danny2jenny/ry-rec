@@ -96,9 +96,12 @@ public class ModbusChannelSession {
             if (iNode != null) {
                 String key = "" + cn.getNtype() + ':' + cn.getAdr();
                 if (timerQueryList.get(key) == null) {
-                    timerQueryListIndex.add(key);
                     ModbusMessage msg = (ModbusMessage) iNode.genMessage(ConstantFromWhere.FROM_TIMER, cn.getNid(), ConstantCommandType.GENERAL_READ, 0);
-                    timerQueryList.put(key, msg);
+                    if (msg != null) {
+                        timerQueryListIndex.add(key);
+                        timerQueryList.put(key, msg);
+                    }
+
                 }
             }
         }
@@ -163,7 +166,6 @@ public class ModbusChannelSession {
      * 优先处理命令队列，然后再处理查询命令
      */
     public synchronized void timerProcess() {
-        // todo 这种方式判断有问题！！！！
         // 如果有未返回的命令，检查超时
         if (lastOutMsg != null) {
             timer++;

@@ -21,6 +21,7 @@ import com.rytec.rec.util.AnnotationDeviceType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.annotation.Order;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -196,6 +197,7 @@ public class DeviceManager extends RecBase implements ManageableInterface {
             abstractOperator.onValueChanged(device, fun, oldValue, newValue, unit);
         } catch (Exception e) {
             webNotify("设备：" + device + "功能：" + fun + "---类型转换错误。节点类型可能设置错误");
+            e.printStackTrace();
             return;
         }
 
@@ -217,4 +219,23 @@ public class DeviceManager extends RecBase implements ManageableInterface {
     public void start() {
         initConfig();
     }
+
+
+    /**
+     * 通过Device和功能号得到相应的DeviceNode；
+     *
+     * @param device
+     * @param fun
+     * @return
+     */
+    public DeviceNode getDeviceNodeByFun(int device, int fun) {
+        HashMap<Integer, DeviceNode> devices = deviceNodeListByFun.get(device);
+
+        if (devices == null) {
+            return null;
+        }
+
+        return devices.get(fun);
+    }
+
 }

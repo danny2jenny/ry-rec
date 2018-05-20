@@ -235,6 +235,10 @@ public abstract class NodeModbusBase extends BaseNode {
                 currentNodeRuntime = nodeManager.getChannelNodeByNodeId(node.getNid());
                 msg.value = currentNodeRuntime.nodeConfig.pA * analogVal + currentNodeRuntime.nodeConfig.pB;
 
+                // 对负值进行处理
+                if ((Float) msg.value < 0) {
+                    msg.value = new Float(0);
+                }
 
                 msg.node = node.getNid();
                 nodeManager.onMessage(msg);
@@ -329,16 +333,17 @@ public abstract class NodeModbusBase extends BaseNode {
     }
 
     /**
-     *
      * @return
      */
-    public Object getCfg(){
+    public Object getCfg() {
         ModbusNodeCfg cfg = new ModbusNodeCfg();
         cfg.modbusCmd = modbusCmd;
         cfg.regCount = regCount;
         cfg.regOffset = regOffset;
 
         return cfg;
-    };
+    }
+
+    ;
 
 }

@@ -1,14 +1,13 @@
 package com.rytec.rec.device.operator;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.rytec.rec.db.model.DeviceNode;
 import com.rytec.rec.device.AbstractOperator;
 import com.rytec.rec.device.DeviceRuntimeBean;
 import com.rytec.rec.device.config.AnalogConfig;
 import com.rytec.rec.device.state.StateAnalog;
-import com.rytec.rec.util.ConstantMessageType;
-import com.rytec.rec.util.ConstantDeviceState;
-import com.rytec.rec.util.AnnotationDeviceType;
-import com.rytec.rec.util.AnnotationJSExport;
+import com.rytec.rec.node.NodeMessage;
+import com.rytec.rec.util.*;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -43,6 +42,24 @@ public class Analog extends AbstractOperator {
     @AnnotationJSExport("-低限告警")
     public static int SIG_LOW_2 = -20;
 
+    /**
+     * 更新LED
+     */
+    void updateLED(int device, int fun, float val) {
+        DeviceNode deviceNode = deviceManager.getDeviceNodeByFun(device, fun);
+        if (deviceNode == null) {
+            return;
+        }
+        // 开始更新LED
+
+        NodeMessage nodeMsg = new NodeMessage();
+        nodeMsg.from = ConstantFromWhere.FROM_SYSTEM;
+        nodeMsg.type = ConstantCommandType.GENERAL_WRITE;
+        nodeMsg.value = (int) val;
+
+        this.setValue(device, ConstantDeviceFunction.DEV_FUN_PORT_B, nodeMsg);
+    }
+
     @Override
     public void onValueChanged(int deviceId, int fun, Object oldValue, Object newValue, String unit) {
 
@@ -52,11 +69,10 @@ public class Analog extends AbstractOperator {
 
         if (newValue == null) {
             ((StateAnalog) deviceRuntimeBean.runtime.state).value = 0;
+            updateLED(deviceId, ConstantDeviceFunction.DEV_FUN_PORT_B, 0);
         } else {
             ((StateAnalog) deviceRuntimeBean.runtime.state).value = (Float) newValue;
-            if ((Float) newValue < 0) {
-                ((StateAnalog) deviceRuntimeBean.runtime.state).value = 0;
-            }
+            updateLED(deviceId, ConstantDeviceFunction.DEV_FUN_PORT_B, (Float) newValue);
         }
 
 

@@ -60,6 +60,7 @@ public class AbstractOperator extends RecBase {
 
             // 找到功能对应的Node
             funNode = deviceNodes.get(fun);
+            msg.node = funNode.getNid();
 
             // 发送消息
             rst = nodeManager.sendMsg(funNode, msg);

@@ -17,25 +17,25 @@ Ext.define('app.view.device.control._501', {
             xtype: 'textfield',
             itemId: 'vA',
             readOnly: true,
-            fieldLabel: '监测值',
+            fieldLabel: 'A相电流',
             value: ""
         }, {
             xtype: 'textfield',
             itemId: 'vB',
             readOnly: true,
-            fieldLabel: '监测值',
+            fieldLabel: 'B相电流',
             value: ""
         }, {
             xtype: 'textfield',
             itemId: 'vC',
             readOnly: true,
-            fieldLabel: '监测值',
+            fieldLabel: 'C相电流',
             value: ""
         }, {
             xtype: 'textfield',
             itemId: 'vO',
             readOnly: true,
-            fieldLabel: '监测值',
+            fieldLabel: '0序电流',
             value: ""
         }
     ],
