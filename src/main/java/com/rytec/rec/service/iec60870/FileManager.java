@@ -147,7 +147,7 @@ public class FileManager extends RecBase implements ManageableInterface {
         /**
          * 生成Device的结构
          */
-        Element device, name, map, type, position, function, msgType, addrType, addr;
+        Element device, name, map, type, target, position, function, msgType, addrType, addr;
         for (DeviceRuntimeBean deviceRuntimeBean : deviceManager.getDeviceRuntimeList().values()) {
 
             if (deviceRuntimeBean.device.getType() == 301 | deviceRuntimeBean.device.getType() == 401 | deviceRuntimeBean.device.getType() == 9999) {
@@ -167,6 +167,9 @@ public class FileManager extends RecBase implements ManageableInterface {
 
                 position = device.addElement("Position");
                 position.setText(deviceGis.getData().substring(1, deviceGis.getData().length() - 1));
+
+                target = device.addElement("Target");
+                target.setText(deviceGis.getLayer().toString());
             }
 
 
