@@ -8,16 +8,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d35ddd3d-c0e7-4f94-b111-72db3f8184b4" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/Video/ChannelVideoDh.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/document/icons.svg" beforeDir="false" afterPath="$PROJECT_DIR$/document/icons.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/app/RecBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/app/RecBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpClient/AsyncRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpClient/AsyncRunner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/device/DeviceManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/device/DeviceManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/device/operator/Output.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/device/operator/Output.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/service/VideoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/service/VideoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/util/ConstantMessageType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/util/ConstantMessageType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/extjs_app/lib/util.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/extjs_app/lib/util.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/extjs_app/lib/GisViewPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/extjs_app/lib/GisViewPlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/extjs_app/view/user/AlarmPanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/extjs_app/view/user/AlarmPanel.js" afterDir="false" />
     </list>
     <ignored path="RyREC.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -118,11 +111,29 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="util.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="util.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/lib/util.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="322">
-              <caret line="173" column="37" selection-start-line="173" selection-start-column="37" selection-end-line="173" selection-end-column="37" />
+            <state relative-caret-position="2047">
+              <caret line="168" column="37" selection-start-line="168" selection-start-column="37" selection-end-line="168" selection-end-column="37" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GisViewPlugin.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/lib/GisViewPlugin.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="188">
+              <caret line="564" column="25" selection-start-line="564" selection-start-column="11" selection-end-line="564" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AlarmPanel.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/view/user/AlarmPanel.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="142">
+              <caret line="201" column="13" selection-start-line="201" selection-start-column="13" selection-end-line="201" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -148,8 +159,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>initConfig</find>
-      <find>init()</find>
       <find>init</find>
       <find>time</find>
       <find>post</find>
@@ -178,6 +187,8 @@
       <find>deviceNodeListByFun</find>
       <find>超时</find>
       <find>videoPlayer</find>
+      <find>deviceNeedToBeHighlight</find>
+      <find>highlightDevice</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -908,8 +919,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/KhFiber/DbSession.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/node/Fiber/FiberAlarm.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/device/state/StateFiber.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/model/Channel.js" />
         <option value="$PROJECT_DIR$/src/main/resources/config.ini" />
@@ -959,6 +968,8 @@
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/device/DeviceManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/service/VideoService.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/lib/util.js" />
+        <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/lib/GisViewPlugin.js" />
+        <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/view/user/AlarmPanel.js" />
       </list>
     </option>
   </component>
@@ -1002,6 +1013,51 @@
             <path>
               <item name="com.rytec.rec" type="b2602c69:ProjectViewProjectNode" />
               <item name="ry-rec" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+            <path>
+              <item name="com.rytec.rec" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ry-rec" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="com.rytec.rec" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ry-rec" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+            <path>
+              <item name="com.rytec.rec" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ry-rec" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="com.rytec.rec" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ry-rec" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="extjs_app" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="com.rytec.rec" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ry-rec" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="extjs_app" type="462c0819:PsiDirectoryNode" />
+              <item name="view" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="com.rytec.rec" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ry-rec" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="extjs_app" type="462c0819:PsiDirectoryNode" />
+              <item name="view" type="462c0819:PsiDirectoryNode" />
+              <item name="user" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -1997,14 +2053,7 @@
       <workItem from="1527574779704" duration="6246000" />
       <workItem from="1527642261784" duration="3063000" />
       <workItem from="1527666731867" duration="2298000" />
-      <workItem from="1527719296112" duration="4022000" />
-    </task>
-    <task id="LOCAL-00106" summary="设备不能删除的错误">
-      <created>1497253245165</created>
-      <option name="number" value="00106" />
-      <option name="presentableId" value="LOCAL-00106" />
-      <option name="project" value="LOCAL" />
-      <updated>1497253245166</updated>
+      <workItem from="1527719296112" duration="5905000" />
     </task>
     <task id="LOCAL-00107" summary="修正小数点位数不够的问题">
       <created>1497253806598</created>
@@ -2342,11 +2391,18 @@
       <option name="project" value="LOCAL" />
       <updated>1527212451342</updated>
     </task>
-    <option name="localTasksCounter" value="155" />
+    <task id="LOCAL-00155" summary="1、增加SF6图标 603&#10;2、RecBase 的WebNodity接口扩展&#10;3、ModbusClient如果没有设备，线程只运行一次&#10;4、增加大华和宇视的视频接口&#10;5、增加远程开关的本地开关，用功能4&#10;6、DeviceManager对应的WebNotify接口升级&#10;7、VideoService的PTZ调用直接到WEB端&#10;8、在ConstantMessageType中增加PTZ消息类型&#10;9、WEB的util.js 增加PTZ调用">
+      <created>1527730312919</created>
+      <option name="number" value="00155" />
+      <option name="presentableId" value="LOCAL-00155" />
+      <option name="project" value="LOCAL" />
+      <updated>1527730312920</updated>
+    </task>
+    <option name="localTasksCounter" value="156" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2802187000" />
+    <option name="totallyTimeSpent" value="2804070000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2359,6 +2415,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1052" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4866453" weight="0.16100767" />
@@ -2465,7 +2522,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="第一次请求文件成功，&#10;第二次流程走不完" />
     <MESSAGE value="增加了modbus通讯的可靠性" />
     <MESSAGE value="1、可以发送较大的文件，多个Section，没有测试&#10;2、配置文件在发送目录的时候重新生成。" />
     <MESSAGE value="1、修正客户端断开后主动发送信息的异常&#10;2、遥测，遥信改成不带时标的" />
@@ -2490,7 +2546,8 @@
     <MESSAGE value="增加 WEB 端的错误显示，增加已经上传模型的下载" />
     <MESSAGE value="1、增加LED显示器&#10;2、增加SF6" />
     <MESSAGE value="60870 增加了分区" />
-    <option name="LAST_COMMIT_MESSAGE" value="60870 增加了分区" />
+    <MESSAGE value="1、增加SF6图标 603&#10;2、RecBase 的WebNodity接口扩展&#10;3、ModbusClient如果没有设备，线程只运行一次&#10;4、增加大华和宇视的视频接口&#10;5、增加远程开关的本地开关，用功能4&#10;6、DeviceManager对应的WebNotify接口升级&#10;7、VideoService的PTZ调用直接到WEB端&#10;8、在ConstantMessageType中增加PTZ消息类型&#10;9、WEB的util.js 增加PTZ调用" />
+    <option name="LAST_COMMIT_MESSAGE" value="1、增加SF6图标 603&#10;2、RecBase 的WebNodity接口扩展&#10;3、ModbusClient如果没有设备，线程只运行一次&#10;4、增加大华和宇视的视频接口&#10;5、增加远程开关的本地开关，用功能4&#10;6、DeviceManager对应的WebNotify接口升级&#10;7、VideoService的PTZ调用直接到WEB端&#10;8、在ConstantMessageType中增加PTZ消息类型&#10;9、WEB的util.js 增加PTZ调用" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2545,27 +2602,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/node/modbus/SF6.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="377">
-          <caret line="27" column="33" selection-start-line="27" selection-start-column="33" selection-end-line="27" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/util/ConstantModbusCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="8" column="8" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/node/modbus/KH_Current.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="72" lean-forward="true" selection-start-line="72" selection-end-line="72" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/service/iec60870/C_DeviceAddr.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="184">
@@ -2882,8 +2918,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/lib/util.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="173" column="37" selection-start-line="173" selection-start-column="37" selection-end-line="173" selection-end-column="37" />
+        <state relative-caret-position="2047">
+          <caret line="168" column="37" selection-start-line="168" selection-start-column="37" selection-end-line="168" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.es5.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="1120" column="4" selection-start-line="1120" selection-start-column="4" selection-end-line="1120" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/lib/GisViewPlugin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="188">
+          <caret line="564" column="25" selection-start-line="564" selection-start-column="11" selection-end-line="564" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/view/user/AlarmPanel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="201" column="13" selection-start-line="201" selection-start-column="13" selection-end-line="201" selection-end-column="13" />
         </state>
       </provider>
     </entry>

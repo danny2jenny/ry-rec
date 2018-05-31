@@ -194,11 +194,25 @@ Ext.define('app.view.user.AlarmPanel', {
         detail.update(data);
         // 地图上定位资源
         ry.gis.highlightDevice(record.data.device);
+        // 清除定位
+        setTimeout(
+            function(){
+                ry.gis.clearHighlight();
+            },
+            500
+        );
     },
 
     // Alarm Action 选择
     onAlarmActionSelected: function (event, record, index, eOpts) {
         ry.gis.highlightDevice(record.data.target);
+        // 清除定位
+        setTimeout(
+            function(){
+                ry.gis.clearHighlight();
+            },
+            500
+        );
     },
 
     initComponent: function () {

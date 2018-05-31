@@ -559,6 +559,15 @@ Ext.define('app.lib.GisViewPlugin', {
             return me.getFeaturesByDeviceOfLayer(me.getActiveVectorLayer(), id);
         };
 
+        /**
+         * 清理高亮Features
+         */
+        me.clearHighlight = function(){
+            for (var i in me.highlightOverlays) {
+                me.map.removeOverlay(me.highlightOverlays[i]);
+            }
+            me.highlightOverlays.length = 0;
+        };
 
         /**
          * 高亮Feature，通过Overlayer
