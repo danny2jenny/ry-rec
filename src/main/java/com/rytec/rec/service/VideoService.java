@@ -149,10 +149,10 @@ public class VideoService extends RecBase implements ManageableInterface {
             case ConstantMqtt.VIDEO_INIT_REQUEST:
                 sendVideoServiceConfig();
                 break;
+            // NVR 链接状态
             case ConstantMqtt.VIDEO_CHANNEL_ONLINE:
                 int channel = jsonNode.path("channel").asInt();
                 boolean online = jsonNode.path("online").asBoolean();
-
                 if (online) {
                     NodeMessage nodeMessage = new NodeMessage();
                     nodeMessage.from = ConstantFromWhere.FROM_SYSTEM;

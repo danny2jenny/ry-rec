@@ -92,6 +92,7 @@ public class ModbusChannelSession {
 
             /**
              * Node类型一致，地址一致，组成一个查询
+             * todo: 按照最大值进行查询
              */
             if (iNode != null) {
                 String key = "" + cn.getNtype() + ':' + cn.getAdr();
