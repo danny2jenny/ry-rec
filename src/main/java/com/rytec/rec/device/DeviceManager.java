@@ -18,6 +18,7 @@ import com.rytec.rec.service.IEC61850Service;
 import com.rytec.rec.service.iec60870.Iec60870Server;
 import com.rytec.rec.util.ConstantDeviceState;
 import com.rytec.rec.util.AnnotationDeviceType;
+import com.rytec.rec.util.ConstantMessageType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.annotation.Order;
@@ -196,7 +197,7 @@ public class DeviceManager extends RecBase implements ManageableInterface {
         try {
             abstractOperator.onValueChanged(device, fun, oldValue, newValue, unit);
         } catch (Exception e) {
-            webNotify("设备：" + device + "功能：" + fun + "---类型转换错误。节点类型可能设置错误");
+            webNotify(ConstantMessageType.WEB_NOTIFY_MSG, "设备：" + device + "功能：" + fun + "---类型转换错误。节点类型可能设置错误");
             e.printStackTrace();
             return;
         }

@@ -165,6 +165,16 @@ ry.stom.onMsg = function (msg) {
         case ry.CONST.MSG_TYPE.WEB_NOTIFY_MSG:          // 普通的通知消息
             console.log(msgObject.msg);
             break;
+        case ry.CONST.MSG_TYPE.VIDEO_PTZ:
+            console.log(msgObject.msg);
+            if (typeof(videoPlayer) != 'undefined') {
+                videoPlayer.goPtz(
+                    msgObject.msg.nvr,
+                    msgObject.msg.channel,
+                    msgObject.msg.ptz
+                )
+            }
+            break;
     }
 };
 

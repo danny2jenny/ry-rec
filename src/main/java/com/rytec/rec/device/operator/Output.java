@@ -128,6 +128,15 @@ public class Output extends AbstractOperator {
                     state.feedback = ConstantDeviceState.STATE_OFF;
                 }
                 break;
+            case ConstantDeviceFunction.DEV_FUN_PORT_D:
+                logger.debug("本地开关动作！！！！！！！！！！！");
+                // 本地开关
+                if ((Boolean) newValue == true) {
+                    operate(ConstantFromWhere.FROM_SYSTEM, deviceRuntimeBean.device.getId(), Output.ACT_ON, null);
+                } else {
+                    operate(ConstantFromWhere.FROM_SYSTEM, deviceRuntimeBean.device.getId(), Output.ACT_OFF, null);
+                }
+                break;
         }
 
         // 向客户端广播消息

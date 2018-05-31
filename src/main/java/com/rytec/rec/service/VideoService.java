@@ -4,15 +4,18 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rytec.rec.app.ManageableInterface;
+import com.rytec.rec.app.RecBase;
 import com.rytec.rec.channel.ChannelManager;
 import com.rytec.rec.db.DbConfig;
 import com.rytec.rec.db.model.Channel;
 import com.rytec.rec.db.model.ChannelNode;
 import com.rytec.rec.messenger.Message.MqttMsg;
+import com.rytec.rec.messenger.Message.WebMessage;
 import com.rytec.rec.messenger.MqttService;
 import com.rytec.rec.node.NodeManager;
 import com.rytec.rec.node.NodeMessage;
 import com.rytec.rec.util.ConstantFromWhere;
+import com.rytec.rec.util.ConstantMessageType;
 import com.rytec.rec.util.ConstantMqtt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
@@ -31,7 +34,7 @@ import java.util.List;
 
 @Service
 @Order(300)
-public class VideoService implements ManageableInterface {
+public class VideoService extends RecBase implements ManageableInterface {
 
     @Autowired
     DbConfig dbConfig;
@@ -114,12 +117,17 @@ public class VideoService implements ManageableInterface {
 
         mqttMsg.payload = payload;
 
-        try {
-            mqttService.sendMsg(ConstantMqtt.TOPIC_VIDEO_SERVICE, objectMapper.writeValueAsString(mqttMsg));
-        } catch (JsonProcessingException e) {
-        }
-
+        // 直接发送给客户端
+        webNotify(ConstantMessageType.VIDEO_PTZ, payload);
         return 0;
+
+//
+//        try {
+//            mqttService.sendMsg(ConstantMqtt.TOPIC_VIDEO_SERVICE, objectMapper.writeValueAsString(mqttMsg));
+//        } catch (JsonProcessingException e) {
+//        }
+//
+//        return 0;
     }
 
 

@@ -12,6 +12,9 @@ public class AsyncRunner {
     @Async
     public void runLoop() {
         while (channelModbusMaster.inLoop) {
+            if (channelModbusMaster.modbusClients.isEmpty()){
+                channelModbusMaster.inLoop = false;
+            }
             for (RecModbusMasterSession session : channelModbusMaster.modbusClients.values()) {
                 session.startCom();
             }

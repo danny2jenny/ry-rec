@@ -19,6 +19,9 @@ public interface ConstantMessageType {
     @AnnotationJSExport("设备告警")
     int DEVICE_ALARM = 1000;
 
+    @AnnotationJSExport("设备告警")
+    int VIDEO_PTZ = 1100;
+
     @AnnotationJSExport("WEB 通知消息")
     int WEB_NOTIFY_MSG = 2000;
 }
