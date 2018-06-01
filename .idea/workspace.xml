@@ -7,10 +7,8 @@
     <bookmark url="file://$PROJECT_DIR$/src/main/webapp/js/pannellum.js" line="1794" mnemonic="2" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d35ddd3d-c0e7-4f94-b111-72db3f8184b4" name="Default" comment="通过客Video.java接受客户端发送的NVR链接消息，从而更新摄像头的状态">
+    <list default="true" id="d35ddd3d-c0e7-4f94-b111-72db3f8184b4" name="Default" comment="gisviewplugin中修正 this.owner.getActiveVectorLayer().getSource() 没有对象的错误。&#10;&#10;Devices 中设置 Python 调用 JS 的回调&#10;&#10;util.js 中增加了 python 的调用接口">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/extjs_app/controller/Devices.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/extjs_app/controller/Devices.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/extjs_app/lib/GisViewPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/extjs_app/lib/GisViewPlugin.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/extjs_app/lib/util.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/extjs_app/lib/util.js" afterDir="false" />
     </list>
     <ignored path="RyREC.iws" />
@@ -112,11 +110,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="util.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="util.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/lib/util.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="157" column="23" selection-start-line="157" selection-start-column="23" selection-end-line="157" selection-end-column="23" />
+            <state relative-caret-position="483">
+              <caret line="81" selection-start-line="81" selection-end-line="81" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -124,11 +122,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Panorama.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Panorama.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/panel/Panorama.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="258" column="4" selection-start-line="258" selection-start-column="4" selection-end-line="258" selection-end-column="4" />
+            <state relative-caret-position="9">
+              <caret line="222" column="4" selection-start-line="222" selection-start-column="4" selection-end-line="222" selection-end-column="4" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
               </folding>
@@ -136,20 +134,29 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Devices.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/controller/Devices.js">
+      <file leaf-file-name="NvrNode.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/store/NvrNode.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="483">
-              <caret line="27" selection-start-line="27" selection-end-line="27" />
+            <state relative-caret-position="92">
+              <caret line="4" column="29" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="29" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GisViewPlugin.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/lib/GisViewPlugin.js">
+      <file leaf-file-name="UserFrame.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/controller/UserFrame.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2013">
-              <caret line="469" column="26" selection-start-line="469" selection-start-column="26" selection-end-line="469" selection-end-column="26" />
+            <state relative-caret-position="368">
+              <caret line="16" column="16" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Devices.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/controller/Devices.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="391">
+              <caret line="19" column="23" lean-forward="true" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -175,8 +182,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>post</find>
-      <find>mybatis</find>
       <find>mysql</find>
       <find>sql</find>
       <find>val</find>
@@ -203,8 +208,10 @@
       <find>videoPlayer</find>
       <find>deviceNeedToBeHighlight</find>
       <find>highlightDevice</find>
-      <find>initConfig</find>
       <find>update</find>
+      <find>initConfig</find>
+      <find>devicestate</find>
+      <find>listNvrNode</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -216,8 +223,8 @@
       <dir>$PROJECT_DIR$/src/main/java</dir>
       <dir>$PROJECT_DIR$/src/main/java/com/rytec/rec/service/Iec60870Element</dir>
       <dir>$PROJECT_DIR$/src/main/java/com/rytec/rec/app</dir>
-      <dir>$PROJECT_DIR$/src/main/webapp/extjs_app</dir>
       <dir>$PROJECT_DIR$/src/main/webapp</dir>
+      <dir>$PROJECT_DIR$/src/main/webapp/extjs_app</dir>
     </dirStrings>
   </component>
   <component name="Git.Rebase.Settings">
@@ -976,15 +983,15 @@
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/device/operator/Output.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/Video/ChannelVideoDh.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpClient/AsyncRunner.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/util/ConstantMessageType.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/app/RecBase.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/device/DeviceManager.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/view/user/AlarmPanel.js" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpServer/ModbusChannelSession.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/web/util/Video.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/service/VideoService.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/lib/GisViewPlugin.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/controller/Devices.js" />
+        <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/util/ConstantMessageType.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/lib/GisViewPlugin.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/lib/util.js" />
       </list>
     </option>
@@ -1053,6 +1060,33 @@
               <item name="ry-rec" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="com.rytec.rec" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ry-rec" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="rec" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="com.rytec.rec" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ry-rec" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="rec" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="com.rytec.rec" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ry-rec" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -1079,7 +1113,15 @@
               <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
               <item name="extjs_app" type="462c0819:PsiDirectoryNode" />
-              <item name="device" type="462c0819:PsiDirectoryNode" />
+              <item name="store" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="com.rytec.rec" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ry-rec" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="res" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -2079,14 +2121,7 @@
       <workItem from="1527744567212" duration="612000" />
       <workItem from="1527751099619" duration="7961000" />
       <workItem from="1527813192588" duration="664000" />
-      <workItem from="1527818734874" duration="3876000" />
-    </task>
-    <task id="LOCAL-00109" summary="修复某些情况下，值为空的错误">
-      <created>1497323387574</created>
-      <option name="number" value="00109" />
-      <option name="presentableId" value="LOCAL-00109" />
-      <option name="project" value="LOCAL" />
-      <updated>1497323387575</updated>
+      <workItem from="1527818734874" duration="10176000" />
     </task>
     <task id="LOCAL-00110" summary="增加开关输出的反向功能">
       <created>1497503892650</created>
@@ -2424,11 +2459,18 @@
       <option name="project" value="LOCAL" />
       <updated>1527772045504</updated>
     </task>
-    <option name="localTasksCounter" value="158" />
+    <task id="LOCAL-00158" summary="gisviewplugin中修正 this.owner.getActiveVectorLayer().getSource() 没有对象的错误。&#10;&#10;Devices 中设置 Python 调用 JS 的回调&#10;&#10;util.js 中增加了 python 的调用接口">
+      <created>1527822765214</created>
+      <option name="number" value="00158" />
+      <option name="presentableId" value="LOCAL-00158" />
+      <option name="project" value="LOCAL" />
+      <updated>1527822765215</updated>
+    </task>
+    <option name="localTasksCounter" value="159" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2818527000" />
+    <option name="totallyTimeSpent" value="2824827000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2451,11 +2493,11 @@
       <window_info anchor="right" id="Maven Projects" order="10" weight="0.15010683" />
       <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.26286966" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.446047" visible="true" weight="0.21592148" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.446047" visible="true" weight="0.21592148" />
       <window_info anchor="bottom" id="Spring" order="8" weight="0.3263965" />
       <window_info anchor="bottom" id="Terminal" order="13" weight="0.20810515" />
       <window_info id="Designer" order="3" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.62629247" visible="true" weight="0.19284189" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.62629247" visible="true" weight="0.19284189" />
       <window_info id="Web" order="6" sideWeight="0.37370753" side_tool="true" weight="0.20855615" />
       <window_info anchor="right" id="Database" order="5" sideWeight="0.49917898" weight="0.16025642" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.42311886" />
@@ -2548,7 +2590,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="1、修正客户端断开后主动发送信息的异常&#10;2、遥测，遥信改成不带时标的" />
     <MESSAGE value="修正遥测的最后一个字节" />
     <MESSAGE value="完成遥控，&#10;目前所有功能完成，初步测试" />
     <MESSAGE value="通过网页生成61850的模型配置文件" />
@@ -2573,7 +2614,8 @@
     <MESSAGE value="1、增加SF6图标 603&#10;2、RecBase 的WebNodity接口扩展&#10;3、ModbusClient如果没有设备，线程只运行一次&#10;4、增加大华和宇视的视频接口&#10;5、增加远程开关的本地开关，用功能4&#10;6、DeviceManager对应的WebNotify接口升级&#10;7、VideoService的PTZ调用直接到WEB端&#10;8、在ConstantMessageType中增加PTZ消息类型&#10;9、WEB的util.js 增加PTZ调用" />
     <MESSAGE value="修正高亮设备后不能操作的问题" />
     <MESSAGE value="通过客Video.java接受客户端发送的NVR链接消息，从而更新摄像头的状态" />
-    <option name="LAST_COMMIT_MESSAGE" value="通过客Video.java接受客户端发送的NVR链接消息，从而更新摄像头的状态" />
+    <MESSAGE value="gisviewplugin中修正 this.owner.getActiveVectorLayer().getSource() 没有对象的错误。&#10;&#10;Devices 中设置 Python 调用 JS 的回调&#10;&#10;util.js 中增加了 python 的调用接口" />
+    <option name="LAST_COMMIT_MESSAGE" value="gisviewplugin中修正 this.owner.getActiveVectorLayer().getSource() 没有对象的错误。&#10;&#10;Devices 中设置 Python 调用 JS 的回调&#10;&#10;util.js 中增加了 python 的调用接口" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2628,60 +2670,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/KhFiber/FiberVal.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/KhFiber/ChannelKhFiber.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3059">
-          <caret line="133" column="34" selection-start-line="133" selection-start-column="34" selection-end-line="133" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/service/iec60870/FileManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="563">
-          <caret line="170" column="50" selection-start-line="170" selection-start-column="50" selection-end-line="170" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cfg/60870.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="78" column="32" selection-start-line="78" selection-start-column="32" selection-end-line="78" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/document/61850模型/ivs-64.icd">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-897" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/util/ConstantFromWhere.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="5" column="34" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/db/model/Device.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/cooperate/CooperateManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="572">
-          <caret line="95" column="25" selection-start-line="95" selection-start-column="25" selection-end-line="95" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/device/DeviceRuntimeBean.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="230">
@@ -2700,16 +2688,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret line="139" column="9" lean-forward="true" selection-start-line="139" selection-start-column="9" selection-end-line="139" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/res/gis/device/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="299">
-            <caret line="16" column="10" lean-forward="true" selection-start-line="16" selection-start-column="10" selection-end-line="16" selection-end-column="10" />
-          </first_editor>
-          <second_editor />
         </state>
       </provider>
     </entry>
@@ -2830,24 +2808,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/node/NodeManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2323">
-          <caret line="33" column="13" selection-start-line="33" selection-start-column="13" selection-end-line="33" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/service/PayloadPtz.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="138">
           <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/util/ConstantMessageType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="22" column="22" selection-start-line="22" selection-start-column="22" selection-end-line="22" selection-end-column="22" />
         </state>
       </provider>
     </entry>
@@ -2918,13 +2882,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/service/VideoService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-805">
-          <caret line="44" column="14" selection-start-line="44" selection-start-column="14" selection-end-line="44" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/messenger/MqttService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="621">
@@ -2954,36 +2911,107 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/lib/GisViewPlugin.js">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/util/ConstantMessageType.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2013">
-          <caret line="469" column="26" selection-start-line="469" selection-start-column="26" selection-end-line="469" selection-end-column="26" />
+        <state relative-caret-position="345">
+          <caret line="16" column="28" lean-forward="true" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/node/NodeManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-253">
+          <caret line="98" column="16" selection-start-line="98" selection-start-column="16" selection-end-line="98" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/node/NodeMessage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/service/VideoService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="156" column="55" selection-start-line="156" selection-start-column="55" selection-end-line="156" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/res/gis/device/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="299">
+            <caret line="16" column="10" lean-forward="true" selection-start-line="16" selection-start-column="10" selection-end-line="16" selection-end-column="10" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/lib/GisViewPlugin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="475" column="35" selection-start-line="475" selection-start-column="24" selection-end-line="475" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/model/DeviceNode.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="18" column="23" lean-forward="true" selection-start-line="18" selection-start-column="23" selection-end-line="18" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/store/NodeForDevice.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/store/Channel.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/model/Device.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/store/Device.js">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/controller/Devices.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="27" selection-start-line="27" selection-end-line="27" />
+        <state relative-caret-position="391">
+          <caret line="19" column="23" lean-forward="true" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/panel/Panorama.js">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/store/NvrNode.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="258" column="4" selection-start-line="258" selection-start-column="4" selection-end-line="258" selection-end-column="4" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="92">
+          <caret line="4" column="29" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/controller/UserFrame.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="16" column="16" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/lib/util.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="157" column="23" selection-start-line="157" selection-start-column="23" selection-end-line="157" selection-end-column="23" />
+        <state relative-caret-position="483">
+          <caret line="81" selection-start-line="81" selection-end-line="81" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/panel/Panorama.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9">
+          <caret line="222" column="4" selection-start-line="222" selection-start-column="4" selection-end-line="222" selection-end-column="4" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
