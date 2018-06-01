@@ -62,6 +62,11 @@ ry.realPlayInGrid = function (device) {
     }
 };
 
+// ************************************ Python 回调 **************************
+ry.cllFromPython= function(str){
+    console.log(str)
+};
+
 /**
  * 在新窗体中实时播放
  * @param device
@@ -146,8 +151,11 @@ ry.stom.onMsg = function (msg) {
         case ry.CONST.MSG_TYPE.DEVICE_STATE:           // Device 消息
             var msg = msgObject.msg;
             var deviceId = msg.device;
+
             // 更新GIS中Device的状态
             ry.gis.updateDeviceState(msg);
+
+            // 更新全景中的状态
             if (ry.panorama) {
                 ry.panorama.updateDeviceState(msg);
             }
@@ -210,6 +218,7 @@ ry.stom.connect = function () {
 
 // 启动定时任务
 ry.timeTask = new Ext.util.TaskRunner();
+console.log("启动完成。。。。。。")
 ry.timeTask.start({
     run: ry.stom.keepConnectRunner,
     interval: 1000

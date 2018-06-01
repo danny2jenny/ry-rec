@@ -465,6 +465,10 @@ Ext.define('app.lib.GisViewPlugin', {
 
                 this.owner.map.overlays_.clear();
                 this.owner.overlay.featureStateOverlays.clear();
+
+                if (!this.owner.getActiveVectorLayer()){
+                    return
+                }
                 var features = this.owner.getActiveVectorLayer().getSource().getFeatures();
                 for (var i in features) {
                     var feature = features[i];

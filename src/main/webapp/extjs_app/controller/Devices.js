@@ -26,6 +26,9 @@ Ext.define('app.controller.Devices', {
                 }
 
                 videoPlayer.initConfig(cfg);
+
+                // 设置Python调用js
+                videoPlayer.setJsFunc(ry.cllFromPython);
             }
         });
     }
