@@ -7,9 +7,8 @@
     <bookmark url="file://$PROJECT_DIR$/src/main/webapp/js/pannellum.js" line="1804" mnemonic="2" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d35ddd3d-c0e7-4f94-b111-72db3f8184b4" name="Default" comment="改用js回调，本地更新摄像机状态">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/extjs_app/lib/util.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/extjs_app/lib/util.js" afterDir="false" />
+    <list default="true" id="d35ddd3d-c0e7-4f94-b111-72db3f8184b4" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/pannellum.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/pannellum.css" afterDir="false" />
     </list>
     <ignored path="RyREC.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -110,7 +109,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="util.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="util.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/lib/util.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="437">
@@ -152,11 +151,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pannellum.css" pinned="false" current-in-tab="false">
+      <file leaf-file-name="pannellum.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/js/pannellum.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-7279">
-              <caret line="106" column="22" lean-forward="true" selection-start-line="106" selection-start-column="22" selection-end-line="106" selection-end-column="22" />
+            <state relative-caret-position="23">
+              <caret line="22" selection-start-line="22" selection-end-line="22" />
               <folding>
                 <element signature="e#323#719#1" expanded="true" />
                 <element signature="e#1031#1608#1" expanded="true" />
@@ -189,8 +188,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>node</find>
-      <find>NodeMessage</find>
       <find>oldValue</find>
       <find>app.device.Device_201</find>
       <find>driver</find>
@@ -219,6 +216,8 @@
       <find>16</find>
       <find>onNewHotspot</find>
       <find>onHotSpotEnter</find>
+      <find>font</find>
+      <find>zoom</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -949,7 +948,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/resources/config.ini" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/service/iec60870/AddrConvert/AddrInterface.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/service/iec60870/AddrConvert/ConvertCurrent.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/device/operator/Fiber.java" />
@@ -1000,6 +998,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/util/ConstantMessageType.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/lib/GisViewPlugin.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/lib/util.js" />
+        <option value="$PROJECT_DIR$/src/main/webapp/js/pannellum.css" />
       </list>
     </option>
   </component>
@@ -2069,14 +2068,7 @@
       <workItem from="1527751099619" duration="7961000" />
       <workItem from="1527813192588" duration="664000" />
       <workItem from="1527818734874" duration="12805000" />
-      <workItem from="1527850317227" duration="1384000" />
-    </task>
-    <task id="LOCAL-00111" summary="1、修正IO配置反向的错误&#10;2、开关控制可以反向">
-      <created>1497846531758</created>
-      <option name="number" value="00111" />
-      <option name="presentableId" value="LOCAL-00111" />
-      <option name="project" value="LOCAL" />
-      <updated>1497846531760</updated>
+      <workItem from="1527850317227" duration="2340000" />
     </task>
     <task id="LOCAL-00112" summary="1、Device相关的数据库定义改变&#10;2、增加61850接口和服务&#10;3、MQTT消息分类100以内是Video，100以上是61850">
       <created>1497846726382</created>
@@ -2414,11 +2406,18 @@
       <option name="project" value="LOCAL" />
       <updated>1527842684737</updated>
     </task>
-    <option name="localTasksCounter" value="160" />
+    <task id="LOCAL-00160" summary="修正刷新的时候可能会出错">
+      <created>1527851819557</created>
+      <option name="number" value="00160" />
+      <option name="presentableId" value="LOCAL-00160" />
+      <option name="project" value="LOCAL" />
+      <updated>1527851819558</updated>
+    </task>
+    <option name="localTasksCounter" value="161" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2828840000" />
+    <option name="totallyTimeSpent" value="2829796000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2538,7 +2537,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="完成遥控，&#10;目前所有功能完成，初步测试" />
     <MESSAGE value="通过网页生成61850的模型配置文件" />
     <MESSAGE value="文档更新，增加新的设备图标：水位" />
     <MESSAGE value="1、4~20mA模拟量输入的时候，如果小于0，就输出0&#10;2、60870 因为殷图的问题，需要改动底层" />
@@ -2563,7 +2561,8 @@
     <MESSAGE value="通过客Video.java接受客户端发送的NVR链接消息，从而更新摄像头的状态" />
     <MESSAGE value="gisviewplugin中修正 this.owner.getActiveVectorLayer().getSource() 没有对象的错误。&#10;&#10;Devices 中设置 Python 调用 JS 的回调&#10;&#10;util.js 中增加了 python 的调用接口" />
     <MESSAGE value="改用js回调，本地更新摄像机状态" />
-    <option name="LAST_COMMIT_MESSAGE" value="改用js回调，本地更新摄像机状态" />
+    <MESSAGE value="修正刷新的时候可能会出错" />
+    <option name="LAST_COMMIT_MESSAGE" value="修正刷新的时候可能会出错" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2967,26 +2966,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/pannellum.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-7279">
-          <caret line="106" column="22" lean-forward="true" selection-start-line="106" selection-start-column="22" selection-end-line="106" selection-end-column="22" />
-          <folding>
-            <element signature="e#323#719#1" expanded="true" />
-            <element signature="e#1031#1608#1" expanded="true" />
-            <element signature="e#1655#2233#1" expanded="true" />
-            <element signature="e#2288#3700#2" expanded="true" />
-            <element signature="e#10526#10860#2" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/lib/util.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="437">
           <caret line="182" lean-forward="true" selection-start-line="182" selection-end-line="182" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/pannellum.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="23">
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
+          <folding>
+            <element signature="e#323#719#1" expanded="true" />
+            <element signature="e#1031#1608#1" expanded="true" />
+            <element signature="e#1655#2233#1" expanded="true" />
+            <element signature="e#2288#3700#2" expanded="true" />
+            <element signature="e#10526#10860#2" expanded="true" />
           </folding>
         </state>
       </provider>
