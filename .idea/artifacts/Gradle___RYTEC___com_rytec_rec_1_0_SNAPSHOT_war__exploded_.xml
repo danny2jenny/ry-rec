@@ -17,6 +17,8 @@
           <element id="dir-copy" path="$PROJECT_DIR$/out/production/resources" />
         </element>
         <element id="directory" name="lib">
+          <element id="library" level="project" name="Gradle: org.openmuc:openiec61850:1.5.0" />
+          <element id="library" level="project" name="Gradle: ch.qos.logback:logback-classic:1.2.3" />
           <element id="library" level="project" name="Gradle: ch.ralscha:extdirectspring:1.7.2" />
           <element id="library" level="project" name="Gradle: org.springframework:spring-webmvc:4.3.11.RELEASE" />
           <element id="library" level="project" name="Gradle: org.springframework:spring-jdbc:4.3.11.RELEASE" />
@@ -32,10 +34,19 @@
           <element id="library" level="project" name="Gradle: org.mybatis:mybatis-spring:1.3.0" />
           <element id="library" level="project" name="Gradle: com.microsoft.sqlserver:mssql-jdbc:6.4.0.jre8" />
           <element id="library" level="project" name="Gradle: de.grundid.opendatalab:geojson-jackson:1.8" />
-          <element id="library" level="project" name="Gradle: org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.1.0" />
+          <element id="library" level="project" name="Gradle: io.moquette:moquette-broker:0.11" />
           <element id="library" level="project" name="Gradle: javax.servlet:jstl:1.2" />
           <element id="library" level="project" name="Gradle: com.infiniteautomation:modbus4j:3.0.3" />
           <element id="library" level="project" name="Gradle: org.dom4j:dom4j:2.1.0" />
+          <element id="library" level="project" name="Gradle: ch.qos.logback:logback-core:1.2.3" />
+          <element id="library" level="project" name="Gradle: com.zaxxer:HikariCP:2.4.7" />
+          <element id="library" level="project" name="Gradle: io.dropwizard.metrics:metrics-jvm:3.2.2" />
+          <element id="library" level="project" name="Gradle: com.librato.metrics:metrics-librato:5.1.0" />
+          <element id="library" level="project" name="Gradle: com.librato.metrics:librato-java:2.1.0" />
+          <element id="library" level="project" name="Gradle: com.bugsnag:bugsnag:3.1.6" />
+          <element id="library" level="project" name="Gradle: org.slf4j:slf4j-log4j12:1.7.5" />
+          <element id="library" level="project" name="Gradle: io.dropwizard.metrics:metrics-core:3.2.2" />
+          <element id="library" level="project" name="Gradle: org.slf4j:slf4j-api:1.7.25" />
           <element id="library" level="project" name="Gradle: org.springframework:spring-web:4.3.11.RELEASE" />
           <element id="library" level="project" name="Gradle: org.springframework:spring-context:4.3.11.RELEASE" />
           <element id="library" level="project" name="Gradle: org.springframework:spring-aop:4.3.11.RELEASE" />
@@ -46,17 +57,27 @@
           <element id="library" level="project" name="Gradle: com.fasterxml.jackson.core:jackson-databind:2.9.1" />
           <element id="library" level="project" name="Gradle: com.google.code.findbugs:jsr305:3.0.2" />
           <element id="library" level="project" name="Gradle: com.fasterxml.jackson.core:jackson-core:2.9.1" />
+          <element id="library" level="project" name="Gradle: io.netty:netty-handler:4.1.12.Final" />
+          <element id="library" level="project" name="Gradle: io.netty:netty-codec-http:4.1.12.Final" />
+          <element id="library" level="project" name="Gradle: io.netty:netty-codec-mqtt:4.1.12.Final" />
+          <element id="library" level="project" name="Gradle: io.netty:netty-codec:4.1.12.Final" />
+          <element id="library" level="project" name="Gradle: io.netty:netty-transport-native-epoll:linux-x86_64:4.1.12.Final" />
+          <element id="library" level="project" name="Gradle: io.netty:netty-transport-native-unix-common:4.1.12.Final" />
+          <element id="library" level="project" name="Gradle: io.netty:netty-transport:4.1.12.Final" />
+          <element id="library" level="project" name="Gradle: io.netty:netty-buffer:4.1.12.Final" />
+          <element id="library" level="project" name="Gradle: io.netty:netty-resolver:4.1.12.Final" />
+          <element id="library" level="project" name="Gradle: io.netty:netty-common:4.1.12.Final" />
+          <element id="library" level="project" name="Gradle: commons-codec:commons-codec:1.10" />
+          <element id="library" level="project" name="Gradle: com.hazelcast:hazelcast:3.5.4" />
           <element id="library" level="project" name="Gradle: org.apache.commons:commons-lang3:3.0" />
           <element id="library" level="project" name="Gradle: commons-logging:commons-logging:1.2" />
+          <element id="library" level="project" name="Gradle: org.openmuc:jasn1:1.9.0" />
+          <element id="library" level="project" name="Gradle: com.toedter:jcalendar:1.4" />
           <element id="library" level="project" name="Gradle: jaxen:jaxen:1.1.6" />
           <element id="library" level="project" name="Gradle: org.springframework.retry:spring-retry:1.1.3.RELEASE" />
           <element id="library" level="project" name="Gradle: com.fasterxml.jackson.core:jackson-annotations:2.9.0" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.openmuc/openiec61850/1.5.0/462c2000ed64abaa46029125550d63dfc0523ddc/openiec61850-1.5.0.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/ch.qos.logback/logback-classic/1.2.3/7c4f3c474fb2c041d8028740440937705ebb473a/logback-classic-1.2.3.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/ch.qos.logback/logback-core/1.2.3/864344400c3d4d92dfeb0a305dc87d953677c03c/logback-core-1.2.3.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/1.7.25/da76ca59f6a57ee3102f8f9bd9cee742973efa8a/slf4j-api-1.7.25.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.openmuc/jasn1/1.9.0/833882bea46ad3d84ae7c84c7e904f2c4c520ddb/jasn1-1.9.0.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.toedter/jcalendar/1.4/180cf82b37b0c1324e7de33bd0114be7d86678cd/jcalendar-1.4.jar" />
+          <element id="library" level="project" name="Gradle: log4j:log4j:1.2.17" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.paho/org.eclipse.paho.client.mqttv3/1.0.2/e1c9a81aadf25b884c779298a90750d0ab8013a5/org.eclipse.paho.client.mqttv3-1.0.2.jar" />
         </element>
       </element>
     </root>

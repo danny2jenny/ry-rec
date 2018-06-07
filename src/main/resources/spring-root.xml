@@ -48,43 +48,4 @@
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactoryMysql"/>
     </bean>
 
-    <!-- _____________________________链接mqtt服务器_________________________ -->
-    <bean id="clientFactory"
-          class="org.springframework.integration.mqtt.core.DefaultMqttPahoClientFactory">
-        <!--<property name="userName" value="用户名"/>-->
-        <!--<property name="password" value="密码"/>-->
-        <property name="serverURIs">
-            <array>
-                <value>${mq.url}</value>
-            </array>
-        </property>
-    </bean>
-
-    <!-- 消息适配器 - Video  -->
-    <int-mqtt:message-driven-channel-adapter
-            id="mqttInbound"
-            client-id="CID_RY_MQTT_MC_SUB___"
-            topics="${mq.sub.video}"
-            qos="2"
-            client-factory="clientFactory"
-            auto-startup="true"
-            send-timeout="12"
-            channel="startCase"/>
-
-    <!-- 消息处理类 -Video -->
-    <int:service-activator
-            id="startCaseService"
-            input-channel="startCase"
-            ref="mqttCaseService"
-            method="onMqttMessage"
-    />
-
-    <bean id="mqttCaseService" class="com.rytec.rec.messenger.MqttService"/>
-
-    <!--这里是发送-->
-    <bean id="mqtt" class="org.springframework.integration.mqtt.outbound.MqttPahoMessageHandler">
-        <constructor-arg name="clientId" value="CID_RY_MQTT_MC_PUB"></constructor-arg>
-        <constructor-arg name="clientFactory" ref="clientFactory"></constructor-arg>
-    </bean>
-
 </beans>

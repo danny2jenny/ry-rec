@@ -2,7 +2,6 @@ package com.rytec.rec.service.Iec61850Java;
 
 import com.rytec.rec.app.RecBase;
 import org.openmuc.openiec61850.*;
-import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -12,6 +11,7 @@ import java.util.List;
 /**
  * 全java 实现，可以考虑替换C的实现
  * https://github.com/openmuc/openiec61850/blob/develop/src/main/java/org/openmuc/openiec61850/app/ConsoleServer.java
+ * 暂时没有使用
  */
 public class Iec61850Adapter extends RecBase implements ServerEventListener {
     List<ServerSap> serverSaps = null;
@@ -55,12 +55,15 @@ public class Iec61850Adapter extends RecBase implements ServerEventListener {
 
     @PostConstruct
     public void startService() throws SclParseException, IOException {
-        serverSaps = ServerSap.getSapsFromSclFile("/home/danny/model.cid");
+        serverSaps = ServerSap.getSapsFromSclFile("/home/danny/61850.icd");
         serverSap = serverSaps.get(0);
         serverSap.setPort(9999);
         serverSap.startListening(this);
         serversServerModel = serverSap.getModelCopy();
         System.out.println(serversServerModel);
+
+
+        logger.debug(serversServerModel.getBasicDataAttributes().toString());
 
 //        BasicDataAttribute bda = (BasicDataAttribute) serversServerModel.findModelNode("RYTEC-RECSENSORS/MMXU3.value.instMag.f", Fc.MX);
 //        BasicDataAttribute bda1 = (BasicDataAttribute) serversServerModel.findModelNode("RYTEC-RECSENSORS/CALH1.value.stVal", Fc.ST);
@@ -80,7 +83,6 @@ public class Iec61850Adapter extends RecBase implements ServerEventListener {
 //        bdas.add(bda1);
 //        serverSap.setValues(bdas);
 
-        System.out.println(serversServerModel);
     }
 
     @PreDestroy
