@@ -10,8 +10,7 @@ import com.rytec.rec.db.DbConfig;
 import com.rytec.rec.db.model.Channel;
 import com.rytec.rec.db.model.ChannelNode;
 import com.rytec.rec.messenger.Message.MqttMsg;
-import com.rytec.rec.messenger.Message.WebMessage;
-import com.rytec.rec.messenger.MqttService;
+import com.rytec.rec.messenger.MqttServer;
 import com.rytec.rec.node.NodeManager;
 import com.rytec.rec.node.NodeMessage;
 import com.rytec.rec.util.ConstantFromWhere;
@@ -45,11 +44,11 @@ public class VideoService extends RecBase implements ManageableInterface {
     @Autowired
     ChannelManager channelManager;
 
-    private MqttService mqttService;
+    private MqttServer mqttService;
 
     ObjectMapper objectMapper = new ObjectMapper();
 
-    public void setMqttService(MqttService mqttService) {
+    public void setMqttService(MqttServer mqttService) {
         this.mqttService = mqttService;
     }
 
@@ -214,10 +213,10 @@ public class VideoService extends RecBase implements ManageableInterface {
     @Override
     public void start() {
         initConfig();   // 初始化配置
-        try {
-            sendVideoServiceConfig();
-        } catch (Exception e) {
-
-        }
+//        try {
+//            //sendVideoServiceConfig();
+//        } catch (Exception e) {
+//
+//        }
     }
 }

@@ -93,7 +93,8 @@ dependencies {
 
     // 消息中间件
     compile group: 'org.springframework.integration', name: 'spring-integration-mqtt', version: '4.3.11.RELEASE'
-    compile group: 'org.eclipse.paho', name: 'org.eclipse.paho.client.mqttv3', version: '1.1.0'
+    compile group: 'io.moquette', name: 'moquette-broker', version: '0.11'
+
 
     // Servlet
     providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
@@ -105,10 +106,10 @@ dependencies {
     //compile group: 'com.ghgande', name: 'j2mod', version: '2.3.9'
     //compile group: 'com.github.kochedykov', name: 'jlibmodbus', version: '1.2.9.0'
 
-    // 61850
+    // 61850 暂时没有使用，目前使用C实现
     compile group: 'org.openmuc', name: 'openiec61850', version: '1.5.0'
 
-    // 工具类
+    // 工具类，美化XML代码
     compile group: 'org.dom4j', name: 'dom4j', version: '2.1.0'
 
     // 测试
