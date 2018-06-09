@@ -145,7 +145,7 @@ public class DeviceManager extends RecBase implements ManageableInterface {
             deviceRuntimeList.put(item.getId(), deviceRuntimeBean);
         }
 
-        logger.debug("DeviceManager Init...");
+        debug("DeviceManager Init...");
     }
 
     @PostConstruct

@@ -33,7 +33,7 @@ public class MqttServer extends RecBase {
     MqttServerListener mqttServerListener;
 
     @PostConstruct
-    public void Start(){
+    public void Start() {
         Properties properties = new Properties();
         MemoryConfig config = new MemoryConfig(properties);
         properties.setProperty("port", "1883");
@@ -51,16 +51,17 @@ public class MqttServer extends RecBase {
     }
 
     @PreDestroy
-    public void Stop(){
+    public void Stop() {
         mqttBroker.stopServer();
     }
 
     /**
      * 发送消息
+     *
      * @param topic
      * @param payload
      */
-    public void sendMsg(String topic, String payload){
+    public void sendMsg(String topic, String payload) {
         MqttPublishMessage message = MqttMessageBuilders.publish()
                 .topicName(topic)
                 .retained(true)

@@ -64,7 +64,7 @@ gretty {
 
 dependencies {
     // 日志
-    compile 'ch.qos.logback:logback-classic:1.1.7'
+    compile 'ch.qos.logback:logback-classic:1.2.3'
 
     // Spring
     compile 'org.springframework:spring-webmvc:4.3.11.RELEASE'
@@ -92,9 +92,7 @@ dependencies {
     compile "de.grundid.opendatalab:geojson-jackson:1.8"
 
     // 消息中间件
-    compile group: 'org.springframework.integration', name: 'spring-integration-mqtt', version: '4.3.11.RELEASE'
     compile group: 'io.moquette', name: 'moquette-broker', version: '0.11'
-
 
     // Servlet
     providedCompile 'javax.servlet:javax.servlet-api:3.1.0'

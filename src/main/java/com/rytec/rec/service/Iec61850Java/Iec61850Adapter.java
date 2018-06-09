@@ -63,7 +63,7 @@ public class Iec61850Adapter extends RecBase implements ServerEventListener {
         System.out.println(serversServerModel);
 
 
-        logger.debug(serversServerModel.getBasicDataAttributes().toString());
+        debug(serversServerModel.getBasicDataAttributes().toString());
 
 //        BasicDataAttribute bda = (BasicDataAttribute) serversServerModel.findModelNode("RYTEC-RECSENSORS/MMXU3.value.instMag.f", Fc.MX);
 //        BasicDataAttribute bda1 = (BasicDataAttribute) serversServerModel.findModelNode("RYTEC-RECSENSORS/CALH1.value.stVal", Fc.ST);

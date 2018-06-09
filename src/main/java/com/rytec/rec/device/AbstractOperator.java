@@ -154,7 +154,7 @@ public class AbstractOperator extends RecBase {
         WebMessage webMessage = new WebMessage();
         webMessage.type = type;
         webMessage.msg = body;
-        webPush.clientBroadcast(webMessage);
+        webPush(webMessage);
     }
 
 }

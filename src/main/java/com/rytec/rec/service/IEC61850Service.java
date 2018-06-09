@@ -46,7 +46,7 @@ public class IEC61850Service extends RecBase implements ManageableInterface {
         for (DeviceRuntimeBean deviceRuntimeBean : deviceManager.getDeviceRuntimeList().values()) {
             iec61850runtime.add(deviceRuntimeBean);
         }
-        logger.debug("61850Manager Init...");
+        debug("61850Manager Init...");
     }
 
     /**

@@ -162,7 +162,7 @@ public class ChannelModbusMaster extends RecBase implements ChannelInterface, Ma
     public void startLoop() {
         inLoop = true;
         asyncRunner.runLoop();
-        logger.debug("--------------结束循环------------------");
+        debug("--------------结束循环------------------");
     }
 
     /**

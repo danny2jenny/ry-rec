@@ -7,6 +7,7 @@
 package com.rytec.rec.channel.ModbusTcpServer;
 
 import com.rytec.rec.app.ManageableInterface;
+import com.rytec.rec.app.RecBase;
 import com.rytec.rec.channel.ChannelInterface;
 import com.rytec.rec.channel.ChannelManager;
 import com.rytec.rec.channel.ModbusTcpServer.handler.ModbusChannelInitializer;
@@ -41,9 +42,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @Order(400)
 @AnnotationChannelType(1001)
 @AnnotationJSExport("Modbus服务器")
-public class ModbusTcpServer implements ChannelInterface, ManageableInterface {
-
-    private final org.slf4j.Logger logger = LoggerFactory.getLogger(this.getClass());
+public class ModbusTcpServer extends RecBase implements ChannelInterface, ManageableInterface {
 
     @Autowired
     private DbConfig dbConfig;
@@ -174,7 +173,7 @@ public class ModbusTcpServer implements ChannelInterface, ManageableInterface {
      * <String, Integer>   ip:port -> 当前的轮训位置
      */
 
-    @Scheduled(fixedDelay = 330)
+    @Scheduled(fixedDelay = 50)
     private void doOnTime() {
         // 遍历已经登录的远端，并执行队列
         for (Channel cha : clients.values()) {

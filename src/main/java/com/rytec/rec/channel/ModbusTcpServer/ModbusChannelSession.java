@@ -6,7 +6,6 @@ import com.rytec.rec.node.NodeRuntimeBean;
 import com.rytec.rec.util.ConstantCommandType;
 import com.rytec.rec.util.ConstantFromWhere;
 import io.netty.channel.Channel;
-import org.slf4j.LoggerFactory;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -19,8 +18,6 @@ import java.util.concurrent.ConcurrentLinkedQueue;
  * 3、当命令队列中有数据的时候，优先满足队列中的命令
  */
 public class ModbusChannelSession {
-
-    private final org.slf4j.Logger logger = LoggerFactory.getLogger(this.getClass());
 
     private ModbusTcpServer modbusTcpServer;
 
@@ -38,6 +35,9 @@ public class ModbusChannelSession {
     private volatile int currentTimerQuerryIndex = 0;
     // 当前超时的计数
     private volatile int timer = 0;
+    // 命令计数
+    private volatile int checkCount = 0;        // 定时检测的计数
+    private volatile int sendCount = 0;         // 命令发送的计数
 
 
     // 以下变量不需要锁定
@@ -124,42 +124,12 @@ public class ModbusChannelSession {
 
 
     /**
-     * 发送命令
+     * 发送命令，只是把命令放入队列
      *
      * @param msg
      */
     public void sendMsg(ModbusMessage msg) {
         instantQueueCmd.add(msg);
-        timerProcess();
-    }
-
-    /**
-     * 检查超时
-     */
-    public void checkOverTime() {
-        logger.debug("超时--Node：" + lastOutMsg.nodeId);
-        timer = 0;
-        //todo: 超时处理
-        goodHelth(lastOutMsg, false);
-
-        /**
-         * 如果是用户命令，或者是联动命令，需要重新执行
-         * 重新执行超过三次还不成功就丢弃
-         */
-        //
-        if ((lastOutMsg.from == ConstantFromWhere.FROM_USER) || (lastOutMsg.from == ConstantFromWhere.FROM_ALI)) {
-            lastOutMsg.retry++;
-            if (lastOutMsg.retry < 3) {
-                sendMsg(lastOutMsg);
-                logger.debug("命令重试：Node:" + lastOutMsg.nodeId);
-            } else {
-                logger.debug("重试失败！！！！：Node:" + lastOutMsg.nodeId);
-                lastOutMsg = null;
-            }
-        } else {
-            lastOutMsg = null;
-        }
-
     }
 
     /**
@@ -168,43 +138,51 @@ public class ModbusChannelSession {
      */
     public synchronized void timerProcess() {
         // 如果有未返回的命令，检查超时
-        if (lastOutMsg != null) {
+        if ((lastOutMsg != null) && (sendCount == checkCount)) {
+
+            // 命令没有变化
             timer++;
-            if (timer > 5) {
-                //超时处理
-                checkOverTime();
-            } else {
-                //没有超时
+
+            if (timer < 15) {
+                // 未到达超时计数，返回
                 return;
             }
+
+            modbusTcpServer.debug("超时--Node：" + lastOutMsg.nodeId);
+            timer = 0;
+
+            goodHelth(lastOutMsg, false);
+
+            /**
+             * 如果是用户命令，或者是联动命令，需要重新执行
+             * 重新执行超过三次还不成功就丢弃
+             */
+            if ((lastOutMsg.from == ConstantFromWhere.FROM_SYSTEM) || (lastOutMsg.from == ConstantFromWhere.FROM_ALI)) {
+                lastOutMsg.retry++;
+                if (lastOutMsg.retry < 3) {
+                    // 重新发送当前的命令
+                    modbusTcpServer.debug("命令重试：Node:" + lastOutMsg.nodeId);
+                    sendMsg(lastOutMsg);
+                } else {
+                    modbusTcpServer.debug("重试失败！！！！：Node:" + lastOutMsg.nodeId);
+                }
+            }
+            lastOutMsg = null;
         }
 
-        // 首先满足实时队列
+        // 当前的发送命令为空，发送下一条命令
+        // 1、首先满足实时队列
         lastOutMsg = instantQueueCmd.poll();
 
-        // 没有实时命令，发送定时命令
+        // 2、没有实时命令，发送定时命令
         if (lastOutMsg == null) {
             lastOutMsg = getNextQuery();
         }
 
-        // 如果存在当前命令，就发送
+        // 3、如果存在当前命令，就发送
         if (lastOutMsg != null) {
-            channel.writeAndFlush(lastOutMsg);
-        }
-    }
-
-    /**
-     * 单独处理队列，由Channel收到回应后调用
-     */
-    public synchronized void processQueue() {
-        lastOutMsg = instantQueueCmd.poll();
-
-        if (lastOutMsg == null) {
-            lastOutMsg = getNextQuery();
-        }
-
-        // 如果存在当前命令，就发送
-        if (lastOutMsg != null) {
+            sendCount++;
+            checkCount = sendCount;
             channel.writeAndFlush(lastOutMsg);
         }
     }

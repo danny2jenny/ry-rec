@@ -63,6 +63,6 @@ public class AlarmHub extends RecBase {
 
         webMessage.type = ConstantMessageType.DEVICE_ALARM;
         webMessage.msg = alarmMessage;
-        webPush.clientBroadcast(webMessage);
+        webPush(webMessage);
     }
 }

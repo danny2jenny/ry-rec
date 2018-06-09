@@ -7,7 +7,6 @@ import com.rytec.rec.device.state.StateOutput;
 import com.rytec.rec.util.ConstantMessageType;
 import com.rytec.rec.node.NodeMessage;
 import com.rytec.rec.util.*;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 /**
@@ -52,9 +51,6 @@ public class Output extends AbstractOperator {
     public static int ACT_OFF = 100;        //关闭
     @AnnotationJSExport("开启")
     public static int ACT_ON = 101;         //开启
-
-
-    private final org.slf4j.Logger logger = LoggerFactory.getLogger(this.getClass());
 
     /**
      * 开关控制
@@ -129,7 +125,6 @@ public class Output extends AbstractOperator {
                 }
                 break;
             case ConstantDeviceFunction.DEV_FUN_PORT_D:
-                logger.debug("本地开关动作！！！！！！！！！！！");
                 // 本地开关
                 if ((Boolean) newValue == true) {
                     operate(ConstantFromWhere.FROM_SYSTEM, deviceRuntimeBean.device.getId(), Output.ACT_ON, null);

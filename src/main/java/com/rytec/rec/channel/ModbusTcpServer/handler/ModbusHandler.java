@@ -20,8 +20,6 @@ import java.net.InetSocketAddress;
  */
 public class ModbusHandler extends SimpleChannelInboundHandler<ModbusMessage> {
 
-    private final org.slf4j.Logger logger = LoggerFactory.getLogger(this.getClass());
-
     // 由于Natty的机制，这里不能用Autowired的方式
     private ModbusTcpServer modbusTcpServer;
 
@@ -62,15 +60,12 @@ public class ModbusHandler extends SimpleChannelInboundHandler<ModbusMessage> {
                 //移除相应的登录解码器，添加帧解码器
                 ctx.pipeline().remove("LoginDecoder");
                 ctx.pipeline().addFirst("FrameDecoder", new ModbusFrameDecoder());
-
-                //处理命令队列
-                modbusChannelSession.processQueue();
                 break;
-            // 远端的回应
+            // 远端的回应：这里一定是正确的回应
             case ConstantFromWhere.FROM_RPS:
                 modbusTcpServer.receiveMsg(modbusChannelSession.id, response);
-                //modbusChannelSession.clearLastOutMsg();
-                //modbusChannelSession.processQueue();
+                modbusChannelSession.clearLastOutMsg();
+                // modbusChannelSession.timerProcess();
                 break;
             default:
                 break;
@@ -101,7 +96,7 @@ public class ModbusHandler extends SimpleChannelInboundHandler<ModbusMessage> {
         // 当一个channel太久没有写入数据，表示这个Channel是没有配置的，应该断开。
         if (evt instanceof IdleStateEvent) {
             ctx.close();
-            logger.debug("无效的连接！！！！！！！！！！！！");
+            modbusTcpServer.debug("无效的连接！！！！！！！！！！！！");
         }
     }
 

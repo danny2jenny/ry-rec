@@ -62,7 +62,7 @@ public class Iec60870Server extends RecBase implements ServerEventListener, Mana
     public void clientClosed(Iec60870Listener client) {
         if (client == crtListener) {
             crtListener = null;
-            logger.debug("当前活动链接关闭");
+            debug("当前活动链接关闭");
         }
 
     }
@@ -75,7 +75,7 @@ public class Iec60870Server extends RecBase implements ServerEventListener, Mana
     @Override
     public void connectionIndication(Connection connection) {
         int myConnectionId = connectionIdCounter++;
-        logger.debug("客户端连接: " + myConnectionId);
+        debug("客户端连接: " + myConnectionId);
 
         try {
             Iec60870Listener iec60870Listener = new Iec60870Listener(connection, myConnectionId);
@@ -84,7 +84,7 @@ public class Iec60870Server extends RecBase implements ServerEventListener, Mana
             crtListener = iec60870Listener;
             connection.waitForStartDT(iec60870Listener, 5000);
         } catch (IOException e) {
-            logger.debug("连接： (" + myConnectionId + ") 中断 StartDT: " + e.getMessage());
+            debug("连接： (" + myConnectionId + ") 中断 StartDT: " + e.getMessage());
             return;
         } catch (TimeoutException e) {
 
@@ -94,12 +94,12 @@ public class Iec60870Server extends RecBase implements ServerEventListener, Mana
 
     @Override
     public void serverStoppedListeningIndication(IOException e) {
-        logger.debug("服务器停止 : \"" + e.getMessage() + "\"");
+        debug("服务器停止 : \"" + e.getMessage() + "\"");
     }
 
     @Override
     public void connectionAttemptFailed(IOException e) {
-        logger.debug("连接失败: " + e.getMessage());
+        debug("连接失败: " + e.getMessage());
     }
 
     @Override
@@ -113,7 +113,7 @@ public class Iec60870Server extends RecBase implements ServerEventListener, Mana
         try {
             server.start(this);
         } catch (IOException e) {
-            logger.debug("Unable to start listening: \"" + e.getMessage() + "\". Will quit.");
+            debug("Unable to start listening: \"" + e.getMessage() + "\". Will quit.");
             return;
         }
     }
