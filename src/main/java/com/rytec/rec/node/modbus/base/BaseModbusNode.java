@@ -42,6 +42,11 @@ public abstract class BaseModbusNode extends RecBase implements ModbusNodeInterf
             nodeConfig.sensitive = new Float(0);
         }
 
+        if (nodeConfig.interval == null) {
+            nodeConfig.interval = 1;
+        }
+
+
         return nodeConfig;
     }
 

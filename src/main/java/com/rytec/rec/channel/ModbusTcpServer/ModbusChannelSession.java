@@ -97,7 +97,9 @@ public class ModbusChannelSession {
 
             /**
              * Node类型一致，地址一致，组成一个查询
+             * 根据Node的no字段来动态生成查询命令
              */
+            NodeRuntimeBean nodeRuntimeBean = modbusTcpServer.nodeManager.getChannelNodeByNodeId(cn.getNid());
             String key = "" + cn.getNtype() + ':' + cn.getAdr();
             ModbusMessage msg = timerQueryList.get(key);
             if (msg == null) {
@@ -105,11 +107,17 @@ public class ModbusChannelSession {
                 msg = (ModbusMessage) iNode.genMessage(ConstantFromWhere.FROM_TIMER, cn.getNid(), ConstantCommandType.GENERAL_READ, cn.getNo(), 0);
                 if (msg != null) {
                     timerQueryListIndex.add(key);
+                    // 初始化命令发送的周期
+                    msg.interval = nodeRuntimeBean.nodeConfig.interval;
+                    msg.intervalCount = 1;
                 }
             } else {
                 // 存在命令，根据 regCount 更新当前的命令
                 if (cn.getNo() > msg.regCount) {
                     msg = (ModbusMessage) iNode.genMessage(ConstantFromWhere.FROM_TIMER, cn.getNid(), ConstantCommandType.GENERAL_READ, cn.getNo(), 0);
+                    // 初始化命令发送的周期
+                    msg.interval = nodeRuntimeBean.nodeConfig.interval;
+                    msg.intervalCount = 1;
                 }
             }
 
@@ -123,6 +131,7 @@ public class ModbusChannelSession {
 
     /**
      * 得到下一个的查询命令
+     * 根据命令周期得到
      */
 
     private ModbusMessage getNextQuery() {
@@ -131,7 +140,16 @@ public class ModbusChannelSession {
         }
         ModbusMessage msg = timerQueryList.get(timerQueryListIndex.get(currentTimerQuerryIndex));
         currentTimerQuerryIndex = (currentTimerQuerryIndex + 1) % timerQueryList.size();
-        return msg;
+
+        // 判断该命令是否需要发送
+        msg.intervalCount--;
+        if (msg.intervalCount == 0) {
+            msg.intervalCount = msg.interval;
+            return msg;
+        } else {
+            return null;
+        }
+
     }
 
 

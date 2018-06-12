@@ -23,7 +23,7 @@ Ext.define('app.view.admin.panel.NodeConfig', {
     items: [
         {
             xtype: 'numberfield',
-            fieldLabel: '灵敏度：',
+            fieldLabel: '灵敏度',
             name: 'sensitive',
             decimalPrecision: 10,
             itemId: 'sensitive'
@@ -45,6 +45,11 @@ Ext.define('app.view.admin.panel.NodeConfig', {
             fieldLabel: '计量单位',
             name: 'unit',
             itemId: 'unit'
+        }, {
+            xtype: 'numberfield',
+            fieldLabel: '更新周期',
+            name: 'interval',
+            itemId: 'interval'
         }],
     buttons: [{
         text: "更新",
@@ -59,6 +64,7 @@ Ext.define('app.view.admin.panel.NodeConfig', {
             opt.pA = pa.down('#pA').getValue();
             opt.pB = pa.down('#pB').getValue();
             opt.unit = pa.down('#unit').getValue();
+            opt.interval = pa.down('#interval').getValue();
 
             selection.set('opt', JSON.stringify(opt))
             selection.endEdit();
@@ -82,12 +88,14 @@ Ext.define('app.view.admin.panel.NodeConfig', {
             this.down('#pA').setValue(opt.pA);
             this.down('#pB').setValue(opt.pB);
             this.down('#unit').setValue(opt.unit);
+            this.down('#interval').setValue(opt.interval);
 
         } else {
             this.down('#sensitive').setValue(null);
             this.down('#pA').setValue(null);
             this.down('#pB').setValue(null);
             this.down('#unit').setValue(null);
+            this.down('#interval').setValue(null);
         }
     }
 
