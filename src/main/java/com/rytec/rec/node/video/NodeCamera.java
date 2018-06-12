@@ -4,7 +4,8 @@ import com.rytec.rec.channel.ChannelInterface;
 import com.rytec.rec.channel.ChannelManager;
 import com.rytec.rec.db.model.ChannelNode;
 import com.rytec.rec.node.*;
-import com.rytec.rec.node.base.BaseNode;
+import com.rytec.rec.node.modbus.base.BaseModbusNode;
+import com.rytec.rec.node.modbus.base.ModbusNodeInterface;
 import com.rytec.rec.util.AnnotationJSExport;
 import com.rytec.rec.util.AnnotationNodeType;
 import org.slf4j.LoggerFactory;
@@ -18,7 +19,7 @@ import org.springframework.stereotype.Service;
 @Service
 @AnnotationNodeType(4001)
 @AnnotationJSExport("摄像机")
-public class NodeCamera extends BaseNode implements NodeInterface {
+public class NodeCamera extends BaseModbusNode implements ModbusNodeInterface {
 
     private final org.slf4j.Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -29,7 +30,8 @@ public class NodeCamera extends BaseNode implements NodeInterface {
     NodeManager nodeManager;
 
     // 命令编码
-    public Object genMessage(int where, int nodeId, int cmd, int value) {
+    @Override
+    public Object genMessage(int where, int nodeId, int cmd, int regCount, int value) {
         return null;
     }
 
@@ -63,11 +65,12 @@ public class NodeCamera extends BaseNode implements NodeInterface {
     }
 
     /**
-     *
      * @return
      */
-    public Object getCfg(){
+    public Object getCfg() {
         return null;
-    };
+    }
+
+    ;
 
 }

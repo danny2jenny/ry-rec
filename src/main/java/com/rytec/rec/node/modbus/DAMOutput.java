@@ -1,6 +1,7 @@
 package com.rytec.rec.node.modbus;
 
 import com.rytec.rec.node.*;
+import com.rytec.rec.node.modbus.base.DmaModbusBase;
 import com.rytec.rec.util.AnnotationJSExport;
 import com.rytec.rec.util.AnnotationNodeType;
 import com.rytec.rec.util.ConstantModbusCommand;
@@ -46,20 +47,19 @@ import javax.annotation.PostConstruct;
 
 @Service
 @AnnotationNodeType(1001)
-@AnnotationJSExport("DMA 输出 - 8")
-public class DAMOutput_8 extends NodeModbusBase {
+@AnnotationJSExport("DMA 输出")
+public class DAMOutput extends DmaModbusBase {
 
     public boolean needUpdate(NodeConfig cfg, Object oldVal, Object newVal) {
         return ValueCompare.booleanNeedUpdate(cfg, oldVal, newVal);
     }
 
     @PostConstruct
-    private void init(){
+    private void init() {
         /**
          * 各个实现需要设置该值
          */
         modbusCmd = ConstantModbusCommand.READ_WRITE_COILS;
-        regCount = 8;   // 寄存器的数量
     }
 
 }

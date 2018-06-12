@@ -2,7 +2,7 @@ package com.rytec.rec.channel.ModbusTcpClient;
 
 import com.rytec.rec.app.RecBase;
 import com.rytec.rec.db.model.ChannelNode;
-import com.rytec.rec.node.NodeInterface;
+import com.rytec.rec.node.modbus.base.ModbusNodeInterface;
 import com.rytec.rec.node.NodeMessage;
 import com.rytec.rec.node.NodeRuntimeBean;
 import com.rytec.rec.node.modbus.cfg.ModbusNodeCfg;
@@ -67,7 +67,7 @@ public class RecModbusMasterSession extends RecBase {
         }
 
         for (ChannelNode cn : cha.values()) {
-            NodeInterface iNode = channelModbusMaster.nodeManager.getNodeComInterface(cn.getNtype());
+            ModbusNodeInterface iNode = channelModbusMaster.nodeManager.getNodeComInterface(cn.getNtype());
 
             // 类型一致，地址一致组织成为一个读取
             if (iNode != null) {

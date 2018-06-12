@@ -13,7 +13,8 @@ import com.rytec.rec.db.DbConfig;
 import com.rytec.rec.db.model.ChannelNode;
 import com.rytec.rec.db.model.DeviceNode;
 import com.rytec.rec.device.DeviceManager;
-import com.rytec.rec.node.base.BaseNode;
+import com.rytec.rec.node.modbus.base.BaseModbusNode;
+import com.rytec.rec.node.modbus.base.ModbusNodeInterface;
 import com.rytec.rec.util.ConstantCommandType;
 import com.rytec.rec.util.AnnotationNodeType;
 import com.rytec.rec.util.ConstantErrorCode;
@@ -49,14 +50,14 @@ public class NodeManager implements ManageableInterface {
     ApplicationContext context;
 
     // 具体Node的通讯实现接口对象
-    private Map<Integer, NodeInterface> nodeComList = new ConcurrentHashMap();
+    private Map<Integer, ModbusNodeInterface> nodeComList = new ConcurrentHashMap();
 
     //得到一个Node的接口对象，通过 type
-    public NodeInterface getNodeComInterface(int type) {
+    public ModbusNodeInterface getNodeComInterface(int type) {
         return nodeComList.get(type);
     }
 
-    public Map<Integer, NodeInterface> getAllNodeInterface() {
+    public Map<Integer, ModbusNodeInterface> getAllNodeInterface() {
         return nodeComList;
     }
 
@@ -67,7 +68,7 @@ public class NodeManager implements ManageableInterface {
         for (Object node : nodes.values()) {
             Class<? extends Object> nodeClass = node.getClass();
             AnnotationNodeType annotation = nodeClass.getAnnotation(AnnotationNodeType.class);
-            nodeComList.put(annotation.value(), (NodeInterface) node);
+            nodeComList.put(annotation.value(), (ModbusNodeInterface) node);
         }
     }
 
@@ -81,7 +82,7 @@ public class NodeManager implements ManageableInterface {
             NodeRuntimeBean nodeRuntimeBean = new NodeRuntimeBean(this.nodeComList.get(cn.getNtype()));
             nodeRuntimeBean.channelNode = cn;                                      //ChannelNode
             nodeRuntimeBean.nodeState = new NodeState();                           //Node的状态
-            nodeRuntimeBean.nodeConfig = BaseNode.parseConfig(cn.getNodeconf());   //Node的配置
+            nodeRuntimeBean.nodeConfig = BaseModbusNode.parseConfig(cn.getNodeconf());   //Node的配置
             channelNodeList.put(cn.getNid(), nodeRuntimeBean);
         }
     }
@@ -114,10 +115,10 @@ public class NodeManager implements ManageableInterface {
             return;
         }
 
-        NodeInterface nodeInterface = getNodeComInterface(nodeRuntimeBean.channelNode.getNtype());
+        ModbusNodeInterface modbusNodeInterface = getNodeComInterface(nodeRuntimeBean.channelNode.getNtype());
 
         // 判断数据是否需要更新
-        if (nodeInterface.needUpdate(nodeRuntimeBean.nodeConfig, oldValue, msg.value)) {
+        if (modbusNodeInterface.needUpdate(nodeRuntimeBean.nodeConfig, oldValue, msg.value)) {
             // 数据需要更新
             nodeState.value = msg.value;
             // Device 可能指针为空
@@ -144,7 +145,7 @@ public class NodeManager implements ManageableInterface {
             // 填充NodeID
             msg.node = node.getNid();
             // todo: 这里应该由 nodeManager来发送消息
-            NodeInterface nodeCom = getNodeComInterface(node.getNtype());
+            ModbusNodeInterface nodeCom = getNodeComInterface(node.getNtype());
             if (nodeCom == null) {
                 rst = ConstantErrorCode.NODE_TYPE_NOTEXIST;
             } else {
@@ -155,6 +156,7 @@ public class NodeManager implements ManageableInterface {
         return rst;
     }
 
+    // 得到Node的运行状态
     public NodeRuntimeBean getChannelNodeByNodeId(int nodeId) {
         return channelNodeList.get(nodeId);
     }

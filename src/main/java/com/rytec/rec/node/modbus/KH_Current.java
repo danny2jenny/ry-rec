@@ -1,6 +1,7 @@
 package com.rytec.rec.node.modbus;
 
 import com.rytec.rec.node.NodeConfig;
+import com.rytec.rec.node.modbus.base.DmaModbusBase;
 import com.rytec.rec.util.AnnotationJSExport;
 import com.rytec.rec.util.AnnotationNodeType;
 import com.rytec.rec.util.ConstantModbusCommand;
@@ -20,7 +21,21 @@ import javax.annotation.PostConstruct;
 @Service
 @AnnotationNodeType(1102)
 @AnnotationJSExport("科华-环流")
-public class KH_Current extends NodeModbusBase {
+public class KH_Current extends DmaModbusBase {
+
+    /**
+     * 参数初始化
+     */
+    @PostConstruct
+    private void init() {
+        /**
+         * 各个实现需要设置该值
+         */
+        modbusCmd = ConstantModbusCommand.READ_HOLDING_REGISTERS;
+        //modbusCmd = ConstantModbusCommand.READ_REGISTERS;
+        //regOffset = 0;
+        regOffset = 0x07D0;
+    }
 
     /**
      * 判读数据是否需要更新
@@ -55,21 +70,5 @@ public class KH_Current extends NodeModbusBase {
 
         return false;
     }
-
-    /**
-     * 参数初始化
-     */
-    @PostConstruct
-    private void init() {
-        /**
-         * 各个实现需要设置该值
-         */
-        modbusCmd = ConstantModbusCommand.READ_HOLDING_REGISTERS;
-        //modbusCmd = ConstantModbusCommand.READ_REGISTERS;
-        regCount = 4;   // 寄存器的数量
-        //regOffset = 0;
-        regOffset = 0x07D0;
-    }
-
 
 }

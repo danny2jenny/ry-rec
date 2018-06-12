@@ -149,6 +149,10 @@ public class FileManager extends RecBase implements ManageableInterface {
          */
         Element device, name, map, type, target, position, function, msgType, addrType, addr;
         for (DeviceRuntimeBean deviceRuntimeBean : deviceManager.getDeviceRuntimeList().values()) {
+            // 处理没有图标的情况
+            if (deviceRuntimeBean.device.getIcon() == 0){
+                continue;
+            }
 
             if (deviceRuntimeBean.device.getType() == 301 | deviceRuntimeBean.device.getType() == 401 | deviceRuntimeBean.device.getType() == 9999) {
                 continue;

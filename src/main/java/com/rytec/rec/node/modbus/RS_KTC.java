@@ -7,6 +7,7 @@ import com.rytec.rec.channel.ModbusTcpServer.ModbusMessage;
 import com.rytec.rec.db.model.ChannelNode;
 import com.rytec.rec.node.NodeConfig;
 import com.rytec.rec.node.NodeMessage;
+import com.rytec.rec.node.modbus.base.DmaModbusBase;
 import com.rytec.rec.util.*;
 import io.netty.buffer.ByteBuf;
 import org.springframework.stereotype.Service;
@@ -28,7 +29,7 @@ import javax.annotation.PostConstruct;
 @Service
 @AnnotationNodeType(2004)
 @AnnotationJSExport("RS-KTC 空调")
-public class RS_KTC extends NodeModbusBase {
+public class RS_KTC extends DmaModbusBase {
     @Override
     public boolean needUpdate(NodeConfig cfg, Object oldVal, Object newVal) {
         return oldVal != newVal;
@@ -41,7 +42,6 @@ public class RS_KTC extends NodeModbusBase {
          */
         modbusCmd = ConstantModbusCommand.READ_HOLDING_REGISTERS;
         regOffset = 185;
-        regCount = 1;   // 寄存器的数量
     }
 
     /**
@@ -54,7 +54,7 @@ public class RS_KTC extends NodeModbusBase {
      * @return
      */
     @Override
-    public Object genMessage(int where, int nodeId, int cmd, int value) {
+    public Object genMessage(int where, int nodeId, int cmd, int regCount, int value) {
         ChannelNode cn = nodeManager.getChannelNodeByNodeId(nodeId).channelNode;
         ModbusMessage frame = new ModbusMessage();
 
@@ -142,7 +142,7 @@ public class RS_KTC extends NodeModbusBase {
         ChannelInterface channel = channelManager.getChannelInterface(channelNode.getCtype());
         ModbusMessage outMsg;
 
-        outMsg = (ModbusMessage) genMessage(msg.from, msg.node, msg.type, (Integer) msg.value);
+        outMsg = (ModbusMessage) genMessage(msg.from, msg.node, msg.type, 0, (Integer) msg.value);
         channel.sendMsg(outMsg);
 
         return rst;

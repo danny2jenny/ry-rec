@@ -6,7 +6,7 @@ import com.rytec.rec.channel.ModbusTcpServer.ModbusMessage;
 import com.rytec.rec.db.model.ChannelNode;
 import com.rytec.rec.node.NodeConfig;
 import com.rytec.rec.node.NodeMessage;
-import com.rytec.rec.node.ValueCompare;
+import com.rytec.rec.node.modbus.base.DmaModbusBase;
 import com.rytec.rec.util.*;
 import io.netty.buffer.ByteBuf;
 import org.springframework.stereotype.Service;
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
 
 /**
- *  * 状态地址：0x0801，(READ_HOLDING_REGISTERS=3)
+ * * 状态地址：0x0801，(READ_HOLDING_REGISTERS=3)
  * 0：停止
  * 1：工作
  * 控制：WRITE_REGISTER = 6
@@ -22,7 +22,7 @@ import javax.annotation.PostConstruct;
 @Service
 @AnnotationNodeType(5001)
 @AnnotationJSExport("U3-EC 工业空调")
-public class U3_EC extends NodeModbusBase{
+public class U3_EC extends DmaModbusBase {
 
     @Override
     public boolean needUpdate(NodeConfig cfg, Object oldVal, Object newVal) {
@@ -36,7 +36,6 @@ public class U3_EC extends NodeModbusBase{
          */
         modbusCmd = ConstantModbusCommand.READ_HOLDING_REGISTERS;
         regOffset = 0x0801;
-        regCount = 1;   // 寄存器的数量
     }
 
     /**
@@ -49,7 +48,7 @@ public class U3_EC extends NodeModbusBase{
      * @return
      */
     @Override
-    public Object genMessage(int where, int nodeId, int cmd, int value) {
+    public Object genMessage(int where, int nodeId, int cmd, int regCount, int value) {
         ChannelNode cn = nodeManager.getChannelNodeByNodeId(nodeId).channelNode;
         ModbusMessage frame = new ModbusMessage();
 
@@ -131,7 +130,7 @@ public class U3_EC extends NodeModbusBase{
         ChannelInterface channel = channelManager.getChannelInterface(channelNode.getCtype());
         ModbusMessage outMsg;
 
-        outMsg = (ModbusMessage) genMessage(msg.from, msg.node, msg.type, (Integer) msg.value);
+        outMsg = (ModbusMessage) genMessage(msg.from, msg.node, msg.type, 0, (Integer) msg.value);
         channel.sendMsg(outMsg);
 
         return rst;

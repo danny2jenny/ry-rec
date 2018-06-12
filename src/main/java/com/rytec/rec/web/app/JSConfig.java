@@ -7,7 +7,7 @@ import com.rytec.rec.db.model.Config;
 import com.rytec.rec.db.model.ConfigExample;
 import com.rytec.rec.device.AbstractOperator;
 import com.rytec.rec.device.DeviceManager;
-import com.rytec.rec.node.NodeInterface;
+import com.rytec.rec.node.modbus.base.ModbusNodeInterface;
 import com.rytec.rec.node.NodeManager;
 import com.rytec.rec.util.*;
 import org.slf4j.LoggerFactory;
@@ -120,10 +120,10 @@ public class JSConfig implements
         constHashMap.put("CHANNEL_TYPE", ccm);
 
         // Node 常量
-        Map<Integer, NodeInterface> nis = nodeManager.getAllNodeInterface();
+        Map<Integer, ModbusNodeInterface> nis = nodeManager.getAllNodeInterface();
         HashMap<Integer, String> cnm = new HashMap<>();
         for (Integer i : nis.keySet()) {
-            NodeInterface ni = nis.get(i);
+            ModbusNodeInterface ni = nis.get(i);
             cnm.put(i, ni.getClass().getAnnotation(AnnotationJSExport.class).value());
         }
         constHashMap.put("NODE_TYPE", cnm);

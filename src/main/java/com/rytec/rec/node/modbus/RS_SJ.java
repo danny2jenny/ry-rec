@@ -6,6 +6,7 @@ import com.rytec.rec.node.NodeConfig;
 import com.rytec.rec.node.NodeMessage;
 import com.rytec.rec.node.NodeRuntimeBean;
 import com.rytec.rec.node.ValueCompare;
+import com.rytec.rec.node.modbus.base.DmaModbusBase;
 import com.rytec.rec.util.AnnotationJSExport;
 import com.rytec.rec.util.AnnotationNodeType;
 import com.rytec.rec.util.ConstantModbusCommand;
@@ -19,7 +20,7 @@ import java.util.HashMap;
 @Service
 @AnnotationNodeType(2002)
 @AnnotationJSExport("RS-SJ 水浸")
-public class RS_SJ extends NodeModbusBase {
+public class RS_SJ extends DmaModbusBase {
     @Override
     public boolean needUpdate(NodeConfig cfg, Object oldVal, Object newVal) {
         return ValueCompare.booleanNeedUpdate(cfg, oldVal, newVal);
@@ -32,7 +33,6 @@ public class RS_SJ extends NodeModbusBase {
          */
         modbusCmd = ConstantModbusCommand.READ_HOLDING_REGISTERS;
         regOffset = 2;
-        regCount = 1;   // 寄存器的数量
     }
 
     /**

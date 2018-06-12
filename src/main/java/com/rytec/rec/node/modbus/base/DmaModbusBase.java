@@ -1,4 +1,4 @@
-package com.rytec.rec.node.modbus;
+package com.rytec.rec.node.modbus.base;
 
 import com.rytec.rec.channel.ChannelInterface;
 import com.rytec.rec.channel.ChannelManager;
@@ -8,7 +8,6 @@ import com.rytec.rec.db.model.ChannelNode;
 import com.rytec.rec.node.NodeManager;
 import com.rytec.rec.node.NodeMessage;
 import com.rytec.rec.node.NodeRuntimeBean;
-import com.rytec.rec.node.base.BaseNode;
 import com.rytec.rec.node.modbus.cfg.ModbusNodeCfg;
 import com.rytec.rec.util.ConstantCommandType;
 import com.rytec.rec.util.ConstantErrorCode;
@@ -16,7 +15,6 @@ import com.rytec.rec.util.ConstantFromWhere;
 import com.rytec.rec.util.ConstantModbusCommand;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.HashMap;
@@ -31,23 +29,14 @@ import java.util.HashMap;
  * regCount
  * regOffset
  */
-public abstract class NodeModbusBase extends BaseNode {
-
-    private final org.slf4j.Logger logger = LoggerFactory.getLogger(this.getClass());
-
-    /**
-     * 各个实现需要设置该值
-     */
-    public int modbusCmd = 1;  // Modbus的命令，1\2\3\4\5\6
-    public int regCount = 1;   // 寄存器的数量
-    public int regOffset = 0;  // 寄存器偏移量
+public abstract class DmaModbusBase extends BaseModbusNode {
 
 
     @Autowired
-    NodeManager nodeManager;
+    public NodeManager nodeManager;
 
     @Autowired
-    ChannelManager channelManager;
+    public ChannelManager channelManager;
 
 
     /**
@@ -57,7 +46,8 @@ public abstract class NodeModbusBase extends BaseNode {
      * @param value  值
      * @return
      */
-    public Object genMessage(int where, int nodeId, int cmd, int value) {
+    @Override
+    public Object genMessage(int where, int nodeId, int cmd, int regCount, int value) {
 
         ChannelNode cn = nodeManager.getChannelNodeByNodeId(nodeId).channelNode;
 
@@ -66,6 +56,7 @@ public abstract class NodeModbusBase extends BaseNode {
         frame.from = where;
         frame.nodeId = nodeId;
         frame.type = cmd;
+        frame.regCount = regCount;
 
         switch (modbusCmd) {
             case ConstantModbusCommand.READ_WRITE_COILS:                  // 999
@@ -107,6 +98,7 @@ public abstract class NodeModbusBase extends BaseNode {
      *
      * @param msg
      */
+    @Override
     public void decodeMessage(Object msg) {
 
         ModbusMessage modbusMessage = (ModbusMessage) msg;
@@ -123,19 +115,19 @@ public abstract class NodeModbusBase extends BaseNode {
 
         switch (modbusCmd) {
             case ConstantModbusCommand.READ_COILS:                  // 1
-                payload.getBytes(3, data, (int) Math.ceil(((double) regCount) / 8));
+                payload.getBytes(3, data, payload.readableBytes() - 5);
                 processIO(nodeMsg, data);
                 break;
             case ConstantModbusCommand.READ_INPUT:                  // 2
-                payload.getBytes(3, data, (int) Math.ceil(((double) regCount) / 8));
+                payload.getBytes(3, data, payload.readableBytes() - 5);
                 processIO(nodeMsg, data);
                 break;
             case ConstantModbusCommand.READ_HOLDING_REGISTERS:      // 3
-                payload.getBytes(3, data, regCount * 2);
+                payload.getBytes(3, data, payload.readableBytes() - 5);
                 processAnalog(nodeMsg, data);
                 break;
             case ConstantModbusCommand.READ_REGISTERS:              // 4
-                payload.getBytes(3, data, regCount * 2);
+                payload.getBytes(3, data, payload.readableBytes() - 5);
                 processAnalog(nodeMsg, data);
                 break;
             case ConstantModbusCommand.WRITE_COIL:                  // 5
@@ -254,6 +246,7 @@ public abstract class NodeModbusBase extends BaseNode {
      * @param msg ModbusMessage
      * @param h
      */
+    @Override
     public void goodHelth(Object msg, boolean h) {
 
         if (h) {
@@ -282,6 +275,7 @@ public abstract class NodeModbusBase extends BaseNode {
 
     }
 
+    @Override
     public int sendMessage(NodeMessage msg) {
         // todo: 完善错误处理
         int rst = 0;
@@ -305,16 +299,16 @@ public abstract class NodeModbusBase extends BaseNode {
                     if ((Boolean) msg.value) {
                         // 打开
                         if (nodeRuntimeBean.nodeConfig.pA < 0) {
-                            outMsg = (ModbusMessage) genMessage(msg.from, msg.node, msg.type, 0x0000);
+                            outMsg = (ModbusMessage) genMessage(msg.from, msg.node, msg.type, 0, 0x0000);
                         } else {
-                            outMsg = (ModbusMessage) genMessage(msg.from, msg.node, msg.type, 0xFF00);
+                            outMsg = (ModbusMessage) genMessage(msg.from, msg.node, msg.type, 0, 0xFF00);
                         }
                     } else {
                         // 关闭
                         if (nodeRuntimeBean.nodeConfig.pA < 0) {
-                            outMsg = (ModbusMessage) genMessage(msg.from, msg.node, msg.type, 0xFF00);
+                            outMsg = (ModbusMessage) genMessage(msg.from, msg.node, msg.type, 0, 0xFF00);
                         } else {
-                            outMsg = (ModbusMessage) genMessage(msg.from, msg.node, msg.type, 0x0000);
+                            outMsg = (ModbusMessage) genMessage(msg.from, msg.node, msg.type, 0, 0x0000);
                         }
 
                     }
@@ -335,15 +329,13 @@ public abstract class NodeModbusBase extends BaseNode {
     /**
      * @return
      */
+    @Override
     public Object getCfg() {
         ModbusNodeCfg cfg = new ModbusNodeCfg();
         cfg.modbusCmd = modbusCmd;
-        cfg.regCount = regCount;
         cfg.regOffset = regOffset;
 
         return cfg;
     }
-
-    ;
 
 }

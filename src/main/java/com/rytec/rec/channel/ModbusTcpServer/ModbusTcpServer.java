@@ -13,7 +13,7 @@ import com.rytec.rec.channel.ChannelManager;
 import com.rytec.rec.channel.ModbusTcpServer.handler.ModbusChannelInitializer;
 import com.rytec.rec.db.DbConfig;
 import com.rytec.rec.db.model.ChannelNode;
-import com.rytec.rec.node.NodeInterface;
+import com.rytec.rec.node.modbus.base.ModbusNodeInterface;
 import com.rytec.rec.node.NodeManager;
 import com.rytec.rec.util.AnnotationChannelType;
 import com.rytec.rec.util.AnnotationJSExport;
@@ -26,7 +26,6 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.util.concurrent.GenericFutureListener;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.annotation.Order;
@@ -196,7 +195,7 @@ public class ModbusTcpServer extends RecBase implements ChannelInterface, Manage
     public void receiveMsg(String chaId, ModbusMessage response) {
 
         ChannelNode cn = (ChannelNode) channelNodes.get(chaId).get(response.nodeId);
-        NodeInterface nodeBean = nodeManager.getNodeComInterface(cn.getNtype());
+        ModbusNodeInterface nodeBean = nodeManager.getNodeComInterface(cn.getNtype());
 
         // 解码值
         nodeBean.decodeMessage(response);

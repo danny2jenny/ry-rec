@@ -6,6 +6,7 @@ import com.rytec.rec.node.NodeConfig;
 import com.rytec.rec.node.NodeMessage;
 import com.rytec.rec.node.NodeRuntimeBean;
 import com.rytec.rec.node.ValueCompare;
+import com.rytec.rec.node.modbus.base.DmaModbusBase;
 import com.rytec.rec.util.AnnotationJSExport;
 import com.rytec.rec.util.AnnotationNodeType;
 import com.rytec.rec.util.ConstantModbusCommand;
@@ -24,7 +25,7 @@ import java.util.HashMap;
 @Service
 @AnnotationNodeType(2003)
 @AnnotationJSExport("RF-WSD 温湿度")
-public class RS_WSD extends NodeModbusBase {
+public class RS_WSD extends DmaModbusBase {
     @Override
     public boolean needUpdate(NodeConfig cfg, Object oldVal, Object newVal) {
         return ValueCompare.analogNeedUpdate(cfg, oldVal, newVal);
@@ -36,11 +37,9 @@ public class RS_WSD extends NodeModbusBase {
          * 各个实现需要设置该值
          */
         modbusCmd = ConstantModbusCommand.READ_HOLDING_REGISTERS;
-        regCount = 2;   // 寄存器的数量
     }
 
     /**
-     *
      * @param msg
      * @param data
      */
@@ -59,20 +58,20 @@ public class RS_WSD extends NodeModbusBase {
             if ((nodeRunTime.channelNode.getAdr().intValue() == node.getAdr().intValue()) &&
                     (nodeRunTime.channelNode.getNtype().intValue() == node.getNtype().intValue())) {
 
-                valueIndex = (node.getNo()-1) * 2;
+                valueIndex = (node.getNo() - 1) * 2;
                 analogVal = data.getShort(valueIndex);
                 currentNodeRuntime = nodeManager.getChannelNodeByNodeId(node.getNid());
                 // 这里需要进行特殊的数据，处理温度低于0的情况
-                if (node.getNo()==1){
+                if (node.getNo() == 1) {
                     // 湿度数据
-                    msg.value = analogVal/10f + currentNodeRuntime.nodeConfig.pB;
+                    msg.value = analogVal / 10f + currentNodeRuntime.nodeConfig.pB;
                 } else {
                     // 温度数据
-                    if (analogVal>1000){
+                    if (analogVal > 1000) {
                         // 零下
                         analogVal = analogVal - 65536;
                     }
-                    msg.value = analogVal/10f + currentNodeRuntime.nodeConfig.pB;
+                    msg.value = analogVal / 10f + currentNodeRuntime.nodeConfig.pB;
                 }
 
                 msg.node = node.getNid();
@@ -94,7 +93,7 @@ public class RS_WSD extends NodeModbusBase {
         ByteBuf payload = modbusMessage.payload;
         ByteBuf data = Unpooled.buffer();
 
-        payload.getBytes(3, data, regCount * 2);
+        payload.getBytes(3, data, payload.readableBytes() - 5);
         processAnalog(nodeMsg, data);
     }
 }

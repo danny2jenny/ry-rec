@@ -7,6 +7,7 @@ import com.rytec.rec.db.model.ChannelNode;
 import com.rytec.rec.node.NodeConfig;
 import com.rytec.rec.node.NodeMessage;
 import com.rytec.rec.node.ValueCompare;
+import com.rytec.rec.node.modbus.base.DmaModbusBase;
 import com.rytec.rec.util.*;
 import io.netty.buffer.ByteBuf;
 import org.springframework.stereotype.Service;
@@ -27,7 +28,7 @@ import org.springframework.stereotype.Service;
 @Service
 @AnnotationNodeType(1101)
 @AnnotationJSExport("科华-井盖")
-public class KH_MC extends NodeModbusBase {
+public class KH_MC extends DmaModbusBase {
 
     @Override
     public boolean needUpdate(NodeConfig cfg, Object oldVal, Object newVal) {
@@ -42,7 +43,7 @@ public class KH_MC extends NodeModbusBase {
      * @return
      */
     @Override
-    public Object genMessage(int where, int nodeId, int cmd, int value) {
+    public Object genMessage(int where, int nodeId, int cmd, int regCount, int value) {
         ChannelNode cn = nodeManager.getChannelNodeByNodeId(nodeId).channelNode;
         ModbusMessage frame = new ModbusMessage();
 
@@ -124,10 +125,10 @@ public class KH_MC extends NodeModbusBase {
         if (msg.value instanceof Boolean) {
             if ((Boolean) msg.value) {
                 // Switch ON
-                outMsg = (ModbusMessage) genMessage(msg.from, msg.node, msg.type, 1);
+                outMsg = (ModbusMessage) genMessage(msg.from, msg.node, msg.type, 0, 1);
             } else {
                 // Switch OFF
-                outMsg = (ModbusMessage) genMessage(msg.from, msg.node, msg.type, 2);
+                outMsg = (ModbusMessage) genMessage(msg.from, msg.node, msg.type, 0, 2);
             }
 
             channel.sendMsg(outMsg);

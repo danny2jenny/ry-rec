@@ -1,7 +1,8 @@
 package com.rytec.rec.channel.ModbusTcpServer;
 
 import com.rytec.rec.db.model.ChannelNode;
-import com.rytec.rec.node.NodeInterface;
+import com.rytec.rec.node.modbus.base.BaseModbusNode;
+import com.rytec.rec.node.modbus.base.ModbusNodeInterface;
 import com.rytec.rec.node.NodeRuntimeBean;
 import com.rytec.rec.util.ConstantCommandType;
 import com.rytec.rec.util.ConstantFromWhere;
@@ -88,23 +89,34 @@ public class ModbusChannelSession {
         for (ChannelNode cn : cha.values()) {
 
             // 得到 node 对应的操作接口
-            NodeInterface iNode = modbusTcpServer.nodeManager.getNodeComInterface(cn.getNtype());
+            ModbusNodeInterface iNode = modbusTcpServer.nodeManager.getNodeComInterface(cn.getNtype());
+
+            if (iNode == null) {
+                continue;
+            }
 
             /**
              * Node类型一致，地址一致，组成一个查询
-             * todo: 按照最大值进行查询
              */
-            if (iNode != null) {
-                String key = "" + cn.getNtype() + ':' + cn.getAdr();
-                if (timerQueryList.get(key) == null) {
-                    ModbusMessage msg = (ModbusMessage) iNode.genMessage(ConstantFromWhere.FROM_TIMER, cn.getNid(), ConstantCommandType.GENERAL_READ, 0);
-                    if (msg != null) {
-                        timerQueryListIndex.add(key);
-                        timerQueryList.put(key, msg);
-                    }
-
+            String key = "" + cn.getNtype() + ':' + cn.getAdr();
+            ModbusMessage msg = timerQueryList.get(key);
+            if (msg == null) {
+                // 不存在命令，建立一个新的命令
+                msg = (ModbusMessage) iNode.genMessage(ConstantFromWhere.FROM_TIMER, cn.getNid(), ConstantCommandType.GENERAL_READ, cn.getNo(), 0);
+                if (msg != null) {
+                    timerQueryListIndex.add(key);
+                }
+            } else {
+                // 存在命令，根据 regCount 更新当前的命令
+                if (cn.getNo() > msg.regCount) {
+                    msg = (ModbusMessage) iNode.genMessage(ConstantFromWhere.FROM_TIMER, cn.getNid(), ConstantCommandType.GENERAL_READ, cn.getNo(), 0);
                 }
             }
+
+            if (msg != null) {
+                timerQueryList.put(key, msg);
+            }
+
         }
     }
 

@@ -86,9 +86,6 @@ public class ModbusFrameDecoder extends ByteToMessageDecoder {
 
                 modbusChannelSession.goodHelth(lastOutMsg, true);
 
-                // 清除当前发送的命令
-                modbusChannelSession.clearLastOutMsg();
-
                 out.add(msg);
                 in.skipBytes(in.readableBytes());          // 全部跳过
                 return;

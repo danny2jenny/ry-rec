@@ -6,6 +6,7 @@ import com.rytec.rec.channel.ModbusTcpServer.ModbusMessage;
 import com.rytec.rec.db.model.ChannelNode;
 import com.rytec.rec.node.NodeConfig;
 import com.rytec.rec.node.NodeMessage;
+import com.rytec.rec.node.modbus.base.DmaModbusBase;
 import com.rytec.rec.util.AnnotationJSExport;
 import com.rytec.rec.util.AnnotationNodeType;
 import com.rytec.rec.util.ConstantCommandType;
@@ -26,7 +27,7 @@ import javax.annotation.PostConstruct;
 @Service
 @AnnotationNodeType(1201)
 @AnnotationJSExport("LED 显示器")
-public class LED extends NodeModbusBase {
+public class LED extends DmaModbusBase {
     @Override
     public boolean needUpdate(NodeConfig cfg, Object oldVal, Object newVal) {
         return false;
@@ -39,12 +40,11 @@ public class LED extends NodeModbusBase {
          */
         modbusCmd = ConstantModbusCommand.WRITE_REGISTER;
         regOffset = 0;  //308;
-        regCount = 1;   // 寄存器的数量
     }
 
 
     @Override
-    public Object genMessage(int where, int nodeId, int cmd, int value) {
+    public Object genMessage(int where, int nodeId, int cmd, int regCount, int value) {
         if (cmd == ConstantCommandType.GENERAL_READ) {
             return null;
         }
@@ -56,6 +56,7 @@ public class LED extends NodeModbusBase {
         frame.from = where;
         frame.nodeId = nodeId;
         frame.type = cmd;
+        frame.regCount = regCount;
 
         frame.payload = ModbusFrame.writeRegister(cn.getAdr(), regOffset, value);
         frame.responseLen = 8;
@@ -99,7 +100,7 @@ public class LED extends NodeModbusBase {
         ChannelInterface channel = channelManager.getChannelInterface(channelNode.getCtype());
         ModbusMessage outMsg;
 
-        outMsg = (ModbusMessage) genMessage(msg.from, msg.node, msg.type, (Integer) msg.value);
+        outMsg = (ModbusMessage) genMessage(msg.from, msg.node, msg.type, 0, (Integer) msg.value);
         channel.sendMsg(outMsg);
 
         return rst;

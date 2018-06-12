@@ -1,6 +1,7 @@
 package com.rytec.rec.node;
 
 import com.rytec.rec.db.model.ChannelNode;
+import com.rytec.rec.node.modbus.base.ModbusNodeInterface;
 
 /**
  * Created by danny on 17-1-15.
@@ -10,7 +11,7 @@ import com.rytec.rec.db.model.ChannelNode;
  */
 public class NodeRuntimeBean {
 
-    private NodeInterface nodeInterface;        //
+    private ModbusNodeInterface modbusNodeInterface;        //
 
     public ChannelNode channelNode;         // Node 和 Channel 的对应关系
     public NodeState nodeState;             // Node 的当前状态，值
@@ -18,8 +19,8 @@ public class NodeRuntimeBean {
     public int helth = 10;                  // 健康度
 
 
-    public NodeRuntimeBean(NodeInterface nodeMgr) {
-        this.nodeInterface = nodeMgr;
+    public NodeRuntimeBean(ModbusNodeInterface nodeMgr) {
+        this.modbusNodeInterface = nodeMgr;
     }
 
     /**
@@ -28,12 +29,12 @@ public class NodeRuntimeBean {
     public void goodHelth(Object msg, Boolean h) {
         if (h) {
             helth = 10;
-            nodeInterface.goodHelth(msg, true);              // 健康
+            modbusNodeInterface.goodHelth(msg, true);              // 健康
         } else {
             helth--;
             if (helth < 0) {
                 helth = 0;
-                nodeInterface.goodHelth(msg, false);         // 不健康
+                modbusNodeInterface.goodHelth(msg, false);         // 不健康
             }
         }
     }

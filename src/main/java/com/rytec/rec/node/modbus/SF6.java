@@ -2,6 +2,7 @@ package com.rytec.rec.node.modbus;
 
 import com.rytec.rec.node.NodeConfig;
 import com.rytec.rec.node.ValueCompare;
+import com.rytec.rec.node.modbus.base.DmaModbusBase;
 import com.rytec.rec.util.AnnotationJSExport;
 import com.rytec.rec.util.AnnotationNodeType;
 import com.rytec.rec.util.ConstantModbusCommand;
@@ -12,7 +13,7 @@ import javax.annotation.PostConstruct;
 @Service
 @AnnotationNodeType(1301)
 @AnnotationJSExport("SF6:O2:温湿度")
-public class SF6 extends NodeModbusBase {
+public class SF6 extends DmaModbusBase {
     @Override
     public boolean needUpdate(NodeConfig cfg, Object oldVal, Object newVal) {
         return ValueCompare.analogNeedUpdate(cfg, oldVal, newVal);
@@ -25,7 +26,6 @@ public class SF6 extends NodeModbusBase {
          */
         modbusCmd = ConstantModbusCommand.READ_HOLDING_REGISTERS;
         regOffset = 4096;  //308;
-        regCount = 4;   // 寄存器的数量
     }
 
 }
