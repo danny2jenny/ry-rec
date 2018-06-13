@@ -9,6 +9,7 @@ Ext.define('app.model.GisLayer', {
         {name: 'id'},
         {name: 'name'},
         {name: 'file'},
+        {name: 'zoom'}
     ]
 
 });

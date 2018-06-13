@@ -16,14 +16,22 @@ Ext.define('app.view.admin.panel.GisLayer', {
     columns: [
         {
             text: 'ID',
+            width: 40,
             dataIndex: 'id'
-        },
-        {
+        }, {
             text: '图层名称',
             dataIndex: 'name',
             flex: 1,
             editor: {
                 allowBlank: false
+            }
+        }, {
+            text: '节点类型',
+            dataIndex: 'zoom',
+            width: 80,
+            editor: {
+                allowBlank: false,
+                xtype: 'numberfield',
             }
         }],
 

@@ -66,7 +66,7 @@ public class FileManager extends RecBase implements ManageableInterface {
     public HashMap<Integer, DeviceGis> deviceGisHashMap = new HashMap<>();
 
     // GIS 图层
-    public HashMap<Integer, String> gisLayerMap = new HashMap<>();
+    public HashMap<Integer, Integer> gisLayerMap = new HashMap<>();
 
     @Override
     public void stop() {
@@ -107,7 +107,7 @@ public class FileManager extends RecBase implements ManageableInterface {
 
         List<GisLayer> gisLayerList = dbConfig.getGisLayerList();
         for (GisLayer gisLayer : gisLayerList) {
-            gisLayerMap.put(gisLayer.getId(), gisLayer.getFile());
+            gisLayerMap.put(gisLayer.getId(), gisLayer.getZoom());
         }
     }
 
@@ -150,7 +150,7 @@ public class FileManager extends RecBase implements ManageableInterface {
         Element device, name, map, type, target, position, function, msgType, addrType, addr;
         for (DeviceRuntimeBean deviceRuntimeBean : deviceManager.getDeviceRuntimeList().values()) {
             // 处理没有图标的情况
-            if (deviceRuntimeBean.device.getIcon() == 0){
+            if (deviceRuntimeBean.device.getIcon() == 0) {
                 continue;
             }
 
@@ -173,7 +173,7 @@ public class FileManager extends RecBase implements ManageableInterface {
                 position.setText(deviceGis.getData().substring(1, deviceGis.getData().length() - 1));
 
                 target = device.addElement("Target");
-                target.setText(deviceGis.getLayer().toString());
+                target.setText(gisLayerMap.get(deviceGis.getLayer()).toString());
             }
 
 
