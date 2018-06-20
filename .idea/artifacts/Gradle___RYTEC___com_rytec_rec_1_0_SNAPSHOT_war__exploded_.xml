@@ -74,6 +74,17 @@
           <element id="library" level="project" name="Gradle: jaxen:jaxen:1.1.6" />
           <element id="library" level="project" name="Gradle: com.fasterxml.jackson.core:jackson-annotations:2.9.0" />
           <element id="library" level="project" name="Gradle: log4j:log4j:1.2.17" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.jetty.websocket/websocket-server/9.3.20.v20170531/bd02308e72e73f60f3b313e831b18a899c04658e/websocket-server-9.3.20.v20170531.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.jetty.websocket/websocket-servlet/9.3.20.v20170531/57893242e63bffc425200e74651a913ac6d0ec58/websocket-servlet-9.3.20.v20170531.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.jetty/jetty-servlet/9.3.20.v20170531/21a698f9d58d03cdf58bf2a40f93de58c2eab138/jetty-servlet-9.3.20.v20170531.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.jetty/jetty-security/9.3.20.v20170531/9e2ded957c05f447a0611fa64ca4ab5f7cc5aa65/jetty-security-9.3.20.v20170531.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.jetty/jetty-server/9.3.20.v20170531/6a1523d44ebb527eed068a5c8bfd22edd6a20530/jetty-server-9.3.20.v20170531.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.jetty.websocket/websocket-client/9.3.20.v20170531/6c9593d964eee588c3ecc4c7259873cc9f9be0fc/websocket-client-9.3.20.v20170531.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.jetty.websocket/websocket-common/9.3.20.v20170531/c6e21ead086899894d17789b111162fe682c1741/websocket-common-9.3.20.v20170531.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.jetty/jetty-http/9.3.20.v20170531/32f5fe22ed468a49df1ffcbb27c39c1b53f261aa/jetty-http-9.3.20.v20170531.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.jetty.websocket/websocket-api/9.3.20.v20170531/c787782c5acbf916dc05277c98f5e9a76497eb32/websocket-api-9.3.20.v20170531.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.jetty/jetty-io/9.3.20.v20170531/5b68e7761fcacefcf26ad9ab50943db65fda2c3d/jetty-io-9.3.20.v20170531.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.jetty/jetty-util/9.3.20.v20170531/19ce4203809da37f8ea7a5632704fa71b6f0ccc2/jetty-util-9.3.20.v20170531.jar" />
         </element>
       </element>
     </root>

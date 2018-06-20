@@ -1,8 +1,10 @@
-Ext.define('app.view.admin.panel.Iec61850', {
+Ext.define('app.view.admin.panel.AllNode', {
     extend: 'Ext.grid.Panel',
-    alias: 'widget.admin.panel.iec61850',
-    title: '平台节点编辑',
+    alias: 'widget.admin.panel.allnode',
+    title: '所有节点',
     store: 'NodeAll',
+    itemId: 'adminAllNode',
+    icon: 'res/toolbar/node.png',
 
     plugins: [
         {

@@ -6,8 +6,6 @@ import ch.ralscha.extdirectspring.bean.ExtDirectStoreReadRequest;
 import com.rytec.rec.db.mapper.NodeMapper;
 import com.rytec.rec.db.model.Node;
 import com.rytec.rec.db.model.NodeExample;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -18,8 +16,6 @@ import java.util.List;
  */
 @Controller
 public class ExtNode {
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
-
     @Autowired
     NodeMapper nodeMapper;
 

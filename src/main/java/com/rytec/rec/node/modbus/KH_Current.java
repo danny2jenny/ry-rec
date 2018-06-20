@@ -71,4 +71,9 @@ public class KH_Current extends DmaModbusBase {
         return false;
     }
 
+    @Override
+    public void decodeMessage(Object msg) {
+
+    }
+
 }

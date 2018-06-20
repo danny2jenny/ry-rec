@@ -28,9 +28,10 @@ Ext.define('app.controller.AdminFrame', {
         'admin.panel.PanoramaGrid',
         'admin.panel.PanoramaUpload',
         'admin.frame.PanoramaEditor',
-        // 61850
-        'admin.panel.Iec61850',
-        'admin.frame.Iec61850',
+        // 端口重定向和61850
+        'admin.panel.AllNode',
+        'admin.panel.NodeRedirect',
+        'admin.frame.NodeRedirect',
         'admin.panel.IcdUpload'
 
     ],
@@ -50,7 +51,8 @@ Ext.define('app.controller.AdminFrame', {
         'Nvr',
         'NvrNode',
         'Panorama',
-        'PanoramaDevice'
+        'PanoramaDevice',
+        'NodeRedirect'
     ],
 
     init: function () {

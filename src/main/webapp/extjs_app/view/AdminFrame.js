@@ -46,7 +46,7 @@ Ext.define('app.view.AdminFrame', {
                     xtype: 'admin.frame.panoramaeditor'
                 },
                 {
-                    xtype: 'admin.frame.iec61850'
+                    xtype: 'admin.frame.noderedirect'
                 }
 
             ]

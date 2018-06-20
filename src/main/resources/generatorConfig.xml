@@ -108,6 +108,9 @@
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
         </table>
 -->
+        <table schema="" tableName="noderedirect" domainObjectName="NodeRedirect">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
 
     </context>
 </generatorConfiguration>

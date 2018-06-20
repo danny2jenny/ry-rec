@@ -16,4 +16,4 @@ Ext.define('app.store.Node', {
             destroy: extNode.delete
         }
     }
-})
+});
