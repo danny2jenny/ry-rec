@@ -37,7 +37,7 @@ Ext.define('app.view.admin.panel.NodeForDevice', {
         {
             text: '名称',
             dataIndex: 'name',
-            width: 100,
+            flex: 1,
             editor: {
                 allowBlank: false
             }

@@ -12,13 +12,13 @@ import com.rytec.rec.app.ManageableInterface;
 import com.rytec.rec.db.DbConfig;
 import com.rytec.rec.db.model.ChannelNode;
 import com.rytec.rec.db.model.DeviceNode;
+import com.rytec.rec.db.model.NodeRedirect;
 import com.rytec.rec.device.DeviceManager;
 import com.rytec.rec.node.modbus.base.BaseModbusNode;
 import com.rytec.rec.node.modbus.base.ModbusNodeInterface;
 import com.rytec.rec.util.ConstantCommandType;
 import com.rytec.rec.util.AnnotationNodeType;
 import com.rytec.rec.util.ConstantErrorCode;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.annotation.Order;
@@ -34,8 +34,6 @@ import java.util.concurrent.ConcurrentHashMap;
 @Order(300)
 public class NodeManager implements ManageableInterface {
 
-    private final org.slf4j.Logger logger = LoggerFactory.getLogger(this.getClass());
-
     @Autowired
     private DbConfig db;
 
@@ -44,6 +42,13 @@ public class NodeManager implements ManageableInterface {
 
     //nid->ChannelNode 的一个Map
     private Map<Integer, NodeRuntimeBean> channelNodeList = new HashMap();
+
+
+    // NodeRedirect
+    // 两级 Hash
+    // nodeid -> map
+    // nodeRedirectId -> NodeRedirect
+    public HashMap<Integer, HashMap> nodeRedirectList = new HashMap();
 
 
     @Autowired
@@ -85,6 +90,18 @@ public class NodeManager implements ManageableInterface {
             nodeRuntimeBean.nodeConfig = BaseModbusNode.parseConfig(cn.getNodeconf());   //Node的配置
             channelNodeList.put(cn.getNid(), nodeRuntimeBean);
         }
+
+        // 填充NodeRedirect 的初始值
+        List<NodeRedirect> nodeRedirects = db.getNodeRedirectList();
+
+        for (NodeRedirect nr : nodeRedirects) {
+            HashMap<Integer, NodeRedirect> nodeRedirectItemList = nodeRedirectList.get(nr.getNode());
+            if (nodeRedirectItemList == null) {
+                nodeRedirectItemList = new HashMap();
+                nodeRedirectList.put(nr.getNode(), nodeRedirectItemList);
+            }
+            nodeRedirectItemList.put(nr.getId(), nr);
+        }
     }
 
     @PostConstruct
@@ -94,9 +111,9 @@ public class NodeManager implements ManageableInterface {
 
 
     /*
-    * 通讯层发来的数据
-    * @id node 的id
-    */
+     * 通讯层发来的数据
+     * @id node 的id
+     */
     public void onMessage(NodeMessage msg) {
         NodeRuntimeBean nodeRuntimeBean = channelNodeList.get(msg.node);
 
@@ -110,7 +127,6 @@ public class NodeManager implements ManageableInterface {
         Object oldValue = nodeState.value;
 
         // 写命令
-        // todo: 写命令的返回需要处理
         if (msg.type == ConstantCommandType.GENERAL_WRITE) {
             return;
         }
@@ -121,19 +137,32 @@ public class NodeManager implements ManageableInterface {
         if (modbusNodeInterface.needUpdate(nodeRuntimeBean.nodeConfig, oldValue, msg.value)) {
             // 数据需要更新
             nodeState.value = msg.value;
+
             // Device 可能指针为空
             Integer deviceId = nodeRuntimeBean.channelNode.getDevice();
-            if (deviceId == null) {
-                return;
+            if (deviceId != null) {
+                deviceManager.onValueChange(
+                        deviceId,
+                        nodeRuntimeBean.channelNode.getDevicefun(),
+                        oldValue,
+                        msg.value,
+                        nodeRuntimeBean.nodeConfig.unit
+                );
             }
-            deviceManager.onValueChange(
-                    deviceId,
-                    nodeRuntimeBean.channelNode.getDevicefun(),
-                    oldValue,
-                    msg.value,
-                    nodeRuntimeBean.nodeConfig.unit);
-        } else {
-            // 数据不需要更新
+
+            // 节点重新定向
+            Map<Integer, NodeRedirect> nodeRedirectMap = nodeRedirectList.get(msg.node);
+            if (nodeRedirectMap != null) {
+                for (NodeRedirect nr : nodeRedirectMap.values()) {
+                    deviceManager.onValueChange(
+                            nr.getDevice(),
+                            nr.getDevicefun(),
+                            oldValue,
+                            msg.value,
+                            nodeRuntimeBean.nodeConfig.unit
+                    );
+                }
+            }
         }
     }
 
@@ -164,6 +193,7 @@ public class NodeManager implements ManageableInterface {
 
     public void stop() {
         channelNodeList.clear();
+        nodeRedirectList.clear();
     }
 
     public void start() {

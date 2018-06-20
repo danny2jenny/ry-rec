@@ -32,7 +32,7 @@ Ext.define('app.view.admin.panel.Actions', {
         {
             text: '关联设备',
             dataIndex: 'target',
-            width: 300,
+            flex: 1,
             renderer: function (val, column, row) {
                 var store = Ext.getStore('Device');
                 return store.getById(val).getData().name;
