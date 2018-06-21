@@ -24,6 +24,8 @@
           <element id="library" level="project" name="Gradle: org.springframework:spring-jdbc:4.3.11.RELEASE" />
           <element id="library" level="project" name="Gradle: org.springframework:spring-websocket:4.3.11.RELEASE" />
           <element id="library" level="project" name="Gradle: org.springframework:spring-jms:4.3.11.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework.integration:spring-integration-mqtt:4.3.11.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework.integration:spring-integration-core:4.3.11.RELEASE" />
           <element id="library" level="project" name="Gradle: org.springframework:spring-messaging:4.3.11.RELEASE" />
           <element id="library" level="project" name="Gradle: io.netty:netty-all:4.1.6.Final" />
           <element id="library" level="project" name="Gradle: com.alibaba:druid:1.0.9" />
@@ -32,18 +34,11 @@
           <element id="library" level="project" name="Gradle: org.mybatis:mybatis-spring:1.3.0" />
           <element id="library" level="project" name="Gradle: com.microsoft.sqlserver:mssql-jdbc:6.4.0.jre8" />
           <element id="library" level="project" name="Gradle: de.grundid.opendatalab:geojson-jackson:1.8" />
-          <element id="library" level="project" name="Gradle: io.moquette:moquette-broker:0.11" />
+          <element id="library" level="project" name="Gradle: org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.1.0" />
           <element id="library" level="project" name="Gradle: javax.servlet:jstl:1.2" />
           <element id="library" level="project" name="Gradle: com.infiniteautomation:modbus4j:3.0.3" />
           <element id="library" level="project" name="Gradle: org.dom4j:dom4j:2.1.0" />
           <element id="library" level="project" name="Gradle: ch.qos.logback:logback-core:1.2.3" />
-          <element id="library" level="project" name="Gradle: com.zaxxer:HikariCP:2.4.7" />
-          <element id="library" level="project" name="Gradle: io.dropwizard.metrics:metrics-jvm:3.2.2" />
-          <element id="library" level="project" name="Gradle: com.librato.metrics:metrics-librato:5.1.0" />
-          <element id="library" level="project" name="Gradle: com.librato.metrics:librato-java:2.1.0" />
-          <element id="library" level="project" name="Gradle: com.bugsnag:bugsnag:3.1.6" />
-          <element id="library" level="project" name="Gradle: org.slf4j:slf4j-log4j12:1.7.5" />
-          <element id="library" level="project" name="Gradle: io.dropwizard.metrics:metrics-core:3.2.2" />
           <element id="library" level="project" name="Gradle: org.slf4j:slf4j-api:1.7.25" />
           <element id="library" level="project" name="Gradle: org.springframework:spring-web:4.3.11.RELEASE" />
           <element id="library" level="project" name="Gradle: org.springframework:spring-context:4.3.11.RELEASE" />
@@ -55,36 +50,13 @@
           <element id="library" level="project" name="Gradle: com.fasterxml.jackson.core:jackson-databind:2.9.1" />
           <element id="library" level="project" name="Gradle: com.google.code.findbugs:jsr305:3.0.2" />
           <element id="library" level="project" name="Gradle: com.fasterxml.jackson.core:jackson-core:2.9.1" />
-          <element id="library" level="project" name="Gradle: io.netty:netty-handler:4.1.12.Final" />
-          <element id="library" level="project" name="Gradle: io.netty:netty-codec-http:4.1.12.Final" />
-          <element id="library" level="project" name="Gradle: io.netty:netty-codec-mqtt:4.1.12.Final" />
-          <element id="library" level="project" name="Gradle: io.netty:netty-codec:4.1.12.Final" />
-          <element id="library" level="project" name="Gradle: io.netty:netty-transport-native-epoll:linux-x86_64:4.1.12.Final" />
-          <element id="library" level="project" name="Gradle: io.netty:netty-transport-native-unix-common:4.1.12.Final" />
-          <element id="library" level="project" name="Gradle: io.netty:netty-transport:4.1.12.Final" />
-          <element id="library" level="project" name="Gradle: io.netty:netty-buffer:4.1.12.Final" />
-          <element id="library" level="project" name="Gradle: io.netty:netty-resolver:4.1.12.Final" />
-          <element id="library" level="project" name="Gradle: io.netty:netty-common:4.1.12.Final" />
-          <element id="library" level="project" name="Gradle: commons-codec:commons-codec:1.10" />
-          <element id="library" level="project" name="Gradle: com.hazelcast:hazelcast:3.5.4" />
           <element id="library" level="project" name="Gradle: org.apache.commons:commons-lang3:3.0" />
           <element id="library" level="project" name="Gradle: commons-logging:commons-logging:1.2" />
           <element id="library" level="project" name="Gradle: org.openmuc:jasn1:1.9.0" />
           <element id="library" level="project" name="Gradle: com.toedter:jcalendar:1.4" />
           <element id="library" level="project" name="Gradle: jaxen:jaxen:1.1.6" />
+          <element id="library" level="project" name="Gradle: org.springframework.retry:spring-retry:1.1.3.RELEASE" />
           <element id="library" level="project" name="Gradle: com.fasterxml.jackson.core:jackson-annotations:2.9.0" />
-          <element id="library" level="project" name="Gradle: log4j:log4j:1.2.17" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.jetty.websocket/websocket-server/9.3.20.v20170531/bd02308e72e73f60f3b313e831b18a899c04658e/websocket-server-9.3.20.v20170531.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.jetty.websocket/websocket-servlet/9.3.20.v20170531/57893242e63bffc425200e74651a913ac6d0ec58/websocket-servlet-9.3.20.v20170531.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.jetty/jetty-servlet/9.3.20.v20170531/21a698f9d58d03cdf58bf2a40f93de58c2eab138/jetty-servlet-9.3.20.v20170531.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.jetty/jetty-security/9.3.20.v20170531/9e2ded957c05f447a0611fa64ca4ab5f7cc5aa65/jetty-security-9.3.20.v20170531.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.jetty/jetty-server/9.3.20.v20170531/6a1523d44ebb527eed068a5c8bfd22edd6a20530/jetty-server-9.3.20.v20170531.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.jetty.websocket/websocket-client/9.3.20.v20170531/6c9593d964eee588c3ecc4c7259873cc9f9be0fc/websocket-client-9.3.20.v20170531.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.jetty.websocket/websocket-common/9.3.20.v20170531/c6e21ead086899894d17789b111162fe682c1741/websocket-common-9.3.20.v20170531.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.jetty/jetty-http/9.3.20.v20170531/32f5fe22ed468a49df1ffcbb27c39c1b53f261aa/jetty-http-9.3.20.v20170531.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.jetty.websocket/websocket-api/9.3.20.v20170531/c787782c5acbf916dc05277c98f5e9a76497eb32/websocket-api-9.3.20.v20170531.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.jetty/jetty-io/9.3.20.v20170531/5b68e7761fcacefcf26ad9ab50943db65fda2c3d/jetty-io-9.3.20.v20170531.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.eclipse.jetty/jetty-util/9.3.20.v20170531/19ce4203809da37f8ea7a5632704fa71b6f0ccc2/jetty-util-9.3.20.v20170531.jar" />
         </element>
       </element>
     </root>

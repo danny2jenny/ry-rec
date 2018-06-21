@@ -8,7 +8,7 @@ import com.rytec.rec.device.AbstractOperator;
 import com.rytec.rec.device.DeviceManager;
 import com.rytec.rec.device.DeviceRuntimeBean;
 import com.rytec.rec.messenger.Message.MqttMsg;
-import com.rytec.rec.messenger.MqttServer;
+import com.rytec.rec.messenger.MqttService;
 import com.rytec.rec.util.ConstantFromWhere;
 import com.rytec.rec.util.ConstantMqtt;
 import com.rytec.rec.app.RecBase;
@@ -34,7 +34,7 @@ public class IEC61850Service extends RecBase implements ManageableInterface {
     DeviceManager deviceManager;
 
     @Autowired
-    MqttServer mqttService;
+    MqttService mqttService;
 
     @Value("${iec61850.cfg}")
     public String iecCfgFile;            // 61850 配置文件
@@ -67,6 +67,8 @@ public class IEC61850Service extends RecBase implements ManageableInterface {
         } catch (IOException e) {
             return;
         }
+
+
 
         switch (cmd) {
             case ConstantMqtt.IEC61850_INIT_REQUEST:
