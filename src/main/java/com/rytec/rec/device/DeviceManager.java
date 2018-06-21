@@ -22,7 +22,6 @@ import com.rytec.rec.util.ConstantMessageType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.annotation.Order;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -189,8 +188,13 @@ public class DeviceManager extends RecBase implements ManageableInterface {
             return;
         }
 
-        DeviceNode deviceNode = devices.get(fun);
-        AbstractOperator abstractOperator = getOperatorByDeviceType(deviceNode.getDtype());
+        // todo，这里有问题
+        if (devices.isEmpty()){
+            return;
+        }
+
+        DeviceRuntimeBean deviceNode = deviceRuntimeList.get(device);
+        AbstractOperator abstractOperator = getOperatorByDeviceType(deviceNode.device.getType());
 
         // 在实例中处理值的改变
         // 可能产生类型转换错误
