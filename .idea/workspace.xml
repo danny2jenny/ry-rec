@@ -7,16 +7,7 @@
     <bookmark url="file://$PROJECT_DIR$/src/main/webapp/js/pannellum.js" line="1804" mnemonic="2" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d35ddd3d-c0e7-4f94-b111-72db3f8184b4" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.directory" beforeDir="false" afterPath="$PROJECT_DIR$/.directory" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/document/说明/img/admin-01.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/document/说明/使用说明.md" beforeDir="false" afterPath="$PROJECT_DIR$/document/说明/使用说明.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/KhFiber/ChannelKhFiber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/KhFiber/ChannelKhFiber.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/web/util/UploadService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/web/util/UploadService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/frame/NodeRedirect.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/frame/NodeRedirect.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/panel/NodeRedirect.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/panel/NodeRedirect.js" afterDir="false" />
-    </list>
+    <list default="true" id="d35ddd3d-c0e7-4f94-b111-72db3f8184b4" name="Default" comment="" />
     <ignored path="RyREC.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -159,8 +150,8 @@
       <file leaf-file-name="NodeRedirect.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/panel/NodeRedirect.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="322">
-              <caret line="14" column="19" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
+            <state relative-caret-position="92">
+              <caret line="4" column="3" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
             </state>
           </provider>
         </entry>
@@ -1085,6 +1076,11 @@
             <path>
               <item name="com.rytec.rec" type="b2602c69:ProjectViewProjectNode" />
               <item name="ry-rec" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+            <path>
+              <item name="com.rytec.rec" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ry-rec" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="document" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -2119,14 +2115,7 @@
       <workItem from="1529732092437" duration="29000" />
       <workItem from="1529761529833" duration="729000" />
       <workItem from="1529898161915" duration="3382000" />
-      <workItem from="1529974478740" duration="608000" />
-    </task>
-    <task id="LOCAL-00123" summary="添加使用说明">
-      <created>1513135384815</created>
-      <option name="number" value="00123" />
-      <option name="presentableId" value="LOCAL-00123" />
-      <option name="project" value="LOCAL" />
-      <updated>1513135384827</updated>
+      <workItem from="1529974478740" duration="851000" />
     </task>
     <task id="LOCAL-00124" summary="1 修正U3_EC 工业空调的类型错误&#10;2 60870 对时成功">
       <created>1513565121924</created>
@@ -2464,11 +2453,18 @@
       <option name="project" value="LOCAL" />
       <updated>1529568732921</updated>
     </task>
-    <option name="localTasksCounter" value="172" />
+    <task id="LOCAL-00172" summary="UploadService.java 中修改缺少一个字段的问题。&#10;&#10;节点重定向修改成节点复用&#10;&#10;完善使用说明">
+      <created>1529975251139</created>
+      <option name="number" value="00172" />
+      <option name="presentableId" value="LOCAL-00172" />
+      <option name="project" value="LOCAL" />
+      <updated>1529975251140</updated>
+    </task>
+    <option name="localTasksCounter" value="173" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2975797000" />
+    <option name="totallyTimeSpent" value="2976040000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2626,7 +2622,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="修改 Node 接口&#10;&#10;1、DAMInput_12 改成了 DAMInput_8&#10;2、增加 DAM 4路输入和2两路输出的 Node&#10;3、增加环流的Node，没有n完善&#10;4、增加科华井盖 KH_MC&#10;5、为Modbus Client 增加读取Node配置的方法&#10;6、水浸可以反向 RS_SJ&#10;7、Node端口的名称改成通用的ABCD" />
     <MESSAGE value="1、Node端口功能改成通用的ABCD&#10;2、增加104上传的接口" />
     <MESSAGE value="适应 104 接口的大改动&#10;&#10;XML 配置文件还没有更新&#10;光纤温度告警没有上传" />
     <MESSAGE value="所有的光纤、环流测试完成&#10;&#10;注意，环流正式使用需要更改一下" />
@@ -2651,7 +2646,8 @@
     <MESSAGE value="服务器实现节点重定向功能。" />
     <MESSAGE value="修正了一个错误，如果Device没有配置该功能，以前会出错。" />
     <MESSAGE value="还是回到paho mqtt方式&#10;&#10;使用新的嵌入式mqtt服务器，目标系统上netty端口不能访问，不知道什么问题。&#10;&#10;可能是日志系统冲突。" />
-    <option name="LAST_COMMIT_MESSAGE" value="还是回到paho mqtt方式&#10;&#10;使用新的嵌入式mqtt服务器，目标系统上netty端口不能访问，不知道什么问题。&#10;&#10;可能是日志系统冲突。" />
+    <MESSAGE value="UploadService.java 中修改缺少一个字段的问题。&#10;&#10;节点重定向修改成节点复用&#10;&#10;完善使用说明" />
+    <option name="LAST_COMMIT_MESSAGE" value="UploadService.java 中修改缺少一个字段的问题。&#10;&#10;节点重定向修改成节点复用&#10;&#10;完善使用说明" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -3066,8 +3062,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/panel/NodeRedirect.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="14" column="19" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
+        <state relative-caret-position="92">
+          <caret line="4" column="3" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
         </state>
       </provider>
     </entry>
