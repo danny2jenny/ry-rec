@@ -7,43 +7,15 @@
     <bookmark url="file://$PROJECT_DIR$/src/main/webapp/js/pannellum.js" line="1804" mnemonic="2" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d35ddd3d-c0e7-4f94-b111-72db3f8184b4" name="Default" comment="修正了一个错误，如果Device没有配置该功能，以前会出错。">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_eclipse_paho_org_eclipse_paho_client_mqttv3_1_1_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_integration_spring_integration_core_4_3_11_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_integration_spring_integration_mqtt_4_3_11_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_retry_spring_retry_1_1_3_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/messenger/MqttService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/Gradle___RYTEC___com_rytec_rec_1_0_SNAPSHOT_war__exploded_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/Gradle___RYTEC___com_rytec_rec_1_0_SNAPSHOT_war__exploded_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_bugsnag_bugsnag_3_1_6.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_hazelcast_hazelcast_3_5_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_librato_metrics_librato_java_2_1_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_librato_metrics_metrics_librato_5_1_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_zaxxer_HikariCP_2_4_7.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__commons_codec_commons_codec_1_10.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__io_dropwizard_metrics_metrics_core_3_2_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__io_dropwizard_metrics_metrics_jvm_3_2_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__io_moquette_moquette_broker_0_11.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__io_netty_netty_buffer_4_1_12_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__io_netty_netty_codec_4_1_12_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__io_netty_netty_codec_http_4_1_12_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__io_netty_netty_codec_mqtt_4_1_12_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__io_netty_netty_common_4_1_12_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__io_netty_netty_handler_4_1_12_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__io_netty_netty_resolver_4_1_12_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__io_netty_netty_transport_4_1_12_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__io_netty_netty_transport_native_epoll_linux_x86_64_4_1_12_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__io_netty_netty_transport_native_unix_common_4_1_12_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__log4j_log4j_1_2_17.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_slf4j_slf4j_log4j12_1_7_5.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/com.rytec.rec_main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/com.rytec.rec_main.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/com.rytec.rec_test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/com.rytec.rec_test.iml" afterDir="false" />
+    <list default="true" id="d35ddd3d-c0e7-4f94-b111-72db3f8184b4" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.directory" beforeDir="false" afterPath="$PROJECT_DIR$/.directory" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/messenger/MqttServer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/messenger/MqttServerListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/service/IEC61850Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/service/IEC61850Service.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/service/VideoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/service/VideoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/spring-root.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/spring-root.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/document/说明/img/admin-01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/document/说明/使用说明.md" beforeDir="false" afterPath="$PROJECT_DIR$/document/说明/使用说明.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/KhFiber/ChannelKhFiber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/KhFiber/ChannelKhFiber.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/web/util/UploadService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/web/util/UploadService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/frame/NodeRedirect.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/frame/NodeRedirect.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/panel/NodeRedirect.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/panel/NodeRedirect.js" afterDir="false" />
     </list>
     <ignored path="RyREC.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -137,25 +109,11 @@
     <favorites_list name="com.rytec.rec" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="IEC61850Service.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/service/IEC61850Service.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="341">
-              <caret line="28" column="39" selection-start-line="28" selection-start-column="39" selection-end-line="28" selection-end-column="39" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#3922#3923#0" expanded="true" />
-                <element signature="e#3961#3962#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="MqttService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/messenger/MqttService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
+            <state relative-caret-position="1081">
               <caret line="63" column="25" selection-start-line="63" selection-start-column="25" selection-end-line="63" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -166,22 +124,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ModbusTcpServer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpServer/ModbusTcpServer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="76" selection-start-line="76" selection-end-line="76" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="VideoService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/service/VideoService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="41">
+            <state relative-caret-position="2530">
               <caret line="135" column="22" selection-start-line="135" selection-start-column="22" selection-end-line="135" selection-end-column="22" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -192,24 +138,65 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RecBase.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/app/RecBase.java">
+      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-299">
-              <caret line="14" column="29" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
-              <folding>
-                <element signature="e#637#638#0" expanded="true" />
-                <element signature="e#684#685#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="1932">
+              <caret line="84" column="74" selection-start-line="84" selection-start-column="74" selection-end-line="84" selection-end-column="74" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/build.gradle">
+      <file leaf-file-name="UploadService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/web/util/UploadService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="95" column="62" selection-start-line="95" selection-start-column="58" selection-end-line="95" selection-end-column="62" />
+            <state relative-caret-position="163">
+              <caret line="66" selection-start-line="66" selection-end-line="66" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NodeRedirect.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/panel/NodeRedirect.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="322">
+              <caret line="14" column="19" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NodeRedirect.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/frame/NodeRedirect.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-383">
+              <caret line="5" column="16" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="InvocableHandlerMethod.java" pinned="false" current-in-tab="false">
+        <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-web/4.3.11.RELEASE/81b86c6cddc25feecf0bb2e11df3b7e56bafb806/spring-web-4.3.11.RELEASE-sources.jar!/org/springframework/web/method/support/InvocableHandlerMethod.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="4186">
+              <caret line="213" selection-start-line="213" selection-end-line="213" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RequestMappingHandlerAdapter.java" pinned="false" current-in-tab="false">
+        <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-webmvc/4.3.11.RELEASE/c79159035df433ec745c58a1f1a29d7a71e37ad0/spring-webmvc-4.3.11.RELEASE-sources.jar!/org/springframework/web/servlet/mvc/method/annotation/RequestMappingHandlerAdapter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="16537">
+              <caret line="834" selection-start-line="834" selection-end-line="834" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ChannelKhFiber.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/KhFiber/ChannelKhFiber.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="184">
+              <caret line="33" column="12" selection-start-line="33" selection-start-column="12" selection-end-line="33" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -217,7 +204,7 @@
       <file leaf-file-name="spring-root.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/spring-root.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-667">
+            <state relative-caret-position="575">
               <caret line="25" column="51" selection-start-line="25" selection-start-column="42" selection-end-line="25" selection-end-column="51" />
             </state>
           </provider>
@@ -1004,8 +991,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/node/modbus/RS_FS.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/node/modbus/U3_EC.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/node/modbus/SF6.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/node/modbus/RS_WSD.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/node/modbus/HT_C1.java" />
@@ -1034,14 +1019,12 @@
         <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/frame/Iec61850.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/view/AdminFrame.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/controller/AdminFrame.js" />
-        <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/frame/NodeRedirect.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/store/NodeRedirect.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/test.js" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/web/admin/ExtNode.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/web/admin/ExtNodeRedirect.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/panel/AllNode.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/panel/IcdUpload.js" />
-        <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/panel/NodeRedirect.js" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/db/DbConfig.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/node/NodeManager.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/panel/Node.js" />
@@ -1055,6 +1038,10 @@
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/messenger/MqttService.java" />
         <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpServer/ModbusTcpServer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/KhFiber/ChannelKhFiber.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/web/util/UploadService.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/frame/NodeRedirect.js" />
+        <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/panel/NodeRedirect.js" />
       </list>
     </option>
   </component>
@@ -1077,10 +1064,10 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="196" />
+    <option name="x" value="200" />
     <option name="y" value="185" />
-    <option name="width" value="998" />
-    <option name="height" value="671" />
+    <option name="width" value="988" />
+    <option name="height" value="672" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -1091,7 +1078,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -1099,73 +1086,11 @@
               <item name="com.rytec.rec" type="b2602c69:ProjectViewProjectNode" />
               <item name="ry-rec" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
             </path>
-            <path>
-              <item name="com.rytec.rec" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ry-rec" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="com.rytec.rec" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ry-rec" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-            </path>
-            <path>
-              <item name="com.rytec.rec" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ry-rec" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="com.rytec.rec" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ry-rec" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="com.rytec.rec" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ry-rec" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="rec" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="com.rytec.rec" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ry-rec" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="rec" type="462c0819:PsiDirectoryNode" />
-              <item name="channel" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="com.rytec.rec" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ry-rec" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="rec" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="com.rytec.rec" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ry-rec" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="AndroidView" />
     </panes>
   </component>
@@ -1182,11 +1107,11 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../mealy104-master" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path" value="node" />
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.3083257" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="spring" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.project.gradle" />
     <property name="settings.editor.splitter.proportion" value="0.2956274" />
   </component>
   <component name="RecentsManager">
@@ -1230,7 +1155,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Gradle.ry-rec [war]">
+  <component name="RunManager" selected="Gradle.RyREC [appStart]">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
     </configuration>
@@ -1715,11 +1640,11 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.ry-rec [war]" />
-        <item itemvalue="Gradle.ry-rec [clean]" />
         <item itemvalue="Gradle.RyREC [appStart]" />
-        <item itemvalue="Gradle.ry-rec [build]" />
         <item itemvalue="Gradle.ry-rec [appStartDebug]" />
+        <item itemvalue="Gradle.ry-rec [clean]" />
+        <item itemvalue="Gradle.ry-rec [war]" />
+        <item itemvalue="Gradle.ry-rec [build]" />
       </list>
     </recent_temporary>
   </component>
@@ -2185,14 +2110,16 @@
       <workItem from="1529368179813" duration="803000" />
       <workItem from="1529396680410" duration="3425000" />
       <workItem from="1529461880865" duration="3013000" />
-      <workItem from="1529483525159" duration="26155000" />
-    </task>
-    <task id="LOCAL-00122" summary="Modbus 通讯稳定&#10;&#10;调整返回帧识别的算法，&#10;定时器调整到50ms，&#10;延时调整到5个定时器周期">
-      <created>1513130004594</created>
-      <option name="number" value="00122" />
-      <option name="presentableId" value="LOCAL-00122" />
-      <option name="project" value="LOCAL" />
-      <updated>1513130004594</updated>
+      <workItem from="1529483525159" duration="27583000" />
+      <workItem from="1529622884628" duration="15000" />
+      <workItem from="1529664162034" duration="999000" />
+      <workItem from="1529665199230" duration="1261000" />
+      <workItem from="1529666527715" duration="914000" />
+      <workItem from="1529731764824" duration="189000" />
+      <workItem from="1529732092437" duration="29000" />
+      <workItem from="1529761529833" duration="729000" />
+      <workItem from="1529898161915" duration="3382000" />
+      <workItem from="1529974478740" duration="608000" />
     </task>
     <task id="LOCAL-00123" summary="添加使用说明">
       <created>1513135384815</created>
@@ -2530,11 +2457,18 @@
       <option name="project" value="LOCAL" />
       <updated>1529544673428</updated>
     </task>
-    <option name="localTasksCounter" value="171" />
+    <task id="LOCAL-00171" summary="还是回到paho mqtt方式&#10;&#10;使用新的嵌入式mqtt服务器，目标系统上netty端口不能访问，不知道什么问题。&#10;&#10;可能是日志系统冲突。">
+      <created>1529568732921</created>
+      <option name="number" value="00171" />
+      <option name="presentableId" value="LOCAL-00171" />
+      <option name="project" value="LOCAL" />
+      <updated>1529568732921</updated>
+    </task>
+    <option name="localTasksCounter" value="172" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2966243000" />
+    <option name="totallyTimeSpent" value="2975797000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2552,19 +2486,17 @@
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4866453" weight="0.16100767" />
       <window_info anchor="right" id="Palette&#9;" order="6" />
       <window_info anchor="bottom" id="Java Enterprise" order="15" weight="0.32568306" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.55448717" side_tool="true" weight="0.33114755" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.55502135" side_tool="true" weight="0.24371585" />
       <window_info anchor="right" id="Maven Projects" order="10" weight="0.15010683" />
       <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.26229507" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.44551283" weight="0.24371585" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.44497862" visible="true" weight="0.40655738" />
       <window_info anchor="bottom" id="Spring" order="8" weight="0.3263965" />
       <window_info anchor="bottom" id="Terminal" order="14" weight="0.20765027" />
       <window_info id="Designer" order="3" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.62629247" visible="true" weight="0.23290598" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.62629247" visible="true" weight="0.22168803" />
       <window_info id="Web" order="6" sideWeight="0.37370753" side_tool="true" weight="0.20855615" />
-      <window_info anchor="bottom" id="Build" order="12" weight="0.32855567" />
       <window_info anchor="right" id="Database" order="5" sideWeight="0.49917898" weight="0.16025642" />
-      <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.20437159" />
       <window_info anchor="right" id="Gradle" order="8" sideWeight="0.49917898" visible="true" weight="0.15811966" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.2663451" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.24946581" />
@@ -2576,12 +2508,14 @@
       <window_info id="Capture Tool" order="8" />
       <window_info anchor="right" x="0" y="0" width="430" height="846" id="Documentation" order="11" sideWeight="0.500821" side_tool="true" weight="0.14797008" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info id="Image Layers" order="5" />
       <window_info anchor="right" id="Theme Preview" order="9" />
       <window_info anchor="bottom" id="Database Console" order="13" weight="0.3461117" />
+      <window_info id="Image Layers" order="5" />
       <window_info anchor="right" id="Properties" order="4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.20437159" />
       <window_info anchor="bottom" id="Messages" order="7" weight="0.2273224" />
+      <window_info anchor="bottom" id="Build" order="12" weight="0.32786885" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="right" id="Capture Analysis" order="7" />
@@ -2589,14 +2523,14 @@
     <layout-to-restore>
       <window_info anchor="bottom" id="Build" order="12" weight="0.32855567" />
       <window_info id="Designer" order="3" />
-      <window_info anchor="bottom" id="Database Console" order="13" weight="0.3461117" />
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="Spring" order="8" weight="0.3263965" />
-      <window_info id="Image Layers" order="5" />
+      <window_info anchor="bottom" id="Database Console" order="13" weight="0.3461117" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.44551283" visible="true" weight="0.21530055" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.24946581" />
       <window_info id="UI Designer" order="4" />
+      <window_info id="Web" order="6" sideWeight="0.37370753" side_tool="true" weight="0.20855615" />
       <window_info anchor="right" id="Properties" order="4" />
       <window_info anchor="bottom" id="Terminal" order="14" weight="0.20765027" />
       <window_info id="Capture Tool" order="8" />
@@ -2604,11 +2538,10 @@
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.55448717" side_tool="true" weight="0.33114755" />
       <window_info anchor="bottom" id="Messages" order="7" weight="0.2273224" />
-      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4866453" weight="0.16100767" />
       <window_info anchor="right" x="0" y="0" width="430" height="846" id="Documentation" order="11" sideWeight="0.500821" side_tool="true" weight="0.14797008" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.20437159" />
       <window_info id="Favorites" order="7" side_tool="true" />
+      <window_info id="Image Layers" order="5" />
       <window_info anchor="bottom" id="Java Enterprise" order="15" weight="0.32568306" />
       <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.2628135" />
@@ -2618,11 +2551,12 @@
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.62629247" visible="true" weight="0.23130342" />
       <window_info anchor="right" id="Database" order="5" sideWeight="0.49917898" weight="0.16025642" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info id="Web" order="6" sideWeight="0.37370753" side_tool="true" weight="0.20855615" />
+      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4866453" weight="0.16100767" />
       <window_info anchor="right" id="Palette&#9;" order="6" />
       <window_info anchor="right" id="Theme Preview" order="9" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.2663451" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.20437159" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.47275642" weight="0.32896176" />
     </layout-to-restore>
   </component>
@@ -2692,7 +2626,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="AppManager 启动方式改变&#10;&#10;1、在AppManager 中判断根容器加载完成后才加载自定义服务。省去了每个服务都需要 @PostConstruct 的注解&#10;2、ModbusTcpServer 的超时周期改成了200ms，满足科华的井盖。" />
     <MESSAGE value="修改 Node 接口&#10;&#10;1、DAMInput_12 改成了 DAMInput_8&#10;2、增加 DAM 4路输入和2两路输出的 Node&#10;3、增加环流的Node，没有n完善&#10;4、增加科华井盖 KH_MC&#10;5、为Modbus Client 增加读取Node配置的方法&#10;6、水浸可以反向 RS_SJ&#10;7、Node端口的名称改成通用的ABCD" />
     <MESSAGE value="1、Node端口功能改成通用的ABCD&#10;2、增加104上传的接口" />
     <MESSAGE value="适应 104 接口的大改动&#10;&#10;XML 配置文件还没有更新&#10;光纤温度告警没有上传" />
@@ -2717,7 +2650,8 @@
     <MESSAGE value="节点对设备的功能重定向的WEB端完成。" />
     <MESSAGE value="服务器实现节点重定向功能。" />
     <MESSAGE value="修正了一个错误，如果Device没有配置该功能，以前会出错。" />
-    <option name="LAST_COMMIT_MESSAGE" value="修正了一个错误，如果Device没有配置该功能，以前会出错。" />
+    <MESSAGE value="还是回到paho mqtt方式&#10;&#10;使用新的嵌入式mqtt服务器，目标系统上netty端口不能访问，不知道什么问题。&#10;&#10;可能是日志系统冲突。" />
+    <option name="LAST_COMMIT_MESSAGE" value="还是回到paho mqtt方式&#10;&#10;使用新的嵌入式mqtt服务器，目标系统上netty端口不能访问，不知道什么问题。&#10;&#10;可能是日志系统冲突。" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2744,12 +2678,6 @@
           <properties />
           <option name="timeStamp" value="627" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/rytec/rec/node/NodeManager.java</url>
-          <line>156</line>
-          <properties />
-          <option name="timeStamp" value="695" />
-        </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
@@ -2760,7 +2688,7 @@
           <properties />
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="697" />
+      <option name="time" value="698" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Remote">
@@ -2778,23 +2706,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/web/user/ExtAlarm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="62">
-          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/controller/Devices.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-329" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/controller/UserFrame.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-145" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/view/AdminFrame.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="246">
@@ -2837,9 +2748,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/logback.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/store/Node.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
@@ -2847,13 +2755,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/test.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="53">
-          <caret line="13" column="12" selection-start-line="13" selection-start-column="12" selection-end-line="13" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/test.js" />
     <entry file="file://$PROJECT_DIR$/src/main/webapp/admin.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -2865,9 +2767,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="42" selection-start-line="42" selection-end-line="42" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2875,13 +2774,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-185">
           <caret line="8" selection-start-line="8" selection-end-line="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/frame/NodeRedirect.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="20" column="36" lean-forward="true" selection-start-line="20" selection-start-column="36" selection-end-line="20" selection-end-column="36" />
         </state>
       </provider>
     </entry>
@@ -2945,17 +2837,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="390">
           <caret line="204" column="72" selection-start-line="204" selection-start-column="72" selection-end-line="204" selection-end-column="72" />
-          <folding>
-            <element signature="e#2775#2776#0" expanded="true" />
-            <element signature="e#2842#2843#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/panel/NodeRedirect.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="33" column="8" lean-forward="true" selection-start-line="33" selection-start-column="8" selection-end-line="33" selection-end-column="16" />
         </state>
       </provider>
     </entry>
@@ -2998,10 +2879,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="222">
           <caret line="65" selection-start-line="65" selection-end-line="65" />
-          <folding>
-            <element signature="e#872#873#0" expanded="true" />
-            <element signature="e#915#916#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3009,13 +2886,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="222">
           <caret line="196" selection-start-line="196" selection-end-line="196" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/node/NodeManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="156" column="39" selection-start-line="156" selection-start-column="39" selection-end-line="156" selection-end-column="39" />
         </state>
       </provider>
     </entry>
@@ -3051,9 +2921,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4186">
           <caret line="196" column="82" selection-start-line="196" selection-start-column="82" selection-end-line="196" selection-end-column="82" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3061,10 +2928,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="161">
           <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-          <folding>
-            <element signature="e#957#958#0" expanded="true" />
-            <element signature="e#1028#1029#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3075,17 +2938,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/messenger/MqttServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-590">
-          <caret line="27" column="13" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
-          <folding>
-            <element signature="e#1669#1670#0" expanded="true" />
-            <element signature="e#1708#1709#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/messenger/MqttServer.java" />
     <entry file="file://$PROJECT_DIR$/src/main/resources/config.ini">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="368">
@@ -3102,19 +2955,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/service/IEC61850Service.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="341">
+        <state relative-caret-position="207">
           <caret line="28" column="39" selection-start-line="28" selection-start-column="39" selection-end-line="28" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3922#3923#0" expanded="true" />
-            <element signature="e#3961#3962#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/app/RecBase.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-299">
+        <state relative-caret-position="253">
           <caret line="14" column="29" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
           <folding>
             <element signature="e#637#638#0" expanded="true" />
@@ -3125,7 +2976,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpServer/ModbusTcpServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
+        <state relative-caret-position="989">
           <caret line="76" selection-start-line="76" selection-end-line="76" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -3135,7 +2986,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/service/VideoService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="41">
+        <state relative-caret-position="2530">
           <caret line="135" column="22" selection-start-line="135" selection-start-column="22" selection-end-line="135" selection-end-column="22" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -3147,7 +2998,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/messenger/MqttService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
+        <state relative-caret-position="1081">
           <caret line="63" column="25" selection-start-line="63" selection-start-column="25" selection-end-line="63" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -3159,15 +3010,64 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/spring-root.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-667">
+        <state relative-caret-position="575">
           <caret line="25" column="51" selection-start-line="25" selection-start-column="42" selection-end-line="25" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/KhFiber/ChannelKhFiber.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="33" column="12" selection-start-line="33" selection-start-column="12" selection-end-line="33" selection-end-column="12" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="95" column="62" selection-start-line="95" selection-start-column="58" selection-end-line="95" selection-end-column="62" />
+        <state relative-caret-position="1932">
+          <caret line="84" column="74" selection-start-line="84" selection-start-column="74" selection-end-line="84" selection-end-column="74" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/node/NodeManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="625">
+          <caret line="156" selection-start-line="156" selection-end-line="156" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-webmvc/4.3.11.RELEASE/c79159035df433ec745c58a1f1a29d7a71e37ad0/spring-webmvc-4.3.11.RELEASE-sources.jar!/org/springframework/web/servlet/mvc/method/annotation/RequestMappingHandlerAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="16537">
+          <caret line="834" selection-start-line="834" selection-end-line="834" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-web/4.3.11.RELEASE/81b86c6cddc25feecf0bb2e11df3b7e56bafb806/spring-web-4.3.11.RELEASE-sources.jar!/org/springframework/web/method/support/InvocableHandlerMethod.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4186">
+          <caret line="213" selection-start-line="213" selection-end-line="213" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/web/util/UploadService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="163">
+          <caret line="66" selection-start-line="66" selection-end-line="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/frame/NodeRedirect.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-383">
+          <caret line="5" column="16" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/panel/NodeRedirect.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="14" column="19" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
         </state>
       </provider>
     </entry>

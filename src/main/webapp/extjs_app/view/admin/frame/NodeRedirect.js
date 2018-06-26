@@ -3,7 +3,7 @@ Ext.define('app.view.admin.frame.NodeRedirect', {
     alias: 'widget.admin.frame.noderedirect',
     layout: 'border',
     icon: 'res/toolbar/platform.png',
-    title: '节点重定向',
+    title: '节点复用',
     items: [
         {
             xtype: 'panel',

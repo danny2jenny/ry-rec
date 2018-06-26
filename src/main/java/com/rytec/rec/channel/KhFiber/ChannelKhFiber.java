@@ -36,6 +36,8 @@ import java.util.List;
  * 4、告警温度，浮点
  * <p>
  * https://github.com/alibaba/druid
+ *
+ * jdbc:sqlserver://192.168.1.53:1433;database=SenDTS
  */
 @Service
 @Order(400)

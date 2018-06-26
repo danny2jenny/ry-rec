@@ -90,6 +90,7 @@ public class UploadService extends RecBase {
             //首先写入数据库
             gisLayer = new GisLayer();
             gisLayer.setName(layerName);
+            gisLayer.setZoom(0);
             gisLayerMapper.insert(gisLayer);
 
         }

@@ -12,7 +12,7 @@ Ext.define('app.view.admin.panel.NodeRedirect', {
     itemId: 'adminNodeRedirect',
 
     split: true,
-    title: '重定向设备',
+    title: '需要复用的设备',
     icon: 'res/toolbar/device.png',
 
     store: 'NodeRedirect',
