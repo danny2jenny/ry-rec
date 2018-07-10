@@ -11,7 +11,6 @@ package com.rytec.rec.node;
 import com.rytec.rec.app.ManageableInterface;
 import com.rytec.rec.db.DbConfig;
 import com.rytec.rec.db.model.ChannelNode;
-import com.rytec.rec.db.model.DeviceNode;
 import com.rytec.rec.db.model.NodeRedirect;
 import com.rytec.rec.device.DeviceManager;
 import com.rytec.rec.node.modbus.base.BaseModbusNode;
@@ -166,20 +165,20 @@ public class NodeManager implements ManageableInterface {
         }
     }
 
-    public int sendMsg(DeviceNode node, NodeMessage msg) {
+    public int sendMsg(NodeMessage msg) {
+
         int rst;
-        if (node == null) {
-            rst = ConstantErrorCode.DEVICE_FUN_NOT_CONFIG;
+
+        // 找到node的信息
+        NodeRuntimeBean nodeRuntimeBean = channelNodeList.get(msg.node);
+        if (nodeRuntimeBean == null)
+            return ConstantErrorCode.DEVICE_FUN_NOT_CONFIG;
+
+        ModbusNodeInterface nodeCom = getNodeComInterface(nodeRuntimeBean.channelNode.getNtype());
+        if (nodeCom == null) {
+            rst = ConstantErrorCode.NODE_TYPE_NOTEXIST;
         } else {
-            // 填充NodeID
-            msg.node = node.getNid();
-            // todo: 这里应该由 nodeManager来发送消息
-            ModbusNodeInterface nodeCom = getNodeComInterface(node.getNtype());
-            if (nodeCom == null) {
-                rst = ConstantErrorCode.NODE_TYPE_NOTEXIST;
-            } else {
-                rst = nodeCom.sendMessage(msg);
-            }
+            rst = nodeCom.sendMessage(msg);
         }
 
         return rst;

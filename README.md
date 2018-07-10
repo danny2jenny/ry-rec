@@ -9,6 +9,7 @@
 开关控制：https://34669493.taobao.com    http://www.juyingele.com.cn/
 
 温湿度传感：https://world.taobao.com/item/525196117561.htm?fromSite=main&spm=a312a.7700824.w4002-12858767422.22.xl0SpS
+http://www.jnrsmcu.com/
 
 http://www.usr.cn/
 产品比较全，串口，网络转换的产品都有。
@@ -48,6 +49,9 @@ http://docs.spring.io/spring-integration/reference/html/mqtt.html
 http://blog.csdn.net/zhang89xiao/article/details/51871624
 
 http://blog.csdn.net/zhang89xiao/article/details/51871973
+
+# 短消息
+http://smstools3.kekekasvi.com/
 
 # GIT 教程
 
@@ -91,6 +95,11 @@ nano /etc/mysql/my.cnf
 event_scheduler = 1
 
 ```
+
+
+# 主板
+https://item.taobao.com/item.htm?spm=a1z10.3-c.w4002-12238083654.67.37d828ac00PTjo&id=537429325652
+https://item.taobao.com/item.htm?spm=a1z10.3-c.w4002-14467116162.55.4b50781bQchgJp&id=561399541432
 
 
 

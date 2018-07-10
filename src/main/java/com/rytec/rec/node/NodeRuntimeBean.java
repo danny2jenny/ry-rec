@@ -11,7 +11,7 @@ import com.rytec.rec.node.modbus.base.ModbusNodeInterface;
  */
 public class NodeRuntimeBean {
 
-    private ModbusNodeInterface modbusNodeInterface;        //
+    private ModbusNodeInterface modbusNodeInterface;
 
     public ChannelNode channelNode;         // Node 和 Channel 的对应关系
     public NodeState nodeState;             // Node 的当前状态，值

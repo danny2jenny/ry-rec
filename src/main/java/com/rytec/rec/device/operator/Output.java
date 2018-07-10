@@ -1,13 +1,20 @@
 package com.rytec.rec.device.operator;
 
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.rytec.rec.cooperate.CooperateManager;
+import com.rytec.rec.cooperate.DelayTask;
 import com.rytec.rec.device.AbstractOperator;
 import com.rytec.rec.device.DeviceRuntimeBean;
+import com.rytec.rec.device.config.SwitchConfig;
 import com.rytec.rec.device.state.StateOutput;
 import com.rytec.rec.util.ConstantMessageType;
 import com.rytec.rec.node.NodeMessage;
 import com.rytec.rec.util.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.io.IOException;
 
 /**
  * Created by danny on 16-11-29.
@@ -27,6 +34,10 @@ import org.springframework.stereotype.Service;
 @AnnotationDeviceType(101)
 @AnnotationJSExport("远程开关")
 public class Output extends AbstractOperator {
+
+
+    @Autowired
+    CooperateManager cooperateManager;
 
     /**
      * 常量的列表，表示该设备可以输出那些信号
@@ -147,12 +158,36 @@ public class Output extends AbstractOperator {
                 break;
             case 101:
                 setSwitch(device, from, true);
+                // 来自用户的命令，判断OFF_DELAY
+                if ((from == ConstantFromWhere.FROM_USER) && (((SwitchConfig) deviceManager.getDeviceRuntimeList().get(device).config).OFF_DELAY > 0)) {
+                    // 把关闭命令写入到延时队列
+                    NodeMessage nodeMsg = new NodeMessage();
+                    nodeMsg.from = from;
+                    nodeMsg.type = ConstantCommandType.GENERAL_WRITE;
+                    nodeMsg.value = false;
+                    NodeMessage msg = genNodeMsg(device, ConstantDeviceFunction.DEV_FUN_PORT_A, nodeMsg);
+                    if (msg != null) {
+                        cooperateManager.delayQueue.offer(new DelayTask(msg, 1000 * ((SwitchConfig) deviceManager.getDeviceRuntimeList().get(device).config).OFF_DELAY));
+                    }
+                }
                 break;
             default:
                 return ConstantErrorCode.DEVICE_ACT_NOT_EXIST;
         }
 
         return 0;
+    }
+
+    @Override
+    public Object parseConfig(String config) {
+        SwitchConfig switchConfig;
+        try {
+            switchConfig = new ObjectMapper().readValue(config, SwitchConfig.class);
+        } catch (IOException e) {
+            switchConfig = new SwitchConfig();
+        }
+
+        return switchConfig;
     }
 
     @Override

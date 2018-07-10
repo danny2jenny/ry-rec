@@ -1,6 +1,7 @@
 package com.rytec.rec.cooperate;
 
 import com.rytec.rec.app.ManageableInterface;
+import com.rytec.rec.app.RecBase;
 import com.rytec.rec.db.DbConfig;
 import com.rytec.rec.db.model.RuleAction;
 import com.rytec.rec.device.AbstractOperator;
@@ -17,6 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
+import java.util.concurrent.DelayQueue;
 
 /**
  * Created by danny on 17-2-14.
@@ -30,7 +32,7 @@ import java.util.Vector;
  */
 @Service
 @Order(300)
-public class CooperateManager implements ManageableInterface {
+public class CooperateManager extends RecBase implements ManageableInterface {
 
     private final org.slf4j.Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -39,6 +41,12 @@ public class CooperateManager implements ManageableInterface {
 
     @Autowired
     DeviceManager deviceManager;
+
+    // 延时任务
+    @Autowired
+    DelayRunner delayRunner;
+    public DelayQueue<DelayTask> delayQueue = new DelayQueue<DelayTask>();
+
 
     /**
      * 从数据库中读取相应的联数据，然后保存为Map
@@ -50,6 +58,11 @@ public class CooperateManager implements ManageableInterface {
      * 第二级 targetid(devicdId) -> Action
      */
     private Map<String, List> mapRules = new HashMap();
+
+    @PostConstruct
+    void init() {
+        delayRunner.doDelayTask();      // 运行线程循环
+    }
 
     void initConfig() {
         List<RuleAction> ruleActionList = dbConfig.getRuleActionList();
@@ -89,7 +102,7 @@ public class CooperateManager implements ManageableInterface {
 
         for (RuleAction action : actions) {
             // 可能一个信号没有相应的动作
-            if (action.getTarget()==null){
+            if (action.getTarget() == null) {
                 continue;
             }
             AbstractOperator operator = deviceManager.getOperatorByDeviceId(action.getTarget());
@@ -98,6 +111,10 @@ public class CooperateManager implements ManageableInterface {
         return 0;
     }
 
+    /**
+     * 每秒执行延时队列
+     */
+    // @Scheduled(fixedDelay = 100)
     public void stop() {
         mapRules.clear();
     }

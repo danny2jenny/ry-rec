@@ -74,6 +74,7 @@ public class DeviceManager extends RecBase implements ManageableInterface {
 
     HashMap<Integer, DeviceRuntimeBean> deviceRuntimeList = new HashMap();
 
+
     /**
      * 通过方法访问
      *

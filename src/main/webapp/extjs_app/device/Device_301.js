@@ -9,6 +9,7 @@ Ext.define('app.view.device.control._301', {
     extend: 'Ext.panel.Panel',
     alias: 'widget.device.control.301',
     title: '空调控制',
+    dType: 301,     // 设备类型
     width: 200,
 
     bodyPadding: 5,

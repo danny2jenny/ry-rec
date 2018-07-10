@@ -4,12 +4,74 @@
  * 开关控制
  */
 
+// 配置面板
+Ext.define('app.device.Device_101', {
+
+    configPanel: Ext.create('Ext.panel.Panel', {
+        itemId: 'device_config_101',
+        title: '设备参数配置',
+        bodyPadding: '5 5 0',
+        hidden: true,
+        height: 200,
+        items: [
+            {
+                xtype: 'numberfield',
+                fieldLabel: '延时关闭时间',
+                name: 'OFF_DELAY',
+                itemId: 'OFF_DELAY'
+            }
+        ],
+        buttons: [{
+            text: "更新",
+            handler: function () {
+                debugger;
+                var pa = this.ownerCt.ownerCt;
+                var selection = pa.selection;
+                var opt = {};
+
+                selection.beginEdit();
+
+                opt.OFF_DELAY = pa.down('#OFF_DELAY').getValue();
+
+                selection.set('opt', JSON.stringify(opt))
+                selection.endEdit();
+                selection.commit();
+            }
+        }],
+
+        /**
+         * 根据
+         * @param store
+         * @param field
+         */
+        readConfig: function (selection, field) {
+            this.show();
+            var optStr = selection.get(field);
+            this.selection = selection;
+            //读取数据
+            if (optStr.length) {
+                var opt = JSON.parse(optStr);
+                this.down('#OFF_DELAY').setValue(opt.OFF_DELAY);
+            } else {
+                this.down('#OFF_DELAY').setValue(0);
+            }
+        }
+
+    })
+});
+
+// 加入到全局变量
+ry.devices['device_101'] = Ext.create('app.device.Device_101', {});
+
+
 // 设备控制面板
 Ext.define('app.view.device.control._101', {
     extend: 'Ext.panel.Panel',
     alias: 'widget.device.control.101',
     title: '开关控制',
+    dType: 101,     // 设备类型
     width: 200,
+
 
     bodyPadding: 5,
     autoDestroy: false,
@@ -117,7 +179,6 @@ Ext.define('app.view.device.control._101', {
         }
 
 
-
         // 反馈状态
         if (this.runtime.state.feedback == 20) {
             this.down("#feedback").setValue("关闭")
@@ -132,8 +193,6 @@ Ext.define('app.view.device.control._101', {
     }
 });
 
-// 必须有
-ry.devices['device_101'] = {};
 
 // 设备动作
 ry.deviceEditor['act_101'] = Ext.create('Ext.form.field.ComboBox', {

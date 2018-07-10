@@ -92,6 +92,7 @@ Ext.define('app.view.device.control._201', {
     extend: 'Ext.panel.Panel',
     alias: 'widget.device.control.201',
     title: '模拟量监测',
+    dType: 201,     // 设备类型
     width: 200,
 
     bodyPadding: 5,

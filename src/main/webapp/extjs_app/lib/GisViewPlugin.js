@@ -466,7 +466,7 @@ Ext.define('app.lib.GisViewPlugin', {
                 this.owner.map.overlays_.clear();
                 this.owner.overlay.featureStateOverlays.clear();
 
-                if (!this.owner.getActiveVectorLayer()){
+                if (!this.owner.getActiveVectorLayer()) {
                     return
                 }
                 var features = this.owner.getActiveVectorLayer().getSource().getFeatures();
@@ -566,7 +566,7 @@ Ext.define('app.lib.GisViewPlugin', {
         /**
          * 清理高亮Features
          */
-        me.clearHighlight = function(){
+        me.clearHighlight = function () {
             for (var i in me.highlightOverlays) {
                 me.map.removeOverlay(me.highlightOverlays[i]);
             }

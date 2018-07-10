@@ -33,8 +33,8 @@ public class AbstractOperator extends RecBase {
     AlarmHub alarmHub;
 
     /*
-    * 设置输出的值
-    */
+     * 设置输出的值
+     */
 
     /**
      * 向Device的一个功能节点发送
@@ -60,12 +60,43 @@ public class AbstractOperator extends RecBase {
 
             // 找到功能对应的Node
             funNode = deviceNodes.get(fun);
+            if (funNode == null)
+                return ConstantErrorCode.DEVICE_FUN_NOT_EXIST;
             msg.node = funNode.getNid();
 
             // 发送消息
-            rst = nodeManager.sendMsg(funNode, msg);
+            rst = nodeManager.sendMsg(msg);
         }
         return rst;
+    }
+
+    /**
+     * 生成节点消息
+     *
+     * @return
+     */
+    public NodeMessage genNodeMsg(int deviceId, int fun, NodeMessage msg) {
+
+        //对应Function 的Node
+        DeviceNode funNode = null;
+
+        // 得到device所对应的Nodes
+        HashMap<Integer, DeviceNode> deviceNodes = deviceManager.deviceNodeListByFun.get(deviceId);
+
+        if (deviceNodes == null) {
+            return null;
+        } else {
+
+            // 找到功能对应的Node
+            funNode = deviceNodes.get(fun);
+            if (funNode == null)
+                return null;
+            msg.node = funNode.getNid();
+
+            // 返回消息
+            return msg;
+        }
+
     }
 
     /**

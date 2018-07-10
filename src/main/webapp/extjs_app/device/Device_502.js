@@ -2,7 +2,8 @@
 Ext.define('app.view.device.control._502', {
     extend: 'Ext.panel.Panel',
     alias: 'widget.device.control.502',
-    title: '模拟量监测',
+    title: '光纤测温告警',
+    dType: 502,     // 设备类型
     width: 200,
 
     bodyPadding: 5,
