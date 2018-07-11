@@ -16,6 +16,9 @@ public class AsyncRunner {
                 channelModbusMaster.inLoop = false;
             }
             for (RecModbusMasterSession session : channelModbusMaster.modbusClients.values()) {
+                if (!channelModbusMaster.inLoop){
+                    return;
+                }
                 session.startCom();
             }
         }

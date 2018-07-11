@@ -7,25 +7,19 @@
     <bookmark url="file://$PROJECT_DIR$/src/main/webapp/js/pannellum.js" line="1804" mnemonic="2" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d35ddd3d-c0e7-4f94-b111-72db3f8184b4" name="Default" comment="使用说明增加调试信息。">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/cooperate/DelayRunner.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/cooperate/DelayTask.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/device/config/SwitchConfig.java" afterDir="false" />
+    <list default="true" id="d35ddd3d-c0e7-4f94-b111-72db3f8184b4" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/KhFiber/FiberSection.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/service/SMS.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/util/ConstantCfg.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/cooperate/CooperateManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/cooperate/CooperateManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/device/AbstractOperator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/device/AbstractOperator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/device/DeviceManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/device/DeviceManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/device/operator/Output.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/device/operator/Output.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/node/NodeManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/node/NodeManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/node/NodeRuntimeBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/node/NodeRuntimeBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/logback.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/logback.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/extjs_app/device/Device_101.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/extjs_app/device/Device_101.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/extjs_app/device/Device_201.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/extjs_app/device/Device_201.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/extjs_app/device/Device_301.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/extjs_app/device/Device_301.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/extjs_app/device/Device_501.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/extjs_app/device/Device_501.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/extjs_app/device/Device_502.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/extjs_app/device/Device_502.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/extjs_app/lib/GisViewPlugin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/extjs_app/lib/GisViewPlugin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/KhFiber/ChannelKhFiber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/KhFiber/ChannelKhFiber.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/KhFiber/DbSession.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/KhFiber/DbSession.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpClient/AsyncRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpClient/AsyncRunner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/device/operator/Fiber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/device/operator/Fiber.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/web/app/JSConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/web/app/JSConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/config.ini" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/extjs_app/lib/util.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/extjs_app/lib/util.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/panel/Option.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/panel/Option.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/openlayers/overlay/popupoverlay.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/openlayers/overlay/popupoverlay.js" afterDir="false" />
     </list>
     <ignored path="RyREC.iws" />
@@ -121,20 +115,44 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Output.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/device/operator/Output.java">
+      <file leaf-file-name="DbSession.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/KhFiber/DbSession.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="169" selection-start-line="169" selection-end-line="169" />
+            <state relative-caret-position="357">
+              <caret line="35" column="30" lean-forward="true" selection-start-line="35" selection-start-column="30" selection-end-line="35" selection-end-column="30" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DelayRunner.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/cooperate/DelayRunner.java">
+      <file leaf-file-name="Fiber.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/device/operator/Fiber.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="296">
-              <caret line="33" selection-start-line="33" selection-end-line="33" />
+            <state relative-caret-position="903">
+              <caret line="82" selection-start-line="82" selection-end-line="82" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ChannelKhFiber.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/KhFiber/ChannelKhFiber.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="302">
+              <caret line="105" column="10" selection-start-line="105" selection-start-column="10" selection-end-line="105" selection-end-column="10" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SMS.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/service/SMS.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="449">
+              <caret line="42" lean-forward="true" selection-start-line="42" selection-end-line="42" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -154,21 +172,15 @@
         <option value="HTML File" />
         <option value="Jsp File" />
         <option value="XSLT Stylesheet" />
-        <option value="Interface" />
         <option value="JavaScript File" />
         <option value="Enum" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>de</find>
-      <find>deb</find>
-      <find>last</find>
-      <find>retr</find>
-      <find>synchronized</find>
-      <find>sec</find>
       <find>checkCount =</find>
       <find>NodeRuntimeBean</find>
       <find>regcount</find>
@@ -193,6 +205,12 @@
       <find>d</find>
       <find>interaction.popup</find>
       <find>init</find>
+      <find>短消息</find>
+      <find>ry.OPT_CAT</find>
+      <find>debug</find>
+      <find>flex</find>
+      <find>@Order(400)</find>
+      <find>list</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -923,16 +941,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" />
-        <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/model/NodeRedirect.js" />
-        <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/store/Node.js" />
-        <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/panel/Iec61850.js" />
-        <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/frame/Iec61850.js" />
-        <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/view/AdminFrame.js" />
-        <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/controller/AdminFrame.js" />
-        <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/store/NodeRedirect.js" />
-        <option value="$PROJECT_DIR$/src/main/webapp/test.js" />
-        <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/web/admin/ExtNode.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/web/admin/ExtNodeRedirect.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/panel/AllNode.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/panel/IcdUpload.js" />
@@ -947,7 +955,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/messenger/MqttService.java" />
         <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpServer/ModbusTcpServer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/KhFiber/ChannelKhFiber.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/web/util/UploadService.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/frame/NodeRedirect.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/panel/NodeRedirect.js" />
@@ -958,10 +965,8 @@
         <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/device/Device_501.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/device/Device_502.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/lib/GisViewPlugin.js" />
-        <option value="$PROJECT_DIR$/src/main/webapp/openlayers/overlay/popupoverlay.js" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/device/config/SwitchConfig.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/device/Device_101.js" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/util/SteAirCon.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/device/ext/DelayTask.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/device/DeviceManager.java" />
@@ -974,6 +979,19 @@
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/node/NodeManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/device/operator/Output.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/cooperate/DelayRunner.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/util/ConstantCfg.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/web/app/JSConfig.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/lib/util.js" />
+        <option value="$PROJECT_DIR$/src/main/webapp/openlayers/overlay/popupoverlay.js" />
+        <option value="$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/panel/Option.js" />
+        <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/KhFiber/FiberSection.java" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/src/main/resources/config.ini" />
+        <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/device/operator/Fiber.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpClient/AsyncRunner.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/KhFiber/DbSession.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/service/SMS.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/KhFiber/ChannelKhFiber.java" />
       </list>
     </option>
   </component>
@@ -1010,6 +1028,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -1020,11 +1039,6 @@
             <path>
               <item name="com.rytec.rec" type="b2602c69:ProjectViewProjectNode" />
               <item name="ry-rec" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="doc" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="com.rytec.rec" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ry-rec" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -1065,38 +1079,7 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="com" type="462c0819:PsiDirectoryNode" />
               <item name="rec" type="462c0819:PsiDirectoryNode" />
-              <item name="cooperate" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="com.rytec.rec" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ry-rec" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="rec" type="462c0819:PsiDirectoryNode" />
-              <item name="db" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="com.rytec.rec" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ry-rec" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="rec" type="462c0819:PsiDirectoryNode" />
-              <item name="device" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="com.rytec.rec" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ry-rec" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="rec" type="462c0819:PsiDirectoryNode" />
-              <item name="device" type="462c0819:PsiDirectoryNode" />
-              <item name="operator" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="com.rytec.rec" type="b2602c69:ProjectViewProjectNode" />
@@ -1110,7 +1093,6 @@
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="AndroidView" />
     </panes>
   </component>
@@ -1175,7 +1157,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Gradle.RyREC [appStart]">
+  <component name="RunManager" selected="Remote.Remote-Debug">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
     </configuration>
@@ -1660,8 +1642,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.RyREC [appStart]" />
         <item itemvalue="Gradle.ry-rec [appStartDebug]" />
+        <item itemvalue="Gradle.RyREC [appStart]" />
         <item itemvalue="Gradle.ry-rec [war]" />
         <item itemvalue="Gradle.ry-rec [clean]" />
         <item itemvalue="Gradle.ry-rec [build]" />
@@ -2146,14 +2128,8 @@
       <workItem from="1530754135636" duration="12789000" />
       <workItem from="1530852823790" duration="5210000" />
       <workItem from="1531186675364" duration="613000" />
-      <workItem from="1531192550514" duration="10369000" />
-    </task>
-    <task id="LOCAL-00125" summary="添加j60870 1.2.1 直接到工程">
-      <created>1513782373935</created>
-      <option name="number" value="00125" />
-      <option name="presentableId" value="LOCAL-00125" />
-      <option name="project" value="LOCAL" />
-      <updated>1513782373936</updated>
+      <workItem from="1531192550514" duration="33882000" />
+      <workItem from="1531316374239" duration="5309000" />
     </task>
     <task id="LOCAL-00126" summary="61850 遥测、遥信、遥控成功">
       <created>1514875843356</created>
@@ -2491,11 +2467,18 @@
       <option name="project" value="LOCAL" />
       <updated>1529975599532</updated>
     </task>
-    <option name="localTasksCounter" value="174" />
+    <task id="LOCAL-00174" summary="1、优化NodeManager的sendMsg接口&#10;2、增加延时命令&#10;3、用户开关可以设置延时关闭">
+      <created>1531214884082</created>
+      <option name="number" value="00174" />
+      <option name="presentableId" value="LOCAL-00174" />
+      <option name="project" value="LOCAL" />
+      <updated>1531214884083</updated>
+    </task>
+    <option name="localTasksCounter" value="175" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3017877000" />
+    <option name="totallyTimeSpent" value="3046699000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2512,22 +2495,21 @@
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4866453" weight="0.16100767" />
-      <window_info anchor="bottom" id="Messages" order="7" weight="0.2273224" />
       <window_info anchor="right" id="Palette&#9;" order="6" />
       <window_info anchor="bottom" id="Java Enterprise" order="15" weight="0.32568306" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.55502135" side_tool="true" weight="0.24371585" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5267094" side_tool="true" weight="0.20437159" />
       <window_info anchor="right" id="Maven Projects" order="10" weight="0.15010683" />
       <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.26229507" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.44497862" visible="true" weight="0.3431694" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.44497862" visible="true" weight="0.3715847" />
       <window_info anchor="bottom" id="Spring" order="8" weight="0.3263965" />
       <window_info anchor="bottom" id="Terminal" order="14" weight="0.20765027" />
       <window_info id="Designer" order="3" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.62629247" visible="true" weight="0.21367522" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.62629247" visible="true" weight="0.20192307" />
       <window_info id="Web" order="6" sideWeight="0.37370753" side_tool="true" weight="0.20855615" />
-      <window_info anchor="right" id="Database" order="5" sideWeight="0.49917898" weight="0.16025642" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.20437159" />
-      <window_info anchor="right" id="Gradle" order="8" sideWeight="0.49917898" visible="true" weight="0.15811966" />
+      <window_info anchor="right" id="Database" order="5" sideWeight="0.49917898" weight="0.23557693" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4732906" weight="0.20437159" />
+      <window_info anchor="right" id="Gradle" order="8" sideWeight="0.49917898" visible="true" weight="0.14423077" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.2663451" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.24946581" />
       <window_info id="UI Designer" order="4" />
@@ -2538,11 +2520,12 @@
       <window_info id="Capture Tool" order="8" />
       <window_info anchor="right" x="0" y="0" width="430" height="846" id="Documentation" order="11" sideWeight="0.500821" side_tool="true" weight="0.14797008" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info id="Image Layers" order="5" />
       <window_info anchor="right" id="Theme Preview" order="9" />
       <window_info anchor="bottom" id="Database Console" order="13" weight="0.3461117" />
-      <window_info id="Image Layers" order="5" />
       <window_info anchor="right" id="Properties" order="4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.2273224" />
       <window_info anchor="bottom" id="Build" order="12" weight="0.32786885" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -2558,6 +2541,7 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.24946581" />
       <window_info id="UI Designer" order="4" />
+      <window_info id="Web" order="6" sideWeight="0.37370753" side_tool="true" weight="0.20855615" />
       <window_info anchor="right" id="Properties" order="4" />
       <window_info anchor="bottom" id="Terminal" order="14" weight="0.20765027" />
       <window_info id="Capture Tool" order="8" />
@@ -2565,10 +2549,9 @@
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.55448717" side_tool="true" weight="0.33114755" />
       <window_info anchor="bottom" id="Messages" order="7" weight="0.2273224" />
-      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4866453" weight="0.16100767" />
       <window_info anchor="right" x="0" y="0" width="430" height="846" id="Documentation" order="11" sideWeight="0.500821" side_tool="true" weight="0.14797008" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Theme Preview" order="9" />
+      <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.20437159" />
       <window_info id="Image Layers" order="5" />
       <window_info anchor="bottom" id="Java Enterprise" order="15" weight="0.32568306" />
       <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
@@ -2579,12 +2562,12 @@
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.62629247" visible="true" weight="0.23130342" />
       <window_info anchor="right" id="Database" order="5" sideWeight="0.49917898" weight="0.16025642" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info id="Web" order="6" sideWeight="0.37370753" side_tool="true" weight="0.20855615" />
+      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4866453" weight="0.16100767" />
       <window_info anchor="right" id="Palette&#9;" order="6" />
-      <window_info id="Favorites" order="7" side_tool="true" />
+      <window_info anchor="right" id="Theme Preview" order="9" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.2663451" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.20437159" />
+      <window_info id="Favorites" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.47275642" weight="0.32896176" />
     </layout-to-restore>
   </component>
@@ -2654,7 +2637,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="适应 104 接口的大改动&#10;&#10;XML 配置文件还没有更新&#10;光纤温度告警没有上传" />
     <MESSAGE value="所有的光纤、环流测试完成&#10;&#10;注意，环流正式使用需要更改一下" />
     <MESSAGE value="更新104文档" />
     <MESSAGE value="增加 WEB 端的错误显示，增加已经上传模型的下载" />
@@ -2679,7 +2661,8 @@
     <MESSAGE value="还是回到paho mqtt方式&#10;&#10;使用新的嵌入式mqtt服务器，目标系统上netty端口不能访问，不知道什么问题。&#10;&#10;可能是日志系统冲突。" />
     <MESSAGE value="UploadService.java 中修改缺少一个字段的问题。&#10;&#10;节点重定向修改成节点复用&#10;&#10;完善使用说明" />
     <MESSAGE value="使用说明增加调试信息。" />
-    <option name="LAST_COMMIT_MESSAGE" value="使用说明增加调试信息。" />
+    <MESSAGE value="1、优化NodeManager的sendMsg接口&#10;2、增加延时命令&#10;3、用户开关可以设置延时关闭" />
+    <option name="LAST_COMMIT_MESSAGE" value="1、优化NodeManager的sendMsg接口&#10;2、增加延时命令&#10;3、用户开关可以设置延时关闭" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2716,7 +2699,7 @@
           <properties />
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="707" />
+      <option name="time" value="728" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Remote">
@@ -2726,6 +2709,11 @@
         <watch expression="systemTime" />
         <watch expression="runtime" />
         <watch expression="InformationElement" />
+        <watch expression="dbSession" />
+        <watch expression="sqlServers" />
+        <watch expression="sectionHashMap" />
+        <watch expression="session.sectionHashMap" />
+        <watch expression="section" />
       </configuration>
     </watches-manager>
   </component>
@@ -2734,28 +2722,28 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/openlayers/overlay/popupoverlay.js">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/cooperate/DelayRunner.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-184">
-          <caret line="49" column="4" selection-start-line="49" selection-start-column="4" selection-end-line="52" />
+        <state relative-caret-position="483">
+          <caret line="21" column="31" lean-forward="true" selection-start-line="21" selection-start-column="31" selection-end-line="21" selection-end-column="31" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/lib/GisViewPlugin.js">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/device/operator/Output.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="552">
-          <caret line="816" column="43" lean-forward="true" selection-start-line="816" selection-start-column="43" selection-end-line="816" selection-end-column="43" />
+        <state relative-caret-position="345">
+          <caret line="169" selection-start-line="169" selection-end-line="169" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
+        <state relative-caret-position="543">
           <caret line="32" column="22" selection-start-line="32" selection-start-column="22" selection-end-line="32" selection-end-column="22" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/util/ConstantMessageType.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/util/ConstantAircon.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="161">
           <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
@@ -2776,24 +2764,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/util/ConstantDeviceState.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/util/ConstantErrorCode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="173">
-          <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpClient/RecModbusMasterSession.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1768">
-          <caret line="81" column="49" selection-start-line="81" selection-start-column="49" selection-end-line="81" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpServer/ModbusMessage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="233">
-          <caret line="13" column="40" selection-start-line="13" selection-start-column="40" selection-end-line="13" selection-end-column="40" />
+        <state relative-caret-position="-49">
+          <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
         </state>
       </provider>
     </entry>
@@ -2804,97 +2778,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/service/VideoService.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/util/ConstantMessageType.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-242">
-          <caret line="156" column="57" selection-start-line="156" selection-start-column="57" selection-end-line="156" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/device/state/StateAnalog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/device/operator/Analog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="348">
-          <caret line="126" column="46" lean-forward="true" selection-start-line="126" selection-start-column="46" selection-end-line="126" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/device/DeviceRuntimeBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/device/config/AnalogConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/device/config/SwitchConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="8" column="24" selection-start-line="8" selection-start-column="15" selection-end-line="8" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/device/Device_101.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1127">
-          <caret line="55" column="50" selection-start-line="55" selection-start-column="50" selection-end-line="55" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/device/Device_201.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-612">
-          <caret line="86" selection-start-line="86" selection-end-line="87" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/node/modbus/RS_WSD.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="38" column="50" selection-start-line="38" selection-start-column="50" selection-end-line="38" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="46">
-            <caret line="11" selection-start-line="11" selection-end-line="11" selection-end-column="23" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/node/modbus/RS_SJ.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="22" column="34" lean-forward="true" selection-start-line="22" selection-start-column="34" selection-end-line="22" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpServer/ModbusFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="50" column="26" selection-start-line="50" selection-start-column="26" selection-end-line="50" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/node/modbus/base/DmaModbusBase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="337">
-          <caret line="78" column="57" selection-start-line="78" selection-start-column="57" selection-end-line="78" selection-end-column="57" />
+        <state relative-caret-position="-5">
+          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
         </state>
       </provider>
     </entry>
@@ -2905,191 +2792,52 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/node/modbus/RS_FS.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/util/ConstantMqtt.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="26" column="54" lean-forward="true" selection-start-line="26" selection-start-column="54" selection-end-line="26" selection-end-column="54" />
+        <state relative-caret-position="-97">
+          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpServer/ModbusChannelSession.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/util/CRC16.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-506">
-          <caret line="47" column="76" selection-start-line="47" selection-start-column="55" selection-end-line="47" selection-end-column="76" />
+        <state relative-caret-position="137">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/util/ConstantAircon.java">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/lib/util.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+        <state relative-caret-position="115">
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/util/SteAirCon.java">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/openlayers/overlay/popupoverlay.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        <state relative-caret-position="219">
+          <caret line="48" selection-start-line="48" selection-end-line="48" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/devtool/jdk/src.zip!/java/lang/System.java">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/panel/Option.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="365">
-          <caret line="337" column="47" selection-start-line="337" selection-start-column="35" selection-end-line="337" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/devtool/jdk/src.zip!/java/util/concurrent/TimeUnit.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="70" column="12" selection-start-line="70" selection-start-column="12" selection-end-line="70" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/device/DeviceManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="76" lean-forward="true" selection-start-line="76" selection-end-line="76" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ChannelManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1325">
-          <caret line="109" column="45" selection-start-line="109" selection-start-column="45" selection-end-line="109" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/KhFiber/DbSession.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/KhFiber/ChannelKhFiber.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2611">
-          <caret line="150" column="53" selection-start-line="150" selection-start-column="53" selection-end-line="150" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/app/RecBase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="49" column="21" selection-start-line="49" selection-start-column="16" selection-end-line="49" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpClient/ChannelModbusMaster.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="49" column="4" selection-start-line="49" selection-start-column="4" selection-end-line="49" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpClient/AsyncRunner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="12" column="15" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpServer/ModbusTcpServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="174" column="4" lean-forward="true" selection-start-line="174" selection-start-column="4" selection-end-line="174" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/logback.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="13" selection-start-line="13" selection-end-line="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/web/test/test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="34" column="29" lean-forward="true" selection-start-line="34" selection-start-column="29" selection-end-line="34" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/cooperate/DelayTask.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-95">
-          <caret line="15" column="6" lean-forward="true" selection-start-line="15" selection-start-column="6" selection-end-line="15" selection-end-column="6" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/util/ConstantErrorCode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="736">
-          <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/cooperate/CooperateManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="63" column="26" selection-start-line="63" selection-start-column="26" selection-end-line="63" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1571#1572#0" expanded="true" />
-            <element signature="e#1627#1628#0" expanded="true" />
-            <element signature="e#2915#2916#0" expanded="true" />
-            <element signature="e#2947#2948#0" expanded="true" />
-            <element signature="e#2974#2975#0" expanded="true" />
-            <element signature="e#3010#3011#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/db/model/DeviceNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-437">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/db/DbConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="26" column="27" selection-start-line="26" selection-start-column="17" selection-end-line="26" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/node/NodeRuntimeBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/node/NodeManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="182" selection-start-line="182" selection-end-line="182" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#6250#6251#0" expanded="true" />
-            <element signature="e#6278#6279#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="322">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/device/AbstractOperator.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="46" column="15" selection-start-line="46" selection-start-column="15" selection-end-line="46" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/device/operator/Aircon.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="501">
-          <caret line="67" column="30" selection-start-line="67" selection-start-column="30" selection-end-line="67" selection-end-column="30" />
+          <caret line="114" column="25" selection-start-line="114" selection-start-column="25" selection-end-line="114" selection-end-column="25" />
         </state>
       </provider>
     </entry>
@@ -3100,17 +2848,250 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/device/operator/Output.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/db/model/ChannelNode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="169" selection-start-line="169" selection-end-line="169" />
+        <state relative-caret-position="233">
+          <caret line="459" column="18" selection-start-line="459" selection-start-column="18" selection-end-line="459" selection-end-column="18" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/cooperate/DelayRunner.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpClient/RecModbusMasterSession.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="33" selection-start-line="33" selection-end-line="33" />
+        <state relative-caret-position="233">
+          <caret line="78" column="62" selection-start-line="78" selection-start-column="62" selection-end-line="78" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/node/modbus/base/ModbusNodeInterface.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1357">
+          <caret line="61" column="14" lean-forward="true" selection-start-line="61" selection-start-column="14" selection-end-line="61" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/node/modbus/base/DmaModbusBase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3579">
+          <caret line="78" column="57" selection-start-line="78" selection-start-column="57" selection-end-line="78" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/node/modbus/base/BaseModbusNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-345">
+          <caret line="23" column="29" selection-start-line="23" selection-start-column="29" selection-end-line="23" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/node/Fiber/FiberAlarm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="40" column="21" lean-forward="true" selection-start-line="40" selection-start-column="21" selection-end-line="40" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-context/4.3.11.RELEASE/148a8463bd0746a4ee05c56e2c414b3c5812fcaf/spring-context-4.3.11.RELEASE-sources.jar!/org/springframework/scheduling/support/ScheduledMethodRunnable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1058">
+          <caret line="64" selection-start-line="64" selection-end-line="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/app/ManageableInterface.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/app/AppManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-552">
+          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/service/PayloadPtz.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpServer/ModbusTcpServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="246">
+          <caret line="177" column="30" selection-start-line="177" selection-start-column="30" selection-end-line="177" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/web/app/JSConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2507">
+          <caret line="42" column="20" selection-start-line="42" selection-start-column="20" selection-end-line="42" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/service/IEC61850Service.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="28" column="5" selection-start-line="28" selection-start-column="3" selection-end-line="28" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/node/NodeManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="192" column="9" selection-start-line="192" selection-start-column="7" selection-end-line="192" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#5987#5988#0" expanded="true" />
+            <element signature="e#6037#6038#0" expanded="true" />
+            <element signature="e#6164#6165#0" expanded="true" />
+            <element signature="e#6192#6193#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/db/mapper/DeviceNodeMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="371">
+          <caret line="55" column="21" selection-start-line="55" selection-start-column="21" selection-end-line="55" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/service/iec60870/FileManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="214">
+          <caret line="88" column="43" selection-start-line="88" selection-start-column="43" selection-end-line="88" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/util/ConstantCfg.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="69">
+          <caret line="3" column="28" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/db/DbConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="178" column="32" lean-forward="true" selection-start-line="178" selection-start-column="32" selection-end-line="178" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/util/ConstantDeviceState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="423">
+          <caret line="25" column="8" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/KhFiber/FiberVal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/device/DeviceRuntimeBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="23">
+            <caret line="53" selection-start-line="53" selection-end-line="53" selection-end-column="31" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/config.ini">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="644">
+          <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/device/operator/Analog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="624">
+          <caret line="119" column="75" selection-start-line="119" selection-start-column="58" selection-end-line="119" selection-end-column="75" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/devtool/jdk/src.zip!/java/util/HashMap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="267">
+          <caret line="1441" selection-start-line="1441" selection-end-line="1441" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/device/DeviceManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="215" selection-start-line="215" selection-end-line="215" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpClient/ChannelModbusMaster.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="356">
+          <caret line="163" column="25" selection-start-line="163" selection-start-column="25" selection-end-line="163" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/KhFiber/FiberSection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpClient/AsyncRunner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="19" column="27" selection-start-line="19" selection-start-column="27" selection-end-line="19" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/KhFiber/DbSession.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="35" column="30" lean-forward="true" selection-start-line="35" selection-start-column="30" selection-end-line="35" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/device/operator/Fiber.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="903">
+          <caret line="82" selection-start-line="82" selection-end-line="82" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/service/SMS.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="449">
+          <caret line="42" lean-forward="true" selection-start-line="42" selection-end-line="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/KhFiber/ChannelKhFiber.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="302">
+          <caret line="105" column="10" selection-start-line="105" selection-start-column="10" selection-end-line="105" selection-end-column="10" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

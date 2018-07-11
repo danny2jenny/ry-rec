@@ -46,7 +46,6 @@ ol.Overlay.Popup = function (options) {
         });
     // Stop event
     options.stopEvent = true;
-    debugger;
     d.on("mousedown touchstart", function (e) {
         e.stopPropagation();
     })

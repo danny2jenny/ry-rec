@@ -10,6 +10,7 @@ import com.rytec.rec.db.model.Channel;
 import com.rytec.rec.db.model.ChannelNode;
 import com.rytec.rec.node.NodeManager;
 import com.rytec.rec.node.NodeMessage;
+import com.rytec.rec.node.NodeRuntimeBean;
 import com.rytec.rec.util.AnnotationChannelType;
 import com.rytec.rec.util.AnnotationJSExport;
 import com.rytec.rec.util.ConstantFromWhere;
@@ -36,8 +37,14 @@ import java.util.List;
  * 4、告警温度，浮点
  * <p>
  * https://github.com/alibaba/druid
- *
+ * <p>
  * jdbc:sqlserver://192.168.1.53:1433;database=SenDTS
+ * <p>
+ * 告警类型
+ * 0:告警消失
+ * 1:高温预警
+ * 2:高温报警
+ * 3:温差报警
  */
 @Service
 @Order(400)
@@ -49,7 +56,7 @@ public class ChannelKhFiber extends RecBase implements ChannelInterface, Managea
     private DbConfig dbConfig;
 
     @Autowired
-    public NodeManager nodeManager;
+    NodeManager nodeManager;
 
     /*
      * 两级 HashMap，保存Channel下面的Node
@@ -107,7 +114,7 @@ public class ChannelKhFiber extends RecBase implements ChannelInterface, Managea
 
                 dbSession.id = channel.getId();
                 dbSession.dataSource = khDataSource;
-                dbSession.dataTime = currentTime;
+                dbSession.lastAlarmTime = currentTime;
 
                 khDataSource.setUrl(channel.getIp());
                 khDataSource.setUsername(channel.getLogin());
@@ -120,24 +127,31 @@ public class ChannelKhFiber extends RecBase implements ChannelInterface, Managea
     /**
      * 告警处理
      *
-     * @param chaId
+     * @param session
      * @param fiber
      * @param fiberSection
      * @param alarmPos
      * @param alarmType
      * @param alarmVal
      */
-    void doAlarm(int chaId, int fiber, int fiberSection, int alarmPos, int alarmType, float alarmVal) {
+    void doAlarm(DbSession session, int fiber, int fiberSection, int alarmPos, int alarmType, float alarmVal) {
         FiberVal fiberVal = new FiberVal();
 
+        // 处理告警值，这里需要结合分区表计算分区的长度
         fiberVal.channel = fiber;
         fiberVal.section = fiberSection;
         fiberVal.position = alarmPos;
         fiberVal.type = alarmType;
         fiberVal.value = alarmVal;
 
+        // 得到分区信息
+        FiberSection section = session.sectionHashMap.get(fiberSection);
+        if (section == null) {
+            return;
+        }
+
         // 找到 Node的ID
-        HashMap<Integer, ChannelNode> chans = channelNodes.get(chaId);
+        HashMap<Integer, ChannelNode> chans = channelNodes.get(session.id);
         if (chans == null) {
             return;
         }
@@ -145,12 +159,24 @@ public class ChannelKhFiber extends RecBase implements ChannelInterface, Managea
         // 找到Node，并发送
         for (ChannelNode cn : chans.values()) {
             if ((cn.getAdr() == fiber) & (cn.getNo() == fiberSection)) {
-                // 相 NodeManager 发送消息
+
+                // 得到配置信息
+                NodeRuntimeBean runtimeBean = nodeManager.getChannelNodeByNodeId(cn.getNid());
+
+                // 计算确定的位置
+                if (runtimeBean.nodeConfig.pA < 0) {
+                    fiberVal.position = section.end - fiberVal.position;
+                } else {
+                    fiberVal.position = fiberVal.position - section.start;
+                }
+
+                // 向 NodeManager 发送消息
                 NodeMessage nodeMessage = new NodeMessage();
                 nodeMessage.node = cn.getNid();
                 nodeMessage.from = ConstantFromWhere.FROM_TIMER;
                 nodeMessage.value = fiberVal;
                 nodeManager.onMessage(nodeMessage);
+
                 return;
             }
         }
@@ -163,8 +189,10 @@ public class ChannelKhFiber extends RecBase implements ChannelInterface, Managea
      */
     @Scheduled(fixedDelay = 5000)
     void onTimeCheck() {
+
         for (DbSession dbSession : sqlServers.values()) {
-            String sql = "select * from DataAlarm where SaveTime>'" + dbSession.dataTime + "'";
+            dbSession.init();   // 初始化分区配置信息
+            String sql = "select * from DataAlarm where SaveTime>'" + dbSession.lastAlarmTime + "'";
             try {
                 DruidPooledConnection cn = dbSession.dataSource.getConnection();
                 PreparedStatement stmt = cn.prepareStatement(sql);
@@ -172,14 +200,14 @@ public class ChannelKhFiber extends RecBase implements ChannelInterface, Managea
 
                 while (rs.next()) {
                     doAlarm(
-                            dbSession.id,                       // 设备通道号
+                            dbSession,                          // 数据库会话
                             rs.getInt(1),           // 光纤通道
                             rs.getInt(2),           // 分区号
                             rs.getInt(3),           // 位置
                             rs.getInt(4),           // 类型
                             rs.getInt(5)            // 温度
                     );
-                    dbSession.dataTime = rs.getString(9);
+                    dbSession.lastAlarmTime = rs.getString(9);
                 }
 
                 rs.close();

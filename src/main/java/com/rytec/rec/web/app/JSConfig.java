@@ -39,7 +39,8 @@ public class JSConfig implements
         ConstantDeviceState,
         ConstantErrorCode,
         ConstantAircon,
-        ConstantMessageType {
+        ConstantMessageType,
+        ConstantCfg {
 
     private final org.slf4j.Logger logger = LoggerFactory.getLogger(this.getClass());
 

@@ -24,10 +24,6 @@ ry.trans = function (index, type) {
     return "*未知*";
 };
 
-ry.OPT_CAT = [
-    [11, '设备图标集']
-]
-
 ry.GIS_FEATURE_TYPE = [
     [1, '点'],
     [2, '线'],
@@ -63,20 +59,20 @@ ry.realPlayInGrid = function (device) {
 };
 
 // ************************************ Python 回调 **************************
-ry.cllFromPython= function(msg){
+ry.cllFromPython = function (msg) {
     icon = 10
-    if (msg.online==1){
+    if (msg.online == 1) {
         icon = 21
     }
-    switch (msg.cmd){
+    switch (msg.cmd) {
         case 1:                 // 视频通道链接成功消息
             //ry.gis.deviceSetIcon()
             // 10 不在线， 21 在线
             videList = Ext.getStore('NvrNode').data.items;
-            for (var key in videList){
+            for (var key in videList) {
                 camera = videList[key];
                 console.log(camera);
-                if (camera.data.cid == msg.channel){
+                if (camera.data.cid == msg.channel) {
                     ry.gis.deviceSetIcon(camera.data.id, icon);
 
 

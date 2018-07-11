@@ -4,10 +4,12 @@ import com.rytec.rec.channel.KhFiber.FiberVal;
 import com.rytec.rec.device.AbstractOperator;
 import com.rytec.rec.device.DeviceRuntimeBean;
 import com.rytec.rec.device.state.StateFiber;
+import com.rytec.rec.service.SMS;
 import com.rytec.rec.util.AnnotationDeviceType;
 import com.rytec.rec.util.AnnotationJSExport;
 import com.rytec.rec.util.ConstantDeviceState;
 import com.rytec.rec.util.ConstantMessageType;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -23,6 +25,11 @@ public class Fiber extends AbstractOperator {
 
     @AnnotationJSExport("温差告警")
     public static int SIG_DELTA = 3;
+
+    String smsFmt = "%s:%d米处%s!温度值:%.1f";
+
+    @Autowired
+    SMS sms;
 
     /**
      * 状态改变
@@ -49,11 +56,45 @@ public class Fiber extends AbstractOperator {
         ((StateFiber) deviceRuntimeBean.runtime.state).position = val.position;
         ((StateFiber) deviceRuntimeBean.runtime.state).val = val.value;
 
-        deviceRuntimeBean.runtime.iconState = ConstantDeviceState.STATE_ON;
+        if (val.type > 0) {
+            deviceRuntimeBean.runtime.iconState = ConstantDeviceState.STATE_ALM;
+            // 告警处理
+            sendSig(deviceId, val.type, val.value);
+            sendAlarm(deviceId, val.type, val.value);
 
-        // 告警处理
-        sendSig(deviceId, val.type, val.value);
-        sendAlarm(deviceId, val.type, val.value);
+            // 短消息告警处理
+            String smsBody = "";
+            switch (val.type) {
+                case 1:
+                    smsBody = String.format(
+                            smsFmt, deviceRuntimeBean.device.getName(),
+                            val.position,
+                            "高温预警",
+                            val.value
+                    );
+                    break;
+                case 2:
+                    smsBody = String.format(
+                            smsFmt, deviceRuntimeBean.device.getName(),
+                            val.position,
+                            "高温告警",
+                            val.value
+                    );
+                    break;
+                case 3:
+                    smsBody = String.format(
+                            smsFmt, deviceRuntimeBean.device.getName(),
+                            val.position,
+                            "温差告警",
+                            val.value
+                    );
+                    break;
+            }
+            sms.fiberSms(smsBody);
+
+        } else {
+            deviceRuntimeBean.runtime.iconState = ConstantDeviceState.STATE_ON;
+        }
 
         // 发广播
         clientBroadcast(ConstantMessageType.DEVICE_STATE, deviceRuntimeBean);
