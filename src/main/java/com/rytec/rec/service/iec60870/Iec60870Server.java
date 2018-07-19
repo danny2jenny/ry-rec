@@ -154,7 +154,6 @@ public class Iec60870Server extends RecBase implements ServerEventListener, Mana
             } else {
                 deviceOperator.operate(ConstantFromWhere.FROM_USER, device, 100, null);
             }
-
         }
     }
 

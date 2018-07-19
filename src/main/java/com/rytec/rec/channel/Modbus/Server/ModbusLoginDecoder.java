@@ -1,12 +1,11 @@
-package com.rytec.rec.channel.ModbusTcpServer.handler;
+package com.rytec.rec.channel.Modbus.Server;
 
-import com.rytec.rec.channel.ModbusTcpServer.ModbusMessage;
+import com.rytec.rec.channel.Modbus.ModbusMessage;
 import com.rytec.rec.util.ConstantFromWhere;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ByteToMessageDecoder;
-import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
@@ -15,8 +14,6 @@ import java.util.List;
  * 这个是串口服务器登录后发送的第一个字节作为该串口的标识符号
  */
 public class ModbusLoginDecoder extends ByteToMessageDecoder {
-
-    private final org.slf4j.Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Override
     protected void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) {

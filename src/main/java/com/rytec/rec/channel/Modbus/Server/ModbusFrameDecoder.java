@@ -1,8 +1,8 @@
-package com.rytec.rec.channel.ModbusTcpServer.handler;
+package com.rytec.rec.channel.Modbus.Server;
 
-import com.rytec.rec.channel.ModbusTcpServer.ModbusChannelSession;
-import com.rytec.rec.channel.ModbusTcpServer.ModbusCommon;
-import com.rytec.rec.channel.ModbusTcpServer.ModbusMessage;
+import com.rytec.rec.channel.Modbus.ModbusTcpSession;
+import com.rytec.rec.channel.Modbus.ModbusCommon;
+import com.rytec.rec.channel.Modbus.ModbusMessage;
 import com.rytec.rec.util.CRC16;
 import com.rytec.rec.util.ConstantFromWhere;
 import com.rytec.rec.util.Tools;
@@ -25,10 +25,10 @@ public class ModbusFrameDecoder extends ByteToMessageDecoder {
     protected void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) {
 
         // 得到Channel 对应的 Session
-        ModbusChannelSession modbusChannelSession = ctx.channel().attr(ModbusCommon.MODBUS_STATE).get();
+        ModbusTcpSession modbusTcpSession = ctx.channel().attr(ModbusCommon.MODBUS_STATE).get();
 
         // 当前发送的命令
-        ModbusMessage lastOutMsg = modbusChannelSession.getLastOutMsg();
+        ModbusMessage lastOutMsg = modbusTcpSession.getLastOutMsg();
 
         // 当前读取缓冲的状态
         int inBufferLen = in.readableBytes();       // 接收数据长度
@@ -84,14 +84,14 @@ public class ModbusFrameDecoder extends ByteToMessageDecoder {
                 msg.nodeId = lastOutMsg.nodeId;
                 msg.type = lastOutMsg.type;
 
-                modbusChannelSession.goodHelth(lastOutMsg, true);
+                modbusTcpSession.goodHelth(lastOutMsg, true);
 
                 out.add(msg);
                 in.skipBytes(in.readableBytes());          // 全部跳过
                 return;
             } else {
                 // CRC错误，打印当前的内容和解码的内容
-                modbusChannelSession.goodHelth(lastOutMsg, false);
+                modbusTcpSession.goodHelth(lastOutMsg, false);
                 logger.debug("CRC错误：" + CRC16.bytesToHexString(aData));
                 //跳过无用的数据, 再次寻找 headindex
 

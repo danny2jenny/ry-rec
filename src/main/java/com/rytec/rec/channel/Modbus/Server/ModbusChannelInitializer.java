@@ -1,7 +1,7 @@
-package com.rytec.rec.channel.ModbusTcpServer.handler;
+package com.rytec.rec.channel.Modbus.Server;
 
 
-import com.rytec.rec.channel.ModbusTcpServer.ModbusTcpServer;
+import com.rytec.rec.channel.Modbus.ChannelModbusServer;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.SocketChannel;
@@ -16,9 +16,9 @@ import java.util.concurrent.TimeUnit;
  */
 public class ModbusChannelInitializer extends ChannelInitializer<SocketChannel> {
 
-    public final ModbusTcpServer modbusServer;
+    public final ChannelModbusServer modbusServer;
 
-    public ModbusChannelInitializer(ModbusTcpServer server) {
+    public ModbusChannelInitializer(ChannelModbusServer server) {
         this.modbusServer = server;
     }
 

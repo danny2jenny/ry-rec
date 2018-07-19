@@ -147,7 +147,7 @@ public class ChannelKhFiber extends RecBase implements ChannelInterface, Managea
         // 得到分区信息
         FiberSection section = session.sectionHashMap.get(fiberSection);
         if (section == null) {
-            return;
+            //return;
         }
 
         // 找到 Node的ID
@@ -164,11 +164,11 @@ public class ChannelKhFiber extends RecBase implements ChannelInterface, Managea
                 NodeRuntimeBean runtimeBean = nodeManager.getChannelNodeByNodeId(cn.getNid());
 
                 // 计算确定的位置
-                if (runtimeBean.nodeConfig.pA < 0) {
-                    fiberVal.position = section.end - fiberVal.position;
-                } else {
-                    fiberVal.position = fiberVal.position - section.start;
-                }
+//                if (runtimeBean.nodeConfig.pA < 0) {
+//                    fiberVal.position = section.end - fiberVal.position;
+//                } else {
+//                    fiberVal.position = fiberVal.position - section.start;
+//                }
 
                 // 向 NodeManager 发送消息
                 NodeMessage nodeMessage = new NodeMessage();

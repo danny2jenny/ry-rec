@@ -23,7 +23,7 @@ Ext.define('app.view.user.AlarmPanel', {
     // tools: [{
     //     type: 'close',
     //     closeAction: 'hide',
-    //     handler: function (event, toolEl, panelHeader) {
+    //     Server: function (event, toolEl, panelHeader) {
     //         this.ownerCt.ownerCt.hide();
     //     }
     // }],

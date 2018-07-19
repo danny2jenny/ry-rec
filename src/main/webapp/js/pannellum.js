@@ -634,7 +634,7 @@ window.pannellum = (function (window, document, undefined) {
         }
 
         /**
-         * Event handler for mouse clicks. Initializes panning. Prints center and click
+         * Event Server for mouse clicks. Initializes panning. Prints center and click
          * location coordinates when hot spot debugging is enabled.
          * @private
          * @param {MouseEvent} event - Document mouse down event.
@@ -685,7 +685,7 @@ window.pannellum = (function (window, document, undefined) {
         }
 
         /**
-         * Event handler for double clicks. Zooms in at clicked location
+         * Event Server for double clicks. Zooms in at clicked location
          * @private
          * @param {MouseEvent} event - Document mouse down event.
          */
@@ -722,7 +722,7 @@ window.pannellum = (function (window, document, undefined) {
         }
 
         /**
-         * Event handler for mouse moves. Pans center of view.
+         * Event Server for mouse moves. Pans center of view.
          * @private
          * @param {MouseEvent} event - Document mouse move event.
          */
@@ -747,7 +747,7 @@ window.pannellum = (function (window, document, undefined) {
         }
 
         /**
-         * Event handler for mouse up events. Stops panning.
+         * Event Server for mouse up events. Stops panning.
          * @private
          */
         function onDocumentMouseUp(event) {
@@ -768,7 +768,7 @@ window.pannellum = (function (window, document, undefined) {
         }
 
         /**
-         * Event handler for touches. Initializes panning if one touch or zooming if
+         * Event Server for touches. Initializes panning if one touch or zooming if
          * two touches.
          * @private
          * @param {TouchEvent} event - Document touch start event.
@@ -812,7 +812,7 @@ window.pannellum = (function (window, document, undefined) {
         }
 
         /**
-         * Event handler for touch movements. Pans center of view if one touch or
+         * Event Server for touch movements. Pans center of view if one touch or
          * adjusts zoom if two touches.
          * @private
          * @param {TouchEvent} event - Document touch move event.
@@ -862,7 +862,7 @@ window.pannellum = (function (window, document, undefined) {
         }
 
         /**
-         * Event handler for end of touches. Stops panning and/or zooming.
+         * Event Server for end of touches. Stops panning and/or zooming.
          * @private
          */
         function onDocumentTouchEnd() {
@@ -880,7 +880,7 @@ window.pannellum = (function (window, document, undefined) {
             pointerCoordinates = [];
 
         /**
-         * Event handler for touch starts in IE / Edge.
+         * Event Server for touch starts in IE / Edge.
          * @private
          * @param {PointerEvent} event - Document pointer down event.
          */
@@ -895,7 +895,7 @@ window.pannellum = (function (window, document, undefined) {
         }
 
         /**
-         * Event handler for touch moves in IE / Edge.
+         * Event Server for touch moves in IE / Edge.
          * @private
          * @param {PointerEvent} event - Document pointer move event.
          */
@@ -915,7 +915,7 @@ window.pannellum = (function (window, document, undefined) {
         }
 
         /**
-         * Event handler for touch ends in IE / Edge.
+         * Event Server for touch ends in IE / Edge.
          * @private
          * @param {PointerEvent} event - Document pointer up event.
          */
@@ -938,7 +938,7 @@ window.pannellum = (function (window, document, undefined) {
         }
 
         /**
-         * Event handler for mouse wheel. Changes zoom.
+         * Event Server for mouse wheel. Changes zoom.
          * @private
          * @param {WheelEvent} event - Document mouse wheel event.
          */
@@ -972,7 +972,7 @@ window.pannellum = (function (window, document, undefined) {
         }
 
         /**
-         * Event handler for key presses. Updates list of currently pressed keys.
+         * Event Server for key presses. Updates list of currently pressed keys.
          * @private
          * @param {KeyboardEvent} event - Document key press event.
          */
@@ -1015,7 +1015,7 @@ window.pannellum = (function (window, document, undefined) {
         }
 
         /**
-         * Event handler for key releases. Updates list of currently pressed keys.
+         * Event Server for key releases. Updates list of currently pressed keys.
          * @private
          * @param {KeyboardEvent} event - Document key up event.
          */
@@ -1322,7 +1322,7 @@ window.pannellum = (function (window, document, undefined) {
         }
 
         /**
-         * Event handler for document resizes. Updates viewer size and rerenders view.
+         * Event Server for document resizes. Updates viewer size and rerenders view.
          * @private
          */
         function onDocumentResize() {
@@ -1542,7 +1542,7 @@ window.pannellum = (function (window, document, undefined) {
         }
 
         /**
-         * Event handler for device orientation API. Controls pointing.
+         * Event Server for device orientation API. Controls pointing.
          * @private
          * @param {DeviceOrientationEvent} event - Device orientation event.
          */
@@ -2064,7 +2064,7 @@ window.pannellum = (function (window, document, undefined) {
         }
 
         /**
-         * Event handler for fullscreen changes.
+         * Event Server for fullscreen changes.
          * @private
          */
         function onFullScreenChange() {

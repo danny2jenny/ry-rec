@@ -1,6 +1,6 @@
 package com.rytec.rec.node.modbus;
 
-import com.rytec.rec.channel.ModbusTcpServer.ModbusMessage;
+import com.rytec.rec.channel.Modbus.ModbusMessage;
 import com.rytec.rec.db.model.ChannelNode;
 import com.rytec.rec.node.NodeConfig;
 import com.rytec.rec.node.NodeMessage;

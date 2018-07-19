@@ -4,7 +4,7 @@ After=network.target
 [Service]
 User=root
 Restart=always
-Type=forking
+Type=simple
 ExecStart=/home/rytec/rec-service/RY_Service localhost 1883
 
 [Install]

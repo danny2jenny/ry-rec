@@ -105,4 +105,6 @@ https://item.taobao.com/item.htm?spm=a1z10.3-c.w4002-14467116162.55.4b50781bQchg
 
 
 
+# 数据库导出
 
+mysqldump -uroot -p  ryrec>~/ry.sql

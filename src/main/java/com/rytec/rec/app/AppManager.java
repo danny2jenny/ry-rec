@@ -67,18 +67,18 @@ public class AppManager extends RecBase implements ApplicationListener<ContextRe
 
     public void systemReload() {
         // 停止服务，最后运行的最先停止
-        debug("----------------停止-----------------");
+        debug("STOP-1-停止服务开始");
         for (int i = 0; i < serviceInterfacesStart.size(); i++) {
-            debug("----------停止：" + serviceInterfacesStart.get(serviceInterfacesStart.size() - 1 - i).getClass());
             serviceInterfacesStart.get(serviceInterfacesStart.size() - 1 - i).stop();
         }
+        debug("STOP-2-停止服务完成");
 
-        debug("----------------启动-----------------");
+        debug("START-1-启动服务开始");
         // 开始服务
         for (int i = 0; i < serviceInterfacesStart.size(); i++) {
-            debug("++++++++++启动：" + serviceInterfacesStart.get(i).getClass());
             serviceInterfacesStart.get(i).start();
         }
+        debug("START-2-启动服务完成");
 
     }
 

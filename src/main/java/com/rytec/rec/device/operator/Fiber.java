@@ -72,6 +72,7 @@ public class Fiber extends AbstractOperator {
                             "高温预警",
                             val.value
                     );
+                    sms.fiberSms(smsBody);
                     break;
                 case 2:
                     smsBody = String.format(
@@ -80,6 +81,7 @@ public class Fiber extends AbstractOperator {
                             "高温告警",
                             val.value
                     );
+                    sms.fiberSms(smsBody);
                     break;
                 case 3:
                     smsBody = String.format(
@@ -90,7 +92,7 @@ public class Fiber extends AbstractOperator {
                     );
                     break;
             }
-            sms.fiberSms(smsBody);
+
 
         } else {
             deviceRuntimeBean.runtime.iconState = ConstantDeviceState.STATE_ON;

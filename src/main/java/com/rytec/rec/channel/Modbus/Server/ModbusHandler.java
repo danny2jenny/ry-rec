@@ -1,15 +1,14 @@
-package com.rytec.rec.channel.ModbusTcpServer.handler;
+package com.rytec.rec.channel.Modbus.Server;
 
-import com.rytec.rec.channel.ModbusTcpServer.ModbusChannelSession;
-import com.rytec.rec.channel.ModbusTcpServer.ModbusCommon;
-import com.rytec.rec.channel.ModbusTcpServer.ModbusMessage;
-import com.rytec.rec.channel.ModbusTcpServer.ModbusTcpServer;
+import com.rytec.rec.channel.Modbus.ChannelModbusBase;
+import com.rytec.rec.channel.Modbus.ModbusTcpSession;
+import com.rytec.rec.channel.Modbus.ModbusCommon;
+import com.rytec.rec.channel.Modbus.ModbusMessage;
 import com.rytec.rec.util.ConstantFromWhere;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.timeout.IdleStateEvent;
-import org.slf4j.LoggerFactory;
 
 import java.net.InetSocketAddress;
 
@@ -21,10 +20,10 @@ import java.net.InetSocketAddress;
 public class ModbusHandler extends SimpleChannelInboundHandler<ModbusMessage> {
 
     // 由于Natty的机制，这里不能用Autowired的方式
-    private ModbusTcpServer modbusTcpServer;
+    private ChannelModbusBase channelModbusBase;
 
-    ModbusHandler(ModbusTcpServer serv) {
-        this.modbusTcpServer = serv;
+    ModbusHandler(ChannelModbusBase serv) {
+        this.channelModbusBase = serv;
     }
 
     /**
@@ -38,7 +37,7 @@ public class ModbusHandler extends SimpleChannelInboundHandler<ModbusMessage> {
     protected void channelRead0(ChannelHandlerContext ctx, ModbusMessage response) throws Exception {
 
         // 得到当前通道对应的Session
-        ModbusChannelSession modbusChannelSession = ctx.channel().attr(ModbusCommon.MODBUS_STATE).get();
+        ModbusTcpSession modbusTcpSession = ctx.channel().attr(ModbusCommon.MODBUS_STATE).get();
 
         switch (response.from) {
             // 登录
@@ -50,12 +49,12 @@ public class ModbusHandler extends SimpleChannelInboundHandler<ModbusMessage> {
                 String modbusId = ip.getHostName() + ':' + ((ByteBuf) response.payload).readByte();
 
                 //建立外部通过ip:port可以访问Channel的接口
-                modbusTcpServer.clients.put(modbusId, ctx.channel());
-                modbusTcpServer.channelOnline(modbusId, true);
+                channelModbusBase.addClient(modbusId, ctx.channel());
+                channelModbusBase.channelOnline(modbusId, true);
 
                 //设置Channel的Session
-                modbusChannelSession = new ModbusChannelSession(modbusTcpServer, modbusId, ctx.channel());
-                ctx.channel().attr(ModbusCommon.MODBUS_STATE).set(modbusChannelSession);
+                modbusTcpSession = new ModbusTcpSession(channelModbusBase, modbusId, ctx.channel());
+                ctx.channel().attr(ModbusCommon.MODBUS_STATE).set(modbusTcpSession);
 
                 //移除相应的登录解码器，添加帧解码器
                 ctx.pipeline().remove("LoginDecoder");
@@ -63,9 +62,9 @@ public class ModbusHandler extends SimpleChannelInboundHandler<ModbusMessage> {
                 break;
             // 远端的回应：这里一定是正确的回应
             case ConstantFromWhere.FROM_RPS:
-                modbusTcpServer.receiveMsg(modbusChannelSession.id, response);
-                modbusChannelSession.clearLastOutMsg();
-                // modbusChannelSession.timerProcess();
+                channelModbusBase.receiveMsg(modbusTcpSession.id, response);
+                modbusTcpSession.clearLastOutMsg();
+                // modbusTcpSession.timerProcess();
                 break;
             default:
                 break;
@@ -96,7 +95,7 @@ public class ModbusHandler extends SimpleChannelInboundHandler<ModbusMessage> {
         // 当一个channel太久没有写入数据，表示这个Channel是没有配置的，应该断开。
         if (evt instanceof IdleStateEvent) {
             ctx.close();
-            modbusTcpServer.debug("无效的连接！！！！！！！！！！！！");
+            channelModbusBase.debug("无效的连接！！！！！！！！！！！！");
         }
     }
 
@@ -119,11 +118,11 @@ public class ModbusHandler extends SimpleChannelInboundHandler<ModbusMessage> {
      */
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
-        ModbusChannelSession session = ctx.channel().attr(ModbusCommon.MODBUS_STATE).get();
+        ModbusTcpSession session = ctx.channel().attr(ModbusCommon.MODBUS_STATE).get();
 
         if (session != null) {
-            modbusTcpServer.clients.remove(session.id);
-            modbusTcpServer.channelOnline(session.id, false);
+            channelModbusBase.delClient(session.id);
+            channelModbusBase.channelOnline(session.id, false);
         }
 
     }
