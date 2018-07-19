@@ -6,6 +6,7 @@ import com.rytec.rec.db.model.Channel;
 import com.rytec.rec.db.model.ChannelNode;
 import com.rytec.rec.util.AnnotationChannelType;
 import com.rytec.rec.util.AnnotationJSExport;
+import com.rytec.rec.util.ConstantErrorCode;
 import org.springframework.core.annotation.Order;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -18,25 +19,18 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * Modbus Clent Channel 管理
  */
-//@Service
-//@Order(400)
-//@AnnotationChannelType(1002)
-//@AnnotationJSExport("Modbus 客户端")
+@Service
+@Order(400)
+@AnnotationChannelType(1002)
+@AnnotationJSExport("Modbus 客户端")
 public class ChannelModbusClient extends ChannelModbusBase implements ManageableInterface {
 
     // 客户端连接列表
     public final ConcurrentHashMap<Integer, ModbusClient> clients = new ConcurrentHashMap<>();
 
 
-    /*
-     * 两级 HashMap，保存Channel下面的Node
-     * 第一级：channelId->Map
-     * 第二级：nodeId->ChannelNode
-     */
-    public HashMap<Integer, HashMap> channelNodes = new HashMap();
-
     // Channel 配置
-    List<Channel> channels = dbConfig.getChannelList();
+    List<Channel> channels = null;
 
     @Override
     public void stop() {
@@ -46,12 +40,14 @@ public class ChannelModbusClient extends ChannelModbusBase implements Manageable
         }
         clients.clear();
         channelNodes.clear();
+        if (channels != null) channels.clear();
     }
 
     @Override
     public void start() {
         stop();
-
+        getConfig();
+        channels = dbConfig.getChannelList();
         for (Channel channel : channels) {
             if (channel.getType() != 1002) {
                 continue;
@@ -104,6 +100,7 @@ public class ChannelModbusClient extends ChannelModbusBase implements Manageable
 
     @Override
     public List<ChannelNode> getChannelNodes(Object key) {
+        if (channelNodes.get(key) == null) return null;
         return new ArrayList<ChannelNode>(channelNodes.get(key).values());
     }
 
@@ -118,5 +115,20 @@ public class ChannelModbusClient extends ChannelModbusBase implements Manageable
                 }
             }
         }
+    }
+
+    @Override
+    public int sendMsg(Object msg) {
+        int rst = 0;
+        ChannelNode channelNode = nodeManager.getChannelNodeByNodeId(((ModbusMessage) msg).nodeId).channelNode;
+        int channelId = channelNode.getId();
+        ModbusClient modbusClient = clients.get(channelId);
+        if (modbusClient == null) {
+            return ConstantErrorCode.CHA_NOT_CONNECT;
+        } else {
+            ModbusTcpSession modbusTcpSession = modbusClient.channelFuture.channel().attr(ModbusCommon.MODBUS_STATE).get();
+            modbusTcpSession.sendMsg((ModbusMessage) msg);
+        }
+        return rst;
     }
 }

@@ -18,6 +18,7 @@ public class ModbusClient {
     int port = 8080;
 
     ChannelModbusBase channelModbusBase;
+
     int id = 0;
 
     volatile boolean shutdown = false;
@@ -51,10 +52,10 @@ public class ModbusClient {
     /**
      * 关闭连接
      */
-    public void close(){
+    public void close() {
         shutdown = true;
         try {
-            channelFuture.channel().closeFuture().sync();
+            channelFuture.channel().close().sync();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

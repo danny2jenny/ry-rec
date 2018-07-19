@@ -8,10 +8,9 @@ package com.rytec.rec.channel.Modbus;
 
 import com.rytec.rec.app.ManageableInterface;
 import com.rytec.rec.channel.ChannelManager;
-import com.rytec.rec.channel.Modbus.Server.ModbusChannelInitializer;
+import com.rytec.rec.channel.Modbus.Server.ChannelInitializerServer;
 import com.rytec.rec.db.DbConfig;
 import com.rytec.rec.db.model.ChannelNode;
-import com.rytec.rec.node.modbus.base.ModbusNodeInterface;
 import com.rytec.rec.node.NodeManager;
 import com.rytec.rec.util.AnnotationChannelType;
 import com.rytec.rec.util.AnnotationJSExport;
@@ -60,12 +59,6 @@ public class ChannelModbusServer extends ChannelModbusBase implements Manageable
     // ip:port->Channel
     public final ConcurrentHashMap<String, Channel> clients = new ConcurrentHashMap<>();
 
-    /*
-     * 两级 HashMap
-     * 第一级：ip:port->Map
-     * 第二级：nodeId->ChannelNode
-     */
-    private HashMap<String, HashMap> channelNodes = new HashMap();
 
     // 建立服务器
     private void startServer() {
@@ -85,7 +78,7 @@ public class ChannelModbusServer extends ChannelModbusBase implements Manageable
             bootstrap.group(bossGroup, workerGroup)
                     .channel(NioServerSocketChannel.class)
                     // 数据流处理的pip，完成所有的数据处理逻辑
-                    .childHandler(new ModbusChannelInitializer(this))
+                    .childHandler(new ChannelInitializerServer(this))
                     // 连接队列的长度
                     .option(ChannelOption.SO_BACKLOG, 128)
                     .childOption(ChannelOption.SO_KEEPALIVE, true);
@@ -197,24 +190,8 @@ public class ChannelModbusServer extends ChannelModbusBase implements Manageable
 
     @Override
     public List<ChannelNode> getChannelNodes(Object key) {
+        if (channelNodes.get(key) == null) return null;
         return new ArrayList<>(channelNodes.get(key).values());
-    }
-
-    /**
-     * Channel 解码后调用该过程
-     *
-     * @param chaId    ip:port 的形式
-     * @param response 回应消息
-     */
-    @Override
-    public void receiveMsg(Object chaId, ModbusMessage response) {
-
-        ChannelNode cn = (ChannelNode) channelNodes.get(chaId).get(response.nodeId);
-        ModbusNodeInterface nodeBean = nodeManager.getNodeComInterface(cn.getNtype());
-
-        // 解码值
-        nodeBean.decodeMessage(response);
-
     }
 
     /**
@@ -247,27 +224,4 @@ public class ChannelModbusServer extends ChannelModbusBase implements Manageable
         startServer();
     }
 
-
-    /**
-     * 通道连接
-     *
-     * @param channelId
-     */
-    @Override
-    public void channelOnline(Object channelId, boolean online) {
-        HashMap<Integer, ChannelNode> channelNodeMap = channelNodes.get(channelId);
-        if (channelNodeMap == null) {
-            return;
-        }
-
-        if (channelNodeMap.values().size() > 0) {
-            ChannelNode cn = (ChannelNode) channelNodeMap.values().toArray()[0];
-
-            if (online) {
-            } else {
-                channelManager.channelOffline(cn.getId());
-            }
-
-        }
-    }
 }

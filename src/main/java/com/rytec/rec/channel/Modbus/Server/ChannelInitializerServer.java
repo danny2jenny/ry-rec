@@ -14,11 +14,11 @@ import java.util.concurrent.TimeUnit;
  * <p>
  * Modbus TCPServer 的初始化
  */
-public class ModbusChannelInitializer extends ChannelInitializer<SocketChannel> {
+public class ChannelInitializerServer extends ChannelInitializer<SocketChannel> {
 
     public final ChannelModbusServer modbusServer;
 
-    public ModbusChannelInitializer(ChannelModbusServer server) {
+    public ChannelInitializerServer(ChannelModbusServer server) {
         this.modbusServer = server;
     }
 

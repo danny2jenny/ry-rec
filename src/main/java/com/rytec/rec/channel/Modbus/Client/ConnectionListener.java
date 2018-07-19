@@ -29,7 +29,7 @@ public class ConnectionListener implements ChannelFutureListener {
                     public void run() {
                         client.createBootstrap(new Bootstrap(), loop);
                     }
-                }, 1L, TimeUnit.SECONDS);
+                }, 5, TimeUnit.SECONDS);
             }
         }
     }

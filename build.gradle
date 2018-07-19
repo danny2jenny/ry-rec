@@ -99,12 +99,6 @@ dependencies {
     providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
     compile group: 'javax.servlet', name: 'jstl', version: '1.2'
 
-    // modbus
-    compile group: 'com.infiniteautomation', name: 'modbus4j', version: '3.0.3'
-    //compile group: 'com.digitalpetri.modbus', name: 'modbus-master-tcp', version: '1.1.0'
-    //compile group: 'com.ghgande', name: 'j2mod', version: '2.3.9'
-    //compile group: 'com.github.kochedykov', name: 'jlibmodbus', version: '1.2.9.0'
-
     // 61850 暂时没有使用，目前使用C实现
     compile group: 'org.openmuc', name: 'openiec61850', version: '1.5.0'
 

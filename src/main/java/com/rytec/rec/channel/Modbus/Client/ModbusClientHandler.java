@@ -16,18 +16,18 @@ import java.util.concurrent.TimeUnit;
  */
 public class ModbusClientHandler extends SimpleChannelInboundHandler<ModbusMessage> {
 
-    private ChannelModbusBase channelModbusBase;
+    private ChannelModbusBase channelModbus;
     private ModbusClient client;
     private int id;
 
     /**
      * 构造函数
      *
-     * @param serv
+     * @param channelModbus
      * @param client
      */
-    public ModbusClientHandler(ChannelModbusBase serv, ModbusClient client, int key) {
-        this.channelModbusBase = serv;
+    public ModbusClientHandler(ChannelModbusBase channelModbus, ModbusClient client, int key) {
+        this.channelModbus = channelModbus;
         this.id = key;
         this.client = client;
     }
@@ -40,7 +40,7 @@ public class ModbusClientHandler extends SimpleChannelInboundHandler<ModbusMessa
     @Override
     public void channelActive(ChannelHandlerContext ctx) {
         // 建立Session
-        ModbusTcpSession modbusTcpSession = new ModbusTcpSession(channelModbusBase, id, ctx.channel());
+        ModbusTcpSession modbusTcpSession = new ModbusTcpSession(channelModbus, id, ctx.channel());
         ctx.channel().attr(ModbusCommon.MODBUS_STATE).set(modbusTcpSession);
     }
 
@@ -61,7 +61,7 @@ public class ModbusClientHandler extends SimpleChannelInboundHandler<ModbusMessa
                 public void run() {
                     client.createBootstrap(new Bootstrap(), eventLoop);
                 }
-            }, 1L, TimeUnit.SECONDS);
+            }, 5, TimeUnit.SECONDS);
         }
 
         super.channelInactive(ctx);
@@ -79,7 +79,7 @@ public class ModbusClientHandler extends SimpleChannelInboundHandler<ModbusMessa
         // 得到当前通道对应的Session
         ModbusTcpSession modbusTcpSession = ctx.channel().attr(ModbusCommon.MODBUS_STATE).get();
 
-        channelModbusBase.receiveMsg(modbusTcpSession.id, response);
+        channelModbus.receiveMsg(modbusTcpSession.id, response);
         modbusTcpSession.clearLastOutMsg();
     }
 }

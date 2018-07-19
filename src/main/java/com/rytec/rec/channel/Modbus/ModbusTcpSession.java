@@ -21,7 +21,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
  */
 public class ModbusTcpSession {
 
-    private ChannelModbusBase channelModbusBase;
+    private ChannelModbusBase channelModbus;
     //对应的Channel
     private Channel channel;
     //channel的id  ip：port
@@ -73,10 +73,10 @@ public class ModbusTcpSession {
     public ModbusTcpSession(ChannelModbusBase mts, Object cid, Channel channel) {
         this.id = cid;
         this.channel = channel;
-        channelModbusBase = mts;
+        channelModbus = mts;
 
         //设置查询命令集合
-        List<ChannelNode> chas = channelModbusBase.getChannelNodes(cid);
+        List<ChannelNode> chas = channelModbus.getChannelNodes(cid);
 
         /*
          * 地址一样的，组织成一个命令进行查询
@@ -89,7 +89,7 @@ public class ModbusTcpSession {
         for (ChannelNode cn : chas) {
 
             // 得到 node 对应的操作接口
-            ModbusNodeInterface iNode = channelModbusBase.nodeManager.getNodeComInterface(cn.getNtype());
+            ModbusNodeInterface iNode = channelModbus.nodeManager.getNodeComInterface(cn.getNtype());
 
             if (iNode == null) {
                 continue;
@@ -99,7 +99,7 @@ public class ModbusTcpSession {
              * Node类型一致，地址一致，组成一个查询
              * 根据Node的no字段来动态生成查询命令
              */
-            NodeRuntimeBean nodeRuntimeBean = channelModbusBase.nodeManager.getChannelNodeByNodeId(cn.getNid());
+            NodeRuntimeBean nodeRuntimeBean = channelModbus.nodeManager.getChannelNodeByNodeId(cn.getNid());
             String key = "" + cn.getNtype() + ':' + cn.getAdr();
             ModbusMessage msg = timerQueryList.get(key);
             if (msg == null) {
@@ -178,7 +178,7 @@ public class ModbusTcpSession {
                 return;
             }
 
-            channelModbusBase.debug("超时--Node：" + lastOutMsg.nodeId);
+            channelModbus.debug("超时--Node：" + lastOutMsg.nodeId);
             timer = 0;
 
             goodHelth(lastOutMsg, false);
@@ -191,10 +191,10 @@ public class ModbusTcpSession {
                 lastOutMsg.retry++;
                 if (lastOutMsg.retry < 3) {
                     // 重新发送当前的命令
-                    channelModbusBase.debug("命令重试：Node:" + lastOutMsg.nodeId);
+                    channelModbus.debug("命令重试：Node:" + lastOutMsg.nodeId);
                     sendMsg(lastOutMsg);
                 } else {
-                    channelModbusBase.debug("重试失败！！！！：Node:" + lastOutMsg.nodeId);
+                    channelModbus.debug("重试失败！！！！：Node:" + lastOutMsg.nodeId);
                 }
             }
             lastOutMsg = null;
@@ -223,7 +223,7 @@ public class ModbusTcpSession {
      * @param h
      */
     public void goodHelth(ModbusMessage msg, Boolean h) {
-        NodeRuntimeBean nodeRuntimeBean = channelModbusBase.nodeManager.getChannelNodeByNodeId(msg.nodeId);
+        NodeRuntimeBean nodeRuntimeBean = channelModbus.nodeManager.getChannelNodeByNodeId(msg.nodeId);
         nodeRuntimeBean.goodHelth(msg, h);
     }
 
