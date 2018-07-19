@@ -7,47 +7,8 @@
     <bookmark url="file://$PROJECT_DIR$/src/main/webapp/js/pannellum.js" line="1804" mnemonic="2" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d35ddd3d-c0e7-4f94-b111-72db3f8184b4" name="Default" comment="实现了科华光纤的分区与短消息告警&#10;&#10;ModbusClient的异步执行当重启服务的时候，偶尔遇到异步执行异常。">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/Modbus/ChannelModbusBase.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/Modbus/ChannelModbusClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/Modbus/Client/ChannelInitializerClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/Modbus/Client/ConnectionListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/Modbus/Client/ModbusClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/Modbus/Client/ModbusClientHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/Modbus/IChannelModbus.java" afterDir="false" />
+    <list default="true" id="d35ddd3d-c0e7-4f94-b111-72db3f8184b4" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.settings/org.eclipse.buildship.core.prefs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/rec-service.service" beforeDir="false" afterPath="$PROJECT_DIR$/doc/rec-service.service" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/app/AppManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/app/AppManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/KhFiber/ChannelKhFiber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/KhFiber/ChannelKhFiber.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpClient/AsyncRunner.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpClient/ChannelModbusMaster.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpClient/ModbusClientMsg.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpClient/RecModbusMasterSession.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpServer/ModbusChannelSession.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpServer/ModbusCommon.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpServer/ModbusFrame.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpServer/ModbusMessage.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpServer/ModbusTcpServer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpServer/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpServer/handler/ModbusChannelInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/Modbus/Server/ModbusChannelInitializer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpServer/handler/ModbusFrameDecoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/Modbus/Server/ModbusFrameDecoder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpServer/handler/ModbusFrameEncoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/Modbus/Server/ModbusFrameEncoder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpServer/handler/ModbusHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/Modbus/Server/ModbusHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/ModbusTcpServer/handler/ModbusLoginDecoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/Modbus/Server/ModbusLoginDecoder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/device/operator/Fiber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/device/operator/Fiber.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/node/modbus/KH_MC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/node/modbus/KH_MC.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/node/modbus/LED.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/node/modbus/LED.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/node/modbus/RS_KTC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/node/modbus/RS_KTC.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/node/modbus/RS_SJ.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/node/modbus/RS_SJ.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/node/modbus/RS_WSD.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/node/modbus/RS_WSD.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/node/modbus/U3_EC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/node/modbus/U3_EC.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/node/modbus/base/DmaModbusBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/node/modbus/base/DmaModbusBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rytec/rec/service/iec60870/Iec60870Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rytec/rec/service/iec60870/Iec60870Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/panel/Node.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/extjs_app/view/admin/panel/Node.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/extjs_app/view/user/AlarmPanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/extjs_app/view/user/AlarmPanel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/pannellum.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/pannellum.js" afterDir="false" />
     </list>
     <ignored path="RyREC.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -142,29 +103,29 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ChannelModbusClient.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ChannelModbusClient.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/Modbus/ChannelModbusClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
-              <caret line="20" selection-start-line="20" selection-start-column="2" selection-end-line="23" selection-end-column="35" />
+            <state relative-caret-position="-207">
+              <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AppManager.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/app/AppManager.java">
+      <file leaf-file-name="ChannelModbusServer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/Modbus/ChannelModbusServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="80" column="22" selection-start-line="80" selection-start-column="22" selection-end-line="80" selection-end-column="22" />
+            <state relative-caret-position="-3">
+              <caret line="27" column="50" selection-start-line="27" selection-start-column="50" selection-end-line="27" selection-end-column="50" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ModbusTcpSession.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/Modbus/ModbusTcpSession.java">
+      <file leaf-file-name="ChannelModbusBase.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/Modbus/ChannelModbusBase.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3070">
-              <caret line="220" column="7" selection-start-line="220" selection-start-column="7" selection-end-line="220" selection-end-column="7" />
+            <state relative-caret-position="207">
+              <caret line="9" selection-start-line="9" selection-end-line="9" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -1091,7 +1052,7 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="com" type="462c0819:PsiDirectoryNode" />
               <item name="rec" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="channel" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="com.rytec.rec" type="b2602c69:ProjectViewProjectNode" />
@@ -1102,6 +1063,7 @@
               <item name="com" type="462c0819:PsiDirectoryNode" />
               <item name="rec" type="462c0819:PsiDirectoryNode" />
               <item name="channel" type="462c0819:PsiDirectoryNode" />
+              <item name="Modbus" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -2159,14 +2121,7 @@
       <workItem from="1531725906845" duration="5037000" />
       <workItem from="1531818099171" duration="16472000" />
       <workItem from="1531895056442" duration="4261000" />
-      <workItem from="1531964412740" duration="551000" />
-    </task>
-    <task id="LOCAL-00127" summary="文件传输部分完成&#10;&#10;节传输收到失败。">
-      <created>1515057360511</created>
-      <option name="number" value="00127" />
-      <option name="presentableId" value="LOCAL-00127" />
-      <option name="project" value="LOCAL" />
-      <updated>1515057360512</updated>
+      <workItem from="1531964412740" duration="3948000" />
     </task>
     <task id="LOCAL-00128" summary="整理代码">
       <created>1515075626547</created>
@@ -2504,11 +2459,18 @@
       <option name="project" value="LOCAL" />
       <updated>1531322587537</updated>
     </task>
-    <option name="localTasksCounter" value="176" />
+    <task id="LOCAL-00176" summary="改动较大&#10;&#10;用 netty 重新实现 ModbusClient，但是没有测试">
+      <created>1531965424118</created>
+      <option name="number" value="00176" />
+      <option name="presentableId" value="LOCAL-00176" />
+      <option name="project" value="LOCAL" />
+      <updated>1531965424119</updated>
+    </task>
+    <option name="localTasksCounter" value="177" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3100574000" />
+    <option name="totallyTimeSpent" value="3103971000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2521,7 +2483,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1050" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4866453" weight="0.16100767" />
@@ -2531,11 +2492,11 @@
       <window_info anchor="right" id="Maven Projects" order="10" weight="0.15010683" />
       <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.24480875" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.44497862" visible="true" weight="0.34535518" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.44497862" visible="true" weight="0.32349727" />
       <window_info anchor="bottom" id="Spring" order="8" weight="0.3263965" />
       <window_info anchor="bottom" id="Terminal" order="14" weight="0.20765027" />
       <window_info id="Designer" order="3" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.62629247" visible="true" weight="0.25908118" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.62629247" visible="true" weight="0.2676282" />
       <window_info id="Web" order="6" sideWeight="0.37370753" side_tool="true" weight="0.20855615" />
       <window_info anchor="right" id="Database" order="5" sideWeight="0.49917898" weight="0.23557693" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4732906" weight="0.20437159" />
@@ -2667,7 +2628,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="更新104文档" />
     <MESSAGE value="增加 WEB 端的错误显示，增加已经上传模型的下载" />
     <MESSAGE value="1、增加LED显示器&#10;2、增加SF6" />
     <MESSAGE value="60870 增加了分区" />
@@ -2692,7 +2652,8 @@
     <MESSAGE value="使用说明增加调试信息。" />
     <MESSAGE value="1、优化NodeManager的sendMsg接口&#10;2、增加延时命令&#10;3、用户开关可以设置延时关闭" />
     <MESSAGE value="实现了科华光纤的分区与短消息告警&#10;&#10;ModbusClient的异步执行当重启服务的时候，偶尔遇到异步执行异常。" />
-    <option name="LAST_COMMIT_MESSAGE" value="实现了科华光纤的分区与短消息告警&#10;&#10;ModbusClient的异步执行当重启服务的时候，偶尔遇到异步执行异常。" />
+    <MESSAGE value="改动较大&#10;&#10;用 netty 重新实现 ModbusClient，但是没有测试" />
+    <option name="LAST_COMMIT_MESSAGE" value="改动较大&#10;&#10;用 netty 重新实现 ModbusClient，但是没有测试" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2758,20 +2719,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/service/iec60870/Iec60870Listener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/service/iec60870/Iec60870Server.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3105">
-          <caret line="155" column="13" selection-start-line="155" selection-start-column="13" selection-end-line="155" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/service/Iec61850Java/Iec61850Adapter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="782">
@@ -2887,6 +2834,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="138">
           <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2943,31 +2893,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/Modbus/ChannelModbusBase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/Modbus/Server/ModbusFrameDecoder.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
           <caret line="27" column="84" selection-start-line="27" selection-start-column="84" selection-end-line="27" selection-end-column="84" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/Modbus/Client/ChannelInitializerClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="97">
-          <caret line="20" column="11" selection-start-line="20" selection-start-column="11" selection-end-line="20" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/Modbus/Client/ConnectionListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="33" column="9" selection-start-line="33" selection-start-column="9" selection-end-line="33" selection-end-column="9" />
         </state>
       </provider>
     </entry>
@@ -3044,16 +2973,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/Modbus/ChannelModbusServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3760">
-          <caret line="170" column="36" lean-forward="true" selection-start-line="170" selection-start-column="36" selection-end-line="170" selection-end-column="36" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/Modbus/IChannelModbus.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="377">
@@ -3088,17 +3007,70 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/Modbus/ChannelModbusClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="20" selection-start-line="20" selection-start-column="2" selection-end-line="23" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/app/AppManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
           <caret line="80" column="22" selection-start-line="80" selection-start-column="22" selection-end-line="80" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/app/ManageableInterface.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/app/RecBase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="10" column="22" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/Modbus/Client/ChannelInitializerClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="97">
+          <caret line="20" column="11" selection-start-line="20" selection-start-column="11" selection-end-line="20" selection-end-column="11" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/Modbus/Client/ConnectionListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="662">
+          <caret line="33" column="9" selection-start-line="33" selection-start-column="9" selection-end-line="33" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#428#429#0" expanded="true" />
+            <element signature="e#464#465#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/Modbus/ChannelModbusBase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/Modbus/ChannelModbusServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3">
+          <caret line="27" column="50" selection-start-line="27" selection-start-column="50" selection-end-line="27" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rytec/rec/channel/Modbus/ChannelModbusClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-207">
+          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
         </state>
       </provider>
     </entry>
