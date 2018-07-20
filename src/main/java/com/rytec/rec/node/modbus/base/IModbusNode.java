@@ -3,14 +3,14 @@ package com.rytec.rec.node.modbus.base;
 
 import com.rytec.rec.node.NodeConfig;
 import com.rytec.rec.node.NodeMessage;
-import com.rytec.rec.node.base.NodeInterface;
+import com.rytec.rec.node.base.INode;
 
 /**
  * Created by danny on 16-11-20.
  * Modbus Node 的通讯接口
  */
 
-public interface ModbusNodeInterface extends NodeInterface {
+public interface IModbusNode extends INode {
 
     /**
      * 生成一个消息对象
@@ -57,13 +57,6 @@ public interface ModbusNodeInterface extends NodeInterface {
      * @param h
      */
     void goodHelth(Object msg, boolean h);
-
-    /**
-     * 得到节点的配置
-     *
-     * @return
-     */
-    Object getCfg();
 
     /**
      * 得到命令发送的间隔

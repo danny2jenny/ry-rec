@@ -5,7 +5,7 @@ import com.rytec.rec.channel.ChannelManager;
 import com.rytec.rec.db.DbConfig;
 import com.rytec.rec.db.model.ChannelNode;
 import com.rytec.rec.node.NodeManager;
-import com.rytec.rec.node.modbus.base.ModbusNodeInterface;
+import com.rytec.rec.node.modbus.base.IModbusNode;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.HashMap;
@@ -40,7 +40,7 @@ public abstract class ChannelModbusBase extends RecBase implements IChannelModbu
      */
     public void receiveMsg(Object key, ModbusMessage response) {
         ChannelNode cn = (ChannelNode) channelNodes.get(key).get(response.nodeId);
-        ModbusNodeInterface nodeBean = nodeManager.getNodeComInterface(cn.getNtype());
+        IModbusNode nodeBean = nodeManager.getNodeComInterface(cn.getNtype());
 
         // 解码值
         nodeBean.decodeMessage(response);

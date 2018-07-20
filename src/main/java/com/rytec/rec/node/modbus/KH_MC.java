@@ -7,7 +7,7 @@ import com.rytec.rec.db.model.ChannelNode;
 import com.rytec.rec.node.NodeConfig;
 import com.rytec.rec.node.NodeMessage;
 import com.rytec.rec.node.ValueCompare;
-import com.rytec.rec.node.modbus.base.DmaModbusBase;
+import com.rytec.rec.node.modbus.base.DmaBaseModbus;
 import com.rytec.rec.util.*;
 import io.netty.buffer.ByteBuf;
 import org.springframework.stereotype.Service;
@@ -28,7 +28,7 @@ import org.springframework.stereotype.Service;
 @Service
 @AnnotationNodeType(1101)
 @AnnotationJSExport("科华-井盖")
-public class KH_MC extends DmaModbusBase {
+public class KH_MC extends DmaBaseModbus {
 
     @Override
     public boolean needUpdate(NodeConfig cfg, Object oldVal, Object newVal) {

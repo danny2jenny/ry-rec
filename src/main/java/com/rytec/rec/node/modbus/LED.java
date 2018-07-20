@@ -6,7 +6,7 @@ import com.rytec.rec.channel.Modbus.ModbusMessage;
 import com.rytec.rec.db.model.ChannelNode;
 import com.rytec.rec.node.NodeConfig;
 import com.rytec.rec.node.NodeMessage;
-import com.rytec.rec.node.modbus.base.DmaModbusBase;
+import com.rytec.rec.node.modbus.base.DmaBaseModbus;
 import com.rytec.rec.util.AnnotationJSExport;
 import com.rytec.rec.util.AnnotationNodeType;
 import com.rytec.rec.util.ConstantCommandType;
@@ -27,7 +27,7 @@ import javax.annotation.PostConstruct;
 @Service
 @AnnotationNodeType(1201)
 @AnnotationJSExport("LED 显示器")
-public class LED extends DmaModbusBase {
+public class LED extends DmaBaseModbus {
     @Override
     public boolean needUpdate(NodeConfig cfg, Object oldVal, Object newVal) {
         return false;

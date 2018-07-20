@@ -1,7 +1,7 @@
 package com.rytec.rec.node.modbus;
 
 import com.rytec.rec.node.*;
-import com.rytec.rec.node.modbus.base.DmaModbusBase;
+import com.rytec.rec.node.modbus.base.DmaBaseModbus;
 import com.rytec.rec.util.AnnotationJSExport;
 import com.rytec.rec.util.AnnotationNodeType;
 import com.rytec.rec.util.ConstantModbusCommand;
@@ -30,7 +30,7 @@ import javax.annotation.PostConstruct;
 @Service
 @AnnotationNodeType(1002)
 @AnnotationJSExport("DMA 输入")
-public class DAMInput extends DmaModbusBase {
+public class DAMInput extends DmaBaseModbus {
 
     public boolean needUpdate(NodeConfig cfg, Object oldVal, Object newVal) {
         return ValueCompare.booleanNeedUpdate(cfg, oldVal, newVal);

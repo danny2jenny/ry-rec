@@ -2,6 +2,7 @@ package com.rytec.rec.channel.Modbus.Server;
 
 
 import com.rytec.rec.channel.Modbus.ChannelModbusServer;
+import com.rytec.rec.channel.Modbus.common.ModbusFrameEncoder;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.SocketChannel;
@@ -28,7 +29,7 @@ public class ChannelInitializerServer extends ChannelInitializer<SocketChannel> 
         pipeline.addLast(new IdleStateHandler(20,	20,	0,	TimeUnit.SECONDS));
         pipeline.addFirst("FrameEndoder", new ModbusFrameEncoder());                 //发送编码
         pipeline.addLast("LoginDecoder", new ModbusLoginDecoder());                  //登录解码
-        pipeline.addLast("ModbusHandler", new ModbusHandler(modbusServer));          //接收
+        pipeline.addLast("ModbusServerHandler", new ModbusServerHandler(modbusServer));          //接收
     }
 }
 

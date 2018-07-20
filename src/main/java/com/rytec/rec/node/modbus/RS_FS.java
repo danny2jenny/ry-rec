@@ -2,7 +2,7 @@ package com.rytec.rec.node.modbus;
 
 import com.rytec.rec.node.NodeConfig;
 import com.rytec.rec.node.ValueCompare;
-import com.rytec.rec.node.modbus.base.DmaModbusBase;
+import com.rytec.rec.node.modbus.base.DmaBaseModbus;
 import com.rytec.rec.util.AnnotationJSExport;
 import com.rytec.rec.util.AnnotationNodeType;
 import com.rytec.rec.util.ConstantModbusCommand;
@@ -13,7 +13,7 @@ import javax.annotation.PostConstruct;
 @Service
 @AnnotationNodeType(2001)
 @AnnotationJSExport("RF-FS-01 风速")
-public class RS_FS extends DmaModbusBase {
+public class RS_FS extends DmaBaseModbus {
     @Override
     public boolean needUpdate(NodeConfig cfg, Object oldVal, Object newVal) {
         return ValueCompare.analogNeedUpdate(cfg, oldVal, newVal);

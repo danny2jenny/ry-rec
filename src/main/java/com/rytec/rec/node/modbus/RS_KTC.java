@@ -7,7 +7,7 @@ import com.rytec.rec.channel.Modbus.ModbusMessage;
 import com.rytec.rec.db.model.ChannelNode;
 import com.rytec.rec.node.NodeConfig;
 import com.rytec.rec.node.NodeMessage;
-import com.rytec.rec.node.modbus.base.DmaModbusBase;
+import com.rytec.rec.node.modbus.base.DmaBaseModbus;
 import com.rytec.rec.util.*;
 import io.netty.buffer.ByteBuf;
 import org.springframework.stereotype.Service;
@@ -29,7 +29,7 @@ import javax.annotation.PostConstruct;
 @Service
 @AnnotationNodeType(2004)
 @AnnotationJSExport("RS-KTC 空调")
-public class RS_KTC extends DmaModbusBase {
+public class RS_KTC extends DmaBaseModbus {
     @Override
     public boolean needUpdate(NodeConfig cfg, Object oldVal, Object newVal) {
         return oldVal != newVal;

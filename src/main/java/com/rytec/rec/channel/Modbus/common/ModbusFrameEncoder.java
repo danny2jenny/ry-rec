@@ -1,4 +1,4 @@
-package com.rytec.rec.channel.Modbus.Server;
+package com.rytec.rec.channel.Modbus.common;
 
 import com.rytec.rec.channel.Modbus.ModbusMessage;
 import io.netty.buffer.ByteBuf;

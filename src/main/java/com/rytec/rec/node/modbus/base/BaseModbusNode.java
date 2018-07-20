@@ -12,7 +12,7 @@ import java.io.IOException;
  * Node 的基础类，实现配置文件的解析,
  * 以及设定初始值
  */
-public abstract class BaseModbusNode extends RecBase implements ModbusNodeInterface {
+public abstract class BaseModbusNode extends RecBase implements IModbusNode {
 
     /**
      * 各个实现需要设置该值
@@ -39,13 +39,16 @@ public abstract class BaseModbusNode extends RecBase implements ModbusNodeInterf
         }
 
         if (nodeConfig.sensitive == null) {
-            nodeConfig.sensitive = new Float(0);
+            nodeConfig.sensitive = 1F;
+        } else if (nodeConfig.sensitive <= 0) {
+            nodeConfig.sensitive = 1.0F;
         }
 
         if (nodeConfig.interval == null) {
             nodeConfig.interval = 1;
+        } else {
+            nodeConfig.interval = Math.abs(nodeConfig.interval);
         }
-
 
         return nodeConfig;
     }

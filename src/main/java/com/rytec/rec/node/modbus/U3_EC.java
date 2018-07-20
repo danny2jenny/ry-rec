@@ -6,7 +6,7 @@ import com.rytec.rec.channel.Modbus.ModbusMessage;
 import com.rytec.rec.db.model.ChannelNode;
 import com.rytec.rec.node.NodeConfig;
 import com.rytec.rec.node.NodeMessage;
-import com.rytec.rec.node.modbus.base.DmaModbusBase;
+import com.rytec.rec.node.modbus.base.DmaBaseModbus;
 import com.rytec.rec.util.*;
 import io.netty.buffer.ByteBuf;
 import org.springframework.stereotype.Service;
@@ -22,7 +22,7 @@ import javax.annotation.PostConstruct;
 @Service
 @AnnotationNodeType(5001)
 @AnnotationJSExport("U3-EC 工业空调")
-public class U3_EC extends DmaModbusBase {
+public class U3_EC extends DmaBaseModbus {
 
     @Override
     public boolean needUpdate(NodeConfig cfg, Object oldVal, Object newVal) {

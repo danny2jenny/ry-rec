@@ -1,10 +1,15 @@
 package com.rytec.rec.node.modbus;
 
+import com.rytec.rec.channel.Modbus.ModbusFrame;
+import com.rytec.rec.channel.Modbus.ModbusMessage;
+import com.rytec.rec.db.model.ChannelNode;
 import com.rytec.rec.node.NodeConfig;
-import com.rytec.rec.node.modbus.base.DmaModbusBase;
+import com.rytec.rec.node.NodeMessage;
+import com.rytec.rec.node.modbus.base.DmaBaseModbus;
 import com.rytec.rec.util.AnnotationJSExport;
 import com.rytec.rec.util.AnnotationNodeType;
 import com.rytec.rec.util.ConstantModbusCommand;
+import io.netty.buffer.ByteBuf;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -21,20 +26,21 @@ import javax.annotation.PostConstruct;
 @Service
 @AnnotationNodeType(1102)
 @AnnotationJSExport("科华-环流")
-public class KH_Current extends DmaModbusBase {
+public class KH_Current extends DmaBaseModbus {
 
     /**
      * 参数初始化
      */
     @PostConstruct
     private void init() {
-        /**
-         * 各个实现需要设置该值
-         */
-        modbusCmd = ConstantModbusCommand.READ_HOLDING_REGISTERS;
-        //modbusCmd = ConstantModbusCommand.READ_REGISTERS;
-        //regOffset = 0;
-        regOffset = 0x07D0;
+
+        // 正式使用
+//        modbusCmd = ConstantModbusCommand.READ_HOLDING_REGISTERS;
+//        regOffset = 0x07D0;
+        // 测试
+        modbusCmd = ConstantModbusCommand.READ_REGISTERS;
+        regOffset = 0;
+
     }
 
     /**
@@ -73,7 +79,50 @@ public class KH_Current extends DmaModbusBase {
 
     @Override
     public void decodeMessage(Object msg) {
+        float[] rstFloat = new float[4];        // 返回值
+        ModbusMessage modbusMessage = (ModbusMessage) msg;
 
+        NodeMessage nodeMsg = new NodeMessage();
+        nodeMsg.from = modbusMessage.from;
+        nodeMsg.type = modbusMessage.type;
+        nodeMsg.node = modbusMessage.nodeId;
+        nodeMsg.value = rstFloat;
+
+        ByteBuf payload = modbusMessage.payload;
+
+        rstFloat[0] = payload.getShort(3) * 0.1F;
+        rstFloat[1] = payload.getShort(5) * 0.1F;
+        rstFloat[2] = payload.getShort(7) * 0.1F;
+        rstFloat[3] = payload.getShort(9) * 0.1F;
+
+        payload.release();
+
+        nodeManager.onMessage(nodeMsg);
+    }
+
+    @Override
+    public Object genMessage(int where, int nodeId, int cmd, int regCount, int value) {
+        ChannelNode cn = nodeManager.getChannelNodeByNodeId(nodeId).channelNode;
+
+        ModbusMessage frame = new ModbusMessage();
+
+        frame.from = where;
+        frame.nodeId = nodeId;
+        frame.type = cmd;
+        frame.regCount = 4;
+
+
+        switch (modbusCmd) {
+            case ConstantModbusCommand.READ_HOLDING_REGISTERS:      // 3
+                frame.payload = ModbusFrame.readHoldingRegisters(cn.getAdr(), regOffset, 4);
+                frame.responseLen = 5 + 4 * 2;
+                break;
+            case ConstantModbusCommand.READ_REGISTERS:              // 4
+                frame.payload = ModbusFrame.readRegisters(cn.getAdr(), regOffset, 4);
+                frame.responseLen = 5 + 4 * 2;
+                break;
+        }
+        return frame;
     }
 
 }

@@ -8,7 +8,6 @@ import com.rytec.rec.db.model.ChannelNode;
 import com.rytec.rec.node.NodeManager;
 import com.rytec.rec.node.NodeMessage;
 import com.rytec.rec.node.NodeRuntimeBean;
-import com.rytec.rec.node.modbus.cfg.ModbusNodeCfg;
 import com.rytec.rec.util.ConstantCommandType;
 import com.rytec.rec.util.ConstantErrorCode;
 import com.rytec.rec.util.ConstantFromWhere;
@@ -29,7 +28,7 @@ import java.util.HashMap;
  * regCount
  * regOffset
  */
-public abstract class DmaModbusBase extends BaseModbusNode {
+public abstract class DmaBaseModbus extends BaseModbusNode {
 
 
     @Autowired
@@ -324,18 +323,6 @@ public abstract class DmaModbusBase extends BaseModbusNode {
         channel.sendMsg(outMsg);
 
         return rst;
-    }
-
-    /**
-     * @return
-     */
-    @Override
-    public Object getCfg() {
-        ModbusNodeCfg cfg = new ModbusNodeCfg();
-        cfg.modbusCmd = modbusCmd;
-        cfg.regOffset = regOffset;
-
-        return cfg;
     }
 
 }

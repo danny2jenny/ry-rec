@@ -6,7 +6,7 @@ import com.rytec.rec.node.NodeConfig;
 import com.rytec.rec.node.NodeMessage;
 import com.rytec.rec.node.NodeRuntimeBean;
 import com.rytec.rec.node.ValueCompare;
-import com.rytec.rec.node.modbus.base.DmaModbusBase;
+import com.rytec.rec.node.modbus.base.DmaBaseModbus;
 import com.rytec.rec.util.AnnotationJSExport;
 import com.rytec.rec.util.AnnotationNodeType;
 import com.rytec.rec.util.ConstantModbusCommand;
@@ -25,7 +25,7 @@ import java.util.HashMap;
 @Service
 @AnnotationNodeType(2003)
 @AnnotationJSExport("RF-WSD 温湿度")
-public class RS_WSD extends DmaModbusBase {
+public class RS_WSD extends DmaBaseModbus {
     @Override
     public boolean needUpdate(NodeConfig cfg, Object oldVal, Object newVal) {
         return ValueCompare.analogNeedUpdate(cfg, oldVal, newVal);

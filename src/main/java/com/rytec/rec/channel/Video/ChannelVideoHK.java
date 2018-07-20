@@ -11,6 +11,6 @@ import org.springframework.stereotype.Service;
 @Service
 @AnnotationChannelType(2001)
 @AnnotationJSExport("海康 DVR")
-public class ChannelVideoHKVideoBase extends ChannelVideoBase {
+public class ChannelVideoHK extends ChannelVideoBase {
 
 }

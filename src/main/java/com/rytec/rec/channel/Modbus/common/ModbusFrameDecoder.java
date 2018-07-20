@@ -1,4 +1,4 @@
-package com.rytec.rec.channel.Modbus.Server;
+package com.rytec.rec.channel.Modbus.common;
 
 import com.rytec.rec.channel.Modbus.ModbusTcpSession;
 import com.rytec.rec.channel.Modbus.ModbusCommon;

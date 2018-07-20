@@ -1,7 +1,7 @@
 package com.rytec.rec.channel.Modbus;
 
 import com.rytec.rec.db.model.ChannelNode;
-import com.rytec.rec.node.modbus.base.ModbusNodeInterface;
+import com.rytec.rec.node.modbus.base.IModbusNode;
 import com.rytec.rec.node.NodeRuntimeBean;
 import com.rytec.rec.util.ConstantCommandType;
 import com.rytec.rec.util.ConstantFromWhere;
@@ -89,7 +89,7 @@ public class ModbusTcpSession {
         for (ChannelNode cn : chas) {
 
             // 得到 node 对应的操作接口
-            ModbusNodeInterface iNode = channelModbus.nodeManager.getNodeComInterface(cn.getNtype());
+            IModbusNode iNode = channelModbus.nodeManager.getNodeComInterface(cn.getNtype());
 
             if (iNode == null) {
                 continue;

@@ -4,6 +4,7 @@ import com.rytec.rec.channel.Modbus.ChannelModbusBase;
 import com.rytec.rec.channel.Modbus.ModbusTcpSession;
 import com.rytec.rec.channel.Modbus.ModbusCommon;
 import com.rytec.rec.channel.Modbus.ModbusMessage;
+import com.rytec.rec.channel.Modbus.common.ModbusFrameDecoder;
 import com.rytec.rec.util.ConstantFromWhere;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
@@ -17,12 +18,12 @@ import java.net.InetSocketAddress;
  * <p>
  * 所有收到的Modbus帧在这里进行处理
  */
-public class ModbusHandler extends SimpleChannelInboundHandler<ModbusMessage> {
+public class ModbusServerHandler extends SimpleChannelInboundHandler<ModbusMessage> {
 
     // 由于Natty的机制，这里不能用Autowired的方式
     private ChannelModbusBase channelModbusBase;
 
-    ModbusHandler(ChannelModbusBase serv) {
+    ModbusServerHandler(ChannelModbusBase serv) {
         this.channelModbusBase = serv;
     }
 

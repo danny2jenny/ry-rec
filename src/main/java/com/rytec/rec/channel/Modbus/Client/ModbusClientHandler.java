@@ -56,6 +56,7 @@ public class ModbusClientHandler extends SimpleChannelInboundHandler<ModbusMessa
 
         // 判断是否重连接
         if (!client.shutdown) {
+            System.out.print("通讯错误，重新连接");
             eventLoop.schedule(new Runnable() {
                 @Override
                 public void run() {
