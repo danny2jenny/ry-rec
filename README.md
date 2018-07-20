@@ -1,6 +1,10 @@
 # Rytec(Remote Environment Surveillance)
 
-该系统采用全新的构架
+This is a web based Surveillance system. Designed for adapting Modbus quipments, and support IEC 104 and IEC 61850 interface.
+
+System is web based, including WEB GIS and 3D panorama view. 
+
+Designed to be scaleable, and very easy to implement a new device, including camera, database etc.
 
 # 硬件选型
 
