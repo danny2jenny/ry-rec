@@ -2,8 +2,8 @@ package com.rytec.rec.node.modbus.base;
 
 import com.rytec.rec.channel.ChannelInterface;
 import com.rytec.rec.channel.ChannelManager;
-import com.rytec.rec.channel.Modbus.ModbusFrame;
-import com.rytec.rec.channel.Modbus.ModbusMessage;
+import com.rytec.rec.channel.Modbus.common.ModbusFrame;
+import com.rytec.rec.channel.Modbus.common.ModbusMessage;
 import com.rytec.rec.db.model.ChannelNode;
 import com.rytec.rec.node.NodeManager;
 import com.rytec.rec.node.NodeMessage;
@@ -56,6 +56,7 @@ public abstract class DmaBaseModbus extends BaseModbusNode {
         frame.nodeId = nodeId;
         frame.type = cmd;
         frame.regCount = regCount;
+        frame.overtime = this.overtime;
 
         switch (modbusCmd) {
             case ConstantModbusCommand.READ_WRITE_COILS:                  // 999

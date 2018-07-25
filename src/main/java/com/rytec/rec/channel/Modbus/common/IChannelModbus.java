@@ -1,4 +1,4 @@
-package com.rytec.rec.channel.Modbus;
+package com.rytec.rec.channel.Modbus.common;
 
 import com.rytec.rec.channel.ChannelInterface;
 import com.rytec.rec.db.model.ChannelNode;

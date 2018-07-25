@@ -1,4 +1,4 @@
-package com.rytec.rec.channel.Modbus;
+package com.rytec.rec.channel.Modbus.common;
 
 import io.netty.util.AttributeKey;
 

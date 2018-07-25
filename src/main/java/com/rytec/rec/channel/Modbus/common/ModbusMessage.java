@@ -1,4 +1,4 @@
-package com.rytec.rec.channel.Modbus;
+package com.rytec.rec.channel.Modbus.common;
 
 import com.rytec.rec.util.ConstantCommandType;
 import com.rytec.rec.util.ConstantFromWhere;

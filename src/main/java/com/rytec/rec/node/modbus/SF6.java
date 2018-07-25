@@ -26,6 +26,7 @@ public class SF6 extends DmaBaseModbus {
          */
         modbusCmd = ConstantModbusCommand.READ_HOLDING_REGISTERS;
         regOffset = 4096;  //308;
+        overtime = 20;
     }
 
 }

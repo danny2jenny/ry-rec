@@ -1,7 +1,7 @@
 package com.rytec.rec.node.modbus;
 
-import com.rytec.rec.channel.Modbus.ModbusFrame;
-import com.rytec.rec.channel.Modbus.ModbusMessage;
+import com.rytec.rec.channel.Modbus.common.ModbusFrame;
+import com.rytec.rec.channel.Modbus.common.ModbusMessage;
 import com.rytec.rec.db.model.ChannelNode;
 import com.rytec.rec.node.NodeConfig;
 import com.rytec.rec.node.NodeMessage;
@@ -35,12 +35,11 @@ public class KH_Current extends DmaBaseModbus {
     private void init() {
 
         // 正式使用
-//        modbusCmd = ConstantModbusCommand.READ_HOLDING_REGISTERS;
-//        regOffset = 0x07D0;
+        modbusCmd = ConstantModbusCommand.READ_HOLDING_REGISTERS;
+        regOffset = 0x07D0;
         // 测试
-        modbusCmd = ConstantModbusCommand.READ_REGISTERS;
-        regOffset = 0;
-
+//        modbusCmd = ConstantModbusCommand.READ_REGISTERS;
+//        regOffset = 0;
     }
 
     /**
@@ -110,6 +109,7 @@ public class KH_Current extends DmaBaseModbus {
         frame.nodeId = nodeId;
         frame.type = cmd;
         frame.regCount = 4;
+        frame.overtime = 4;
 
 
         switch (modbusCmd) {

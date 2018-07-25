@@ -2,6 +2,8 @@ package com.rytec.rec.channel.Modbus;
 
 import com.rytec.rec.app.RecBase;
 import com.rytec.rec.channel.ChannelManager;
+import com.rytec.rec.channel.Modbus.common.IChannelModbus;
+import com.rytec.rec.channel.Modbus.common.ModbusMessage;
 import com.rytec.rec.db.DbConfig;
 import com.rytec.rec.db.model.ChannelNode;
 import com.rytec.rec.node.NodeManager;

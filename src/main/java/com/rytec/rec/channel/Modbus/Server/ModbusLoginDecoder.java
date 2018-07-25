@@ -1,6 +1,6 @@
 package com.rytec.rec.channel.Modbus.Server;
 
-import com.rytec.rec.channel.Modbus.ModbusMessage;
+import com.rytec.rec.channel.Modbus.common.ModbusMessage;
 import com.rytec.rec.util.ConstantFromWhere;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;

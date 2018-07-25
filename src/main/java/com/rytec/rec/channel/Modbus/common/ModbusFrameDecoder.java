@@ -1,8 +1,5 @@
 package com.rytec.rec.channel.Modbus.common;
 
-import com.rytec.rec.channel.Modbus.ModbusTcpSession;
-import com.rytec.rec.channel.Modbus.ModbusCommon;
-import com.rytec.rec.channel.Modbus.ModbusMessage;
 import com.rytec.rec.util.CRC16;
 import com.rytec.rec.util.ConstantFromWhere;
 import com.rytec.rec.util.Tools;

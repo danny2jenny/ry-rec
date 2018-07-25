@@ -113,7 +113,8 @@ public class DeviceManager extends RecBase implements ManageableInterface {
                 dnByNode = new HashMap<>();
                 this.deviceNodeListByNode.put(item.getId(), dnByNode);
             }
-            dnByNode.put(item.getNid(), item);
+            if (item.getDtype() > 0)
+                dnByNode.put(item.getNid(), item);
 
             // 建立 byFunID 的 hash
             HashMap<Integer, DeviceNode> dnByFun = this.deviceNodeListByFun.get(item.getId());
@@ -121,12 +122,16 @@ public class DeviceManager extends RecBase implements ManageableInterface {
                 dnByFun = new HashMap<>();
                 this.deviceNodeListByFun.put(item.getId(), dnByFun);
             }
-            dnByFun.put(item.getNfun(), item);
+            if (item.getDtype() > 0)
+                dnByFun.put(item.getNfun(), item);
         }
 
         // 初始化 Device 的运行时状态
         List<Device> devices = dbConfig.getDeviceList();
         for (Device item : devices) {
+            if (item.getType() <= 0)
+                continue;
+
             DeviceRuntimeBean deviceRuntimeBean = new DeviceRuntimeBean();
             deviceRuntimeBean.device = item;
             deviceRuntimeBean.runtime = new DeviceStateBean();
@@ -190,7 +195,7 @@ public class DeviceManager extends RecBase implements ManageableInterface {
         }
 
         // todo，这里有问题
-        if (devices.isEmpty()){
+        if (devices.isEmpty()) {
             return;
         }
 

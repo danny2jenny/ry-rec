@@ -2,6 +2,9 @@ package com.rytec.rec.channel.Modbus;
 
 import com.rytec.rec.app.ManageableInterface;
 import com.rytec.rec.channel.Modbus.Client.ModbusClient;
+import com.rytec.rec.channel.Modbus.common.ModbusCommon;
+import com.rytec.rec.channel.Modbus.common.ModbusMessage;
+import com.rytec.rec.channel.Modbus.common.ModbusTcpSession;
 import com.rytec.rec.db.model.Channel;
 import com.rytec.rec.db.model.ChannelNode;
 import com.rytec.rec.util.AnnotationChannelType;

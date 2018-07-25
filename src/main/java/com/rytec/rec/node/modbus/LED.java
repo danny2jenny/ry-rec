@@ -1,8 +1,8 @@
 package com.rytec.rec.node.modbus;
 
 import com.rytec.rec.channel.ChannelInterface;
-import com.rytec.rec.channel.Modbus.ModbusFrame;
-import com.rytec.rec.channel.Modbus.ModbusMessage;
+import com.rytec.rec.channel.Modbus.common.ModbusFrame;
+import com.rytec.rec.channel.Modbus.common.ModbusMessage;
 import com.rytec.rec.db.model.ChannelNode;
 import com.rytec.rec.node.NodeConfig;
 import com.rytec.rec.node.NodeMessage;
@@ -57,6 +57,7 @@ public class LED extends DmaBaseModbus {
         frame.nodeId = nodeId;
         frame.type = cmd;
         frame.regCount = regCount;
+        frame.overtime = 2;
 
         frame.payload = ModbusFrame.writeRegister(cn.getAdr(), regOffset, value);
         frame.responseLen = 8;

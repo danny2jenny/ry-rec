@@ -1,6 +1,5 @@
 package com.rytec.rec.channel.Modbus.common;
 
-import com.rytec.rec.channel.Modbus.ModbusMessage;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToByteEncoder;

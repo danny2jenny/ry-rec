@@ -1,5 +1,6 @@
-package com.rytec.rec.channel.Modbus;
+package com.rytec.rec.channel.Modbus.common;
 
+import com.rytec.rec.channel.Modbus.ChannelModbusBase;
 import com.rytec.rec.db.model.ChannelNode;
 import com.rytec.rec.node.modbus.base.IModbusNode;
 import com.rytec.rec.node.NodeRuntimeBean;
@@ -38,7 +39,7 @@ public class ModbusTcpSession {
     private volatile int timer = 0;
     // 命令计数
     private volatile int checkCount = 0;        // 定时检测的计数
-    private volatile int sendCount = 0;         // 命令发送的计数
+    private volatile int sendCount = 0;         // 命令发送的计数，用来确定当前发送那条定时命令
 
 
     // 以下变量不需要锁定
@@ -173,7 +174,7 @@ public class ModbusTcpSession {
             // 命令没有变化
             timer++;
 
-            if (timer < 20) {
+            if (timer < lastOutMsg.overtime) {
                 // 未到达超时计数，返回
                 return;
             }

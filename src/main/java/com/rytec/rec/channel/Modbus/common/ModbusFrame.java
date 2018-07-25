@@ -1,4 +1,4 @@
-package com.rytec.rec.channel.Modbus;
+package com.rytec.rec.channel.Modbus.common;
 
 import com.rytec.rec.util.CRC16;
 import com.rytec.rec.util.ConstantModbusCommand;
