@@ -90,14 +90,14 @@ Ext.define('app.lib.GisViewPlugin', {
          *******************************************************/
 
         // 缺省的样式集
-        me.style.default = new ol.style.Style({
+        this.style.default = new ol.style.Style({
             fill: me.style.fill,
             stroke: me.style.stroke,
             image: me.style.point
         });
 
         // 选中的样式
-        me.style.selected = new ol.style.Style({
+        this.style.selected = new ol.style.Style({
             fill: me.style.fill,
             stroke: me.style.stroke,
             image: new ol.style.Icon({
@@ -111,7 +111,7 @@ Ext.define('app.lib.GisViewPlugin', {
          * @param resolution
          * @returns {*}
          */
-        me.style.styleFun = function (feature, resolution) {
+        this.style.styleFun = function (feature, resolution) {
 
             // 没有缓冲，新建
             var cachedStyle = new ol.style.Style({
@@ -152,7 +152,7 @@ Ext.define('app.lib.GisViewPlugin', {
          * @param features   features 集合
          * @param type       样式的风格，整形
          */
-        me.style.changeStyle = function (features, type) {
+        this.style.changeStyle = function (features, type) {
 
             // 缓冲样式的 key，用于 gis.style.chace 的索引
 
@@ -189,7 +189,7 @@ Ext.define('app.lib.GisViewPlugin', {
          * @param device  device 的ID
          * @param icon   状态：整形
          */
-        me.setDeviceStyle = function (device, icon) {
+        this.setDeviceStyle = function (device, icon) {
             var features = me.getFeaturesByDeviceOfLayer(gis.getActiveVectorLayer(), device);
             me.style.changeStyle(features, icon);
         };
@@ -198,7 +198,7 @@ Ext.define('app.lib.GisViewPlugin', {
         /*******************************************************
          * Map 对象                                             *
          *******************************************************/
-        me.map = new ol.Map({
+        this.map = new ol.Map({
             renderer: 'canvas',
             controls: [
                 new ol.control.Zoom(),
@@ -214,16 +214,15 @@ Ext.define('app.lib.GisViewPlugin', {
         });
 
         // map.owner 可以访问到map插件
-        me.map.owner = me;
+        this.map.owner = me;
 
         // 添加图层切换
-        me.map.addControl(new ol.control.LayerSwitcherImage());
+        this.map.addControl(new ol.control.LayerSwitcherImage());
 
         /**
          * 重新设置mapView
          */
-        me.maxExtent = function () {
-            //me.map.getView().fit(me.extent, me.map.getSize());   //-- v3.0
+        this.maxExtent = function () {
             me.map.getView().fit(me.extent);   //-- v4.0
         };
 
@@ -232,7 +231,7 @@ Ext.define('app.lib.GisViewPlugin', {
          * @param features
          */
 
-        me.zoomToFeatures = function (features) {
+        this.zoomToFeatures = function (features) {
             var a = [];
             for (var i in features) {
                 a.push(features[i].getGeometry());
@@ -245,10 +244,11 @@ Ext.define('app.lib.GisViewPlugin', {
          * 图层管理                                             *
          *******************************************************/
 
-        me.layers = new Ext.util.HashMap();
+        this.layers = new Ext.util.HashMap();
 
         // 为 layer 加载Feature
         me.onLayerFeaturesLoad = function (response) {
+            // 这里的Scope是GisView
             var me = this;
             var reader = new ol.format.GeoJSON();
             var features = reader.readFeatures(response.responseText);
@@ -318,9 +318,8 @@ Ext.define('app.lib.GisViewPlugin', {
          * @param layerName
          * @param layerFile
          */
-        me.addLayer = function (layerId, layerName, layerFile) {
-
-            //请求layer的Features
+        this.addLayer = function (layerId, layerName, layerFile) {
+            //请求layer的Features，异步请求
             Ext.Ajax.request({
                 url: 'srv/gis/features',
                 params: {
@@ -370,8 +369,7 @@ Ext.define('app.lib.GisViewPlugin', {
              */
             newLayer.on('change:visible', function (event) {
                 // 清理选中的Feature
-
-                var s2 = this.interaction.hoverSelect.getFeatures();
+                var s2 = ry.gis.interaction.hoverSelect.getFeatures();
                 s2.remove(s2.getArray()[0]);
 
                 // 状态改变的时候触发，多次触发
@@ -881,15 +879,14 @@ Ext.define('app.lib.GisViewPlugin', {
         me.interaction.popup.ctlPanel = null;
 
         me.interaction.hoverSelect.on('select', function (event) {
-
-            if (event.selected.length) {
-
+            // todo: 很笨的方法，通用性不强
+            if (event.selected.length && event.mapBrowserEvent.originalEvent.path.length < 15) {
                 // 首先清理以前加入的Overlay
-                if (this.interaction.popup.ctlPanel) {
-                    this.interaction.popup.ctlPanel.close();
-                    this.interaction.popup.ctlPanel = null;
+                if (ry.gis.interaction.popup.ctlPanel) {
+                    ry.gis.interaction.popup.ctlPanel.close();
+                    ry.gis.interaction.popup.ctlPanel = null;
                 }
-                this.map.removeOverlay(this.interaction.popup);
+                ry.gis.map.removeOverlay(ry.gis.interaction.popup);
 
                 // 得到当前选中 Feature 的属性
                 var fProperties = event.selected[0].getProperties();
@@ -900,18 +897,18 @@ Ext.define('app.lib.GisViewPlugin', {
                 }
 
                 // 添加Overlay
-                this.map.addOverlay(this.interaction.popup);
+                ry.gis.map.addOverlay(ry.gis.interaction.popup);
                 // 显示 Overlay
-                this.interaction.popup.show(fProperties.geometry.getCoordinates());
+                ry.gis.interaction.popup.show(fProperties.geometry.getCoordinates());
 
                 // 显示控制面板
-                this.interaction.popup.ctlPanel = Ext.create('app.view.device.control._' + fProperties.type, {
-                    renderTo: this.interaction.popup.content
+                ry.gis.interaction.popup.ctlPanel = Ext.create('app.view.device.control._' + fProperties.type, {
+                    renderTo: ry.gis.interaction.popup.content
                 });
 
-                this.interaction.popup.ctlPanel.show();
-                this.interaction.popup.ctlPanel.updateState(ry.devicesState[fProperties.deviceId]);
-                this.interaction.popup.ctlPanel.getEl().setStyle('z-index', '80000');
+                ry.gis.interaction.popup.ctlPanel.show();
+                ry.gis.interaction.popup.ctlPanel.updateState(ry.devicesState[fProperties.deviceId]);
+                ry.gis.interaction.popup.ctlPanel.getEl().setStyle('z-index', '80000');
             } else {
                 // 没有选中不能hide，否则不能使用面板了
             }

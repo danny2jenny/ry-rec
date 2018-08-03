@@ -9,7 +9,6 @@ package com.rytec.rec.web.util;
 import ch.ralscha.extdirectspring.annotation.ExtDirectMethod;
 import ch.ralscha.extdirectspring.annotation.ExtDirectMethodType;
 import ch.ralscha.extdirectspring.bean.ExtDirectFormPostResult;
-import com.libiec61850.scl.SclParserException;
 import com.libiec61850.tools.DynamicModelGenerator;
 import com.rytec.rec.app.RecBase;
 import com.rytec.rec.db.mapper.GisLayerMapper;
@@ -18,10 +17,7 @@ import com.rytec.rec.db.model.GisLayer;
 import com.rytec.rec.db.model.Panorama;
 import com.rytec.rec.service.IEC61850Service;
 import com.rytec.rec.util.RyFile;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -30,10 +26,6 @@ import java.io.*;
 
 @Controller
 public class UploadService extends RecBase {
-
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
-
-    static private int thumbWidth = 128;
 
     @Autowired
     GisLayerMapper gisLayerMapper;

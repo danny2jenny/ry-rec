@@ -37,24 +37,26 @@
 
 
     <%--OpenLayers--%>
-    <link rel="stylesheet" href="openlayers/ol.css" type="text/css">
-    <script type="text/javascript" src="openlayers/ol-debug.js"></script>
+    <link rel="stylesheet" href="js/ol5/ol.css" type="text/css">
+    <script type="text/javascript" src="js/ol5/ol.js"></script>
 
     <!-- OL3 Ext Toolbar -->
-    <link rel="stylesheet" href="openlayers/control/controlbar.css" type="text/css"/>
-    <script type="text/javascript" src="openlayers/control/controlbar.js"></script>
-    <script type="text/javascript" src="openlayers/control/buttoncontrol.js"></script>
-    <script type="text/javascript" src="openlayers/control/togglecontrol.js"></script>
+    <%--<link rel="stylesheet" href="js/ol5/control/controlbar.css" type="text/css"/>--%>
+    <%--<script type="text/javascript" src="openlayers/control/controlbar.js"></script>--%>
+    <%--<script type="text/javascript" src="openlayers/control/buttoncontrol.js"></script>--%>
+    <%--<script type="text/javascript" src="openlayers/control/togglecontrol.js"></script>--%>
 
     <%--Layer Switch--%>
-    <link rel="stylesheet" href="openlayers/control/layerswitcherimagecontrol.css"/>
-    <script type="text/javascript" src="openlayers/control/layerswitchercontrol.js"></script>
-    <script type="text/javascript" src="openlayers/control/layerswitcherimagecontrol.js"></script>
-    <script type="text/javascript" src="openlayers/getpreview.js"></script>
+    <link rel="stylesheet" href="js/ol5/control/LayerSwitcher.css"/>
+    <link rel="stylesheet" href="js/ol5/control/LayerSwitcherImage.css"/>
+    <script type="text/javascript" src="js/ol5/control/LayerSwitcher.js"></script>
+    <script type="text/javascript" src="js/ol5/control/LayerSwitcherImage.js"></script>
+    <script type="text/javascript" src="js/ol5/layer/GetPreview.js"></script>
 
     <%--Overlay弹出--%>
-    <link rel="stylesheet" href="openlayers/overlay/popupoverlay.css"/>
-    <script type="text/javascript" src="openlayers/overlay/popupoverlay.js"></script>
+    <link rel="stylesheet" href="js/ol5/overlay/Popup.css"/>
+    <script type="text/javascript" src="js/ol5/overlay/Popup.js"></script>
+
 
     <%--Extjs Direct 的配置文件--%>
     <script type="text/javascript" src="/srv/api.js"></script>
@@ -70,6 +72,7 @@
 
 <body>
 <div id="body"></div>
+
 <%--告警声音--%>
 <audio id='wave.alarm' src='res/audio/alarm.wav' loop=true></audio>
 </body>
