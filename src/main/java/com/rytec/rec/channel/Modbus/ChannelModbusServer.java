@@ -27,7 +27,6 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.util.concurrent.GenericFutureListener;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.annotation.Order;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -49,10 +48,6 @@ public class ChannelModbusServer extends ChannelModbusBase implements Manageable
 
     @Autowired
     ChannelManager channelManager;
-
-    //端口配置
-    @Value("${tcp.server.modbus.port}")
-    private int port;
 
     //nety 服务
     private ServerBootstrap bootstrap;
@@ -88,7 +83,7 @@ public class ChannelModbusServer extends ChannelModbusBase implements Manageable
 
             // Bind and start to accept incoming connections.
             // ChannelFuture 对象，同步调用
-            parentChannel = bootstrap.bind(port).sync().channel();
+            parentChannel = bootstrap.bind(Integer.parseInt(dbConfig.getCfg("tcp.server.modbus.port"))).sync().channel();
 
             //添加一个关闭事件的监听
             parentChannel.closeFuture().addListener(new GenericFutureListener<ChannelFuture>() {

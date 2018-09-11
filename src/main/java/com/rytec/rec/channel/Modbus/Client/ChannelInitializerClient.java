@@ -28,10 +28,10 @@ public class ChannelInitializerClient extends ChannelInitializer<SocketChannel> 
     @Override
     protected void initChannel(SocketChannel ch) throws Exception {
         ChannelPipeline pipeline = ch.pipeline();
-        pipeline.addLast(new IdleStateHandler(20, 20, 0, TimeUnit.SECONDS));
-        pipeline.addFirst("FrameEncoder", new ModbusFrameEncoder());                 //发送编码
-        pipeline.addFirst("FrameDecoder", new ModbusFrameDecoder());                 //接收解码
-        pipeline.addLast("ModbusServerHandler", new ModbusClientHandler(channelModbusBase, modbusClient, id));    //接收
+        pipeline.addLast(new IdleStateHandler(5, 5, 0, TimeUnit.SECONDS));
+        pipeline.addFirst("FrameEncoder", new ModbusFrameEncoder());                                                //发送编码
+        pipeline.addFirst("FrameDecoder", new ModbusFrameDecoder());                                                //接收解码
+        pipeline.addLast("ModbusServerHandler", new ModbusClientHandler(channelModbusBase, modbusClient, id));      //接收
 
     }
 }

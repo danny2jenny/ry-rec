@@ -10,7 +10,9 @@ import ch.ralscha.extdirectspring.annotation.ExtDirectMethod;
 import ch.ralscha.extdirectspring.annotation.ExtDirectMethodType;
 import ch.ralscha.extdirectspring.bean.ExtDirectFormPostResult;
 import com.libiec61850.tools.DynamicModelGenerator;
+import com.rytec.rec.app.AppManager;
 import com.rytec.rec.app.RecBase;
+import com.rytec.rec.db.DbConfig;
 import com.rytec.rec.db.mapper.GisLayerMapper;
 import com.rytec.rec.db.mapper.PanoramaMapper;
 import com.rytec.rec.db.model.GisLayer;
@@ -18,10 +20,15 @@ import com.rytec.rec.db.model.Panorama;
 import com.rytec.rec.service.IEC61850Service;
 import com.rytec.rec.util.RyFile;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.*;
 
 @Controller
@@ -35,6 +42,12 @@ public class UploadService extends RecBase {
 
     @Autowired
     IEC61850Service iec61850Service;
+
+    @Autowired
+    DbConfig dbConfig;
+
+    @Autowired
+    AppManager appManager;
 
 
     /**
@@ -210,15 +223,30 @@ public class UploadService extends RecBase {
 
 
         try {
-            PrintStream outputStream = new PrintStream(new FileOutputStream(new File(iec61850Service.iecCfgFile)));
+            PrintStream outputStream = new PrintStream(new FileOutputStream(new File(dbConfig.getCfg("iec61850.cfg"))));
             new DynamicModelGenerator(icdFile.getInputStream(), null, outputStream, null, null);
             return new ExtDirectFormPostResult(true);
         } catch (Exception e) {
             // 错误处理
             return new ExtDirectFormPostResult(false);
         }
-
-
     }
+
+    @RequestMapping("/backup")
+    public ResponseEntity<byte[]> fileDownLoad(HttpServletRequest request) throws Exception {
+        String realPath = "/root/cfg/backup.zip";
+        appManager.backup();
+        InputStream in = new FileInputStream(new File(realPath));//将该文件加入到输入流之中
+        byte[] body = null;
+        body = new byte[in.available()];// 返回下一次对此输入流调用的方法可以不受阻塞地从此输入流读取（或跳过）的估计剩余字节数
+        in.read(body);//读入到输入流里面
+
+        HttpHeaders headers = new HttpHeaders();//设置响应头
+        headers.add("Content-Disposition", "attachment;filename=backup.zip");
+        HttpStatus statusCode = HttpStatus.OK;//设置响应吗
+        ResponseEntity<byte[]> response = new ResponseEntity<byte[]>(body, headers, statusCode);
+        return response;
+    }
+
 
 }

@@ -39,7 +39,7 @@ Ext.define('app.view.admin.panel.Option', {
         },
         {
             text: '名称',
-            width: 100,
+            width: 300,
             sortable: false,
             dataIndex: 'name',
             menuDisabled: true,

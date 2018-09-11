@@ -14,8 +14,8 @@ import io.netty.channel.socket.nio.NioSocketChannel;
  */
 public class ModbusClient {
 
-    String host = "192.168.1.1";
-    int port = 8080;
+    String host = "";
+    int port = 0;
 
     ChannelModbusBase channelModbusBase;
 

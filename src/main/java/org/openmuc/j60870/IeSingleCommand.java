@@ -25,9 +25,6 @@ import java.io.IOException;
 
 /**
  * Represents a single command (SCO) information element.
- * 
- * 
- * 
  */
 public class IeSingleCommand extends IeAbstractQualifierOfCommand {
 
@@ -45,6 +42,15 @@ public class IeSingleCommand extends IeAbstractQualifierOfCommand {
 
     public boolean isCommandStateOn() {
         return (value & 0x01) == 0x01;
+    }
+
+    /**
+     * 返回信息体值
+     *
+     * @return
+     */
+    public int getValue() {
+        return value;
     }
 
     @Override

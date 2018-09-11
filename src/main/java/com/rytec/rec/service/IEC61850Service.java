@@ -26,7 +26,7 @@ import java.util.List;
  */
 @Service
 @Order(400)
-public class IEC61850Service extends RecBase implements ManageableInterface {
+public class IEC61850Service extends RecBase implements ManageableInterface, IOutGoing {
 
     private List<DeviceRuntimeBean> iec61850runtime = new ArrayList();
 
@@ -35,9 +35,6 @@ public class IEC61850Service extends RecBase implements ManageableInterface {
 
     @Autowired
     MqttService mqttService;
-
-    @Value("${iec61850.cfg}")
-    public String iecCfgFile;            // 61850 配置文件
 
     ObjectMapper objectMapper = new ObjectMapper();
 
@@ -69,7 +66,6 @@ public class IEC61850Service extends RecBase implements ManageableInterface {
         }
 
 
-
         switch (cmd) {
             case ConstantMqtt.IEC61850_INIT_REQUEST:
                 // 初始化请求
@@ -80,11 +76,11 @@ public class IEC61850Service extends RecBase implements ManageableInterface {
                 device = jsonNode.path("device").asInt();
                 val = jsonNode.path("val").asBoolean();
                 deviceOperator = deviceManager.getOperatorByDeviceId(device);
-                if (deviceOperator!=null){
-                    if (val){
-                        deviceOperator.operate(ConstantFromWhere.FROM_USER, device, 101, null );
+                if (deviceOperator != null) {
+                    if (val) {
+                        deviceOperator.operate(ConstantFromWhere.FROM_USER, device, 101, null);
                     } else {
-                        deviceOperator.operate(ConstantFromWhere.FROM_USER, device, 100, null );
+                        deviceOperator.operate(ConstantFromWhere.FROM_USER, device, 100, null);
                     }
 
                 }
@@ -117,6 +113,7 @@ public class IEC61850Service extends RecBase implements ManageableInterface {
      *
      * @param runtimeBean 首先判断 iec61850runtime 中是否有该device
      */
+    @Override
     public void update(DeviceRuntimeBean runtimeBean) {
 
         if (!iec61850runtime.contains(runtimeBean)) {

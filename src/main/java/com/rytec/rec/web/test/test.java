@@ -1,9 +1,6 @@
 package com.rytec.rec.web.test;
 
-import com.rytec.rec.node.NodeManager;
-import com.rytec.rec.node.NodeMessage;
-import com.rytec.rec.util.ConstantCommandType;
-import com.rytec.rec.util.ConstantFromWhere;
+import com.rytec.rec.service.heshen.HeShen80870Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,22 +13,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class test {
     @Autowired
-    NodeManager nodeManager;
+    HeShen80870Service heShen80870Service;
 
     @GetMapping("/test")
     @ResponseBody
-    public void system() {
-        NodeMessage nodeMessage = new NodeMessage();
-        nodeMessage.node = 7;
-        nodeMessage.type = ConstantCommandType.GENERAL_READ;
-        nodeMessage.from = ConstantFromWhere.FROM_USER;
-        nodeMessage.value = true;
-        nodeManager.onMessage(nodeMessage);
-
-        nodeMessage.node = 8;
-        nodeManager.onMessage(nodeMessage);
-
-        nodeMessage.node = 13;
-        nodeManager.onMessage(nodeMessage);
+    public String system() {
+        //heShen80870Service.uploadCfg();
+        return "OK";
     }
 }

@@ -2,13 +2,13 @@ package com.rytec.rec.service.iec60870;
 
 import com.rytec.rec.app.ManageableInterface;
 import com.rytec.rec.app.RecBase;
+import com.rytec.rec.db.DbConfig;
 import com.rytec.rec.device.AbstractOperator;
 import com.rytec.rec.device.DeviceManager;
 import com.rytec.rec.device.DeviceRuntimeBean;
+import com.rytec.rec.service.IOutGoing;
 import com.rytec.rec.util.ConstantFromWhere;
-import org.openmuc.j60870.Connection;
-import org.openmuc.j60870.Server;
-import org.openmuc.j60870.ServerEventListener;
+import org.openmuc.j60870.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.annotation.Order;
@@ -23,19 +23,19 @@ import java.util.concurrent.TimeoutException;
  */
 @Service
 @Order(400)
-public class Iec60870Server extends RecBase implements ServerEventListener, ManageableInterface {
+public class Iec60870Server extends RecBase implements ServerEventListener, ManageableInterface, IOutGoing {
 
-    private int connectionIdCounter = 1;
+    @Value("${fun.yt.104}")
+    boolean enable;
+
+    protected int connectionIdCounter = 1;
 
     //端口配置
-    @Value("${iec60870.port}")
     private int port;
-
-    @Value("${iec60870.xml}")
-    public String xmlFileName;
-
-    @Value("${iec60870.addr}")
     public int Iec60870Addr;            // 60870 地址
+
+    @Autowired
+    protected DbConfig dbConfig;
 
     @Autowired
     AddrConvert addrConvert;
@@ -46,12 +46,12 @@ public class Iec60870Server extends RecBase implements ServerEventListener, Mana
     @Autowired
     public DeviceManager deviceManager;
 
-    Server.Builder builder;
-    Server server = null;
+    protected Server.Builder builder;
+    protected Server server = null;
 
-    private Iec60870Listener crtListener = null;       // 当前的监听对象
+    protected Iec60870Listener crtListener = null;        // 当前的监听对象
 
-    public long timerOffset;                    // 时间差
+    public long timerOffset;                              // 时间差
 
 
     /**
@@ -60,9 +60,11 @@ public class Iec60870Server extends RecBase implements ServerEventListener, Mana
      * @param client
      */
     public void clientClosed(Iec60870Listener client) {
+        if (client == null) {
+            return;
+        }
         if (client == crtListener) {
             crtListener = null;
-            debug("当前活动链接关闭");
         }
 
     }
@@ -83,6 +85,7 @@ public class Iec60870Server extends RecBase implements ServerEventListener, Mana
             iec60870Listener.setServer(this);
             crtListener = iec60870Listener;
             connection.waitForStartDT(iec60870Listener, 5000);
+            iec60870Listener.ready = true;
         } catch (IOException e) {
             debug("连接： (" + myConnectionId + ") 中断 StartDT: " + e.getMessage());
             return;
@@ -104,6 +107,13 @@ public class Iec60870Server extends RecBase implements ServerEventListener, Mana
 
     @Override
     public void start() {
+        if (!enable) {
+            return;
+        }
+        // 初始化配置
+        port = Integer.parseInt(dbConfig.getCfg("iec60870.port"));
+        Iec60870Addr = Integer.parseInt(dbConfig.getCfg("iec60870.addr"));
+
         builder = new Server.Builder();
         builder.setPort(port);
         // TODO 可以设置不同的超时
@@ -132,8 +142,11 @@ public class Iec60870Server extends RecBase implements ServerEventListener, Mana
      *
      * @param deviceRuntimeBean
      */
+    @Override
     public void update(DeviceRuntimeBean deviceRuntimeBean) {
-
+        if (!enable) {
+            return;
+        }
         if (crtListener != null) {
             crtListener.updateDevice(deviceRuntimeBean);
         }

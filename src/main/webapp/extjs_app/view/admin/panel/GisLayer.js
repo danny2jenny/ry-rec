@@ -26,7 +26,7 @@ Ext.define('app.view.admin.panel.GisLayer', {
                 allowBlank: false
             }
         }, {
-            text: '节点类型',
+            text: '分区编号',
             dataIndex: 'zoom',
             width: 80,
             editor: {

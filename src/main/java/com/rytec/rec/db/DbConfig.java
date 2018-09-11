@@ -3,25 +3,25 @@ package com.rytec.rec.db;
 import com.rytec.rec.app.ManageableInterface;
 import com.rytec.rec.db.mapper.*;
 import com.rytec.rec.db.model.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.rytec.rec.util.ConstantCfg;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
  * Created by danny on 16-12-28.
  * <p>
  * 数据库的所有配置信息都在这里集中读取和初始化
+ * <p>
+ * 系统的配置信息在这里进行读取
  */
 
 @Service
 @Order(200)
 public class DbConfig implements ManageableInterface {
-
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     private List<ChannelNode> channelNodeList;
     private List<DeviceNode> deviceNodeList;
@@ -32,6 +32,9 @@ public class DbConfig implements ManageableInterface {
     private List<DeviceGis> deviceGisList;
     private List<GisLayer> gisLayerList;
     private List<NodeRedirect> nodeRedirectList;
+
+    // 系统配置
+    private HashMap<String, String> cfg = new HashMap<>();
 
     @Autowired
     ChannelNodeMapper channelNodeMapper;
@@ -112,6 +115,13 @@ public class DbConfig implements ManageableInterface {
 
     private void initConfig() {
         configList = configMapper.selectByExample(null);
+
+        // 读取配置
+        for (Config item : configList) {
+            if (item.getCat() == ConstantCfg.OPT_CFG) {
+                cfg.put(item.getName(), item.getValue());
+            }
+        }
     }
 
     private void initDeviceGis() {
@@ -208,6 +218,12 @@ public class DbConfig implements ManageableInterface {
         return nodeRedirectList;
     }
 
+    // 通过Key值得到配置
+    public String getCfg(String key) {
+        getConfigList();
+        return cfg.get(key);
+    }
+
     /**
      * 实现管理接口
      */
@@ -221,6 +237,8 @@ public class DbConfig implements ManageableInterface {
         deviceGisList = null;
         gisLayerList = null;
         nodeRedirectList = null;
+
+        cfg.clear();
     }
 
     public void start() {

@@ -105,4 +105,23 @@ public class AppManager extends RecBase implements ApplicationListener<ContextRe
             systemReload();
         }
     }
+
+
+    /**
+     * 备份系统
+     *
+     * @return
+     */
+    public boolean backup() {
+        String cmd = "/root/backup";
+        try {
+            Process runtimeProcess = Runtime.getRuntime().exec(cmd);
+            runtimeProcess.waitFor();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        return true;
+    }
 }

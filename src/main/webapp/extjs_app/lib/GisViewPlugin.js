@@ -13,7 +13,6 @@
  * https://github.com/anzhihun/OpenLayers3Primer
  *
  *
- *
  * 配置：
  * layerStore：字符串， GisLayer对应 app.store.GisLayer
  * editable: boolean 是否允许编辑
@@ -246,8 +245,12 @@ Ext.define('app.lib.GisViewPlugin', {
 
         this.layers = new Ext.util.HashMap();
 
-        // 为 layer 加载Feature
-        me.onLayerFeaturesLoad = function (response) {
+        /**
+         * 为 layer 加载Feature
+         * 这是回调
+         * @param response
+         */
+        this.onLayerFeaturesLoad = function (response) {
             // 这里的Scope是GisView
             var me = this;
             var reader = new ol.format.GeoJSON();
@@ -256,6 +259,8 @@ Ext.define('app.lib.GisViewPlugin', {
             var layerGroup = me.layers.get(response.request.options.params.layer);
 
             var layer = layerGroup.getLayers().getArray()[1];
+
+            // 向矢量层添加Feature
             layer.getSource().addFeatures(features);
 
             // 防止layer features 没有得到时无法添加Overlay
@@ -341,8 +346,8 @@ Ext.define('app.lib.GisViewPlugin', {
             // 图层：矢量图
             var vectorLayer = new ol.layer.Vector({
                 source: new ol.source.Vector({
-                    // format: new ol.format.GeoJSON(),
-                    // url: '/srv/gis/features?layer=' + layerId
+                    format: new ol.format.GeoJSON(),
+                    url: '/srv/gis/features?layer=' + layerId
                 }),
                 style: me.style.styleFun
             });
@@ -453,7 +458,6 @@ Ext.define('app.lib.GisViewPlugin', {
              * map.overlays_ 是 map 自己的一个对象
              */
             updateDevice: function (scope) {
-
                 // 可能因为异步的原因，还没有得到devicesState
                 // 需要结合 newLayer.on('change:visible', function (event)
                 // 这两处都可能触发重新绘制 Overlay
@@ -946,6 +950,7 @@ Ext.define('app.lib.GisViewPlugin', {
                 this.layers.getValues()[0].setVisible(true);
             }
         };
+
         me.store = Ext.StoreMgr.get(me.layerStore);
         me.store.on('refresh', me.onLayerFresh, me);
 

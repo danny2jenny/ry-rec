@@ -8,6 +8,7 @@ import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.EventLoop;
 import io.netty.channel.SimpleChannelInboundHandler;
+import io.netty.handler.timeout.IdleStateEvent;
 
 import java.util.concurrent.TimeUnit;
 
@@ -82,5 +83,21 @@ public class ModbusClientHandler extends SimpleChannelInboundHandler<ModbusMessa
 
         channelModbus.receiveMsg(modbusTcpSession.id, response);
         modbusTcpSession.clearLastOutMsg();
+    }
+
+    /**
+     * 超时的处理
+     *
+     * @param ctx
+     * @param evt
+     * @throws Exception
+     */
+    @Override
+    public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception {
+        // 当一个channel太久没有写入数据，表示这个Channel是没有配置的，应该断开。
+        if (evt instanceof IdleStateEvent) {
+            ctx.close();
+            channelModbus.debug("无效的连接！！！！！！！！！！！！");
+        }
     }
 }

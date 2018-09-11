@@ -1,5 +1,7 @@
 package com.rytec.rec.service.iec60870;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rytec.rec.app.ManageableInterface;
 import com.rytec.rec.app.RecBase;
 import com.rytec.rec.db.DbConfig;
@@ -8,13 +10,18 @@ import com.rytec.rec.db.model.DeviceGis;
 import com.rytec.rec.db.model.GisLayer;
 import com.rytec.rec.device.DeviceManager;
 import com.rytec.rec.device.DeviceRuntimeBean;
+import com.rytec.rec.service.heshen.C_DataType;
+import com.rytec.rec.service.heshen.C_FunType;
+import com.rytec.rec.service.heshen.json.ConfigDevice;
+import com.rytec.rec.service.heshen.json.ConfigFunction;
+import com.rytec.rec.service.heshen.json.ConfigMaster;
+import com.rytec.rec.util.Tools;
 import org.dom4j.Document;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 import org.dom4j.io.OutputFormat;
 import org.dom4j.io.XMLWriter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Service;
 
@@ -44,17 +51,7 @@ public class FileManager extends RecBase implements ManageableInterface {
     AddrConvert addrConvert;
 
     //文件上传的路径
-    @Value("${iec60870.xml}")
     String xmlFileName;
-
-    @Value("${project.name}")
-    private String projectName;
-    @Value("${project.addr}")
-    private String projectAddr;
-    @Value("${project.company}")
-    private String projectCompany;
-    @Value("${iec60870.addr}")
-    public int iec60870Addr;            // 60870 地址
 
     /**
      * 图标类型到config的Hash
@@ -77,6 +74,7 @@ public class FileManager extends RecBase implements ManageableInterface {
 
     @Override
     public void start() {
+        xmlFileName = dbConfig.getCfg("iec60870.xml");
         stop();
         getConfig();
         genXML();
@@ -112,6 +110,171 @@ public class FileManager extends RecBase implements ManageableInterface {
     }
 
     /**
+     * 生成Json的台账信息
+     */
+    public String genJson() {
+
+        ConfigMaster jsonCfg = new ConfigMaster();
+
+        // 台账文件结构
+        jsonCfg.id = Integer.parseInt(dbConfig.getCfg("iec60870.addr"));
+        jsonCfg.name = dbConfig.getCfg("project.name");
+        jsonCfg.vender = dbConfig.getCfg("project.vender");
+        jsonCfg.createtime = Tools.currentTimeIsoStr();
+        jsonCfg.ip = dbConfig.getCfg("heshen104.ip");
+        jsonCfg.port = dbConfig.getCfg("heshen104.port");
+
+        // 添加设备
+        for (DeviceRuntimeBean deviceRuntimeBean : deviceManager.getDeviceRuntimeList().values()) {
+            // 处理没有图标的情况
+            if (deviceRuntimeBean.device.getIcon() == 0) {
+                continue;
+            }
+
+            // 301 空调； 401 摄像头； 9999 全景
+            if (deviceRuntimeBean.device.getType() == 301 | deviceRuntimeBean.device.getType() == 401 | deviceRuntimeBean.device.getType() == 9999) {
+                continue;
+            }
+
+            ConfigDevice device = new ConfigDevice();
+            jsonCfg.devices.add(device);
+
+            // 对 device 进行填充
+            device.devName = deviceRuntimeBean.device.getName();
+            device.devType = iconConfigMap.get(deviceRuntimeBean.device.getIcon()).getType();
+            DeviceGis deviceGis = deviceGisHashMap.get(deviceRuntimeBean.device.getId());
+            if (deviceGis != null) {
+                device.area = gisLayerMap.get(deviceGis.getLayer());
+                String posStr = deviceGis.getData().substring(1, deviceGis.getData().length() - 1);
+                int commaPos = posStr.indexOf(',');
+                device.longitude = posStr.substring(0, commaPos - 1);
+                device.latitude = posStr.substring(commaPos, posStr.length());
+            }
+
+            ConfigFunction configFunction = new ConfigFunction();
+            switch (deviceRuntimeBean.device.getType()) {
+                case 201:           // 模拟量
+                    configFunction.funcName = deviceRuntimeBean.device.getName();
+                    configFunction.funcType = C_FunType.DATA;
+                    configFunction.addrType = C_DeviceType.ADDR_TYPE_MEASURE;
+                    configFunction.addr = "0x" + Integer.toHexString(deviceRuntimeBean.device.getId() + C_DeviceAddr.MEASURE_ADDR);
+                    configFunction.dataType = C_DataType.S_FLOAT;
+                    device.function.add(configFunction);
+                    break;
+                case 102:           // 开关输入
+                    configFunction.funcName = deviceRuntimeBean.device.getName();
+                    configFunction.funcType = C_FunType.DATA;
+                    configFunction.addrType = C_DeviceType.ADDR_TYPE_STATE;
+                    configFunction.addr = "0x" + Integer.toHexString(deviceRuntimeBean.device.getId() + C_DeviceAddr.STATE_ADDR);
+                    configFunction.dataType = C_DataType.SWITCH;
+                    device.function.add(configFunction);
+                    break;
+                case 101:           // 开关控制
+                    // 控制
+                    configFunction.funcName = "(控制)";
+                    configFunction.funcType = C_FunType.CONTROL;
+                    configFunction.addrType = C_DeviceType.ADDR_TYPE_CONTROL;
+                    configFunction.addr = "0x" + Integer.toHexString(deviceRuntimeBean.device.getId() + C_DeviceAddr.CONTROL_ADDR);
+                    configFunction.dataType = C_DataType.SWITCH;
+                    device.function.add(configFunction);
+
+                    // 状态
+                    configFunction = new ConfigFunction();
+                    configFunction.funcName = "(状态)";
+                    configFunction.funcType = C_FunType.DATA;
+                    configFunction.addrType = C_DeviceType.ADDR_TYPE_STATE;
+                    configFunction.addr = "0x" + Integer.toHexString(deviceRuntimeBean.device.getId() + C_DeviceAddr.RUN_STATE);
+                    configFunction.dataType = C_DataType.SWITCH;
+                    device.function.add(configFunction);
+
+                    // 远程就地
+                    configFunction = new ConfigFunction();
+                    configFunction.funcName = "(模式)";
+                    configFunction.funcType = C_FunType.DATA;
+                    configFunction.addrType = C_DeviceType.ADDR_TYPE_STATE;
+                    configFunction.addr = "0x" + Integer.toHexString(deviceRuntimeBean.device.getId() + C_DeviceAddr.RUN_MODE);
+                    configFunction.dataType = C_DataType.SWITCH;
+                    device.function.add(configFunction);
+                    break;
+                case 501:           // 电流传感（环流）
+                    // A相
+                    configFunction.funcName = "(A相)";
+                    configFunction.funcType = C_FunType.DATA;
+                    configFunction.addrType = C_DeviceType.ADDR_TYPE_MEASURE;
+                    configFunction.addr = "0x" + Integer.toHexString(addrConvert.getBase104Addr(deviceRuntimeBean.device.getId()));
+                    configFunction.dataType = C_DataType.S_FLOAT;
+                    device.function.add(configFunction);
+
+                    // B相
+                    configFunction = new ConfigFunction();
+                    configFunction.funcName = "(B相)";
+                    configFunction.funcType = C_FunType.DATA;
+                    configFunction.addrType = C_DeviceType.ADDR_TYPE_MEASURE;
+                    configFunction.addr = "0x" + Integer.toHexString(addrConvert.getBase104Addr(deviceRuntimeBean.device.getId() + 1));
+                    configFunction.dataType = C_DataType.S_FLOAT;
+                    device.function.add(configFunction);
+
+                    // C相
+                    configFunction = new ConfigFunction();
+                    configFunction.funcName = "(B相)";
+                    configFunction.funcType = C_FunType.DATA;
+                    configFunction.addrType = C_DeviceType.ADDR_TYPE_MEASURE;
+                    configFunction.addr = "0x" + Integer.toHexString(addrConvert.getBase104Addr(deviceRuntimeBean.device.getId() + 2));
+                    configFunction.dataType = C_DataType.S_FLOAT;
+                    device.function.add(configFunction);
+
+                    // 0序
+                    configFunction = new ConfigFunction();
+                    configFunction.funcName = "(0序)";
+                    configFunction.funcType = C_FunType.DATA;
+                    configFunction.addrType = C_DeviceType.ADDR_TYPE_MEASURE;
+                    configFunction.addr = "0x" + Integer.toHexString(addrConvert.getBase104Addr(deviceRuntimeBean.device.getId() + 3));
+                    configFunction.dataType = C_DataType.S_FLOAT;
+                    device.function.add(configFunction);
+                    break;
+                case 502:           // 光纤测温告警
+                    // 告警类型
+                    configFunction.funcName = "告警类型";
+                    configFunction.funcType = C_FunType.DATA;
+                    configFunction.addrType = C_DeviceType.ADDR_TYPE_MEASURE;
+                    configFunction.addr = "0x" + Integer.toHexString(addrConvert.getBase104Addr(deviceRuntimeBean.device.getId()));
+                    configFunction.dataType = C_DataType.UNSIGN_16;
+                    device.function.add(configFunction);
+
+                    // 告警位置
+                    configFunction = new ConfigFunction();
+                    configFunction.funcName = "告警位置";
+                    configFunction.funcType = C_FunType.DATA;
+                    configFunction.addrType = C_DeviceType.ADDR_TYPE_MEASURE;
+                    configFunction.addr = "0x" + Integer.toHexString(addrConvert.getBase104Addr(deviceRuntimeBean.device.getId() + 1));
+                    configFunction.dataType = C_DataType.UNSIGN_16;
+                    device.function.add(configFunction);
+
+                    // 告警值
+                    configFunction = new ConfigFunction();
+                    configFunction.funcName = "告警值";
+                    configFunction.funcType = C_FunType.DATA;
+                    configFunction.addrType = C_DeviceType.ADDR_TYPE_MEASURE;
+                    configFunction.addr = "0x" + Integer.toHexString(addrConvert.getBase104Addr(deviceRuntimeBean.device.getId() + 2));
+                    configFunction.dataType = C_DataType.S_FLOAT;
+                    device.function.add(configFunction);
+
+                    break;
+            }
+        }
+
+        // 生成 Json
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(jsonCfg);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+            return "";
+        }
+
+    }
+
+    /**
      * XML
      * Device段
      * Name: 设备名称，对应Device表中的Name
@@ -136,13 +299,13 @@ public class FileManager extends RecBase implements ManageableInterface {
         Document document = DocumentHelper.createDocument();
         // 创建根节点items
         Element rootElement = document.addElement("Site");
-        rootElement.addAttribute("SName", projectName);
-        rootElement.addAttribute("SAddr", String.valueOf(iec60870Addr));
+        rootElement.addAttribute("SName", dbConfig.getCfg("project.name"));
+        rootElement.addAttribute("SAddr", dbConfig.getCfg("iec60870.addr"));
 
 
         // 创建根节点下的item子节点
         Element subElement = rootElement.addElement("Productor");
-        subElement.setText(projectCompany);
+        subElement.setText(dbConfig.getCfg("project.vender"));
 
         /**
          * 生成Device的结构

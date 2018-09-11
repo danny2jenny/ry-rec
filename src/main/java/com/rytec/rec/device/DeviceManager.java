@@ -14,8 +14,7 @@ import com.rytec.rec.app.RecBase;
 import com.rytec.rec.db.DbConfig;
 import com.rytec.rec.db.model.Device;
 import com.rytec.rec.db.model.DeviceNode;
-import com.rytec.rec.service.IEC61850Service;
-import com.rytec.rec.service.iec60870.Iec60870Server;
+import com.rytec.rec.service.IOutGoing;
 import com.rytec.rec.util.ConstantDeviceState;
 import com.rytec.rec.util.AnnotationDeviceType;
 import com.rytec.rec.util.ConstantMessageType;
@@ -25,6 +24,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,11 +39,8 @@ public class DeviceManager extends RecBase implements ManageableInterface {
     @Autowired
     DbConfig dbConfig;
 
-    @Autowired
-    IEC61850Service iec61850Service;
-
-    @Autowired
-    Iec60870Server iec60870Server;
+    // 设备状态外发的接口
+    private List<IOutGoing> outGoingState = new ArrayList<>();
 
     /*
      * device操作接口
@@ -93,6 +90,16 @@ public class DeviceManager extends RecBase implements ManageableInterface {
             Class<? extends Object> deviceClass = device.getClass();
             AnnotationDeviceType annotation = deviceClass.getAnnotation(AnnotationDeviceType.class);
             deviceOperators.put(annotation.value(), (AbstractOperator) device);
+        }
+    }
+
+    /**
+     * 初始化状态外发的对象
+     */
+    private void setOutGoingState() {
+        Map<String, IOutGoing> outGoingMap = context.getBeansOfType(IOutGoing.class);
+        for (IOutGoing og : outGoingMap.values()) {
+            outGoingState.add(og);
         }
     }
 
@@ -156,6 +163,7 @@ public class DeviceManager extends RecBase implements ManageableInterface {
     @PostConstruct
     private void init() {
         initOperatorInterface();
+        setOutGoingState();
     }
 
     //得到一个设备的实例对象
@@ -215,10 +223,12 @@ public class DeviceManager extends RecBase implements ManageableInterface {
 
         // 向更新61850中的值
         DeviceRuntimeBean deviceRuntimeBean = deviceRuntimeList.get(device);
-        iec61850Service.update(deviceRuntimeBean);
 
-        // 向60870更新值
-        iec60870Server.update(deviceRuntimeBean);
+        // 向所有的outgoing发送消息
+
+        for (IOutGoing og : outGoingState) {
+            og.update(deviceRuntimeBean);
+        }
     }
 
     public void stop() {

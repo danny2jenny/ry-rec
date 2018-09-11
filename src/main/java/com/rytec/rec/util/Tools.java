@@ -1,5 +1,8 @@
 package com.rytec.rec.util;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Tools {
 
     /**
@@ -30,6 +33,17 @@ public class Tools {
             }
         }
         return -1;
+    }
+
+
+    /**
+     * 当前时间的ISO字符串
+     *
+     * @return
+     */
+    public static String currentTimeIsoStr() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return sdf.format(new Date());
     }
 
 }

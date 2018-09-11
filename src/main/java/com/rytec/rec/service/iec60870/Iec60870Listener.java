@@ -15,17 +15,17 @@ import java.io.*;
  * 60870 通讯处理 每个客户端对应一个该对象
  */
 public class Iec60870Listener extends RecBase implements ConnectionEventListener {
-
-    private static int STATE_ON = 21;                           // 开关状态值 开
+    public volatile boolean ready = false;                      // 是否可以发送
+    protected static int STATE_ON = 21;                         // 开关状态值 开
     private static int STATE_OFF = 20;                          // 开关状态值 关
 
     private static int SEGMENT_MAX_SIZE = 236;                  // 每一段的最大容量
     private static int SEGMENT_MAX_COUNT = 255;                 // 每一节最大段的数量
 
-    private final Connection connection;
+    protected final Connection connection;
     private final int connectionId;
 
-    private Iec60870Server iec60870Server;
+    protected Iec60870Server iec60870Server;
 
     // ----------------------- 通讯状态 ----------------------------
     FileInputStream fileSendStream;                     // 当前上传文件
@@ -44,6 +44,12 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
         iec60870Server = server;
     }
 
+    /**
+     * 构造函数
+     *
+     * @param connection
+     * @param connectionId
+     */
     public Iec60870Listener(Connection connection, int connectionId) {
         this.connection = connection;
         this.connectionId = connectionId;
@@ -63,7 +69,7 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
                 break;
             case C_CS_NA_1:             // 对时命令
                 IeTime56 time56 = (IeTime56) aSdu.getInformationObjects()[0].getInformationElements()[0][0];
-                sendTimeSync(time56.getTimestamp());
+                sendTimeSync(time56);
                 break;
             case F_SC_NA_1: //文件传输
                 switch (aSdu.getCauseOfTransmission()) {
@@ -143,18 +149,14 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
     public void connectionClosed(IOException e) {
         closeFile();
         debug("Connection (" + connectionId + ") was closed!!!+. " + e.getMessage());
+        connection.close();
         iec60870Server.clientClosed(this);
     }
 
     /**
      * 发送对时响应
      */
-    private void sendTimeSync(long timestamp) {
-        long currentTimestamp = System.currentTimeMillis();
-        long receivedTimestamp = timestamp;
-
-        iec60870Server.timerOffset = receivedTimestamp - currentTimestamp;
-
+    protected void sendTimeSync(IeTime56 time56) {
         ASdu asduBack = new ASdu(
                 TypeId.C_CS_NA_1,
                 1,
@@ -168,7 +170,8 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
                                 0,
                                 new InformationElement[][]{
                                         {
-                                                new IeTime56(receivedTimestamp)
+                                                time56
+                                                //new IeTime56(timestamp, TimeZone.getTimeZone("GMT0"), true)
                                         }
                                 }
                         )
@@ -470,7 +473,7 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
      * @param active
      * @return
      */
-    private ASdu genState(int addr, boolean ste, boolean active) {
+    protected ASdu genState(int addr, boolean ste, boolean active) {
 
         CauseOfTransmission cause;
 
@@ -494,7 +497,6 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
                                 new InformationElement[][]{
                                         {
                                                 new IeSingleCommand(ste, 0, false)
-                                                //new IeTime56(System.currentTimeMillis())
                                         }
                                 }
                         )
@@ -679,32 +681,15 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
      * @param devRuntime 设备运行状态对象
      * @param active     是否为主动发送
      */
-    private void sendDeviceState(DeviceRuntimeBean devRuntime, boolean active) {
+    protected void sendDeviceState(DeviceRuntimeBean devRuntime, boolean active) {
         boolean state = false;
         float val = 0;
         Integer addr;
-        int kg = 0;
 
         ASdu aSdu;      // 需要发送的ASDU
 
         switch (devRuntime.device.getType()) {
             case 101:           // 开关
-                // 发送开关状态
-//                if (((StateOutput) devRuntime.runtime.state).output == (Integer) STATE_ON) {
-//                    state = true;
-//                } else {
-//                    state = false;
-//                }
-//
-//                addr = devRuntime.device.getId() + C_DeviceAddr.CONTROL_ADDR;
-//                aSdu = genState(addr, state, active);
-//
-//                try {
-//                    connection.send(aSdu);
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-
                 // 发送反馈状态
                 if (((StateOutput) devRuntime.runtime.state).feedback == (Integer) STATE_ON) {
                     state = true;
@@ -740,7 +725,7 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
 
                 break;
             case 102:           // 遥信
-                // 发送远程就地
+                //
                 if ((Boolean) devRuntime.runtime.state == Boolean.TRUE) {
                     state = true;
                 } else {
@@ -798,9 +783,7 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
      * 2、单个设备信息
      * 3、站召唤结束
      */
-    private void sendAllData() {
-
-
+    protected void sendAllData() {
         // 站召应答
         try {
             connection.interrogation(
@@ -833,6 +816,9 @@ public class Iec60870Listener extends RecBase implements ConnectionEventListener
      * @param deviceRuntimeBean
      */
     public void updateDevice(DeviceRuntimeBean deviceRuntimeBean) {
+        if (!ready) {
+            return;
+        }
         sendDeviceState(deviceRuntimeBean, true);
     }
 

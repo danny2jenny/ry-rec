@@ -20,7 +20,7 @@ public abstract class BaseModbusNode extends RecBase implements IModbusNode {
     public int modbusCmd = ConstantModbusCommand.READ_COILS;  // Modbus的命令，1\2\3\4\5\6
     public int regOffset = 0;   // 寄存器偏移量
     public int interval = 1;    //
-    public int overtime = 2;    // 超时因素
+    public int overtime = 4;    // 超时因素
 
     static public NodeConfig parseConfig(String inStr) {
         NodeConfig nodeConfig;

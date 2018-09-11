@@ -30,6 +30,9 @@ public abstract class RecBase {
      * @param msg
      */
     public void webNotify(int type, Object msg) {
+        if (msg == null) {
+            return;
+        }
         webPushObj.webNotify(type, msg);
     }
 
@@ -48,7 +51,7 @@ public abstract class RecBase {
      * @param msg
      */
     public void debug(String msg) {
-        //logger.debug(msg);
+        logger.debug(msg);
         webNotify(ConstantMessageType.WEB_NOTIFY_MSG, logger.getName() + '-' + msg);
     }
 
